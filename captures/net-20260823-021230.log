@@ -1,0 +1,1014 @@
+# Blockpost room-protocol capture, started 2026-08-23 02:12:30
+# tx: <ms> tx hdr=0xNN op=0xNN <name> : <fields>    rx: <ms> rx len=N <hex>
+
+14059,2 ==== CAPTURE ON ====
+14064,5 # net: TcpClient.Connected = True
+14080,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 6,9 0,75 b0 i295373352
+14130,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 6,9 0,75 b0 i295373402
+14176,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 6,9 0,75 b0 i295373448
+14229,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 6,9 0,75 b0 i295373501
+14280,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 7,2 0,9 b0 i295373551
+14331,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 8,55 2,1 b0 i295373603
+14377,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 9 2,55 b0 i295373648
+14424,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 9,75 5,1 b0 i295373696
+14484,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 9,9 7,5 b0 i295373755
+14528,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 10,2 14,55 b0 i295373800
+14579,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 9,6 24 b0 i295373851
+14634,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 8,85 28,05 b0 i295373906
+14650,1 tx hdr=0xF5 op=0x06 int3/6 : s79 s2 s16
+14650,3 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+14685,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 8,622 28,05 b0 i295373956
+14728,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 8,65 28,05 b0 i295373999
+14733,1 tx hdr=0xF5 op=0x06 int3/6 : s78 s2 s17
+14733,2 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+14779,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 8,46 28,05 b0 i295374050
+14813,8 tx hdr=0xF5 op=0x06 int3/6 : s79 s2 s16
+14813,9 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+14828,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 8,282 28,05 b0 i295374100
+14878,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 8,374 28,05 b0 i295374150
+14894,5 tx hdr=0xF5 op=0x06 int3/6 : s79 s2 s16
+14894,7 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+14929,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 8,241 28,65 b0 i295374201
+14977,9 tx hdr=0xF5 op=0x06 int3/6 : s79 s2 s16
+14978,0 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+14978,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 8,513 31,8 b0 i295374249
+15028,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 8,421 39,9 b0 i295374300
+15064,3 tx hdr=0xF5 op=0x06 int3/6 : s80 s2 s15
+15064,4 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+15079,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 7,421 49,5 b0 i295374351
+15127,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 5,175 57,3 b0 i295374399
+15146,6 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+15177,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 1,471 64,65 b0 i295374449
+15227,6 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+15227,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 359,069 70,2 b0 i295374499
+15283,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 355,541 74,55 b0 i295374555
+15313,9 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+15327,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 354,672 75,15 b0 i295374599
+15379,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 354,83 75,3 b0 i295374651
+15395,4 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+15426,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 355,77 80,55 b0 i295374698
+15478,5 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+15478,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 357,419 87 b0 i295374750
+15527,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 359,122 91,8 b0 i295374799
+15560,2 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+15583,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 359,336 97,35 b0 i295374855
+15628,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 359,479 103,2 b0 i295374900
+15644,9 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) : 75,343 3,4 10,771 i295374916 b7 b1 84,471 3,404 8,249
+15674,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 0,112 106,95 b0 i295374946
+15728,6 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+15728,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 0,275 107,55 b0 i295375000
+15779,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 0,182 107,7 b0 i295375051
+15809,9 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+15830,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 0,083 107,7 b0 i295375102
+15876,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 0,223 108,75 b0 i295375148
+15890,0 tx hdr=0xF5 op=0x06 int3/6 : s87 s3 s5
+15890,2 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+15932,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 0,146 109,35 b0 i295375204
+15971,8 tx hdr=0xF5 op=0x06 int3/6 : s87 s3 s5
+15971,9 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+15976,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 0,027 109,35 b0 i295375248
+16026,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 0,179 109,35 b0 i295375297
+16052,3 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+16074,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 0,077 109,35 b0 i295375346
+16126,9 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 0,24 109,35 b0 i295375398
+16142,1 tx hdr=0xF5 op=0x06 int3/6 : s87 s3 s5
+16142,2 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+16177,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 0,14 109,2 b0 i295375448
+16226,0 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+16226,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 0,577 107,85 b0 i295375497
+16276,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 0,64 107,55 b0 i295375547
+16309,8 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+16326,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 0,676 106,05 b0 i295375597
+16383,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 1,152 101,55 b0 i295375654
+16398,0 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+16428,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 1,18 94,65 b0 i295375699
+16476,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 1,318 85,2 b0 i295375747
+16483,4 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+16526,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 1,218 81,9 b0 i295375797
+16563,7 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) : 75,5 3,4 10,5 i295375835 b3 b1 92,386 3,197 13,683
+16578,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 1,119 79,2 b0 i295375849
+16631,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 1,286 79,2 b0 i295375903
+16644,1 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) : 75,5 3,4 10,5 i295375915 b3 b1 92,01 3,29 13,618
+16677,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 1,171 79,2 b0 i295375948
+16727,8 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+16728,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 1,313 78,6 b0 i295375999
+16783,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 1,39 78,15 b0 i295376054
+16810,9 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+16826,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 1,268 78,15 b0 i295376097
+16875,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 1,422 78,15 b0 i295376147
+16890,5 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+16927,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 1,324 81,75 b0 i295376198
+16970,7 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+16985,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 1,249 87,3 b0 i295376256
+17027,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 1,38 89,4 b0 i295376291
+17056,9 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+17075,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 1,274 90,3 b0 i295376338
+17127,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 1,439 90,45 b0 i295376390
+17179,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 1,568 90,45 b0 i295376442
+17230,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 1,685 90,45 b0 i295376494
+17284,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 1,781 88,95 b0 i295376547
+17326,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 2,441 85,35 b0 i295376589
+17380,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 3,853 77,85 b0 i295376644
+17425,9 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 4,782 73,65 b0 i295376689
+17476,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 4,8 69,3 b0 i295376740
+17529,9 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 4,8 67,05 b0 i295376793
+17586,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 4,8 66,9 b0 i295376850
+17626,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 4,95 66,15 b0 i295376890
+17686,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 5,55 63,3 b0 i295376949
+17727,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 6,45 59,25 b0 i295376991
+17775,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 7,8 55,05 b0 i295377039
+17834,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 9,3 51 b0 i295377098
+17879,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 10,65 48,75 b0 i295377143
+17925,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 11,55 47,25 b0 i295377189
+17987,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 12,15 43,95 b0 i295377251
+18026,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 12,75 41,55 b0 i295377290
+18076,9 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 13,8 39,15 b0 i295377347
+18125,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 14,7 35,85 b0 i295377396
+18183,2 tx hdr=0xF5 op=0x10 ready/16 :
+18183,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 15,75 27,6 b0 i295377454
+18234,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,5 1 10,5 16,05 13,35 b0 i295377504
+18277,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,514 1 10,716 16,05 3,6 b1 i295377548
+18325,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,514 1 11,061 16,05 357,9 b1 i295377596
+18376,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,505 1 11,484 16,05 357,75 b1 i295377647
+18434,9 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,492 1 11,953 16,05 357,75 b1 i295377705
+18475,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,63 1 12,394 16,05 357,75 b5 i295377746
+18531,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 75,86 1 12,817 16,05 357,75 b5 i295377802
+18578,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 76,145 1 13,229 16,05 357,75 b5 i295377849
+18628,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 76,462 1 13,635 16,05 357,75 b5 i295377899
+18681,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 76,799 1 14,037 16,05 357,75 b5 i295377952
+18725,9 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,148 1 14,437 16,05 357,9 b5 i295377996
+18781,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,505 1 14,835 16,05 357,9 b5 i295378052
+18827,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,866 1 15,232 16,05 357,9 b5 i295378097
+18877,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 78,074 1 15,232 16,05 357,9 b1 i295378147
+18934,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 78,192 1 15,232 16,05 357,9 b1 i295378204
+18986,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 78,246 1 15,232 16,05 355,65 b1 i295378257
+19030,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 78,278 1 15,537 16,05 351,45 b0 i295378301
+19068,5 # net: TcpClient.Connected = True
+19083,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 78,298 1 15,537 16,05 345,3 b0 i295378354
+19134,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 78,309 1 15,537 16,05 340,5 b0 i295378405
+19185,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 78,316 1 15,537 16,05 339,45 b0 i295378456
+19233,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 78,318 1 15,556 16,05 334,05 b32 i295378504
+19280,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 78,32 1 15,568 16,05 328,2 b32 i295378551
+19329,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 78,32 1 15,568 14,85 318,75 b32 i295378600
+19379,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 78,32 1 15,568 14,7 307,5 b32 i295378650
+19434,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 78,32 1 15,568 13,5 298,8 b32 i295378704
+19483,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 78,358 1 15,671 11,85 290,7 b36 i295378754
+19528,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 78,406 1 15,837 10,35 283,2 b36 i295378799
+19584,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 78,434 1 16,046 9,3 270 b36 i295378854
+19626,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 78,418 1 16,273 9,3 251,85 b36 i295378897
+19683,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 78,338 1 16,492 9,3 229,8 b36 i295378954
+19731,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 78,205 1 16,492 8,4 218,1 b36 i295379002
+19777,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 78,039 1 16,492 7,65 216,75 b36 i295379048
+19826,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,853 1 16,492 7,65 216,75 b36 i295379097
+19875,9 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,655 1 16,492 7,65 216,75 b36 i295379146
+19925,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,449 1 16,492 7,65 216,75 b36 i295379196
+19980,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,449 1 16,592 7,65 216,3 b32 i295379250
+20027,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,449 1 16,592 9,6 205,95 b32 i295379297
+20076,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,592 9,75 193,2 b32 i295379345
+20133,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,592 10,5 188,1 b32 i295379402
+20178,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,592 13,05 186,6 b32 i295379448
+20231,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 15,6 185,25 b32 i295379501
+20281,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,6 183 b32 i295379550
+20327,9 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 19,65 182,4 b32 i295379597
+20376,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 19,8 182,25 b32 i295379646
+20430,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 19,8 182,25 b32 i295379700
+20476,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 19,8 181,8 b32 i295379746
+20531,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 19,8 181,2 b32 i295379800
+20581,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 19,8 180,9 b32 i295379851
+20625,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 19,8 180,9 b32 i295379895
+20680,9 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 19,8 180,9 b32 i295379950
+20729,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 19,8 180,9 b32 i295379999
+20768,6 tx hdr=0xF5 op=0x06 int3/6 : s77 s0 s12
+20768,8 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+20782,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 19,559 180,9 b32 i295380052
+20832,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 19,591 180,9 b32 i295380101
+20849,3 tx hdr=0xF5 op=0x06 int3/6 : s77 s0 s11
+20849,4 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+20879,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 19,388 180,9 b32 i295380149
+20932,0 tx hdr=0xF5 op=0x06 int3/6 : s77 s0 s11
+20932,1 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+20932,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 19,455 180,9 b32 i295380202
+20983,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 19,301 180,9 b32 i295380253
+21013,5 tx hdr=0xF5 op=0x06 int3/6 : s77 s0 s11
+21013,7 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+21032,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 19,156 180,9 b32 i295380304
+21084,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 19,283 180,9 b32 i295380355
+21097,0 tx hdr=0xF5 op=0x06 int3/6 : s77 s0 s11
+21097,1 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+21128,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 19,166 180,9 b32 i295380400
+21180,7 tx hdr=0xF5 op=0x06 int3/6 : s77 s0 s12
+21180,9 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+21181,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 19,317 180,9 b32 i295380452
+21231,9 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 19,23 180,9 b32 i295380503
+21263,9 tx hdr=0xF5 op=0x06 int3/6 : s77 s0 s12
+21264,1 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+21278,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 19,265 180,6 b32 i295380550
+21331,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 20,332 179,55 b32 i295380602
+21346,4 tx hdr=0xF5 op=0x06 int3/6 : s77 s0 s12
+21346,5 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+21379,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 20,669 178,8 b32 i295380651
+21434,9 tx hdr=0xF5 op=0x06 int3/6 : s77 s0 s12
+21435,1 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+21435,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21,132 178,35 b32 i295380706
+21479,9 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21,025 178,35 b32 i295380751
+21520,2 tx hdr=0xF5 op=0x06 int3/6 : s77 s0 s12
+21520,3 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+21534,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 20,932 178,35 b32 i295380805
+21578,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21,067 178,35 b32 i295380850
+21603,2 tx hdr=0xF5 op=0x06 int3/6 : s77 s0 s12
+21603,3 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+21628,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 20,963 178,35 b32 i295380900
+21680,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21,112 178,35 b32 i295380952
+21684,5 tx hdr=0xF5 op=0x06 int3/6 : s77 s0 s12
+21684,6 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+21732,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21,023 178,35 b32 i295381003
+21773,9 tx hdr=0xF5 op=0x06 int3/6 : s77 s0 s12
+21774,1 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+21779,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 20,9 178,35 b32 i295381051
+21831,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21,066 178,35 b32 i295381103
+21860,7 tx hdr=0xF5 op=0x06 int3/6 : s77 s0 s12
+21860,9 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+21878,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 20,944 178,35 b32 i295381150
+21928,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21,096 178,35 b32 i295381199
+21943,6 tx hdr=0xF5 op=0x06 int3/6 : s77 s0 s12
+21943,7 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+21975,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 20,985 178,35 b32 i295381247
+22027,6 tx hdr=0xF5 op=0x06 int3/6 : s77 s0 s11
+22027,7 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+22027,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21,131 178,35 b32 i295381295
+22076,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21,035 178,35 b32 i295381344
+22111,9 tx hdr=0xF5 op=0x06 int3/6 : s77 s0 s11
+22112,0 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+22126,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 20,92 178,35 b32 i295381393
+22179,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21,084 178,35 b32 i295381446
+22192,1 tx hdr=0xF5 op=0x06 int3/6 : s77 s0 s11
+22192,3 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+22230,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 20,989 178,35 b32 i295381498
+22276,4 tx hdr=0xF5 op=0x06 int3/6 : s77 s0 s11
+22276,5 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+22276,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21,12 178,35 b32 i295381544
+22326,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21,027 178,35 b32 i295381593
+22364,3 tx hdr=0xF5 op=0x06 int3/6 : s77 s0 s11
+22364,4 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+22376,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 20,921 178,35 b32 i295381644
+22425,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21,071 178,35 b32 i295381692
+22443,6 tx hdr=0xF5 op=0x06 int3/6 : s77 s0 s11
+22443,7 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+22478,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 20,978 178,35 b32 i295381746
+22525,3 tx hdr=0xF5 op=0x06 int3/6 : s77 s0 s11
+22525,5 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+22525,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21,114 178,35 b32 i295381793
+22580,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21,036 178,35 b32 i295381847
+22604,9 tx hdr=0xF5 op=0x06 int3/6 : s77 s0 s11
+22605,1 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+22628,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 20,933 178,35 b32 i295381896
+22677,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21,084 178,35 b32 i295381944
+22686,2 tx hdr=0xF5 op=0x06 int3/6 : s77 s0 s10
+22686,4 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+22728,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 20,99 178,35 b32 i295381996
+22766,0 tx hdr=0xF5 op=0x06 int3/6 : s77 s0 s10
+22766,2 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+22779,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 20,894 178,35 b32 i295382046
+22828,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21,049 178,35 b32 i295382095
+22850,2 tx hdr=0xF5 op=0x06 int3/6 : s77 s0 s10
+22850,4 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+22875,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 20,943 178,35 b32 i295382143
+22931,7 tx hdr=0xF5 op=0x06 int3/6 : s77 s0 s10
+22931,9 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+22932,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21,113 178,35 b32 i295382199
+22985,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21,029 178,35 b32 i295382253
+23013,9 tx hdr=0xF5 op=0x06 int3/6 : s77 s0 s10
+23014,1 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+23027,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 20,906 178,35 b32 i295382291
+23080,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21,07 178,35 b32 i295382345
+23096,6 tx hdr=0xF5 op=0x06 int3/6 : s77 s0 s10
+23096,8 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+23131,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 20,975 178,35 b32 i295382396
+23182,1 tx hdr=0xF5 op=0x06 int3/6 : s77 s0 s10
+23182,3 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+23182,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21,121 178,35 b32 i295382447
+23231,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21,028 178,35 b32 i295382496
+23281,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21,162 178,35 b32 i295382546
+23298,8 tx hdr=0xF5 op=0x65 ? :
+23330,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21,287 178,35 b32 i295382595
+23380,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21,38 178,35 b32 i295382645
+23434,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21,469 178,35 b32 i295382698
+23476,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21,522 178,35 b32 i295382740
+23534,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21,571 178,35 b32 i295382798
+23579,9 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21,599 178,35 b32 i295382844
+23629,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21,6 178,35 b32 i295382894
+23677,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21,6 178,35 b32 i295382942
+23726,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21,6 178,35 b32 i295382991
+23776,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21,6 178,35 b32 i295383041
+23801,6 tx hdr=0xF5 op=0x10 ready/16 :
+23833,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21,6 178,35 b32 i295383098
+23882,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21,6 178,35 b32 i295383147
+23929,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21,6 178,35 b32 i295383193
+23978,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21,6 178,35 b32 i295383243
+24027,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21,6 178,35 b32 i295383292
+24072,7 # net: TcpClient.Connected = True
+24076,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21,6 178,35 b32 i295383341
+24126,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21,6 178,35 b32 i295383394
+24175,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21,6 178,35 b32 i295383444
+24225,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21,6 178,35 b32 i295383493
+24276,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21,6 178,35 b32 i295383544
+24336,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21,6 178,35 b32 i295383604
+24382,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21,6 178,35 b32 i295383650
+24431,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21,6 178,35 b32 i295383699
+24483,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21,6 178,35 b32 i295383751
+24531,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21,6 178,35 b32 i295383800
+24583,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21,6 178,35 b32 i295383852
+24629,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21,6 178,35 b32 i295383897
+24676,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21,6 178,35 b32 i295383944
+24727,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21,6 178,2 b32 i295383995
+24777,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21,45 177,9 b32 i295384045
+24830,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21,45 177,9 b32 i295384098
+24878,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21,45 177,9 b32 i295384146
+24926,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21,45 177,9 b32 i295384194
+24979,9 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21,45 177,9 b32 i295384248
+25023,7 tx hdr=0xF5 op=0x11 spawn?/17 :
+25027,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21,45 177,9 b32 i295384294
+25084,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21,45 177,9 b32 i295384351
+25134,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21,45 177,9 b32 i295384401
+25180,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21,45 177,9 b32 i295384447
+25228,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21,45 177,9 b32 i295384495
+25280,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21,45 177,9 b32 i295384547
+25325,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21,45 177,9 b32 i295384593
+25378,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21,45 177,9 b32 i295384645
+25429,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 21 177,45 b32 i295384697
+25477,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 20,25 176,7 b32 i295384744
+25529,9 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,3 173,4 b32 i295384797
+25578,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 15,6 169,65 b32 i295384845
+25626,9 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 11,85 165,6 b32 i295384894
+25678,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 7,05 159,9 b32 i295384945
+25732,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 3,15 153,75 b32 i295384999
+25779,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 1,35 151,05 b32 i295385046
+25826,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 359,1 148,65 b32 i295385094
+25877,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 357,45 145,95 b32 i295385144
+25928,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 355,35 141,3 b32 i295385196
+25976,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 354,45 139,05 b32 i295385243
+26031,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 354,45 139,05 b32 i295385302
+26076,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 354,45 139,05 b32 i295385346
+26133,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 354,45 138,75 b32 i295385404
+26176,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 354,6 138,3 b32 i295385447
+26226,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 355,35 138 b32 i295385497
+26276,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 355,8 138 b32 i295385547
+26333,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 356,7 137,85 b32 i295385603
+26382,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 357,45 137,25 b32 i295385652
+26430,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 357,9 136,65 b32 i295385701
+26476,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 357,9 136,65 b32 i295385746
+26530,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 357,9 136,65 b32 i295385800
+26576,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 357,9 136,65 b32 i295385847
+26633,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 358,8 136,8 b32 i295385903
+26676,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 359,4 137,1 b32 i295385946
+26726,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 0,9 138,15 b32 i295385996
+26783,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 3,9 140,7 b32 i295386053
+26826,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 6,75 142,95 b32 i295386097
+26854,8 tx hdr=0xF5 op=0x06 int3/6 : s84 s0 s6
+26855,0 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+26880,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 8,317 144,15 b32 i295386151
+26932,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 8,5 144,15 b32 i295386202
+26935,9 tx hdr=0xF5 op=0x06 int3/6 : s84 s0 s7
+26936,0 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+26985,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 8,462 144,15 b32 i295386256
+27028,5 tx hdr=0xF5 op=0x06 int3/6 : s83 s0 s8
+27028,7 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+27028,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 8,812 144,15 b32 i295386298
+27083,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 9,57 143,85 b32 i295386352
+27113,3 tx hdr=0xF5 op=0x06 int3/6 : s83 s0 s8
+27113,5 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+27127,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 9,86 143,7 b32 i295386396
+27180,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 10,447 143,4 b32 i295386449
+27198,9 tx hdr=0xF5 op=0x06 int3/6 : s83 s0 s8
+27199,1 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+27229,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 10,49 143,4 b32 i295386498
+27278,9 tx hdr=0xF5 op=0x06 int3/6 : s83 s0 s9
+27279,1 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+27279,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 11,076 143,25 b32 i295386548
+27327,9 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 10,982 143,25 b32 i295386597
+27365,1 tx hdr=0xF5 op=0x06 int3/6 : s81 s0 s10
+27365,3 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+27378,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 10,871 143,25 b32 i295386647
+27427,9 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 11,025 143,25 b32 i295386697
+27445,7 tx hdr=0xF5 op=0x06 int3/6 : s83 s0 s8
+27445,8 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+27480,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 11,225 143,25 b32 i295386749
+27532,8 tx hdr=0xF5 op=0x06 int3/6 : s82 s0 s10
+27533,0 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+27533,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 11,378 143,25 b32 i295386802
+27579,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 11,273 143,25 b32 i295386848
+27612,4 tx hdr=0xF5 op=0x06 int3/6 : s83 s0 s9
+27612,6 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+27634,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 11,332 143,25 b32 i295386903
+27679,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 11,475 143,25 b32 i295386948
+27701,3 tx hdr=0xF5 op=0x06 int3/6 : s83 s0 s9
+27701,5 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+27727,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 11,664 143,25 b32 i295386996
+27777,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 11,812 143,25 b32 i295387046
+27781,5 tx hdr=0xF5 op=0x06 int3/6 : s83 s0 s9
+27781,7 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+27826,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 11,714 143,25 b32 i295387095
+27865,7 tx hdr=0xF5 op=0x06 int3/6 : s81 s0 s10
+27865,9 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+27879,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 11,615 143,25 b32 i295387148
+27926,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 11,915 143,25 b32 i295387196
+27950,3 tx hdr=0xF5 op=0x06 int3/6 : s84 s0 s7
+27950,5 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+27979,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 12,116 143,25 b32 i295387248
+28032,0 tx hdr=0xF5 op=0x06 int3/6 : s81 s0 s10
+28032,1 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+28032,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 12,421 143,25 b32 i295387301
+28077,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 12,312 143,25 b32 i295387344
+28113,8 tx hdr=0xF5 op=0x06 int3/6 : s82 s0 s10
+28114,0 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+28126,9 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 12,209 143,25 b32 i295387394
+28178,9 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 12,369 143,25 b32 i295387446
+28194,9 tx hdr=0xF5 op=0x06 int3/6 : s82 s0 s10
+28195,0 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+28229,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 12,416 143,25 b32 i295387496
+28279,4 tx hdr=0xF5 op=0x06 int3/6 : s81 s0 s11
+28279,6 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+28279,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 12,715 143,25 b32 i295387546
+28326,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 12,764 143,25 b32 i295387593
+28359,5 tx hdr=0xF5 op=0x06 int3/6 : s81 s0 s11
+28359,7 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+28378,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 12,67 143,25 b32 i295387645
+28430,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 12,833 143,25 b32 i295387697
+28443,8 tx hdr=0xF5 op=0x06 int3/6 : s81 s0 s11
+28444,1 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+28477,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 12,723 143,25 b32 i295387744
+28526,7 tx hdr=0xF5 op=0x06 int3/6 : s81 s0 s10
+28526,9 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+28527,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 12,87 143,25 b32 i295387794
+28578,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 12,78 143,25 b32 i295387845
+28608,5 tx hdr=0xF5 op=0x06 int3/6 : s81 s0 s11
+28608,8 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+28626,9 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 12,975 143,25 b32 i295387894
+28679,9 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 13,588 143,25 b32 i295387947
+28693,7 tx hdr=0xF5 op=0x06 int3/6 : s81 s0 s10
+28693,9 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+28726,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 14,378 143,25 b32 i295387993
+28774,8 tx hdr=0xF5 op=0x06 int3/6 : s80 s0 s12
+28775,1 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+28778,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 14,58 143,4 b32 i295388046
+28831,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 15,347 143,4 b32 i295388099
+28860,4 tx hdr=0xF5 op=0x06 int3/6 : s80 s0 s12
+28860,6 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+28878,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 15,681 143,7 b32 i295388145
+28927,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 16,432 143,7 b32 i295388194
+28943,0 tx hdr=0xF5 op=0x06 int3/6 : s80 s0 s12
+28943,2 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+28982,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 16,798 143,85 b32 i295388249
+29022,5 tx hdr=0xF5 op=0x06 int3/6 : s80 s0 s12
+29022,7 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+29034,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 17,006 143,85 b32 i295388304
+29078,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 17,59 143,85 b32 i295388347
+29078,3 # net: TcpClient.Connected = True
+29103,8 tx hdr=0xF5 op=0x06 int3/6 : s80 s0 s12
+29104,1 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+29128,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 17,641 143,85 b32 i295388398
+29178,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,094 144 b32 i295388448
+29191,2 tx hdr=0xF5 op=0x06 int3/6 : s80 s0 s12
+29191,4 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+29228,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,144 144,15 b32 i295388498
+29276,9 tx hdr=0xF5 op=0x06 int3/6 : s80 s0 s12
+29277,1 tx hdr=0xF5 op=0x04 HIT_REPORT(pos,seq,hits[]) :
+29277,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,283 144,15 b32 i295388546
+29327,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295388596
+29380,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295388649
+29386,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295388656
+29396,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295388666
+29400,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295388670
+29408,9 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295388678
+29412,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295388681
+29423,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295388692
+29425,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295388695
+29435,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295388704
+29440,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295388710
+29446,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295388715
+29451,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295388721
+29457,9 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295388727
+29463,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295388732
+29472,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295388741
+29474,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295388744
+29484,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295388754
+29489,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295388759
+29498,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295388768
+29502,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295388772
+29511,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295388780
+29514,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295388784
+29523,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295388793
+29526,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295388796
+29535,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295388805
+29540,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295388810
+29546,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295388815
+29552,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295388821
+29558,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295388828
+29564,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295388834
+29572,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295388842
+29575,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295388845
+29584,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295388854
+29590,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295388860
+29595,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295388865
+29602,9 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295388872
+29607,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295388877
+29614,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295388884
+29621,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295388891
+29626,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295388895
+29632,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295388902
+29639,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295388909
+29643,9 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295388913
+29651,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295388921
+29656,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295388926
+29663,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295388933
+29667,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295388937
+29675,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295388944
+29679,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295388949
+29688,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295388957
+29691,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295388961
+29700,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295388970
+29705,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295388975
+29712,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295388982
+29716,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295388986
+29725,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295388994
+29729,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295388998
+29741,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389011
+29743,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389013
+29755,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389024
+29758,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389028
+29766,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389036
+29772,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389042
+29779,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389049
+29784,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389054
+29791,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389061
+29795,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389065
+29805,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389074
+29807,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389076
+29816,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389086
+29822,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389092
+29827,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389097
+29832,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389102
+29840,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389109
+29843,9 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389113
+29854,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389124
+29857,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389127
+29867,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389137
+29872,3 tx hdr=0xF5 op=0x10 ready/16 :
+29872,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389142
+29879,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389149
+29883,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389152
+29891,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389161
+29894,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389164
+29904,9 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389174
+29907,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389177
+29916,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389186
+29922,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389192
+29927,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389197
+29933,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389202
+29939,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389209
+29943,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389213
+29954,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389224
+29957,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389226
+29966,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389236
+29972,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389241
+29978,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389248
+29982,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389251
+29990,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389259
+29993,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389263
+30001,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389271
+30006,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389275
+30013,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389283
+30018,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389287
+30026,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389295
+30029,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389299
+30038,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389307
+30041,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389310
+30049,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389318
+30055,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389324
+30060,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389330
+30064,9 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389334
+30072,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389342
+30075,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389345
+30084,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389354
+30089,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389359
+30096,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389366
+30100,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389370
+30108,9 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389378
+30112,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389382
+30121,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389391
+30125,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389394
+30133,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389403
+30139,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389409
+30144,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389414
+30149,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389419
+30155,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389425
+30160,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389430
+30166,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389436
+30172,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389441
+30178,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389448
+30183,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389452
+30190,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389460
+30193,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389463
+30204,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389473
+30206,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389476
+30215,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389485
+30222,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389492
+30227,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389497
+30233,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389503
+30239,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389508
+30245,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389514
+30250,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389520
+30255,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389525
+30262,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389531
+30266,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389535
+30274,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389544
+30277,9 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389547
+30286,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389556
+30289,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389559
+30299,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389569
+30304,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389573
+30311,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389581
+30315,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389584
+30323,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389593
+30326,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389596
+30336,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389606
+30339,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389609
+30347,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389617
+30354,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389623
+30358,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389628
+30364,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389634
+30370,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389640
+30374,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389644
+30381,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389651
+30387,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389656
+30393,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389663
+30397,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389667
+30405,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389675
+30408,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389678
+30416,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389686
+30422,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389692
+30427,9 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389697
+30432,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389702
+30439,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389709
+30443,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389713
+30452,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389722
+30455,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389725
+30465,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389734
+30470,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389740
+30477,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389746
+30481,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389751
+30489,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389759
+30492,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389761
+30503,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389773
+30506,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389775
+30516,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389786
+30521,9 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389791
+30527,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389797
+30532,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389801
+30539,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389809
+30542,9 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389812
+30552,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389822
+30555,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389825
+30564,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389833
+30570,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389840
+30574,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389844
+30580,9 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389850
+30587,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389856
+30592,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389861
+30599,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389868
+30603,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389873
+30610,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389880
+30614,9 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389884
+30622,9 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389892
+30625,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389895
+30636,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389905
+30639,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389908
+30647,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389917
+30655,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389924
+30658,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389928
+30665,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389935
+30671,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389940
+30676,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389945
+30681,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389951
+30686,9 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389956
+30693,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389962
+30697,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389966
+30704,9 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389974
+30708,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389977
+30715,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389985
+30721,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389990
+30726,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295389996
+30732,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390002
+30738,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390007
+30743,9 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390013
+30749,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390018
+30757,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390026
+30761,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390031
+30769,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390038
+30772,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390042
+30781,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390051
+30786,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390056
+30792,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390062
+30796,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390066
+30804,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390074
+30807,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390077
+30815,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390085
+30822,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390091
+30827,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390097
+30832,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390102
+30838,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390108
+30842,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390112
+30848,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390118
+30855,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390124
+30859,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390129
+30868,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390138
+30870,9 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390140
+30880,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390150
+30885,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390155
+30891,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390161
+30895,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390165
+30903,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390173
+30906,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390176
+30914,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390183
+30919,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390189
+30925,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390194
+30929,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390199
+30936,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390206
+30942,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390212
+30947,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390217
+30955,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390225
+30959,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390229
+30968,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390238
+30971,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390240
+30979,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390249
+30985,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390254
+30989,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390259
+30995,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390265
+31001,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390271
+31005,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390275
+31013,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390283
+31018,9 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390288
+31024,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390294
+31028,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390298
+31035,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390305
+31039,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390309
+31046,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390316
+31052,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390321
+31057,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390327
+31062,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390332
+31069,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390338
+31072,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390342
+31080,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390350
+31085,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390355
+31091,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390361
+31095,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390365
+31102,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390372
+31106,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390375
+31113,9 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390383
+31119,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390389
+31125,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390395
+31129,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390399
+31136,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390406
+31140,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390410
+31147,9 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390417
+31153,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390423
+31160,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390429
+31163,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390433
+31171,9 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390441
+31175,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390444
+31184,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390454
+31187,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390456
+31196,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390465
+31202,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390472
+31206,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390476
+31213,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390482
+31218,9 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390488
+31224,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390493
+31229,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390498
+31235,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390505
+31240,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390510
+31246,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390516
+31251,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390521
+31258,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390527
+31261,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390531
+31269,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390538
+31272,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390542
+31280,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390550
+31285,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390555
+31292,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390562
+31296,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390565
+31304,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390573
+31307,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390576
+31317,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390586
+31319,9 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390589
+31328,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390598
+31334,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390604
+31339,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390608
+31346,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390616
+31351,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390621
+31357,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390627
+31362,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390632
+31368,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390638
+31373,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390642
+31380,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390650
+31385,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390654
+31391,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390661
+31395,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390665
+31403,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390672
+31406,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390675
+31414,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390684
+31419,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390689
+31425,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390694
+31430,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390700
+31435,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390705
+31441,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390711
+31445,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390715
+31452,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390722
+31456,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390726
+31463,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390733
+31469,9 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390739
+31475,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390745
+31480,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390750
+31487,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390757
+31490,9 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390760
+31500,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390770
+31502,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390772
+31512,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390782
+31518,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390787
+31524,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390794
+31527,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390797
+31536,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390805
+31539,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390809
+31549,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390819
+31552,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390821
+31561,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390831
+31567,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390837
+31571,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390841
+31580,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390849
+31584,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390854
+31591,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390861
+31595,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390865
+31603,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390873
+31606,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390876
+31616,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390886
+31619,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390889
+31627,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390897
+31633,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390903
+31638,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390908
+31644,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390913
+31649,9 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390919
+31654,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390923
+31660,9 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390930
+31666,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390936
+31672,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390941
+31677,9 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390947
+31685,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390954
+31688,9 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390958
+31695,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390965
+31701,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390971
+31706,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390976
+31711,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390981
+31717,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390987
+31722,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390992
+31728,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295390998
+31733,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391003
+31739,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391009
+31743,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391013
+31751,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391020
+31754,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391024
+31761,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391031
+31767,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391037
+31773,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391043
+31778,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391048
+31785,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391055
+31789,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391059
+31796,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391066
+31802,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391071
+31808,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391077
+31812,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391082
+31820,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391090
+31823,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391093
+31832,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391102
+31835,9 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391105
+31844,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391113
+31850,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391119
+31855,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391125
+31862,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391131
+31867,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391136
+31872,9 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391142
+31879,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391148
+31884,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391153
+31890,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391160
+31894,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391164
+31902,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391172
+31905,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391175
+31915,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391185
+31918,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391187
+31926,9 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391196
+31933,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391203
+31937,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391207
+31943,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391213
+31949,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391219
+31955,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391224
+31960,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391230
+31966,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391236
+31972,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391241
+31977,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391247
+31984,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391254
+31988,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391257
+31995,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391265
+32001,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391270
+32005,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391275
+32012,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391282
+32018,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391288
+32023,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391293
+32032,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391301
+32034,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391303
+32043,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391313
+32049,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391318
+32054,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391324
+32060,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391330
+32065,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391335
+32070,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391340
+32076,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391345
+32083,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391352
+32086,9 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391356
+32094,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391364
+32099,9 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391369
+32105,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391374
+32111,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391380
+32116,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391386
+32122,9 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391392
+32126,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391396
+32134,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391404
+32138,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391408
+32145,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391415
+32150,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391420
+32156,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391426
+32162,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391432
+32167,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391437
+32175,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391444
+32179,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391448
+32186,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391456
+32190,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391460
+32199,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391469
+32202,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391472
+32212,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391481
+32216,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391486
+32224,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391494
+32228,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391497
+32236,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391506
+32240,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391510
+32249,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391519
+32252,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391521
+32261,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391531
+32266,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391536
+32273,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391543
+32278,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391547
+32284,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391554
+32288,9 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391558
+32298,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391568
+32300,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391570
+32309,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391579
+32315,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391585
+32321,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391590
+32325,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391595
+32332,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391602
+32336,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391605
+32344,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391614
+32349,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391618
+32356,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391625
+32360,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391630
+32368,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391637
+32371,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391641
+32381,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391651
+32383,7 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391653
+32393,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391662
+32399,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391669
+32406,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391676
+32410,4 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391680
+32418,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391688
+32422,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391691
+32431,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391700
+32434,0 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391703
+32442,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391712
+32447,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391717
+32452,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391722
+32460,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391729
+32465,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391735
+32471,6 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391741
+32475,9 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391745
+32483,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391752
+32486,9 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391756
+32494,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391764
+32499,9 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391769
+32506,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391775
+32510,2 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391779
+32517,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391787
+32521,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391790
+32530,8 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391800
+32533,5 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391803
+32542,1 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391811
+32548,3 tx hdr=0xF5 op=0x2D MOVE(x,y,z,rx,ry,state,tick) : 77,405 1 16,599 18,191 144,15 b32 i295391818
+
+32548,3 ==== CAPTURE OFF ====

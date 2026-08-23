@@ -44,6 +44,16 @@ not on building exploit features.
     - `0x2D` movement speed and wall collision
     - `0x0F` slot against the current loadout
 
-12. **SDK property parsing** — the generator only handles fields. Add property
-    support so names like `KBBBHJDINCB.JPGGPPLOOML` (`ActiveWeapon`) appear in
-    the SDK with an alias to their backing field.
+12. ~~**SDK property parsing**~~ — **done.** `parse_properties` in
+    `Tools/generate_sdk.py` emits a `Properties` block per class, and
+    `sdk_aliases.json` now supports a `Properties` map (used by
+    `Game.ReloadMinigameResult`).
+
+## Done
+
+- **Reload system fully mapped** — see `PROTOCOL.md` §11. Start/end timestamps,
+  minigame marker position, and the result enum (`0` none / `1` perfect /
+  `2` failed). Perfect reload works by subtracting from the completion stamp.
+  Instant reload implemented on top of it; **not yet tested in game.**
+- **Alias collision fixed** — `ECBCOHFLJCC` no longer carries both `TotalAmmo`
+  and `ActiveWeaponIndex`; it is `Player.ActiveWeaponId`.

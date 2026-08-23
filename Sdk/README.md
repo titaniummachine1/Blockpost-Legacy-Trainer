@@ -4,7 +4,7 @@ This is an auto-generated offset/method SDK for the key Blockpost `GameAssembly.
 
 ## Regenerating
 
-Run the generator from the repo root (it reads `Il2CppDumper/dump.cs`):
+Run the generator from the repo root (it reads `.tools/Il2CppDumper/dump.cs`):
 
 ```powershell
 python Tools/generate_sdk.py
@@ -14,11 +14,12 @@ You can add classes by editing `Tools/generate_sdk.py` (`TARGET_CLASSES`) or `To
 
 ## Layout
 
-- `Sdk/Generated/` — raw, obfuscated classes and their offsets/method VAs.
-  - `Sdk/Generated/Raw/*.cs` — one file per game class. Each has:
-    - `Offsets` static class with field offsets.
-    - `Methods` static class with method VAs.
-  - `Sdk/Generated/Aliases.cs` — human aliases for the fields/methods you care about.
+- `Sdk/Generated/*.cs` — one **flat** file per game class, all in the
+  `BlockpostTrainer.Sdk.Raw` namespace. `Raw` is a namespace, not a directory. Each has:
+  - `Offsets` — field offsets.
+  - `Methods` — method VAs.
+  - `Properties` — property names, for reflection-based access.
+- `Sdk/Generated/Aliases.cs` — human aliases for the fields/methods/properties you care about.
 
 ## Usage
 
@@ -59,6 +60,12 @@ var fireVa = Raw.PLH.Methods.CDEGJOBLOFO;
 | `Hit.TargetId`   | `DMHBMAAFCFJ.AMGLIHOLNJE` |
 | `Hit.BodyPart`   | `DMHBMAAFCFJ.KMCHFGKKICG` |
 | `Hit.Point`      | `DMHBMAAFCFJ.HDAFLOCABNG` |
+| `Game.IsReloading` | `Controll.DJACNOGOCKD` |
+| `Game.ReloadStartTime` | `Controll.FBINCNDDPAO` |
+| `Game.ReloadEndTime` | `Controll.ILGHFLMKMCO` — perfect reload subtracts from this |
+| `Game.ReloadMinigameResult` | `Controll.JBKBOPCCIBM` — `0` none / `1` perfect / `2` failed |
+
+See `PROTOCOL.md` §11 for the full reload model.
 
 ## Inventory / Loadout
 

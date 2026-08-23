@@ -25,10 +25,9 @@ namespace BlockpostTrainer.Sdk
             public const int PlayerId = Raw.KBBBHJDINCB.Offsets.LCPGFBMKNHJ;
             public const int Slot = Raw.KBBBHJDINCB.Offsets.MOPBMENEGLN;
             public const int AmmoPerSlot = Raw.KBBBHJDINCB.Offsets.GDEMINMDJAC;
-            public const int TotalAmmo = Raw.KBBBHJDINCB.Offsets.ECBCOHFLJCC;
             public const int Loadout = Raw.KBBBHJDINCB.Offsets.KPNAADPGNCP;
-            public const int ActiveWeaponIndex = Raw.KBBBHJDINCB.Offsets.ECBCOHFLJCC;
             public const int ActiveWeapon = Raw.KBBBHJDINCB.Offsets._EPGCMIJPHIA_k__BackingField;
+            public const int ActiveWeaponId = Raw.KBBBHJDINCB.Offsets.ECBCOHFLJCC;
         }
 
         public static class Game
@@ -42,7 +41,14 @@ namespace BlockpostTrainer.Sdk
             public const int HitList = Raw.Controll.Offsets.GOMFKJNNJAP;
             public const int HitSequence = Raw.Controll.Offsets.GAMBHJPMDON;
             public const int CanFire = Raw.Controll.Offsets.KEPGFOEOHPD;
+            public const int ReloadStartTime = Raw.Controll.Offsets.FBINCNDDPAO;
+            public const int ReloadEndTime = Raw.Controll.Offsets.ILGHFLMKMCO;
+            public const int ReloadMarkerPos = Raw.Controll.Offsets.JADIDAJFOGK;
+            public const int IsReloading = Raw.Controll.Offsets.DJACNOGOCKD;
+            public const int ReloadPromptActive = Raw.Controll.Offsets.KOPOBDGHLFL;
+            public const int ReloadRequestTime = Raw.Controll.Offsets.CLEHDNFKJPB;
             public const uint Update = Raw.Controll.Methods.Update;
+            public const string ReloadMinigameResult = Raw.Controll.Properties.JBKBOPCCIBM;
         }
 
         public static class Network

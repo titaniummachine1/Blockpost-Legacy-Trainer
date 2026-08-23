@@ -1,0 +1,565 @@
+# Blockpost room-protocol capture, started 2026-08-23 04:22:23
+# tx: <ms> tx hdr=0xNN op=0xNN <name> : <fields>    rx: <ms> rx len=N <hex>
+13573,8 weapon-dump: AllWeapons count=1024
+13580,2 weapon-dump: [WeaponDump] id=23, codename=beretta92, name=Beretta 92
+13580,8 weapon-dump: [WeaponDump] id=28, codename=kriss_vector, name=KRISS Vector
+13581,3 weapon-dump: [WeaponDump] id=68, codename=shovel, name=Shovel
+13581,8 weapon-dump: [WeaponDump] id=69, codename=block, name=Block
+13582,9 weapon-dump: [WeaponDump] id=71, codename=sl8, name=SL8
+13583,4 weapon-dump: [WeaponDump] id=107, codename=ammo, name=BP Ammo
+13584,1 weapon-dump: [WeaponDump] id=108, codename=grenade, name=BP Grenade
+13584,7 weapon-dump: [WeaponDump] id=109, codename=medkit, name=BP Medkit
+13585,3 weapon-dump: [WeaponDump] id=110, codename=shield, name=BP Armor
+13588,9 weapon-dump: Loadout count=9
+13594,0 weapon-dump: [WeaponDump] loadout[0] uid=506244901116593530, weaponId=28, codename=kriss_vector, amount=48
+13595,0 weapon-dump: [WeaponDump] loadout[1] uid=506244901116593531, weaponId=23, codename=beretta92, amount=3
+13595,7 weapon-dump: [WeaponDump] loadout[2] uid=506244901116621428, weaponId=71, codename=sl8, amount=71
+13596,7 weapon-dump: [WeaponDump] loadout[3] uid=1, weaponId=68, codename=shovel, amount=0
+13597,5 weapon-dump: [WeaponDump] loadout[4] uid=2, weaponId=69, codename=block, amount=0
+13598,3 weapon-dump: [WeaponDump] loadout[5] uid=3, weaponId=107, codename=ammo, amount=0
+13598,9 weapon-dump: [WeaponDump] loadout[6] uid=4, weaponId=108, codename=grenade, amount=0
+13599,6 weapon-dump: [WeaponDump] loadout[7] uid=5, weaponId=109, codename=medkit, amount=0
+13600,2 weapon-dump: [WeaponDump] loadout[8] uid=6, weaponId=110, codename=shield, amount=0
+13601,6 weapon-dump: Cases count=1024
+13603,4 weapon-dump: [WeaponDump] case[1] id=1, codename=starter, name=Starter Case #1
+13604,2 weapon-dump: [WeaponDump] case[1] weapon[0] id=34, codename=bizon, name=Bizon
+13604,8 weapon-dump: [WeaponDump] case[1] weapon[1] id=61, codename=beretta_mx4, name=Berretta MX4
+13605,5 weapon-dump: [WeaponDump] case[1] weapon[2] id=65, codename=daewoo_k1, name=Daewoo K1
+13610,4 weapon-dump: [WeaponDump] case[1] weapon[3] id=1, codename=ak47, name=AK-47
+13611,4 weapon-dump: [WeaponDump] case[2] id=2, codename=starter, name=Starter Case #2
+13612,4 weapon-dump: [WeaponDump] case[2] weapon[0] id=10, codename=tec9, name=TEC 9
+13613,4 weapon-dump: [WeaponDump] case[2] weapon[1] id=47, codename=scorpion, name=Šcorpion vz. 61
+13614,2 weapon-dump: [WeaponDump] case[2] weapon[2] id=30, codename=qbz95, name=QBZ 95
+13614,9 weapon-dump: [WeaponDump] case[2] weapon[3] id=2, codename=m4a1, name=M4A1
+13615,6 weapon-dump: [WeaponDump] case[3] id=3, codename=recruit, name=Recruit Case
+13616,2 weapon-dump: [WeaponDump] case[3] weapon[0] id=71, codename=sl8, name=SL8
+13616,8 weapon-dump: [WeaponDump] case[3] weapon[1] id=62, codename=m14_ebr, name=Mk 14 EBR
+13617,6 weapon-dump: [WeaponDump] case[3] weapon[2] id=67, codename=m21, name=M21
+13618,2 weapon-dump: [WeaponDump] case[4] id=4, codename=craft, name=Craft Case #1
+13618,8 weapon-dump: [WeaponDump] case[4] weapon[0] id=41, codename=uzi_micro, name=Micro Uzi
+13619,4 weapon-dump: [WeaponDump] case[4] weapon[1] id=8, codename=ump, name=UMP
+13620,0 weapon-dump: [WeaponDump] case[4] weapon[2] id=5, codename=glock17, name=Glock 17
+13620,8 weapon-dump: [WeaponDump] case[4] weapon[3] id=17, codename=galil, name=Galil
+13621,5 weapon-dump: [WeaponDump] case[5] id=5, codename=craft, name=Craft Case #2
+13626,7 weapon-dump: [WeaponDump] case[5] weapon[0] id=40, codename=mp5sd, name=MP5SD
+13627,6 weapon-dump: [WeaponDump] case[5] weapon[1] id=4, codename=sig552, name=SIG 552
+13628,7 weapon-dump: [WeaponDump] case[5] weapon[2] id=63, codename=usp, name=USP
+13629,6 weapon-dump: [WeaponDump] case[5] weapon[3] id=14, codename=vintorez, name=Vintorez
+13630,4 weapon-dump: [WeaponDump] case[6] id=6, codename=craft, name=Craft Case #3
+13631,2 weapon-dump: [WeaponDump] case[6] weapon[0] id=46, codename=ruger_mp9, name=Ruger MP9
+13632,0 weapon-dump: [WeaponDump] case[6] weapon[1] id=29, codename=g3, name=G3
+13632,8 weapon-dump: [WeaponDump] case[6] weapon[2] id=22, codename=deagle, name=Desert Eagle
+13633,4 weapon-dump: [WeaponDump] case[6] weapon[3] id=12, codename=l96, name=L96A1
+13634,1 weapon-dump: [WeaponDump] case[7] id=7, codename=level, name=Level Case
+13634,7 weapon-dump: [WeaponDump] case[7] weapon[0] id=44, codename=mac10, name=MAC-10
+13635,5 weapon-dump: [WeaponDump] case[7] weapon[1] id=39, codename=mp5k, name=MP5K
+13636,2 weapon-dump: [WeaponDump] case[7] weapon[2] id=16, codename=sss, name=Serbu Super-Shorty
+13636,9 weapon-dump: [WeaponDump] case[7] weapon[3] id=24, codename=mp7, name=MP7
+13637,7 weapon-dump: [WeaponDump] case[7] weapon[4] id=6, codename=colt1911, name=Colt 1911
+13642,6 weapon-dump: [WeaponDump] case[7] weapon[5] id=33, codename=p90, name=P90
+13643,4 weapon-dump: [WeaponDump] case[7] weapon[6] id=20, codename=groza, name=Groza
+13644,2 weapon-dump: [WeaponDump] case[7] weapon[7] id=37, codename=xm8, name=XM8
+13645,0 weapon-dump: [WeaponDump] case[7] weapon[8] id=13, codename=scout, name=Steyr Scout
+13645,7 weapon-dump: [WeaponDump] case[7] weapon[9] id=11, codename=svd, name=SVD
+13646,5 weapon-dump: [WeaponDump] case[9] id=9, codename=rifle, name=Rifle Case
+13647,2 weapon-dump: [WeaponDump] case[9] weapon[0] id=25, codename=g36c, name=G36C
+13647,8 weapon-dump: [WeaponDump] case[9] weapon[1] id=60, codename=beretta_rx4, name=Berretta Rx4
+13648,4 weapon-dump: [WeaponDump] case[9] weapon[2] id=26, codename=scar_l, name=SCAR L
+13649,0 weapon-dump: [WeaponDump] case[9] weapon[3] id=43, codename=lr300, name=LR-300
+13649,6 weapon-dump: [WeaponDump] case[9] weapon[4] id=92, codename=magpul_pdr, name=Magpul PDR
+13650,3 weapon-dump: [WeaponDump] case[9] weapon[5] id=80, codename=aek, name=AEK-971
+13650,9 weapon-dump: [WeaponDump] case[10] id=10, codename=russian, name=Russian Case
+13651,5 weapon-dump: [WeaponDump] case[10] weapon[0] id=103, codename=kedr, name=Kedr
+13652,3 weapon-dump: [WeaponDump] case[10] weapon[1] id=98, codename=a91, name=A-91
+13653,2 weapon-dump: [WeaponDump] case[10] weapon[2] id=95, codename=grach, name=Grach
+13658,1 weapon-dump: [WeaponDump] case[10] weapon[3] id=64, codename=saiga12, name=Saiga-12
+13659,0 weapon-dump: [WeaponDump] case[10] weapon[4] id=77, codename=sks, name=SKS
+13659,8 weapon-dump: [WeaponDump] case[10] weapon[5] id=54, codename=vsk94, name=VSK-94
+13660,6 weapon-dump: [WeaponDump] case[11] id=11, codename=sniper, name=Sniper Case
+13661,3 weapon-dump: [WeaponDump] case[11] weapon[0] id=53, codename=sr25, name=SR-25
+13662,0 weapon-dump: [WeaponDump] case[11] weapon[1] id=48, codename=svu, name=SVU
+13662,9 weapon-dump: [WeaponDump] case[11] weapon[2] id=78, codename=qbu88, name=QBU-88
+13663,6 weapon-dump: [WeaponDump] case[11] weapon[3] id=72, codename=m24, name=M24
+13664,4 weapon-dump: [WeaponDump] case[12] id=12, codename=pistol, name=Pistol Case
+13665,2 weapon-dump: [WeaponDump] case[12] weapon[0] id=88, codename=pb, name=PB
+13665,9 weapon-dump: [WeaponDump] case[12] weapon[1] id=96, codename=fn57, name=Five-seveN
+13666,7 weapon-dump: [WeaponDump] case[12] weapon[2] id=93, codename=ruger_mk2, name=Ruger MK II
+13667,4 weapon-dump: [WeaponDump] case[12] weapon[3] id=97, codename=cz75auto, name=CZ 75-Auto
+13668,1 weapon-dump: [WeaponDump] case[12] weapon[4] id=86, codename=stechkin, name=Stechkin
+13668,9 weapon-dump: [WeaponDump] case[13] id=13, codename=skullcap, name=Skullcap Case
+13674,2 weapon-dump: [WeaponDump] case[13] weapon[0] id=104, codename=kukri, name=Kukri
+13675,2 weapon-dump: [WeaponDump] case[13] weapon[1] id=105, codename=katana, name=Katana
+13676,0 weapon-dump: [WeaponDump] case[13] weapon[2] id=106, codename=karambit_gold, name=Karambit
+13676,7 weapon-dump: [WeaponDump] case[14] id=14, codename=wwii, name=WWII Case
+13677,4 weapon-dump: [WeaponDump] case[14] weapon[0] id=112, codename=browning, name=Browning Hi-Power
+13678,2 weapon-dump: [WeaponDump] case[14] weapon[1] id=114, codename=sm_m10, name=Model 10
+13679,0 weapon-dump: [WeaponDump] case[14] weapon[2] id=116, codename=enfield, name=Lee-Enfield
+13679,7 weapon-dump: [WeaponDump] case[14] weapon[3] id=117, codename=m98k, name=Mauser 98k
+13680,5 weapon-dump: [WeaponDump] case[14] weapon[4] id=120, codename=sten, name=STEN
+13681,3 weapon-dump: [WeaponDump] case[14] weapon[5] id=121, codename=mp40, name=MP40
+13681,9 weapon-dump: [WeaponDump] case[14] weapon[6] id=122, codename=thompson, name=Thompson
+13682,7 weapon-dump: [WeaponDump] case[14] weapon[7] id=111, codename=tt, name=TT
+13683,4 weapon-dump: [WeaponDump] case[14] weapon[8] id=115, codename=mosin, name=Mosin Rifle
+13684,0 weapon-dump: [WeaponDump] case[14] weapon[9] id=118, codename=m1_garand, name=M1 Garand
+13684,7 weapon-dump: [WeaponDump] case[14] weapon[10] id=119, codename=ppsh, name=PPSH
+13689,5 weapon-dump: [WeaponDump] case[14] weapon[11] id=113, codename=c96, name=Mauser C96
+13690,6 weapon-dump: [WeaponDump] case[15] id=15, codename=russian2, name=Russian Case #2
+13691,4 weapon-dump: [WeaponDump] case[15] weapon[0] id=101, codename=penal, name=Penal
+13692,1 weapon-dump: [WeaponDump] case[15] weapon[1] id=102, codename=veresk, name=Veresk
+13693,0 weapon-dump: [WeaponDump] case[15] weapon[2] id=90, codename=aksu, name=AKSU
+13693,7 weapon-dump: [WeaponDump] case[15] weapon[3] id=76, codename=rpk, name=RPK
+13694,5 weapon-dump: [WeaponDump] case[15] weapon[4] id=87, codename=rsh12, name=RSH-12
+13695,1 weapon-dump: [WeaponDump] case[15] weapon[5] id=79, codename=vssk, name=Vyhlop
+13695,9 weapon-dump: [WeaponDump] case[15] weapon[6] id=85, codename=asval, name=AS Val
+13696,5 weapon-dump: [WeaponDump] case[16] id=16, codename=halloween, name=Halloween Case
+13697,1 weapon-dump: [WeaponDump] case[16] weapon[0] id=123, codename=karambit_blood, name=Karambit
+13697,7 weapon-dump: [WeaponDump] case[16] weapon[1] id=124, codename=bayonet, name=Bayonet
+13698,3 weapon-dump: [WeaponDump] case[16] weapon[2] id=125, codename=machete, name=Machete
+13699,0 weapon-dump: [WeaponDump] case[16] weapon[3] id=126, codename=strider, name=Strider
+13699,8 weapon-dump: [WeaponDump] case[16] weapon[4] id=127, codename=tomahawk, name=Tomahawk
+13705,6 weapon-dump: [WeaponDump] case[17] id=17, codename=winter, name=Winter Case
+13706,6 weapon-dump: [WeaponDump] case[17] weapon[0] id=15, codename=spas12, name=SPAS-12
+13707,4 weapon-dump: [WeaponDump] case[17] weapon[1] id=7, codename=mp5, name=MP5
+13708,1 weapon-dump: [WeaponDump] case[17] weapon[2] id=99, codename=m16a1, name=M16
+13708,8 weapon-dump: [WeaponDump] case[17] weapon[3] id=36, codename=tar21, name=TAR-21
+13709,5 weapon-dump: [WeaponDump] case[17] weapon[4] id=19, codename=sa80, name=SA80
+13710,2 weapon-dump: [WeaponDump] case[17] weapon[5] id=49, codename=psg1, name=PSG1
+13710,9 weapon-dump: [WeaponDump] case[17] weapon[6] id=94, codename=keltec_ksg, name=Kel-Tec KSG
+13711,5 weapon-dump: [WeaponDump] case[17] weapon[7] id=31, codename=colt_anaconda, name=Colt Anaconda
+13712,1 weapon-dump: [WeaponDump] case[17] weapon[8] id=51, codename=gol_sniper, name=GOL-Sniper
+13712,8 weapon-dump: [WeaponDump] case[18] id=18, codename=wwii2, name=WWII Case 2
+13713,4 weapon-dump: [WeaponDump] case[18] weapon[0] id=132, codename=pps, name=PPS
+13714,1 weapon-dump: [WeaponDump] case[18] weapon[1] id=130, codename=stg44, name=StG 44
+13714,7 weapon-dump: [WeaponDump] case[18] weapon[2] id=129, codename=svt, name=SVT
+13719,6 weapon-dump: [WeaponDump] case[18] weapon[3] id=134, codename=m1a1, name=M1A1 Paratrooper
+13720,7 weapon-dump: [WeaponDump] case[18] weapon[4] id=131, codename=luger, name=Luger P08
+13721,7 weapon-dump: [WeaponDump] case[18] weapon[5] id=133, codename=mg42, name=MG 42
+13722,6 weapon-dump: [WeaponDump] case[19] id=19, codename=razor, name=Razor Case
+13723,3 weapon-dump: [WeaponDump] case[19] weapon[0] id=135, codename=victorinox, name=Victorinox
+13724,0 weapon-dump: [WeaponDump] case[19] weapon[1] id=136, codename=shadow_dagger, name=Shadow dagger
+13724,8 weapon-dump: [WeaponDump] case[19] weapon[2] id=137, codename=say, name=Say
+13725,5 weapon-dump: [WeaponDump] case[19] weapon[3] id=138, codename=kama, name=Kama
+13726,2 weapon-dump: [WeaponDump] case[19] weapon[4] id=139, codename=gut, name=Gut
+13726,8 weapon-dump: [WeaponDump] case[19] weapon[5] id=140, codename=falchion, name=Falchion
+13727,4 weapon-dump: [WeaponDump] case[19] weapon[6] id=141, codename=cleaver, name=Cleaver
+13728,0 weapon-dump: [WeaponDump] case[19] weapon[7] id=142, codename=6x4, name=6x4
+13728,6 weapon-dump: [WeaponDump] case[20] id=20, codename=future, name=Future Case
+13729,3 weapon-dump: [WeaponDump] case[20] weapon[0] id=143, codename=maxim9, name=Maxim 9
+13730,0 weapon-dump: [WeaponDump] case[20] weapon[1] id=144, codename=hudson9, name=Hudson H9
+13730,6 weapon-dump: [WeaponDump] case[20] weapon[2] id=145, codename=thompson_t, name=Thompson Tactical
+13731,4 weapon-dump: [WeaponDump] case[20] weapon[3] id=149, codename=flamethrower, name=Not A Flamethrower
+13736,9 weapon-dump: [WeaponDump] case[20] weapon[4] id=146, codename=ak_alfa, name=AK Alfa
+13737,7 weapon-dump: [WeaponDump] case[20] weapon[5] id=147, codename=savage_10ba, name=Savage 10BA
+13738,4 weapon-dump: [WeaponDump] case[20] weapon[6] id=148, codename=sv98m, name=SV-98M
+13739,2 weapon-dump: [WeaponDump] case[21] id=21, codename=christmas, name=NY Gift Case
+13739,9 weapon-dump: [WeaponDump] case[21] weapon[0] id=9, codename=uzi, name=Uzi
+13740,7 weapon-dump: [WeaponDump] case[21] weapon[1] id=38, codename=steyr_tmp, name=TMP
+13741,5 weapon-dump: [WeaponDump] case[21] weapon[2] id=3, codename=famas, name=Famas
+13742,1 weapon-dump: [WeaponDump] case[21] weapon[3] id=32, codename=makarov, name=Makarov
+13742,9 weapon-dump: [WeaponDump] case[21] weapon[4] id=66, codename=sv98, name=SV-98
+13743,6 weapon-dump: [WeaponDump] case[23] id=23, codename=steel, name=Steel Case
+13744,5 weapon-dump: [WeaponDump] case[23] weapon[0] id=150, codename=m1906, name=Browning M1906
+13745,3 weapon-dump: [WeaponDump] case[23] weapon[1] id=151, codename=beretta93r, name=Beretta 93R
+13746,0 weapon-dump: [WeaponDump] case[23] weapon[2] id=152, codename=glock18, name=Glock 18
+13746,8 weapon-dump: [WeaponDump] case[23] weapon[3] id=153, codename=pl15, name=PL-15
+13751,6 weapon-dump: [WeaponDump] case[23] weapon[4] id=154, codename=balisong, name=Balisong
+13752,6 weapon-dump: [WeaponDump] case[23] weapon[5] id=155, codename=biker, name=Biker
+13753,5 weapon-dump: [WeaponDump] case[23] weapon[6] id=156, codename=bowie, name=Bowie
+13754,8 weapon-dump: [WeaponDump] case[23] weapon[7] id=157, codename=extractor, name=Extractor
+13755,7 weapon-dump: [WeaponDump] case[24] id=24, codename=halloween2, name=Halloween Case #2
+13756,6 weapon-dump: [WeaponDump] case[24] weapon[0] id=161, codename=podbyrin, name=Podbyrin
+13757,4 weapon-dump: [WeaponDump] case[24] weapon[1] id=162, codename=musket, name=Musket
+13758,0 weapon-dump: [WeaponDump] case[24] weapon[2] id=163, codename=derringer, name=Cobra Derringer
+13758,7 weapon-dump: [WeaponDump] case[24] weapon[3] id=164, codename=holyshotgun, name=Holy Shotgun
+13759,3 weapon-dump: [WeaponDump] case[24] weapon[4] id=165, codename=night_slasher, name=Night Slasher
+13759,9 weapon-dump: [WeaponDump] case[24] weapon[5] id=166, codename=scimitar, name=Scimitar
+13760,5 weapon-dump: [WeaponDump] case[24] weapon[6] id=167, codename=vendetta, name=Vendetta
+13761,2 weapon-dump: [WeaponDump] case[25] id=25, codename=newyear2020, name=2020 Case
+13761,8 weapon-dump: [WeaponDump] case[25] weapon[0] id=27, codename=aug_a3, name=AUG
+13762,5 weapon-dump: [WeaponDump] case[25] weapon[1] id=42, codename=uzi_mini, name=Mini Uzi
+13763,1 weapon-dump: [WeaponDump] case[25] weapon[2] id=83, codename=an94, name=AN-94
+13768,6 weapon-dump: [WeaponDump] case[25] weapon[3] id=100, codename=msg90, name=MSG90
+13769,6 weapon-dump: [WeaponDump] case[25] weapon[4] id=168, codename=daewoo_k2, name=DAEWOO K2
+13770,5 weapon-dump: [WeaponDump] case[25] weapon[5] id=169, codename=r8, name=R8
+13771,4 weapon-dump: [WeaponDump] case[25] weapon[6] id=74, codename=m249, name=M249 SAW
+13772,3 weapon-dump: [WeaponDump] case[25] weapon[7] id=81, codename=aa12, name=AA-12
+13773,2 weapon-dump: [WeaponDump] case[25] weapon[8] id=57, codename=pgm_hecate2, name=PGM Hecate II
+17588,2 weapon-dump: AllWeapons count=1024
+17591,5 weapon-dump: [WeaponDump] id=23, codename=beretta92, name=Beretta 92
+17592,2 weapon-dump: [WeaponDump] id=28, codename=kriss_vector, name=KRISS Vector
+17593,0 weapon-dump: [WeaponDump] id=68, codename=shovel, name=Shovel
+17594,0 weapon-dump: [WeaponDump] id=69, codename=block, name=Block
+17594,8 weapon-dump: [WeaponDump] id=71, codename=sl8, name=SL8
+17595,5 weapon-dump: [WeaponDump] id=107, codename=ammo, name=BP Ammo
+17596,4 weapon-dump: [WeaponDump] id=108, codename=grenade, name=BP Grenade
+17597,3 weapon-dump: [WeaponDump] id=109, codename=medkit, name=BP Medkit
+17600,1 weapon-dump: [WeaponDump] id=110, codename=shield, name=BP Armor
+17600,3 weapon-dump: Loadout count=9
+17603,0 weapon-dump: [WeaponDump] loadout[0] uid=506244901116593530, weaponId=28, codename=kriss_vector, amount=48
+17603,8 weapon-dump: [WeaponDump] loadout[1] uid=506244901116593531, weaponId=23, codename=beretta92, amount=3
+17604,4 weapon-dump: [WeaponDump] loadout[2] uid=506244901116621428, weaponId=71, codename=sl8, amount=71
+17605,1 weapon-dump: [WeaponDump] loadout[3] uid=1, weaponId=68, codename=shovel, amount=0
+17605,7 weapon-dump: [WeaponDump] loadout[4] uid=2, weaponId=69, codename=block, amount=0
+17606,4 weapon-dump: [WeaponDump] loadout[5] uid=3, weaponId=107, codename=ammo, amount=0
+17607,0 weapon-dump: [WeaponDump] loadout[6] uid=4, weaponId=108, codename=grenade, amount=0
+17607,6 weapon-dump: [WeaponDump] loadout[7] uid=5, weaponId=109, codename=medkit, amount=0
+17608,1 weapon-dump: [WeaponDump] loadout[8] uid=6, weaponId=110, codename=shield, amount=0
+17608,1 weapon-dump: Cases count=1024
+17609,6 weapon-dump: [WeaponDump] case[1] id=1, codename=starter, name=Starter Case #1
+17610,2 weapon-dump: [WeaponDump] case[1] weapon[0] id=34, codename=bizon, name=Bizon
+17611,2 weapon-dump: [WeaponDump] case[1] weapon[1] id=61, codename=beretta_mx4, name=Berretta MX4
+17612,1 weapon-dump: [WeaponDump] case[1] weapon[2] id=65, codename=daewoo_k1, name=Daewoo K1
+17612,8 weapon-dump: [WeaponDump] case[1] weapon[3] id=1, codename=ak47, name=AK-47
+17619,9 weapon-dump: [WeaponDump] case[2] id=2, codename=starter, name=Starter Case #2
+17620,7 weapon-dump: [WeaponDump] case[2] weapon[0] id=10, codename=tec9, name=TEC 9
+17621,5 weapon-dump: [WeaponDump] case[2] weapon[1] id=47, codename=scorpion, name=Šcorpion vz. 61
+17622,3 weapon-dump: [WeaponDump] case[2] weapon[2] id=30, codename=qbz95, name=QBZ 95
+17623,0 weapon-dump: [WeaponDump] case[2] weapon[3] id=2, codename=m4a1, name=M4A1
+17623,8 weapon-dump: [WeaponDump] case[3] id=3, codename=recruit, name=Recruit Case
+17624,6 weapon-dump: [WeaponDump] case[3] weapon[0] id=71, codename=sl8, name=SL8
+17625,3 weapon-dump: [WeaponDump] case[3] weapon[1] id=62, codename=m14_ebr, name=Mk 14 EBR
+17626,2 weapon-dump: [WeaponDump] case[3] weapon[2] id=67, codename=m21, name=M21
+17627,1 weapon-dump: [WeaponDump] case[4] id=4, codename=craft, name=Craft Case #1
+17628,0 weapon-dump: [WeaponDump] case[4] weapon[0] id=41, codename=uzi_micro, name=Micro Uzi
+17631,9 weapon-dump: [WeaponDump] case[4] weapon[1] id=8, codename=ump, name=UMP
+17632,9 weapon-dump: [WeaponDump] case[4] weapon[2] id=5, codename=glock17, name=Glock 17
+17633,9 weapon-dump: [WeaponDump] case[4] weapon[3] id=17, codename=galil, name=Galil
+17634,7 weapon-dump: [WeaponDump] case[5] id=5, codename=craft, name=Craft Case #2
+17635,5 weapon-dump: [WeaponDump] case[5] weapon[0] id=40, codename=mp5sd, name=MP5SD
+17636,4 weapon-dump: [WeaponDump] case[5] weapon[1] id=4, codename=sig552, name=SIG 552
+17637,1 weapon-dump: [WeaponDump] case[5] weapon[2] id=63, codename=usp, name=USP
+17637,8 weapon-dump: [WeaponDump] case[5] weapon[3] id=14, codename=vintorez, name=Vintorez
+17638,4 weapon-dump: [WeaponDump] case[6] id=6, codename=craft, name=Craft Case #3
+17639,2 weapon-dump: [WeaponDump] case[6] weapon[0] id=46, codename=ruger_mp9, name=Ruger MP9
+17639,8 weapon-dump: [WeaponDump] case[6] weapon[1] id=29, codename=g3, name=G3
+17640,4 weapon-dump: [WeaponDump] case[6] weapon[2] id=22, codename=deagle, name=Desert Eagle
+17641,1 weapon-dump: [WeaponDump] case[6] weapon[3] id=12, codename=l96, name=L96A1
+17641,8 weapon-dump: [WeaponDump] case[7] id=7, codename=level, name=Level Case
+17642,5 weapon-dump: [WeaponDump] case[7] weapon[0] id=44, codename=mac10, name=MAC-10
+17643,2 weapon-dump: [WeaponDump] case[7] weapon[1] id=39, codename=mp5k, name=MP5K
+17648,3 weapon-dump: [WeaponDump] case[7] weapon[2] id=16, codename=sss, name=Serbu Super-Shorty
+17649,3 weapon-dump: [WeaponDump] case[7] weapon[3] id=24, codename=mp7, name=MP7
+17650,1 weapon-dump: [WeaponDump] case[7] weapon[4] id=6, codename=colt1911, name=Colt 1911
+17650,8 weapon-dump: [WeaponDump] case[7] weapon[5] id=33, codename=p90, name=P90
+17651,5 weapon-dump: [WeaponDump] case[7] weapon[6] id=20, codename=groza, name=Groza
+17652,2 weapon-dump: [WeaponDump] case[7] weapon[7] id=37, codename=xm8, name=XM8
+17653,0 weapon-dump: [WeaponDump] case[7] weapon[8] id=13, codename=scout, name=Steyr Scout
+17653,7 weapon-dump: [WeaponDump] case[7] weapon[9] id=11, codename=svd, name=SVD
+17654,5 weapon-dump: [WeaponDump] case[9] id=9, codename=rifle, name=Rifle Case
+17655,2 weapon-dump: [WeaponDump] case[9] weapon[0] id=25, codename=g36c, name=G36C
+17655,9 weapon-dump: [WeaponDump] case[9] weapon[1] id=60, codename=beretta_rx4, name=Berretta Rx4
+17656,6 weapon-dump: [WeaponDump] case[9] weapon[2] id=26, codename=scar_l, name=SCAR L
+17657,3 weapon-dump: [WeaponDump] case[9] weapon[3] id=43, codename=lr300, name=LR-300
+17658,0 weapon-dump: [WeaponDump] case[9] weapon[4] id=92, codename=magpul_pdr, name=Magpul PDR
+17658,6 weapon-dump: [WeaponDump] case[9] weapon[5] id=80, codename=aek, name=AEK-971
+17663,0 weapon-dump: [WeaponDump] case[10] id=10, codename=russian, name=Russian Case
+17663,9 weapon-dump: [WeaponDump] case[10] weapon[0] id=103, codename=kedr, name=Kedr
+17664,5 weapon-dump: [WeaponDump] case[10] weapon[1] id=98, codename=a91, name=A-91
+17665,5 weapon-dump: [WeaponDump] case[10] weapon[2] id=95, codename=grach, name=Grach
+17666,3 weapon-dump: [WeaponDump] case[10] weapon[3] id=64, codename=saiga12, name=Saiga-12
+17667,1 weapon-dump: [WeaponDump] case[10] weapon[4] id=77, codename=sks, name=SKS
+17667,8 weapon-dump: [WeaponDump] case[10] weapon[5] id=54, codename=vsk94, name=VSK-94
+17668,5 weapon-dump: [WeaponDump] case[11] id=11, codename=sniper, name=Sniper Case
+17669,4 weapon-dump: [WeaponDump] case[11] weapon[0] id=53, codename=sr25, name=SR-25
+17670,2 weapon-dump: [WeaponDump] case[11] weapon[1] id=48, codename=svu, name=SVU
+17670,9 weapon-dump: [WeaponDump] case[11] weapon[2] id=78, codename=qbu88, name=QBU-88
+17671,6 weapon-dump: [WeaponDump] case[11] weapon[3] id=72, codename=m24, name=M24
+17672,5 weapon-dump: [WeaponDump] case[12] id=12, codename=pistol, name=Pistol Case
+17673,3 weapon-dump: [WeaponDump] case[12] weapon[0] id=88, codename=pb, name=PB
+17674,0 weapon-dump: [WeaponDump] case[12] weapon[1] id=96, codename=fn57, name=Five-seveN
+17678,9 weapon-dump: [WeaponDump] case[12] weapon[2] id=93, codename=ruger_mk2, name=Ruger MK II
+17679,9 weapon-dump: [WeaponDump] case[12] weapon[3] id=97, codename=cz75auto, name=CZ 75-Auto
+17680,8 weapon-dump: [WeaponDump] case[12] weapon[4] id=86, codename=stechkin, name=Stechkin
+17681,5 weapon-dump: [WeaponDump] case[13] id=13, codename=skullcap, name=Skullcap Case
+17682,2 weapon-dump: [WeaponDump] case[13] weapon[0] id=104, codename=kukri, name=Kukri
+17682,8 weapon-dump: [WeaponDump] case[13] weapon[1] id=105, codename=katana, name=Katana
+17683,5 weapon-dump: [WeaponDump] case[13] weapon[2] id=106, codename=karambit_gold, name=Karambit
+17684,1 weapon-dump: [WeaponDump] case[14] id=14, codename=wwii, name=WWII Case
+17685,0 weapon-dump: [WeaponDump] case[14] weapon[0] id=112, codename=browning, name=Browning Hi-Power
+17685,8 weapon-dump: [WeaponDump] case[14] weapon[1] id=114, codename=sm_m10, name=Model 10
+17686,5 weapon-dump: [WeaponDump] case[14] weapon[2] id=116, codename=enfield, name=Lee-Enfield
+17687,2 weapon-dump: [WeaponDump] case[14] weapon[3] id=117, codename=m98k, name=Mauser 98k
+17687,8 weapon-dump: [WeaponDump] case[14] weapon[4] id=120, codename=sten, name=STEN
+17688,4 weapon-dump: [WeaponDump] case[14] weapon[5] id=121, codename=mp40, name=MP40
+17689,2 weapon-dump: [WeaponDump] case[14] weapon[6] id=122, codename=thompson, name=Thompson
+17689,8 weapon-dump: [WeaponDump] case[14] weapon[7] id=111, codename=tt, name=TT
+17694,8 weapon-dump: [WeaponDump] case[14] weapon[8] id=115, codename=mosin, name=Mosin Rifle
+17695,8 weapon-dump: [WeaponDump] case[14] weapon[9] id=118, codename=m1_garand, name=M1 Garand
+17696,6 weapon-dump: [WeaponDump] case[14] weapon[10] id=119, codename=ppsh, name=PPSH
+17697,4 weapon-dump: [WeaponDump] case[14] weapon[11] id=113, codename=c96, name=Mauser C96
+17698,2 weapon-dump: [WeaponDump] case[15] id=15, codename=russian2, name=Russian Case #2
+17698,9 weapon-dump: [WeaponDump] case[15] weapon[0] id=101, codename=penal, name=Penal
+17699,6 weapon-dump: [WeaponDump] case[15] weapon[1] id=102, codename=veresk, name=Veresk
+17700,3 weapon-dump: [WeaponDump] case[15] weapon[2] id=90, codename=aksu, name=AKSU
+17701,0 weapon-dump: [WeaponDump] case[15] weapon[3] id=76, codename=rpk, name=RPK
+17701,8 weapon-dump: [WeaponDump] case[15] weapon[4] id=87, codename=rsh12, name=RSH-12
+17702,5 weapon-dump: [WeaponDump] case[15] weapon[5] id=79, codename=vssk, name=Vyhlop
+17703,2 weapon-dump: [WeaponDump] case[15] weapon[6] id=85, codename=asval, name=AS Val
+17704,0 weapon-dump: [WeaponDump] case[16] id=16, codename=halloween, name=Halloween Case
+17704,7 weapon-dump: [WeaponDump] case[16] weapon[0] id=123, codename=karambit_blood, name=Karambit
+17709,6 weapon-dump: [WeaponDump] case[16] weapon[1] id=124, codename=bayonet, name=Bayonet
+17710,3 weapon-dump: [WeaponDump] case[16] weapon[2] id=125, codename=machete, name=Machete
+17711,2 weapon-dump: [WeaponDump] case[16] weapon[3] id=126, codename=strider, name=Strider
+17712,1 weapon-dump: [WeaponDump] case[16] weapon[4] id=127, codename=tomahawk, name=Tomahawk
+17713,0 weapon-dump: [WeaponDump] case[17] id=17, codename=winter, name=Winter Case
+17713,7 weapon-dump: [WeaponDump] case[17] weapon[0] id=15, codename=spas12, name=SPAS-12
+17714,3 weapon-dump: [WeaponDump] case[17] weapon[1] id=7, codename=mp5, name=MP5
+17715,0 weapon-dump: [WeaponDump] case[17] weapon[2] id=99, codename=m16a1, name=M16
+17715,6 weapon-dump: [WeaponDump] case[17] weapon[3] id=36, codename=tar21, name=TAR-21
+17716,3 weapon-dump: [WeaponDump] case[17] weapon[4] id=19, codename=sa80, name=SA80
+17717,0 weapon-dump: [WeaponDump] case[17] weapon[5] id=49, codename=psg1, name=PSG1
+17717,7 weapon-dump: [WeaponDump] case[17] weapon[6] id=94, codename=keltec_ksg, name=Kel-Tec KSG
+17718,3 weapon-dump: [WeaponDump] case[17] weapon[7] id=31, codename=colt_anaconda, name=Colt Anaconda
+17725,3 weapon-dump: [WeaponDump] case[17] weapon[8] id=51, codename=gol_sniper, name=GOL-Sniper
+17726,4 weapon-dump: [WeaponDump] case[18] id=18, codename=wwii2, name=WWII Case 2
+17727,4 weapon-dump: [WeaponDump] case[18] weapon[0] id=132, codename=pps, name=PPS
+17728,4 weapon-dump: [WeaponDump] case[18] weapon[1] id=130, codename=stg44, name=StG 44
+17729,3 weapon-dump: [WeaponDump] case[18] weapon[2] id=129, codename=svt, name=SVT
+17730,0 weapon-dump: [WeaponDump] case[18] weapon[3] id=134, codename=m1a1, name=M1A1 Paratrooper
+17730,7 weapon-dump: [WeaponDump] case[18] weapon[4] id=131, codename=luger, name=Luger P08
+17731,3 weapon-dump: [WeaponDump] case[18] weapon[5] id=133, codename=mg42, name=MG 42
+17731,9 weapon-dump: [WeaponDump] case[19] id=19, codename=razor, name=Razor Case
+17732,5 weapon-dump: [WeaponDump] case[19] weapon[0] id=135, codename=victorinox, name=Victorinox
+17733,2 weapon-dump: [WeaponDump] case[19] weapon[1] id=136, codename=shadow_dagger, name=Shadow dagger
+17733,9 weapon-dump: [WeaponDump] case[19] weapon[2] id=137, codename=say, name=Say
+17734,6 weapon-dump: [WeaponDump] case[19] weapon[3] id=138, codename=kama, name=Kama
+17735,3 weapon-dump: [WeaponDump] case[19] weapon[4] id=139, codename=gut, name=Gut
+17735,9 weapon-dump: [WeaponDump] case[19] weapon[5] id=140, codename=falchion, name=Falchion
+17741,0 weapon-dump: [WeaponDump] case[19] weapon[6] id=141, codename=cleaver, name=Cleaver
+17741,7 weapon-dump: [WeaponDump] case[19] weapon[7] id=142, codename=6x4, name=6x4
+17742,7 weapon-dump: [WeaponDump] case[20] id=20, codename=future, name=Future Case
+17743,5 weapon-dump: [WeaponDump] case[20] weapon[0] id=143, codename=maxim9, name=Maxim 9
+17744,2 weapon-dump: [WeaponDump] case[20] weapon[1] id=144, codename=hudson9, name=Hudson H9
+17744,9 weapon-dump: [WeaponDump] case[20] weapon[2] id=145, codename=thompson_t, name=Thompson Tactical
+17746,0 weapon-dump: [WeaponDump] case[20] weapon[3] id=149, codename=flamethrower, name=Not A Flamethrower
+17746,8 weapon-dump: [WeaponDump] case[20] weapon[4] id=146, codename=ak_alfa, name=AK Alfa
+17747,6 weapon-dump: [WeaponDump] case[20] weapon[5] id=147, codename=savage_10ba, name=Savage 10BA
+17748,4 weapon-dump: [WeaponDump] case[20] weapon[6] id=148, codename=sv98m, name=SV-98M
+17749,1 weapon-dump: [WeaponDump] case[21] id=21, codename=christmas, name=NY Gift Case
+17749,8 weapon-dump: [WeaponDump] case[21] weapon[0] id=9, codename=uzi, name=Uzi
+17750,3 weapon-dump: [WeaponDump] case[21] weapon[1] id=38, codename=steyr_tmp, name=TMP
+17751,0 weapon-dump: [WeaponDump] case[21] weapon[2] id=3, codename=famas, name=Famas
+17751,5 weapon-dump: [WeaponDump] case[21] weapon[3] id=32, codename=makarov, name=Makarov
+17756,4 weapon-dump: [WeaponDump] case[21] weapon[4] id=66, codename=sv98, name=SV-98
+17757,4 weapon-dump: [WeaponDump] case[23] id=23, codename=steel, name=Steel Case
+17758,4 weapon-dump: [WeaponDump] case[23] weapon[0] id=150, codename=m1906, name=Browning M1906
+17759,2 weapon-dump: [WeaponDump] case[23] weapon[1] id=151, codename=beretta93r, name=Beretta 93R
+17760,1 weapon-dump: [WeaponDump] case[23] weapon[2] id=152, codename=glock18, name=Glock 18
+17760,8 weapon-dump: [WeaponDump] case[23] weapon[3] id=153, codename=pl15, name=PL-15
+17761,5 weapon-dump: [WeaponDump] case[23] weapon[4] id=154, codename=balisong, name=Balisong
+17762,1 weapon-dump: [WeaponDump] case[23] weapon[5] id=155, codename=biker, name=Biker
+17762,8 weapon-dump: [WeaponDump] case[23] weapon[6] id=156, codename=bowie, name=Bowie
+17763,4 weapon-dump: [WeaponDump] case[23] weapon[7] id=157, codename=extractor, name=Extractor
+17764,0 weapon-dump: [WeaponDump] case[24] id=24, codename=halloween2, name=Halloween Case #2
+17764,7 weapon-dump: [WeaponDump] case[24] weapon[0] id=161, codename=podbyrin, name=Podbyrin
+17765,3 weapon-dump: [WeaponDump] case[24] weapon[1] id=162, codename=musket, name=Musket
+17766,2 weapon-dump: [WeaponDump] case[24] weapon[2] id=163, codename=derringer, name=Cobra Derringer
+17767,0 weapon-dump: [WeaponDump] case[24] weapon[3] id=164, codename=holyshotgun, name=Holy Shotgun
+17772,5 weapon-dump: [WeaponDump] case[24] weapon[4] id=165, codename=night_slasher, name=Night Slasher
+17773,5 weapon-dump: [WeaponDump] case[24] weapon[5] id=166, codename=scimitar, name=Scimitar
+17774,3 weapon-dump: [WeaponDump] case[24] weapon[6] id=167, codename=vendetta, name=Vendetta
+17775,1 weapon-dump: [WeaponDump] case[25] id=25, codename=newyear2020, name=2020 Case
+17775,8 weapon-dump: [WeaponDump] case[25] weapon[0] id=27, codename=aug_a3, name=AUG
+17776,6 weapon-dump: [WeaponDump] case[25] weapon[1] id=42, codename=uzi_mini, name=Mini Uzi
+17777,4 weapon-dump: [WeaponDump] case[25] weapon[2] id=83, codename=an94, name=AN-94
+17778,2 weapon-dump: [WeaponDump] case[25] weapon[3] id=100, codename=msg90, name=MSG90
+17778,9 weapon-dump: [WeaponDump] case[25] weapon[4] id=168, codename=daewoo_k2, name=DAEWOO K2
+17779,5 weapon-dump: [WeaponDump] case[25] weapon[5] id=169, codename=r8, name=R8
+17780,5 weapon-dump: [WeaponDump] case[25] weapon[6] id=74, codename=m249, name=M249 SAW
+17781,2 weapon-dump: [WeaponDump] case[25] weapon[7] id=81, codename=aa12, name=AA-12
+17781,9 weapon-dump: [WeaponDump] case[25] weapon[8] id=57, codename=pgm_hecate2, name=PGM Hecate II
+20143,6 weapon-dump: AllWeapons count=1024
+20146,9 weapon-dump: [WeaponDump] id=23, codename=beretta92, name=Beretta 92
+20147,5 weapon-dump: [WeaponDump] id=28, codename=kriss_vector, name=KRISS Vector
+20148,1 weapon-dump: [WeaponDump] id=68, codename=shovel, name=Shovel
+20149,3 weapon-dump: [WeaponDump] id=69, codename=block, name=Block
+20150,4 weapon-dump: [WeaponDump] id=71, codename=sl8, name=SL8
+20151,2 weapon-dump: [WeaponDump] id=107, codename=ammo, name=BP Ammo
+20151,8 weapon-dump: [WeaponDump] id=108, codename=grenade, name=BP Grenade
+20152,5 weapon-dump: [WeaponDump] id=109, codename=medkit, name=BP Medkit
+20153,4 weapon-dump: [WeaponDump] id=110, codename=shield, name=BP Armor
+20153,7 weapon-dump: Loadout count=9
+20155,4 weapon-dump: [WeaponDump] loadout[0] uid=506244901116593530, weaponId=28, codename=kriss_vector, amount=48
+20156,3 weapon-dump: [WeaponDump] loadout[1] uid=506244901116593531, weaponId=23, codename=beretta92, amount=3
+20157,0 weapon-dump: [WeaponDump] loadout[2] uid=506244901116621428, weaponId=71, codename=sl8, amount=71
+20157,6 weapon-dump: [WeaponDump] loadout[3] uid=1, weaponId=68, codename=shovel, amount=0
+20158,2 weapon-dump: [WeaponDump] loadout[4] uid=2, weaponId=69, codename=block, amount=0
+20159,0 weapon-dump: [WeaponDump] loadout[5] uid=3, weaponId=107, codename=ammo, amount=0
+20159,7 weapon-dump: [WeaponDump] loadout[6] uid=4, weaponId=108, codename=grenade, amount=0
+20160,4 weapon-dump: [WeaponDump] loadout[7] uid=5, weaponId=109, codename=medkit, amount=0
+20161,0 weapon-dump: [WeaponDump] loadout[8] uid=6, weaponId=110, codename=shield, amount=0
+20161,0 weapon-dump: Cases count=1024
+20162,2 weapon-dump: [WeaponDump] case[1] id=1, codename=starter, name=Starter Case #1
+20163,0 weapon-dump: [WeaponDump] case[1] weapon[0] id=34, codename=bizon, name=Bizon
+20163,7 weapon-dump: [WeaponDump] case[1] weapon[1] id=61, codename=beretta_mx4, name=Berretta MX4
+20164,5 weapon-dump: [WeaponDump] case[1] weapon[2] id=65, codename=daewoo_k1, name=Daewoo K1
+20165,3 weapon-dump: [WeaponDump] case[1] weapon[3] id=1, codename=ak47, name=AK-47
+20165,9 weapon-dump: [WeaponDump] case[2] id=2, codename=starter, name=Starter Case #2
+20166,5 weapon-dump: [WeaponDump] case[2] weapon[0] id=10, codename=tec9, name=TEC 9
+20167,2 weapon-dump: [WeaponDump] case[2] weapon[1] id=47, codename=scorpion, name=Šcorpion vz. 61
+20167,8 weapon-dump: [WeaponDump] case[2] weapon[2] id=30, codename=qbz95, name=QBZ 95
+20168,4 weapon-dump: [WeaponDump] case[2] weapon[3] id=2, codename=m4a1, name=M4A1
+20169,1 weapon-dump: [WeaponDump] case[3] id=3, codename=recruit, name=Recruit Case
+20178,1 weapon-dump: [WeaponDump] case[3] weapon[0] id=71, codename=sl8, name=SL8
+20179,1 weapon-dump: [WeaponDump] case[3] weapon[1] id=62, codename=m14_ebr, name=Mk 14 EBR
+20179,8 weapon-dump: [WeaponDump] case[3] weapon[2] id=67, codename=m21, name=M21
+20180,7 weapon-dump: [WeaponDump] case[4] id=4, codename=craft, name=Craft Case #1
+20181,5 weapon-dump: [WeaponDump] case[4] weapon[0] id=41, codename=uzi_micro, name=Micro Uzi
+20182,1 weapon-dump: [WeaponDump] case[4] weapon[1] id=8, codename=ump, name=UMP
+20182,9 weapon-dump: [WeaponDump] case[4] weapon[2] id=5, codename=glock17, name=Glock 17
+20183,5 weapon-dump: [WeaponDump] case[4] weapon[3] id=17, codename=galil, name=Galil
+20184,3 weapon-dump: [WeaponDump] case[5] id=5, codename=craft, name=Craft Case #2
+20185,4 weapon-dump: [WeaponDump] case[5] weapon[0] id=40, codename=mp5sd, name=MP5SD
+20186,3 weapon-dump: [WeaponDump] case[5] weapon[1] id=4, codename=sig552, name=SIG 552
+20187,1 weapon-dump: [WeaponDump] case[5] weapon[2] id=63, codename=usp, name=USP
+20187,9 weapon-dump: [WeaponDump] case[5] weapon[3] id=14, codename=vintorez, name=Vintorez
+20188,5 weapon-dump: [WeaponDump] case[6] id=6, codename=craft, name=Craft Case #3
+20189,2 weapon-dump: [WeaponDump] case[6] weapon[0] id=46, codename=ruger_mp9, name=Ruger MP9
+20189,8 weapon-dump: [WeaponDump] case[6] weapon[1] id=29, codename=g3, name=G3
+20190,4 weapon-dump: [WeaponDump] case[6] weapon[2] id=22, codename=deagle, name=Desert Eagle
+20191,0 weapon-dump: [WeaponDump] case[6] weapon[3] id=12, codename=l96, name=L96A1
+20191,6 weapon-dump: [WeaponDump] case[7] id=7, codename=level, name=Level Case
+20192,2 weapon-dump: [WeaponDump] case[7] weapon[0] id=44, codename=mac10, name=MAC-10
+20192,9 weapon-dump: [WeaponDump] case[7] weapon[1] id=39, codename=mp5k, name=MP5K
+20193,5 weapon-dump: [WeaponDump] case[7] weapon[2] id=16, codename=sss, name=Serbu Super-Shorty
+20194,1 weapon-dump: [WeaponDump] case[7] weapon[3] id=24, codename=mp7, name=MP7
+20194,8 weapon-dump: [WeaponDump] case[7] weapon[4] id=6, codename=colt1911, name=Colt 1911
+20195,7 weapon-dump: [WeaponDump] case[7] weapon[5] id=33, codename=p90, name=P90
+20196,3 weapon-dump: [WeaponDump] case[7] weapon[6] id=20, codename=groza, name=Groza
+20197,0 weapon-dump: [WeaponDump] case[7] weapon[7] id=37, codename=xm8, name=XM8
+20197,7 weapon-dump: [WeaponDump] case[7] weapon[8] id=13, codename=scout, name=Steyr Scout
+20198,3 weapon-dump: [WeaponDump] case[7] weapon[9] id=11, codename=svd, name=SVD
+20198,9 weapon-dump: [WeaponDump] case[9] id=9, codename=rifle, name=Rifle Case
+20206,7 weapon-dump: [WeaponDump] case[9] weapon[0] id=25, codename=g36c, name=G36C
+20207,5 weapon-dump: [WeaponDump] case[9] weapon[1] id=60, codename=beretta_rx4, name=Berretta Rx4
+20208,3 weapon-dump: [WeaponDump] case[9] weapon[2] id=26, codename=scar_l, name=SCAR L
+20209,0 weapon-dump: [WeaponDump] case[9] weapon[3] id=43, codename=lr300, name=LR-300
+20209,7 weapon-dump: [WeaponDump] case[9] weapon[4] id=92, codename=magpul_pdr, name=Magpul PDR
+20210,3 weapon-dump: [WeaponDump] case[9] weapon[5] id=80, codename=aek, name=AEK-971
+20211,0 weapon-dump: [WeaponDump] case[10] id=10, codename=russian, name=Russian Case
+20211,7 weapon-dump: [WeaponDump] case[10] weapon[0] id=103, codename=kedr, name=Kedr
+20212,4 weapon-dump: [WeaponDump] case[10] weapon[1] id=98, codename=a91, name=A-91
+20213,0 weapon-dump: [WeaponDump] case[10] weapon[2] id=95, codename=grach, name=Grach
+20213,7 weapon-dump: [WeaponDump] case[10] weapon[3] id=64, codename=saiga12, name=Saiga-12
+20214,4 weapon-dump: [WeaponDump] case[10] weapon[4] id=77, codename=sks, name=SKS
+20215,0 weapon-dump: [WeaponDump] case[10] weapon[5] id=54, codename=vsk94, name=VSK-94
+20219,4 weapon-dump: [WeaponDump] case[11] id=11, codename=sniper, name=Sniper Case
+20220,4 weapon-dump: [WeaponDump] case[11] weapon[0] id=53, codename=sr25, name=SR-25
+20221,4 weapon-dump: [WeaponDump] case[11] weapon[1] id=48, codename=svu, name=SVU
+20222,4 weapon-dump: [WeaponDump] case[11] weapon[2] id=78, codename=qbu88, name=QBU-88
+20223,3 weapon-dump: [WeaponDump] case[11] weapon[3] id=72, codename=m24, name=M24
+20224,0 weapon-dump: [WeaponDump] case[12] id=12, codename=pistol, name=Pistol Case
+20224,7 weapon-dump: [WeaponDump] case[12] weapon[0] id=88, codename=pb, name=PB
+20225,4 weapon-dump: [WeaponDump] case[12] weapon[1] id=96, codename=fn57, name=Five-seveN
+20226,3 weapon-dump: [WeaponDump] case[12] weapon[2] id=93, codename=ruger_mk2, name=Ruger MK II
+20227,1 weapon-dump: [WeaponDump] case[12] weapon[3] id=97, codename=cz75auto, name=CZ 75-Auto
+20227,9 weapon-dump: [WeaponDump] case[12] weapon[4] id=86, codename=stechkin, name=Stechkin
+20228,6 weapon-dump: [WeaponDump] case[13] id=13, codename=skullcap, name=Skullcap Case
+20229,5 weapon-dump: [WeaponDump] case[13] weapon[0] id=104, codename=kukri, name=Kukri
+20233,8 weapon-dump: [WeaponDump] case[13] weapon[1] id=105, codename=katana, name=Katana
+20234,9 weapon-dump: [WeaponDump] case[13] weapon[2] id=106, codename=karambit_gold, name=Karambit
+20235,8 weapon-dump: [WeaponDump] case[14] id=14, codename=wwii, name=WWII Case
+20236,7 weapon-dump: [WeaponDump] case[14] weapon[0] id=112, codename=browning, name=Browning Hi-Power
+20237,9 weapon-dump: [WeaponDump] case[14] weapon[1] id=114, codename=sm_m10, name=Model 10
+20238,6 weapon-dump: [WeaponDump] case[14] weapon[2] id=116, codename=enfield, name=Lee-Enfield
+20239,4 weapon-dump: [WeaponDump] case[14] weapon[3] id=117, codename=m98k, name=Mauser 98k
+20240,0 weapon-dump: [WeaponDump] case[14] weapon[4] id=120, codename=sten, name=STEN
+20240,8 weapon-dump: [WeaponDump] case[14] weapon[5] id=121, codename=mp40, name=MP40
+20241,5 weapon-dump: [WeaponDump] case[14] weapon[6] id=122, codename=thompson, name=Thompson
+20242,1 weapon-dump: [WeaponDump] case[14] weapon[7] id=111, codename=tt, name=TT
+20242,7 weapon-dump: [WeaponDump] case[14] weapon[8] id=115, codename=mosin, name=Mosin Rifle
+20243,4 weapon-dump: [WeaponDump] case[14] weapon[9] id=118, codename=m1_garand, name=M1 Garand
+20244,3 weapon-dump: [WeaponDump] case[14] weapon[10] id=119, codename=ppsh, name=PPSH
+20245,0 weapon-dump: [WeaponDump] case[14] weapon[11] id=113, codename=c96, name=Mauser C96
+20245,7 weapon-dump: [WeaponDump] case[15] id=15, codename=russian2, name=Russian Case #2
+20246,5 weapon-dump: [WeaponDump] case[15] weapon[0] id=101, codename=penal, name=Penal
+20251,0 weapon-dump: [WeaponDump] case[15] weapon[1] id=102, codename=veresk, name=Veresk
+20252,0 weapon-dump: [WeaponDump] case[15] weapon[2] id=90, codename=aksu, name=AKSU
+20252,9 weapon-dump: [WeaponDump] case[15] weapon[3] id=76, codename=rpk, name=RPK
+20254,3 weapon-dump: [WeaponDump] case[15] weapon[4] id=87, codename=rsh12, name=RSH-12
+20255,1 weapon-dump: [WeaponDump] case[15] weapon[5] id=79, codename=vssk, name=Vyhlop
+20256,0 weapon-dump: [WeaponDump] case[15] weapon[6] id=85, codename=asval, name=AS Val
+20257,0 weapon-dump: [WeaponDump] case[16] id=16, codename=halloween, name=Halloween Case
+20257,7 weapon-dump: [WeaponDump] case[16] weapon[0] id=123, codename=karambit_blood, name=Karambit
+20258,4 weapon-dump: [WeaponDump] case[16] weapon[1] id=124, codename=bayonet, name=Bayonet
+20259,0 weapon-dump: [WeaponDump] case[16] weapon[2] id=125, codename=machete, name=Machete
+20259,7 weapon-dump: [WeaponDump] case[16] weapon[3] id=126, codename=strider, name=Strider
+20260,3 weapon-dump: [WeaponDump] case[16] weapon[4] id=127, codename=tomahawk, name=Tomahawk
+20260,9 weapon-dump: [WeaponDump] case[17] id=17, codename=winter, name=Winter Case
+20261,7 weapon-dump: [WeaponDump] case[17] weapon[0] id=15, codename=spas12, name=SPAS-12
+20266,3 weapon-dump: [WeaponDump] case[17] weapon[1] id=7, codename=mp5, name=MP5
+20267,4 weapon-dump: [WeaponDump] case[17] weapon[2] id=99, codename=m16a1, name=M16
+20268,2 weapon-dump: [WeaponDump] case[17] weapon[3] id=36, codename=tar21, name=TAR-21
+20269,0 weapon-dump: [WeaponDump] case[17] weapon[4] id=19, codename=sa80, name=SA80
+20269,7 weapon-dump: [WeaponDump] case[17] weapon[5] id=49, codename=psg1, name=PSG1
+20270,4 weapon-dump: [WeaponDump] case[17] weapon[6] id=94, codename=keltec_ksg, name=Kel-Tec KSG
+20271,1 weapon-dump: [WeaponDump] case[17] weapon[7] id=31, codename=colt_anaconda, name=Colt Anaconda
+20271,8 weapon-dump: [WeaponDump] case[17] weapon[8] id=51, codename=gol_sniper, name=GOL-Sniper
+20272,4 weapon-dump: [WeaponDump] case[18] id=18, codename=wwii2, name=WWII Case 2
+20273,0 weapon-dump: [WeaponDump] case[18] weapon[0] id=132, codename=pps, name=PPS
+20273,5 weapon-dump: [WeaponDump] case[18] weapon[1] id=130, codename=stg44, name=StG 44
+20274,0 weapon-dump: [WeaponDump] case[18] weapon[2] id=129, codename=svt, name=SVT
+20274,6 weapon-dump: [WeaponDump] case[18] weapon[3] id=134, codename=m1a1, name=M1A1 Paratrooper
+20275,2 weapon-dump: [WeaponDump] case[18] weapon[4] id=131, codename=luger, name=Luger P08
+20275,8 weapon-dump: [WeaponDump] case[18] weapon[5] id=133, codename=mg42, name=MG 42
+20276,5 weapon-dump: [WeaponDump] case[19] id=19, codename=razor, name=Razor Case
+20277,0 weapon-dump: [WeaponDump] case[19] weapon[0] id=135, codename=victorinox, name=Victorinox
+20277,7 weapon-dump: [WeaponDump] case[19] weapon[1] id=136, codename=shadow_dagger, name=Shadow dagger
+20278,3 weapon-dump: [WeaponDump] case[19] weapon[2] id=137, codename=say, name=Say
+20283,8 weapon-dump: [WeaponDump] case[19] weapon[3] id=138, codename=kama, name=Kama
+20285,0 weapon-dump: [WeaponDump] case[19] weapon[4] id=139, codename=gut, name=Gut
+20285,9 weapon-dump: [WeaponDump] case[19] weapon[5] id=140, codename=falchion, name=Falchion
+20286,8 weapon-dump: [WeaponDump] case[19] weapon[6] id=141, codename=cleaver, name=Cleaver
+20287,8 weapon-dump: [WeaponDump] case[19] weapon[7] id=142, codename=6x4, name=6x4
+20288,6 weapon-dump: [WeaponDump] case[20] id=20, codename=future, name=Future Case
+20289,4 weapon-dump: [WeaponDump] case[20] weapon[0] id=143, codename=maxim9, name=Maxim 9
+20290,1 weapon-dump: [WeaponDump] case[20] weapon[1] id=144, codename=hudson9, name=Hudson H9
+20290,7 weapon-dump: [WeaponDump] case[20] weapon[2] id=145, codename=thompson_t, name=Thompson Tactical
+20291,4 weapon-dump: [WeaponDump] case[20] weapon[3] id=149, codename=flamethrower, name=Not A Flamethrower
+20292,0 weapon-dump: [WeaponDump] case[20] weapon[4] id=146, codename=ak_alfa, name=AK Alfa
+20292,6 weapon-dump: [WeaponDump] case[20] weapon[5] id=147, codename=savage_10ba, name=Savage 10BA
+20293,2 weapon-dump: [WeaponDump] case[20] weapon[6] id=148, codename=sv98m, name=SV-98M
+20293,7 weapon-dump: [WeaponDump] case[21] id=21, codename=christmas, name=NY Gift Case
+20298,8 weapon-dump: [WeaponDump] case[21] weapon[0] id=9, codename=uzi, name=Uzi
+20299,7 weapon-dump: [WeaponDump] case[21] weapon[1] id=38, codename=steyr_tmp, name=TMP
+20300,5 weapon-dump: [WeaponDump] case[21] weapon[2] id=3, codename=famas, name=Famas
+20301,3 weapon-dump: [WeaponDump] case[21] weapon[3] id=32, codename=makarov, name=Makarov
+20302,2 weapon-dump: [WeaponDump] case[21] weapon[4] id=66, codename=sv98, name=SV-98
+20303,2 weapon-dump: [WeaponDump] case[23] id=23, codename=steel, name=Steel Case
+20303,9 weapon-dump: [WeaponDump] case[23] weapon[0] id=150, codename=m1906, name=Browning M1906
+20304,5 weapon-dump: [WeaponDump] case[23] weapon[1] id=151, codename=beretta93r, name=Beretta 93R
+20305,1 weapon-dump: [WeaponDump] case[23] weapon[2] id=152, codename=glock18, name=Glock 18
+20305,7 weapon-dump: [WeaponDump] case[23] weapon[3] id=153, codename=pl15, name=PL-15
+20306,3 weapon-dump: [WeaponDump] case[23] weapon[4] id=154, codename=balisong, name=Balisong
+20306,9 weapon-dump: [WeaponDump] case[23] weapon[5] id=155, codename=biker, name=Biker
+20307,6 weapon-dump: [WeaponDump] case[23] weapon[6] id=156, codename=bowie, name=Bowie
+20308,1 weapon-dump: [WeaponDump] case[23] weapon[7] id=157, codename=extractor, name=Extractor
+20308,7 weapon-dump: [WeaponDump] case[24] id=24, codename=halloween2, name=Halloween Case #2
+20309,3 weapon-dump: [WeaponDump] case[24] weapon[0] id=161, codename=podbyrin, name=Podbyrin
+20315,0 weapon-dump: [WeaponDump] case[24] weapon[1] id=162, codename=musket, name=Musket
+20316,1 weapon-dump: [WeaponDump] case[24] weapon[2] id=163, codename=derringer, name=Cobra Derringer
+20317,0 weapon-dump: [WeaponDump] case[24] weapon[3] id=164, codename=holyshotgun, name=Holy Shotgun
+20317,9 weapon-dump: [WeaponDump] case[24] weapon[4] id=165, codename=night_slasher, name=Night Slasher
+20318,5 weapon-dump: [WeaponDump] case[24] weapon[5] id=166, codename=scimitar, name=Scimitar
+20319,2 weapon-dump: [WeaponDump] case[24] weapon[6] id=167, codename=vendetta, name=Vendetta
+20319,8 weapon-dump: [WeaponDump] case[25] id=25, codename=newyear2020, name=2020 Case
+20320,6 weapon-dump: [WeaponDump] case[25] weapon[0] id=27, codename=aug_a3, name=AUG
+20321,2 weapon-dump: [WeaponDump] case[25] weapon[1] id=42, codename=uzi_mini, name=Mini Uzi
+20321,9 weapon-dump: [WeaponDump] case[25] weapon[2] id=83, codename=an94, name=AN-94
+20322,5 weapon-dump: [WeaponDump] case[25] weapon[3] id=100, codename=msg90, name=MSG90
+20323,1 weapon-dump: [WeaponDump] case[25] weapon[4] id=168, codename=daewoo_k2, name=DAEWOO K2
+20323,7 weapon-dump: [WeaponDump] case[25] weapon[5] id=169, codename=r8, name=R8
+20324,4 weapon-dump: [WeaponDump] case[25] weapon[6] id=74, codename=m249, name=M249 SAW
+20325,0 weapon-dump: [WeaponDump] case[25] weapon[7] id=81, codename=aa12, name=AA-12
+20325,7 weapon-dump: [WeaponDump] case[25] weapon[8] id=57, codename=pgm_hecate2, name=PGM Hecate II
+20612,3 weapon-scan: scanning ids 0..1023
+20614,8 weapon-scan: [WeaponScan] id=23, codename=beretta92, name=Beretta 92
+20615,3 weapon-scan: [WeaponScan] id=28, codename=kriss_vector, name=KRISS Vector
+20615,8 weapon-scan: [WeaponScan] id=68, codename=shovel, name=Shovel
+20616,4 weapon-scan: [WeaponScan] id=69, codename=block, name=Block
+20617,0 weapon-scan: [WeaponScan] id=71, codename=sl8, name=SL8
+20617,6 weapon-scan: [WeaponScan] id=107, codename=ammo, name=BP Ammo
+20618,3 weapon-scan: [WeaponScan] id=108, codename=grenade, name=BP Grenade
+20618,9 weapon-scan: [WeaponScan] id=109, codename=medkit, name=BP Medkit
+20619,4 weapon-scan: [WeaponScan] id=110, codename=shield, name=BP Armor
+20619,4 weapon-scan: found 9 weapons

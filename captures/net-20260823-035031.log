@@ -1,0 +1,12 @@
+# Blockpost room-protocol capture, started 2026-08-23 03:50:31
+# tx: <ms> tx hdr=0xNN op=0xNN <name> : <fields>    rx: <ms> rx len=N <hex>
+
+7184,3 ==== CAPTURE ON ====
+7188,4 # net: TcpClient.Connected = (no socket)
+
+7188,5 ==== CAPTURE OFF ====
+
+53933,1 ==== CAPTURE ON ====
+53935,8 # net: TcpClient.Connected = (no socket)
+
+53935,9 ==== CAPTURE OFF ====

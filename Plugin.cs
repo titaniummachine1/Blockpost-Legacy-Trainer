@@ -74,6 +74,9 @@ public sealed class Plugin : BasePlugin
     private static bool rapidFire;
     private static bool infiniteHealth;
     private static bool infiniteAmmo;
+    private static bool instantReload;
+    private static bool instantReloadFailureLogged;
+    private static int instantReloads;
     private static float nextAutoShootTime;
     private static readonly List<EspBox> espBoxes = new();
 
@@ -155,6 +158,7 @@ public sealed class Plugin : BasePlugin
     {
         NetProbe.Tick();
         FieldWatch.Tick(__instance);
+        ApplyInstantReload();
         ReleaseLeftMouseIfNeeded();
         ForceRapidFireShot();
         ToggleMenuIfRequested();
@@ -170,6 +174,46 @@ public sealed class Plugin : BasePlugin
         {
             mouse_event(MouseEventFLeftUp, 0, 0, 0, 0);
             pendingLeftMouseUp = false;
+        }
+    }
+
+    /// <summary>
+    /// Finish any in-progress reload immediately.
+    ///
+    /// Reload is pure client-side simulation -- there is no reload or ammo opcode in the outgoing
+    /// protocol, so the server is never told and there is nothing to stay in sync with. The timer
+    /// is a pair of adjacent Controll statics: FBINCNDDPAO is Time.time at reload start and
+    /// ILGHFLMKMCO is the completion stamp, normally start + 2.0s. A successful perfect-reload
+    /// minigame works by *subtracting* from ILGHFLMKMCO, so pulling it back to the start time is
+    /// the same mechanism taken to its limit rather than a new code path.
+    /// </summary>
+    private static void ApplyInstantReload()
+    {
+        if (!instantReload)
+        {
+            return;
+        }
+
+        try
+        {
+            if (!Controll.DJACNOGOCKD)
+            {
+                return;
+            }
+
+            if (Controll.ILGHFLMKMCO > Controll.FBINCNDDPAO)
+            {
+                Controll.ILGHFLMKMCO = Controll.FBINCNDDPAO;
+                instantReloads++;
+            }
+        }
+        catch (Exception exception)
+        {
+            if (!instantReloadFailureLogged)
+            {
+                instance?.Log.LogWarning($"[Instant reload] apply failed: {exception}");
+                instantReloadFailureLogged = true;
+            }
         }
     }
 
@@ -1228,12 +1272,13 @@ public sealed class Plugin : BasePlugin
         noRecoil = GUI.Toggle(new Rect(40, 418, 460, 24), noRecoil, "No recoil");
         infiniteHealth = GUI.Toggle(new Rect(40, 448, 460, 24), infiniteHealth, "Infinite health");
         infiniteAmmo = GUI.Toggle(new Rect(40, 478, 460, 24), infiniteAmmo, "Infinite ammo (log only — identifying correct fields)");
-        debugLogging = GUI.Toggle(new Rect(40, 508, 460, 24), debugLogging, "Verbose diagnostics (logs every second)");
-        showRuntimeStatus = GUI.Toggle(new Rect(40, 538, 460, 24), showRuntimeStatus, "Show runtime status");
+        instantReload = GUI.Toggle(new Rect(40, 508, 460, 24), instantReload, $"Instant reload (client-side only — {instantReloads} so far)");
+        debugLogging = GUI.Toggle(new Rect(40, 538, 460, 24), debugLogging, "Verbose diagnostics (logs every second)");
+        showRuntimeStatus = GUI.Toggle(new Rect(40, 568, 460, 24), showRuntimeStatus, "Show runtime status");
         if (showRuntimeStatus)
         {
-            GUI.Label(new Rect(40, 562, 460, 24), $"Update: {(controllerRunning ? "running" : "waiting")} | Boxes: {espBoxes.Count} | {featureStatus}");
-            GUI.Label(new Rect(40, 586, 460, 24), $"Aimbot: {aimStatus}");
+            GUI.Label(new Rect(40, 592, 460, 24), $"Update: {(controllerRunning ? "running" : "waiting")} | Boxes: {espBoxes.Count} | {featureStatus}");
+            GUI.Label(new Rect(40, 616, 460, 24), $"Aimbot: {aimStatus}");
         }
     }
 

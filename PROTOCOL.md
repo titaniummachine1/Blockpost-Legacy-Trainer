@@ -276,3 +276,68 @@ If the killer was not an admin/host, this confirms the game trusts client-author
 
 `infiniteHealth` sets local `FDOJDJLIGLF` to `1000` every frame, but if the server accepts a client kill
 packet it may still register death before the local cheat can overwrite it.
+
+---
+
+## 11. Reload system — fully mapped
+
+Recovered offline from `captures/net-20260823-020010.log` (5533 fieldwatch lines, five reloads
+covering all three minigame outcomes). Every field below is a `Controll` member.
+
+| Alias | Raw | Offset | Type | Meaning |
+|---|---|---|---|---|
+| `Game.ReloadStartTime` | `FBINCNDDPAO` | `0x1A8` | float | `Time.time` when the reload began |
+| `Game.ReloadEndTime` | `ILGHFLMKMCO` | `0x1AC` | float | completion stamp — **normally `start + 2.0`** |
+| `Game.ReloadMarkerPos` | `JADIDAJFOGK` | `0x1B8` | float | minigame marker position (~0.31–0.40 observed) |
+| `Game.IsReloading` | `DJACNOGOCKD` | `0xB7` | bool | true for the duration |
+| `Game.ReloadPromptActive` | `KOPOBDGHLFL` | `0x94` | bool | instance; true ~250 ms before the reload starts |
+| `Game.ReloadRequestTime` | `CLEHDNFKJPB` | `0x98` | float | instance; mirrors the start stamp |
+| `Game.ReloadMinigameResult` | `JBKBOPCCIBM` | property | int | `0` no attempt · `1` perfect · `2` failed |
+
+`ILGHFLMKMCO − FBINCNDDPAO` is exactly `2.0` at reload start, every time.
+
+### How the perfect reload actually works
+
+**It subtracts from the completion stamp.** In the capture, reload #1 was a successful minigame:
+
+```
+19442.1  IsReloading      0 -> 1          reload begins
+19442.1  ReloadEndTime    0 -> 17.8536    = start(15.8536) + 2.0
+20634.8  MinigameResult   0 -> 1          perfect hit registered
+20634.8  ReloadEndTime    17.8536 -> 17.1449    <-- 0.71s removed
+20737.3  IsReloading      1 -> 0          finished after 1295 ms, not 2000
+```
+
+Reload #4 was a failed minigame: `MinigameResult 0 -> 2`, **no change to `ReloadEndTime`**, and it
+ran the full 2005 ms. Runs with no participation leave the result at `0`, also full duration.
+
+So all three outcomes differ only in how much is subtracted from one float.
+
+### Instant reload
+
+Implemented in `Plugin.cs` (`ApplyInstantReload`, menu toggle). Pulling `ReloadEndTime` back to
+`ReloadStartTime` finishes the reload immediately — the same mechanism the perfect reload uses,
+taken to its limit rather than a new code path:
+
+```csharp
+if (Controll.DJACNOGOCKD && Controll.ILGHFLMKMCO > Controll.FBINCNDDPAO)
+{
+    Controll.ILGHFLMKMCO = Controll.FBINCNDDPAO;
+}
+```
+
+No packet is involved and none is needed — see §3, there is no reload or ammo opcode, so the
+server is never told and there is nothing to stay synchronised with. **Untested in game.**
+
+### Corrected alias
+
+`KBBBHJDINCB.ECBCOHFLJCC` (`0xAC`) previously had two contradictory aliases, `TotalAmmo` and
+`ActiveWeaponIndex`. It is the **active weapon id** — writing an ammo count here is exactly the
+documented "NO WEAPON" corruption. Now a single alias, `Player.ActiveWeaponId`.
+
+### Identified as presentation-only (muted in FieldWatch)
+
+`GIPNIMALPEG` (3001 changes/run), `MKFDGFOCKNO`, `LEKCBKLAILO`, `OFJKHAFJIMA`, `NAKNALFCOIF`,
+`IGLCENGMMMJ`, `MNHBPCOOMLE`. The group `DGNDKAKOEPD` / `BEJBLGGGOCC` / `JELGPAKAJPE` /
+`EENJPDHGGGC` updates once per second and is network/timing telemetry (`EENJPDHGGGC` is seconds
+elapsed), **not** ammo — the "25 changes" in a 25-second capture was a coincidence of duration.

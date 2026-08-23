@@ -19,10 +19,9 @@
       "PlayerId": "LCPGFBMKNHJ",
       "Slot": "MOPBMENEGLN",
       "AmmoPerSlot": "GDEMINMDJAC",
-      "TotalAmmo": "ECBCOHFLJCC",
       "Loadout": "KPNAADPGNCP",
-      "ActiveWeaponIndex": "ECBCOHFLJCC",
-      "ActiveWeapon": "_EPGCMIJPHIA_k__BackingField"
+      "ActiveWeapon": "_EPGCMIJPHIA_k__BackingField",
+      "ActiveWeaponId": "ECBCOHFLJCC"
     }
   },
   "Controll": {
@@ -36,10 +35,19 @@
       "MuzzleForward": "FLILDBNOFMK",
       "HitList": "GOMFKJNNJAP",
       "HitSequence": "GAMBHJPMDON",
-      "CanFire": "KEPGFOEOHPD"
+      "CanFire": "KEPGFOEOHPD",
+      "ReloadStartTime": "FBINCNDDPAO",
+      "ReloadEndTime": "ILGHFLMKMCO",
+      "ReloadMarkerPos": "JADIDAJFOGK",
+      "IsReloading": "DJACNOGOCKD",
+      "ReloadPromptActive": "KOPOBDGHLFL",
+      "ReloadRequestTime": "CLEHDNFKJPB"
     },
     "Methods": {
       "Update": "Update"
+    },
+    "Properties": {
+      "ReloadMinigameResult": "JBKBOPCCIBM"
     }
   },
   "Client": {

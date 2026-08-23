@@ -1,0 +1,103 @@
+# Blockpost room-protocol capture, started 2026-08-23 04:06:55
+# tx: <ms> tx hdr=0xNN op=0xNN <name> : <fields>    rx: <ms> rx len=N <hex>
+7960,6 weapon-dump: AllWeapons count=1024
+7965,9 weapon-dump: [WeaponDump] id=23, codename=beretta92, name=Beretta 92
+7967,2 weapon-dump: [WeaponDump] id=28, codename=kriss_vector, name=KRISS Vector
+7967,9 weapon-dump: [WeaponDump] id=68, codename=shovel, name=Shovel
+7968,6 weapon-dump: [WeaponDump] id=69, codename=block, name=Block
+7969,2 weapon-dump: [WeaponDump] id=71, codename=sl8, name=SL8
+7970,0 weapon-dump: [WeaponDump] id=107, codename=ammo, name=BP Ammo
+7970,6 weapon-dump: [WeaponDump] id=108, codename=grenade, name=BP Grenade
+7971,6 weapon-dump: [WeaponDump] id=109, codename=medkit, name=BP Medkit
+7972,3 weapon-dump: [WeaponDump] id=110, codename=shield, name=BP Armor
+7976,0 weapon-dump: Loadout count=9
+7979,9 weapon-dump: [WeaponDump] loadout[0] uid=506244901116593530, weaponId=28, codename=kriss_vector, amount=48
+7986,2 weapon-dump: [WeaponDump] loadout[1] uid=506244901116593531, weaponId=23, codename=beretta92, amount=3
+7987,1 weapon-dump: [WeaponDump] loadout[2] uid=506244901116621428, weaponId=71, codename=sl8, amount=71
+7987,8 weapon-dump: [WeaponDump] loadout[3] uid=1, weaponId=68, codename=shovel, amount=0
+7988,8 weapon-dump: [WeaponDump] loadout[4] uid=2, weaponId=69, codename=block, amount=0
+7989,5 weapon-dump: [WeaponDump] loadout[5] uid=3, weaponId=107, codename=ammo, amount=0
+7990,2 weapon-dump: [WeaponDump] loadout[6] uid=4, weaponId=108, codename=grenade, amount=0
+7990,9 weapon-dump: [WeaponDump] loadout[7] uid=5, weaponId=109, codename=medkit, amount=0
+7991,6 weapon-dump: [WeaponDump] loadout[8] uid=6, weaponId=110, codename=shield, amount=0
+8482,3 weapon-scan: scanning ids 0..1023
+8485,4 weapon-scan: [WeaponScan] id=23, codename=beretta92, name=Beretta 92
+8486,4 weapon-scan: [WeaponScan] id=28, codename=kriss_vector, name=KRISS Vector
+8487,1 weapon-scan: [WeaponScan] id=68, codename=shovel, name=Shovel
+8487,7 weapon-scan: [WeaponScan] id=69, codename=block, name=Block
+8488,6 weapon-scan: [WeaponScan] id=71, codename=sl8, name=SL8
+8489,6 weapon-scan: [WeaponScan] id=107, codename=ammo, name=BP Ammo
+8490,3 weapon-scan: [WeaponScan] id=108, codename=grenade, name=BP Grenade
+8491,1 weapon-scan: [WeaponScan] id=109, codename=medkit, name=BP Medkit
+8491,9 weapon-scan: [WeaponScan] id=110, codename=shield, name=BP Armor
+8492,0 weapon-scan: found 9 weapons
+9775,0 weapon-discovered: id=71, codename=sl8, name=SL8
+9776,3 weapon-discovered: id=23, codename=beretta92, name=Beretta 92
+9776,7 weapon-discovered: id=68, codename=shovel, name=Shovel
+9777,0 weapon-discovered: id=69, codename=block, name=Block
+9777,3 weapon-discovered: id=108, codename=grenade, name=BP Grenade
+9777,6 weapon-discovered: id=28, codename=kriss_vector, name=KRISS Vector
+31021,7 weapon-dump: AllWeapons count=1024
+31024,6 weapon-dump: [WeaponDump] id=23, codename=beretta92, name=Beretta 92
+31025,5 weapon-dump: [WeaponDump] id=28, codename=kriss_vector, name=KRISS Vector
+31026,3 weapon-dump: [WeaponDump] id=68, codename=shovel, name=Shovel
+31027,0 weapon-dump: [WeaponDump] id=69, codename=block, name=Block
+31028,2 weapon-dump: [WeaponDump] id=71, codename=sl8, name=SL8
+31029,0 weapon-dump: [WeaponDump] id=107, codename=ammo, name=BP Ammo
+31029,7 weapon-dump: [WeaponDump] id=108, codename=grenade, name=BP Grenade
+31030,9 weapon-dump: [WeaponDump] id=109, codename=medkit, name=BP Medkit
+31031,7 weapon-dump: [WeaponDump] id=110, codename=shield, name=BP Armor
+31031,9 weapon-dump: Loadout count=9
+31033,3 weapon-dump: [WeaponDump] loadout[0] uid=506244901116593530, weaponId=28, codename=kriss_vector, amount=48
+31034,1 weapon-dump: [WeaponDump] loadout[1] uid=506244901116593531, weaponId=23, codename=beretta92, amount=3
+31035,0 weapon-dump: [WeaponDump] loadout[2] uid=506244901116621428, weaponId=71, codename=sl8, amount=71
+31035,8 weapon-dump: [WeaponDump] loadout[3] uid=1, weaponId=68, codename=shovel, amount=0
+31036,4 weapon-dump: [WeaponDump] loadout[4] uid=2, weaponId=69, codename=block, amount=0
+31037,1 weapon-dump: [WeaponDump] loadout[5] uid=3, weaponId=107, codename=ammo, amount=0
+31037,8 weapon-dump: [WeaponDump] loadout[6] uid=4, weaponId=108, codename=grenade, amount=0
+31038,4 weapon-dump: [WeaponDump] loadout[7] uid=5, weaponId=109, codename=medkit, amount=0
+31039,1 weapon-dump: [WeaponDump] loadout[8] uid=6, weaponId=110, codename=shield, amount=0
+31539,4 weapon-scan: scanning ids 0..1023
+31542,5 weapon-scan: [WeaponScan] id=23, codename=beretta92, name=Beretta 92
+31543,1 weapon-scan: [WeaponScan] id=28, codename=kriss_vector, name=KRISS Vector
+31543,8 weapon-scan: [WeaponScan] id=68, codename=shovel, name=Shovel
+31544,5 weapon-scan: [WeaponScan] id=69, codename=block, name=Block
+31545,1 weapon-scan: [WeaponScan] id=71, codename=sl8, name=SL8
+31545,7 weapon-scan: [WeaponScan] id=107, codename=ammo, name=BP Ammo
+31548,1 weapon-scan: [WeaponScan] id=108, codename=grenade, name=BP Grenade
+31549,0 weapon-scan: [WeaponScan] id=109, codename=medkit, name=BP Medkit
+31550,0 weapon-scan: [WeaponScan] id=110, codename=shield, name=BP Armor
+31550,1 weapon-scan: found 9 weapons
+32002,6 weapon-dump: AllWeapons count=1024
+32006,0 weapon-dump: [WeaponDump] id=23, codename=beretta92, name=Beretta 92
+32006,8 weapon-dump: [WeaponDump] id=28, codename=kriss_vector, name=KRISS Vector
+32007,6 weapon-dump: [WeaponDump] id=68, codename=shovel, name=Shovel
+32008,2 weapon-dump: [WeaponDump] id=69, codename=block, name=Block
+32009,1 weapon-dump: [WeaponDump] id=71, codename=sl8, name=SL8
+32009,7 weapon-dump: [WeaponDump] id=107, codename=ammo, name=BP Ammo
+32010,3 weapon-dump: [WeaponDump] id=108, codename=grenade, name=BP Grenade
+32011,1 weapon-dump: [WeaponDump] id=109, codename=medkit, name=BP Medkit
+32011,9 weapon-dump: [WeaponDump] id=110, codename=shield, name=BP Armor
+32012,1 weapon-dump: Loadout count=9
+32013,9 weapon-dump: [WeaponDump] loadout[0] uid=506244901116593530, weaponId=28, codename=kriss_vector, amount=48
+32014,6 weapon-dump: [WeaponDump] loadout[1] uid=506244901116593531, weaponId=23, codename=beretta92, amount=3
+32015,3 weapon-dump: [WeaponDump] loadout[2] uid=506244901116621428, weaponId=71, codename=sl8, amount=71
+32016,1 weapon-dump: [WeaponDump] loadout[3] uid=1, weaponId=68, codename=shovel, amount=0
+32016,9 weapon-dump: [WeaponDump] loadout[4] uid=2, weaponId=69, codename=block, amount=0
+32017,7 weapon-dump: [WeaponDump] loadout[5] uid=3, weaponId=107, codename=ammo, amount=0
+32018,4 weapon-dump: [WeaponDump] loadout[6] uid=4, weaponId=108, codename=grenade, amount=0
+32019,1 weapon-dump: [WeaponDump] loadout[7] uid=5, weaponId=109, codename=medkit, amount=0
+32019,8 weapon-dump: [WeaponDump] loadout[8] uid=6, weaponId=110, codename=shield, amount=0
+
+35276,5 ==== CAPTURE ON ====
+35281,1 # net: TcpClient.Connected = True
+35284,3 rx src=FPKEAECEOPE len=34 F5 03 22 00 00 20 13 C0 04 E0 04 01 D5 00 05 CA 16 80 00 65 0C 03 8E 09 07 DB 02 00 06 E0 0B 03 51 00 
+35284,3 rx src=FPKEAECEOPE len=44 F5 03 2C 00 01 81 03 00 05 61 13 1E 74 00 02 F5 0D C0 04 99 02 F6 DF 09 04 A5 11 E1 05 DA 06 F8 AB 11 06 1D 11 40 06 D9 06 E5 B8 00 
+35284,4 rx src=FPKEAECEOPE len=34 F5 03 22 00 03 B0 00 00 06 79 14 01 0E 01 05 D7 16 80 00 65 0C 03 8E 09 07 DC 02 00 06 DF 0B 03 51 00 
+
+35286,9 ==== CAPTURE OFF ====
+
+48097,0 ==== CAPTURE ON ====
+48099,2 # net: TcpClient.Connected = True
+
+48101,8 ==== CAPTURE OFF ====

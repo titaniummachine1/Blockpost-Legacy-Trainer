@@ -373,6 +373,11 @@ def write_aliases(aliases: dict, out_dir: Path) -> None:
             safe_h = csharp_identifier(human_name)
             safe_o = csharp_identifier(orig_name)
             sb.append(f"            public const uint {safe_h} = Raw.{safe_orig}.Methods.{safe_o};")
+        # Properties are emitted as name strings, for reflection-based access.
+        for human_name, orig_name in mapping.get("Properties", {}).items():
+            safe_h = csharp_identifier(human_name)
+            safe_o = csharp_identifier(orig_name)
+            sb.append(f"            public const string {safe_h} = Raw.{safe_orig}.Properties.{safe_o};")
         sb.append("        }")
         sb.append("")
     sb.append("    }")

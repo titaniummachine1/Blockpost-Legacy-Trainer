@@ -23,6 +23,10 @@ namespace BlockpostTrainer.Sdk
             public const int FireTimer = Raw.KBBBHJDINCB.Offsets.LCMOBPPHLLM;
             public const int IsFiring = Raw.KBBBHJDINCB.Offsets.APFNBGHAJMD;
             public const int PlayerId = Raw.KBBBHJDINCB.Offsets.LCPGFBMKNHJ;
+            public const int Slot = Raw.KBBBHJDINCB.Offsets.MOPBMENEGLN;
+            public const int AmmoPerSlot = Raw.KBBBHJDINCB.Offsets.GDEMINMDJAC;
+            public const int TotalAmmo = Raw.KBBBHJDINCB.Offsets.ECBCOHFLJCC;
+            public const int Loadout = Raw.KBBBHJDINCB.Offsets.KPNAADPGNCP;
             public const int ActiveWeaponIndex = Raw.KBBBHJDINCB.Offsets.ECBCOHFLJCC;
             public const int ActiveWeapon = Raw.KBBBHJDINCB.Offsets._EPGCMIJPHIA_k__BackingField;
         }
@@ -45,7 +49,11 @@ namespace BlockpostTrainer.Sdk
         {
             public const int Instance = Raw.Client.Offsets.LPCJFAOOIKA;
             public const int TcpClient = Raw.Client.Offsets.HPDGDLFMEKI;
+            public const int ReceiveBuffer = Raw.Client.Offsets.PEGEIKDNHLL;
+            public const int ReceiveLength = Raw.Client.Offsets.FKEHEHGFNBD;
             public const uint SendHitReport = Raw.Client.Methods.AHLDAPJEJNC;
+            public const uint ProcessPacket = Raw.Client.Methods.FPKEAECEOPE;
+            public const uint Flush = Raw.Client.Methods.HKOFHOANEJD;
         }
 
         public static class Weapon
@@ -53,6 +61,40 @@ namespace BlockpostTrainer.Sdk
             public const uint Fire = Raw.PLH.Methods.CDEGJOBLOFO;
             public const uint SelectWeapon = Raw.PLH.Methods.DIFGDFHJDGO;
             public const uint Reload = Raw.PLH.Methods.JLAALPNBABH;
+        }
+
+        public static class Inventory
+        {
+            public const int AllWeapons = Raw.GUIInv.Offsets.OIHNJCKDOIG;
+            public const int Loadout = Raw.GUIInv.Offsets.KNCJNHILDLJ;
+            public const int SelectedWeaponInstance = Raw.GUIInv.Offsets.KAOCDKAKFEF;
+            public const int SelectedLoadoutEntry = Raw.GUIInv.Offsets.PJMELMGMNDO;
+        }
+
+        public static class WeaponData
+        {
+            public const int Id = Raw.NAHLLMJMOED.Offsets.HAFMINBJCGN;
+            public const int Codename = Raw.NAHLLMJMOED.Offsets.OJEKKFDIKMG;
+            public const int DisplayName = Raw.NAHLLMJMOED.Offsets.NGFDENOFBLK;
+            public const int Hash = Raw.NAHLLMJMOED.Offsets.COFIPANEHAD;
+        }
+
+        public static class LoadoutEntry
+        {
+            public const int UniqueId = Raw.FPNENMKEFBB.Offsets.AIEPBAHGMJD;
+            public const int WeaponData = Raw.FPNENMKEFBB.Offsets.ADMGNABJBNM;
+            public const int Amount = Raw.FPNENMKEFBB.Offsets.NIBLMFFHJHK;
+            public const int Level = Raw.FPNENMKEFBB.Offsets.PICIILNDDJO;
+            public const int SkinData = Raw.FPNENMKEFBB.Offsets.COAAKMDBKJM;
+            public const int Slot = Raw.FPNENMKEFBB.Offsets.LJAIJIMKOGP;
+        }
+
+        public static class WeaponItem
+        {
+            public const int Name = Raw.CGJPBNDDPIN.Offsets.PKDKFHFFEHL;
+            public const int Ammo = Raw.CGJPBNDDPIN.Offsets.OCDNCKANJPB;
+            public const int Muzzle = Raw.CGJPBNDDPIN.Offsets.FLGEDGDCCAH;
+            public const int WeaponData = Raw.CGJPBNDDPIN.Offsets.ADMGNABJBNM;
         }
 
         public static class Net

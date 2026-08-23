@@ -17,6 +17,10 @@
       "FireTimer": "LCMOBPPHLLM",
       "IsFiring": "APFNBGHAJMD",
       "PlayerId": "LCPGFBMKNHJ",
+      "Slot": "MOPBMENEGLN",
+      "AmmoPerSlot": "GDEMINMDJAC",
+      "TotalAmmo": "ECBCOHFLJCC",
+      "Loadout": "KPNAADPGNCP",
       "ActiveWeaponIndex": "ECBCOHFLJCC",
       "ActiveWeapon": "_EPGCMIJPHIA_k__BackingField"
     }
@@ -42,10 +46,14 @@
     "HumanClass": "Network",
     "Fields": {
       "Instance": "LPCJFAOOIKA",
-      "TcpClient": "HPDGDLFMEKI"
+      "TcpClient": "HPDGDLFMEKI",
+      "ReceiveBuffer": "PEGEIKDNHLL",
+      "ReceiveLength": "FKEHEHGFNBD"
     },
     "Methods": {
-      "SendHitReport": "AHLDAPJEJNC"
+      "SendHitReport": "AHLDAPJEJNC",
+      "ProcessPacket": "FPKEAECEOPE",
+      "Flush": "HKOFHOANEJD"
     }
   },
   "PLH": {
@@ -54,6 +62,44 @@
       "Fire": "CDEGJOBLOFO",
       "SelectWeapon": "DIFGDFHJDGO",
       "Reload": "JLAALPNBABH"
+    }
+  },
+  "GUIInv": {
+    "HumanClass": "Inventory",
+    "Fields": {
+      "AllWeapons": "OIHNJCKDOIG",
+      "Loadout": "KNCJNHILDLJ",
+      "SelectedWeaponInstance": "KAOCDKAKFEF",
+      "SelectedLoadoutEntry": "PJMELMGMNDO"
+    }
+  },
+  "NAHLLMJMOED": {
+    "HumanClass": "WeaponData",
+    "Fields": {
+      "Id": "HAFMINBJCGN",
+      "Codename": "OJEKKFDIKMG",
+      "DisplayName": "NGFDENOFBLK",
+      "Hash": "COFIPANEHAD"
+    }
+  },
+  "FPNENMKEFBB": {
+    "HumanClass": "LoadoutEntry",
+    "Fields": {
+      "UniqueId": "AIEPBAHGMJD",
+      "WeaponData": "ADMGNABJBNM",
+      "Amount": "NIBLMFFHJHK",
+      "Level": "PICIILNDDJO",
+      "SkinData": "COAAKMDBKJM",
+      "Slot": "LJAIJIMKOGP"
+    }
+  },
+  "CGJPBNDDPIN": {
+    "HumanClass": "WeaponItem",
+    "Fields": {
+      "Name": "PKDKFHFFEHL",
+      "Ammo": "OCDNCKANJPB",
+      "Muzzle": "FLGEDGDCCAH",
+      "WeaponData": "ADMGNABJBNM"
     }
   },
   "NET": {

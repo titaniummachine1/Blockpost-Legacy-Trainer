@@ -607,6 +607,7 @@ public sealed class Plugin : BasePlugin
             LogControllCandidates();
             LogPlayers(players, mainPlayer, camera);
             LogAmmoStatus(mainPlayer);
+            LogSpawnProtectionCandidates(players, mainPlayer);
         }
         catch (Exception exception)
         {
@@ -798,6 +799,73 @@ public sealed class Plugin : BasePlugin
             instance?.Log.LogInfo($"[Diagnostics][Object] field={candidate.Name}, name={candidate.Value.name}, pos={position}, screenPos={screenPosition}");
         }
     }
+
+    private static void LogSpawnProtectionCandidates(
+        Il2CppReferenceArray<KBBBHJDINCB>? players,
+        KBBBHJDINCB? mainPlayer)
+    {
+        if (players == null || mainPlayer == null)
+        {
+            return;
+        }
+
+        for (var index = 0; index < players.Length; index++)
+        {
+            var player = players[index];
+            if (player == null || player._LCEIAGLFFJN_k__BackingField)
+            {
+                continue;
+            }
+
+            var distance = (player.OOMJGHCFODI - mainPlayer.OOMJGHCFODI).magnitude;
+            if (distance > 30f)
+            {
+                continue;
+            }
+
+            var gameObjects = new (string Name, GameObject? Value)[]
+            {
+                ("LAN", player.LANBONKMIME),
+                ("ACE", player.ACEHIBLPHCA),
+                ("JEF", player.JEFLHCHAABB),
+                ("NMJ", player.NMJKANFIDFM),
+                ("JEK", player.JEKGMDMKFAG),
+                ("PLC", player.PLCCFFJNFPG),
+                ("ACF", player.ACFAMOFOOLB),
+                ("LNJ", player.LNJODHNBFMN),
+                ("OID", player.OIDEDEHDLGA),
+                ("DEP", player.DEPIOGBOPIG),
+                ("HKD", player.HKDLHNJEKIO),
+                ("NCD", player.NCDOKAKJEJF)
+            };
+
+            var activeObjects = new List<string>();
+            foreach (var (name, go) in gameObjects)
+            {
+                if (go != null && go.activeInHierarchy)
+                {
+                    activeObjects.Add($"{name}:{ObjectName(go)}");
+                }
+            }
+
+            var fnb0 = player.FNBOPBHIMPM != null && player.FNBOPBHIMPM.Length > 0
+                ? ObjectName(player.FNBOPBHIMPM[0])
+                : "-";
+
+            instance?.Log.LogInfo(
+                $"[SpawnWatch] idx={index} team={player.MMMGPDBMOLM} hp={player.FDOJDJLIGLF} dist={distance:F1} " +
+                $"HI={BoolStr(player.HIECLOJIFIL)} LBK={BoolStr(player.LBKINNIDKEC)} CLO={BoolStr(player.CLOEJLAOIGI)} " +
+                $"APF={BoolStr(player.APFNBGHAJMD)} HEA={BoolStr(player.HEADELMLILF)} CGH={BoolStr(player.CGHKKDBILGF)} " +
+                $"f0={player.BCHEAICMFGH:F2} f1={player.ONOGCCOHPJC:F2} f2={player.LCMOBPPHLLM:F2} f3={player.CIPOBFGAMOP:F2} " +
+                $"f4={player.OLOOMMIKDPJ:F2} f5={player.COCGLNFEFAF:F2} " +
+                $"t0={ObjectName(player.PABKEFGCGAG)} t1={ObjectName(player.KJFICEEOGBJ)} " +
+                $"tp0={ObjectName(player.GNIGDNCENCC)} tp1={ObjectName(player.GNMEOACGHHC)} " +
+                $"mat={ObjectName(player.CHEFKHPIMEB)} fnb0={fnb0} go=[{string.Join(",", activeObjects)}]");
+        }
+    }
+
+    private static string ObjectName(UnityEngine.Object? target) => target == null ? "-" : target.name;
+    private static string BoolStr(bool value) => value ? "1" : "0";
 
     private static void UpdateAimbotSafely()
     {

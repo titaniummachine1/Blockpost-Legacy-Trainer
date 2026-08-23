@@ -386,3 +386,44 @@ packet for a reason unrelated to trust — which would be very easy to misread a
 `TryFakeHit` now logs `Id0`/`Id1`/`Id2`/`PlayerId`/`Team`/`Health` for the target next to the id it
 sends, so a single capture settles which field matches the ids in genuine `0x04` traffic. **Until
 that is resolved, the server-trust question remains open, not answered.**
+
+---
+
+## 13. Instant reload: what it really touches
+
+Second in-game report: with instant reload on, the reload takes **about as long as a normal
+non-participating reload**, the minigame disappears, and **reloading can be re-triggered
+repeatedly, resetting the previous reload**.
+
+So writing `ILGHFLMKMCO` moves the *minigame bar*, not the reload completion. Setting end = start
+collapses the bar to zero width (animation vanishes) and reopens the reload input (hence the
+re-trigger), while the actual refill runs on its own schedule.
+
+That does not contradict §11 — a genuine perfect reload both shortens the bar **and** shortens the
+reload. The perfect-reload handler must do a second thing that this write does not.
+
+### Where the reload actually goes
+
+`PLH.JLAALPNBABH(KBBBHJDINCB)` at VA `0x10AFF330` is the reload entry point. It does **not** use
+`KPNAADPGNCP`. It walks:
+
+```
+player.JDIHHMABLAJ            0x9C   BIMFEOACIDM[]
+      [ player.MOPBMENEGLN ]  0xA0   active slot
+      .DBMOPKGMECL            0x0C   FPNENMKEFBB[]
+      [ 1 ]                          <-- element 1, not the slot index
+```
+
+and calls `PLH.EMHOOBODDCM(player, string)` (VA `0x10AF4D30`) to resolve the weapon by codename.
+
+`FPNENMKEFBB` carries five candidate ints — `NIBLMFFHJHK` `0x14`, `PICIILNDDJO` `0x18`,
+`GLGJDNLBAOB` `0x24`, `NIKINLIKGCP` `0x28`, `MOGDFDEMPLE` `0x2C` — one or two of which should be
+magazine and reserve ammo.
+
+FieldWatch now binds `activeEntry` along exactly this path, plus `weapon` and `loadout`, so the
+next capture covers the object the reload code actually mutates. Watching `KPNAADPGNCP[slot]`
+alone would have missed the counter a second time.
+
+The menu toggle is relabelled **EXPERIMENTAL** and describes what it really does, so it is not
+mistaken for a working feature. It is a mild footgun in its current state (the reload re-trigger),
+so leave it off unless capturing.

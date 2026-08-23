@@ -1279,7 +1279,7 @@ public sealed class Plugin : BasePlugin
         noRecoil = GUI.Toggle(new Rect(40, 418, 460, 24), noRecoil, "No recoil");
         infiniteHealth = GUI.Toggle(new Rect(40, 448, 460, 24), infiniteHealth, "Infinite health");
         infiniteAmmo = GUI.Toggle(new Rect(40, 478, 460, 24), infiniteAmmo, "Infinite ammo (log only — identifying correct fields)");
-        instantReload = GUI.Toggle(new Rect(40, 508, 460, 24), instantReload, $"Instant reload (client-side only — {instantReloads} so far)");
+        instantReload = GUI.Toggle(new Rect(40, 508, 460, 24), instantReload, $"Instant reload (EXPERIMENTAL: only hides the minigame bar — {instantReloads})");
         debugLogging = GUI.Toggle(new Rect(40, 538, 460, 24), debugLogging, $"Verbose diagnostics (async, 1/s{(AsyncLog.Dropped > 0 ? $", {AsyncLog.Dropped} dropped" : string.Empty)})");
         showRuntimeStatus = GUI.Toggle(new Rect(40, 568, 460, 24), showRuntimeStatus, "Show runtime status");
         if (showRuntimeStatus)

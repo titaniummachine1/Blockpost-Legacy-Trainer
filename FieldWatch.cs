@@ -178,6 +178,7 @@ internal static class FieldWatch
         var player = Controll.HGAODFPBGLB;
         var weapon = ResolveActiveWeapon(player);
         var entry = ResolveLoadoutEntry(player);
+        var active = ResolveActiveEntry(player);
 
         if (Targets.Count == 0)
         {
@@ -206,6 +207,11 @@ internal static class FieldWatch
                 Add(new Target("loadout", entry.GetType(), entry));
             }
 
+            if (active != null)
+            {
+                Add(new Target("activeEntry", active.GetType(), active));
+            }
+
             return;
         }
 
@@ -227,6 +233,9 @@ internal static class FieldWatch
                 case "loadout" when entry != null:
                     target.Instance = entry;
                     break;
+                case "activeEntry" when active != null:
+                    target.Instance = active;
+                    break;
             }
         }
 
@@ -239,6 +248,11 @@ internal static class FieldWatch
         if (entry != null && !Targets.Exists(t => t.Label == "loadout"))
         {
             Add(new Target("loadout", entry.GetType(), entry));
+        }
+
+        if (active != null && !Targets.Exists(t => t.Label == "activeEntry"))
+        {
+            Add(new Target("activeEntry", active.GetType(), active));
         }
     }
 
@@ -253,6 +267,55 @@ internal static class FieldWatch
         try
         {
             return player.GetType().GetProperty("JPGGPPLOOML")?.GetValue(player);
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
+    /// <summary>
+    /// The <c>FPNENMKEFBB</c> the reload code actually operates on.
+    ///
+    /// PLH.JLAALPNBABH (VA 0x10AFF330) does not go through KPNAADPGNCP. It walks
+    /// <c>player.JDIHHMABLAJ[slot].DBMOPKGMECL[1]</c> -- a BIMFEOACIDM[] indexed by the active
+    /// slot, then element 1 of its entry array. Watching the wrong path would miss the ammo
+    /// counter a second time.
+    /// </summary>
+    private static object? ResolveActiveEntry(object? player)
+    {
+        if (player == null)
+        {
+            return null;
+        }
+
+        try
+        {
+            var type = player.GetType();
+            if (type.GetProperty("JDIHHMABLAJ")?.GetValue(player) is not System.Collections.IList groups)
+            {
+                return null;
+            }
+
+            var slotRaw = type.GetProperty("MOPBMENEGLN")?.GetValue(player);
+            if (slotRaw == null)
+            {
+                return null;
+            }
+
+            var slot = Convert.ToInt32(slotRaw, CultureInfo.InvariantCulture);
+            if (slot < 0 || slot >= groups.Count)
+            {
+                return null;
+            }
+
+            var group = groups[slot];
+            if (group?.GetType().GetProperty("DBMOPKGMECL")?.GetValue(group) is not System.Collections.IList entries)
+            {
+                return null;
+            }
+
+            return entries.Count > 1 ? entries[1] : null;
         }
         catch
         {

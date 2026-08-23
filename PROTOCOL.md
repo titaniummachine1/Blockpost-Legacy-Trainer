@@ -218,3 +218,21 @@ An earlier fixed filename with `FileMode.Create` destroyed a capture on game res
 reintroduce that.
 
 Worth preserving captures into `captures/` in this repo — `.gitignore` has an exception for it.
+
+---
+
+## 8. Update: 23 Aug 2026 capture
+
+New log: `BepInEx/captures/net-20260823-021230.log` (plugin 0.7.1, 25/25 NetProbe hooks working).
+
+- **1005 outgoing packets, 0 incoming packets.** `Client.FPIDGCHIEMJ` is still not the live read path — still need to find the real receive method.
+- **Packet distribution:** `0x2D` MOVE 840, `0x04` HIT_REPORT 90, `0x06` 69, `0x10` 3, `0x11` 1, `0x65` 1.
+- **`0x04` HIT_REPORT structure** (from live data, matches disassembly):
+  - `f32 pos.x, pos.y, pos.z`
+  - `i32 seq/tick`
+  - foreach hit: `u8 targetId`, `u8 bodyPart`, `f32 hitPoint.x, hitPoint.y, hitPoint.z`
+  - Empty body means the shot missed.
+- **`0x06` shot/damage packet:** three `short` values, always sent just before a `0x04`. Examples: `s79 s2 s16`, `s87 s3 s5`. Field meanings still unconfirmed.
+- **`0x2D` MOVE:** `f32 x, y, z, rotX, rotY, u8 state, i32 tick`. State `0xB0` seen while standing/aiming.
+- **`0x55` shot/tracer:** still never observed. The main weapon path appears to use `0x06` instead.
+- **`0x10`, `0x11`, `0x65`:** rare — likely weapon/ready/spawn/loadout events. Need captures of reload, switch, grenade, and death to map them.

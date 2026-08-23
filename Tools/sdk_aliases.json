@@ -1,0 +1,78 @@
+{
+  "KBBBHJDINCB": {
+    "HumanClass": "Player",
+    "Fields": {
+      "IsMain": "_LCEIAGLFFJN_k__BackingField",
+      "Id0": "GLFBKBKFPCL",
+      "Id1": "CCINALOJCNH",
+      "Id2": "LGOAHLMABFF",
+      "Team": "MMMGPDBMOLM",
+      "Health": "FDOJDJLIGLF",
+      "MaxHealth": "EFHBKMHCMOH",
+      "Armor": "INGHEHAALBJ",
+      "Position": "OOMJGHCFODI",
+      "CameraForward": "JIPNKAGPCGK",
+      "MuzzleForward": "FLILDBNOFMK",
+      "Spread": "FGFKPMPLNKO",
+      "FireTimer": "LCMOBPPHLLM",
+      "IsFiring": "APFNBGHAJMD",
+      "PlayerId": "LCPGFBMKNHJ",
+      "ActiveWeaponIndex": "ECBCOHFLJCC",
+      "ActiveWeapon": "_EPGCMIJPHIA_k__BackingField"
+    }
+  },
+  "Controll": {
+    "HumanClass": "Game",
+    "Fields": {
+      "Instance": "LPCJFAOOIKA",
+      "MainPlayer": "HGAODFPBGLB",
+      "FireTimer": "LCMOBPPHLLM",
+      "SpreadVector": "LFCCGHJKFNK",
+      "CameraForward": "JIPNKAGPCGK",
+      "MuzzleForward": "FLILDBNOFMK",
+      "HitList": "GOMFKJNNJAP",
+      "HitSequence": "GAMBHJPMDON",
+      "CanFire": "KEPGFOEOHPD"
+    },
+    "Methods": {
+      "Update": "Update"
+    }
+  },
+  "Client": {
+    "HumanClass": "Network",
+    "Fields": {
+      "Instance": "LPCJFAOOIKA",
+      "TcpClient": "HPDGDLFMEKI"
+    },
+    "Methods": {
+      "SendHitReport": "AHLDAPJEJNC"
+    }
+  },
+  "PLH": {
+    "HumanClass": "Weapon",
+    "Methods": {
+      "Fire": "CDEGJOBLOFO",
+      "SelectWeapon": "DIFGDFHJDGO",
+      "Reload": "JLAALPNBABH"
+    }
+  },
+  "NET": {
+    "HumanClass": "Net",
+    "Methods": {
+      "Begin": "LPAPGKDAENI",
+      "End": "EMJOGONJKIO",
+      "F32": "JBIICNJNHCI",
+      "I32": "FPELFNLEPGG",
+      "U8": "PFCLIPCCHCK",
+      "I16": "HMCNFGMBCOC"
+    }
+  },
+  "DMHBMAAFCFJ": {
+    "HumanClass": "Hit",
+    "Fields": {
+      "TargetId": "AMGLIHOLNJE",
+      "BodyPart": "KMCHFGKKICG",
+      "Point": "HDAFLOCABNG"
+    }
+  }
+}

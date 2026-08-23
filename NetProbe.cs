@@ -115,8 +115,16 @@ internal static class NetProbe
     private static int markCounter;
     private static int failureCount;
     private static string logPath = string.Empty;
+    private static string knownWeaponsPath = string.Empty;
     private static MemberInfo? clientBufferMember;
     private static MemberInfo? clientLengthMember;
+
+    // ---- weapon discovery from 0x08 packets ----
+    private static readonly ConcurrentDictionary<int, (string Codename, string Name)> DiscoveredWeapons = new();
+    private static bool parsingWeaponData;
+    private static int weaponDataField;
+    private static int weaponDataId;
+    private static string? weaponDataCodename;
 
     internal static bool Capturing => capturing;
 
@@ -186,6 +194,11 @@ internal static class NetProbe
         var captureDir = Path.Combine(Paths.BepInExRootPath, "captures");
         Directory.CreateDirectory(captureDir);
         logPath = Path.Combine(captureDir, $"net-{DateTime.Now:yyyyMMdd-HHmmss}.log");
+
+        // Persistent weapon catalog built from every 0x08 packet seen.
+        knownWeaponsPath = Path.Combine(Paths.BepInExRootPath, "known_weapons.txt");
+        LoadKnownWeapons();
+
         running = true;
         writer = new Thread(WriterLoop)
         {
@@ -269,11 +282,35 @@ internal static class NetProbe
 
     // ---- hook bodies: no formatting, no I/O, no Unity calls ----
 
-    private static void OnBegin(byte __0, byte __1) => Push(Kind.Begin, __1, __0);
+    private static void OnBegin(byte __0, byte __1)
+    {
+        if (__1 == 0x08)
+        {
+            parsingWeaponData = true;
+            weaponDataField = 0;
+            weaponDataId = 0;
+            weaponDataCodename = null;
+        }
+        else
+        {
+            parsingWeaponData = false;
+        }
+
+        Push(Kind.Begin, __1, __0);
+    }
 
     private static void OnF32(float __0) => Push(Kind.F32, __0);
 
-    private static void OnI32(int __0) => Push(Kind.I32, __0);
+    private static void OnI32(int __0)
+    {
+        if (parsingWeaponData && weaponDataField == 0)
+        {
+            weaponDataId = __0;
+            weaponDataField = 1;
+        }
+
+        Push(Kind.I32, __0);
+    }
 
     private static void OnU8(byte __0) => Push(Kind.U8, __0);
 
@@ -281,11 +318,36 @@ internal static class NetProbe
 
     private static void OnU64(ulong __0) => Push(Kind.U64, __0);
 
-    private static void OnStr(string __0) => Push(Kind.Str, 0, 0, __0);
+    private static void OnStr(string __0)
+    {
+        if (parsingWeaponData)
+        {
+            if (weaponDataField == 1)
+            {
+                weaponDataCodename = __0;
+                weaponDataField = 2;
+            }
+            else if (weaponDataField == 2 && !string.IsNullOrEmpty(weaponDataCodename))
+            {
+                DiscoverWeapon(weaponDataId, weaponDataCodename, __0);
+                weaponDataField = 3; // stop parsing strings for this packet
+            }
+        }
 
-    private static void OnEnd() => Push(Kind.End, 0);
+        Push(Kind.Str, 0, 0, __0);
+    }
 
-    private static void OnFlush() => Push(Kind.Flush, 0);
+    private static void OnEnd()
+    {
+        parsingWeaponData = false;
+        Push(Kind.End, 0);
+    }
+
+    private static void OnFlush()
+    {
+        parsingWeaponData = false;
+        Push(Kind.Flush, 0);
+    }
 
     private static void OnRx(Il2CppStructArray<byte> __0, int __1, MethodBase __originalMethod)
     {
@@ -517,6 +579,55 @@ internal static class NetProbe
             {
                 // nothing useful to do while tearing down
             }
+        }
+    }
+
+    // ---- known weapons catalog ----
+
+    private static void LoadKnownWeapons()
+    {
+        try
+        {
+            if (!File.Exists(knownWeaponsPath))
+            {
+                return;
+            }
+
+            foreach (var line in File.ReadLines(knownWeaponsPath))
+            {
+                var parts = line.Split('|', 3);
+                if (parts.Length == 3
+                    && int.TryParse(parts[0], out var id))
+                {
+                    DiscoveredWeapons[id] = (parts[1], parts[2]);
+                }
+            }
+        }
+        catch (Exception exception)
+        {
+            log?.LogWarning($"[NetProbe] failed to load known weapons: {exception.Message}");
+        }
+    }
+
+    private static void AppendKnownWeapon(int id, string codename, string name)
+    {
+        try
+        {
+            File.AppendAllText(knownWeaponsPath, $"{id}|{codename}|{name}{Environment.NewLine}");
+        }
+        catch (Exception exception)
+        {
+            log?.LogWarning($"[NetProbe] failed to append known weapon: {exception.Message}");
+        }
+    }
+
+    private static void DiscoverWeapon(int id, string codename, string name)
+    {
+        if (DiscoveredWeapons.TryAdd(id, (codename, name)))
+        {
+            var line = $"weapon-discovered: id={id}, codename={codename}, name={name}";
+            Note(line);
+            AppendKnownWeapon(id, codename, name);
         }
     }
 

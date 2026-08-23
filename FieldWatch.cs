@@ -94,6 +94,7 @@ internal static class FieldWatch
     private static readonly Dictionary<string, int> complaints = new();
     private static float nextConnectionReport;
     private static float nextRebind;
+    private static int snapshotCounter;
 
     internal static bool Enabled => enabled;
 
@@ -110,6 +111,23 @@ internal static class FieldWatch
             enabled = !enabled;
             Targets.Clear();
             NetProbe.Note(enabled ? "==== FIELDWATCH ON ====" : "==== FIELDWATCH OFF ====");
+        }
+
+        if (Input.GetKeyDown(KeyCode.F4))
+        {
+            snapshotCounter++;
+            NetProbe.Note($"#### SNAPSHOT #{snapshotCounter} ####");
+            foreach (var target in Targets)
+            {
+                try
+                {
+                    DumpAllOnce(target);
+                }
+                catch (Exception exception)
+                {
+                    Complain($"snapshot {target.Label}", exception);
+                }
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.F5))
@@ -495,6 +513,40 @@ internal static class FieldWatch
         target.Seeded = new bool[target.Props.Length];
         Targets.Add(target);
         NetProbe.Note($"# fieldwatch {target.Label}: {target.Props.Length} numeric fields, {target.Arrays.Count} arrays ({string.Join(",", target.Arrays.ConvertAll(a => a.Label))}) on {target.Type.Name}");
+    }
+
+    /// <summary>
+    /// Dump a target's full state on demand: every scalar including zeros, plus every array.
+    /// Zeros matter here -- an empty magazine reads 0, and excluding it would hide the field at
+    /// exactly the moment it is most identifiable.
+    /// </summary>
+    private static void DumpAllOnce(Target target)
+    {
+        var parts = new List<string>(target.Props.Length);
+        foreach (var property in target.Props)
+        {
+            try
+            {
+                var value = property.GetValue(target.Instance);
+                if (value == null)
+                {
+                    continue;
+                }
+
+                parts.Add(string.Format(
+                    CultureInfo.InvariantCulture,
+                    "{0}={1:0.###}",
+                    property.Name,
+                    Convert.ToDouble(value, CultureInfo.InvariantCulture)));
+            }
+            catch
+            {
+                // Skip unreadable properties.
+            }
+        }
+
+        NetProbe.Note($"#S  {target.Label}: {string.Join(" ", parts)}");
+        DumpArraysOnce(target);
     }
 
     /// <summary>

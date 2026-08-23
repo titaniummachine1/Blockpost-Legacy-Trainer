@@ -710,3 +710,52 @@ way arrays are dumped:
 
 If the HUD reads e.g. `24/90`, then whichever field equals 24 at that instant is the magazine —
 no need to catch it mid-change. This is how the ammo field should have been hunted from the start.
+
+---
+
+## 21. Value snapshot: near miss, and the tool that will settle it
+
+`net-20260823-143513`, taken with a sniper rifle at 7 rounds. The bind-time snapshot produced the
+first full picture of every non-zero scalar across all eleven targets.
+
+One tempting hit: `GUIInv.static` holds `INCDIECCFMC=7`, `LOILCIEIHHF=8`, `LALEHGDILEB=9` — both
+reported ammo counts, sitting adjacent.
+
+**It is a false positive.** `GUIInv.static` recorded **zero changes** across the entire capture, so
+those are inventory-grid layout constants that happen to be 7/8/9. This is exactly the collision
+risk of matching on small numbers, and the reason to demand an unusual value.
+
+No other target held a 7 or a 9 anywhere.
+
+### Why one snapshot is not enough
+
+A single bind-time dump has nothing to be compared against. What identifies a counter is not its
+value at one instant but that it **differs between two states whose ammo we know**.
+
+### `F4` — snapshot on demand
+
+`F4` now dumps the **complete** state of every target: all scalars including zeros, plus all
+arrays, under a numbered header.
+
+```
+#### SNAPSHOT #1 ####
+#S  player: FDOJDJLIGLF=100 MOPBMENEGLN=2 ...
+#S  HUD: ...
+```
+
+Zeros are included deliberately: an empty magazine reads `0`, and excluding it would hide the field
+at exactly the moment it is most identifiable.
+
+Procedure: press `F4` at a known ammo count, fire a few rounds, press `F4` again at the new count.
+Diffing the two snapshots against a known delta identifies the field by elimination rather than by
+hoping to catch it mid-change.
+
+### Keys
+
+| Key | Effect |
+|---|---|
+| `F4` | full snapshot of every target, on demand |
+| `F5` | include/mute per-frame churn fields |
+| `F6` | field watcher on/off |
+| `F7` | packet capture on/off |
+| `F8` | numbered marker |

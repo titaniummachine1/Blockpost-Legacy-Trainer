@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using BlockpostTrainer.Sdk;
+using Raw = BlockpostTrainer.Sdk.Raw;
 using BepInEx;
 using BepInEx.Unity.IL2CPP;
 using HarmonyLib;
@@ -100,7 +102,7 @@ public sealed class Plugin : BasePlugin
 
         var updateMethod = AccessTools.Method(controllerType, "Update");
         var onGuiMethod = AccessTools.Method(controllerType, "OnGUI");
-        var recoilMethod = AccessTools.Method(controllerType, "ILIDJBFOFJA");
+        var recoilMethod = AccessTools.Method(controllerType, nameof(Raw.Controll.Methods.ILIDJBFOFJA));
         if (updateMethod == null || onGuiMethod == null)
         {
             Log.LogWarning("Could not resolve the Controll.Update or Controll.OnGUI hook.");
@@ -441,7 +443,7 @@ public sealed class Plugin : BasePlugin
             var gd = mainPlayer.GDEMINMDJAC;
             var slot = mainPlayer.MOPBMENEGLN;
             var slotAmmo = gd == null || slot < 0 || slot >= gd.Length ? -1 : gd[slot];
-            instance?.Log.LogInfo($"[Ammo] slot={slot}, ECBCOHFLJCC={mainPlayer.ECBCOHFLJCC}, GDEMINMDJAC.Length={(gd == null ? -1 : gd.Length)}, GDEMINMDJAC[slot]={slotAmmo}, weaponId={weaponId}, weaponNull={weapon == null}");
+            instance?.Log.LogInfo($"[Ammo] {nameof(Raw.KBBBHJDINCB.Offsets.MOPBMENEGLN)}={slot}, {nameof(Raw.KBBBHJDINCB.Offsets.ECBCOHFLJCC)}={mainPlayer.ECBCOHFLJCC}, {nameof(Raw.KBBBHJDINCB.Offsets.GDEMINMDJAC)}.Length={(gd == null ? -1 : gd.Length)}, {nameof(Raw.KBBBHJDINCB.Offsets.GDEMINMDJAC)}[{slot}]={slotAmmo}, weaponId={weaponId}, weaponNull={weapon == null}");
         }
         catch
         {
@@ -514,18 +516,18 @@ public sealed class Plugin : BasePlugin
     {
         var candidates = new (string Name, GameObject? Value)[]
         {
-            ("LANBONKMIME", player.LANBONKMIME),
-            ("ACEHIBLPHCA", player.ACEHIBLPHCA),
-            ("JEFLHCHAABB", player.JEFLHCHAABB),
-            ("NMJKANFIDFM", player.NMJKANFIDFM),
-            ("JEKGMDMKFAG", player.JEKGMDMKFAG),
-            ("PLCCFFJNFPG", player.PLCCFFJNFPG),
-            ("ACFAMOFOOLB", player.ACFAMOFOOLB),
-            ("LNJODHNBFMN", player.LNJODHNBFMN),
-            ("OIDEDEHDLGA", player.OIDEDEHDLGA),
-            ("DEPIOGBOPIG", player.DEPIOGBOPIG),
-            ("HKDLHNJEKIO", player.HKDLHNJEKIO),
-            ("NCDOKAKJEJF", player.NCDOKAKJEJF)
+            (nameof(Raw.KBBBHJDINCB.Offsets.LANBONKMIME), player.LANBONKMIME),
+            (nameof(Raw.KBBBHJDINCB.Offsets.ACEHIBLPHCA), player.ACEHIBLPHCA),
+            (nameof(Raw.KBBBHJDINCB.Offsets.JEFLHCHAABB), player.JEFLHCHAABB),
+            (nameof(Raw.KBBBHJDINCB.Offsets.NMJKANFIDFM), player.NMJKANFIDFM),
+            (nameof(Raw.KBBBHJDINCB.Offsets.JEKGMDMKFAG), player.JEKGMDMKFAG),
+            (nameof(Raw.KBBBHJDINCB.Offsets.PLCCFFJNFPG), player.PLCCFFJNFPG),
+            (nameof(Raw.KBBBHJDINCB.Offsets.ACFAMOFOOLB), player.ACFAMOFOOLB),
+            (nameof(Raw.KBBBHJDINCB.Offsets.LNJODHNBFMN), player.LNJODHNBFMN),
+            (nameof(Raw.KBBBHJDINCB.Offsets.OIDEDEHDLGA), player.OIDEDEHDLGA),
+            (nameof(Raw.KBBBHJDINCB.Offsets.DEPIOGBOPIG), player.DEPIOGBOPIG),
+            (nameof(Raw.KBBBHJDINCB.Offsets.HKDLHNJEKIO), player.HKDLHNJEKIO),
+            (nameof(Raw.KBBBHJDINCB.Offsets.NCDOKAKJEJF), player.NCDOKAKJEJF)
         };
 
         foreach (var candidate in candidates)

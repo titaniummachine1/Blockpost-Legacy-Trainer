@@ -6,6 +6,8 @@ using System.IO;
 using System.Reflection;
 using System.Text;
 using System.Threading;
+using BlockpostTrainer.Sdk;
+using Raw = BlockpostTrainer.Sdk.Raw;
 using BepInEx;
 using BepInEx.Logging;
 using HarmonyLib;
@@ -131,35 +133,36 @@ internal static class NetProbe
         }
 
         var patched = 0;
-        patched += Patch(harmony, netType, "LPAPGKDAENI", new[] { typeof(byte), typeof(byte) }, nameof(OnBegin));
-        patched += Patch(harmony, netType, "DMFHJJDMAEJ", new[] { typeof(byte), typeof(byte) }, nameof(OnBegin));
-        patched += Patch(harmony, netType, "JBIICNJNHCI", new[] { typeof(float) }, nameof(OnF32));
-        patched += Patch(harmony, netType, "HIPPJGAHHPC", new[] { typeof(float) }, nameof(OnF32));
-        patched += Patch(harmony, netType, "PIMOAOKDDCC", new[] { typeof(float) }, nameof(OnF32));
-        patched += Patch(harmony, netType, "FPELFNLEPGG", new[] { typeof(int) }, nameof(OnI32));
-        patched += Patch(harmony, netType, "GJBAJNCFBLB", new[] { typeof(int) }, nameof(OnI32));
-        patched += Patch(harmony, netType, "KLPOMLKDPAL", new[] { typeof(int) }, nameof(OnI32));
-        patched += Patch(harmony, netType, "LHMNDGLMOFO", new[] { typeof(int) }, nameof(OnI32));
-        patched += Patch(harmony, netType, "CHIOALKDHOC", new[] { typeof(int) }, nameof(OnI32));
-        patched += Patch(harmony, netType, "PFCLIPCCHCK", new[] { typeof(byte) }, nameof(OnU8));
-        patched += Patch(harmony, netType, "LMKOIABBCNK", new[] { typeof(byte) }, nameof(OnU8));
-        patched += Patch(harmony, netType, "HMCNFGMBCOC", new[] { typeof(short) }, nameof(OnI16));
-        patched += Patch(harmony, netType, "IFINMFCPGIB", new[] { typeof(short) }, nameof(OnI16));
-        patched += Patch(harmony, netType, "IHLNBLGFGLF", new[] { typeof(short) }, nameof(OnI16));
-        patched += Patch(harmony, netType, "APNPMHBBLDG", new[] { typeof(short) }, nameof(OnI16));
-        patched += Patch(harmony, netType, "MJDOMFPOPMK", new[] { typeof(ulong) }, nameof(OnU64));
-        patched += Patch(harmony, netType, "EKDBCDKOJAO", new[] { typeof(ulong) }, nameof(OnU64));
-        patched += Patch(harmony, netType, "EDICJCKFAMN", new[] { typeof(ulong) }, nameof(OnU64));
-        patched += Patch(harmony, netType, "KOIHHCOBIEJ", new[] { typeof(string) }, nameof(OnStr));
-        patched += Patch(harmony, netType, "KMEFAPEEHHN", new[] { typeof(string) }, nameof(OnStr));
-        patched += Patch(harmony, netType, "PJFMOLFBKHM", new[] { typeof(string) }, nameof(OnStr));
-        patched += Patch(harmony, netType, "EMJOGONJKIO", Type.EmptyTypes, nameof(OnEnd));
-        patched += Patch(harmony, clientType, "HKOFHOANEJD", Type.EmptyTypes, nameof(OnFlush));
+        // Method name strings come from the generated SDK so the obfuscated names live in one place.
+        patched += Patch(harmony, netType, nameof(Raw.NET.Methods.LPAPGKDAENI), new[] { typeof(byte), typeof(byte) }, nameof(OnBegin));
+        patched += Patch(harmony, netType, nameof(Raw.NET.Methods.DMFHJJDMAEJ), new[] { typeof(byte), typeof(byte) }, nameof(OnBegin));
+        patched += Patch(harmony, netType, nameof(Raw.NET.Methods.JBIICNJNHCI), new[] { typeof(float) }, nameof(OnF32));
+        patched += Patch(harmony, netType, nameof(Raw.NET.Methods.HIPPJGAHHPC), new[] { typeof(float) }, nameof(OnF32));
+        patched += Patch(harmony, netType, nameof(Raw.NET.Methods.PIMOAOKDDCC), new[] { typeof(float) }, nameof(OnF32));
+        patched += Patch(harmony, netType, nameof(Raw.NET.Methods.FPELFNLEPGG), new[] { typeof(int) }, nameof(OnI32));
+        patched += Patch(harmony, netType, nameof(Raw.NET.Methods.GJBAJNCFBLB), new[] { typeof(int) }, nameof(OnI32));
+        patched += Patch(harmony, netType, nameof(Raw.NET.Methods.KLPOMLKDPAL), new[] { typeof(int) }, nameof(OnI32));
+        patched += Patch(harmony, netType, nameof(Raw.NET.Methods.LHMNDGLMOFO), new[] { typeof(int) }, nameof(OnI32));
+        patched += Patch(harmony, netType, nameof(Raw.NET.Methods.CHIOALKDHOC), new[] { typeof(int) }, nameof(OnI32));
+        patched += Patch(harmony, netType, nameof(Raw.NET.Methods.PFCLIPCCHCK), new[] { typeof(byte) }, nameof(OnU8));
+        patched += Patch(harmony, netType, nameof(Raw.NET.Methods.LMKOIABBCNK), new[] { typeof(byte) }, nameof(OnU8));
+        patched += Patch(harmony, netType, nameof(Raw.NET.Methods.HMCNFGMBCOC), new[] { typeof(short) }, nameof(OnI16));
+        patched += Patch(harmony, netType, nameof(Raw.NET.Methods.IFINMFCPGIB), new[] { typeof(short) }, nameof(OnI16));
+        patched += Patch(harmony, netType, nameof(Raw.NET.Methods.IHLNBLGFGLF), new[] { typeof(short) }, nameof(OnI16));
+        patched += Patch(harmony, netType, nameof(Raw.NET.Methods.APNPMHBBLDG), new[] { typeof(short) }, nameof(OnI16));
+        patched += Patch(harmony, netType, nameof(Raw.NET.Methods.MJDOMFPOPMK), new[] { typeof(ulong) }, nameof(OnU64));
+        patched += Patch(harmony, netType, nameof(Raw.NET.Methods.EKDBCDKOJAO), new[] { typeof(ulong) }, nameof(OnU64));
+        patched += Patch(harmony, netType, nameof(Raw.NET.Methods.EDICJCKFAMN), new[] { typeof(ulong) }, nameof(OnU64));
+        patched += Patch(harmony, netType, nameof(Raw.NET.Methods.KOIHHCOBIEJ), new[] { typeof(string) }, nameof(OnStr));
+        patched += Patch(harmony, netType, nameof(Raw.NET.Methods.KMEFAPEEHHN), new[] { typeof(string) }, nameof(OnStr));
+        patched += Patch(harmony, netType, nameof(Raw.NET.Methods.PJFMOLFBKHM), new[] { typeof(string) }, nameof(OnStr));
+        patched += Patch(harmony, netType, nameof(Raw.NET.Methods.EMJOGONJKIO), Type.EmptyTypes, nameof(OnEnd));
+        patched += Patch(harmony, clientType, nameof(Raw.Client.Methods.HKOFHOANEJD), Type.EmptyTypes, nameof(OnFlush));
         // Room client has three byte[]+int methods; only FPIDGCHIEMJ was patched before.
         // Capture from all three so we can see which one actually carries inbound traffic.
-        patched += Patch(harmony, clientType, "FPIDGCHIEMJ", new[] { typeof(Il2CppStructArray<byte>), typeof(int) }, nameof(OnRx));
-        patched += Patch(harmony, clientType, "MKPOLBIKPPA", new[] { typeof(Il2CppStructArray<byte>), typeof(int) }, nameof(OnRx));
-        patched += Patch(harmony, clientType, "GINPPBIJOCA", new[] { typeof(Il2CppStructArray<byte>), typeof(int) }, nameof(OnRx));
+        patched += Patch(harmony, clientType, nameof(Raw.Client.Methods.FPIDGCHIEMJ), new[] { typeof(Il2CppStructArray<byte>), typeof(int) }, nameof(OnRx));
+        patched += Patch(harmony, clientType, nameof(Raw.Client.Methods.MKPOLBIKPPA), new[] { typeof(Il2CppStructArray<byte>), typeof(int) }, nameof(OnRx));
+        patched += Patch(harmony, clientType, nameof(Raw.Client.Methods.GINPPBIJOCA), new[] { typeof(Il2CppStructArray<byte>), typeof(int) }, nameof(OnRx));
 
         // One file per run. FileMode.Create against a fixed name silently destroyed a capture, so
         // never reuse a path: evidence from an earlier session must survive a game restart.

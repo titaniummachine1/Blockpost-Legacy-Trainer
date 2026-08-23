@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Reflection;
+using BlockpostTrainer.Sdk;
+using Raw = BlockpostTrainer.Sdk.Raw;
 using UnityEngine;
 
 namespace BlockpostTrainer;
@@ -26,14 +28,14 @@ internal static class FieldWatch
     // they are muted by default; F5 includes them.
     private static readonly HashSet<string> Noisy = new()
     {
-        "JIPNKAGPCGK", // look vector
-        "FLILDBNOFMK", // look vector
-        "OOMJGHCFODI", // position
-        "NDLMGNIMKHE", // distance-walked accumulator
-        "HDNNKKFCPOB", // weapon bob
-        "MJFMDOKEFFO", // sway / lean ramp
-        "NJPHKNAOEKM",
-        "NHJDPAAFIKO"
+        nameof(Raw.Controll.Offsets.JIPNKAGPCGK), // look vector
+        nameof(Raw.Controll.Offsets.FLILDBNOFMK), // look vector
+        nameof(Raw.KBBBHJDINCB.Offsets.OOMJGHCFODI), // position
+        nameof(Raw.KBBBHJDINCB.Offsets.NDLMGNIMKHE), // distance-walked accumulator
+        nameof(Raw.KBBBHJDINCB.Offsets.HDNNKKFCPOB), // weapon bob
+        nameof(Raw.KBBBHJDINCB.Offsets.MJFMDOKEFFO), // sway / lean ramp
+        nameof(Raw.KBBBHJDINCB.Offsets.NJPHKNAOEKM),
+        nameof(Raw.KBBBHJDINCB.Offsets.NHJDPAAFIKO)
     };
 
     private sealed class Target
@@ -152,14 +154,14 @@ internal static class FieldWatch
         nextConnectionReport = Time.unscaledTime + 5f;
 
         var clientType = Type.GetType("Client, Assembly-CSharp");
-        var instance = clientType?.GetProperty("LPCJFAOOIKA", BindingFlags.Public | BindingFlags.Static)?.GetValue(null);
+        var instance = clientType?.GetProperty(nameof(Raw.Client.Offsets.LPCJFAOOIKA), BindingFlags.Public | BindingFlags.Static)?.GetValue(null);
         if (instance == null)
         {
-            NetProbe.Note("# net: Client.LPCJFAOOIKA is null (not in a room)");
+            NetProbe.Note($"# net: Client.{nameof(Raw.Client.Offsets.LPCJFAOOIKA)} is null (not in a room)");
             return;
         }
 
-        var tcp = instance.GetType().GetProperty("HPDGDLFMEKI")?.GetValue(instance);
+        var tcp = instance.GetType().GetProperty(nameof(Raw.Client.Offsets.HPDGDLFMEKI))?.GetValue(instance);
         var connected = tcp == null ? "(no socket)" : tcp.GetType().GetProperty("Connected")?.GetValue(tcp)?.ToString();
         NetProbe.Note($"# net: TcpClient.Connected = {connected}");
     }

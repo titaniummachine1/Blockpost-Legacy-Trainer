@@ -25,7 +25,6 @@ public sealed class Plugin : BasePlugin
     private const float MinimumAimbotFov = 1f;
     private const float MaximumAimbotFov = 180f;
     private const float DiagnosticInterval = 1f;
-    private const float SpawnProtectionSeconds = 5f;
     private static readonly string[] AimActivationLabels =
     {
         "Left mouse (fire)",
@@ -69,7 +68,6 @@ public sealed class Plugin : BasePlugin
     private static bool showHealth = true;
     private static bool showTeammates;
     private static bool aimbotEnabled = true;
-    private static readonly Dictionary<int, float> PlayerLastDeadTime = new();
     private static bool noRecoil;
     private static bool autoShoot = true;
     private static bool rapidFire;
@@ -607,7 +605,6 @@ public sealed class Plugin : BasePlugin
             LogControllCandidates();
             LogPlayers(players, mainPlayer, camera);
             LogAmmoStatus(mainPlayer);
-            LogSpawnProtectionCandidates(players, mainPlayer);
         }
         catch (Exception exception)
         {
@@ -800,73 +797,6 @@ public sealed class Plugin : BasePlugin
         }
     }
 
-    private static void LogSpawnProtectionCandidates(
-        Il2CppReferenceArray<KBBBHJDINCB>? players,
-        KBBBHJDINCB? mainPlayer)
-    {
-        if (players == null || mainPlayer == null)
-        {
-            return;
-        }
-
-        for (var index = 0; index < players.Length; index++)
-        {
-            var player = players[index];
-            if (player == null || player._LCEIAGLFFJN_k__BackingField)
-            {
-                continue;
-            }
-
-            var distance = (player.OOMJGHCFODI - mainPlayer.OOMJGHCFODI).magnitude;
-            if (distance > 30f)
-            {
-                continue;
-            }
-
-            var gameObjects = new (string Name, GameObject? Value)[]
-            {
-                ("LAN", player.LANBONKMIME),
-                ("ACE", player.ACEHIBLPHCA),
-                ("JEF", player.JEFLHCHAABB),
-                ("NMJ", player.NMJKANFIDFM),
-                ("JEK", player.JEKGMDMKFAG),
-                ("PLC", player.PLCCFFJNFPG),
-                ("ACF", player.ACFAMOFOOLB),
-                ("LNJ", player.LNJODHNBFMN),
-                ("OID", player.OIDEDEHDLGA),
-                ("DEP", player.DEPIOGBOPIG),
-                ("HKD", player.HKDLHNJEKIO),
-                ("NCD", player.NCDOKAKJEJF)
-            };
-
-            var activeObjects = new List<string>();
-            foreach (var (name, go) in gameObjects)
-            {
-                if (go != null && go.activeInHierarchy)
-                {
-                    activeObjects.Add($"{name}:{ObjectName(go)}");
-                }
-            }
-
-            var fnb0 = player.FNBOPBHIMPM != null && player.FNBOPBHIMPM.Length > 0
-                ? ObjectName(player.FNBOPBHIMPM[0])
-                : "-";
-
-            instance?.Log.LogInfo(
-                $"[SpawnWatch] idx={index} team={player.MMMGPDBMOLM} hp={player.FDOJDJLIGLF} dist={distance:F1} " +
-                $"HI={BoolStr(player.HIECLOJIFIL)} LBK={BoolStr(player.LBKINNIDKEC)} CLO={BoolStr(player.CLOEJLAOIGI)} " +
-                $"APF={BoolStr(player.APFNBGHAJMD)} HEA={BoolStr(player.HEADELMLILF)} CGH={BoolStr(player.CGHKKDBILGF)} " +
-                $"f0={player.BCHEAICMFGH:F2} f1={player.ONOGCCOHPJC:F2} f2={player.LCMOBPPHLLM:F2} f3={player.CIPOBFGAMOP:F2} " +
-                $"f4={player.OLOOMMIKDPJ:F2} f5={player.COCGLNFEFAF:F2} " +
-                $"t0={ObjectName(player.PABKEFGCGAG)} t1={ObjectName(player.KJFICEEOGBJ)} " +
-                $"tp0={ObjectName(player.GNIGDNCENCC)} tp1={ObjectName(player.GNMEOACGHHC)} " +
-                $"mat={ObjectName(player.CHEFKHPIMEB)} fnb0={fnb0} go=[{string.Join(",", activeObjects)}]");
-        }
-    }
-
-    private static string ObjectName(UnityEngine.Object? target) => target == null ? "-" : target.name;
-    private static string BoolStr(bool value) => value ? "1" : "0";
-
     private static void UpdateAimbotSafely()
     {
         if (!aimbotEnabled)
@@ -892,7 +822,6 @@ public sealed class Plugin : BasePlugin
                 return;
             }
 
-            TrackSpawnProtection(players);
             LogResolvedBindings(players, mainPlayer, camera);
             UpdateAimbot(players, mainPlayer, camera);
         }
@@ -925,7 +854,6 @@ public sealed class Plugin : BasePlugin
                 return;
             }
 
-            TrackSpawnProtection(players);
             UpdateEsp(players, mainPlayer, camera);
         }
         catch (Exception exception)
@@ -974,7 +902,7 @@ public sealed class Plugin : BasePlugin
         for (var index = 0; index < players.Length; index++)
         {
             var player = players[index];
-            if (!IsVisibleTarget(player, mainPlayer, showTeammates, index))
+            if (!IsVisibleTarget(player, mainPlayer, showTeammates))
             {
                 continue;
             }
@@ -988,61 +916,12 @@ public sealed class Plugin : BasePlugin
         featureStatus = $"players={players.Length}, boxes={espBoxes.Count}";
     }
 
-    private static void TrackSpawnProtection(Il2CppReferenceArray<KBBBHJDINCB>? players)
-    {
-        if (players == null)
-        {
-            PlayerLastDeadTime.Clear();
-            return;
-        }
-
-        for (var index = 0; index < players.Length; index++)
-        {
-            var player = players[index];
-            if (player == null)
-            {
-                PlayerLastDeadTime.Remove(index);
-                continue;
-            }
-
-            if (player.FDOJDJLIGLF <= 0)
-            {
-                PlayerLastDeadTime[index] = Time.unscaledTime;
-            }
-            else if (PlayerLastDeadTime.TryGetValue(index, out var deadAt)
-                     && Time.unscaledTime - deadAt >= SpawnProtectionSeconds)
-            {
-                PlayerLastDeadTime.Remove(index);
-            }
-        }
-
-        var keysToRemove = new List<int>();
-        foreach (var key in PlayerLastDeadTime.Keys)
-        {
-            if (key >= players.Length)
-            {
-                keysToRemove.Add(key);
-            }
-        }
-
-        foreach (var key in keysToRemove)
-        {
-            PlayerLastDeadTime.Remove(key);
-        }
-    }
-
-    private static bool IsSpawnProtected(int index)
-    {
-        return PlayerLastDeadTime.TryGetValue(index, out var deadAt)
-            && Time.unscaledTime - deadAt < SpawnProtectionSeconds;
-    }
-
-    private static bool IsVisibleTarget(KBBBHJDINCB? player, KBBBHJDINCB mainPlayer, bool includeTeammates, int index)
+    private static bool IsVisibleTarget(KBBBHJDINCB? player, KBBBHJDINCB mainPlayer, bool includeTeammates)
     {
         return player != null
             && !player._LCEIAGLFFJN_k__BackingField
             && player.FDOJDJLIGLF > 0
-            && !IsSpawnProtected(index)
+            && !player.LBKINNIDKEC
             && (includeTeammates || player.MMMGPDBMOLM != mainPlayer.MMMGPDBMOLM);
     }
 
@@ -1096,7 +975,7 @@ public sealed class Plugin : BasePlugin
         for (var index = 0; index < players.Length; index++)
         {
             var player = players[index];
-            if (!IsVisibleTarget(player, mainPlayer, false, index) || !TryGetHeadPosition(player, out var headPosition))
+            if (!IsVisibleTarget(player, mainPlayer, false) || !TryGetHeadPosition(player, out var headPosition))
             {
                 continue;
             }

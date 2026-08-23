@@ -1081,6 +1081,23 @@ public sealed class Plugin : BasePlugin
             return false;
         }
 
+        // Aiming at the raw head bone (neck pivot) misses when the target looks up/down
+        // because the visible head is offset from that pivot. Use the head collider or
+        // renderer bounds center to aim at the actual head hitbox.
+        var collider = head.GetComponentInChildren<Collider>();
+        if (collider != null)
+        {
+            position = collider.bounds.center;
+            return true;
+        }
+
+        var renderer = head.GetComponentInChildren<Renderer>();
+        if (renderer != null)
+        {
+            position = renderer.bounds.center;
+            return true;
+        }
+
         position = head.transform.position;
         return true;
     }

@@ -1,0 +1,10 @@
+bin/
+obj/
+BepInEx/
+interop/
+logs/
+*.log
+.tools/
+
+# keep captured evidence even though *.log is ignored above
+!captures/*.log

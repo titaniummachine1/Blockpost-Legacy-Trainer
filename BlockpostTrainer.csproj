@@ -1,0 +1,60 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <AssemblyName>BlockpostTrainer</AssemblyName>
+    <RootNamespace>BlockpostTrainer</RootNamespace>
+    <Description>Offline Blockpost Legacy trainer rebuilt as a BepInEx IL2CPP plugin</Description>
+    <Version>0.7.1</Version>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <InteropDirectory Condition="'$(InteropDirectory)' == ''">C:\Steam\steamapps\common\BLOCKPOST\BepInEx\interop</InteropDirectory>
+    <GamePluginDirectory Condition="'$(GamePluginDirectory)' == ''">C:\Steam\steamapps\common\BLOCKPOST\BepInEx\plugins</GamePluginDirectory>
+    <AutoDeploy Condition="'$(AutoDeploy)' == ''">true</AutoDeploy>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BepInEx.Unity.IL2CPP" Version="6.0.0-be.*" IncludeAssets="compile" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Il2Cppmscorlib">
+      <HintPath>$(InteropDirectory)\Il2Cppmscorlib.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>$(InteropDirectory)\Assembly-CSharp.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(InteropDirectory)\UnityEngine.CoreModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>$(InteropDirectory)\UnityEngine.InputLegacyModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>$(InteropDirectory)\UnityEngine.PhysicsModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>$(InteropDirectory)\UnityEngine.IMGUIModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove=".tools\**\*.cs" />
+    <Compile Remove="kbb_tmp\**\*.cs" />
+    <Compile Remove="il2cppclass2\**\*.cs" />
+  </ItemGroup>
+
+  <Target Name="DeployToGame" AfterTargets="Build" Condition="'$(AutoDeploy)' == 'true'">
+    <Error Condition="!Exists('$(GamePluginDirectory)')" Text="Game plugin directory was not found: $(GamePluginDirectory). Set GamePluginDirectory or build with -p:AutoDeploy=false." />
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(GamePluginDirectory)" SkipUnchangedFiles="true" />
+    <Message Importance="High" Text="Deployed $(TargetFileName) to $(GamePluginDirectory)" />
+  </Target>
+
+</Project>

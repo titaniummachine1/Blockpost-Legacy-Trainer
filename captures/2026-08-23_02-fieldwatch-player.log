@@ -1,0 +1,6 @@
+# Blockpost room-protocol capture, started 2026-08-23 01:54:11
+# tx: <ms> tx hdr=0xNN op=0xNN <name> : <fields>    rx: <ms> rx len=N <hex>
+13608,9 ==== FIELDWATCH ON ====
+13611,3 # net: TcpClient.Connected = True
+13612,3 # fieldwatch disabled after error: Method unstripping failed
+45827,0 ==== FIELDWATCH OFF ====

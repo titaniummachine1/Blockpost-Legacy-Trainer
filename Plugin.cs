@@ -464,6 +464,12 @@ public sealed class Plugin : BasePlugin
 
     private static void GUIInvOnGUIPostfix()
     {
+        // Only draw these when the inventory is actually open; OnGUI runs even when the UI is hidden.
+        if (!GUIInv.CBFLNECJIFF)
+        {
+            return;
+        }
+
         // Draw dump/scan buttons on the inventory screen so they are available even if F9 does not register.
         if (GUI.Button(new Rect(Screen.width - 170, 10, 160, 32), "DUMP WEAPONS"))
         {

@@ -11,6 +11,8 @@ using Raw = BlockpostTrainer.Sdk.Raw;
 using BepInEx;
 using BepInEx.Logging;
 using HarmonyLib;
+using Il2CppInterop.Runtime;
+using Il2CppInterop.Runtime.InteropTypes;
 using Il2CppInterop.Runtime.InteropTypes.Arrays;
 using UnityEngine;
 
@@ -113,6 +115,8 @@ internal static class NetProbe
     private static int markCounter;
     private static int failureCount;
     private static string logPath = string.Empty;
+    private static MemberInfo? clientBufferMember;
+    private static MemberInfo? clientLengthMember;
 
     internal static bool Capturing => capturing;
 
@@ -131,6 +135,9 @@ internal static class NetProbe
             source.LogWarning("[NetProbe] NET/Client types not found; wire tap disabled.");
             return;
         }
+
+        clientBufferMember = AccessTools.Field(clientType, "PEGEIKDNHLL") ?? (MemberInfo?)AccessTools.Property(clientType, "PEGEIKDNHLL");
+        clientLengthMember = AccessTools.Field(clientType, "FKEHEHGFNBD") ?? (MemberInfo?)AccessTools.Property(clientType, "FKEHEHGFNBD");
 
         var patched = 0;
         // Method name strings come from the generated SDK so the obfuscated names live in one place.
@@ -169,6 +176,10 @@ internal static class NetProbe
         patched += Patch(harmony, clientType, nameof(Raw.Client.Methods.KPBPDBDDOFG), new[] { typeof(Il2CppStructArray<byte>), typeof(int) }, nameof(OnRx));
         patched += Patch(harmony, clientType, nameof(Raw.Client.Methods.BMJJCBAPAHP), new[] { typeof(Il2CppStructArray<byte>), typeof(int) }, nameof(OnRx));
         patched += Patch(harmony, clientType, nameof(Raw.Client.Methods.KHPHBCBOMML), new[] { typeof(Il2CppStructArray<byte>), typeof(int) }, nameof(OnRx));
+
+        // Client.Update dequeues received packets into Client.PEGEIKDNHLL / Client.FKEHEHGFNBD
+        // then calls FPKEAECEOPE for each one. Reading the static fields is the way to capture inbound.
+        patched += Patch(harmony, clientType, nameof(Raw.Client.Methods.FPKEAECEOPE), Type.EmptyTypes, nameof(OnRxClientStatic));
 
         // One file per run. FileMode.Create against a fixed name silently destroyed a capture, so
         // never reuse a path: evidence from an earlier session must survive a game restart.
@@ -292,6 +303,72 @@ internal static class NetProbe
 
         var source = __originalMethod?.Name ?? "rx";
         Push(Kind.Rx, __1, take, source, copy);
+    }
+
+    private static void OnRxClientStatic(MethodBase __originalMethod)
+    {
+        if (!capturing || clientBufferMember == null || clientLengthMember == null)
+        {
+            return;
+        }
+
+        try
+        {
+            var raw = GetMemberValue(clientBufferMember);
+            var lenObj = GetMemberValue(clientLengthMember);
+            if (lenObj is not int len || len <= 0)
+            {
+                return;
+            }
+
+            var copy = CopyBytes(raw, Math.Min(len, RxCaptureBytes));
+            if (copy == null || copy.Length == 0)
+            {
+                return;
+            }
+
+            Push(Kind.Rx, len, copy.Length, __originalMethod?.Name ?? "Client", copy);
+        }
+        catch (Exception ex)
+        {
+            log?.LogWarning($"[NetProbe] OnRxClientStatic failed: {ex.Message}");
+        }
+    }
+
+    private static object? GetMemberValue(MemberInfo? m)
+    {
+        if (m is FieldInfo f) return f.GetValue(null);
+        if (m is PropertyInfo p) return p.GetValue(null);
+        return null;
+    }
+
+    private static unsafe byte[]? CopyBytes(object? raw, int max)
+    {
+        if (raw is Il2CppStructArray<byte> arr && arr.Length > 0)
+        {
+            var take = Math.Min(arr.Length, max);
+            var copy = new byte[take];
+            for (var i = 0; i < take; i++)
+            {
+                copy[i] = arr[i];
+            }
+            return copy;
+        }
+
+        if (raw is not Il2CppObjectBase { Pointer: var ptr } || ptr == IntPtr.Zero)
+        {
+            return null;
+        }
+
+        var len = *(uint*)(ptr + 0x18).ToPointer();
+        var take2 = Math.Min((int)len, max);
+        var copy2 = new byte[take2];
+        var data = (byte*)(ptr + 0x20).ToPointer();
+        for (var i = 0; i < take2; i++)
+        {
+            copy2[i] = data[i];
+        }
+        return copy2;
     }
 
     // ---- background writer ----

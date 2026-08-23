@@ -160,9 +160,15 @@ internal static class NetProbe
         patched += Patch(harmony, clientType, nameof(Raw.Client.Methods.HKOFHOANEJD), Type.EmptyTypes, nameof(OnFlush));
         // Room client has three byte[]+int methods; only FPIDGCHIEMJ was patched before.
         // Capture from all three so we can see which one actually carries inbound traffic.
+        // Client has several (byte[], int) methods. FPIDGCHIEMJ was the obvious candidate,
+        // but it never fired. The ones below are other internal methods with the same signature;
+        // one of them should be the actual receive path.
         patched += Patch(harmony, clientType, nameof(Raw.Client.Methods.FPIDGCHIEMJ), new[] { typeof(Il2CppStructArray<byte>), typeof(int) }, nameof(OnRx));
         patched += Patch(harmony, clientType, nameof(Raw.Client.Methods.MKPOLBIKPPA), new[] { typeof(Il2CppStructArray<byte>), typeof(int) }, nameof(OnRx));
         patched += Patch(harmony, clientType, nameof(Raw.Client.Methods.GINPPBIJOCA), new[] { typeof(Il2CppStructArray<byte>), typeof(int) }, nameof(OnRx));
+        patched += Patch(harmony, clientType, nameof(Raw.Client.Methods.KPBPDBDDOFG), new[] { typeof(Il2CppStructArray<byte>), typeof(int) }, nameof(OnRx));
+        patched += Patch(harmony, clientType, nameof(Raw.Client.Methods.BMJJCBAPAHP), new[] { typeof(Il2CppStructArray<byte>), typeof(int) }, nameof(OnRx));
+        patched += Patch(harmony, clientType, nameof(Raw.Client.Methods.KHPHBCBOMML), new[] { typeof(Il2CppStructArray<byte>), typeof(int) }, nameof(OnRx));
 
         // One file per run. FileMode.Create against a fixed name silently destroyed a capture, so
         // never reuse a path: evidence from an earlier session must survive a game restart.

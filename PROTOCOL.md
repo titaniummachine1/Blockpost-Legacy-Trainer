@@ -236,3 +236,28 @@ New log: `BepInEx/captures/net-20260823-021230.log` (plugin 0.7.1, 25/25 NetProb
 - **`0x2D` MOVE:** `f32 x, y, z, rotX, rotY, u8 state, i32 tick`. State `0xB0` seen while standing/aiming.
 - **`0x55` shot/tracer:** still never observed. The main weapon path appears to use `0x06` instead.
 - **`0x10`, `0x11`, `0x65`:** rare — likely weapon/ready/spawn/loadout events. Need captures of reload, switch, grenade, and death to map them.
+
+---
+
+## 9. Update: 23 Aug 2026 capture #2
+
+New log: `BepInEx/captures/net-20260823-025026.log` (~113 KB, latest plugin).
+
+- **Still 0 incoming packets.** The first three `Client` (byte[], int) methods (`FPIDGCHIEMJ`, `MKPOLBIKPPA`, `GINPPBIJOCA`) did not fire on the receive path. Three more candidates were found in `Client` with the same signature: `KPBPDBDDOFG`, `BMJJCBAPAHP`, `KHPHBCBOMML` — these are now patched.
+- **Packet distribution:** `0x2D` 1060, `0x04` 12, `0x08` 10, `0x0F` 9, `0x42` 2, `0x06` 2, `0x65` 1, `0x00` 1, `0x09` 1.
+- **`0x0F` slot/15:** one `byte`, the active slot (`b0`, `b1`, `b2`). Sent on weapon switch.
+- **`0x42` req/66:** sent twice with no obvious payload. Possibly a ready/request handshake.
+- **`0x08` weapondata/8:** weapon definition list. One entry per weapon:
+  ```
+  i32 weaponId, string codename, string displayName, ..., string hash32
+  ```
+  Observed weapons in this capture: `kriss_vector`, `beretta92`, `shovel`, `block`, `grenade`, `sl8`.
+- **`0x09` loadout/9:** loadout snapshot. Long list of `L<guid> i<weaponId> b...` triples; needs more captures to pin down the exact structure.
+- **`0x00` keepalive/0:** heavy heartbeat/player-info packet with id strings, many flags, `i1350`, SteamID, and hashes.
+- **`0x06` shot/damage triple:** two examples captured: `s16 s1 s81` and `s17 s2 s81`. The third short is consistently `81`; possibly max/remaining health or a fixed seed. Still unconfirmed.
+- **`0x04` HIT_REPORT:** populated examples now show the full layout:
+  ```
+  26,738 3,397 61,758 i297660631 b0 b0 19,248 2,597 74,454
+  ```
+  i.e. `pos(x,y,z), i32 seq, u8 targetId, u8 bodyPart, point(x,y,z)`.
+- **No 0x55 shot/tracer packets observed in this session either.**

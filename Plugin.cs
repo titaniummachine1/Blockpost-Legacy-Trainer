@@ -902,7 +902,7 @@ public sealed class Plugin : BasePlugin
         for (var index = 0; index < players.Length; index++)
         {
             var player = players[index];
-            if (!IsVisibleTarget(player, mainPlayer, showTeammates))
+            if (!IsVisibleTarget(player, mainPlayer, showTeammates, true))
             {
                 continue;
             }
@@ -916,12 +916,12 @@ public sealed class Plugin : BasePlugin
         featureStatus = $"players={players.Length}, boxes={espBoxes.Count}";
     }
 
-    private static bool IsVisibleTarget(KBBBHJDINCB? player, KBBBHJDINCB mainPlayer, bool includeTeammates)
+    private static bool IsVisibleTarget(KBBBHJDINCB? player, KBBBHJDINCB mainPlayer, bool includeTeammates, bool ignoreSpawnProtection)
     {
         return player != null
             && !player._LCEIAGLFFJN_k__BackingField
             && player.FDOJDJLIGLF > 0
-            && !player.LBKINNIDKEC
+            && (ignoreSpawnProtection || !player.LBKINNIDKEC)
             && (includeTeammates || player.MMMGPDBMOLM != mainPlayer.MMMGPDBMOLM);
     }
 
@@ -975,7 +975,7 @@ public sealed class Plugin : BasePlugin
         for (var index = 0; index < players.Length; index++)
         {
             var player = players[index];
-            if (!IsVisibleTarget(player, mainPlayer, false) || !TryGetHeadPosition(player, out var headPosition))
+            if (!IsVisibleTarget(player, mainPlayer, false, false) || !TryGetHeadPosition(player, out var headPosition))
             {
                 continue;
             }

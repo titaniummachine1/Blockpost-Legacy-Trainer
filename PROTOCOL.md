@@ -341,3 +341,48 @@ documented "NO WEAPON" corruption. Now a single alias, `Player.ActiveWeaponId`.
 `IGLCENGMMMJ`, `MNHBPCOOMLE`. The group `DGNDKAKOEPD` / `BEJBLGGGOCC` / `JELGPAKAJPE` /
 `EENJPDHGGGC` updates once per second and is network/timing telemetry (`EENJPDHGGGC` is seconds
 elapsed), **not** ammo — the "25 changes" in a 25-second capture was a coincidence of duration.
+
+---
+
+## 12. Correction: what instant reload actually does
+
+Reported in game: instant reload **hides the active-reload minigame animation but does not feel
+faster**, and rapid fire / the server-trust test do not work.
+
+The timer model in §11 is confirmed correct — the clocks just differ. Capture timestamps are
+Stopwatch milliseconds since plugin load; `ILGHFLMKMCO` is `Time.time` seconds. Offset ≈ 3.59 s.
+Reload #1 ended at log `20737.3` → `Time.time` `17.144`, matching `ILGHFLMKMCO = 17.1449`; reload #2
+ended at `26176.4` → `22.586`, matching `22.5873`. So the reload **does** end when `Time.time`
+reaches `ILGHFLMKMCO`.
+
+### The real gap: ammo is not on any object we were watching
+
+At all five reload completions in `captures/net-20260823-020010.log`, the only fields that moved
+were:
+
+| Field | Note |
+|---|---|
+| `DJACNOGOCKD` | reload flag, 1 → 0 |
+| `_JFKCDODJALP_k__BackingField` (`0x1C0`, int) | clears with the reload |
+| `JBKBOPCCIBM` | minigame result, reset to 0 |
+| `GIPNIMALPEG`, `OFJKHAFJIMA`, `MKFDGFOCKNO`, `LEKCBKLAILO` | per-frame churn |
+
+**No ammo counter changed anywhere.** FieldWatch covered the player entity, `Controll` statics and
+the `Controll` instance — so ammo and the fire/reload gates must live on the **weapon**
+(`CGJPBNDDPIN`) or the **loadout entry** (`FPNENMKEFBB`), neither of which was watched.
+
+That one blind spot plausibly explains all three failures: clearing the timer ends the bar (hence
+the missing animation) while the refill and the fire gate, which live elsewhere, are untouched.
+
+FieldWatch now watches two more targets, `weapon` and `loadout`, re-resolved on weapon switch.
+
+### Server-trust test: do not read "doesn't work" as "server validates"
+
+`TryFakeHit` sends `target.CCINALOJCNH` (`Id1`) as the wire target id, but **which player field
+maps to the `u8` id in `0x04` is still unresolved** (backlog 5). Real captures show ids `0`, `3`,
+`4`; `0x06` middles show `3`, `4`, `5`, `12`. If `Id1` is the wrong field, the server ignores the
+packet for a reason unrelated to trust — which would be very easy to misread as validation.
+
+`TryFakeHit` now logs `Id0`/`Id1`/`Id2`/`PlayerId`/`Team`/`Health` for the target next to the id it
+sends, so a single capture settles which field matches the ids in genuine `0x04` traffic. **Until
+that is resolved, the server-trust question remains open, not answered.**

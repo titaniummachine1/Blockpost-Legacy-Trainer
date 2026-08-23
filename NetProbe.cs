@@ -672,9 +672,18 @@ internal static class NetProbe
 
         try
         {
+            // Which player field the wire id actually comes from is still unresolved (backlog 5).
+            // CCINALOJCNH is a guess, and if it is the wrong one the server would ignore the
+            // packet for a reason that has nothing to do with trust -- which would be easy to
+            // misread as "the server validates hits". Log every candidate alongside the id we
+            // send, so one capture settles it against the ids in real 0x04 traffic.
             var targetId = target.CCINALOJCNH;
             var bodyPart = (byte)1; // head
             var seq = ++fakeHitSequence;
+
+            Note($"fake-hit candidates: Id0={target.GLFBKBKFPCL} Id1={target.CCINALOJCNH} "
+                 + $"Id2={target.LGOAHLMABFF} PlayerId={target.LCPGFBMKNHJ} Team={target.MMMGPDBMOLM} "
+                 + $"Health={target.FDOJDJLIGLF} -> sending Id1={targetId}");
 
             SendPacket(0x06, writer =>
             {

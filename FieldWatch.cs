@@ -176,6 +176,8 @@ internal static class FieldWatch
         nextRebind = Time.unscaledTime + 3f;
 
         var player = Controll.HGAODFPBGLB;
+        var weapon = ResolveActiveWeapon(player);
+        var entry = ResolveLoadoutEntry(player);
 
         if (Targets.Count == 0)
         {
@@ -191,20 +193,101 @@ internal static class FieldWatch
                 Add(new Target("Controll", controller.GetType(), controller));
             }
 
+            // Ammo and the fire/reload gates are on neither the player entity nor Controll: at
+            // every reload completion in capture net-20260823-020010.log, not one watched field
+            // moved except the reload flag itself. They live on the weapon, so watch it too.
+            if (weapon != null)
+            {
+                Add(new Target("weapon", weapon.GetType(), weapon));
+            }
+
+            if (entry != null)
+            {
+                Add(new Target("loadout", entry.GetType(), entry));
+            }
+
             return;
         }
 
-        // Objects are replaced on respawn; keep the bindings pointed at the live ones.
+        // These objects are swapped out on respawn and on weapon switch; keep the bindings
+        // pointed at whatever is live now.
         foreach (var target in Targets)
         {
-            if (target.Label == "player" && player != null)
+            switch (target.Label)
             {
-                target.Instance = player;
+                case "player" when player != null:
+                    target.Instance = player;
+                    break;
+                case "Controll" when controller != null:
+                    target.Instance = controller;
+                    break;
+                case "weapon" when weapon != null:
+                    target.Instance = weapon;
+                    break;
+                case "loadout" when entry != null:
+                    target.Instance = entry;
+                    break;
             }
-            else if (target.Label == "Controll" && controller != null)
+        }
+
+        // A weapon that only appeared after the first bind still deserves watching.
+        if (weapon != null && !Targets.Exists(t => t.Label == "weapon"))
+        {
+            Add(new Target("weapon", weapon.GetType(), weapon));
+        }
+
+        if (entry != null && !Targets.Exists(t => t.Label == "loadout"))
+        {
+            Add(new Target("loadout", entry.GetType(), entry));
+        }
+    }
+
+    /// <summary>The equipped <c>CGJPBNDDPIN</c>, via the player's ActiveWeapon property.</summary>
+    private static object? ResolveActiveWeapon(object? player)
+    {
+        if (player == null)
+        {
+            return null;
+        }
+
+        try
+        {
+            return player.GetType().GetProperty("JPGGPPLOOML")?.GetValue(player);
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
+    /// <summary>The current <c>FPNENMKEFBB</c> loadout entry for the active slot.</summary>
+    private static object? ResolveLoadoutEntry(object? player)
+    {
+        if (player == null)
+        {
+            return null;
+        }
+
+        try
+        {
+            var type = player.GetType();
+            if (type.GetProperty("KPNAADPGNCP")?.GetValue(player) is not System.Collections.IList loadout)
             {
-                target.Instance = controller;
+                return null;
             }
+
+            var slotRaw = type.GetProperty("MOPBMENEGLN")?.GetValue(player);
+            if (slotRaw == null)
+            {
+                return null;
+            }
+
+            var slot = Convert.ToInt32(slotRaw, CultureInfo.InvariantCulture);
+            return slot >= 0 && slot < loadout.Count ? loadout[slot] : null;
+        }
+        catch
+        {
+            return null;
         }
     }
 

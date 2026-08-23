@@ -3,6 +3,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using BepInEx;
@@ -18,7 +19,8 @@ namespace BlockpostTrainer;
 ///
 /// Every outgoing message is assembled by the static <c>NET</c> serializer and pushed to the
 /// socket by <c>Client.HKOFHOANEJD</c>; every incoming buffer arrives through
-/// <c>Client.FPIDGCHIEMJ</c>. Hooking the typed <c>NET</c> writers gives a decoded field stream
+/// one of <c>Client.FPIDGCHIEMJ</c>, <c>Client.MKPOLBIKPPA</c>, or <c>Client.GINPPBIJOCA</c>.
+/// Hooking the typed <c>NET</c> writers gives a decoded field stream
 /// without having to know the byte layout up front.
 ///
 /// Nothing is formatted on the game thread: hooks push a small record onto a bounded queue and a
@@ -153,7 +155,11 @@ internal static class NetProbe
         patched += Patch(harmony, netType, "PJFMOLFBKHM", new[] { typeof(string) }, nameof(OnStr));
         patched += Patch(harmony, netType, "EMJOGONJKIO", Type.EmptyTypes, nameof(OnEnd));
         patched += Patch(harmony, clientType, "HKOFHOANEJD", Type.EmptyTypes, nameof(OnFlush));
+        // Room client has three byte[]+int methods; only FPIDGCHIEMJ was patched before.
+        // Capture from all three so we can see which one actually carries inbound traffic.
         patched += Patch(harmony, clientType, "FPIDGCHIEMJ", new[] { typeof(Il2CppStructArray<byte>), typeof(int) }, nameof(OnRx));
+        patched += Patch(harmony, clientType, "MKPOLBIKPPA", new[] { typeof(Il2CppStructArray<byte>), typeof(int) }, nameof(OnRx));
+        patched += Patch(harmony, clientType, "GINPPBIJOCA", new[] { typeof(Il2CppStructArray<byte>), typeof(int) }, nameof(OnRx));
 
         // One file per run. FileMode.Create against a fixed name silently destroyed a capture, so
         // never reuse a path: evidence from an earlier session must survive a game restart.
@@ -261,7 +267,7 @@ internal static class NetProbe
 
     private static void OnFlush() => Push(Kind.Flush, 0);
 
-    private static void OnRx(Il2CppStructArray<byte> __0, int __1)
+    private static void OnRx(Il2CppStructArray<byte> __0, int __1, MethodBase __originalMethod)
     {
         if (!capturing || __0 == null || __1 <= 0)
         {
@@ -275,7 +281,8 @@ internal static class NetProbe
             copy[i] = __0[i];
         }
 
-        Push(Kind.Rx, __1, take, null, copy);
+        var source = __originalMethod?.Name ?? "rx";
+        Push(Kind.Rx, __1, take, source, copy);
     }
 
     // ---- background writer ----
@@ -367,7 +374,8 @@ internal static class NetProbe
 
                     case Kind.Rx:
                         line.Clear();
-                        line.Append(ms.ToString("F1")).Append(" rx len=").Append((int)rec.Value).Append(' ');
+                        line.Append(ms.ToString("F1")).Append(" rx src=").Append(rec.Text ?? "?")
+                            .Append(" len=").Append((int)rec.Value).Append(' ');
                         if (rec.Blob != null)
                         {
                             for (var i = 0; i < rec.Blob.Length; i++)

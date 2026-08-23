@@ -268,6 +268,34 @@ internal static class FieldWatch
         }
     }
 
+    /// <summary>
+    /// Length of an Il2Cpp array/list by reflection.
+    ///
+    /// Il2CppReferenceArray&lt;T&gt; implements IList&lt;T&gt; but *not* the non-generic
+    /// System.Collections.IList, so casting to IList silently yields null. That is why the
+    /// loadout and activeEntry targets never bound in capture net-20260823-140511.log.
+    /// </summary>
+    private static int CountOf(object collection)
+    {
+        var type = collection.GetType();
+        var lengthProp = type.GetProperty("Length") ?? type.GetProperty("Count");
+        var raw = lengthProp?.GetValue(collection);
+        return raw == null ? -1 : Convert.ToInt32(raw, CultureInfo.InvariantCulture);
+    }
+
+    private static object? ElementAt(object collection, int index)
+    {
+        var type = collection.GetType();
+        var indexer = type.GetProperty("Item");
+        if (indexer != null)
+        {
+            return indexer.GetValue(collection, new object[] { index });
+        }
+
+        var getItem = type.GetMethod("get_Item", new[] { typeof(int) });
+        return getItem?.Invoke(collection, new object[] { index });
+    }
+
     /// <summary>The equipped <c>CGJPBNDDPIN</c>, via the player's ActiveWeapon property.</summary>
     private static object? ResolveActiveWeapon(object? player)
     {
@@ -304,30 +332,27 @@ internal static class FieldWatch
         try
         {
             var type = player.GetType();
-            if (type.GetProperty("JDIHHMABLAJ")?.GetValue(player) is not System.Collections.IList groups)
-            {
-                return null;
-            }
-
+            var groups = type.GetProperty("JDIHHMABLAJ")?.GetValue(player);
             var slotRaw = type.GetProperty("MOPBMENEGLN")?.GetValue(player);
-            if (slotRaw == null)
+            if (groups == null || slotRaw == null)
             {
                 return null;
             }
 
             var slot = Convert.ToInt32(slotRaw, CultureInfo.InvariantCulture);
-            if (slot < 0 || slot >= groups.Count)
+            if (slot < 0 || slot >= CountOf(groups))
             {
                 return null;
             }
 
-            var group = groups[slot];
-            if (group?.GetType().GetProperty("DBMOPKGMECL")?.GetValue(group) is not System.Collections.IList entries)
+            var group = ElementAt(groups, slot);
+            var entries = group?.GetType().GetProperty("DBMOPKGMECL")?.GetValue(group);
+            if (entries == null)
             {
                 return null;
             }
 
-            return entries.Count > 1 ? entries[1] : null;
+            return CountOf(entries) > 1 ? ElementAt(entries, 1) : null;
         }
         catch
         {
@@ -346,19 +371,15 @@ internal static class FieldWatch
         try
         {
             var type = player.GetType();
-            if (type.GetProperty("KPNAADPGNCP")?.GetValue(player) is not System.Collections.IList loadout)
-            {
-                return null;
-            }
-
+            var loadout = type.GetProperty("KPNAADPGNCP")?.GetValue(player);
             var slotRaw = type.GetProperty("MOPBMENEGLN")?.GetValue(player);
-            if (slotRaw == null)
+            if (loadout == null || slotRaw == null)
             {
                 return null;
             }
 
             var slot = Convert.ToInt32(slotRaw, CultureInfo.InvariantCulture);
-            return slot >= 0 && slot < loadout.Count ? loadout[slot] : null;
+            return slot >= 0 && slot < CountOf(loadout) ? ElementAt(loadout, slot) : null;
         }
         catch
         {

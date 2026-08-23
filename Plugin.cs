@@ -168,6 +168,10 @@ public sealed class Plugin : BasePlugin
         controllerRunning = true;
         forceShotThisFrame = false;
         LogControllerStartup();
+        // Run before Controll.Update's own reload evaluation. Applied from the postfix the write
+        // landed after the game had already read the stamp for this frame, which is consistent
+        // with the observed "bar disappears but the reload is not shorter".
+        ApplyInstantReload();
         UpdateAimbotSafely();
         ApplyCheatFeatures();
         PrepareRapidFirePrefix();
@@ -177,7 +181,6 @@ public sealed class Plugin : BasePlugin
     {
         NetProbe.Tick();
         FieldWatch.Tick(__instance);
-        ApplyInstantReload();
         ReleaseLeftMouseIfNeeded();
         ForceRapidFireShot();
         ToggleMenuIfRequested();

@@ -480,3 +480,49 @@ flipped straight back. Now guarded on `Time.frameCount`.
 On IL2CPP, **the cost is the property reads, not the logging**. Moving output to another thread does
 nothing for a routine whose expense is thousands of `runtime_invoke` calls on the game thread. Any
 new diagnostic must be budgeted per tick, not merely written asynchronously.
+
+---
+
+## 15. Capture `net-20260823-140511` — reload reconfirmed, two bugs found
+
+Clean baseline run, verbose off, budgeted probe. No lag reported.
+
+### Reload model reconfirmed exactly
+
+```
+13491.0  IsReloading    0 -> 1
+13491.1  ReloadStart    0 -> 10.0278
+13491.1  ReloadEnd      0 -> 12.0278      = start + 2.0
+13495.9  MarkerPos      0 -> 0.35
+14682.9  MinigameResult 0 -> 1            perfect
+14696.1  ReloadEnd      12.0278 -> 11.3205   -0.7073
+14785.7  IsReloading    1 -> 0            1294.7 ms  == 2.0 - 0.705
+```
+
+Second reload: `MinigameResult -> 2` (failed), `ReloadEnd` untouched, ran 1998.8 ms. So
+`ILGHFLMKMCO` **is** the completion stamp, and §13's doubt about that was wrong — the mechanism was
+right, the write was landing at the wrong time.
+
+### Bug 1 — instant reload wrote too late in the frame
+
+`ApplyInstantReload` ran from the `Controll.Update` **postfix**, after the game had already
+evaluated the stamp for that frame. That matches the reported symptom exactly: the bar collapses
+(it is drawn later) but the reload is not shortened. Moved to the **prefix**.
+
+### Bug 2 — `loadout` / `activeEntry` never bound
+
+Only four targets bound: `player` (53), `Controll.static` (74), `Controll` (28), `weapon` (3).
+`weapon` having just 3 numeric fields reconfirms `CGJPBNDDPIN` is a definition, not runtime state.
+
+Cause: **`Il2CppReferenceArray<T>` implements `IList<T>` but not the non-generic
+`System.Collections.IList`**, so `is not System.Collections.IList` silently returned null and both
+lookups bailed without error. Replaced with reflection helpers (`CountOf` / `ElementAt`) that work
+off `Length`/`Count` and the indexer.
+
+> Rule: never type-test an Il2Cpp collection against a non-generic BCL interface. It fails silently
+> and looks like "the field doesn't exist".
+
+### New field
+
+`Controll.MJPKOOHJOPA` (instance, float) — monotonically rising, moves in steps while active.
+Unidentified; not reload-related.

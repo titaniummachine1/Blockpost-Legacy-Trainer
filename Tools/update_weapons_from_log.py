@@ -1,4 +1,4 @@
-"""Parse a BepInEx capture log and regenerate Sdk/Weapons.cs."""
+"""Parse a BepInEx capture log and regenerate Sdk/Weapons.cs and/or known_weapons.txt."""
 
 import argparse
 import glob
@@ -31,6 +31,12 @@ def parse_log(path: str) -> dict[int, tuple[str, str]]:
                 continue
             weapons[wid] = (codename, name)
     return weapons
+
+
+def render_known_weapons_txt(weapons: dict[int, tuple[str, str]], out_path: str) -> None:
+    sorted_weapons = sorted(weapons.items(), key=lambda kv: kv[0])
+    lines = [f"{wid}|{codename}|{name}" for wid, (codename, name) in sorted_weapons]
+    Path(out_path).write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
 def render_weapons_cs(weapons: dict[int, tuple[str, str]], out_path: str) -> None:
@@ -93,6 +99,11 @@ def main():
         default="Sdk/Weapons.cs",
         help="Output C# file path.",
     )
+    parser.add_argument(
+        "--known-out",
+        default=None,
+        help="Optional known_weapons.txt path to regenerate.",
+    )
     args = parser.parse_args()
 
     log_path = args.log
@@ -102,8 +113,12 @@ def main():
 
     weapons = parse_log(log_path)
     render_weapons_cs(weapons, args.out)
+    if args.known_out:
+        render_known_weapons_txt(weapons, args.known_out)
     print(f"Parsed {log_path}")
     print(f"Wrote {len(weapons)} weapons to {args.out}")
+    if args.known_out:
+        print(f"Wrote {len(weapons)} known weapons to {args.known_out}")
 
 
 if __name__ == "__main__":

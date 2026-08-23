@@ -145,6 +145,7 @@ public sealed class Plugin : BasePlugin
         ToggleMenuIfRequested();
         ApplyCheatFeatures();
         LogRuntimeDiagnostics();
+        LogInventoryDump();
     }
 
     private static void ReleaseLeftMouseIfNeeded()
@@ -335,6 +336,70 @@ public sealed class Plugin : BasePlugin
 
         activeCamera = fallback;
         return activeCamera;
+    }
+
+    private static void LogInventoryDump()
+    {
+        if (!Input.GetKeyDown(KeyCode.F9))
+        {
+            return;
+        }
+
+        try
+        {
+            var all = GUIInv.OIHNJCKDOIG;
+            if (all == null)
+            {
+                NetProbe.Note("weapon-dump: GUIInv.AllWeapons is null");
+                instance?.Log.LogInfo("[WeaponDump] GUIInv.AllWeapons is null");
+                return;
+            }
+
+            NetProbe.Note($"weapon-dump: AllWeapons count={all.Length}");
+            instance?.Log.LogInfo($"[WeaponDump] AllWeapons count={all.Length}");
+
+            for (var i = 0; i < all.Length; i++)
+            {
+                var w = all[i];
+                if (w == null)
+                {
+                    continue;
+                }
+
+                var line = $"[WeaponDump] id={w.HAFMINBJCGN}, codename={w.OJEKKFDIKMG}, name={w.NGFDENOFBLK}";
+                instance?.Log.LogInfo(line);
+                NetProbe.Note($"weapon-dump: {line}");
+            }
+
+            var loadout = GUIInv.KNCJNHILDLJ;
+            var loadoutCount = loadout?.Count ?? -1;
+            NetProbe.Note($"weapon-dump: Loadout count={loadoutCount}");
+            instance?.Log.LogInfo($"[WeaponDump] Loadout count={loadoutCount}");
+
+            if (loadout != null)
+            {
+                for (var i = 0; i < loadout.Count; i++)
+                {
+                    var e = loadout[i];
+                    if (e?.ADMGNABJBNM == null)
+                    {
+                        continue;
+                    }
+
+                    var line = $"[WeaponDump] loadout[{i}] uid={e.AIEPBAHGMJD}, weaponId={e.ADMGNABJBNM.HAFMINBJCGN}, codename={e.ADMGNABJBNM.OJEKKFDIKMG}, amount={e.NIBLMFFHJHK}";
+                    instance?.Log.LogInfo(line);
+                    NetProbe.Note($"weapon-dump: {line}");
+                }
+            }
+        }
+        catch (Exception exception)
+        {
+            if (!guiFailureLogged)
+            {
+                instance?.Log.LogWarning($"[WeaponDump] failed: {exception}");
+                guiFailureLogged = true;
+            }
+        }
     }
 
     private static void LogRuntimeDiagnostics()

@@ -820,3 +820,59 @@ AMMO a=<mag> b=<reserve> c=<third>
 ```
 
 Which argument is magazine vs reserve still needs one run to confirm against the on-screen numbers.
+
+---
+
+## 23. RETRACTION of section 22 — that was the match clock, not ammo
+
+**Section 22 is wrong. Ammo has NOT been found, and it is NOT known to be server-pushed.**
+
+Hooking `HUD.GEGHOEFBKMO` directly, in a run of 3 shots ending at 7 rounds:
+
+```
+11153  a=30 b=45 c=155
+16096  a=31 b=45 c=150
+21059  a=31 b=45 c=145
+26214  a=31 b=46 c=140
+31061  a=31 b=46 c=135
+```
+
+- Calls arrive every **~5 s** (deltas 4943/4963/5155/4846 ms) — a HUD refresh, not per shot
+- `c` counts **down** 155→135 — the **match clock in seconds**
+- `a` and `b` count **up** (30→31, 45→46) — **team scores**
+- Only 5 calls for 3 shots, and none aligned to a shot
+
+So `GEGHOEFBKMO(scoreA, scoreB, clockSeconds)` is the **scoreboard and timer**.
+
+### How the error happened
+
+`GONEFAMEMOJ` read `[325, 315, 310]` across three snapshots, which I read as "−10 for two shots,
+−5 for one shot = 5 per round". It was the match clock, and the snapshots were ~8.1 s and ~4.7 s
+apart. The deltas tracked **elapsed time**, not shots fired.
+
+This is the same failure as the 7/8/9 constants in §21 — a small-number coincidence accepted
+without a control — and it was made one section after warning about it.
+
+### Rule: snapshot diffs need a control
+
+A field differing between two snapshots may be responding to **time**, not to the action. Before
+attributing a delta to shooting:
+
+1. Take two snapshots **with no shooting between them**, separated by a similar interval. Every
+   field that moves is time-driven — clocks, accumulators, bob, score.
+2. Only fields that move in the shooting pair but *not* in the idle pair are candidates.
+3. Confirm the **rate**: a real magazine changes by exactly the number of shots, and does not
+   change when idle.
+
+The `F4` snapshot tool is right; the protocol around it was not.
+
+### Retained
+
+The hook is kept and renamed `OnScoreHud`, logging `SCORE a=<scoreA> b=<scoreB> clock=<seconds>`.
+It is genuinely useful — just not for ammo.
+
+### Ammo status: still unknown
+
+Ruled out: all scalars and arrays on `KBBBHJDINCB`, `Controll` (static + instance), `CGJPBNDDPIN`,
+`FPNENMKEFBB`, `PLH.static`, `HUD` (static + instance), `GUIInv` (static + instance) — 245 scalars,
+8 arrays, 11 targets. `GEGHOEFBKMO` is not it either.

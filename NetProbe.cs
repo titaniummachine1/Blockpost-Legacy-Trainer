@@ -201,15 +201,14 @@ internal static class NetProbe
         patched += Patch(harmony, netType, nameof(Raw.NET.Methods.EMJOGONJKIO), Type.EmptyTypes, nameof(OnEnd));
         patched += Patch(harmony, clientType, nameof(Raw.Client.Methods.HKOFHOANEJD), Type.EmptyTypes, nameof(OnFlush));
 
-        // The ammo readout. HUD.GEGHOEFBKMO(a, b, c) stringifies a and b into the HUD text fields
-        // at 0x160/0x164, and its only callers are Client.FPKEAECEOPE and Client.AGMCDJGEGGB --
-        // both in the inbound packet path. Ammo is pushed by the server, which is why no
-        // client-side object ever held it.
+        // Scoreboard + match clock, pushed by the server on a ~5s refresh. Kept because it is
+        // genuinely useful, but it is NOT ammo -- see PROTOCOL.md 23 for how it was mistaken for
+        // one.
         var hudType = AccessTools.TypeByName("HUD");
         if (hudType != null)
         {
             patched += Patch(harmony, hudType, "GEGHOEFBKMO",
-                new[] { typeof(int), typeof(int), typeof(int) }, nameof(OnAmmoHud));
+                new[] { typeof(int), typeof(int), typeof(int) }, nameof(OnScoreHud));
         }
         // Room client has three byte[]+int methods; only FPIDGCHIEMJ was patched before.
         // Capture from all three so we can see which one actually carries inbound traffic.
@@ -392,26 +391,26 @@ internal static class NetProbe
         Push(Kind.End, 0);
     }
 
-    private static int lastAmmoA = int.MinValue;
-    private static int lastAmmoB;
-    private static int lastAmmoC;
+    private static int lastScoreA = int.MinValue;
+    private static int lastScoreB;
+    private static int lastClock;
 
     /// <summary>
-    /// Server-pushed ammo readout. HUD.GEGHOEFBKMO(a, b, c) stringifies a and b into the HUD text
-    /// fields; its only callers are Client.FPKEAECEOPE and Client.AGMCDJGEGGB, both in the inbound
-    /// packet path. Logged only on change.
+    /// Scoreboard and match clock -- NOT ammo. HUD.GEGHOEFBKMO(a, b, c) stringifies a and b into
+    /// the HUD text fields; a/b are team scores and c is the match clock in seconds. Calls arrive
+    /// on a ~5s HUD refresh from the inbound packet path, not per shot.
     /// </summary>
-    private static void OnAmmoHud(int JMEFALEPJKM, int DEAOCFDEMKE, int PBCODLDLHKL)
+    private static void OnScoreHud(int JMEFALEPJKM, int DEAOCFDEMKE, int PBCODLDLHKL)
     {
-        if (JMEFALEPJKM == lastAmmoA && DEAOCFDEMKE == lastAmmoB && PBCODLDLHKL == lastAmmoC)
+        if (JMEFALEPJKM == lastScoreA && DEAOCFDEMKE == lastScoreB && PBCODLDLHKL == lastClock)
         {
             return;
         }
 
-        lastAmmoA = JMEFALEPJKM;
-        lastAmmoB = DEAOCFDEMKE;
-        lastAmmoC = PBCODLDLHKL;
-        Note($"AMMO a={JMEFALEPJKM} b={DEAOCFDEMKE} c={PBCODLDLHKL}");
+        lastScoreA = JMEFALEPJKM;
+        lastScoreB = DEAOCFDEMKE;
+        lastClock = PBCODLDLHKL;
+        Note($"SCORE a={JMEFALEPJKM} b={DEAOCFDEMKE} clock={PBCODLDLHKL}");
     }
 
     private static void OnFlush()

@@ -119,6 +119,18 @@ internal static class NetProbe
     private static MemberInfo? clientBufferMember;
     private static MemberInfo? clientLengthMember;
 
+    // ---- fake-hit / server-trust test ----
+    private static bool fakeHitReady;
+    private static object? fakeHitClient;
+    private static MethodInfo? fakeHitFlush;
+    private static MethodInfo? netBegin;
+    private static MethodInfo? netF32;
+    private static MethodInfo? netI32;
+    private static MethodInfo? netU8;
+    private static MethodInfo? netI16;
+    private static MethodInfo? netEnd;
+    private static int fakeHitSequence;
+
     // ---- weapon discovery from 0x08 packets ----
     private static readonly ConcurrentDictionary<int, (string Codename, string Name)> DiscoveredWeapons = new();
     private static bool parsingWeaponData;
@@ -146,6 +158,21 @@ internal static class NetProbe
 
         clientBufferMember = AccessTools.Field(clientType, "PEGEIKDNHLL") ?? (MemberInfo?)AccessTools.Property(clientType, "PEGEIKDNHLL");
         clientLengthMember = AccessTools.Field(clientType, "FKEHEHGFNBD") ?? (MemberInfo?)AccessTools.Property(clientType, "FKEHEHGFNBD");
+
+        // Cache method references for the server-trust fake-hit test.
+        fakeHitClient = AccessTools.Field(clientType, "LPCJFAOOIKA")?.GetValue(null)
+            ?? AccessTools.Property(clientType, "LPCJFAOOIKA")?.GetValue(null);
+        fakeHitFlush = AccessTools.Method(clientType, "HKOFHOANEJD", Type.EmptyTypes);
+        netBegin = AccessTools.Method(netType, nameof(Raw.NET.Methods.LPAPGKDAENI), new[] { typeof(byte), typeof(byte) });
+        netF32 = AccessTools.Method(netType, nameof(Raw.NET.Methods.JBIICNJNHCI), new[] { typeof(float) });
+        netI32 = AccessTools.Method(netType, nameof(Raw.NET.Methods.FPELFNLEPGG), new[] { typeof(int) });
+        netU8 = AccessTools.Method(netType, nameof(Raw.NET.Methods.PFCLIPCCHCK), new[] { typeof(byte) });
+        netI16 = AccessTools.Method(netType, nameof(Raw.NET.Methods.APNPMHBBLDG), new[] { typeof(short) })
+            ?? AccessTools.Method(netType, nameof(Raw.NET.Methods.HMCNFGMBCOC), new[] { typeof(short) });
+        netEnd = AccessTools.Method(netType, nameof(Raw.NET.Methods.EMJOGONJKIO));
+        fakeHitReady = fakeHitClient != null && fakeHitFlush != null
+            && netBegin != null && netF32 != null && netI32 != null
+            && netU8 != null && netI16 != null && netEnd != null;
 
         var patched = 0;
         // Method name strings come from the generated SDK so the obfuscated names live in one place.
@@ -629,6 +656,63 @@ internal static class NetProbe
             Note(line);
             AppendKnownWeapon(id, codename, name);
         }
+    }
+
+    /// <summary>
+    /// Experimental server-trust test: build and send 0x06 (damage triple) and 0x04 (hit report)
+    /// packets for the given target without the local client actually firing.
+    /// </summary>
+    internal static bool TryFakeHit(KBBBHJDINCB? target, Vector3 origin, Vector3 point, int damage)
+    {
+        if (!fakeHitReady || target == null)
+        {
+            log?.LogWarning("[NetProbe] fake-hit not ready or no target.");
+            return false;
+        }
+
+        try
+        {
+            var targetId = target.CCINALOJCNH;
+            var bodyPart = (byte)1; // head
+            var seq = ++fakeHitSequence;
+
+            SendPacket(0x06, writer =>
+            {
+                netI16?.Invoke(null, new object[] { (short)damage });
+                netI16?.Invoke(null, new object[] { (short)targetId });
+                netI16?.Invoke(null, new object[] { (short)0 });
+            });
+
+            SendPacket(0x04, writer =>
+            {
+                netF32?.Invoke(null, new object[] { origin.x });
+                netF32?.Invoke(null, new object[] { origin.y });
+                netF32?.Invoke(null, new object[] { origin.z });
+                netI32?.Invoke(null, new object[] { seq });
+                netU8?.Invoke(null, new object[] { (byte)targetId });
+                netU8?.Invoke(null, new object[] { bodyPart });
+                netF32?.Invoke(null, new object[] { point.x });
+                netF32?.Invoke(null, new object[] { point.y });
+                netF32?.Invoke(null, new object[] { point.z });
+            });
+
+            log?.LogInfo($"[NetProbe] fake-hit sent: targetId={targetId}, damage={damage}, seq={seq}, origin={origin}, point={point}");
+            Note($"fake-hit: targetId={targetId} damage={damage} seq={seq}");
+            return true;
+        }
+        catch (Exception exception)
+        {
+            log?.LogWarning($"[NetProbe] fake-hit failed: {exception.Message}");
+            return false;
+        }
+    }
+
+    private static void SendPacket(byte op, Action<object?> writer)
+    {
+        netBegin?.Invoke(null, new object[] { (byte)0xF5, op });
+        writer(null);
+        netEnd?.Invoke(null, null);
+        fakeHitFlush?.Invoke(fakeHitClient, null);
     }
 
     internal static void Shutdown()

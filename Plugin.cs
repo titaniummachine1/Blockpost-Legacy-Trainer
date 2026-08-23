@@ -70,6 +70,7 @@ public sealed class Plugin : BasePlugin
     private static bool aimbotEnabled = true;
     private static bool noRecoil;
     private static bool autoShoot = true;
+    private static bool serverTrustTest;
     private static bool rapidFire;
     private static bool infiniteHealth;
     private static bool infiniteAmmo;
@@ -1001,7 +1002,7 @@ public sealed class Plugin : BasePlugin
         var targetDirection = bestPosition - camera.transform.position;
         var targetRotation = Quaternion.LookRotation(targetDirection);
         ApplyAimRotation(camera, targetRotation);
-        TryAutoShoot();
+        TryAutoShoot(players[lastAimTargetIndex], bestPosition, camera);
         aimStatus = $"target={lastAimTargetIndex}, angle={bestAngle:0.0} degrees";
     }
 
@@ -1039,7 +1040,7 @@ public sealed class Plugin : BasePlugin
     private const uint MouseEventFLeftDown = 0x02;
     private const uint MouseEventFLeftUp = 0x04;
 
-    private static void TryAutoShoot()
+    private static void TryAutoShoot(KBBBHJDINCB? target, Vector3 targetPosition, Camera camera)
     {
         if (!autoShoot || Time.unscaledTime < nextAutoShootTime)
         {
@@ -1048,6 +1049,19 @@ public sealed class Plugin : BasePlugin
 
         if (!Application.isFocused)
         {
+            return;
+        }
+
+        // Experimental server-trust test: skip the actual shot and tell the server we hit the
+        // aimbot target. If the server accepts client-authored hits, the target dies anyway.
+        if (serverTrustTest && target != null)
+        {
+            var origin = camera.transform.position;
+            if (NetProbe.TryFakeHit(target, origin, targetPosition, 1000))
+            {
+                nextAutoShootTime = Time.unscaledTime + 0.12f;
+                aimStatus = $"{aimStatus} | fake-hit sent";
+            }
             return;
         }
 
@@ -1207,18 +1221,19 @@ public sealed class Plugin : BasePlugin
             if (autoShoot)
             {
                 rapidFire = GUI.Toggle(new Rect(60, 364, 440, 24), rapidFire, "Rapid fire (1 shot/tick)");
+                serverTrustTest = GUI.Toggle(new Rect(60, 388, 440, 24), serverTrustTest, "Server trust test — fake hit packets");
             }
         }
 
-        noRecoil = GUI.Toggle(new Rect(40, 394, 460, 24), noRecoil, "No recoil");
-        infiniteHealth = GUI.Toggle(new Rect(40, 424, 460, 24), infiniteHealth, "Infinite health");
-        infiniteAmmo = GUI.Toggle(new Rect(40, 454, 460, 24), infiniteAmmo, "Infinite ammo (log only — identifying correct fields)");
-        debugLogging = GUI.Toggle(new Rect(40, 484, 460, 24), debugLogging, "Verbose diagnostics (logs every second)");
-        showRuntimeStatus = GUI.Toggle(new Rect(40, 514, 460, 24), showRuntimeStatus, "Show runtime status");
+        noRecoil = GUI.Toggle(new Rect(40, 418, 460, 24), noRecoil, "No recoil");
+        infiniteHealth = GUI.Toggle(new Rect(40, 448, 460, 24), infiniteHealth, "Infinite health");
+        infiniteAmmo = GUI.Toggle(new Rect(40, 478, 460, 24), infiniteAmmo, "Infinite ammo (log only — identifying correct fields)");
+        debugLogging = GUI.Toggle(new Rect(40, 508, 460, 24), debugLogging, "Verbose diagnostics (logs every second)");
+        showRuntimeStatus = GUI.Toggle(new Rect(40, 538, 460, 24), showRuntimeStatus, "Show runtime status");
         if (showRuntimeStatus)
         {
-            GUI.Label(new Rect(40, 538, 460, 24), $"Update: {(controllerRunning ? "running" : "waiting")} | Boxes: {espBoxes.Count} | {featureStatus}");
-            GUI.Label(new Rect(40, 562, 460, 24), $"Aimbot: {aimStatus}");
+            GUI.Label(new Rect(40, 562, 460, 24), $"Update: {(controllerRunning ? "running" : "waiting")} | Boxes: {espBoxes.Count} | {featureStatus}");
+            GUI.Label(new Rect(40, 586, 460, 24), $"Aimbot: {aimStatus}");
         }
     }
 

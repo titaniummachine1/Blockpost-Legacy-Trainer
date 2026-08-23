@@ -60,6 +60,42 @@ var fireVa = Raw.PLH.Methods.CDEGJOBLOFO;
 | `Hit.BodyPart`   | `DMHBMAAFCFJ.KMCHFGKKICG` |
 | `Hit.Point`      | `DMHBMAAFCFJ.HDAFLOCABNG` |
 
+## Inventory / Loadout
+
+The full weapon table and current loadout are in `GUIInv`:
+
+| Offset | Type | Meaning |
+|--------|------|---------|
+| `Raw.GUIInv.Offsets.OIHNJCKDOIG` | `NAHLLMJMOED[]` | All weapon definitions at runtime |
+| `Raw.GUIInv.Offsets.KNCJNHILDLJ` | `List<FPNENMKEFBB>` | Current loadout entries |
+| `Raw.GUIInv.Offsets.KAOCDKAKFEF` | `CGJPBNDDPIN` | Currently selected weapon instance |
+| `Raw.GUIInv.Offsets.PJMELMGMNDO` | `FPNENMKEFBB` | Currently selected loadout entry |
+
+Key `GUIInv` methods (signature from `Sdk/Generated/GUIInv.cs`):
+
+| Method | Signature | Likely purpose |
+|--------|-----------|----------------|
+| `Raw.GUIInv.Methods.FPIJPCOKIEC` | `NAHLLMJMOED FPIJPCOKIEC(int)` | Get weapon data by id |
+| `Raw.GUIInv.Methods.FPIJPCOKIEC_2` | `NAHLLMJMOED FPIJPCOKIEC(string)` | Get weapon data by codename |
+| `Raw.GUIInv.Methods.CAMMBHLEFOG` | `NAHLLMJMOED CAMMBHLEFOG(string)` | Get weapon data by name |
+| `Raw.GUIInv.Methods.NJDNGJNPHNE` | `NAHLLMJMOED NJDNGJNPHNE(int)` | Get weapon data by id (alt) |
+| `Raw.GUIInv.Methods.PNNEFOPFCHF` | `FPNENMKEFBB PNNEFOPFCHF(int)` | Get/create loadout entry by id |
+| `Raw.GUIInv.Methods.IKFBJEFBBLH` | `FPNENMKEFBB IKFBJEFBBLH(int)` | Get loadout entry by id (alt) |
+| `Raw.GUIInv.Methods.KHABBLDBFKK` | `FPNENMKEFBB KHABBLDBFKK(ulong)` | Get loadout entry by unique id |
+| `Raw.GUIInv.Methods.OHNGCKOFHFB` | `void OHNGCKOFHFB(ulong, int)` | Likely add/change loadout entry |
+| `Raw.GUIInv.Methods.HPLIKAOFIJE` | `void HPLIKAOFIJE(ulong, int)` | Likely remove/change loadout entry |
+| `Raw.GUIInv.Methods.AJHBAOEHHOC` | `void AJHBAOEHHOC()` | Likely refresh/apply loadout |
+| `Raw.GUIInv.Methods.BMEBBEIKMCP` | `void BMEBBEIKMCP()` | Likely refresh/apply loadout (alt) |
+| `Raw.GUIInv.Methods.PBNDHAJICEH` | `void PBNDHAJICEH()` | Likely refresh/apply loadout (alt) |
+| `Raw.GUIInv.Methods.FKBPKKPKOEK` | `void FKBPKKPKOEK()` | Likely refresh/apply loadout (alt) |
+
+Loadout/weapon network senders (in `Client`):
+
+| Method | Signature | Likely purpose |
+|--------|-----------|----------------|
+| `Raw.Client.Methods.MGPBPDIGDBO` | `void MGPBPDIGDBO(NAHLLMJMOED)` | Likely send `0x08 weapondata` |
+| `Raw.Client.Methods.ANICPIFFOIK` | `void ANICPIFFOIK(int, int)` | Likely send `0x09 loadout` |
+
 ## Method overloads
 
 If a class has overloaded methods, the second/third overload is named with a `_2`, `_3` suffix (e.g. `LPAPGKDAENI_2`). The first overload keeps the original name.

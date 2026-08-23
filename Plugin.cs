@@ -142,6 +142,7 @@ public sealed class Plugin : BasePlugin
         Log.LogInfo($"Patched Controll.Update, Controll.OnGUI, and recoil hook: {recoilMethod != null}. Auto-shoot uses direct PLH.CDEGJOBLOFO when rapid fire is active.");
 
         NetProbe.Install(harmony, Log);
+        AsyncLog.Start(Log);
     }
 
     private static void ControllerUpdatePrefix()
@@ -379,7 +380,7 @@ public sealed class Plugin : BasePlugin
 
             if (debugLogging)
             {
-                instance?.Log.LogInfo($"[Diagnostics][Camera] name={camera.name}, enabled={camera.enabled}, active={camera.gameObject.activeInHierarchy}, depth={camera.depth}, pos={camera.transform.position}");
+                AsyncLog.Write($"[Diagnostics][Camera] name={camera.name}, enabled={camera.enabled}, active={camera.gameObject.activeInHierarchy}, depth={camera.depth}, pos={camera.transform.position}");
             }
 
             if (IsGameplayCamera(camera))
@@ -646,20 +647,26 @@ public sealed class Plugin : BasePlugin
             var players = PLH.BAKLNPIEHMI;
             var mainPlayer = Controll.HGAODFPBGLB;
             var camera = ResolveCamera();
-            instance?.Log.LogInfo($"[Diagnostics] menu={menuVisible}, esp={espEnabled}, aimbot={aimbotEnabled}, aimMode={AimActivationLabels[aimActivationMode]}, aimStyle={AimStyleLabels[aimStyle]}, fovDegrees={aimbotFov:0}, noRecoil={noRecoil}, infiniteHealth={infiniteHealth}, infiniteAmmo={infiniteAmmo}, rapidFire={rapidFire}, leftMouse={Input.GetMouseButton(0)}, rightMouse={Input.GetMouseButton(1)}, players={(players == null ? "null" : players.Length.ToString())}, mainPlayer={(mainPlayer == null ? "null" : "present")}, camera={(camera == null ? "null" : camera.name)}, featureStatus={featureStatus}, aimStatus={aimStatus}, aimTargetIndex={lastAimTargetIndex}, aimTargetPos={lastAimTargetPosition}, recoilCalls={recoilCalls}, recoilSuppressed={recoilSuppressed}.");
+            AsyncLog.Write($"[Diagnostics] menu={menuVisible}, esp={espEnabled}, aimbot={aimbotEnabled}, aimMode={AimActivationLabels[aimActivationMode]}, aimStyle={AimStyleLabels[aimStyle]}, fovDegrees={aimbotFov:0}, noRecoil={noRecoil}, infiniteHealth={infiniteHealth}, infiniteAmmo={infiniteAmmo}, rapidFire={rapidFire}, leftMouse={Input.GetMouseButton(0)}, rightMouse={Input.GetMouseButton(1)}, players={(players == null ? "null" : players.Length.ToString())}, mainPlayer={(mainPlayer == null ? "null" : "present")}, camera={(camera == null ? "null" : camera.name)}, featureStatus={featureStatus}, aimStatus={aimStatus}, aimTargetIndex={lastAimTargetIndex}, aimTargetPos={lastAimTargetPosition}, recoilCalls={recoilCalls}, recoilSuppressed={recoilSuppressed}.");
             LogControllCandidates();
             LogPlayers(players, mainPlayer, camera);
             LogAmmoStatus(mainPlayer);
         }
         catch (Exception exception)
         {
-            instance?.Log.LogWarning($"[Diagnostics] Runtime inspection failed: {exception.GetType().Name}: {exception.Message}");
+            AsyncLog.Write($"[Diagnostics] Runtime inspection failed: {exception.GetType().Name}: {exception.Message}");
         }
     }
 
+    // Re-querying reflection every second was the other half of the verbose-mode cost, on top of
+    // the synchronous logging. The set never changes, so resolve it once.
+    private static PropertyInfo[]? controllStatics;
+
     private static void LogControllCandidates()
     {
-        foreach (var property in typeof(Controll).GetProperties(BindingFlags.Public | BindingFlags.Static))
+        controllStatics ??= typeof(Controll).GetProperties(BindingFlags.Public | BindingFlags.Static);
+
+        foreach (var property in controllStatics)
         {
             if (property.GetIndexParameters().Length != 0)
             {
@@ -671,12 +678,12 @@ public sealed class Plugin : BasePlugin
                 var value = property.GetValue(null);
                 if (value != null && IsDiagnosticType(property.PropertyType))
                 {
-                    instance?.Log.LogInfo($"[Diagnostics][Controll] {property.Name}={FormatDiagnosticValue(value)}");
+                    AsyncLog.Write($"[Diagnostics][Controll] {property.Name}={FormatDiagnosticValue(value)}");
                 }
             }
             catch (Exception exception)
             {
-                instance?.Log.LogWarning($"[Diagnostics][Controll] {property.Name} failed: {exception.GetType().Name}");
+                AsyncLog.Write($"[Diagnostics][Controll] {property.Name} failed: {exception.GetType().Name}");
             }
         }
     }
@@ -751,7 +758,7 @@ public sealed class Plugin : BasePlugin
     {
         if (player == null)
         {
-            instance?.Log.LogInfo($"[Diagnostics][Player] index={index}, value=null");
+            AsyncLog.Write($"[Diagnostics][Player] index={index}, value=null");
             return;
         }
 
@@ -765,7 +772,7 @@ public sealed class Plugin : BasePlugin
                 : camera.WorldToScreenPoint(headPosition);
             var isMain = player._LCEIAGLFFJN_k__BackingField;
             var sameTeam = mainPlayer != null && player.MMMGPDBMOLM == mainPlayer.MMMGPDBMOLM;
-            instance?.Log.LogInfo($"[Diagnostics][Player] index={index}, main={isMain}, team={player.MMMGPDBMOLM}, health={player.FDOJDJLIGLF}, sameTeam={sameTeam}, head={(head == null ? "null" : head.name)}, headPos={headPosition}, screenPos={screenPosition}");
+            AsyncLog.Write($"[Diagnostics][Player] index={index}, main={isMain}, team={player.MMMGPDBMOLM}, health={player.FDOJDJLIGLF}, sameTeam={sameTeam}, head={(head == null ? "null" : head.name)}, headPos={headPosition}, screenPos={screenPosition}");
             LogPlayerObjectCandidates(player, camera);
             if (dumpFields || isMain)
             {
@@ -774,7 +781,7 @@ public sealed class Plugin : BasePlugin
         }
         catch (Exception exception)
         {
-            instance?.Log.LogWarning($"[Diagnostics][Player] index={index} failed: {exception.GetType().Name}: {exception.Message}");
+            AsyncLog.Write($"[Diagnostics][Player] index={index} failed: {exception.GetType().Name}: {exception.Message}");
         }
     }
 
@@ -790,11 +797,11 @@ public sealed class Plugin : BasePlugin
             try
             {
                 var value = property.GetValue(player);
-                instance?.Log.LogInfo($"[Diagnostics][PlayerField] property={property.Name}, type={property.PropertyType.Name}, value={(value == null ? "null" : FormatDiagnosticValue(value))}");
+                AsyncLog.Write($"[Diagnostics][PlayerField] property={property.Name}, type={property.PropertyType.Name}, value={(value == null ? "null" : FormatDiagnosticValue(value))}");
             }
             catch (Exception exception)
             {
-                instance?.Log.LogWarning($"[Diagnostics][PlayerField] property={property.Name} failed: {exception.GetType().Name}");
+                AsyncLog.Write($"[Diagnostics][PlayerField] property={property.Name} failed: {exception.GetType().Name}");
             }
         }
     }
@@ -838,7 +845,7 @@ public sealed class Plugin : BasePlugin
             var screenPosition = camera == null || transform == null
                 ? Vector3.zero
                 : camera.WorldToScreenPoint(position);
-            instance?.Log.LogInfo($"[Diagnostics][Object] field={candidate.Name}, name={candidate.Value.name}, pos={position}, screenPos={screenPosition}");
+            AsyncLog.Write($"[Diagnostics][Object] field={candidate.Name}, name={candidate.Value.name}, pos={position}, screenPos={screenPosition}");
         }
     }
 
@@ -874,7 +881,7 @@ public sealed class Plugin : BasePlugin
         {
             if (!featureFailureLogged)
             {
-                instance?.Log.LogWarning($"[Diagnostics] Aimbot update failed: {exception}");
+                AsyncLog.Write($"[Diagnostics] Aimbot update failed: {exception}");
                 featureFailureLogged = true;
             }
         }
@@ -906,7 +913,7 @@ public sealed class Plugin : BasePlugin
             espBoxes.Clear();
             if (!featureFailureLogged)
             {
-                instance?.Log.LogWarning($"[Diagnostics] ESP update failed: {exception}");
+                AsyncLog.Write($"[Diagnostics] ESP update failed: {exception}");
                 featureFailureLogged = true;
             }
         }
@@ -1226,7 +1233,7 @@ public sealed class Plugin : BasePlugin
         {
             if (!guiFailureLogged)
             {
-                instance?.Log.LogWarning($"[Diagnostics] Trainer GUI draw failed: {exception}");
+                AsyncLog.Write($"[Diagnostics] Trainer GUI draw failed: {exception}");
                 guiFailureLogged = true;
             }
         }
@@ -1273,7 +1280,7 @@ public sealed class Plugin : BasePlugin
         infiniteHealth = GUI.Toggle(new Rect(40, 448, 460, 24), infiniteHealth, "Infinite health");
         infiniteAmmo = GUI.Toggle(new Rect(40, 478, 460, 24), infiniteAmmo, "Infinite ammo (log only — identifying correct fields)");
         instantReload = GUI.Toggle(new Rect(40, 508, 460, 24), instantReload, $"Instant reload (client-side only — {instantReloads} so far)");
-        debugLogging = GUI.Toggle(new Rect(40, 538, 460, 24), debugLogging, "Verbose diagnostics (logs every second)");
+        debugLogging = GUI.Toggle(new Rect(40, 538, 460, 24), debugLogging, $"Verbose diagnostics (async, 1/s{(AsyncLog.Dropped > 0 ? $", {AsyncLog.Dropped} dropped" : string.Empty)})");
         showRuntimeStatus = GUI.Toggle(new Rect(40, 568, 460, 24), showRuntimeStatus, "Show runtime status");
         if (showRuntimeStatus)
         {

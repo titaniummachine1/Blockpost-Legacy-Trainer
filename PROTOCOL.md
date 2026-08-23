@@ -759,3 +759,64 @@ hoping to catch it mid-change.
 | `F6` | field watcher on/off |
 | `F7` | packet capture on/off |
 | `F8` | numbered marker |
+
+---
+
+## 22. AMMO FOUND — and it is server-pushed, not client-side
+
+Three `F4` snapshots at a known ammo sequence **8 → (fire 2) → 6 → (fire 1) → 5** finally located it,
+by elimination rather than by catching a change.
+
+No field matched `8, 6, 5`. But of 245 scalars, only 21 differed across the three snapshots, and one
+of them was unmistakable:
+
+```
+HUD.static.GONEFAMEMOJ   [325, 315, 310]     -10 for two shots, -5 for one
+```
+
+Exactly **5 per round**, giving `GONEFAMEMOJ = 285 + 5 x ammo`. It is a HUD layout coordinate for
+the ammo readout, not the counter itself — but it led straight to the counter.
+
+### The chain
+
+Scanning for writers of `HUD` static `0x178`:
+
+```
+HUD.GEGHOEFBKMO(int a, int b, int c)    VA 0x103BCB30
+    a.ToString() -> HUD static 0x160    (ammo text)
+    b.ToString() -> HUD static 0x164    (ammo text)
+    ...          -> HUD static 0x178    (GONEFAMEMOJ, layout)
+```
+
+And its **only two callers**:
+
+```
+Client.AGMCDJGEGGB()     VA 0x10B475A0
+Client.FPKEAECEOPE()     VA 0x10B4F...   <-- the inbound packet processor
+```
+
+The call site sits directly after `NET.AGIJMMKMPPB(buffer, len, 4)` and `NET.IFIEBMLBNIN()` — i.e.
+it is **decoding an inbound packet** and feeding the values straight to the HUD.
+
+### This inverts §3
+
+§3 concluded "there is no ammo opcode, the server is never told, ammo is client-local simulation."
+That was inferred from the **outgoing** opcode table only, and the inference was backwards.
+
+**Ammo is server-authoritative.** The client never owns a magazine counter — it receives the numbers
+and renders them. That is why nine objects, 245 scalars and eight arrays contained no ammo value:
+there is nothing to find client-side. It also explains why infinite ammo has never worked, and it
+is a genuine answer to the original question about what the server controls.
+
+Reload remains client-side (no outgoing reload opcode, and the timers in §11 are real), but the
+**ammo count that reload restores comes from the server.**
+
+### Instrumentation
+
+`NetProbe` now hooks `HUD.GEGHOEFBKMO` and logs on change:
+
+```
+AMMO a=<mag> b=<reserve> c=<third>
+```
+
+Which argument is magazine vs reserve still needs one run to confirm against the on-screen numbers.

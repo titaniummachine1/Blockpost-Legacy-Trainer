@@ -200,6 +200,17 @@ internal static class NetProbe
         patched += Patch(harmony, netType, nameof(Raw.NET.Methods.PJFMOLFBKHM), new[] { typeof(string) }, nameof(OnStr));
         patched += Patch(harmony, netType, nameof(Raw.NET.Methods.EMJOGONJKIO), Type.EmptyTypes, nameof(OnEnd));
         patched += Patch(harmony, clientType, nameof(Raw.Client.Methods.HKOFHOANEJD), Type.EmptyTypes, nameof(OnFlush));
+
+        // The ammo readout. HUD.GEGHOEFBKMO(a, b, c) stringifies a and b into the HUD text fields
+        // at 0x160/0x164, and its only callers are Client.FPKEAECEOPE and Client.AGMCDJGEGGB --
+        // both in the inbound packet path. Ammo is pushed by the server, which is why no
+        // client-side object ever held it.
+        var hudType = AccessTools.TypeByName("HUD");
+        if (hudType != null)
+        {
+            patched += Patch(harmony, hudType, "GEGHOEFBKMO",
+                new[] { typeof(int), typeof(int), typeof(int) }, nameof(OnAmmoHud));
+        }
         // Room client has three byte[]+int methods; only FPIDGCHIEMJ was patched before.
         // Capture from all three so we can see which one actually carries inbound traffic.
         // Client has several (byte[], int) methods. FPIDGCHIEMJ was the obvious candidate,
@@ -379,6 +390,28 @@ internal static class NetProbe
     {
         parsingWeaponData = false;
         Push(Kind.End, 0);
+    }
+
+    private static int lastAmmoA = int.MinValue;
+    private static int lastAmmoB;
+    private static int lastAmmoC;
+
+    /// <summary>
+    /// Server-pushed ammo readout. HUD.GEGHOEFBKMO(a, b, c) stringifies a and b into the HUD text
+    /// fields; its only callers are Client.FPKEAECEOPE and Client.AGMCDJGEGGB, both in the inbound
+    /// packet path. Logged only on change.
+    /// </summary>
+    private static void OnAmmoHud(int JMEFALEPJKM, int DEAOCFDEMKE, int PBCODLDLHKL)
+    {
+        if (JMEFALEPJKM == lastAmmoA && DEAOCFDEMKE == lastAmmoB && PBCODLDLHKL == lastAmmoC)
+        {
+            return;
+        }
+
+        lastAmmoA = JMEFALEPJKM;
+        lastAmmoB = DEAOCFDEMKE;
+        lastAmmoC = PBCODLDLHKL;
+        Note($"AMMO a={JMEFALEPJKM} b={DEAOCFDEMKE} c={PBCODLDLHKL}");
     }
 
     private static void OnFlush()

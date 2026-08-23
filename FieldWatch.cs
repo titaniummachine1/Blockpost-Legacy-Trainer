@@ -43,6 +43,7 @@ internal static class FieldWatch
     // Element cap per array. Loadout-sized arrays are small; this only exists so a stats array
     // cannot blow the frame budget on its own.
     private const int MaxArrayElements = 12;
+    private const int ArrayBudgetPerTarget = 40;
 
     private sealed class ArrayWatch
     {
@@ -84,6 +85,10 @@ internal static class FieldWatch
 
     private static readonly List<Target> Targets = new();
     private static int budgetLeft;
+    // Arrays get their own reserve. Sharing one pool with the scalars starved them completely:
+    // with 51 scalars against a 24-read allowance, DiffArrays was never reached even once in
+    // capture net-20260823-141840.
+    private static int arrayBudgetLeft;
     private static bool enabled;
     private static bool includeNoisy;
     private static readonly Dictionary<string, int> complaints = new();
@@ -148,6 +153,7 @@ internal static class FieldWatch
             try
             {
                 budgetLeft = perTarget;
+                arrayBudgetLeft = ArrayBudgetPerTarget;
                 Diff(target);
             }
             catch (Exception exception)
@@ -446,7 +452,7 @@ internal static class FieldWatch
         target.Previous = new double[target.Props.Length];
         target.Seeded = new bool[target.Props.Length];
         Targets.Add(target);
-        NetProbe.Note($"# fieldwatch {target.Label}: {target.Props.Length} numeric fields on {target.Type.Name}");
+        NetProbe.Note($"# fieldwatch {target.Label}: {target.Props.Length} numeric fields, {target.Arrays.Count} arrays ({string.Join(",", target.Arrays.ConvertAll(a => a.Label))}) on {target.Type.Name}");
     }
 
     private static bool IsNumeric(Type t) =>
@@ -524,7 +530,7 @@ internal static class FieldWatch
     {
         foreach (var watch in target.Arrays)
         {
-            if (budgetLeft <= 0)
+            if (arrayBudgetLeft <= 0)
             {
                 return;
             }
@@ -560,9 +566,9 @@ internal static class FieldWatch
                 watch.Seeded = grownSeeded;
             }
 
-            for (var i = 0; i < count && budgetLeft > 0; i++)
+            for (var i = 0; i < count && arrayBudgetLeft > 0; i++)
             {
-                budgetLeft--;
+                arrayBudgetLeft--;
                 double now;
                 try
                 {

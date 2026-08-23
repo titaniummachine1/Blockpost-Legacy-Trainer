@@ -53,9 +53,16 @@ internal static class FieldWatch
         public PropertyInfo[] Props { get; set; } = Array.Empty<PropertyInfo>();
         public double[] Previous { get; set; } = Array.Empty<double>();
         public bool[] Seeded { get; set; } = Array.Empty<bool>();
+        public int Cursor { get; set; }
     }
 
+    // FieldWatch runs EVERY FRAME, not on an interval, so it is far more exposed than the
+    // diagnostics were. Each read is an IL2CPP runtime_invoke; six targets of ~130-190 properties
+    // would be ~900 per frame. Budget it and resume where it left off.
+    private const int ReadBudgetPerFrame = 120;
+
     private static readonly List<Target> Targets = new();
+    private static int budgetLeft;
     private static bool enabled;
     private static bool includeNoisy;
     private static readonly Dictionary<string, int> complaints = new();
@@ -110,11 +117,16 @@ internal static class FieldWatch
             return;
         }
 
+        // Split the budget evenly. A single shared pool would be spent by whichever target is
+        // walked first, starving `weapon` and `activeEntry` -- the two we actually care about.
+        var perTarget = Math.Max(8, ReadBudgetPerFrame / Math.Max(1, Targets.Count));
+
         // One bad target must not take the others down with it.
         foreach (var target in Targets)
         {
             try
             {
+                budgetLeft = perTarget;
                 Diff(target);
             }
             catch (Exception exception)
@@ -388,8 +400,24 @@ internal static class FieldWatch
 
     private static void Diff(Target target)
     {
-        for (var i = 0; i < target.Props.Length; i++)
+        if (target.Props.Length == 0)
         {
+            return;
+        }
+
+        // Walk from wherever the last frame stopped so every field is still visited, just spread
+        // across frames instead of all at once.
+        for (var n = 0; n < target.Props.Length; n++)
+        {
+            if (budgetLeft <= 0)
+            {
+                return;
+            }
+
+            budgetLeft--;
+            var i = target.Cursor;
+            target.Cursor = (target.Cursor + 1) % target.Props.Length;
+
             double now;
             try
             {

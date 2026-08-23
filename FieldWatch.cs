@@ -448,11 +448,48 @@ internal static class FieldWatch
             }
         }
 
+        DumpArraysOnce(target);
+
         target.Props = candidates.ToArray();
         target.Previous = new double[target.Props.Length];
         target.Seeded = new bool[target.Props.Length];
         Targets.Add(target);
         NetProbe.Note($"# fieldwatch {target.Label}: {target.Props.Length} numeric fields, {target.Arrays.Count} arrays ({string.Join(",", target.Arrays.ConvertAll(a => a.Label))}) on {target.Type.Name}");
+    }
+
+    /// <summary>
+    /// Log the initial contents of every bound array, once, at bind time. Silent failure is the
+    /// recurring hazard here: ElementAt throwing would look identical to values that never move.
+    /// </summary>
+    private static void DumpArraysOnce(Target target)
+    {
+        foreach (var watch in target.Arrays)
+        {
+            try
+            {
+                var raw = watch.Property.GetValue(target.Instance);
+                if (raw == null)
+                {
+                    NetProbe.Note($"#   {target.Label}.{watch.Label} = null");
+                    continue;
+                }
+
+                var count = CountOf(raw);
+                var shown = Math.Min(count, MaxArrayElements);
+                var parts = new List<string>(Math.Max(0, shown));
+                for (var i = 0; i < shown; i++)
+                {
+                    var element = ElementAt(raw, i);
+                    parts.Add(element?.ToString() ?? "null");
+                }
+
+                NetProbe.Note($"#   {target.Label}.{watch.Label} len={count} [{string.Join(", ", parts)}]");
+            }
+            catch (Exception exception)
+            {
+                NetProbe.Note($"#   {target.Label}.{watch.Label} READ FAILED: {exception.GetType().Name}: {exception.Message}");
+            }
+        }
     }
 
     private static bool IsNumeric(Type t) =>

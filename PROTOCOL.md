@@ -575,3 +575,46 @@ A second reload at `137416.5` lasted only **164 ms** with `ILGHFLMKMCO` left at 
 (`134.2007`, unmodified). Either instant reload was enabled and its write was restored by the game
 before FieldWatch sampled that frame, or the reload was interrupted. **Unresolved** — needs a run
 where it is known whether the toggle was on.
+
+---
+
+## 17. Ammo hunt: still not found, search space narrowed
+
+`net-20260823-142205` — magazines emptied, minigame attempted and failed several times. All arrays
+bound this time:
+
+| Target | Scalars | Arrays |
+|---|---|---|
+| `player` | 51 | `GPBAJMJILMA`, `JNBMIDFBOHD`, `JPDHFNADBKI`, **`GDEMINMDJAC`**, `DDKPBGMMNIA`, `PPOOANLEBNI` |
+| `Controll.static` | 74 | `DDOHELGGICN` |
+| `Controll` | 28 | — |
+| `weapon` (`CGJPBNDDPIN`) | 3 | — |
+| `activeEntry` (`FPNENMKEFBB`) | 8 | `COAAKMDBKJM` (byte[]) |
+
+**Zero array element changes** across the run, `GDEMINMDJAC` included — despite several magazines
+being emptied.
+
+### Ruled out so far
+
+- Every scalar on `KBBBHJDINCB`, `Controll` (static and instance), `CGJPBNDDPIN`, `FPNENMKEFBB`
+- Every element (first 12) of all eight bound arrays
+
+### Open ambiguity, and the fix for it
+
+"No array lines" is currently indistinguishable from "`ElementAt` throws and the catch swallows
+it". Silent failure has already cost two runs in this hunt (the `IList` cast in §15, the starved
+budget in §16), so FieldWatch now **dumps each array's contents once at bind time**:
+
+```
+#   player.GDEMINMDJAC len=4 [30, 12, 1, 0]
+#   player.GDEMINMDJAC READ FAILED: ...
+```
+
+Either the magazine is visible in that dump, or the read is broken and it says so. One run
+distinguishes them.
+
+### Note on method
+
+Three separate attempts to find ammo have each failed for a *different* silent reason rather than
+because the value was absent. Prefer instrumentation that proves it ran over instrumentation that
+only reports differences.

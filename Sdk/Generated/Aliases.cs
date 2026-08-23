@@ -13,21 +13,37 @@ namespace BlockpostTrainer.Sdk
             public const int Id1 = Raw.KBBBHJDINCB.Offsets.CCINALOJCNH;
             public const int Id2 = Raw.KBBBHJDINCB.Offsets.LGOAHLMABFF;
             public const int Team = Raw.KBBBHJDINCB.Offsets.MMMGPDBMOLM;
+            /// <summary>Player health.</summary>
             public const int Health = Raw.KBBBHJDINCB.Offsets.FDOJDJLIGLF;
             public const int MaxHealth = Raw.KBBBHJDINCB.Offsets.EFHBKMHCMOH;
             public const int Armor = Raw.KBBBHJDINCB.Offsets.INGHEHAALBJ;
             public const int Position = Raw.KBBBHJDINCB.Offsets.OOMJGHCFODI;
             public const int CameraForward = Raw.KBBBHJDINCB.Offsets.JIPNKAGPCGK;
             public const int MuzzleForward = Raw.KBBBHJDINCB.Offsets.FLILDBNOFMK;
+            /// <summary>Current weapon spread / recoil accumulator.</summary>
             public const int Spread = Raw.KBBBHJDINCB.Offsets.FGFKPMPLNKO;
             public const int FireTimer = Raw.KBBBHJDINCB.Offsets.LCMOBPPHLLM;
             public const int IsFiring = Raw.KBBBHJDINCB.Offsets.APFNBGHAJMD;
             public const int PlayerId = Raw.KBBBHJDINCB.Offsets.LCPGFBMKNHJ;
             public const int Slot = Raw.KBBBHJDINCB.Offsets.MOPBMENEGLN;
+            /// <summary>int[] indexed by weapon slot. PRIME ammo candidate -- ammo is not a scalar on any watched object (166 checked). Unconfirmed.</summary>
             public const int AmmoPerSlot = Raw.KBBBHJDINCB.Offsets.GDEMINMDJAC;
             public const int Loadout = Raw.KBBBHJDINCB.Offsets.KPNAADPGNCP;
             public const int ActiveWeapon = Raw.KBBBHJDINCB.Offsets._EPGCMIJPHIA_k__BackingField;
+            /// <summary>Active weapon id. Writing an ammo count here causes NO WEAPON -- do not treat as a counter.</summary>
             public const int ActiveWeaponId = Raw.KBBBHJDINCB.Offsets.ECBCOHFLJCC;
+            /// <summary>Footstep sound index, cycles 0-4. NOT ammo -- looks like a magazine at a glance (small cyclic range, changes per step). Dead end, see PROTOCOL.md 16.</summary>
+            public const int FootstepIndex = Raw.KBBBHJDINCB.Offsets.IGBIBDAMMLE;
+            /// <summary>Distance accumulator driving FootstepIndex. Rises monotonically. Not ammo.</summary>
+            public const int FootstepDistance = Raw.KBBBHJDINCB.Offsets.BCHEAICMFGH;
+            /// <summary>Distance-walked accumulator feeding WeaponBob. Presentation only.</summary>
+            public const int DistanceWalked = Raw.KBBBHJDINCB.Offsets.NDLMGNIMKHE;
+            /// <summary>Weapon bob, oscillates 0 -> ~10 -> 0. Presentation only.</summary>
+            public const int WeaponBob = Raw.KBBBHJDINCB.Offsets.HDNNKKFCPOB;
+            /// <summary>Sway/lean ramp, 0 -> 45 then decays. Presentation only.</summary>
+            public const int SwayLean = Raw.KBBBHJDINCB.Offsets.MJFMDOKEFFO;
+            /// <summary>int[] stats. DO NOT WRITE -- corrupts player state.</summary>
+            public const int StatsArray = Raw.KBBBHJDINCB.Offsets.PPOOANLEBNI;
         }
 
         public static class Game
@@ -41,9 +57,13 @@ namespace BlockpostTrainer.Sdk
             public const int HitList = Raw.Controll.Offsets.GOMFKJNNJAP;
             public const int HitSequence = Raw.Controll.Offsets.GAMBHJPMDON;
             public const int CanFire = Raw.Controll.Offsets.KEPGFOEOHPD;
+            /// <summary>Time.time when the reload began.</summary>
             public const int ReloadStartTime = Raw.Controll.Offsets.FBINCNDDPAO;
+            /// <summary>Reload completion stamp, normally start + 2.0. A perfect reload SUBTRACTS from this; that is the whole mechanism. Must be written from the Update PREFIX -- a postfix write lands after the game has read it and only collapses the UI bar.</summary>
             public const int ReloadEndTime = Raw.Controll.Offsets.ILGHFLMKMCO;
+            /// <summary>Minigame marker position, ~0.31-0.49 observed.</summary>
             public const int ReloadMarkerPos = Raw.Controll.Offsets.JADIDAJFOGK;
+            /// <summary>True for the duration of a reload.</summary>
             public const int IsReloading = Raw.Controll.Offsets.DJACNOGOCKD;
             public const int ReloadPromptActive = Raw.Controll.Offsets.KOPOBDGHLFL;
             public const int ReloadRequestTime = Raw.Controll.Offsets.CLEHDNFKJPB;

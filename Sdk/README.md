@@ -106,3 +106,18 @@ Loadout/weapon network senders (in `Client`):
 ## Method overloads
 
 If a class has overloaded methods, the second/third overload is named with a `_2`, `_3` suffix (e.g. `LPAPGKDAENI_2`). The first overload keeps the original name.
+
+## Negative results are named too
+
+An alias is not only for fields you want to *use*. Anything **identified** gets a name and a note,
+including fields that turned out to be irrelevant — otherwise the next person re-investigates them.
+
+`Player.FootstepIndex` is the example: it cycles `0-4` and changes on every step, so it looks like a
+magazine counter at a glance. It cost a capture and an analysis pass to rule out. It is now named,
+annotated, and muted in `FieldWatch`, so that cost is paid once.
+
+The same applies to traps: `Player.ActiveWeaponId` and `Player.StatsArray` carry notes saying what
+happens if you write them, because both have already corrupted game state.
+
+Rule of thumb: if a session spent effort determining what a field is — or is *not* — that belongs in
+`sdk_aliases.json` with a `Notes` entry, not only in a capture log or a commit message.

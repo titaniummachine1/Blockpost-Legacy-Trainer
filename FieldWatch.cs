@@ -35,7 +35,9 @@ internal static class FieldWatch
         nameof(Raw.KBBBHJDINCB.Offsets.HDNNKKFCPOB), // weapon bob
         nameof(Raw.KBBBHJDINCB.Offsets.MJFMDOKEFFO), // sway / lean ramp
         nameof(Raw.KBBBHJDINCB.Offsets.NJPHKNAOEKM),
-        nameof(Raw.KBBBHJDINCB.Offsets.NHJDPAAFIKO)
+        nameof(Raw.KBBBHJDINCB.Offsets.NHJDPAAFIKO),
+        nameof(Raw.KBBBHJDINCB.Offsets.IGBIBDAMMLE), // footstep sound index -- not ammo
+        nameof(Raw.KBBBHJDINCB.Offsets.BCHEAICMFGH)  // footstep distance accumulator
     };
 
     // Element cap per array. Loadout-sized arrays are small; this only exists so a stats array

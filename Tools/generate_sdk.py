@@ -365,9 +365,13 @@ def write_aliases(aliases: dict, out_dir: Path) -> None:
         sb.append("        {")
         fields = mapping.get("Fields", {})
         methods = mapping.get("Methods", {})
+        notes = mapping.get("Notes", {})
         for human_name, orig_name in fields.items():
             safe_h = csharp_identifier(human_name)
             safe_o = csharp_identifier(orig_name)
+            note = notes.get(human_name)
+            if note:
+                sb.append(f"            /// <summary>{note}</summary>")
             sb.append(f"            public const int {safe_h} = Raw.{safe_orig}.Offsets.{safe_o};")
         for human_name, orig_name in methods.items():
             safe_h = csharp_identifier(human_name)

@@ -283,6 +283,14 @@ namespace BlockpostTrainer.Sdk.Raw
         }
 
         /// <summary>
+        /// Property names for Controll.
+        /// </summary>
+        public static class Properties
+        {
+            public const string JBKBOPCCIBM = "JBKBOPCCIBM"; // int { get/set }
+        }
+
+        /// <summary>
         /// Method virtual addresses (VAs) for Controll.
         /// </summary>
         public static class Methods

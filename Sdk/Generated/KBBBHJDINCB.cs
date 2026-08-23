@@ -156,6 +156,17 @@ namespace BlockpostTrainer.Sdk.Raw
         }
 
         /// <summary>
+        /// Property names for KBBBHJDINCB.
+        /// </summary>
+        public static class Properties
+        {
+            public const string HIECLOJIFIL = "HIECLOJIFIL"; // bool { get }
+            public const string JPGGPPLOOML = "JPGGPPLOOML"; // CGJPBNDDPIN { get/set }
+            public const string GNIGDNCENCC = "GNIGDNCENCC"; // Texture2D { get }
+            public const string GNMEOACGHHC = "GNMEOACGHHC"; // Texture2D { get }
+        }
+
+        /// <summary>
         /// Method virtual addresses (VAs) for KBBBHJDINCB.
         /// </summary>
         public static class Methods

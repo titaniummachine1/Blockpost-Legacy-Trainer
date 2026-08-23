@@ -147,6 +147,43 @@ def parse_fields(body: str) -> list[dict]:
     return fields
 
 
+def parse_properties(body: str) -> list[dict]:
+    """Parse // Properties section if it exists."""
+    props = []
+    # Find // Properties section, which sits between // Fields and // Methods.
+    m = re.search(r"\n\s*//\s*Properties\s*\n", body)
+    if not m:
+        return props
+
+    start = m.end()
+    # Stop at // Methods or end of body
+    methods_m = re.search(r"\n\s*//\s*Methods\s*\n", body[start:])
+    prop_text = body[start : start + methods_m.start()] if methods_m else body[start:]
+
+    prop_re = re.compile(
+        r"^\s*(?:\[[^\]]+\]\s*)*"
+        r"(?P<modifiers>(?:internal|private|public|protected)(?:\s+(?:static|readonly|const))*)\s+"
+        r"(?P<type>[\w\[\]<>.,\s]+?)\s+"
+        r"(?P<name>[\w<>.]+)\s*\{\s*"
+        r"(?P<getter>get)?\s*;?\s*(?P<setter>set)?\s*;?\s*"
+        r"\}\s*$",
+
+
+        re.MULTILINE,
+    )
+
+    for m in prop_re.finditer(prop_text):
+        mods = m.group("modifiers").split()
+        props.append({
+            "name": m.group("name").strip(),
+            "type": m.group("type").strip(),
+            "get": bool(m.group("getter")),
+            "set": bool(m.group("setter")),
+            "static": "static" in mods,
+        })
+    return props
+
+
 def parse_methods(body: str) -> list[dict]:
     """Parse // Methods section."""
     methods = []
@@ -219,7 +256,7 @@ def vector_suffixes(ftype: str) -> list[tuple[str, int]] | None:
     return None
 
 
-def write_class_sdk(class_name: str, fields: list[dict], methods: list[dict], out_dir: Path) -> None:
+def write_class_sdk(class_name: str, fields: list[dict], properties: list[dict], methods: list[dict], out_dir: Path) -> None:
     safe_name = csharp_identifier(class_name)
     file = out_dir / f"{safe_name}.cs"
     sb = []
@@ -266,6 +303,24 @@ def write_class_sdk(class_name: str, fields: list[dict], methods: list[dict], ou
 
     sb.append("        }")
     sb.append("")
+
+    if properties:
+        sb.append("        /// <summary>")
+        sb.append(f"        /// Property names for {class_name}.")
+        sb.append("        /// </summary>")
+        sb.append("        public static class Properties")
+        sb.append("        {")
+        for p in properties:
+            cname = csharp_identifier(p["name"])
+            gs = []
+            if p["get"]:
+                gs.append("get")
+            if p["set"]:
+                gs.append("set")
+            gs_str = "/".join(gs) if gs else "?"
+            sb.append(f"            public const string {cname} = \"{p['name']}\"; // {p['type']} {{ {gs_str} }}")
+        sb.append("        }")
+        sb.append("")
 
     sb.append("        /// <summary>")
     sb.append(f"        /// Method virtual addresses (VAs) for {class_name}.")
@@ -344,8 +399,9 @@ def main() -> int:
             continue
         print(f"  + {class_name} at line {line}")
         fields = parse_fields(body)
+        properties = parse_properties(body)
         methods = parse_methods(body)
-        write_class_sdk(class_name, fields, methods, OUT_DIR)
+        write_class_sdk(class_name, fields, properties, methods, OUT_DIR)
 
     write_aliases(aliases, OUT_DIR)
     print(f"Done. Output in {OUT_DIR}")

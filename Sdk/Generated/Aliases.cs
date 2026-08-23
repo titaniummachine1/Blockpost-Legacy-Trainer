@@ -86,7 +86,7 @@ namespace BlockpostTrainer.Sdk
         {
             public const uint Fire = Raw.PLH.Methods.CDEGJOBLOFO;
             public const uint SelectWeapon = Raw.PLH.Methods.DIFGDFHJDGO;
-            public const uint Reload = Raw.PLH.Methods.JLAALPNBABH;
+            public const uint LoadWeaponSkin = Raw.PLH.Methods.JLAALPNBABH;
         }
 
         public static class Inventory

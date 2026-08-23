@@ -657,3 +657,56 @@ The HUD must read the number to draw it, and `PLH` is the weapon manager:
 
 FieldWatch now binds statics **and** singleton instance for each, via a generic
 `AddStaticsAndSingleton` helper, and logs explicitly when a type or singleton is missing.
+
+---
+
+## 19. Correction: `JLAALPNBABH` is the skin loader, not reload
+
+Disassembling past the first ~110 instructions of `PLH.JLAALPNBABH` (VA `0x10AFF330`) shows what it
+actually does:
+
+```
+VWGen2::CDANNBDNHFM(string, int)          resolve weapon prefab
+PlayerPrefs::HasKey / GetString           saved skin selection
+TEX::CALGHDNPMLO(string, bool)            load texture
+Material::SetTexture(string, Texture)     apply skin
+PLH::BMDDPNJEIEC(KBBBHJDINCB, CGJPBNDDPIN)
+```
+
+It is the **weapon model/skin loader**. It never touches ammo and is not the reload entry point.
+
+**This invalidates §13.** The `JDIHHMABLAJ[slot].DBMOPKGMECL[1]` walk described there is the skin
+loader's path to the weapon definition, not the reload's path to ammo. `activeEntry` was bound
+along a route with no reason to hold a magazine counter — which is consistent with it recording
+zero changes across every capture since.
+
+The SDK alias is corrected from `Weapon.Reload` to `Weapon.LoadWeaponSkin`, with a note.
+
+## 20. Ammo: change-detection exhausted, switching to value matching
+
+`net-20260823-142940` bound eleven targets — `player`, `Controll` (static + instance), `weapon`,
+`activeEntry`, and now `PLH.static`, `HUD.static`, `HUD`, `GUIInv.static`, `GUIInv`.
+(`PLH.LPCJFAOOIKA` is null; `GUIInv.LPCJFAOOIKA` resolves to a `BIMFEOACIDM`.)
+
+Scanned for both signatures of a magazine and found neither:
+
+- **Steps down by exactly 1**: only boolean toggles (`GLGCAOADGMN`, `DJACNOGOCKD`, `APFNBGHAJMD`,
+  `BFEOOOMMGLK`) — no counter.
+- **Steps up by exactly 1** (shots-fired rather than remaining): nothing at all.
+
+### Why change-detection keeps failing
+
+It can only see a field that changes *while being sampled*, and with eleven targets the per-target
+budget is ~10 reads/frame, so any given field is visited roughly every fifth frame. Worse, it can
+never identify a field whose value we have never actually seen.
+
+**New approach: value matching.** FieldWatch now dumps every non-zero scalar once at bind, the same
+way arrays are dumped:
+
+```
+#   player nonzero: FDOJDJLIGLF=100 MOPBMENEGLN=2 ...
+#   HUD nonzero: ...
+```
+
+If the HUD reads e.g. `24/90`, then whichever field equals 24 at that instant is the magazine —
+no need to catch it mid-change. This is how the ammo field should have been hunted from the start.

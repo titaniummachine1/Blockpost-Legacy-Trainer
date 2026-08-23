@@ -487,6 +487,7 @@ internal static class FieldWatch
             }
         }
 
+        DumpScalarsOnce(target, candidates);
         DumpArraysOnce(target);
 
         target.Props = candidates.ToArray();
@@ -494,6 +495,39 @@ internal static class FieldWatch
         target.Seeded = new bool[target.Props.Length];
         Targets.Add(target);
         NetProbe.Note($"# fieldwatch {target.Label}: {target.Props.Length} numeric fields, {target.Arrays.Count} arrays ({string.Join(",", target.Arrays.ConvertAll(a => a.Label))}) on {target.Type.Name}");
+    }
+
+    /// <summary>
+    /// Log every scalar's value once at bind. Change-detection has failed to locate ammo across
+    /// nine objects; a value snapshot can instead be matched against the number shown on the HUD,
+    /// which does not require the field to change while we happen to be sampling it.
+    /// </summary>
+    private static void DumpScalarsOnce(Target target, List<PropertyInfo> props)
+    {
+        var parts = new List<string>(props.Count);
+        foreach (var property in props)
+        {
+            try
+            {
+                var value = property.GetValue(target.Instance);
+                if (value == null)
+                {
+                    continue;
+                }
+
+                var d = Convert.ToDouble(value, CultureInfo.InvariantCulture);
+                if (d != 0)
+                {
+                    parts.Add(string.Format(CultureInfo.InvariantCulture, "{0}={1:0.###}", property.Name, d));
+                }
+            }
+            catch
+            {
+                // Individual unreadable properties are not interesting here.
+            }
+        }
+
+        NetProbe.Note($"#   {target.Label} nonzero: {string.Join(" ", parts)}");
     }
 
     /// <summary>

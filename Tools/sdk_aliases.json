@@ -94,7 +94,10 @@
     "Methods": {
       "Fire": "CDEGJOBLOFO",
       "SelectWeapon": "DIFGDFHJDGO",
-      "Reload": "JLAALPNBABH"
+      "LoadWeaponSkin": "JLAALPNBABH"
+    },
+    "Notes": {
+      "LoadWeaponSkin": "PLH.JLAALPNBABH. Loads the weapon model/skin -- PlayerPrefs lookup, TEX.CALGHDNPMLO, Material.SetTexture, VWGen. Previously mis-aliased as Reload; it is NOT the reload entry point and does not touch ammo. See PROTOCOL.md 19."
     }
   },
   "GUIInv": {

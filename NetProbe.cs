@@ -243,39 +243,39 @@ internal static class NetProbe
 
     // ---- hook bodies: no formatting, no I/O, no Unity calls ----
 
-    private static void OnBegin(byte BODJBAJOLKP, byte PEBKKLKCHPH) => Push(Kind.Begin, PEBKKLKCHPH, BODJBAJOLKP);
+    private static void OnBegin(byte __0, byte __1) => Push(Kind.Begin, __1, __0);
 
-    private static void OnF32(float FGODPFNDLBD) => Push(Kind.F32, FGODPFNDLBD);
+    private static void OnF32(float __0) => Push(Kind.F32, __0);
 
-    private static void OnI32(int JNOAOKPAGHB) => Push(Kind.I32, JNOAOKPAGHB);
+    private static void OnI32(int __0) => Push(Kind.I32, __0);
 
-    private static void OnU8(byte FMBGPOJDIBD) => Push(Kind.U8, FMBGPOJDIBD);
+    private static void OnU8(byte __0) => Push(Kind.U8, __0);
 
-    private static void OnI16(short HDACNBPLNKD) => Push(Kind.I16, HDACNBPLNKD);
+    private static void OnI16(short __0) => Push(Kind.I16, __0);
 
-    private static void OnU64(ulong JNOAOKPAGHB) => Push(Kind.U64, JNOAOKPAGHB);
+    private static void OnU64(ulong __0) => Push(Kind.U64, __0);
 
-    private static void OnStr(string HDACNBPLNKD) => Push(Kind.Str, 0, 0, HDACNBPLNKD);
+    private static void OnStr(string __0) => Push(Kind.Str, 0, 0, __0);
 
     private static void OnEnd() => Push(Kind.End, 0);
 
     private static void OnFlush() => Push(Kind.Flush, 0);
 
-    private static void OnRx(Il2CppStructArray<byte> PEGEIKDNHLL, int FKEHEHGFNBD)
+    private static void OnRx(Il2CppStructArray<byte> __0, int __1)
     {
-        if (!capturing || PEGEIKDNHLL == null || FKEHEHGFNBD <= 0)
+        if (!capturing || __0 == null || __1 <= 0)
         {
             return;
         }
 
-        var take = Math.Min(FKEHEHGFNBD, Math.Min(RxCaptureBytes, PEGEIKDNHLL.Length));
+        var take = Math.Min(__1, Math.Min(RxCaptureBytes, __0.Length));
         var copy = new byte[take];
         for (var i = 0; i < take; i++)
         {
-            copy[i] = PEGEIKDNHLL[i];
+            copy[i] = __0[i];
         }
 
-        Push(Kind.Rx, FKEHEHGFNBD, take, null, copy);
+        Push(Kind.Rx, __1, take, null, copy);
     }
 
     // ---- background writer ----

@@ -209,6 +209,17 @@ internal static class NetProbe
         {
             patched += Patch(harmony, hudType, "GEGHOEFBKMO",
                 new[] { typeof(int), typeof(int), typeof(int) }, nameof(OnScoreHud));
+
+            // Ammo candidates. EMDBPLFCKOB and POMEPDFNPHE each stringify two ints into the HUD
+            // string fields at 0x220 and 0x224 -- the shape of a magazine/reserve readout. Their
+            // parameter names (ELFBCINKADC, HAFMINBJCGN) also match Client.ANICPIFFOIK, the
+            // opcode 0x4E sender, which would tie the pair to the wire.
+            patched += Patch(harmony, hudType, "EMDBPLFCKOB",
+                new[] { typeof(int), typeof(int) }, nameof(OnHudPairA));
+            patched += Patch(harmony, hudType, "POMEPDFNPHE",
+                new[] { typeof(int), typeof(int) }, nameof(OnHudPairB));
+            patched += Patch(harmony, hudType, "HENIAKEDGNK",
+                new[] { typeof(int), typeof(int) }, nameof(OnHudPairC));
         }
         // Room client has three byte[]+int methods; only FPIDGCHIEMJ was patched before.
         // Capture from all three so we can see which one actually carries inbound traffic.
@@ -390,6 +401,29 @@ internal static class NetProbe
         parsingWeaponData = false;
         Push(Kind.End, 0);
     }
+
+    private static readonly Dictionary<string, (int, int)> LastPair = new();
+
+    /// <summary>
+    /// Log an int pair pushed into a HUD text field, on change only. Deliberately does NOT claim
+    /// which pair is ammo -- section 22 was retracted for exactly that kind of early naming.
+    /// </summary>
+    private static void NotePair(string tag, int a, int b)
+    {
+        if (LastPair.TryGetValue(tag, out var prev) && prev == (a, b))
+        {
+            return;
+        }
+
+        LastPair[tag] = (a, b);
+        Note($"HUDPAIR {tag} a={a} b={b}");
+    }
+
+    private static void OnHudPairA(int ELFBCINKADC, int HAFMINBJCGN) => NotePair("EMDBPLFCKOB", ELFBCINKADC, HAFMINBJCGN);
+
+    private static void OnHudPairB(int ELFBCINKADC, int HAFMINBJCGN) => NotePair("POMEPDFNPHE", ELFBCINKADC, HAFMINBJCGN);
+
+    private static void OnHudPairC(int BNJGJOOJCHF, int ICPDEFLDMLF) => NotePair("HENIAKEDGNK", BNJGJOOJCHF, ICPDEFLDMLF);
 
     private static int lastScoreA = int.MinValue;
     private static int lastScoreB;

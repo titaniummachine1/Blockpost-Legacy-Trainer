@@ -876,3 +876,48 @@ It is genuinely useful — just not for ammo.
 Ruled out: all scalars and arrays on `KBBBHJDINCB`, `Controll` (static + instance), `CGJPBNDDPIN`,
 `FPNENMKEFBB`, `PLH.static`, `HUD` (static + instance), `GUIInv` (static + instance) — 245 scalars,
 8 arrays, 11 targets. `GEGHOEFBKMO` is not it either.
+
+---
+
+## 24. Idle-control snapshot works — and clears the field
+
+`net-20260823-144943`, run as `F6 / F4 / 10 s idle / F4 / 3 shots / F4`. The control method from
+§23 worked exactly as intended and **351 tracked values reduced to 3 candidates**:
+
+| Field | Snapshots | Reading |
+|---|---|---|
+| `Controll.MJPKOOHJOPA` | `0, 0, 39.186` | last-fire timestamp |
+| `Controll.static.MNHBPCOOMLE` | `+18177` | tick counter (ms) |
+| `player.HEADELMLILF` | `0, 0, 1` | firing flag |
+
+33 fields moved while idle (time-driven noise) and 34 moved across the shots; subtracting the first
+set leaves the three above. **None is a magazine** — no field changed by −3.
+
+This is now a trustworthy negative: ammo is not among the 351 values reachable on the eleven bound
+objects. Snapshot sampling is finished as an approach.
+
+## 25. Ammo candidates from the HUD text setters
+
+Scanning writers of every `HUD` static **string** field gives, for `0x220` and `0x224`:
+
+```
+HUD.EMDBPLFCKOB(int ELFBCINKADC, int HAFMINBJCGN)   VA 0x103BA0B0   writes 0x220 AND 0x224
+HUD.POMEPDFNPHE(int ELFBCINKADC, int HAFMINBJCGN)   VA 0x103CE5A0   writes 0x220 AND 0x224
+HUD.HENIAKEDGNK(int BNJGJOOJCHF, int ICPDEFLDMLF)   VA 0x103BF1D0   writes 0x158
+```
+
+Two ints stringified into two adjacent HUD text fields is the shape of a magazine/reserve readout.
+
+The parameter names are the stronger clue: `ELFBCINKADC, HAFMINBJCGN` are also the parameters of
+**`Client.ANICPIFFOIK`**, the **opcode `0x4E`** sender (§3). If the pair is ammo, `0x4E` carries it
+on the wire — which would finally connect ammo to the protocol.
+
+All three are now hooked, logging on change:
+
+```
+HUDPAIR EMDBPLFCKOB a=<n> b=<n>
+```
+
+Deliberately **not** named "ammo" in code or logs until a capture confirms the numbers against the
+on-screen readout. §22 was retracted for naming on a hunch; the tag stays neutral until the values
+match.

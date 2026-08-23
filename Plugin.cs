@@ -46,6 +46,7 @@ public sealed class Plugin : BasePlugin
     private static bool showRuntimeStatus = true;
     private static bool debugLogging;
     private static float nextDiagnosticTime;
+    private static float nextPlayerWeaponDumpTime;
     private static int aimActivationMode = 1;
     private static int aimStyle;
     private static float aimbotFov = 30f;
@@ -159,6 +160,7 @@ public sealed class Plugin : BasePlugin
         ApplyCheatFeatures();
         LogRuntimeDiagnostics();
         LogInventoryDump();
+        DumpAllPlayerWeapons();
     }
 
     private static void ReleaseLeftMouseIfNeeded()
@@ -538,6 +540,52 @@ public sealed class Plugin : BasePlugin
 
         NetProbe.Tick();
         LogInventoryDump();
+    }
+
+    private static void DumpAllPlayerWeapons()
+    {
+        if (Time.unscaledTime < nextPlayerWeaponDumpTime)
+        {
+            return;
+        }
+
+        nextPlayerWeaponDumpTime = Time.unscaledTime + 5f;
+
+        try
+        {
+            var players = PLH.BAKLNPIEHMI;
+            if (players == null)
+            {
+                return;
+            }
+
+            for (var i = 0; i < players.Length; i++)
+            {
+                var player = players[i];
+                if (player?.KPNAADPGNCP == null)
+                {
+                    continue;
+                }
+
+                foreach (var slot in player.KPNAADPGNCP)
+                {
+                    var weapon = slot?.ADMGNABJBNM;
+                    var id = weapon?.HAFMINBJCGN ?? slot?.NIKINLIKGCP ?? -1;
+                    if (id < 0)
+                    {
+                        continue;
+                    }
+
+                    var codename = weapon?.OJEKKFDIKMG;
+                    var name = weapon?.NGFDENOFBLK;
+                    NetProbe.DiscoverWeapon(id, codename ?? "unknown", name ?? $"Unknown {id}");
+                }
+            }
+        }
+        catch
+        {
+            // Discovery is best-effort; do not lag the game if it fails.
+        }
     }
 
     private static void LogRuntimeDiagnostics()

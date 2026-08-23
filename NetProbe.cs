@@ -621,7 +621,7 @@ internal static class NetProbe
         }
     }
 
-    private static void DiscoverWeapon(int id, string codename, string name)
+    internal static void DiscoverWeapon(int id, string codename, string name)
     {
         if (DiscoveredWeapons.TryAdd(id, (codename, name)))
         {

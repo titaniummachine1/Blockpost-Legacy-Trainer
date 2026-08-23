@@ -618,3 +618,42 @@ distinguishes them.
 Three separate attempts to find ammo have each failed for a *different* silent reason rather than
 because the value was absent. Prefer instrumentation that proves it ran over instrumentation that
 only reports differences.
+
+---
+
+## 18. Array reads verified working — the negative result is real
+
+`net-20260823-142601`. The bind-time dump came back clean, with **no `READ FAILED` lines**, so the
+array access works and the earlier "zero changes" was a genuine negative, not silent breakage:
+
+```
+player.GPBAJMJILMA len=2  [0, 0]
+player.JNBMIDFBOHD len=2  [7.03125, 0]
+player.JPDHFNADBKI len=2  [7.03125, 90]
+player.GDEMINMDJAC len=4  [0, 0, 0, 0]      <-- all zero, never was ammo
+player.DDKPBGMMNIA len=10 [0, 0, 0, 1, 0, 1, 0, 0, 0, 0]
+player.PPOOANLEBNI len=40 [0, 0, ...]
+activeEntry.COAAKMDBKJM len=3 [0, 0, 0]
+Controll.static.DDOHELGGICN len=6 [(normal:…, distance:…) x6]   <-- frustum planes
+```
+
+`GDEMINMDJAC` is all zeros while playing, so the long-standing assumption that it is
+"ammo per slot" (still referenced by the old `LogAmmoStatus` diagnostic) is **wrong**.
+
+### Ammo is definitively not on
+
+`KBBBHJDINCB`, `Controll` (static + instance), `CGJPBNDDPIN`, `FPNENMKEFBB` — all scalars, and the
+first 12 elements of all eight arrays.
+
+### Next search space
+
+The HUD must read the number to draw it, and `PLH` is the weapon manager:
+
+| Type | Singleton |
+|---|---|
+| `PLH` | `PLH.LPCJFAOOIKA` |
+| `HUD` | `HUD.LPCJFAOOIKA` — HUD carries ~20 int fields (`0x150`–`0x1F8`) |
+| `GUIInv` | `GUIInv.LPCJFAOOIKA` |
+
+FieldWatch now binds statics **and** singleton instance for each, via a generic
+`AddStaticsAndSingleton` helper, and logs explicitly when a type or singleton is missing.

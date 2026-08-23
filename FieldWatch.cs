@@ -251,6 +251,13 @@ internal static class FieldWatch
                 Add(new Target("activeEntry", active.GetType(), active));
             }
 
+            // Ammo is on none of the five objects above -- 164 scalars and 8 arrays ruled out.
+            // The HUD has to read the number from somewhere to draw it, and PLH is the weapon
+            // manager, so both are now in scope. HUD follows the same singleton naming as Client.
+            AddStaticsAndSingleton("PLH", "LPCJFAOOIKA");
+            AddStaticsAndSingleton("HUD", "LPCJFAOOIKA");
+            AddStaticsAndSingleton("GUIInv", "LPCJFAOOIKA");
+
             return;
         }
 
@@ -411,6 +418,38 @@ internal static class FieldWatch
         catch
         {
             return null;
+        }
+    }
+
+    /// <summary>
+    /// Watch a type's statics, and its singleton instance if the named static holds one.
+    /// </summary>
+    private static void AddStaticsAndSingleton(string typeName, string singletonField)
+    {
+        try
+        {
+            var type = Type.GetType($"{typeName}, Assembly-CSharp");
+            if (type == null)
+            {
+                NetProbe.Note($"# fieldwatch: type {typeName} not found");
+                return;
+            }
+
+            Add(new Target($"{typeName}.static", type, null));
+
+            var singleton = type.GetProperty(singletonField, BindingFlags.Public | BindingFlags.Static)?.GetValue(null);
+            if (singleton != null)
+            {
+                Add(new Target(typeName, singleton.GetType(), singleton));
+            }
+            else
+            {
+                NetProbe.Note($"# fieldwatch: {typeName}.{singletonField} is null");
+            }
+        }
+        catch (Exception exception)
+        {
+            Complain($"bind {typeName}", exception);
         }
     }
 

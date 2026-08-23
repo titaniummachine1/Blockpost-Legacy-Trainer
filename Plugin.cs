@@ -25,6 +25,7 @@ public sealed class Plugin : BasePlugin
     private const float MinimumAimbotFov = 1f;
     private const float MaximumAimbotFov = 180f;
     private const float DiagnosticInterval = 1f;
+    private const float SpawnProtectionSeconds = 5f;
     private static readonly string[] AimActivationLabels =
     {
         "Left mouse (fire)",
@@ -68,6 +69,7 @@ public sealed class Plugin : BasePlugin
     private static bool showHealth = true;
     private static bool showTeammates;
     private static bool aimbotEnabled = true;
+    private static readonly Dictionary<int, float> PlayerLastDeadTime = new();
     private static bool noRecoil;
     private static bool autoShoot = true;
     private static bool rapidFire;
@@ -822,6 +824,7 @@ public sealed class Plugin : BasePlugin
                 return;
             }
 
+            TrackSpawnProtection(players);
             LogResolvedBindings(players, mainPlayer, camera);
             UpdateAimbot(players, mainPlayer, camera);
         }
@@ -854,6 +857,7 @@ public sealed class Plugin : BasePlugin
                 return;
             }
 
+            TrackSpawnProtection(players);
             UpdateEsp(players, mainPlayer, camera);
         }
         catch (Exception exception)
@@ -902,7 +906,7 @@ public sealed class Plugin : BasePlugin
         for (var index = 0; index < players.Length; index++)
         {
             var player = players[index];
-            if (!IsVisibleTarget(player, mainPlayer, showTeammates))
+            if (!IsVisibleTarget(player, mainPlayer, showTeammates, index))
             {
                 continue;
             }
@@ -916,11 +920,61 @@ public sealed class Plugin : BasePlugin
         featureStatus = $"players={players.Length}, boxes={espBoxes.Count}";
     }
 
-    private static bool IsVisibleTarget(KBBBHJDINCB? player, KBBBHJDINCB mainPlayer, bool includeTeammates)
+    private static void TrackSpawnProtection(Il2CppReferenceArray<KBBBHJDINCB>? players)
+    {
+        if (players == null)
+        {
+            PlayerLastDeadTime.Clear();
+            return;
+        }
+
+        for (var index = 0; index < players.Length; index++)
+        {
+            var player = players[index];
+            if (player == null)
+            {
+                PlayerLastDeadTime.Remove(index);
+                continue;
+            }
+
+            if (player.FDOJDJLIGLF <= 0)
+            {
+                PlayerLastDeadTime[index] = Time.unscaledTime;
+            }
+            else if (PlayerLastDeadTime.TryGetValue(index, out var deadAt)
+                     && Time.unscaledTime - deadAt >= SpawnProtectionSeconds)
+            {
+                PlayerLastDeadTime.Remove(index);
+            }
+        }
+
+        var keysToRemove = new List<int>();
+        foreach (var key in PlayerLastDeadTime.Keys)
+        {
+            if (key >= players.Length)
+            {
+                keysToRemove.Add(key);
+            }
+        }
+
+        foreach (var key in keysToRemove)
+        {
+            PlayerLastDeadTime.Remove(key);
+        }
+    }
+
+    private static bool IsSpawnProtected(int index)
+    {
+        return PlayerLastDeadTime.TryGetValue(index, out var deadAt)
+            && Time.unscaledTime - deadAt < SpawnProtectionSeconds;
+    }
+
+    private static bool IsVisibleTarget(KBBBHJDINCB? player, KBBBHJDINCB mainPlayer, bool includeTeammates, int index)
     {
         return player != null
             && !player._LCEIAGLFFJN_k__BackingField
             && player.FDOJDJLIGLF > 0
+            && !IsSpawnProtected(index)
             && (includeTeammates || player.MMMGPDBMOLM != mainPlayer.MMMGPDBMOLM);
     }
 
@@ -974,7 +1028,7 @@ public sealed class Plugin : BasePlugin
         for (var index = 0; index < players.Length; index++)
         {
             var player = players[index];
-            if (!IsVisibleTarget(player, mainPlayer, false) || !TryGetHeadPosition(player, out var headPosition))
+            if (!IsVisibleTarget(player, mainPlayer, false, index) || !TryGetHeadPosition(player, out var headPosition))
             {
                 continue;
             }

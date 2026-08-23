@@ -116,11 +116,11 @@ public sealed class Plugin : BasePlugin
         var guiInvType = AccessTools.TypeByName("GUIInv");
         if (guiInvType != null)
         {
-            var guiUpdateMethod = AccessTools.Method(guiInvType, "Update");
-            if (guiUpdateMethod != null)
+            var guiOnGuiMethod = AccessTools.Method(guiInvType, "OnGUI");
+            if (guiOnGuiMethod != null)
             {
-                harmony.Patch(guiUpdateMethod, postfix: new HarmonyMethod(typeof(Plugin), nameof(GUIInvUpdatePostfix)));
-                Log.LogInfo("Patched GUIInv.Update for inventory menu support.");
+                harmony.Patch(guiOnGuiMethod, postfix: new HarmonyMethod(typeof(Plugin), nameof(GUIInvOnGUIPostfix)));
+                Log.LogInfo("Patched GUIInv.OnGUI for inventory menu support.");
             }
         }
 
@@ -414,8 +414,15 @@ public sealed class Plugin : BasePlugin
         }
     }
 
-    private static void GUIInvUpdatePostfix()
+    private static void GUIInvOnGUIPostfix()
     {
+        // OnGUI is called multiple times per frame (Layout, Repaint, ...).
+        // Only act during the Repaint pass so F7/F9 are not double-triggered.
+        if (Event.current is not { type: EventType.Repaint })
+        {
+            return;
+        }
+
         NetProbe.Tick();
         LogInventoryDump();
     }

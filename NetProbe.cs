@@ -229,6 +229,8 @@ internal static class NetProbe
             {
                 patched += Patch(harmony, guiType, "Label", new[] { typeof(Rect), typeof(string) }, nameof(OnGuiLabel));
                 patched += Patch(harmony, guiType, "Label", new[] { typeof(Rect), typeof(string), typeof(GUIStyle) }, nameof(OnGuiLabelStyled));
+                patched += Patch(harmony, guiType, "Label", new[] { typeof(Rect), typeof(GUIContent) }, nameof(OnGuiLabelContent));
+                patched += Patch(harmony, guiType, "Label", new[] { typeof(Rect), typeof(GUIContent), typeof(GUIStyle) }, nameof(OnGuiLabelContentStyled));
             }
         }
         // Room client has three byte[]+int methods; only FPIDGCHIEMJ was patched before.
@@ -465,8 +467,10 @@ internal static class NetProbe
 
     private static void OnGuiLabel(Rect __0, string __1) => OnGuiLabelCore(__0, __1);
     private static void OnGuiLabelStyled(Rect __0, string __1, GUIStyle __2) => OnGuiLabelCore(__0, __1);
+    private static void OnGuiLabelContent(Rect __0, GUIContent __1) => OnGuiLabelCore(__0, __1?.text);
+    private static void OnGuiLabelContentStyled(Rect __0, GUIContent __1, GUIStyle __2) => OnGuiLabelCore(__0, __1?.text);
 
-    private static void OnGuiLabelCore(Rect position, string text)
+    private static void OnGuiLabelCore(Rect position, string? text)
     {
         if (string.IsNullOrEmpty(text) || text.Length > 24 || text.IndexOfAny(AmmoSeparators) < 0)
         {

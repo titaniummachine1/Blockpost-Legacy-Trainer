@@ -350,13 +350,8 @@ public sealed class Plugin : BasePlugin
         return activeCamera;
     }
 
-    private static void LogInventoryDump()
+    private static void DumpInventoryNow()
     {
-        if (!Input.GetKeyDown(KeyCode.F9))
-        {
-            return;
-        }
-
         try
         {
             var all = GUIInv.OIHNJCKDOIG;
@@ -414,8 +409,22 @@ public sealed class Plugin : BasePlugin
         }
     }
 
+    private static void LogInventoryDump()
+    {
+        if (Input.GetKeyDown(KeyCode.F9))
+        {
+            DumpInventoryNow();
+        }
+    }
+
     private static void GUIInvOnGUIPostfix()
     {
+        // Draw a dump button on the inventory screen so it is available even if F9 does not register.
+        if (GUI.Button(new Rect(Screen.width - 170, 10, 160, 32), "DUMP WEAPONS"))
+        {
+            DumpInventoryNow();
+        }
+
         // OnGUI is called multiple times per frame (Layout, Repaint, ...).
         // Only act during the Repaint pass so F7/F9 are not double-triggered.
         if (Event.current is not { type: EventType.Repaint })

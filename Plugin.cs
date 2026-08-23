@@ -59,6 +59,7 @@ public sealed class Plugin : BasePlugin
     private static int recoilCalls;
     private static int recoilSuppressed;
     private static bool guiFailureLogged;
+    private static bool inventoryDumped;
     private static bool pendingLeftMouseUp;
     private static bool forceShotThisFrame;
     private static bool rapidFireFailureLogged;
@@ -398,6 +399,45 @@ public sealed class Plugin : BasePlugin
                     NetProbe.Note($"weapon-dump: {line}");
                 }
             }
+
+            var cases = GUIInv.MMNCKDECLNA;
+            var caseCount = cases?.Length ?? -1;
+            NetProbe.Note($"weapon-dump: Cases count={caseCount}");
+            instance?.Log.LogInfo($"[WeaponDump] Cases count={caseCount}");
+
+            if (cases != null)
+            {
+                for (var i = 0; i < cases.Length; i++)
+                {
+                    var c = cases[i];
+                    if (c == null)
+                    {
+                        continue;
+                    }
+
+                    var caseLine = $"[WeaponDump] case[{i}] id={c.LDKMPMIANCE}, codename={c.OJEKKFDIKMG}, name={c.NGFDENOFBLK}";
+                    instance?.Log.LogInfo(caseLine);
+                    NetProbe.Note($"weapon-dump: {caseLine}");
+
+                    if (c.JFOEOEJLDML == null)
+                    {
+                        continue;
+                    }
+
+                    for (var j = 0; j < c.JFOEOEJLDML.Length; j++)
+                    {
+                        var w = c.JFOEOEJLDML[j];
+                        if (w == null)
+                        {
+                            continue;
+                        }
+
+                        var line = $"[WeaponDump] case[{i}] weapon[{j}] id={w.HAFMINBJCGN}, codename={w.OJEKKFDIKMG}, name={w.NGFDENOFBLK}";
+                        instance?.Log.LogInfo(line);
+                        NetProbe.Note($"weapon-dump: {line}");
+                    }
+                }
+            }
         }
         catch (Exception exception)
         {
@@ -467,6 +507,7 @@ public sealed class Plugin : BasePlugin
         // Only draw these when the inventory is actually open; OnGUI runs even when the UI is hidden.
         if (!GUIInv.CBFLNECJIFF)
         {
+            inventoryDumped = false;
             return;
         }
 
@@ -479,6 +520,13 @@ public sealed class Plugin : BasePlugin
         if (GUI.Button(new Rect(Screen.width - 170, 46, 160, 32), "SCAN ALL IDS"))
         {
             ScanAllWeaponIds();
+        }
+
+        // Auto-dump once each time the inventory opens. This is free; it only runs in the menu.
+        if (!inventoryDumped)
+        {
+            inventoryDumped = true;
+            DumpInventoryNow();
         }
 
         // OnGUI is called multiple times per frame (Layout, Repaint, ...).

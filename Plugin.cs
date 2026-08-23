@@ -24,7 +24,12 @@ public sealed class Plugin : BasePlugin
     private const float AimbotStrength = 14f;
     private const float MinimumAimbotFov = 1f;
     private const float MaximumAimbotFov = 180f;
-    private const float DiagnosticInterval = 1f;
+    private const float DiagnosticInterval = 5f;
+    // Hard ceiling on IL2CPP property reads per diagnostic tick. Each read is a
+    // runtime_invoke through the interop layer, not a cheap managed reflection call,
+    // so this -- not the file I/O -- is what decides whether a frame survives.
+    private const int DiagnosticReadBudget = 150;
+    private const int DiagnosticPlayerWindow = 3;
     private static readonly string[] AimActivationLabels =
     {
         "Left mouse (fire)",
@@ -57,6 +62,10 @@ public sealed class Plugin : BasePlugin
     private static Camera? activeCamera;
     private static float nextCameraSearchTime;
     private static float nextPlayerFieldDumpTime;
+    private static int diagnosticReadsLeft;
+    private static int diagnosticPlayerCursor;
+    private static bool heavyDiagnostics;
+    private static PropertyInfo[]? playerPrimitiveProps;
     private static int recoilCalls;
     private static int recoilSuppressed;
     private static bool guiFailureLogged;
@@ -143,6 +152,15 @@ public sealed class Plugin : BasePlugin
 
         NetProbe.Install(harmony, Log);
         AsyncLog.Start(Log);
+    }
+
+    public override bool Unload()
+    {
+        // Flush and stop the writer threads explicitly. Leaving them to be killed at process exit
+        // is what left the game hanging on close.
+        NetProbe.Shutdown();
+        AsyncLog.Shutdown();
+        return base.Unload();
     }
 
     private static void ControllerUpdatePrefix()
@@ -634,6 +652,22 @@ public sealed class Plugin : BasePlugin
         }
     }
 
+    /// <summary>
+    /// Consume one unit of the per-tick IL2CPP read budget. Returns false once the tick's budget
+    /// is spent, so a sweep stops mid-way and resumes on the next tick instead of blocking the
+    /// frame until it finishes.
+    /// </summary>
+    private static bool DiagTake()
+    {
+        if (diagnosticReadsLeft <= 0)
+        {
+            return false;
+        }
+
+        diagnosticReadsLeft--;
+        return true;
+    }
+
     private static void LogRuntimeDiagnostics()
     {
         if (!debugLogging || Time.unscaledTime < nextDiagnosticTime)
@@ -642,15 +676,22 @@ public sealed class Plugin : BasePlugin
         }
 
         nextDiagnosticTime = Time.unscaledTime + DiagnosticInterval;
+        diagnosticReadsLeft = DiagnosticReadBudget;
         try
         {
             var players = PLH.BAKLNPIEHMI;
             var mainPlayer = Controll.HGAODFPBGLB;
-            var camera = ResolveCamera();
+            // Deliberately the cached camera, not ResolveCamera(): that calls
+            // FindObjectsOfType<Camera>(), a full scene scan, and running one per tick was part of
+            // what turned this routine into a multi-second stall.
+            var camera = activeCamera;
             AsyncLog.Write($"[Diagnostics] menu={menuVisible}, esp={espEnabled}, aimbot={aimbotEnabled}, aimMode={AimActivationLabels[aimActivationMode]}, aimStyle={AimStyleLabels[aimStyle]}, fovDegrees={aimbotFov:0}, noRecoil={noRecoil}, infiniteHealth={infiniteHealth}, infiniteAmmo={infiniteAmmo}, rapidFire={rapidFire}, leftMouse={Input.GetMouseButton(0)}, rightMouse={Input.GetMouseButton(1)}, players={(players == null ? "null" : players.Length.ToString())}, mainPlayer={(mainPlayer == null ? "null" : "present")}, camera={(camera == null ? "null" : camera.name)}, featureStatus={featureStatus}, aimStatus={aimStatus}, aimTargetIndex={lastAimTargetIndex}, aimTargetPos={lastAimTargetPosition}, recoilCalls={recoilCalls}, recoilSuppressed={recoilSuppressed}.");
-            LogControllCandidates();
-            LogPlayers(players, mainPlayer, camera);
             LogAmmoStatus(mainPlayer);
+            if (heavyDiagnostics)
+            {
+                LogControllCandidates();
+                LogPlayers(players, mainPlayer, camera);
+            }
         }
         catch (Exception exception)
         {
@@ -671,6 +712,11 @@ public sealed class Plugin : BasePlugin
             if (property.GetIndexParameters().Length != 0)
             {
                 continue;
+            }
+
+            if (!DiagTake())
+            {
+                return;
             }
 
             try
@@ -726,10 +772,26 @@ public sealed class Plugin : BasePlugin
             nextPlayerFieldDumpTime = Time.unscaledTime + DiagnosticInterval * 3;
         }
 
-        for (var index = 0; index < players.Length; index++)
+        // Scanning all 40 players every tick was the single biggest cost. Walk a small rotating
+        // window instead: the whole roster still gets covered, just spread over several ticks.
+        var count = players.Length;
+        if (count == 0)
         {
-            LogPlayer(index, players[index], mainPlayer, camera, dumpFields && index < 5);
+            return;
         }
+
+        for (var offset = 0; offset < DiagnosticPlayerWindow && offset < count; offset++)
+        {
+            var index = (diagnosticPlayerCursor + offset) % count;
+            if (!DiagTake())
+            {
+                break;
+            }
+
+            LogPlayer(index, players[index], mainPlayer, camera, dumpFields && offset == 0);
+        }
+
+        diagnosticPlayerCursor = (diagnosticPlayerCursor + DiagnosticPlayerWindow) % count;
     }
 
     private static void LogAmmoStatus(KBBBHJDINCB? mainPlayer)
@@ -787,11 +849,19 @@ public sealed class Plugin : BasePlugin
 
     private static void LogPlayerPrimitiveFields(KBBBHJDINCB player)
     {
-        foreach (var property in typeof(KBBBHJDINCB).GetProperties(BindingFlags.Public | BindingFlags.Instance))
+        // This was re-enumerated per player per tick; the set never changes.
+        playerPrimitiveProps ??= typeof(KBBBHJDINCB).GetProperties(BindingFlags.Public | BindingFlags.Instance);
+
+        foreach (var property in playerPrimitiveProps)
         {
             if (property.GetIndexParameters().Length != 0 || !IsPlayerPrimitiveType(property.PropertyType))
             {
                 continue;
+            }
+
+            if (!DiagTake())
+            {
+                return;
             }
 
             try
@@ -1280,12 +1350,16 @@ public sealed class Plugin : BasePlugin
         infiniteHealth = GUI.Toggle(new Rect(40, 448, 460, 24), infiniteHealth, "Infinite health");
         infiniteAmmo = GUI.Toggle(new Rect(40, 478, 460, 24), infiniteAmmo, "Infinite ammo (log only — identifying correct fields)");
         instantReload = GUI.Toggle(new Rect(40, 508, 460, 24), instantReload, $"Instant reload (EXPERIMENTAL: only hides the minigame bar — {instantReloads})");
-        debugLogging = GUI.Toggle(new Rect(40, 538, 460, 24), debugLogging, $"Verbose diagnostics (async, 1/s{(AsyncLog.Dropped > 0 ? $", {AsyncLog.Dropped} dropped" : string.Empty)})");
-        showRuntimeStatus = GUI.Toggle(new Rect(40, 568, 460, 24), showRuntimeStatus, "Show runtime status");
+        debugLogging = GUI.Toggle(new Rect(40, 538, 460, 24), debugLogging, $"Verbose diagnostics (summary only, 1/{DiagnosticInterval:0}s)");
+        if (debugLogging)
+        {
+            heavyDiagnostics = GUI.Toggle(new Rect(60, 562, 440, 24), heavyDiagnostics, "+ full field sweep (COSTLY: budgeted, still slows the game)");
+        }
+        showRuntimeStatus = GUI.Toggle(new Rect(40, 592, 460, 24), showRuntimeStatus, "Show runtime status");
         if (showRuntimeStatus)
         {
-            GUI.Label(new Rect(40, 592, 460, 24), $"Update: {(controllerRunning ? "running" : "waiting")} | Boxes: {espBoxes.Count} | {featureStatus}");
-            GUI.Label(new Rect(40, 616, 460, 24), $"Aimbot: {aimStatus}");
+            GUI.Label(new Rect(40, 616, 460, 24), $"Update: {(controllerRunning ? "running" : "waiting")} | Boxes: {espBoxes.Count} | {featureStatus}");
+            GUI.Label(new Rect(40, 640, 460, 24), $"Aimbot: {aimStatus}");
         }
     }
 

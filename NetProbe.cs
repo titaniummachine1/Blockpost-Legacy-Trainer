@@ -260,8 +260,19 @@ internal static class NetProbe
     }
 
     /// <summary>Call once per frame from an existing Update hook.</summary>
+    private static int lastTickFrame = -1;
+
     internal static void Tick()
     {
+        // Called from both Controll.Update and GUIInv.OnGUI. Without this guard the key checks run
+        // twice in one frame, so a toggle flips and immediately flips back.
+        if (Time.frameCount == lastTickFrame)
+        {
+            return;
+        }
+
+        lastTickFrame = Time.frameCount;
+
         if (Input.GetKeyDown(KeyCode.F7))
         {
             capturing = !capturing;

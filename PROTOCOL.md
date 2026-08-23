@@ -427,3 +427,56 @@ alone would have missed the counter a second time.
 The menu toggle is relabelled **EXPERIMENTAL** and describes what it really does, so it is not
 mistaken for a working feature. It is a mild footgun in its current state (the reload re-trigger),
 so leave it off unless capturing.
+
+---
+
+## 14. Performance incident: verbose diagnostics froze the game
+
+Reported: with verbose diagnostics on, the game froze ~5 s every 1 s and the machine became
+unresponsive when trying to close it. The earlier "moved logging to a background thread" change did
+**not** fix this, because the file I/O was never the bottleneck.
+
+### Measured from `captures/diag-20260823-133719.log`
+
+33,201 lines over ~2 minutes, 8.4 MB total across all logs with 164 GB free — so **not** disk.
+Per one-second tick, with **40 players in the match**:
+
+| Source | Lines | Real cost |
+|---|---|---|
+| `[PlayerField]` | 15,904 | `GetProperties()` re-enumerated **per player per tick**, then ~130 `GetValue` calls each |
+| `[Controll]` | 8,428 | ~188 static `GetValue` calls |
+| `[Object]` | 4,795 | per-player object/screen-position work |
+| `[Player]` | 3,920 | all 40 players, every tick |
+
+Every one of those `GetValue` calls is an **IL2CPP `runtime_invoke` through the interop layer**, not
+a managed reflection call — and `FormatDiagnosticValue` marshals native strings for `.name` on
+`Camera`/`Transform`. On top of that, `ResolveCamera()` ran `FindObjectsOfType<Camera>()` — a full
+scene scan — once per tick.
+
+The routine could not complete within its own one-second interval, so each tick ran into the next.
+
+### Fixes
+
+- `DiagnosticInterval` 1 s → **5 s**.
+- **Per-tick budget** of 150 IL2CPP reads (`DiagTake`). A sweep that runs out stops and *resumes*
+  next tick rather than blocking the frame until it finishes.
+- Player scan walks a **rotating 3-player window** instead of all 40; the roster is still covered,
+  just spread over ticks.
+- `GetProperties()` cached for both `KBBBHJDINCB` and `Controll` statics.
+- Diagnostics use the **cached camera**; no scene scan.
+- The heavy field sweep is now a **separate opt-in** under verbose, labelled as costly. Plain
+  verbose is the one-line summary plus ammo status only.
+- `Plugin.Unload()` now calls `NetProbe.Shutdown()` / `AsyncLog.Shutdown()` so writer threads flush
+  and exit instead of being killed at process teardown — the likely cause of the hang on close.
+
+### Unrelated bug found while fixing this
+
+`NetProbe.Tick()` is called from **both** `Controll.Update` and `GUIInv.OnGUI`. `GetKeyDown` is true
+for one frame, so with the inventory GUI open every F7/F8 press was sampled twice and the toggle
+flipped straight back. Now guarded on `Time.frameCount`.
+
+### Rule going forward
+
+On IL2CPP, **the cost is the property reads, not the logging**. Moving output to another thread does
+nothing for a routine whose expense is thousands of `runtime_invoke` calls on the game thread. Any
+new diagnostic must be budgeted per tick, not merely written asynchronously.

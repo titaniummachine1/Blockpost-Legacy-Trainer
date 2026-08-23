@@ -417,12 +417,62 @@ public sealed class Plugin : BasePlugin
         }
     }
 
+    private static void ScanAllWeaponIds()
+    {
+        try
+        {
+            const int MaxId = 1024;
+            NetProbe.Note($"weapon-scan: scanning ids 0..{MaxId - 1}");
+            instance?.Log.LogInfo($"[WeaponScan] scanning ids 0..{MaxId - 1}");
+
+            var found = 0;
+            for (var i = 0; i < MaxId; i++)
+            {
+                NAHLLMJMOED? w;
+                try
+                {
+                    w = GUIInv.NJDNGJNPHNE(i);
+                }
+                catch
+                {
+                    continue;
+                }
+
+                if (w == null || string.IsNullOrEmpty(w.OJEKKFDIKMG))
+                {
+                    continue;
+                }
+
+                var line = $"[WeaponScan] id={w.HAFMINBJCGN}, codename={w.OJEKKFDIKMG}, name={w.NGFDENOFBLK}";
+                instance?.Log.LogInfo(line);
+                NetProbe.Note($"weapon-scan: {line}");
+                found++;
+            }
+
+            NetProbe.Note($"weapon-scan: found {found} weapons");
+            instance?.Log.LogInfo($"[WeaponScan] found {found} weapons");
+        }
+        catch (Exception exception)
+        {
+            if (!guiFailureLogged)
+            {
+                instance?.Log.LogWarning($"[WeaponScan] failed: {exception}");
+                guiFailureLogged = true;
+            }
+        }
+    }
+
     private static void GUIInvOnGUIPostfix()
     {
-        // Draw a dump button on the inventory screen so it is available even if F9 does not register.
+        // Draw dump/scan buttons on the inventory screen so they are available even if F9 does not register.
         if (GUI.Button(new Rect(Screen.width - 170, 10, 160, 32), "DUMP WEAPONS"))
         {
             DumpInventoryNow();
+        }
+
+        if (GUI.Button(new Rect(Screen.width - 170, 46, 160, 32), "SCAN ALL IDS"))
+        {
+            ScanAllWeaponIds();
         }
 
         // OnGUI is called multiple times per frame (Layout, Repaint, ...).

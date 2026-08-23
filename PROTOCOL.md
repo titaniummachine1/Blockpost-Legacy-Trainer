@@ -261,3 +261,18 @@ New log: `BepInEx/captures/net-20260823-025026.log` (~113 KB, latest plugin).
   ```
   i.e. `pos(x,y,z), i32 seq, u8 targetId, u8 bodyPart, point(x,y,z)`.
 - **No 0x55 shot/tracer packets observed in this session either.**
+
+---
+
+## 10. Live security observation
+
+A player was observed killing the local client **after the local client had already killed that player**.
+If the killer was not an admin/host, this confirms the game trusts client-authored kill/damage state:
+
+- The client already declares its own hits (`0x04`) and computes the resulting damage triple (`0x06`).
+- If another client can force a kill on demand, either `0x06`/`0x04` is accepted without server validation,
+  or there is an unmapped admin/kill opcode (candidates: `0x07`, `0x0D`, `0x39`, `0x3D`, `0x4E`, `0x50`,
+  `0x51`, `0x52`, `0x57`).
+
+`infiniteHealth` sets local `FDOJDJLIGLF` to `1000` every frame, but if the server accepts a client kill
+packet it may still register death before the local cheat can overwrite it.

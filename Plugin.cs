@@ -181,6 +181,7 @@ public sealed class Plugin : BasePlugin
     {
         NetProbe.Tick();
         FieldWatch.Tick(__instance);
+        GlobalScan.Tick();
         ReleaseLeftMouseIfNeeded();
         ForceRapidFireShot();
         ToggleMenuIfRequested();

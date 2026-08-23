@@ -220,6 +220,16 @@ internal static class NetProbe
                 new[] { typeof(int), typeof(int) }, nameof(OnHudPairB));
             patched += Patch(harmony, hudType, "HENIAKEDGNK",
                 new[] { typeof(int), typeof(int) }, nameof(OnHudPairC));
+
+            // The setter methods above are not always reached (possibly inlined or from a stale
+            // build). Catch the actual on-screen text as well, then read the candidate fields at
+            // the same instant to see which one supplies the numbers.
+            var guiType = AccessTools.TypeByName("UnityEngine.GUI") ?? typeof(GUI);
+            if (guiType != null)
+            {
+                patched += Patch(harmony, guiType, "Label", new[] { typeof(Rect), typeof(string) }, nameof(OnGuiLabel));
+                patched += Patch(harmony, guiType, "Label", new[] { typeof(Rect), typeof(string), typeof(GUIStyle) }, nameof(OnGuiLabelStyled));
+            }
         }
         // Room client has three byte[]+int methods; only FPIDGCHIEMJ was patched before.
         // Capture from all three so we can see which one actually carries inbound traffic.
@@ -445,6 +455,84 @@ internal static class NetProbe
         lastScoreB = DEAOCFDEMKE;
         lastClock = PBCODLDLHKL;
         Note($"SCORE a={JMEFALEPJKM} b={DEAOCFDEMKE} clock={PBCODLDLHKL}");
+    }
+
+    // ---- ammo display probe ----
+
+    private static readonly char[] AmmoSeparators = new[] { '|', '/' };
+    private static Type? ammoHudType;
+    private static Type? ammoContType;
+
+    private static void OnGuiLabel(Rect __0, string __1) => OnGuiLabelCore(__0, __1);
+    private static void OnGuiLabelStyled(Rect __0, string __1, GUIStyle __2) => OnGuiLabelCore(__0, __1);
+
+    private static void OnGuiLabelCore(Rect position, string text)
+    {
+        if (string.IsNullOrEmpty(text) || text.Length > 24 || text.IndexOfAny(AmmoSeparators) < 0)
+        {
+            return;
+        }
+
+        var parts = text.Split(AmmoSeparators, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+        if (parts.Length != 2 || !int.TryParse(parts[0], out _) || !int.TryParse(parts[1], out _))
+        {
+            return;
+        }
+
+        var hud = ammoHudType ??= Type.GetType("HUD, Assembly-CSharp") ?? AccessTools.TypeByName("HUD");
+        var cont = ammoContType ??= Type.GetType("Controll, Assembly-CSharp") ?? AccessTools.TypeByName("Controll");
+
+        var hud220 = Read(hud, null, "PGBHFOEPNBE")?.ToString() ?? "?";
+        var hud224 = Read(hud, null, "MINMCMFHJNE")?.ToString() ?? "?";
+
+        var controller = Read(cont, null, "LPCJFAOOIKA");
+        var ca = controller != null ? (Read(controller.GetType(), controller, "CGNEAAGAMKC") as int?) : null;
+        var cb = controller != null ? (Read(controller.GetType(), controller, "MCOGBCDKDJD") as int?) : null;
+
+        var main = Read(cont, null, "HGAODFPBGLB");
+        int? ec = null, slot = null, gdSlot = null;
+        if (main != null)
+        {
+            var mt = main.GetType();
+            ec = Read(mt, main, "ECBCOHFLJCC") as int?;
+            slot = Read(mt, main, "MOPBMENEGLN") as int?;
+            var gd = Read(mt, main, "GDEMINMDJAC") as Il2CppStructArray<int>;
+            if (gd != null && slot.HasValue && slot.Value >= 0 && slot.Value < gd.Length)
+            {
+                gdSlot = gd[slot.Value];
+            }
+        }
+
+        Note($"AMMO_TEXT '{text}' rect={position} hud220='{hud220}' hud224='{hud224}' contA={ca} contB={cb} playerEC={ec} playerSlot={slot} playerGDslot={gdSlot}");
+    }
+
+    private static object? Read(Type? type, object? instance, string name)
+    {
+        if (type == null)
+        {
+            return null;
+        }
+
+        try
+        {
+            var field = AccessTools.Field(type, name);
+            if (field != null)
+            {
+                return field.GetValue(instance);
+            }
+
+            var prop = AccessTools.Property(type, name);
+            if (prop != null)
+            {
+                return prop.GetValue(instance, null);
+            }
+        }
+        catch
+        {
+            // Reflection on an Il2Cpp type can throw for stripped or uninitalised fields.
+        }
+
+        return null;
     }
 
     private static void OnFlush()

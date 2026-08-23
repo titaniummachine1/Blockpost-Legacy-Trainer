@@ -526,3 +526,52 @@ off `Length`/`Count` and the indexer.
 
 `Controll.MJPKOOHJOPA` (instance, float) — monotonically rising, moves in steps while active.
 Unidentified; not reload-related.
+
+---
+
+## 16. Capture `net-20260823-141003` — ammo is not a scalar
+
+44 s, 9194 lines, no lag. Five targets bound including `activeEntry` (the `IList` fix worked).
+
+### Result: 166 scalar fields watched, none is ammo
+
+| Target | Numeric scalars |
+|---|---|
+| `player` (`KBBBHJDINCB`) | 53 |
+| `Controll.static` | 74 |
+| `Controll` | 28 |
+| `weapon` (`CGJPBNDDPIN`) | 3 |
+| `activeEntry` (`FPNENMKEFBB`) | 8 |
+
+`activeEntry` recorded **zero changes** across the whole run — firing and reloading do not touch any
+scalar on `FPNENMKEFBB`. `weapon` likewise. So ammo is on neither.
+
+### Why: it is an array element
+
+`KBBBHJDINCB` carries six numeric arrays that a scalar differ cannot see:
+
+| Field | Offset | Type |
+|---|---|---|
+| `GPBAJMJILMA` | `0x6C` | `float[]` |
+| `JNBMIDFBOHD` | `0x74` | `float[]` |
+| `JPDHFNADBKI` | `0x78` | `float[]` |
+| **`GDEMINMDJAC`** | **`0xA8`** | **`int[]`** — the existing ammo diagnostic already reads `[slot]` |
+| `DDKPBGMMNIA` | `0x1AC` | `int[]` |
+| `PPOOANLEBNI` | `0x1F0` | `int[]` — stats, never write |
+
+`GDEMINMDJAC[slot]` is the prime candidate. FieldWatch now diffs array elements too (first 12 per
+array, sharing the frame budget), reported as `fw <target> <ARRAY>[i] old -> new`.
+
+### Dead end recorded so anyone re-walking it stops early
+
+`player.IGBIBDAMMLE` (`0x16C`, int) cycles `0→1→2→3→4→0` in lockstep with `BCHEAICMFGH` (`0x170`,
+float, monotonically rising) — 240 changes each. That is a **footstep sound index plus a distance
+accumulator**, not a magazine counter. The equal change counts and small cyclic range make it look
+like ammo at a glance; it isn't.
+
+### Reload note
+
+A second reload at `137416.5` lasted only **164 ms** with `ILGHFLMKMCO` left at `start + 2.0`
+(`134.2007`, unmodified). Either instant reload was enabled and its write was restored by the game
+before FieldWatch sampled that frame, or the reload was interrupted. **Unresolved** — needs a run
+where it is known whether the toggle was on.

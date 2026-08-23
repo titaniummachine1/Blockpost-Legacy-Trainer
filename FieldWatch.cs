@@ -38,6 +38,24 @@ internal static class FieldWatch
         nameof(Raw.KBBBHJDINCB.Offsets.NHJDPAAFIKO)
     };
 
+    // Element cap per array. Loadout-sized arrays are small; this only exists so a stats array
+    // cannot blow the frame budget on its own.
+    private const int MaxArrayElements = 12;
+
+    private sealed class ArrayWatch
+    {
+        public ArrayWatch(string label, PropertyInfo property)
+        {
+            Label = label;
+            Property = property;
+        }
+
+        public string Label { get; }
+        public PropertyInfo Property { get; }
+        public double[] Previous { get; set; } = Array.Empty<double>();
+        public bool[] Seeded { get; set; } = Array.Empty<bool>();
+    }
+
     private sealed class Target
     {
         public Target(string label, Type type, object? instance)
@@ -54,6 +72,7 @@ internal static class FieldWatch
         public double[] Previous { get; set; } = Array.Empty<double>();
         public bool[] Seeded { get; set; } = Array.Empty<bool>();
         public int Cursor { get; set; }
+        public List<ArrayWatch> Arrays { get; } = new();
     }
 
     // FieldWatch runs EVERY FRAME, not on an interval, so it is far more exposed than the
@@ -407,6 +426,20 @@ internal static class FieldWatch
             candidates.Add(property);
         }
 
+        foreach (var property in target.Type.GetProperties(flags))
+        {
+            if (!property.CanRead || property.GetIndexParameters().Length > 0)
+            {
+                continue;
+            }
+
+            var name = property.PropertyType.Name;
+            if (name.Contains("Il2CppStructArray") || name.Contains("Il2CppArrayBase"))
+            {
+                target.Arrays.Add(new ArrayWatch(property.Name, property));
+            }
+        }
+
         target.Props = candidates.ToArray();
         target.Previous = new double[target.Props.Length];
         target.Seeded = new bool[target.Props.Length];
@@ -475,6 +508,97 @@ internal static class FieldWatch
                 target.Previous[i],
                 now));
             target.Previous[i] = now;
+        }
+
+        DiffArrays(target);
+    }
+
+    /// <summary>
+    /// Diff the elements of numeric arrays. Ammo is not a scalar on any watched object, and
+    /// KBBBHJDINCB carries six numeric arrays -- GDEMINMDJAC in particular is indexed by weapon
+    /// slot -- so a scalar-only differ was structurally unable to find it.
+    /// </summary>
+    private static void DiffArrays(Target target)
+    {
+        foreach (var watch in target.Arrays)
+        {
+            if (budgetLeft <= 0)
+            {
+                return;
+            }
+
+            object? raw;
+            try
+            {
+                raw = watch.Property.GetValue(target.Instance);
+            }
+            catch
+            {
+                continue;
+            }
+
+            if (raw == null)
+            {
+                continue;
+            }
+
+            var count = Math.Min(CountOf(raw), MaxArrayElements);
+            if (count <= 0)
+            {
+                continue;
+            }
+
+            if (watch.Previous.Length < count)
+            {
+                var grownValues = new double[count];
+                var grownSeeded = new bool[count];
+                watch.Previous.CopyTo(grownValues, 0);
+                watch.Seeded.CopyTo(grownSeeded, 0);
+                watch.Previous = grownValues;
+                watch.Seeded = grownSeeded;
+            }
+
+            for (var i = 0; i < count && budgetLeft > 0; i++)
+            {
+                budgetLeft--;
+                double now;
+                try
+                {
+                    var element = ElementAt(raw, i);
+                    if (element == null)
+                    {
+                        continue;
+                    }
+
+                    now = Convert.ToDouble(element, CultureInfo.InvariantCulture);
+                }
+                catch
+                {
+                    continue;
+                }
+
+                if (!watch.Seeded[i])
+                {
+                    watch.Previous[i] = now;
+                    watch.Seeded[i] = true;
+                    continue;
+                }
+
+                if (Math.Abs(now - watch.Previous[i]) < 0.0001)
+                {
+                    continue;
+                }
+
+                NetProbe.Note(string.Format(
+                    CultureInfo.InvariantCulture,
+                    "fw {0,-15} {1,-11}[{2}] {3,10:0.####} -> {4:0.####}",
+                    target.Label,
+                    watch.Label,
+                    i,
+                    watch.Previous[i],
+                    now));
+                watch.Previous[i] = now;
+            }
         }
     }
 }

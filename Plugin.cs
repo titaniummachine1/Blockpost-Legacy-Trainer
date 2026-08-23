@@ -112,6 +112,18 @@ public sealed class Plugin : BasePlugin
         var harmony = new Harmony(PluginGuid);
         harmony.Patch(updateMethod, prefix: new HarmonyMethod(typeof(Plugin), nameof(ControllerUpdatePrefix)), postfix: new HarmonyMethod(typeof(Plugin), nameof(ControllerUpdatePostfix)));
         harmony.Patch(onGuiMethod, postfix: new HarmonyMethod(typeof(Plugin), nameof(ControllerOnGUIPostfix)));
+
+        var guiInvType = AccessTools.TypeByName("GUIInv");
+        if (guiInvType != null)
+        {
+            var guiUpdateMethod = AccessTools.Method(guiInvType, "Update");
+            if (guiUpdateMethod != null)
+            {
+                harmony.Patch(guiUpdateMethod, postfix: new HarmonyMethod(typeof(Plugin), nameof(GUIInvUpdatePostfix)));
+                Log.LogInfo("Patched GUIInv.Update for inventory menu support.");
+            }
+        }
+
         if (recoilMethod != null)
         {
             harmony.Patch(recoilMethod, prefix: new HarmonyMethod(typeof(Plugin), nameof(SetRecoilPrefix)));
@@ -400,6 +412,12 @@ public sealed class Plugin : BasePlugin
                 guiFailureLogged = true;
             }
         }
+    }
+
+    private static void GUIInvUpdatePostfix()
+    {
+        NetProbe.Tick();
+        LogInventoryDump();
     }
 
     private static void LogRuntimeDiagnostics()

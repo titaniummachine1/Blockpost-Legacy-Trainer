@@ -141,6 +141,12 @@ internal static class NetProbe
 
     internal static bool Capturing => capturing;
 
+    /// <summary>
+    /// The Client singleton, captured from the OnFlush Harmony patch. Null until
+    /// the game flushes its first packet.
+    /// </summary>
+    internal static object? GetClient() => fakeHitClient;
+
     internal static long Dropped => Interlocked.Read(ref dropped);
 
     internal static string LogPath => logPath;

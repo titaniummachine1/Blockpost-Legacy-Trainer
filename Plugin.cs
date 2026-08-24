@@ -396,22 +396,30 @@ public sealed class Plugin : BasePlugin
             return;
         }
 
-        AsyncLog.Write($"[RapidFire] forceShot=true, calling PLH.CDEGJOBLOFO");
-
         try
         {
             var main = Controll.HGAODFPBGLB;
             if (main == null || main.JPGGPPLOOML == null)
             {
-                AsyncLog.Write($"[RapidFire] skipped: main={main == null}, weapon={main?.JPGGPPLOOML == null}");
                 forceShotThisFrame = false;
                 return;
             }
 
+            // Reset the fire timer so PLH.CDEGJOBLOFO's internal "has enough time passed"
+            // check passes every tick.
             Controll.LCMOBPPHLLM = 0f;
             main.FGFKPMPLNKO = -1000f;
             PLH.CDEGJOBLOFO(main, 0f, false, false);
             main.FGFKPMPLNKO = 1000f;
+
+            // PLH.CDEGJOBLOFO fires the visual shot but doesn't send the network hit
+            // packet. The game normally calls Client.AHLDAPJEJNC from Controll.Update
+            // after processing the hit list (Controll.GOMFKJNNJAP). Since we're firing
+            // from the prefix (before Controll.Update), we need to send the hit report
+            // ourselves. If the raycast hit something, the hit list will have entries.
+            // If not, add our aimbot target manually.
+            SendHitReport(main);
+
             AsyncLog.Write($"[RapidFire] fired: weapon={main.JPGGPPLOOML?.OCDNCKANJPB}, health={main.FDOJDJLIGLF}");
         }
         catch (Exception exception)
@@ -421,6 +429,53 @@ public sealed class Plugin : BasePlugin
                 instance?.Log.LogWarning($"[Rapid fire] direct PLH.CDEGJOBLOFO failed: {exception}");
                 rapidFireFailureLogged = true;
             }
+        }
+    }
+
+    /// <summary>
+    /// Send the hit report to the server. The game normally does this from
+    /// Controll.Update after processing the hit list, but since we fire from
+    /// the prefix we need to do it ourselves.
+    /// </summary>
+    private static void SendHitReport(KBBBHJDINCB main)
+    {
+        try
+        {
+            var hitList = Controll.GOMFKJNNJAP;
+            if (hitList == null || hitList.Count == 0)
+            {
+                return; // no hits to report
+            }
+
+            var client = NetProbe.GetClient();
+            if (client == null)
+            {
+                return;
+            }
+
+            // Call Client.AHLDAPJEJNC(Vector3, uint, List<DMHBMAAFCFJ>) via reflection.
+            // The IL2CPP interop generates a managed wrapper we can invoke.
+            var clientType = AccessTools.TypeByName("Client");
+            if (clientType == null)
+            {
+                return;
+            }
+
+            var method = clientType.GetMethod("AHLDAPJEJNC", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+            if (method == null)
+            {
+                AsyncLog.Write("[HitReport] AHLDAPJEJNC method not found");
+                return;
+            }
+
+            var origin = main.OOMJGHCFODI;
+            var seq = (uint)Controll.GAMBHJPMDON;
+            method.Invoke(client, new object[] { origin, seq, hitList });
+            AsyncLog.Write($"[HitReport] sent: hits={hitList.Count}, seq={seq}");
+        }
+        catch (Exception e)
+        {
+            AsyncLog.Write($"[HitReport] failed: {e.Message}");
         }
     }
 

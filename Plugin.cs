@@ -40,7 +40,7 @@ public sealed class Plugin : BasePlugin
     private static readonly string[] AimStyleLabels =
     {
         "Plain aim lock",
-        "Silent aim (pending)"
+        "Silent aim (ghost bullets)"
     };
     private static Plugin? instance;
     private static bool menuVisible;
@@ -311,9 +311,13 @@ public sealed class Plugin : BasePlugin
                 return;
             }
 
+            // Reset the fire timer so PLH.CDEGJOBLOFO's internal "has enough time passed"
+            // check passes every tick. The old code passed Mathf.Max(LCMOBPPHLLM, 1f) which
+            // forwarded the next-fire timestamp as the fire rate, causing the method to skip
+            // the shot whenever the timer was in the future.
+            Controll.LCMOBPPHLLM = 0f;
             main.FGFKPMPLNKO = -1000f;
-            var fireParam = Mathf.Max(Controll.LCMOBPPHLLM, 1f);
-            PLH.CDEGJOBLOFO(main, fireParam, false, false);
+            PLH.CDEGJOBLOFO(main, 0f, false, false);
             main.FGFKPMPLNKO = 1000f;
         }
         catch (Exception exception)
@@ -1124,10 +1128,22 @@ public sealed class Plugin : BasePlugin
             return;
         }
 
+        var target = players[lastAimTargetIndex];
+
+        // Silent aim: don't move the camera at all. The player's view stays where it is,
+        // but when they fire we send a fake hit report (0x04 + 0x06) for the aimbot target.
+        // The server trusts client-authored hits, so the target dies without the camera snapping.
+        if (aimStyle == 1)
+        {
+            TrySilentShoot(target, bestPosition, camera);
+            aimStatus = $"silent target={lastAimTargetIndex}, angle={bestAngle:0.0} degrees";
+            return;
+        }
+
         var targetDirection = bestPosition - camera.transform.position;
         var targetRotation = Quaternion.LookRotation(targetDirection);
         ApplyAimRotation(camera, targetRotation);
-        TryAutoShoot(players[lastAimTargetIndex], bestPosition, camera);
+        TryAutoShoot(target, bestPosition, camera);
         aimStatus = $"target={lastAimTargetIndex}, angle={bestAngle:0.0} degrees";
     }
 
@@ -1209,6 +1225,43 @@ public sealed class Plugin : BasePlugin
         mouse_event(MouseEventFLeftUp, 0, 0, 0, 0);
         nextAutoShootTime = Time.unscaledTime + 0.12f;
         aimStatus = $"{aimStatus} | auto-shoot triggered";
+    }
+
+    /// <summary>
+    /// Silent aim / ghost bullets: the camera stays where the player is looking, but we send
+    /// a fake hit report (0x04) and damage triple (0x06) for the aimbot target. The server
+    /// trusts client-authored hits, so the target dies without the view snapping.
+    ///
+    /// Fires when the player holds the activation key and either:
+    /// - autoShoot is on (fires automatically at the fire rate), or
+    /// - the player clicks left mouse (fires on their click)
+    /// </summary>
+    private static float nextSilentShotTime;
+
+    private static void TrySilentShoot(KBBBHJDINCB target, Vector3 targetPosition, Camera camera)
+    {
+        var origin = camera.transform.position;
+
+        // If auto-shoot is on, fire at the automatic rate without needing a mouse click.
+        if (autoShoot && Time.unscaledTime >= nextSilentShotTime && Application.isFocused)
+        {
+            if (NetProbe.TryFakeHit(target, origin, targetPosition, 100))
+            {
+                nextSilentShotTime = Time.unscaledTime + 0.12f;
+                aimStatus = $"{aimStatus} | ghost bullet sent";
+            }
+            return;
+        }
+
+        // If auto-shoot is off, fire on the player's own left click.
+        if (!autoShoot && Input.GetMouseButton(0) && Time.unscaledTime >= nextSilentShotTime)
+        {
+            if (NetProbe.TryFakeHit(target, origin, targetPosition, 100))
+            {
+                nextSilentShotTime = Time.unscaledTime + 0.12f;
+                aimStatus = $"{aimStatus} | ghost bullet on click";
+            }
+        }
     }
 
     private static bool TryGetHeadPosition(KBBBHJDINCB player, out Vector3 position)
@@ -1346,6 +1399,12 @@ public sealed class Plugin : BasePlugin
             if (autoShoot)
             {
                 rapidFire = GUI.Toggle(new Rect(60, 364, 440, 24), rapidFire, "Rapid fire (1 shot/tick)");
+            }
+
+            // The server-trust test is now built into silent aim mode. Keep the standalone
+            // toggle for plain-aim mode where it still makes sense.
+            if (aimStyle == 0)
+            {
                 serverTrustTest = GUI.Toggle(new Rect(60, 388, 440, 24), serverTrustTest, "Server trust test — fake hit packets");
             }
         }

@@ -230,10 +230,13 @@ public sealed class Plugin : BasePlugin
         UpdateAimbotSafely();
         ApplyCheatFeatures();
         PrepareRapidFirePrefix();
+    }
 
-        // Send the virtual click HERE in the prefix (after angles are redirected),
-        // not in the postfix. This way the click arrives during Controll.Update (same
-        // frame) and the game fires immediately at the redirected angles — no 1-tick delay.
+    private static void ControllerUpdatePostfix(Controll __instance)
+    {
+        // Auto-shoot: send LEFTUP+LEFTDOWN in the postfix. The click arrives next
+        // frame when Unity polls input. Silent aim prefix redirects angles next
+        // frame too, so the game fires at the target. 1-tick delay is acceptable.
         if (autoShootPending)
         {
             var main = Controll.HGAODFPBGLB;
@@ -245,13 +248,7 @@ public sealed class Plugin : BasePlugin
                 pendingLeftMouseUp = true;
             }
         }
-    }
-
-    private static void ControllerUpdatePostfix(Controll __instance)
-    {
-        // Release the virtual mouse if we're not auto-shooting this frame.
-        // The click is sent in the prefix (same frame as Controll.Update).
-        if (!autoShootPending && pendingLeftMouseUp)
+        else if (pendingLeftMouseUp)
         {
             mouse_event(MouseEventFLeftUp, 0, 0, 0, 0);
             pendingLeftMouseUp = false;
@@ -320,23 +317,34 @@ public sealed class Plugin : BasePlugin
     /// the same mechanism taken to its limit rather than a new code path.
     /// </summary>
     /// <summary>
-    /// Bunny hop: automatically jump when the player lands. Sends spacebar via
-    /// keybd_event so the game's own jump logic handles the actual jump.
+    /// Bunny hop: automatically jump when the player lands while moving forward.
+    /// Only triggers when W is held and the player is on the ground.
     /// </summary>
     private static void ApplyBunnyHop(KBBBHJDINCB main)
     {
         try
         {
-            // Only hop if the player is on the ground (not already jumping).
-            // The rigidbody's velocity Y is near zero when grounded.
+            // Only hop when the player is holding W (moving forward).
+            if (!Input.GetKey(KeyCode.W))
+            {
+                return;
+            }
+
+            // Don't hop if already pressing space — let them control manual jumps.
+            if (Input.GetKey(KeyCode.Space))
+            {
+                return;
+            }
+
+            // Check if grounded via the player's rigidbody vertical velocity.
+            // When on the ground, Y velocity is near zero.
             var rb = main.MJPOJOOIPPN;
             if (rb == null)
             {
                 return;
             }
 
-            // If vertical velocity is near zero, we're grounded — send space.
-            if (Mathf.Abs(rb.velocity.y) < 0.5f)
+            if (Mathf.Abs(rb.velocity.y) < 1f)
             {
                 keybd_event(VkSpace, 0, KeyEventFKeyDown, 0);
                 keybd_event(VkSpace, 0, KeyEventFKeyUp, 0);

@@ -337,7 +337,9 @@ public sealed class Plugin : BasePlugin
             var main = Controll.HGAODFPBGLB;
             if (main == null || main.JPGGPPLOOML == null)
             {
-                AsyncLog.Write($"[RapidFire] skipped: main={main == null}, weapon={main?.JPGGPPLOOML == null}");
+                // Don't fire if the player has no weapon — calling PLH.CDEGJOBLOFO with
+                // a null weapon can corrupt the loadout state and wipe the player's items.
+                forceShotThisFrame = false;
                 return;
             }
 
@@ -1303,7 +1305,8 @@ public sealed class Plugin : BasePlugin
         if (aimStyle == 1)
         {
             // Fire the weapon directly for sound/animation, and send a fake hit for the target.
-            if (Time.unscaledTime >= nextAutoShootTime && Application.isFocused)
+            if (Time.unscaledTime >= nextAutoShootTime && Application.isFocused
+                && mainPlayer.JPGGPPLOOML != null)
             {
                 // Send fake hit packet — this is what actually kills the target.
                 var origin = camera.transform.position;

@@ -179,15 +179,17 @@ internal static class NetProbe
             ?? AccessTools.Property(clientType, "LPCJFAOOIKA")?.GetValue(null);
 
         // AccessTools.Method with typeof(byte) etc. fails for IL2CPP types because the
-        // parameter types are Il2Cpp wrappers, not managed types. Resolve by name only.
+        // parameter types are Il2Cpp wrappers, not managed types. And resolving by name
+        // only picks the wrong overload when there are multiple (e.g. LPAPGKDAENI has
+        // both (byte,byte) and () overloads). So we resolve by name + parameter count.
         fakeHitFlush = AccessTools.Method(clientType, "HKOFHOANEJD");
-        netBegin = AccessTools.Method(netType, nameof(Raw.NET.Methods.LPAPGKDAENI));
-        netF32 = AccessTools.Method(netType, nameof(Raw.NET.Methods.JBIICNJNHCI));
-        netI32 = AccessTools.Method(netType, nameof(Raw.NET.Methods.FPELFNLEPGG));
-        netU8 = AccessTools.Method(netType, nameof(Raw.NET.Methods.PFCLIPCCHCK));
-        netI16 = AccessTools.Method(netType, nameof(Raw.NET.Methods.APNPMHBBLDG))
-            ?? AccessTools.Method(netType, nameof(Raw.NET.Methods.HMCNFGMBCOC));
-        netEnd = AccessTools.Method(netType, nameof(Raw.NET.Methods.EMJOGONJKIO));
+        netBegin = ResolveByParamCount(netType, nameof(Raw.NET.Methods.LPAPGKDAENI), 2);
+        netF32 = ResolveByParamCount(netType, nameof(Raw.NET.Methods.JBIICNJNHCI), 1);
+        netI32 = ResolveByParamCount(netType, nameof(Raw.NET.Methods.FPELFNLEPGG), 1);
+        netU8 = ResolveByParamCount(netType, nameof(Raw.NET.Methods.PFCLIPCCHCK), 1);
+        netI16 = ResolveByParamCount(netType, nameof(Raw.NET.Methods.APNPMHBBLDG), 1)
+            ?? ResolveByParamCount(netType, nameof(Raw.NET.Methods.HMCNFGMBCOC), 1);
+        netEnd = ResolveByParamCount(netType, nameof(Raw.NET.Methods.EMJOGONJKIO), 0);
 
         source.LogInfo($"[NetProbe] fake-hit init: client={(fakeHitClient != null ? "found" : "null (will capture from OnFlush)")}, " +
                        $"flush={(fakeHitFlush != null ? "ok" : "null")}, begin={(netBegin != null ? "ok" : "null")}, " +
@@ -939,5 +941,21 @@ internal static class NetProbe
         running = false;
         capturing = false;
         writer?.Join(1500);
+    }
+
+    /// <summary>
+    /// Resolve a method by name and parameter count, working around IL2CPP type
+    /// mismatches that prevent AccessTools.Method from matching parameter types.
+    /// </summary>
+    private static MethodInfo? ResolveByParamCount(Type type, string name, int paramCount)
+    {
+        foreach (var m in type.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance))
+        {
+            if (m.Name == name && m.GetParameters().Length == paramCount)
+            {
+                return m;
+            }
+        }
+        return null;
     }
 }

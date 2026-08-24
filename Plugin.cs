@@ -79,6 +79,10 @@ public sealed class Plugin : BasePlugin
     private static bool pendingLeftMouseUp;
     private static bool forceShotThisFrame;
     private static bool rapidFireFailureLogged;
+    // When true, Input.GetMouseButton(0) returns true regardless of actual mouse state.
+    // Set by silent aim prefix so Controll.Update fires through its own logic (which
+    // sends the network hit packet) while aim angles are redirected to the target.
+    private static bool autoShootThisFrame;
     private static bool espEnabled = true;
     private static bool showHealth = true;
     private static bool showTeammates;
@@ -168,6 +172,21 @@ public sealed class Plugin : BasePlugin
             Log.LogWarning("Could not resolve the current SetRecoil signature; no-recoil will remain unavailable.");
         }
 
+        // Patch Input.GetMouseButton so silent aim auto-shoot can trick Controll.Update
+        // into firing through its own logic (which sends the network hit packet) while
+        // the aim angles are redirected to the target. mouse_event doesn't work because
+        // the click arrives next frame, after angles are restored.
+        var getMouseButton = AccessTools.Method(typeof(UnityEngine.Input), nameof(UnityEngine.Input.GetMouseButton), new[] { typeof(int) });
+        if (getMouseButton != null)
+        {
+            harmony.Patch(getMouseButton, prefix: new HarmonyMethod(typeof(Plugin), nameof(GetMouseButtonPrefix)));
+            Log.LogInfo("Patched Input.GetMouseButton for silent aim auto-shoot.");
+        }
+        else
+        {
+            Log.LogWarning("Could not patch Input.GetMouseButton; silent aim auto-shoot will not work.");
+        }
+
         Log.LogInfo($"Patched Controll.Update, Controll.OnGUI, and recoil hook: {recoilMethod != null}. Auto-shoot uses direct PLH.CDEGJOBLOFO when rapid fire is active.");
 
         NetProbe.Install(harmony, Log);
@@ -189,6 +208,7 @@ public sealed class Plugin : BasePlugin
     {
         controllerRunning = true;
         forceShotThisFrame = false;
+        autoShootThisFrame = false;
         LogControllerStartup();
         // Run before Controll.Update's own reload evaluation. Applied from the postfix the write
         // landed after the game had already read the stamp for this frame, which is consistent
@@ -229,6 +249,22 @@ public sealed class Plugin : BasePlugin
             mouse_event(MouseEventFLeftUp, 0, 0, 0, 0);
             pendingLeftMouseUp = false;
         }
+    }
+
+    /// <summary>
+    /// Harmony prefix for Input.GetMouseButton(int). When autoShootThisFrame is true,
+    /// forces GetMouseButton(0) to return true so Controll.Update's own fire logic
+    /// fires the weapon (including the network hit packet) while aim angles are
+    /// redirected to the target by silent aim.
+    /// </summary>
+    private static bool GetMouseButtonPrefix(int button, ref bool __result)
+    {
+        if (autoShootThisFrame && button == 0)
+        {
+            __result = true;
+            return false; // skip original method
+        }
+        return true; // run original method
     }
 
     /// <summary>
@@ -1324,16 +1360,13 @@ public sealed class Plugin : BasePlugin
             // Save real angles and redirect to target.
             SaveAndRedirectAim(camera, bestPosition);
 
-            // Auto-shoot: simulate a left mouse click so the game's own fire logic
-            // (inside Controll.Update, running after this prefix) fires at the target.
-            // The click arrives via Windows message queue and is processed by Unity's
-            // input system. Since we redirect angles every frame while the aim key is
-            // held, the click will fire at the redirected target.
-            if (Application.isFocused && mainPlayer.JPGGPPLOOML != null
-                && !Input.GetMouseButton(0))
+            // Auto-shoot: set the flag so Input.GetMouseButton(0) returns true during
+            // Controll.Update (which runs right after this prefix). The game's own fire
+            // logic will fire at the redirected angles AND send the network hit packet.
+            // This is the same code path as manual shooting, just with faked input.
+            if (Application.isFocused && mainPlayer.JPGGPPLOOML != null)
             {
-                mouse_event(MouseEventFLeftDown, 0, 0, 0, 0);
-                pendingLeftMouseUp = true;
+                autoShootThisFrame = true;
             }
             aimStatus = $"silent target={lastAimTargetIndex}, angle={bestAngle:0.0} degrees";
             return;

@@ -171,17 +171,29 @@ public sealed class Plugin : BasePlugin
             Log.LogWarning("Could not resolve the current SetRecoil signature; no-recoil will remain unavailable.");
         }
 
-        // Patch Input.GetMouseButton so silent aim auto-shoot can trick Controll.Update
-        // into firing through its own logic. The game reads Input.GetMouseButton(0) at the
-        // start of Update and stores it in EPEEFBDJAHO — setting EPEEFBDJAHO in our prefix
-        // gets overwritten. Patching the input method itself is the only way.
+        // Patch Input.GetMouseButton AND Input.GetMouseButtonDown so auto-shoot can trick
+        // Controll.Update into firing through its own logic. The game reads input at the
+        // start of Update — we don't know if it uses GetMouseButton (held) or
+        // GetMouseButtonDown (edge-triggered), so patch both.
         var getMouseButton = AccessTools.Method(typeof(UnityEngine.Input), nameof(UnityEngine.Input.GetMouseButton));
+        var getMouseButtonDown = AccessTools.Method(typeof(UnityEngine.Input), nameof(UnityEngine.Input.GetMouseButtonDown));
+        var getMouseButtonUp = AccessTools.Method(typeof(UnityEngine.Input), nameof(UnityEngine.Input.GetMouseButtonUp));
         if (getMouseButton != null)
         {
             harmony.Patch(getMouseButton, prefix: new HarmonyMethod(typeof(Plugin), nameof(GetMouseButtonPrefix)));
-            Log.LogInfo($"Patched Input.GetMouseButton for auto-shoot: {getMouseButton.DeclaringType?.Name}.{getMouseButton.Name}({getMouseButton.GetParameters().Length} params)");
+            Log.LogInfo($"Patched Input.GetMouseButton for auto-shoot: {getMouseButton.GetParameters().Length} params");
         }
-        else
+        if (getMouseButtonDown != null)
+        {
+            harmony.Patch(getMouseButtonDown, prefix: new HarmonyMethod(typeof(Plugin), nameof(GetMouseButtonPrefix)));
+            Log.LogInfo($"Patched Input.GetMouseButtonDown for auto-shoot: {getMouseButtonDown.GetParameters().Length} params");
+        }
+        if (getMouseButtonUp != null)
+        {
+            harmony.Patch(getMouseButtonUp, prefix: new HarmonyMethod(typeof(Plugin), nameof(GetMouseButtonUpPrefix)));
+            Log.LogInfo($"Patched Input.GetMouseButtonUp for auto-shoot: {getMouseButtonUp.GetParameters().Length} params");
+        }
+        if (getMouseButton == null)
         {
             Log.LogWarning("Could not patch Input.GetMouseButton; auto-shoot will not work.");
         }
@@ -252,15 +264,30 @@ public sealed class Plugin : BasePlugin
     }
 
     /// <summary>
-    /// Harmony prefix for Input.GetMouseButton(int). When autoShootThisFrame is true,
-    /// forces GetMouseButton(0) to return true so Controll.Update fires through its own
-    /// logic (raycast + network hit packet) while aim angles are redirected to the target.
+    /// Harmony prefix for Input.GetMouseButton(int) and Input.GetMouseButtonDown(int).
+    /// When autoShootThisFrame is true, forces button 0 to return true so
+    /// Controll.Update fires through its own logic (raycast + network hit packet)
+    /// while aim angles are redirected to the target.
     /// </summary>
     private static bool GetMouseButtonPrefix(int button, ref bool __result)
     {
         if (autoShootThisFrame && button == 0)
         {
             __result = true;
+            return false; // skip original method
+        }
+        return true; // run original method
+    }
+
+    /// <summary>
+    /// Harmony prefix for Input.GetMouseButtonUp(int). When autoShootThisFrame is true,
+    /// forces button 0 up to return false so the game doesn't think the player released.
+    /// </summary>
+    private static bool GetMouseButtonUpPrefix(int button, ref bool __result)
+    {
+        if (autoShootThisFrame && button == 0)
+        {
+            __result = false;
             return false; // skip original method
         }
         return true; // run original method

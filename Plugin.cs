@@ -79,6 +79,9 @@ public sealed class Plugin : BasePlugin
     private static bool pendingLeftMouseUp;
     private static bool forceShotThisFrame;
     private static bool rapidFireFailureLogged;
+    // Set by silent aim prefix when auto-shoot should fire. The postfix sends mouse_event
+    // LEFTDOWN which arrives next frame, making Input.GetMouseButton(0) return true.
+    private static bool autoShootPending;
     // When true, Input.GetMouseButton(0) returns true regardless of actual mouse state.
     // Set by silent aim / auto-shoot prefix so Controll.Update fires through its own logic.
     private static bool autoShootThisFrame;
@@ -220,26 +223,36 @@ public sealed class Plugin : BasePlugin
         controllerRunning = true;
         forceShotThisFrame = false;
         autoShootThisFrame = false;
+        // Reset autoShootPending. If UpdateAimbotSafely sets it again (target found),
+        // the postfix will send mouse_event to keep the button held.
+        autoShootPending = false;
         LogControllerStartup();
         ApplyInstantReload();
         UpdateAimbotSafely();
         ApplyCheatFeatures();
         PrepareRapidFirePrefix();
-        // NOTE: Do NOT fire from the prefix. PLH.CDEGJOBLOFO only does the visual shot —
-        // the hit detection + network packet happens inside Controll.Update's own code
-        // path, which checks EPEEFBDJAHO (cached fire input). We set EPEEFBDJAHO=1 in
-        // the postfix so Controll.Update sees it NEXT frame and fires through its own
-        // full code path (raycast + hit list + Client.AHLDAPJEJNC).
     }
 
     private static void ControllerUpdatePostfix(Controll __instance)
     {
-        // Log EPEEFBDJAHO after Controll.Update to see if the game overwrote our value.
-        if (silentAimRedirected)
+        // Keep the virtual left mouse button held while auto-shoot is active.
+        // mouse_event arrives NEXT frame, so:
+        // - Frame N postfix: send LEFTDOWN → arrives frame N+1
+        // - Frame N+1: Unity polls input → GetMouseButton(0)=true → Controll.Update fires
+        //   at redirected angles (silent aim prefix ran)
+        // - Frame N+1 postfix: send LEFTDOWN again → keeps button held for frame N+2
+        // When autoShoot stops, send LEFTUP to release.
+        if (silentAimRedirected && autoShootPending)
         {
-            AsyncLog.Write($"[Postfix] EPEEFBDJAHO={Controll.EPEEFBDJAHO}, LCMOBPPHLLM={Controll.LCMOBPPHLLM}");
+            mouse_event(MouseEventFLeftDown, 0, 0, 0, 0);
+            pendingLeftMouseUp = true;
         }
-        ReleaseLeftMouseIfNeeded();
+        else if (pendingLeftMouseUp)
+        {
+            mouse_event(MouseEventFLeftUp, 0, 0, 0, 0);
+            pendingLeftMouseUp = false;
+        }
+
         ForceRapidFireShot();
         RestoreSilentAim();
 
@@ -1429,12 +1442,13 @@ public sealed class Plugin : BasePlugin
             // rotation so the fire raycast goes toward the target.
             SaveAndRedirectAim(camera, bestPosition);
 
-            // Auto-shoot: set EPEEFBDJAHO (fire input flag) in the prefix. Log its
-            // value in the postfix to see if the game overwrites it during Update.
+            // Auto-shoot: set autoShootPending. The postfix will send mouse_event(LEFTDOWN)
+            // which arrives NEXT frame. Next frame, Unity polls input → GetMouseButton(0)=true
+            // → Controll.Update fires through its own full code path (raycast + hit packet)
+            // at the redirected angles (silent aim prefix runs again next frame).
             if (Application.isFocused && mainPlayer.JPGGPPLOOML != null)
             {
-                Controll.EPEEFBDJAHO = 1;
-                AsyncLog.Write($"[SilentAim] prefix: EPEEFBDJAHO set to 1, target={lastAimTargetIndex}");
+                autoShootPending = true;
             }
             aimStatus = $"silent target={lastAimTargetIndex}, angle={bestAngle:0.0} degrees";
             return;
@@ -1604,14 +1618,15 @@ public sealed class Plugin : BasePlugin
             return;
         }
 
-        // Auto-shoot: set EPEEFBDJAHO (fire input flag) so Controll.Update fires.
+        // Auto-shoot: set autoShootPending. Postfix sends mouse_event(LEFTDOWN) which
+        // arrives next frame → GetMouseButton(0)=true → game fires at aimed target.
         var main = Controll.HGAODFPBGLB;
         if (main == null || main.JPGGPPLOOML == null)
         {
             return;
         }
 
-        Controll.EPEEFBDJAHO = 1;
+        autoShootPending = true;
         aimStatus = $"{aimStatus} | auto-shoot";
     }
 

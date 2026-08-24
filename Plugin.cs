@@ -44,6 +44,9 @@ public sealed class Plugin : BasePlugin
     };
     private static Plugin? instance;
     private static bool menuVisible;
+    private static Rect menuRect = new(20, 20, 520, 660);
+    private static bool menuDragging;
+    private static Vector2 menuDragOffset;
     private static bool bootstrapLogged;
     private static bool bindingsLogged;
     private static bool featureFailureLogged;
@@ -92,11 +95,12 @@ public sealed class Plugin : BasePlugin
     // Silent aim state: the real aim angles are saved in the prefix, redirected to the
     // target for Controll.Update (which fires the shot), then restored in the postfix
     // before the camera renders — so the player never sees the snap.
+    // We do NOT touch the camera transform — that's what caused the freeze. The camera
+    // follows the aim angles automatically, and restoring the angles in the postfix
+    // before render is enough. The player keeps full mouse-look control.
     private static bool silentAimRedirected;
     private static float savedYaw;
     private static float savedPitch;
-    private static Vector3 savedCameraPos;
-    private static Quaternion savedCameraRot;
     private static float nextGhostBulletTime;
     private static readonly List<EspBox> espBoxes = new();
 
@@ -374,6 +378,18 @@ public sealed class Plugin : BasePlugin
         }
 
         menuVisible = !menuVisible;
+        if (menuVisible)
+        {
+            // Free the mouse cursor so the user can interact with the menu.
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+        else
+        {
+            // Return cursor to the game's locked state.
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
         instance?.Log.LogInfo($"Trainer menu {(menuVisible ? "opened" : "closed")}.");
     }
 
@@ -963,6 +979,14 @@ public sealed class Plugin : BasePlugin
 
         try
         {
+            // Don't run the aimbot while the menu is open — the cursor is free for menu
+            // interaction and we don't want auto-shoot firing into the wall.
+            if (menuVisible)
+            {
+                aimStatus = "menu open";
+                return;
+            }
+
             if (!IsAimbotActivationPressed())
             {
                 aimStatus = $"waiting for {AimActivationLabels[aimActivationMode]}";
@@ -1194,16 +1218,15 @@ public sealed class Plugin : BasePlugin
     }
 
     /// <summary>
-    /// Save the player's real aim angles and camera state, then redirect aim to the target.
-    /// Controll.Update (running after this prefix) will fire at the target.
-    /// RestoreSilentAim() in the postfix puts everything back before render.
+    /// Save the player's real aim angles, then redirect to the target. Controll.Update
+    /// (running after this prefix) will fire at the target. RestoreSilentAim() in the
+    /// postfix puts the angles back before render. The camera is NOT touched — it
+    /// follows the angles automatically, and the player keeps full mouse-look control.
     /// </summary>
     private static void SaveAndRedirectAim(Camera camera, Vector3 targetPosition)
     {
         savedYaw = Controll.NAKNALFCOIF;
         savedPitch = Controll.IGLCENGMMMJ;
-        savedCameraPos = camera.transform.position;
-        savedCameraRot = camera.transform.rotation;
         silentAimRedirected = true;
 
         var targetDirection = targetPosition - camera.transform.position;
@@ -1217,8 +1240,8 @@ public sealed class Plugin : BasePlugin
     }
 
     /// <summary>
-    /// Restore the real aim angles and camera transform after Controll.Update has fired.
-    /// This runs in the postfix, before the frame renders, so the player never sees the snap.
+    /// Restore the real aim angles after Controll.Update has fired. This runs in the
+    /// postfix, before the frame renders, so the player never sees the snap.
     /// </summary>
     private static void RestoreSilentAim()
     {
@@ -1229,14 +1252,6 @@ public sealed class Plugin : BasePlugin
 
         Controll.NAKNALFCOIF = savedYaw;
         Controll.IGLCENGMMMJ = savedPitch;
-
-        var camera = activeCamera;
-        if (camera != null)
-        {
-            camera.transform.position = savedCameraPos;
-            camera.transform.rotation = savedCameraRot;
-        }
-
         silentAimRedirected = false;
     }
 
@@ -1456,63 +1471,89 @@ public sealed class Plugin : BasePlugin
 
     private static void DrawTrainerMenu()
     {
-        GUI.Box(new Rect(20, 20, 500, 600), "Blockpost Legacy Trainer");
-        GUI.Label(new Rect(40, 54, 460, 24), "Offline bot-game feature port");
-        espEnabled = GUI.Toggle(new Rect(40, 84, 460, 24), espEnabled, "ESP boxes");
+        // Draggable title bar.
+        var headerRect = new Rect(menuRect.x, menuRect.y, menuRect.width, 24);
+        GUI.Box(menuRect, "Blockpost Legacy Trainer");
+        GUI.Label(new Rect(menuRect.x + 8, menuRect.y + 2, menuRect.width - 16, 20), "Blockpost Legacy Trainer (drag)");
+
+        var mousePos = Event.current.mousePosition;
+        if (Event.current.type == EventType.MouseDown && headerRect.Contains(mousePos))
+        {
+            menuDragging = true;
+            menuDragOffset = mousePos - new Vector2(menuRect.x, menuRect.y);
+        }
+        else if (Event.current.type == EventType.MouseUp)
+        {
+            menuDragging = false;
+        }
+        else if (Event.current.type == EventType.MouseDrag && menuDragging)
+        {
+            menuRect.x = mousePos.x - menuDragOffset.x;
+            menuRect.y = mousePos.y - menuDragOffset.y;
+        }
+
+        var x = menuRect.x + 20;
+        var y = menuRect.y + 30;
+        var w = menuRect.width - 40;
+
+        GUI.Label(new Rect(x, y, w, 24), "Offline bot-game feature port"); y += 30;
+        espEnabled = GUI.Toggle(new Rect(x, y, w, 24), espEnabled, "ESP boxes"); y += 26;
         if (espEnabled)
         {
-            showHealth = GUI.Toggle(new Rect(60, 108, 440, 24), showHealth, "Show health");
-            showTeammates = GUI.Toggle(new Rect(60, 132, 440, 24), showTeammates, "Show teammates");
+            showHealth = GUI.Toggle(new Rect(x + 20, y, w - 20, 24), showHealth, "Show health"); y += 26;
+            showTeammates = GUI.Toggle(new Rect(x + 20, y, w - 20, 24), showTeammates, "Show teammates"); y += 26;
         }
 
-        aimbotEnabled = GUI.Toggle(new Rect(40, 162, 460, 24), aimbotEnabled, "Aimbot");
+        aimbotEnabled = GUI.Toggle(new Rect(x, y, w, 24), aimbotEnabled, "Aimbot"); y += 26;
         if (aimbotEnabled)
         {
-            GUI.Label(new Rect(40, 186, 460, 24), "Aimbot activation:");
-            if (GUI.Button(new Rect(40, 210, 460, 32), $"Aim key: {AimActivationLabels[aimActivationMode]}"))
+            GUI.Label(new Rect(x, y, w, 24), "Aimbot activation:"); y += 24;
+            if (GUI.Button(new Rect(x, y, w, 28), $"Aim key: {AimActivationLabels[aimActivationMode]}"))
             {
                 aimActivationMode = (aimActivationMode + 1) % AimActivationLabels.Length;
-                instance?.Log.LogInfo($"Aimbot activation changed to {AimActivationLabels[aimActivationMode]}.");
             }
+            y += 32;
 
-            if (GUI.Button(new Rect(40, 246, 460, 32), $"Aim style: {AimStyleLabels[aimStyle]}"))
+            if (GUI.Button(new Rect(x, y, w, 28), $"Aim style: {AimStyleLabels[aimStyle]}"))
             {
                 aimStyle = (aimStyle + 1) % AimStyleLabels.Length;
-                instance?.Log.LogInfo($"Aimbot style changed to {AimStyleLabels[aimStyle]}.");
             }
+            y += 32;
 
-            GUI.Label(new Rect(40, 284, 460, 24), $"Aimbot FOV: {aimbotFov:0} degrees");
-            aimbotFov = GUI.HorizontalSlider(new Rect(40, 308, 460, 24), aimbotFov, MinimumAimbotFov, MaximumAimbotFov);
-            autoShoot = GUI.Toggle(new Rect(40, 340, 460, 24), autoShoot, "Auto shoot (Win32 input)");
+            GUI.Label(new Rect(x, y, w, 24), $"Aimbot FOV: {aimbotFov:0} degrees"); y += 24;
+            aimbotFov = GUI.HorizontalSlider(new Rect(x, y, w, 24), aimbotFov, MinimumAimbotFov, MaximumAimbotFov); y += 28;
+            autoShoot = GUI.Toggle(new Rect(x, y, w, 24), autoShoot, "Auto shoot (Win32 input)"); y += 26;
             if (autoShoot)
             {
-                rapidFire = GUI.Toggle(new Rect(60, 364, 440, 24), rapidFire, "Rapid fire (1 shot/tick)");
+                rapidFire = GUI.Toggle(new Rect(x + 20, y, w - 20, 24), rapidFire, "Rapid fire (1 shot/tick)"); y += 26;
             }
 
-            ghostBullets = GUI.Toggle(new Rect(60, 388, 440, 24), ghostBullets, "Ghost bullets (hit through walls)");
+            ghostBullets = GUI.Toggle(new Rect(x + 20, y, w - 20, 24), ghostBullets, "Ghost bullets (hit through walls)"); y += 26;
 
-            // The server-trust test is the standalone version of ghost bullets for plain aim.
             if (aimStyle == 0 && !ghostBullets)
             {
-                serverTrustTest = GUI.Toggle(new Rect(60, 412, 440, 24), serverTrustTest, "Server trust test — fake hit packets");
+                serverTrustTest = GUI.Toggle(new Rect(x + 20, y, w - 20, 24), serverTrustTest, "Server trust test — fake hit packets"); y += 26;
             }
         }
 
-        noRecoil = GUI.Toggle(new Rect(40, 418, 460, 24), noRecoil, "No recoil");
-        infiniteHealth = GUI.Toggle(new Rect(40, 448, 460, 24), infiniteHealth, "Infinite health");
-        infiniteAmmo = GUI.Toggle(new Rect(40, 478, 460, 24), infiniteAmmo, "Infinite ammo (log only — identifying correct fields)");
-        instantReload = GUI.Toggle(new Rect(40, 508, 460, 24), instantReload, $"Instant reload (EXPERIMENTAL: only hides the minigame bar — {instantReloads})");
-        debugLogging = GUI.Toggle(new Rect(40, 538, 460, 24), debugLogging, $"Verbose diagnostics (summary only, 1/{DiagnosticInterval:0}s)");
+        noRecoil = GUI.Toggle(new Rect(x, y, w, 24), noRecoil, "No recoil"); y += 26;
+        infiniteHealth = GUI.Toggle(new Rect(x, y, w, 24), infiniteHealth, "Infinite health"); y += 26;
+        infiniteAmmo = GUI.Toggle(new Rect(x, y, w, 24), infiniteAmmo, "Infinite ammo (log only — identifying correct fields)"); y += 26;
+        instantReload = GUI.Toggle(new Rect(x, y, w, 24), instantReload, $"Instant reload (EXPERIMENTAL: only hides the minigame bar — {instantReloads})"); y += 26;
+        debugLogging = GUI.Toggle(new Rect(x, y, w, 24), debugLogging, $"Verbose diagnostics (summary only, 1/{DiagnosticInterval:0}s)"); y += 26;
         if (debugLogging)
         {
-            heavyDiagnostics = GUI.Toggle(new Rect(60, 562, 440, 24), heavyDiagnostics, "+ full field sweep (COSTLY: budgeted, still slows the game)");
+            heavyDiagnostics = GUI.Toggle(new Rect(x + 20, y, w - 20, 24), heavyDiagnostics, "+ full field sweep (COSTLY: budgeted, still slows the game)"); y += 26;
         }
-        showRuntimeStatus = GUI.Toggle(new Rect(40, 592, 460, 24), showRuntimeStatus, "Show runtime status");
+        showRuntimeStatus = GUI.Toggle(new Rect(x, y, w, 24), showRuntimeStatus, "Show runtime status"); y += 26;
         if (showRuntimeStatus)
         {
-            GUI.Label(new Rect(40, 616, 460, 24), $"Update: {(controllerRunning ? "running" : "waiting")} | Boxes: {espBoxes.Count} | {featureStatus}");
-            GUI.Label(new Rect(40, 640, 460, 24), $"Aimbot: {aimStatus}");
+            GUI.Label(new Rect(x, y, w, 24), $"Update: {(controllerRunning ? "running" : "waiting")} | Boxes: {espBoxes.Count} | {featureStatus}"); y += 24;
+            GUI.Label(new Rect(x, y, w, 24), $"Aimbot: {aimStatus}"); y += 24;
         }
+
+        // Resize the menu to fit the content.
+        menuRect.height = y - menuRect.y + 10;
     }
 
     private static void DrawEspBoxes()

@@ -231,19 +231,13 @@ public sealed class Plugin : BasePlugin
         ApplyCheatFeatures();
         PrepareRapidFirePrefix();
 
-        // Send the click in the prefix too — right before Controll.Update polls input.
-        // The postfix click might be consumed by Unity's input poll before next frame's
-        // prefix. Sending in both ensures the click is seen regardless of timing.
-        if (autoShootPending)
+        // If we're not shooting this frame but the button is still held from
+        // last frame's postfix, release it NOW before Controll.Update runs.
+        // Otherwise the game sees left mouse stuck down and breaks.
+        if (!autoShootPending && pendingLeftMouseUp)
         {
-            var main = Controll.HGAODFPBGLB;
-            var alive = main != null && main.FDOJDJLIGLF > 0 && main.JPGGPPLOOML != null;
-            if (alive)
-            {
-                mouse_event(MouseEventFLeftUp, 0, 0, 0, 0);
-                mouse_event(MouseEventFLeftDown, 0, 0, 0, 0);
-                pendingLeftMouseUp = true;
-            }
+            mouse_event(MouseEventFLeftUp, 0, 0, 0, 0);
+            pendingLeftMouseUp = false;
         }
     }
 

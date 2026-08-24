@@ -95,16 +95,17 @@ public sealed class Plugin : BasePlugin
     private static int instantReloads;
     private static float nextAutoShootTime;
 
-    // Silent aim state: in the prefix we save the player's real aim angles and redirect
-    // them to the target. Controll.Update runs (fires the shot at the target, and applies
-    // mouse delta to the angles). In the postfix we restore the saved angles PLUS the mouse
-    // delta that Update applied — so the player's mouse movement is preserved and the
-    // camera never locks. The shot goes to the target but the view stays with the player.
+    // Silent aim state: in the prefix we save the player's real aim angles AND camera
+    // rotation, redirect the angles to the target. Controll.Update runs (fires the shot
+    // at the target, applies mouse delta to angles, updates camera rotation). In the
+    // postfix we restore the saved angles + mouse delta AND restore the camera rotation
+    // to match — so the player never sees the snap and mouse movement is preserved.
     private static bool silentAimRedirected;
     private static float savedYaw;
     private static float savedPitch;
     private static float targetYaw;
     private static float targetPitch;
+    private static Quaternion savedCameraRot;
     private static float nextGhostBulletTime;
     private static readonly List<EspBox> espBoxes = new();
 
@@ -1352,6 +1353,7 @@ public sealed class Plugin : BasePlugin
     {
         savedYaw = Controll.NAKNALFCOIF;
         savedPitch = Controll.IGLCENGMMMJ;
+        savedCameraRot = camera.transform.rotation;
         silentAimRedirected = true;
 
         var targetDirection = targetPosition - camera.transform.position;
@@ -1365,9 +1367,10 @@ public sealed class Plugin : BasePlugin
     }
 
     /// <summary>
-    /// Restore the real aim angles after Controll.Update has fired. Preserves the mouse
-    /// delta that Update applied: the difference between the angles now and the target
+    /// Restore the real aim angles and camera rotation after Controll.Update has fired.
+    /// Preserves the mouse delta: the difference between the angles now and the target
     /// angles is the mouse movement, which we add back to the saved real angles.
+    /// Also restores the camera rotation so the player never sees the snap.
     /// </summary>
     private static void RestoreSilentAim()
     {
@@ -1381,8 +1384,18 @@ public sealed class Plugin : BasePlugin
         var deltaPitch = Controll.IGLCENGMMMJ - targetPitch;
 
         // Restore real angles + mouse delta.
-        Controll.NAKNALFCOIF = savedYaw + deltaYaw;
-        Controll.IGLCENGMMMJ = Mathf.Clamp(savedPitch + deltaPitch, -89f, 89f);
+        var restoredYaw = savedYaw + deltaYaw;
+        var restoredPitch = Mathf.Clamp(savedPitch + deltaPitch, -89f, 89f);
+        Controll.NAKNALFCOIF = restoredYaw;
+        Controll.IGLCENGMMMJ = restoredPitch;
+
+        // Restore camera rotation to match the real angles, undoing the snap that
+        // Controll.Update applied when it read the redirected angles.
+        var camera = Controll.CDFACGAFFFH;
+        if (camera != null && camera.transform != null)
+        {
+            camera.transform.rotation = Quaternion.Euler(restoredPitch, restoredYaw, 0f);
+        }
 
         silentAimRedirected = false;
     }

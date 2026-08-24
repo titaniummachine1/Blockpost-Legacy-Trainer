@@ -95,15 +95,16 @@ public sealed class Plugin : BasePlugin
     private static int instantReloads;
     private static float nextAutoShootTime;
 
-    // Silent aim state: the real aim angles are saved in the prefix, redirected to the
-    // target for Controll.Update (which fires the shot), then restored in the postfix
-    // before the camera renders — so the player never sees the snap.
-    // We do NOT touch the camera transform — that's what caused the freeze. The camera
-    // follows the aim angles automatically, and restoring the angles in the postfix
-    // before render is enough. The player keeps full mouse-look control.
+    // Silent aim state: in the prefix we save the player's real aim angles and redirect
+    // them to the target. Controll.Update runs (fires the shot at the target, and applies
+    // mouse delta to the angles). In the postfix we restore the saved angles PLUS the mouse
+    // delta that Update applied — so the player's mouse movement is preserved and the
+    // camera never locks. The shot goes to the target but the view stays with the player.
     private static bool silentAimRedirected;
     private static float savedYaw;
     private static float savedPitch;
+    private static float targetYaw;
+    private static float targetPitch;
     private static float nextGhostBulletTime;
     private static readonly List<EspBox> espBoxes = new();
 
@@ -201,9 +202,14 @@ public sealed class Plugin : BasePlugin
 
     private static void ControllerUpdatePostfix(Controll __instance)
     {
-        // Fire the rapid-fire shot.
+        // Fire the rapid-fire shot while silent-aim redirect is still active.
         ReleaseLeftMouseIfNeeded();
         ForceRapidFireShot();
+
+        // Restore the real aim angles, preserving the mouse delta that Controll.Update
+        // applied during this frame. Without this, the player's mouse movement is lost
+        // and the camera feels locked.
+        RestoreSilentAim();
 
         NetProbe.Tick();
         FieldWatch.Tick(__instance);
@@ -1298,21 +1304,30 @@ public sealed class Plugin : BasePlugin
             TryGhostBullet(target, bestPosition, camera);
         }
 
-        // Silent aim: DON'T touch the camera or aim angles at all. The player keeps full
-        // mouse-look control. Instead, fire the weapon normally (for sound/animation/ammo)
-        // and send a fake hit packet for the aimbot target. The server trusts client-authored
-        // hits, so the target dies without the view ever moving.
+        // Silent aim: redirect the shot to the target without moving the camera.
+        // 1. Raycast from camera to target to confirm the shot can reach (not through walls,
+        //    unless ghost bullets is on)
+        // 2. Save the player's real aim angles, redirect to target
+        // 3. Controll.Update fires the shot at the target
+        // 4. Postfix restores the real angles + mouse delta (so the camera doesn't lock)
         if (aimStyle == 1)
         {
-            // Fire the weapon directly for sound/animation, and send a fake hit for the target.
+            // Raycast check — confirm we can actually hit the target. Skip if ghost bullets
+            // is on (that's the whole point of ghost bullets — shoot through walls).
+            if (!ghostBullets && !HasLineOfSight(camera, target, bestPosition))
+            {
+                aimStatus = $"silent: no line of sight to target={lastAimTargetIndex}";
+                return;
+            }
+
+            // Save real angles and redirect to target.
+            SaveAndRedirectAim(camera, bestPosition);
+
+            // Fire the weapon. Use direct fire (forceShotThisFrame) so the shot happens
+            // THIS frame while the angles are redirected.
             if (Time.unscaledTime >= nextAutoShootTime && Application.isFocused
                 && mainPlayer.JPGGPPLOOML != null)
             {
-                // Send fake hit packet — this is what actually kills the target.
-                var origin = camera.transform.position;
-                NetProbe.TryFakeHit(target, origin, bestPosition, 100);
-
-                // Also fire the weapon normally so the player sees/hears the shot.
                 forceShotThisFrame = true;
                 nextAutoShootTime = Time.unscaledTime + 0.12f;
             }
@@ -1330,8 +1345,8 @@ public sealed class Plugin : BasePlugin
     /// <summary>
     /// Save the player's real aim angles, then redirect to the target. Controll.Update
     /// (running after this prefix) will fire at the target. RestoreSilentAim() in the
-    /// postfix puts the angles back before render. The camera is NOT touched — it
-    /// follows the angles automatically, and the player keeps full mouse-look control.
+    /// postfix restores the real angles plus whatever mouse delta Update applied, so
+    /// the player's mouse movement is preserved and the camera never locks.
     /// </summary>
     private static void SaveAndRedirectAim(Camera camera, Vector3 targetPosition)
     {
@@ -1342,16 +1357,17 @@ public sealed class Plugin : BasePlugin
         var targetDirection = targetPosition - camera.transform.position;
         var targetRotation = Quaternion.LookRotation(targetDirection);
         var targetAngles = targetRotation.eulerAngles;
-        var pitch = NormalizeAngle(targetAngles.x);
-        pitch = Mathf.Clamp(pitch, -89f, 89f);
+        targetYaw = targetAngles.y;
+        targetPitch = Mathf.Clamp(NormalizeAngle(targetAngles.x), -89f, 89f);
 
-        Controll.NAKNALFCOIF = targetAngles.y;
-        Controll.IGLCENGMMMJ = pitch;
+        Controll.NAKNALFCOIF = targetYaw;
+        Controll.IGLCENGMMMJ = targetPitch;
     }
 
     /// <summary>
-    /// Restore the real aim angles after Controll.Update has fired. This runs in the
-    /// postfix, before the frame renders, so the player never sees the snap.
+    /// Restore the real aim angles after Controll.Update has fired. Preserves the mouse
+    /// delta that Update applied: the difference between the angles now and the target
+    /// angles is the mouse movement, which we add back to the saved real angles.
     /// </summary>
     private static void RestoreSilentAim()
     {
@@ -1360,8 +1376,14 @@ public sealed class Plugin : BasePlugin
             return;
         }
 
-        Controll.NAKNALFCOIF = savedYaw;
-        Controll.IGLCENGMMMJ = savedPitch;
+        // Mouse delta = how far the angles moved from the target during Update.
+        var deltaYaw = Controll.NAKNALFCOIF - targetYaw;
+        var deltaPitch = Controll.IGLCENGMMMJ - targetPitch;
+
+        // Restore real angles + mouse delta.
+        Controll.NAKNALFCOIF = savedYaw + deltaYaw;
+        Controll.IGLCENGMMMJ = Mathf.Clamp(savedPitch + deltaPitch, -89f, 89f);
+
         silentAimRedirected = false;
     }
 

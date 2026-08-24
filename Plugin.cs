@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using BlockpostTrainer.Sdk;
@@ -20,6 +21,8 @@ public sealed class Plugin : BasePlugin
     public const string PluginGuid = "local.blockpost.legacytrainer";
     public const string PluginName = "Blockpost Legacy Trainer";
     public const string PluginVersion = "0.7.1";
+
+    private static readonly string ConfigPath = Path.Combine(Paths.BepInExRootPath, "plugins", "BlockpostTrainer.cfg");
 
     private const float AimbotStrength = 14f;
     private const float MinimumAimbotFov = 1f;
@@ -167,10 +170,12 @@ public sealed class Plugin : BasePlugin
 
         NetProbe.Install(harmony, Log);
         AsyncLog.Start(Log);
+        LoadConfig();
     }
 
     public override bool Unload()
     {
+        SaveConfig();
         // Flush and stop the writer threads explicitly. Leaving them to be killed at process exit
         // is what left the game hanging on close.
         NetProbe.Shutdown();
@@ -392,6 +397,100 @@ public sealed class Plugin : BasePlugin
         }
         instance?.Log.LogInfo($"Trainer menu {(menuVisible ? "opened" : "closed")}.");
     }
+
+    // ---- config persistence ----
+
+    private static void LoadConfig()
+    {
+        try
+        {
+            if (!File.Exists(ConfigPath))
+            {
+                return;
+            }
+
+            foreach (var line in File.ReadAllLines(ConfigPath))
+            {
+                var idx = line.IndexOf('=');
+                if (idx <= 0)
+                {
+                    continue;
+                }
+
+                var key = line[..idx].Trim();
+                var val = line[(idx + 1)..].Trim();
+
+                switch (key)
+                {
+                    case "espEnabled": espEnabled = val == "1"; break;
+                    case "showHealth": showHealth = val == "1"; break;
+                    case "showTeammates": showTeammates = val == "1"; break;
+                    case "aimbotEnabled": aimbotEnabled = val == "1"; break;
+                    case "aimActivationMode": aimActivationMode = ParseInt(val, aimActivationMode); break;
+                    case "aimStyle": aimStyle = ParseInt(val, aimStyle); break;
+                    case "aimbotFov": aimbotFov = ParseFloat(val, aimbotFov); break;
+                    case "autoShoot": autoShoot = val == "1"; break;
+                    case "rapidFire": rapidFire = val == "1"; break;
+                    case "ghostBullets": ghostBullets = val == "1"; break;
+                    case "serverTrustTest": serverTrustTest = val == "1"; break;
+                    case "noRecoil": noRecoil = val == "1"; break;
+                    case "infiniteHealth": infiniteHealth = val == "1"; break;
+                    case "infiniteAmmo": infiniteAmmo = val == "1"; break;
+                    case "instantReload": instantReload = val == "1"; break;
+                    case "debugLogging": debugLogging = val == "1"; break;
+                    case "heavyDiagnostics": heavyDiagnostics = val == "1"; break;
+                    case "showRuntimeStatus": showRuntimeStatus = val == "1"; break;
+                    case "menuX": menuRect.x = ParseFloat(val, menuRect.x); break;
+                    case "menuY": menuRect.y = ParseFloat(val, menuRect.y); break;
+                }
+            }
+
+            instance?.Log.LogInfo($"Config loaded from {ConfigPath}");
+        }
+        catch (Exception e)
+        {
+            instance?.Log.LogWarning($"Config load failed: {e.Message}");
+        }
+    }
+
+    private static void SaveConfig()
+    {
+        try
+        {
+            var lines = new[]
+            {
+                $"espEnabled={(espEnabled ? 1 : 0)}",
+                $"showHealth={(showHealth ? 1 : 0)}",
+                $"showTeammates={(showTeammates ? 1 : 0)}",
+                $"aimbotEnabled={(aimbotEnabled ? 1 : 0)}",
+                $"aimActivationMode={aimActivationMode}",
+                $"aimStyle={aimStyle}",
+                $"aimbotFov={aimbotFov:0.###}",
+                $"autoShoot={(autoShoot ? 1 : 0)}",
+                $"rapidFire={(rapidFire ? 1 : 0)}",
+                $"ghostBullets={(ghostBullets ? 1 : 0)}",
+                $"serverTrustTest={(serverTrustTest ? 1 : 0)}",
+                $"noRecoil={(noRecoil ? 1 : 0)}",
+                $"infiniteHealth={(infiniteHealth ? 1 : 0)}",
+                $"infiniteAmmo={(infiniteAmmo ? 1 : 0)}",
+                $"instantReload={(instantReload ? 1 : 0)}",
+                $"debugLogging={(debugLogging ? 1 : 0)}",
+                $"heavyDiagnostics={(heavyDiagnostics ? 1 : 0)}",
+                $"showRuntimeStatus={(showRuntimeStatus ? 1 : 0)}",
+                $"menuX={menuRect.x:0.###}",
+                $"menuY={menuRect.y:0.###}"
+            };
+
+            File.WriteAllLines(ConfigPath, lines);
+        }
+        catch (Exception e)
+        {
+            instance?.Log.LogWarning($"Config save failed: {e.Message}");
+        }
+    }
+
+    private static int ParseInt(string s, int fallback) => int.TryParse(s, out var v) ? v : fallback;
+    private static float ParseFloat(string s, float fallback) => float.TryParse(s, out var v) ? v : fallback;
 
     private static bool IsUsableCamera(Camera? camera)
     {
@@ -1554,6 +1653,12 @@ public sealed class Plugin : BasePlugin
 
         // Resize the menu to fit the content.
         menuRect.height = y - menuRect.y + 10;
+
+        // Auto-save config whenever any menu control was interacted with.
+        if (GUI.changed)
+        {
+            SaveConfig();
+        }
     }
 
     private static void DrawEspBoxes()

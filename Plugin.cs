@@ -102,6 +102,8 @@ public sealed class Plugin : BasePlugin
     private static bool customCrosshair;
     private static bool fovChanger;
     private static float targetFov = 90f;
+    private static bool speedHack;
+    private static float speedMultiplier = 2f;
     private static int instantReloads;
     private static float nextAutoShootTime;
 
@@ -381,7 +383,7 @@ public sealed class Plugin : BasePlugin
 
     private static void ApplyCheatFeatures()
     {
-        if (!infiniteHealth && !infiniteAmmo && !bunnyHop && !fovChanger)
+        if (!infiniteHealth && !infiniteAmmo && !bunnyHop && !fovChanger && !speedHack)
         {
             return;
         }
@@ -415,6 +417,15 @@ public sealed class Plugin : BasePlugin
                 {
                     camera.fieldOfView = targetFov;
                 }
+            }
+
+            if (speedHack)
+            {
+                Time.timeScale = speedMultiplier;
+            }
+            else if (Time.timeScale != 1f)
+            {
+                Time.timeScale = 1f;
             }
         }
         catch (Exception exception)
@@ -615,6 +626,8 @@ public sealed class Plugin : BasePlugin
                     case "customCrosshair": customCrosshair = val == "1"; break;
                     case "fovChanger": fovChanger = val == "1"; break;
                     case "targetFov": float.TryParse(val, out targetFov); break;
+                    case "speedHack": speedHack = val == "1"; break;
+                    case "speedMultiplier": float.TryParse(val, out speedMultiplier); break;
                     case "debugLogging": debugLogging = val == "1"; break;
                     case "heavyDiagnostics": heavyDiagnostics = val == "1"; break;
                     case "showRuntimeStatus": showRuntimeStatus = val == "1"; break;
@@ -656,6 +669,8 @@ public sealed class Plugin : BasePlugin
                 $"customCrosshair={(customCrosshair ? 1 : 0)}",
                 $"fovChanger={(fovChanger ? 1 : 0)}",
                 $"targetFov={targetFov:0.###}",
+                $"speedHack={(speedHack ? 1 : 0)}",
+                $"speedMultiplier={speedMultiplier:0.###}",
                 $"debugLogging={(debugLogging ? 1 : 0)}",
                 $"heavyDiagnostics={(heavyDiagnostics ? 1 : 0)}",
                 $"showRuntimeStatus={(showRuntimeStatus ? 1 : 0)}",
@@ -1911,6 +1926,13 @@ public sealed class Plugin : BasePlugin
             y += 26;
         }
         customCrosshair = GUI.Toggle(new Rect(x, y, w, 24), customCrosshair, "Custom crosshair"); y += 26;
+        speedHack = GUI.Toggle(new Rect(x, y, w, 24), speedHack, "Speed hack"); y += 26;
+        if (speedHack)
+        {
+            GUI.Label(new Rect(x, y, w, 20), $"Speed: {speedMultiplier:0.0}x");
+            speedMultiplier = GUI.HorizontalSlider(new Rect(x + 60, y + 4, w - 60, 20), speedMultiplier, 0.5f, 5f);
+            y += 26;
+        }
         debugLogging = GUI.Toggle(new Rect(x, y, w, 24), debugLogging, $"Verbose diagnostics (summary only, 1/{DiagnosticInterval:0}s)"); y += 26;
         if (debugLogging)
         {

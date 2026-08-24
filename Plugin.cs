@@ -104,6 +104,8 @@ public sealed class Plugin : BasePlugin
     private static float targetFov = 90f;
     private static bool speedHack;
     private static float speedMultiplier = 2f;
+    private static bool flyHack;
+    private static bool noClip;
     private static int instantReloads;
     private static float nextAutoShootTime;
 
@@ -351,6 +353,63 @@ public sealed class Plugin : BasePlugin
         catch { }
     }
 
+    /// <summary>
+    /// Fly hack: disable gravity, move up/down with Space/Shift.
+    /// No clip: disable all colliders on the player.
+    /// </summary>
+    private static void ApplyFlyNoClip(KBBBHJDINCB main)
+    {
+        try
+        {
+            var rb = main.MJPOJOOIPPN;
+            if (rb == null)
+            {
+                return;
+            }
+
+            if (flyHack)
+            {
+                rb.useGravity = false;
+                var vel = rb.velocity;
+                vel.y = 0f;
+                if (Input.GetKey(KeyCode.Space))
+                {
+                    vel.y = 5f;
+                }
+                else if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.C))
+                {
+                    vel.y = -5f;
+                }
+                rb.velocity = vel;
+            }
+            else
+            {
+                rb.useGravity = true;
+            }
+
+            if (noClip)
+            {
+                // Disable all colliders on the player's root GameObject.
+                var root = main.LANBONKMIME;
+                if (root != null)
+                {
+                    var colliders = root.GetComponentsInChildren<Collider>(true);
+                    if (colliders != null)
+                    {
+                        foreach (var c in colliders)
+                        {
+                            if (c != null && c.enabled)
+                            {
+                                c.enabled = false;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        catch { }
+    }
+
     private static void ApplyInstantReload()
     {
         if (!instantReload)
@@ -383,7 +442,7 @@ public sealed class Plugin : BasePlugin
 
     private static void ApplyCheatFeatures()
     {
-        if (!infiniteHealth && !infiniteAmmo && !bunnyHop && !fovChanger && !speedHack)
+        if (!infiniteHealth && !infiniteAmmo && !bunnyHop && !fovChanger && !speedHack && !flyHack && !noClip)
         {
             return;
         }
@@ -426,6 +485,11 @@ public sealed class Plugin : BasePlugin
             else if (Time.timeScale != 1f)
             {
                 Time.timeScale = 1f;
+            }
+
+            if (flyHack || noClip)
+            {
+                ApplyFlyNoClip(main);
             }
         }
         catch (Exception exception)
@@ -628,6 +692,8 @@ public sealed class Plugin : BasePlugin
                     case "targetFov": float.TryParse(val, out targetFov); break;
                     case "speedHack": speedHack = val == "1"; break;
                     case "speedMultiplier": float.TryParse(val, out speedMultiplier); break;
+                    case "flyHack": flyHack = val == "1"; break;
+                    case "noClip": noClip = val == "1"; break;
                     case "debugLogging": debugLogging = val == "1"; break;
                     case "heavyDiagnostics": heavyDiagnostics = val == "1"; break;
                     case "showRuntimeStatus": showRuntimeStatus = val == "1"; break;
@@ -671,6 +737,8 @@ public sealed class Plugin : BasePlugin
                 $"targetFov={targetFov:0.###}",
                 $"speedHack={(speedHack ? 1 : 0)}",
                 $"speedMultiplier={speedMultiplier:0.###}",
+                $"flyHack={(flyHack ? 1 : 0)}",
+                $"noClip={(noClip ? 1 : 0)}",
                 $"debugLogging={(debugLogging ? 1 : 0)}",
                 $"heavyDiagnostics={(heavyDiagnostics ? 1 : 0)}",
                 $"showRuntimeStatus={(showRuntimeStatus ? 1 : 0)}",
@@ -1933,6 +2001,8 @@ public sealed class Plugin : BasePlugin
             speedMultiplier = GUI.HorizontalSlider(new Rect(x + 60, y + 4, w - 60, 20), speedMultiplier, 0.5f, 5f);
             y += 26;
         }
+        flyHack = GUI.Toggle(new Rect(x, y, w, 24), flyHack, "Fly hack (Space=up, Shift=down)"); y += 26;
+        noClip = GUI.Toggle(new Rect(x, y, w, 24), noClip, "No clip"); y += 26;
         debugLogging = GUI.Toggle(new Rect(x, y, w, 24), debugLogging, $"Verbose diagnostics (summary only, 1/{DiagnosticInterval:0}s)"); y += 26;
         if (debugLogging)
         {

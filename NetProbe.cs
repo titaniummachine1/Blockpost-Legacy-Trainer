@@ -189,13 +189,14 @@ internal static class NetProbe
             ?? AccessTools.Method(netType, nameof(Raw.NET.Methods.HMCNFGMBCOC));
         netEnd = AccessTools.Method(netType, nameof(Raw.NET.Methods.EMJOGONJKIO));
 
-        source.LogInfo($"[NetProbe] fake-hit init: client={(fakeHitClient != null ? "found" : "null")}, " +
+        source.LogInfo($"[NetProbe] fake-hit init: client={(fakeHitClient != null ? "found" : "null (will capture from OnFlush)")}, " +
                        $"flush={(fakeHitFlush != null ? "ok" : "null")}, begin={(netBegin != null ? "ok" : "null")}, " +
                        $"f32={(netF32 != null ? "ok" : "null")}, i32={(netI32 != null ? "ok" : "null")}, " +
                        $"u8={(netU8 != null ? "ok" : "null")}, i16={(netI16 != null ? "ok" : "null")}, " +
                        $"end={(netEnd != null ? "ok" : "null")}");
 
-        fakeHitReady = fakeHitClient != null && fakeHitFlush != null
+        // fakeHitClient will be captured from OnFlush patch — don't require it at init.
+        fakeHitReady = fakeHitFlush != null
             && netBegin != null && netF32 != null && netI32 != null
             && netU8 != null && netI16 != null && netEnd != null;
 
@@ -564,8 +565,20 @@ internal static class NetProbe
         return null;
     }
 
-    private static void OnFlush()
+    private static void OnFlush(object __instance)
     {
+        // Capture the Client singleton the first time this fires — we need it to call
+        // HKOFHOANEJD (flush) after sending fake-hit packets. AccessTools.Field can't
+        // read IL2CPP static fields, so this is how we get the reference.
+        if (fakeHitClient == null && __instance != null)
+        {
+            fakeHitClient = __instance;
+            fakeHitReady = fakeHitClient != null && fakeHitFlush != null
+                && netBegin != null && netF32 != null && netI32 != null
+                && netU8 != null && netI16 != null && netEnd != null;
+            log?.LogInfo($"[NetProbe] Client singleton captured from OnFlush. fake-hit ready={fakeHitReady}");
+        }
+
         parsingWeaponData = false;
         Push(Kind.Flush, 0);
     }
@@ -858,9 +871,12 @@ internal static class NetProbe
     /// </summary>
     internal static bool TryFakeHit(KBBBHJDINCB? target, Vector3 origin, Vector3 point, int damage)
     {
-        if (!fakeHitReady || target == null)
+        if (!fakeHitReady || target == null || fakeHitClient == null)
         {
-            log?.LogWarning("[NetProbe] fake-hit not ready or no target.");
+            if (target != null && fakeHitClient == null)
+            {
+                log?.LogWarning("[NetProbe] fake-hit: Client singleton not yet captured (waiting for OnFlush).");
+            }
             return false;
         }
 

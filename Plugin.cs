@@ -201,14 +201,9 @@ public sealed class Plugin : BasePlugin
 
     private static void ControllerUpdatePostfix(Controll __instance)
     {
-        // Fire the rapid-fire shot FIRST, while the silent-aim redirect is still active.
-        // RestoreSilentAim must run AFTER the shot, otherwise the shot goes to the wrong place.
+        // Fire the rapid-fire shot.
         ReleaseLeftMouseIfNeeded();
         ForceRapidFireShot();
-
-        // Now restore the real aim angles and camera before the frame renders, so the player
-        // never sees the silent-aim snap.
-        RestoreSilentAim();
 
         NetProbe.Tick();
         FieldWatch.Tick(__instance);
@@ -1301,20 +1296,20 @@ public sealed class Plugin : BasePlugin
             TryGhostBullet(target, bestPosition, camera);
         }
 
-        // Silent aim: save the real aim angles, then redirect to the target. The game's
-        // own fire logic (inside Controll.Update, which runs after this prefix) will fire
-        // at the target. The postfix fires the rapid shot while angles are still redirected,
-        // then restores everything before render so the player never sees the snap.
+        // Silent aim: DON'T touch the camera or aim angles at all. The player keeps full
+        // mouse-look control. Instead, fire the weapon normally (for sound/animation/ammo)
+        // and send a fake hit packet for the aimbot target. The server trusts client-authored
+        // hits, so the target dies without the view ever moving.
         if (aimStyle == 1)
         {
-            SaveAndRedirectAim(camera, bestPosition);
-            // Always use the direct-fire path (forceShotThisFrame) for silent aim.
-            // mouse_event injects a click that arrives NEXT frame — by then the angles
-            // are already restored, so the shot would go to the wrong place.
-            // Fire regardless of autoShoot — if the player is holding the aim key,
-            // they want to shoot. Also fire if they're holding left mouse.
+            // Fire the weapon directly for sound/animation, and send a fake hit for the target.
             if (Time.unscaledTime >= nextAutoShootTime && Application.isFocused)
             {
+                // Send fake hit packet — this is what actually kills the target.
+                var origin = camera.transform.position;
+                NetProbe.TryFakeHit(target, origin, bestPosition, 100);
+
+                // Also fire the weapon normally so the player sees/hears the shot.
                 forceShotThisFrame = true;
                 nextAutoShootTime = Time.unscaledTime + 0.12f;
             }

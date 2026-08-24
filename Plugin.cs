@@ -234,15 +234,17 @@ public sealed class Plugin : BasePlugin
 
     private static void ControllerUpdatePostfix(Controll __instance)
     {
-        // Auto-shoot: hold the virtual left mouse button down while aiming at a target.
-        // Send LEFTDOWN every frame to keep it held. Only send LEFTUP when we stop
-        // aiming. The game fires at its own fire rate while the button is held.
+        // Auto-shoot: send a fresh click (LEFTUP then LEFTDOWN) every frame while
+        // aiming at a target. The game uses GetMouseButtonDown (edge-triggered),
+        // not GetMouseButton (held), so holding the button doesn't fire repeatedly.
+        // We need a new press event each frame.
         if (autoShootPending)
         {
             var main = Controll.HGAODFPBGLB;
             var alive = main != null && main.FDOJDJLIGLF > 0 && main.JPGGPPLOOML != null;
             if (alive)
             {
+                mouse_event(MouseEventFLeftUp, 0, 0, 0, 0);
                 mouse_event(MouseEventFLeftDown, 0, 0, 0, 0);
                 pendingLeftMouseUp = true;
             }

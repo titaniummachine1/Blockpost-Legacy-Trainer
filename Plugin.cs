@@ -1324,11 +1324,16 @@ public sealed class Plugin : BasePlugin
             // Save real angles and redirect to target.
             SaveAndRedirectAim(camera, bestPosition);
 
-            // Auto-shoot: fire every frame while the aim key is held and we have a weapon.
-            // No throttle — the weapon's fire rate is enforced by PLH.CDEGJOBLOFO itself.
-            if (Application.isFocused && mainPlayer.JPGGPPLOOML != null)
+            // Auto-shoot: simulate a left mouse click so the game's own fire logic
+            // (inside Controll.Update, running after this prefix) fires at the target.
+            // The click arrives via Windows message queue and is processed by Unity's
+            // input system. Since we redirect angles every frame while the aim key is
+            // held, the click will fire at the redirected target.
+            if (Application.isFocused && mainPlayer.JPGGPPLOOML != null
+                && !Input.GetMouseButton(0))
             {
-                forceShotThisFrame = true;
+                mouse_event(MouseEventFLeftDown, 0, 0, 0, 0);
+                pendingLeftMouseUp = true;
             }
             aimStatus = $"silent target={lastAimTargetIndex}, angle={bestAngle:0.0} degrees";
             return;

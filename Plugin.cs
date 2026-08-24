@@ -79,6 +79,9 @@ public sealed class Plugin : BasePlugin
     private static bool pendingLeftMouseUp;
     private static bool forceShotThisFrame;
     private static bool rapidFireFailureLogged;
+    // When true, Input.GetMouseButton(0) returns true regardless of actual mouse state.
+    // Set by silent aim / auto-shoot prefix so Controll.Update fires through its own logic.
+    private static bool autoShootThisFrame;
     private static bool espEnabled = true;
     private static bool showHealth = true;
     private static bool showTeammates;
@@ -168,6 +171,21 @@ public sealed class Plugin : BasePlugin
             Log.LogWarning("Could not resolve the current SetRecoil signature; no-recoil will remain unavailable.");
         }
 
+        // Patch Input.GetMouseButton so silent aim auto-shoot can trick Controll.Update
+        // into firing through its own logic. The game reads Input.GetMouseButton(0) at the
+        // start of Update and stores it in EPEEFBDJAHO — setting EPEEFBDJAHO in our prefix
+        // gets overwritten. Patching the input method itself is the only way.
+        var getMouseButton = AccessTools.Method(typeof(UnityEngine.Input), nameof(UnityEngine.Input.GetMouseButton));
+        if (getMouseButton != null)
+        {
+            harmony.Patch(getMouseButton, prefix: new HarmonyMethod(typeof(Plugin), nameof(GetMouseButtonPrefix)));
+            Log.LogInfo($"Patched Input.GetMouseButton for auto-shoot: {getMouseButton.DeclaringType?.Name}.{getMouseButton.Name}({getMouseButton.GetParameters().Length} params)");
+        }
+        else
+        {
+            Log.LogWarning("Could not patch Input.GetMouseButton; auto-shoot will not work.");
+        }
+
         Log.LogInfo($"Patched Controll.Update, Controll.OnGUI, and recoil hook: {recoilMethod != null}. Auto-shoot uses direct PLH.CDEGJOBLOFO when rapid fire is active.");
 
         NetProbe.Install(harmony, Log);
@@ -189,6 +207,7 @@ public sealed class Plugin : BasePlugin
     {
         controllerRunning = true;
         forceShotThisFrame = false;
+        autoShootThisFrame = false;
         LogControllerStartup();
         // Run before Controll.Update's own reload evaluation. Applied from the postfix the write
         // landed after the game had already read the stamp for this frame, which is consistent
@@ -230,6 +249,21 @@ public sealed class Plugin : BasePlugin
             mouse_event(MouseEventFLeftUp, 0, 0, 0, 0);
             pendingLeftMouseUp = false;
         }
+    }
+
+    /// <summary>
+    /// Harmony prefix for Input.GetMouseButton(int). When autoShootThisFrame is true,
+    /// forces GetMouseButton(0) to return true so Controll.Update fires through its own
+    /// logic (raycast + network hit packet) while aim angles are redirected to the target.
+    /// </summary>
+    private static bool GetMouseButtonPrefix(int button, ref bool __result)
+    {
+        if (autoShootThisFrame && button == 0)
+        {
+            __result = true;
+            return false; // skip original method
+        }
+        return true; // run original method
     }
 
     /// <summary>
@@ -1325,14 +1359,14 @@ public sealed class Plugin : BasePlugin
             // Save real angles and redirect to target.
             SaveAndRedirectAim(camera, bestPosition);
 
-            // Auto-shoot: set the game's fire input flag so Controll.Update's own fire
-            // logic fires at the redirected angles. EPEEFBDJAHO is the cached left-mouse
-            // state — 1 = firing, 0 = not. The game checks this (not Input.GetMouseButton)
-            // so setting it directly makes the game fire through its full code path,
-            // including the network hit packet.
+            // Auto-shoot: set the flag so Input.GetMouseButton(0) returns true during
+            // Controll.Update (which runs right after this prefix). The game reads
+            // Input.GetMouseButton(0) at the start of Update and stores it in EPEEFBDJAHO,
+            // so setting EPEEFBDJAHO directly gets overwritten. Patching the input method
+            // is the only way to make the game fire through its own full code path.
             if (Application.isFocused && mainPlayer.JPGGPPLOOML != null)
             {
-                Controll.EPEEFBDJAHO = 1;
+                autoShootThisFrame = true;
             }
             aimStatus = $"silent target={lastAimTargetIndex}, angle={bestAngle:0.0} degrees";
             return;
@@ -1497,15 +1531,17 @@ public sealed class Plugin : BasePlugin
             return;
         }
 
-        // Set the game's fire input flag so Controll.Update fires through its own logic
-        // (raycast + network hit packet). EPEEFBDJAHO is the cached left-mouse state.
+        // Set the auto-shoot flag so Input.GetMouseButton(0) returns true during
+        // Controll.Update. The game reads input at the start of Update and stores it
+        // in EPEEFBDJAHO — setting EPEEFBDJAHO directly gets overwritten. The Harmony
+        // patch on Input.GetMouseButton intercepts the read itself.
         var main = Controll.HGAODFPBGLB;
         if (main == null || main.JPGGPPLOOML == null)
         {
             return;
         }
 
-        Controll.EPEEFBDJAHO = 1;
+        autoShootThisFrame = true;
         aimStatus = $"{aimStatus} | auto-shoot";
     }
 

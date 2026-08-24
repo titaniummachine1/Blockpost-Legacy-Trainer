@@ -12,26 +12,49 @@ namespace BlockpostTrainer.Sdk
             public const int Id0 = Raw.KBBBHJDINCB.Offsets.GLFBKBKFPCL;
             public const int Id1 = Raw.KBBBHJDINCB.Offsets.CCINALOJCNH;
             public const int Id2 = Raw.KBBBHJDINCB.Offsets.LGOAHLMABFF;
+            /// <summary>Player team id. Used for teammate detection in aimbot/ESP.</summary>
             public const int Team = Raw.KBBBHJDINCB.Offsets.MMMGPDBMOLM;
-            /// <summary>Player health.</summary>
+            /// <summary>Player health. Set to 1000 for infinite health.</summary>
             public const int Health = Raw.KBBBHJDINCB.Offsets.FDOJDJLIGLF;
+            /// <summary>Player max health. Set to 1000 for infinite health.</summary>
             public const int MaxHealth = Raw.KBBBHJDINCB.Offsets.EFHBKMHCMOH;
+            /// <summary>Player armor. Set to 1000 for infinite health.</summary>
             public const int Armor = Raw.KBBBHJDINCB.Offsets.INGHEHAALBJ;
             public const int Position = Raw.KBBBHJDINCB.Offsets.OOMJGHCFODI;
             public const int CameraForward = Raw.KBBBHJDINCB.Offsets.JIPNKAGPCGK;
             public const int MuzzleForward = Raw.KBBBHJDINCB.Offsets.FLILDBNOFMK;
-            /// <summary>Current weapon spread / recoil accumulator.</summary>
+            /// <summary>Current weapon spread / recoil accumulator. Set to -1000f before fire, +1000f after for rapid fire.</summary>
             public const int Spread = Raw.KBBBHJDINCB.Offsets.FGFKPMPLNKO;
             public const int FireTimer = Raw.KBBBHJDINCB.Offsets.LCMOBPPHLLM;
             public const int IsFiring = Raw.KBBBHJDINCB.Offsets.APFNBGHAJMD;
+            /// <summary>Bool. Clear to false for infinite health (prevents death state persisting).</summary>
+            public const int IsDead = Raw.KBBBHJDINCB.Offsets.CLOEJLAOIGI;
+            /// <summary>Bool. Clear to false for infinite health (prevents downed state persisting).</summary>
+            public const int IsDown = Raw.KBBBHJDINCB.Offsets.CGHKKDBILGF;
+            /// <summary>Bool. True = player has spawn protection. Used to skip targets in aimbot.</summary>
+            public const int SpawnProtected = Raw.KBBBHJDINCB.Offsets.LBKINNIDKEC;
             public const int PlayerId = Raw.KBBBHJDINCB.Offsets.LCPGFBMKNHJ;
             public const int Slot = Raw.KBBBHJDINCB.Offsets.MOPBMENEGLN;
             /// <summary>int[] indexed by weapon slot. PRIME ammo candidate -- ammo is not a scalar on any watched object (166 checked). Unconfirmed.</summary>
             public const int AmmoPerSlot = Raw.KBBBHJDINCB.Offsets.GDEMINMDJAC;
-            public const int Loadout = Raw.KBBBHJDINCB.Offsets.KPNAADPGNCP;
-            public const int ActiveWeapon = Raw.KBBBHJDINCB.Offsets._EPGCMIJPHIA_k__BackingField;
             /// <summary>Active weapon id. Writing an ammo count here causes NO WEAPON -- do not treat as a counter.</summary>
             public const int ActiveWeaponId = Raw.KBBBHJDINCB.Offsets.ECBCOHFLJCC;
+            public const int Loadout = Raw.KBBBHJDINCB.Offsets.KPNAADPGNCP;
+            /// <summary>GameObject 'New Game Object' — player root transform.</summary>
+            public const int RootObject = Raw.KBBBHJDINCB.Offsets.LANBONKMIME;
+            /// <summary>GameObject 'head' — head hitbox, used for aimbot target.</summary>
+            public const int Head = Raw.KBBBHJDINCB.Offsets.ACEHIBLPHCA;
+            /// <summary>GameObject 'body' — body hitbox.</summary>
+            public const int Body = Raw.KBBBHJDINCB.Offsets.JEFLHCHAABB;
+            public const int Backpack = Raw.KBBBHJDINCB.Offsets.JEKGMDMKFAG;
+            public const int ArmHelp = Raw.KBBBHJDINCB.Offsets.PLCCFFJNFPG;
+            public const int WaterSplash = Raw.KBBBHJDINCB.Offsets.ACFAMOFOOLB;
+            public const int Arrow = Raw.KBBBHJDINCB.Offsets.LNJODHNBFMN;
+            public const int LeftArmUp = Raw.KBBBHJDINCB.Offsets.DEPIOGBOPIG;
+            public const int RightArmUp = Raw.KBBBHJDINCB.Offsets.HKDLHNJEKIO;
+            /// <summary>Player rigidbody, used for bunnyhop grounded check (velocity.y).</summary>
+            public const int Rigidbody = Raw.KBBBHJDINCB.Offsets.MJPOJOOIPPN;
+            public const int RigidbodyAlt = Raw.KBBBHJDINCB.Offsets.EICJDIJNKBF;
             /// <summary>Footstep sound index, cycles 0-4. NOT ammo -- looks like a magazine at a glance (small cyclic range, changes per step). Dead end, see PROTOCOL.md 16.</summary>
             public const int FootstepIndex = Raw.KBBBHJDINCB.Offsets.IGBIBDAMMLE;
             /// <summary>Distance accumulator driving FootstepIndex. Rises monotonically. Not ammo.</summary>
@@ -44,6 +67,79 @@ namespace BlockpostTrainer.Sdk
             public const int SwayLean = Raw.KBBBHJDINCB.Offsets.MJFMDOKEFFO;
             /// <summary>int[] stats. DO NOT WRITE -- corrupts player state.</summary>
             public const int StatsArray = Raw.KBBBHJDINCB.Offsets.PPOOANLEBNI;
+            public const int JFOEOEJLDML = Raw.KBBBHJDINCB.Offsets.JFOEOEJLDML;
+            public const int JDIHHMABLAJ = Raw.KBBBHJDINCB.Offsets.JDIHHMABLAJ;
+            public const int BANHJLHDFLI = Raw.KBBBHJDINCB.Offsets.BANHJLHDFLI;
+            public const int GPBAJMJILMA = Raw.KBBBHJDINCB.Offsets.GPBAJMJILMA;
+            public const int JNBMIDFBOHD = Raw.KBBBHJDINCB.Offsets.JNBMIDFBOHD;
+            public const int JPDHFNADBKI = Raw.KBBBHJDINCB.Offsets.JPDHFNADBKI;
+            public const int PIBCGHCJKAA = Raw.KBBBHJDINCB.Offsets.PIBCGHCJKAA;
+            public const int ELBOPMABJOA = Raw.KBBBHJDINCB.Offsets.ELBOPMABJOA;
+            public const int GDFNLALKMAN = Raw.KBBBHJDINCB.Offsets.GDFNLALKMAN;
+            public const int EGCCBDKJGAB = Raw.KBBBHJDINCB.Offsets.EGCCBDKJGAB;
+            public const int EEHMHJBNAFP = Raw.KBBBHJDINCB.Offsets.EEHMHJBNAFP;
+            public const int NGCMFJECPIO = Raw.KBBBHJDINCB.Offsets.NGCMFJECPIO;
+            public const int BCLPAILBBFP = Raw.KBBBHJDINCB.Offsets.BCLPAILBBFP;
+            public const int AADFNNLGALL = Raw.KBBBHJDINCB.Offsets.AADFNNLGALL;
+            public const int IJLPLONACIA = Raw.KBBBHJDINCB.Offsets.IJLPLONACIA;
+            public const int PFGNALDDNDB = Raw.KBBBHJDINCB.Offsets.PFGNALDDNDB;
+            public const int HIDMDLLHEKO = Raw.KBBBHJDINCB.Offsets.HIDMDLLHEKO;
+            public const int HOJIIOCKKLO = Raw.KBBBHJDINCB.Offsets.HOJIIOCKKLO;
+            public const int BCACFHNPIBP = Raw.KBBBHJDINCB.Offsets.BCACFHNPIBP;
+            public const int ONOGCCOHPJC = Raw.KBBBHJDINCB.Offsets.ONOGCCOHPJC;
+            public const int CIPOBFGAMOP = Raw.KBBBHJDINCB.Offsets.CIPOBFGAMOP;
+            public const int GEDMGLAMGMD = Raw.KBBBHJDINCB.Offsets.GEDMGLAMGMD;
+            public const int MHCOJFIAGLP = Raw.KBBBHJDINCB.Offsets.MHCOJFIAGLP;
+            public const int JHGGICCFNFJ = Raw.KBBBHJDINCB.Offsets.JHGGICCFNFJ;
+            public const int CNHNFDDJMJO = Raw.KBBBHJDINCB.Offsets.CNHNFDDJMJO;
+            public const int HJLHOFPDEAA = Raw.KBBBHJDINCB.Offsets.HJLHOFPDEAA;
+            public const int OLOOMMIKDPJ = Raw.KBBBHJDINCB.Offsets.OLOOMMIKDPJ;
+            public const int DDKPBGMMNIA = Raw.KBBBHJDINCB.Offsets.DDKPBGMMNIA;
+            public const int NJPHKNAOEKM = Raw.KBBBHJDINCB.Offsets.NJPHKNAOEKM;
+            public const int BDHNEDFEHBA = Raw.KBBBHJDINCB.Offsets.BDHNEDFEHBA;
+            public const int NHJDPAAFIKO = Raw.KBBBHJDINCB.Offsets.NHJDPAAFIKO;
+            public const int LNIDBHIAJJI = Raw.KBBBHJDINCB.Offsets.LNIDBHIAJJI;
+            public const int ACAIGMNLLEC = Raw.KBBBHJDINCB.Offsets.ACAIGMNLLEC;
+            public const int PELNEJDOBKH = Raw.KBBBHJDINCB.Offsets.PELNEJDOBKH;
+            public const int DECAKELAHPI = Raw.KBBBHJDINCB.Offsets.DECAKELAHPI;
+            public const int COCGLNFEFAF = Raw.KBBBHJDINCB.Offsets.COCGLNFEFAF;
+            public const int HEADELMLILF = Raw.KBBBHJDINCB.Offsets.HEADELMLILF;
+            public const int NMJKANFIDFM = Raw.KBBBHJDINCB.Offsets.NMJKANFIDFM;
+            public const int OIDEDEHDLGA = Raw.KBBBHJDINCB.Offsets.OIDEDEHDLGA;
+            public const int NCDOKAKJEJF = Raw.KBBBHJDINCB.Offsets.NCDOKAKJEJF;
+            public const int AEPENNGIKMK = Raw.KBBBHJDINCB.Offsets.AEPENNGIKMK;
+            public const int LOJOOILKNOE = Raw.KBBBHJDINCB.Offsets.LOJOOILKNOE;
+            public const int ICCOFPECCOD = Raw.KBBBHJDINCB.Offsets.ICCOFPECCOD;
+            public const int BCIPLGMEKEN = Raw.KBBBHJDINCB.Offsets.BCIPLGMEKEN;
+            public const int OLDBINBEFFG = Raw.KBBBHJDINCB.Offsets.OLDBINBEFFG;
+            public const int CHEFKHPIMEB = Raw.KBBBHJDINCB.Offsets.CHEFKHPIMEB;
+            public const int IGBIBDAMMLE = Raw.KBBBHJDINCB.Offsets.IGBIBDAMMLE;
+            public const int FNBOPBHIMPM = Raw.KBBBHJDINCB.Offsets.FNBOPBHIMPM;
+            public const int OBPKNGEEOOA = Raw.KBBBHJDINCB.Offsets.OBPKNGEEOOA;
+            public const int LPABNMLLMFI = Raw.KBBBHJDINCB.Offsets.LPABNMLLMFI;
+            public const int LJHFJDHDPKK = Raw.KBBBHJDINCB.Offsets.LJHFJDHDPKK;
+            public const int DEDHDKPPANM = Raw.KBBBHJDINCB.Offsets.DEDHDKPPANM;
+            public const int PPGMICPEICK = Raw.KBBBHJDINCB.Offsets.PPGMICPEICK;
+            public const int AFCNHFJBOIH = Raw.KBBBHJDINCB.Offsets.AFCNHFJBOIH;
+            public const int IMEACPKKIPA = Raw.KBBBHJDINCB.Offsets.IMEACPKKIPA;
+            public const int LKHEECKKOOE = Raw.KBBBHJDINCB.Offsets.LKHEECKKOOE;
+            public const int JBJNEKIIIOE = Raw.KBBBHJDINCB.Offsets.JBJNEKIIIOE;
+            public const int JACNNIHHAIF = Raw.KBBBHJDINCB.Offsets.JACNNIHHAIF;
+            public const int AHHPKEONFCI = Raw.KBBBHJDINCB.Offsets.AHHPKEONFCI;
+            public const int IHOKODLKIPE = Raw.KBBBHJDINCB.Offsets.IHOKODLKIPE;
+            public const int IHNPPKGMLJJ = Raw.KBBBHJDINCB.Offsets.IHNPPKGMLJJ;
+            public const int KOBAGLAENLF = Raw.KBBBHJDINCB.Offsets.KOBAGLAENLF;
+            public const int BLEOAGPEKJH = Raw.KBBBHJDINCB.Offsets.BLEOAGPEKJH;
+            public const int MNODJPLFDBH = Raw.KBBBHJDINCB.Offsets.MNODJPLFDBH;
+            public const int CEKDCBNOHCJ = Raw.KBBBHJDINCB.Offsets.CEKDCBNOHCJ;
+            public const int DGPNADLPABD = Raw.KBBBHJDINCB.Offsets.DGPNADLPABD;
+            public const int AOENBHLHIPC = Raw.KBBBHJDINCB.Offsets.AOENBHLHIPC;
+            public const int NELCHEONPLB = Raw.KBBBHJDINCB.Offsets.NELCHEONPLB;
+            public const int OLNEICLAOIH = Raw.KBBBHJDINCB.Offsets.OLNEICLAOIH;
+            public const string ActiveWeapon = Raw.KBBBHJDINCB.Properties.JPGGPPLOOML;
+            public const string IsAlive = Raw.KBBBHJDINCB.Properties.HIECLOJIFIL;
+            public const string IconA = Raw.KBBBHJDINCB.Properties.GNIGDNCENCC;
+            public const string IconB = Raw.KBBBHJDINCB.Properties.GNMEOACGHHC;
         }
 
         public static class Game
@@ -51,23 +147,143 @@ namespace BlockpostTrainer.Sdk
             public const int Instance = Raw.Controll.Offsets.LPCJFAOOIKA;
             public const int MainPlayer = Raw.Controll.Offsets.HGAODFPBGLB;
             public const int FireTimer = Raw.Controll.Offsets.LCMOBPPHLLM;
+            /// <summary>FLOAT (0x44). Cached left-mouse state: 1=firing, 0=not. Game reads Input.GetMouseButton(0) at start of Update and stores here. Setting in prefix gets overwritten by Update. Setting in postfix persists to next frame.</summary>
+            public const int FireInput = Raw.Controll.Offsets.EPEEFBDJAHO;
+            /// <summary>FLOAT (0x3C). Aim yaw angle (Mouse X). Used for silent aim redirect.</summary>
+            public const int Yaw = Raw.Controll.Offsets.NAKNALFCOIF;
+            /// <summary>FLOAT (0x40). Aim pitch angle (Mouse Y). Used for silent aim redirect.</summary>
+            public const int Pitch = Raw.Controll.Offsets.IGLCENGMMMJ;
+            /// <summary>Camera (0x88). Main camera. Used for raycast origin and WorldToScreenPoint.</summary>
+            public const int Camera = Raw.Controll.Offsets.CDFACGAFFFH;
+            public const int RadarCamera = Raw.Controll.Offsets.BMHEEPAKGCE;
+            public const int RadarOverviewCamera = Raw.Controll.Offsets.OMOMGNMGHFA;
+            public const int ControllerTransform = Raw.Controll.Offsets.GPIJIKKJADI;
+            public const int CameraTransform = Raw.Controll.Offsets.GKNMPAAHMBF;
+            public const int RadarCamTransform = Raw.Controll.Offsets.FFPEECLLNOJ;
+            public const int RadarCamOverviewTransform = Raw.Controll.Offsets.FEEOFFBLAAJ;
             public const int SpreadVector = Raw.Controll.Offsets.LFCCGHJKFNK;
             public const int CameraForward = Raw.Controll.Offsets.JIPNKAGPCGK;
             public const int MuzzleForward = Raw.Controll.Offsets.FLILDBNOFMK;
+            /// <summary>List<DMHBMAAFCFJ> (0x1F0). Populated by PLH.CDEGJOBLOFO's raycast. Sent to server via Client.AHLDAPJEJNC.</summary>
             public const int HitList = Raw.Controll.Offsets.GOMFKJNNJAP;
+            /// <summary>int (0x1EC). Hit sequence counter, passed to Client.AHLDAPJEJNC.</summary>
             public const int HitSequence = Raw.Controll.Offsets.GAMBHJPMDON;
             public const int CanFire = Raw.Controll.Offsets.KEPGFOEOHPD;
+            /// <summary>True for the duration of a reload.</summary>
+            public const int IsReloading = Raw.Controll.Offsets.DJACNOGOCKD;
             /// <summary>Time.time when the reload began.</summary>
             public const int ReloadStartTime = Raw.Controll.Offsets.FBINCNDDPAO;
             /// <summary>Reload completion stamp, normally start + 2.0. A perfect reload SUBTRACTS from this; that is the whole mechanism. Must be written from the Update PREFIX -- a postfix write lands after the game has read it and only collapses the UI bar.</summary>
             public const int ReloadEndTime = Raw.Controll.Offsets.ILGHFLMKMCO;
             /// <summary>Minigame marker position, ~0.31-0.49 observed.</summary>
             public const int ReloadMarkerPos = Raw.Controll.Offsets.JADIDAJFOGK;
-            /// <summary>True for the duration of a reload.</summary>
-            public const int IsReloading = Raw.Controll.Offsets.DJACNOGOCKD;
             public const int ReloadPromptActive = Raw.Controll.Offsets.KOPOBDGHLFL;
             public const int ReloadRequestTime = Raw.Controll.Offsets.CLEHDNFKJPB;
+            /// <summary>float (0x1A8). Same offset as ReloadStartTime — fire rate cap.</summary>
+            public const int MaxFireRate = Raw.Controll.Offsets.FBINCNDDPAO;
+            /// <summary>float (0x1AC). Same offset as ReloadEndTime — current fire rate timer.</summary>
+            public const int CurrentFireRate = Raw.Controll.Offsets.ILGHFLMKMCO;
+            public const int BIAHHOIOFKG = Raw.Controll.Offsets.BIAHHOIOFKG;
+            public const int BNHEPNNOAIK = Raw.Controll.Offsets.BNHEPNNOAIK;
+            public const int BNALIDHMCIG = Raw.Controll.Offsets.BNALIDHMCIG;
+            public const int JLPIAOFJHBB = Raw.Controll.Offsets.JLPIAOFJHBB;
+            public const int DNNCGMPDMCF = Raw.Controll.Offsets.DNNCGMPDMCF;
+            public const int IECMAFHGHND = Raw.Controll.Offsets.IECMAFHGHND;
+            public const int JOJODHNJNGO = Raw.Controll.Offsets.JOJODHNJNGO;
+            public const int AJKDGEACHKD = Raw.Controll.Offsets.AJKDGEACHKD;
+            public const int JEOINCHFPCC = Raw.Controll.Offsets.JEOINCHFPCC;
+            public const int HKPMJHCGMDE = Raw.Controll.Offsets.HKPMJHCGMDE;
+            public const int EENJPDHGGGC = Raw.Controll.Offsets.EENJPDHGGGC;
+            public const int ONGHDHKFEBG = Raw.Controll.Offsets.ONGHDHKFEBG;
+            public const int NIGBIPNBOPC = Raw.Controll.Offsets.NIGBIPNBOPC;
+            public const int PNCOIFMEIDJ = Raw.Controll.Offsets.PNCOIFMEIDJ;
+            public const int HLBAGIACGBI = Raw.Controll.Offsets.HLBAGIACGBI;
+            public const int PBICPLCFAGG = Raw.Controll.Offsets.PBICPLCFAGG;
+            public const int NJPDKJKJMCG = Raw.Controll.Offsets.NJPDKJKJMCG;
+            public const int GCHFDAPNBNB = Raw.Controll.Offsets.GCHFDAPNBNB;
+            public const int BFEOOOMMGLK = Raw.Controll.Offsets.BFEOOOMMGLK;
+            public const int EKEAAHAKHIN = Raw.Controll.Offsets.EKEAAHAKHIN;
+            public const int MJHNOEIFBEO = Raw.Controll.Offsets.MJHNOEIFBEO;
+            public const int JGNLBAMNEBA = Raw.Controll.Offsets.JGNLBAMNEBA;
+            public const int HCOLPFEEENG = Raw.Controll.Offsets.HCOLPFEEENG;
+            public const int EGDKJEFGFIC = Raw.Controll.Offsets.EGDKJEFGFIC;
+            public const int GLGCAOADGMN = Raw.Controll.Offsets.GLGCAOADGMN;
+            public const int FGGKANNFBDH = Raw.Controll.Offsets.FGGKANNFBDH;
+            public const int LKPFNJHLOHL = Raw.Controll.Offsets.LKPFNJHLOHL;
+            public const int ILFOFIOFBAM = Raw.Controll.Offsets.ILFOFIOFBAM;
+            public const int KJOMABGHAIJ = Raw.Controll.Offsets.KJOMABGHAIJ;
+            public const int Position = Raw.Controll.Offsets.OOMJGHCFODI;
+            public const int CNMJPOMLDDF = Raw.Controll.Offsets.CNMJPOMLDDF;
+            public const int IPCNAHJLMAP = Raw.Controll.Offsets.IPCNAHJLMAP;
+            public const int CGJDLMEINBJ = Raw.Controll.Offsets.CGJDLMEINBJ;
+            public const int CFACCGMPPOE = Raw.Controll.Offsets.CFACCGMPPOE;
+            public const int NKFBOBMMGCL = Raw.Controll.Offsets.NKFBOBMMGCL;
+            public const int CMGGPFHFKCM = Raw.Controll.Offsets.CMGGPFHFKCM;
+            public const int MKFDGFOCKNO = Raw.Controll.Offsets.MKFDGFOCKNO;
+            public const int LEKCBKLAILO = Raw.Controll.Offsets.LEKCBKLAILO;
+            public const int CIDLIJFIKPG = Raw.Controll.Offsets.CIDLIJFIKPG;
+            public const int OFJKHAFJIMA = Raw.Controll.Offsets.OFJKHAFJIMA;
+            public const int LADGFAFJJNM = Raw.Controll.Offsets.LADGFAFJJNM;
+            public const int CFHLIKBFICO = Raw.Controll.Offsets.CFHLIKBFICO;
+            public const int PEPKIHHGDHG = Raw.Controll.Offsets.PEPKIHHGDHG;
+            public const int MBFKABGNPCM = Raw.Controll.Offsets.MBFKABGNPCM;
+            public const int AJKBMMMOPMF = Raw.Controll.Offsets.AJKBMMMOPMF;
+            public const int DEBGAILDKPC = Raw.Controll.Offsets.DEBGAILDKPC;
+            public const int GKNJELHPMDE = Raw.Controll.Offsets.GKNJELHPMDE;
+            public const int OPKDIOMKKFB = Raw.Controll.Offsets.OPKDIOMKKFB;
+            public const int IJMKKLIBAFG = Raw.Controll.Offsets.IJMKKLIBAFG;
+            public const int GHLDENBLDPH = Raw.Controll.Offsets.GHLDENBLDPH;
+            public const int IEKGMGGHAPE = Raw.Controll.Offsets.IEKGMGGHAPE;
+            public const int BEINLJCOGBO = Raw.Controll.Offsets.BEINLJCOGBO;
+            public const int DGNDKAKOEPD = Raw.Controll.Offsets.DGNDKAKOEPD;
+            public const int BEJBLGGGOCC = Raw.Controll.Offsets.BEJBLGGGOCC;
+            public const int JELGPAKAJPE = Raw.Controll.Offsets.JELGPAKAJPE;
+            public const int MNHBPCOOMLE = Raw.Controll.Offsets.MNHBPCOOMLE;
+            public const int MBLGPNKENLH = Raw.Controll.Offsets.MBLGPNKENLH;
+            public const int AFDPPPDHDGP = Raw.Controll.Offsets.AFDPPPDHDGP;
+            public const int IPKHNCADMPM = Raw.Controll.Offsets.IPKHNCADMPM;
+            public const int KMJLDLGDMGK = Raw.Controll.Offsets.KMJLDLGDMGK;
+            public const int GIPNIMALPEG = Raw.Controll.Offsets.GIPNIMALPEG;
+            public const int ANDBANJHOLD = Raw.Controll.Offsets.ANDBANJHOLD;
+            public const int DDOHELGGICN = Raw.Controll.Offsets.DDOHELGGICN;
+            public const int EBLINJOIONG = Raw.Controll.Offsets.EBLINJOIONG;
+            public const int CKLMDECPAGK = Raw.Controll.Offsets.CKLMDECPAGK;
+            public const int DBMGNKNGFLL = Raw.Controll.Offsets.DBMGNKNGFLL;
+            public const int OINJNFHMDFE = Raw.Controll.Offsets.OINJNFHMDFE;
+            public const int JILEFPBOEJD = Raw.Controll.Offsets.JILEFPBOEJD;
+            public const int HDPDNBPGEFM = Raw.Controll.Offsets.HDPDNBPGEFM;
+            public const int LMDMNAHDLMN = Raw.Controll.Offsets.LMDMNAHDLMN;
+            public const int FONIDHGBAPE = Raw.Controll.Offsets.FONIDHGBAPE;
+            public const int KLFCBGMIDPA = Raw.Controll.Offsets.KLFCBGMIDPA;
+            public const int CJGKMECGLNI = Raw.Controll.Offsets.CJGKMECGLNI;
+            public const int OGIGLGMENEM = Raw.Controll.Offsets.OGIGLGMENEM;
+            public const int ACFPMKPOBKN = Raw.Controll.Offsets.ACFPMKPOBKN;
+            public const int APMAMECFBFH = Raw.Controll.Offsets.APMAMECFBFH;
+            public const int HKNAOGMKNGL = Raw.Controll.Offsets.HKNAOGMKNGL;
+            public const int DJLHNOALLDA = Raw.Controll.Offsets.DJLHNOALLDA;
+            public const int HJBFIOGGGAE = Raw.Controll.Offsets.HJBFIOGGGAE;
+            public const int BCLDEEIKCII = Raw.Controll.Offsets.BCLDEEIKCII;
+            public const int ENELOHEHPFJ = Raw.Controll.Offsets.ENELOHEHPFJ;
+            public const int DDFMICNEFFF = Raw.Controll.Offsets.DDFMICNEFFF;
+            public const int KOIENCCCGHA = Raw.Controll.Offsets.KOIENCCCGHA;
+            public const int APGLIGOPHDI = Raw.Controll.Offsets.APGLIGOPHDI;
+            public const int EBMINFFFEEG = Raw.Controll.Offsets.EBMINFFFEEG;
+            public const int DIGBDNOAKPH = Raw.Controll.Offsets.DIGBDNOAKPH;
+            public const int PIALMHEOKML = Raw.Controll.Offsets.PIALMHEOKML;
+            public const int AONFIGHBBDA = Raw.Controll.Offsets.AONFIGHBBDA;
+            public const int NEFEDKFPILN = Raw.Controll.Offsets.NEFEDKFPILN;
+            public const int NBLCBLAFAKP = Raw.Controll.Offsets.NBLCBLAFAKP;
+            public const int ACNHHAEGGAP = Raw.Controll.Offsets.ACNHHAEGGAP;
+            public const int ANNIMLLLLIJ = Raw.Controll.Offsets.ANNIMLLLLIJ;
+            public const int NIFEOKJFKBC = Raw.Controll.Offsets.NIFEOKJFKBC;
+            public const int LCFGKOHHLIB = Raw.Controll.Offsets.LCFGKOHHLIB;
+            public const int HDOIJLAMGCN = Raw.Controll.Offsets.HDOIJLAMGCN;
+            public const int JDKOCMHHIEI = Raw.Controll.Offsets.JDKOCMHHIEI;
+            public const int POFKNJGAKPK = Raw.Controll.Offsets.POFKNJGAKPK;
+            public const int OGDPMIBJLDH = Raw.Controll.Offsets.OGDPMIBJLDH;
             public const uint Update = Raw.Controll.Methods.Update;
+            public const uint OnGUI = Raw.Controll.Methods.OnGUI;
+            public const uint SetRecoil = Raw.Controll.Methods.ILIDJBFOFJA;
             public const string ReloadMinigameResult = Raw.Controll.Properties.JBKBOPCCIBM;
         }
 
@@ -84,9 +300,50 @@ namespace BlockpostTrainer.Sdk
 
         public static class Weapon
         {
+            /// <summary>KBBBHJDINCB[] (0xC). All players in the match. Used by aimbot to find targets.</summary>
+            public const int Players = Raw.PLH.Offsets.BAKLNPIEHMI;
+            public const int LCKKCAHAPEF = Raw.PLH.Offsets.LCKKCAHAPEF;
+            public const int IFFKNMHKCKD = Raw.PLH.Offsets.IFFKNMHKCKD;
+            public const int EHHGKJHIGIL = Raw.PLH.Offsets.EHHGKJHIGIL;
+            public const int KMLIIIGJAEK = Raw.PLH.Offsets.KMLIIIGJAEK;
+            public const int OJDIKHJOGJC = Raw.PLH.Offsets.OJDIKHJOGJC;
+            public const int EDLPNENMJFF = Raw.PLH.Offsets.EDLPNENMJFF;
+            public const int FEFGNPKFKPE = Raw.PLH.Offsets.FEFGNPKFKPE;
+            public const int EKHCENHLMAM = Raw.PLH.Offsets.EKHCENHLMAM;
             public const uint Fire = Raw.PLH.Methods.CDEGJOBLOFO;
+            public const uint FireAlt = Raw.PLH.Methods.MFHJFPPOHLC;
             public const uint SelectWeapon = Raw.PLH.Methods.DIFGDFHJDGO;
             public const uint LoadWeaponSkin = Raw.PLH.Methods.JLAALPNBABH;
+            public const uint KGFIMJNLNBK = Raw.PLH.Methods.KGFIMJNLNBK;
+            public const uint JBJFFJLJNAF = Raw.PLH.Methods.JBJFFJLJNAF;
+            public const uint FPIJPCOKIEC = Raw.PLH.Methods.FPIJPCOKIEC;
+            public const uint IJLPOMIIJKB = Raw.PLH.Methods.IJLPOMIIJKB;
+            public const uint CDIFMOGFGKO = Raw.PLH.Methods.CDIFMOGFGKO;
+            public const uint PKFBFJFLGLC = Raw.PLH.Methods.PKFBFJFLGLC;
+            public const uint OIOKLCCFNBM = Raw.PLH.Methods.OIOKLCCFNBM;
+            public const uint LCGCHPANKMC = Raw.PLH.Methods.LCGCHPANKMC;
+            public const uint EMHOOBODDCM = Raw.PLH.Methods.EMHOOBODDCM;
+            public const uint CEPIEAOFANK = Raw.PLH.Methods.CEPIEAOFANK;
+            public const uint NACBBEJNAMD = Raw.PLH.Methods.NACBBEJNAMD;
+            public const uint NJICLGNKLOB = Raw.PLH.Methods.NJICLGNKLOB;
+            public const uint JNCPAMGFJOM = Raw.PLH.Methods.JNCPAMGFJOM;
+            public const uint NLCJMNFEACE = Raw.PLH.Methods.NLCJMNFEACE;
+            public const uint CGFBKJACOLI = Raw.PLH.Methods.CGFBKJACOLI;
+            public const uint IKHCPDMNJEM = Raw.PLH.Methods.IKHCPDMNJEM;
+            public const uint DLNJIEPCMHO = Raw.PLH.Methods.DLNJIEPCMHO;
+            public const uint LGPJNEJEFAJ = Raw.PLH.Methods.LGPJNEJEFAJ;
+            public const uint CEBCLMDKGDP = Raw.PLH.Methods.CEBCLMDKGDP;
+            public const uint NJLMCNIFABE = Raw.PLH.Methods.NJLMCNIFABE;
+            public const uint DMOGKAKMKKN = Raw.PLH.Methods.DMOGKAKMKKN;
+            public const uint PCHGFPAJAAC = Raw.PLH.Methods.PCHGFPAJAAC;
+            public const uint DKCCEKBJGGL = Raw.PLH.Methods.DKCCEKBJGGL;
+            public const uint ICEHONIBAME = Raw.PLH.Methods.ICEHONIBAME;
+            public const uint KPCIMDFOEGE = Raw.PLH.Methods.KPCIMDFOEGE;
+            public const uint HAPCNCPDHBD = Raw.PLH.Methods.HAPCNCPDHBD;
+            public const uint EHJHAJDOGMB = Raw.PLH.Methods.EHJHAJDOGMB;
+            public const uint GNODNLNCHCG = Raw.PLH.Methods.GNODNLNCHCG;
+            public const uint CKGLCABDLJF = Raw.PLH.Methods.CKGLCABDLJF;
+            public const uint NNAOHNAPCKP = Raw.PLH.Methods.NNAOHNAPCKP;
         }
 
         public static class Inventory
@@ -118,9 +375,43 @@ namespace BlockpostTrainer.Sdk
         public static class WeaponItem
         {
             public const int Name = Raw.CGJPBNDDPIN.Offsets.PKDKFHFFEHL;
+            /// <summary>int (0x5C). Actually the weapon ID, NOT ammo count. Writing here causes NO WEAPON state.</summary>
             public const int Ammo = Raw.CGJPBNDDPIN.Offsets.OCDNCKANJPB;
             public const int Muzzle = Raw.CGJPBNDDPIN.Offsets.FLGEDGDCCAH;
+            public const int MuzzleAlt = Raw.CGJPBNDDPIN.Offsets.MHFBDDCKAPJ;
             public const int WeaponData = Raw.CGJPBNDDPIN.Offsets.ADMGNABJBNM;
+            public const int Icon = Raw.CGJPBNDDPIN.Offsets.BGNLOPJBJHB;
+            public const int IconAlt = Raw.CGJPBNDDPIN.Offsets.FHOKAIADHDO;
+            public const int Material = Raw.CGJPBNDDPIN.Offsets.FNBOPBHIMPM;
+            public const int Attachments = Raw.CGJPBNDDPIN.Offsets.HJAJNFMDEIP;
+            public const int Animation = Raw.CGJPBNDDPIN.Offsets.LCFGBIPDIGA;
+            public const int AnimClip1 = Raw.CGJPBNDDPIN.Offsets.NKFDKMOAFDB;
+            public const int AnimClip2 = Raw.CGJPBNDDPIN.Offsets.PJLANMHJGAF;
+            public const int AnimClip3 = Raw.CGJPBNDDPIN.Offsets.AEDCGBNDGAO;
+            public const int BoneRig1 = Raw.CGJPBNDDPIN.Offsets.AHLLKFOFFML;
+            public const int BoneRig2 = Raw.CGJPBNDDPIN.Offsets.NNDACBMKNKM;
+            public const int IKTarget1 = Raw.CGJPBNDDPIN.Offsets.JBKCHIPMHJF;
+            public const int IKTarget2 = Raw.CGJPBNDDPIN.Offsets.NHMDFEHMEOP;
+            /// <summary>bool (0xA8). Weapon ready flag.</summary>
+            public const int IsReady = Raw.CGJPBNDDPIN.Offsets.NLNJMBCBEAF;
+            public const int RootObject = Raw.CGJPBNDDPIN.Offsets.LANBONKMIME;
+            public const int BONHHPFGCKN = Raw.CGJPBNDDPIN.Offsets.BONHHPFGCKN;
+            public const int JCEFFADJNJH = Raw.CGJPBNDDPIN.Offsets.JCEFFADJNJH;
+            public const int KMLNGLMHKJL = Raw.CGJPBNDDPIN.Offsets.KMLNGLMHKJL;
+            public const int CLLKCICOEED = Raw.CGJPBNDDPIN.Offsets.CLLKCICOEED;
+            public const int KNFOBOBHJCA = Raw.CGJPBNDDPIN.Offsets.KNFOBOBHJCA;
+            public const int LAPCJNKLGJM = Raw.CGJPBNDDPIN.Offsets.LAPCJNKLGJM;
+            public const int MHOIGGDHEGP = Raw.CGJPBNDDPIN.Offsets.MHOIGGDHEGP;
+            public const int ANAMHFAKMEM = Raw.CGJPBNDDPIN.Offsets.ANAMHFAKMEM;
+            public const int EPIOGACGPFA = Raw.CGJPBNDDPIN.Offsets.EPIOGACGPFA;
+            public const int EFHIABGGOOI = Raw.CGJPBNDDPIN.Offsets.EFHIABGGOOI;
+            public const int FFFBGKOKEKA = Raw.CGJPBNDDPIN.Offsets.FFFBGKOKEKA;
+            public const int PDIFCMPNMLD = Raw.CGJPBNDDPIN.Offsets.PDIFCMPNMLD;
+            public const int GKMDKLCNJOL = Raw.CGJPBNDDPIN.Offsets.GKMDKLCNJOL;
+            public const int DDANHGFLNOM = Raw.CGJPBNDDPIN.Offsets.DDANHGFLNOM;
+            public const int PNOILNLEPGB = Raw.CGJPBNDDPIN.Offsets.PNOILNLEPGB;
+            public const int FireSound = Raw.CGJPBNDDPIN.Offsets.PJMJACLJJAE;
+            public const int CGEJFFHMIBA = Raw.CGJPBNDDPIN.Offsets.CGEJFFHMIBA;
         }
 
         public static class Net
@@ -135,9 +426,17 @@ namespace BlockpostTrainer.Sdk
 
         public static class Hit
         {
+            /// <summary>int (0x8). Target player ID.</summary>
             public const int TargetId = Raw.DMHBMAAFCFJ.Offsets.AMGLIHOLNJE;
+            /// <summary>int (0xC). Body part hit (0=head, 1=body, etc.).</summary>
             public const int BodyPart = Raw.DMHBMAAFCFJ.Offsets.KMCHFGKKICG;
+            /// <summary>Vector3 (0x10). Hit point in world space.</summary>
             public const int Point = Raw.DMHBMAAFCFJ.Offsets.HDAFLOCABNG;
+            public const uint Constructor = Raw.DMHBMAAFCFJ.Methods._ctor;
+        }
+
+        public static class MovementFlags
+        {
         }
 
     }

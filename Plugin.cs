@@ -234,19 +234,14 @@ public sealed class Plugin : BasePlugin
 
     private static void ControllerUpdatePostfix(Controll __instance)
     {
+        // Log EPEEFBDJAHO after Controll.Update to see if the game overwrote our value.
+        if (silentAimRedirected)
+        {
+            AsyncLog.Write($"[Postfix] EPEEFBDJAHO={Controll.EPEEFBDJAHO}, LCMOBPPHLLM={Controll.LCMOBPPHLLM}");
+        }
         ReleaseLeftMouseIfNeeded();
         ForceRapidFireShot();
         RestoreSilentAim();
-
-        // Set the fire input flag AFTER Controll.Update has run (so it doesn't get
-        // overwritten this frame). Next frame, Controll.Update will read it and fire
-        // through its own full code path — raycast, hit list, network hit packet.
-        // This is the only way to auto-shoot in IL2CPP: we can't patch Input methods
-        // (native code bypasses C# wrappers), but we CAN set the cached input field.
-        if (autoShootThisFrame)
-        {
-            Controll.EPEEFBDJAHO = 1;
-        }
 
         NetProbe.Tick();
         FieldWatch.Tick(__instance);
@@ -1434,15 +1429,12 @@ public sealed class Plugin : BasePlugin
             // rotation so the fire raycast goes toward the target.
             SaveAndRedirectAim(camera, bestPosition);
 
-            // Auto-shoot: set autoShootThisFrame. The postfix will set EPEEFBDJAHO=1
-            // AFTER Controll.Update has run (so it doesn't get overwritten this frame).
-            // Next frame, Controll.Update reads EPEEFBDJAHO=1 and fires through its own
-            // full code path (raycast + hit list + network hit packet).
-            // The silent aim redirect runs every frame, so the camera is pointing at
-            // the target when Controll.Update fires.
+            // Auto-shoot: set EPEEFBDJAHO (fire input flag) in the prefix. Log its
+            // value in the postfix to see if the game overwrites it during Update.
             if (Application.isFocused && mainPlayer.JPGGPPLOOML != null)
             {
-                autoShootThisFrame = true;
+                Controll.EPEEFBDJAHO = 1;
+                AsyncLog.Write($"[SilentAim] prefix: EPEEFBDJAHO set to 1, target={lastAimTargetIndex}");
             }
             aimStatus = $"silent target={lastAimTargetIndex}, angle={bestAngle:0.0} degrees";
             return;
@@ -1612,15 +1604,14 @@ public sealed class Plugin : BasePlugin
             return;
         }
 
-        // Set autoShootThisFrame. The postfix will set EPEEFBDJAHO=1 after Controll.Update
-        // has run, so next frame Controll.Update fires through its own full code path.
+        // Auto-shoot: set EPEEFBDJAHO (fire input flag) so Controll.Update fires.
         var main = Controll.HGAODFPBGLB;
         if (main == null || main.JPGGPPLOOML == null)
         {
             return;
         }
 
-        autoShootThisFrame = true;
+        Controll.EPEEFBDJAHO = 1;
         aimStatus = $"{aimStatus} | auto-shoot";
     }
 

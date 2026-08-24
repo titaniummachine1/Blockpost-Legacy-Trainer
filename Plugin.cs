@@ -230,6 +230,21 @@ public sealed class Plugin : BasePlugin
         UpdateAimbotSafely();
         ApplyCheatFeatures();
         PrepareRapidFirePrefix();
+
+        // Send the click in the prefix too — right before Controll.Update polls input.
+        // The postfix click might be consumed by Unity's input poll before next frame's
+        // prefix. Sending in both ensures the click is seen regardless of timing.
+        if (autoShootPending)
+        {
+            var main = Controll.HGAODFPBGLB;
+            var alive = main != null && main.FDOJDJLIGLF > 0 && main.JPGGPPLOOML != null;
+            if (alive)
+            {
+                mouse_event(MouseEventFLeftUp, 0, 0, 0, 0);
+                mouse_event(MouseEventFLeftDown, 0, 0, 0, 0);
+                pendingLeftMouseUp = true;
+            }
+        }
     }
 
     private static void ControllerUpdatePostfix(Controll __instance)

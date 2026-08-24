@@ -317,27 +317,17 @@ public sealed class Plugin : BasePlugin
     /// the same mechanism taken to its limit rather than a new code path.
     /// </summary>
     /// <summary>
-    /// Bunny hop: automatically jump when the player lands while moving forward.
-    /// Only triggers when W is held and the player is on the ground.
+    /// Bunny hop: when the player holds space, auto-jump the moment they land.
     /// </summary>
     private static void ApplyBunnyHop(KBBBHJDINCB main)
     {
         try
         {
-            // Only hop when the player is holding W (moving forward).
-            if (!Input.GetKey(KeyCode.W))
+            if (!Input.GetKey(KeyCode.Space))
             {
                 return;
             }
 
-            // Don't hop if already pressing space — let them control manual jumps.
-            if (Input.GetKey(KeyCode.Space))
-            {
-                return;
-            }
-
-            // Check if grounded via the player's rigidbody vertical velocity.
-            // When on the ground, Y velocity is near zero.
             var rb = main.MJPOJOOIPPN;
             if (rb == null)
             {

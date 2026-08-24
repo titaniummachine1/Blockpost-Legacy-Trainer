@@ -377,6 +377,11 @@ public sealed class Plugin : BasePlugin
         bootstrapLogged = true;
     }
 
+    // Saved cursor state before the menu opened, so we can restore it on close
+    // instead of forcing Locked (which breaks the game's own main menu / lobby).
+    private static CursorLockMode savedLockState;
+    private static bool savedCursorVisible;
+
     private static void ToggleMenuIfRequested()
     {
         if (!Input.GetKeyDown(KeyCode.Home))
@@ -387,15 +392,19 @@ public sealed class Plugin : BasePlugin
         menuVisible = !menuVisible;
         if (menuVisible)
         {
+            // Save the game's current cursor state so we can restore it exactly on close.
+            savedLockState = Cursor.lockState;
+            savedCursorVisible = Cursor.visible;
             // Free the mouse cursor so the user can interact with the menu.
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
         else
         {
-            // Return cursor to the game's locked state.
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
+            // Restore whatever the game had before we opened the menu — could be
+            // Locked (in-match), None (main menu/lobby), or Confined.
+            Cursor.lockState = savedLockState;
+            Cursor.visible = savedCursorVisible;
         }
         instance?.Log.LogInfo($"Trainer menu {(menuVisible ? "opened" : "closed")}.");
     }

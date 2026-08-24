@@ -99,6 +99,9 @@ public sealed class Plugin : BasePlugin
     private static bool instantReload;
     private static bool instantReloadFailureLogged;
     private static bool bunnyHop;
+    private static bool customCrosshair;
+    private static bool fovChanger;
+    private static float targetFov = 90f;
     private static int instantReloads;
     private static float nextAutoShootTime;
 
@@ -378,7 +381,7 @@ public sealed class Plugin : BasePlugin
 
     private static void ApplyCheatFeatures()
     {
-        if (!infiniteHealth && !infiniteAmmo && !bunnyHop)
+        if (!infiniteHealth && !infiniteAmmo && !bunnyHop && !fovChanger)
         {
             return;
         }
@@ -400,12 +403,18 @@ public sealed class Plugin : BasePlugin
                 main.CGHKKDBILGF = false;
             }
 
-            // Bunny hop: send spacebar press every frame while moving forward.
-            // The game checks Input.GetKey(KeyCode.Space) for jumping — sending
-            // the key via keybd_event makes the game think space is held.
             if (bunnyHop && Application.isFocused && main.FDOJDJLIGLF > 0)
             {
                 ApplyBunnyHop(main);
+            }
+
+            if (fovChanger)
+            {
+                var camera = Controll.CDFACGAFFFH;
+                if (camera != null && Mathf.Abs(camera.fieldOfView - targetFov) > 0.1f)
+                {
+                    camera.fieldOfView = targetFov;
+                }
             }
         }
         catch (Exception exception)
@@ -603,6 +612,9 @@ public sealed class Plugin : BasePlugin
                     case "infiniteAmmo": infiniteAmmo = val == "1"; break;
                     case "instantReload": instantReload = val == "1"; break;
                     case "bunnyHop": bunnyHop = val == "1"; break;
+                    case "customCrosshair": customCrosshair = val == "1"; break;
+                    case "fovChanger": fovChanger = val == "1"; break;
+                    case "targetFov": float.TryParse(val, out targetFov); break;
                     case "debugLogging": debugLogging = val == "1"; break;
                     case "heavyDiagnostics": heavyDiagnostics = val == "1"; break;
                     case "showRuntimeStatus": showRuntimeStatus = val == "1"; break;
@@ -641,6 +653,9 @@ public sealed class Plugin : BasePlugin
                 $"infiniteAmmo={(infiniteAmmo ? 1 : 0)}",
                 $"instantReload={(instantReload ? 1 : 0)}",
                 $"bunnyHop={(bunnyHop ? 1 : 0)}",
+                $"customCrosshair={(customCrosshair ? 1 : 0)}",
+                $"fovChanger={(fovChanger ? 1 : 0)}",
+                $"targetFov={targetFov:0.###}",
                 $"debugLogging={(debugLogging ? 1 : 0)}",
                 $"heavyDiagnostics={(heavyDiagnostics ? 1 : 0)}",
                 $"showRuntimeStatus={(showRuntimeStatus ? 1 : 0)}",
@@ -1125,6 +1140,10 @@ public sealed class Plugin : BasePlugin
             var slotAmmo = gd == null || slot < 0 || slot >= gd.Length ? -1 : gd[slot];
             instance?.Log.LogInfo($"[Ammo] {nameof(Raw.KBBBHJDINCB.Offsets.MOPBMENEGLN)}={slot}, {nameof(Raw.KBBBHJDINCB.Offsets.ECBCOHFLJCC)}={mainPlayer.ECBCOHFLJCC}, {nameof(Raw.KBBBHJDINCB.Offsets.GDEMINMDJAC)}.Length={(gd == null ? -1 : gd.Length)}, {nameof(Raw.KBBBHJDINCB.Offsets.GDEMINMDJAC)}[{slot}]={slotAmmo}, weaponId={weaponId}, weaponNull={weapon == null}");
             instance?.Log.LogInfo($"[Health] HP={mainPlayer.FDOJDJLIGLF}, MaxHP={mainPlayer.EFHBKMHCMOH}, Armor={mainPlayer.INGHEHAALBJ}, CLOEJLAOIGI={mainPlayer.CLOEJLAOIGI}, CGHKKDBILGF={mainPlayer.CGHKKDBILGF}, LBKINNIDKEC={mainPlayer.LBKINNIDKEC}");
+            // Log Controll static fields for reverse engineering.
+            instance?.Log.LogInfo($"[Controll] FGGKANNFBDH={Controll.FGGKANNFBDH}, ILFOFIOFBAM={Controll.ILFOFIOFBAM}, KJOMABGHAIJ={Controll.KJOMABGHAIJ}, KEPGFOEOHPD={Controll.KEPGFOEOHPD}, HLBAGIACGBI={Controll.HLBAGIACGBI}, PBICPLCFAGG={Controll.PBICPLCFAGG}, NJPDKJKJMCG={Controll.NJPDKJKJMCG}, GCHFDAPNBNB={Controll.GCHFDAPNBNB}, BFEOOOMMGLK={Controll.BFEOOOMMGLK}, EKEAAHAKHIN={Controll.EKEAAHAKHIN}, DJACNOGOCKD={Controll.DJACNOGOCKD}, MJHNOEIFBEO={Controll.MJHNOEIFBEO}, HCOLPFEEENG={Controll.HCOLPFEEENG}, GLGCAOADGMN={Controll.GLGCAOADGMN}, CFACCGMPPOE={Controll.CFACCGMPPOE}, NKFBOBMMGCL={Controll.NKFBOBMMGCL}, DEBGAILDKPC={Controll.DEBGAILDKPC}, GKNJELHPMDE={Controll.GKNJELHPMDE}, POFKNJGAKPK={Controll.POFKNJGAKPK}, OGDPMIBJLDH={Controll.OGDPMIBJLDH}, MNHBPCOOMLE={Controll.MNHBPCOOMLE}");
+            // Log player ammo candidates from the Player class.
+            instance?.Log.LogInfo($"[PlayerAmmo] PELNEJDOBKH={mainPlayer.PELNEJDOBKH}, DECAKELAHPI={mainPlayer.DECAKELAHPI}, GEDMGLAMGMD={mainPlayer.GEDMGLAMGMD}, MHCOJFIAGLP={mainPlayer.MHCOJFIAGLP}, JHGGICCFNFJ={mainPlayer.JHGGICCFNFJ}, CNHNFDDJMJO={mainPlayer.CNHNFDDJMJO}, EGCCBDKJGAB={mainPlayer.EGCCBDKJGAB}, EEHMHJBNAFP={mainPlayer.EEHMHJBNAFP}, NGCMFJECPIO={mainPlayer.NGCMFJECPIO}, BCLPAILBBFP={mainPlayer.BCLPAILBBFP}");
         }
         catch
         {
@@ -1746,7 +1765,7 @@ public sealed class Plugin : BasePlugin
 
     private static void ControllerOnGUIPostfix()
     {
-        if (!menuVisible && !espEnabled)
+        if (!menuVisible && !espEnabled && !customCrosshair)
         {
             return;
         }
@@ -1757,6 +1776,11 @@ public sealed class Plugin : BasePlugin
             {
                 UpdateEspSafely();
                 DrawEspBoxes();
+            }
+
+            if (customCrosshair && !menuVisible)
+            {
+                DrawCustomCrosshair();
             }
 
             if (menuVisible)
@@ -1772,6 +1796,39 @@ public sealed class Plugin : BasePlugin
                 guiFailureLogged = true;
             }
         }
+    }
+
+    private static void DrawCustomCrosshair()
+    {
+        var cx = Screen.width / 2;
+        var cy = Screen.height / 2;
+        var color = new Color(0f, 1f, 0f, 0.8f);
+        var thickness = 2;
+        var gap = 6;
+        var length = 8;
+
+        // Draw 4 lines (top, bottom, left, right) + center dot
+        DrawLine(cx, cy - gap - length, cx, cy - gap, thickness, color); // top
+        DrawLine(cx, cy + gap, cx, cy + gap + length, thickness, color); // bottom
+        DrawLine(cx - gap - length, cy, cx - gap, cy, thickness, color); // left
+        DrawLine(cx + gap, cy, cx + gap + length, cy, thickness, color); // right
+        DrawLine(cx - 1, cy, cx + 1, cy, 2, color); // center dot h
+        DrawLine(cx, cy - 1, cx, cy + 1, 2, color); // center dot v
+    }
+
+    private static void DrawLine(int x1, int y1, int x2, int y2, int thickness, Color color)
+    {
+        var minX = Math.Min(x1, x2);
+        var minY = Math.Min(y1, y2);
+        var maxX = Math.Max(x1, x2);
+        var maxY = Math.Max(y1, y2);
+        var w = Math.Max(maxX - minX, thickness);
+        var h = Math.Max(maxY - minY, thickness);
+        var tex = Texture2D.whiteTexture;
+        var prevColor = GUI.color;
+        GUI.color = color;
+        GUI.DrawTexture(new Rect(minX, minY, w, h), tex);
+        GUI.color = prevColor;
     }
 
     private static void DrawTrainerMenu()
@@ -1846,6 +1903,14 @@ public sealed class Plugin : BasePlugin
         infiniteAmmo = GUI.Toggle(new Rect(x, y, w, 24), infiniteAmmo, "Infinite ammo (log only — identifying correct fields)"); y += 26;
         instantReload = GUI.Toggle(new Rect(x, y, w, 24), instantReload, $"Instant reload ({instantReloads})"); y += 26;
         bunnyHop = GUI.Toggle(new Rect(x, y, w, 24), bunnyHop, "Bunny hop"); y += 26;
+        fovChanger = GUI.Toggle(new Rect(x, y, w, 24), fovChanger, "FOV changer"); y += 26;
+        if (fovChanger)
+        {
+            GUI.Label(new Rect(x, y, w, 20), $"FOV: {targetFov:0}");
+            targetFov = GUI.HorizontalSlider(new Rect(x + 60, y + 4, w - 60, 20), targetFov, 60f, 120f);
+            y += 26;
+        }
+        customCrosshair = GUI.Toggle(new Rect(x, y, w, 24), customCrosshair, "Custom crosshair"); y += 26;
         debugLogging = GUI.Toggle(new Rect(x, y, w, 24), debugLogging, $"Verbose diagnostics (summary only, 1/{DiagnosticInterval:0}s)"); y += 26;
         if (debugLogging)
         {

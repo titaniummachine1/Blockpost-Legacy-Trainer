@@ -221,27 +221,22 @@ public sealed class Plugin : BasePlugin
         forceShotThisFrame = false;
         autoShootThisFrame = false;
         LogControllerStartup();
-        // Run before Controll.Update's own reload evaluation. Applied from the postfix the write
-        // landed after the game had already read the stamp for this frame, which is consistent
-        // with the observed "bar disappears but the reload is not shorter".
         ApplyInstantReload();
         UpdateAimbotSafely();
         ApplyCheatFeatures();
         PrepareRapidFirePrefix();
-        // Silent aim: UpdateAimbotSafely may have redirected the aim angles to the target
-        // and set EPEEFBDJAHO=1 so Controll.Update fires through its own logic.
-        // The redirect is undone in the postfix after Controll.Update has fired the shot.
+        // Fire the weapon NOW, in the prefix. For silent aim, the angles AND camera
+        // rotation are redirected to the target (SaveAndRedirectAim set both).
+        // PLH.CDEGJOBLOFO raycasts from the camera, so the camera must point at
+        // the target — which it does right now, before Controll.Update runs.
+        ForceRapidFireShot();
     }
 
     private static void ControllerUpdatePostfix(Controll __instance)
     {
-        // Fire the rapid-fire shot (if rapid fire is on).
         ReleaseLeftMouseIfNeeded();
-        ForceRapidFireShot();
 
-        // Restore the real aim angles, preserving the mouse delta that Controll.Update
-        // applied during this frame. Without this, the player's mouse movement is lost
-        // and the camera feels locked.
+        // Restore the real aim angles and camera, preserving mouse delta.
         RestoreSilentAim();
 
         NetProbe.Tick();
@@ -1383,17 +1378,18 @@ public sealed class Plugin : BasePlugin
                 return;
             }
 
-            // Save real angles and redirect to target.
+            // Save real angles and redirect to target. This also updates the camera
+            // rotation so the fire raycast goes toward the target.
             SaveAndRedirectAim(camera, bestPosition);
 
-            // Auto-shoot: set the flag so Input.GetMouseButton(0) returns true during
-            // Controll.Update (which runs right after this prefix). The game reads
-            // Input.GetMouseButton(0) at the start of Update and stores it in EPEEFBDJAHO,
-            // so setting EPEEFBDJAHO directly gets overwritten. Patching the input method
-            // is the only way to make the game fire through its own full code path.
+            // Auto-shoot: call PLH.CDEGJOBLOFO directly. The game's Input.GetMouseButton
+            // can't be patched in IL2CPP (native code bypasses C# wrappers), so we can't
+            // trick Controll.Update into firing. Instead, call the same fire function the
+            // game calls — it does the raycast + sends the network hit packet.
+            // The camera is already pointing at the target (SaveAndRedirectAim set it).
             if (Application.isFocused && mainPlayer.JPGGPPLOOML != null)
             {
-                autoShootThisFrame = true;
+                forceShotThisFrame = true;
             }
             aimStatus = $"silent target={lastAimTargetIndex}, angle={bestAngle:0.0} degrees";
             return;
@@ -1427,6 +1423,11 @@ public sealed class Plugin : BasePlugin
 
         Controll.NAKNALFCOIF = targetYaw;
         Controll.IGLCENGMMMJ = targetPitch;
+
+        // Update the camera rotation NOW so PLH.CDEGJOBLOFO's raycast goes toward
+        // the target. Without this, the camera still points the old way (Controll.Update
+        // hasn't run yet to sync camera from angles) and the shot misses.
+        camera.transform.rotation = Quaternion.Euler(targetPitch, targetYaw, 0f);
     }
 
     /// <summary>
@@ -1558,17 +1559,16 @@ public sealed class Plugin : BasePlugin
             return;
         }
 
-        // Set the auto-shoot flag so Input.GetMouseButton(0) returns true during
-        // Controll.Update. The game reads input at the start of Update and stores it
-        // in EPEEFBDJAHO — setting EPEEFBDJAHO directly gets overwritten. The Harmony
-        // patch on Input.GetMouseButton intercepts the read itself.
+        // Fire directly via PLH.CDEGJOBLOFO — same fire function the game calls internally.
+        // The camera is already aimed at the target (ApplyAimRotation set it).
+        // ForceRapidFireShot runs in the prefix right after this.
         var main = Controll.HGAODFPBGLB;
         if (main == null || main.JPGGPPLOOML == null)
         {
             return;
         }
 
-        autoShootThisFrame = true;
+        forceShotThisFrame = true;
         aimStatus = $"{aimStatus} | auto-shoot";
     }
 

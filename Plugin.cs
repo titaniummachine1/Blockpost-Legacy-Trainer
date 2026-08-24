@@ -225,19 +225,28 @@ public sealed class Plugin : BasePlugin
         UpdateAimbotSafely();
         ApplyCheatFeatures();
         PrepareRapidFirePrefix();
-        // Fire the weapon NOW, in the prefix. For silent aim, the angles AND camera
-        // rotation are redirected to the target (SaveAndRedirectAim set both).
-        // PLH.CDEGJOBLOFO raycasts from the camera, so the camera must point at
-        // the target — which it does right now, before Controll.Update runs.
-        ForceRapidFireShot();
+        // NOTE: Do NOT fire from the prefix. PLH.CDEGJOBLOFO only does the visual shot —
+        // the hit detection + network packet happens inside Controll.Update's own code
+        // path, which checks EPEEFBDJAHO (cached fire input). We set EPEEFBDJAHO=1 in
+        // the postfix so Controll.Update sees it NEXT frame and fires through its own
+        // full code path (raycast + hit list + Client.AHLDAPJEJNC).
     }
 
     private static void ControllerUpdatePostfix(Controll __instance)
     {
         ReleaseLeftMouseIfNeeded();
-
-        // Restore the real aim angles and camera, preserving mouse delta.
+        ForceRapidFireShot();
         RestoreSilentAim();
+
+        // Set the fire input flag AFTER Controll.Update has run (so it doesn't get
+        // overwritten this frame). Next frame, Controll.Update will read it and fire
+        // through its own full code path — raycast, hit list, network hit packet.
+        // This is the only way to auto-shoot in IL2CPP: we can't patch Input methods
+        // (native code bypasses C# wrappers), but we CAN set the cached input field.
+        if (autoShootThisFrame)
+        {
+            Controll.EPEEFBDJAHO = 1;
+        }
 
         NetProbe.Tick();
         FieldWatch.Tick(__instance);
@@ -411,15 +420,6 @@ public sealed class Plugin : BasePlugin
             main.FGFKPMPLNKO = -1000f;
             PLH.CDEGJOBLOFO(main, 0f, false, false);
             main.FGFKPMPLNKO = 1000f;
-
-            // PLH.CDEGJOBLOFO fires the visual shot but doesn't send the network hit
-            // packet. The game normally calls Client.AHLDAPJEJNC from Controll.Update
-            // after processing the hit list (Controll.GOMFKJNNJAP). Since we're firing
-            // from the prefix (before Controll.Update), we need to send the hit report
-            // ourselves. If the raycast hit something, the hit list will have entries.
-            // If not, add our aimbot target manually.
-            SendHitReport(main);
-
             AsyncLog.Write($"[RapidFire] fired: weapon={main.JPGGPPLOOML?.OCDNCKANJPB}, health={main.FDOJDJLIGLF}");
         }
         catch (Exception exception)
@@ -1434,19 +1434,15 @@ public sealed class Plugin : BasePlugin
             // rotation so the fire raycast goes toward the target.
             SaveAndRedirectAim(camera, bestPosition);
 
-            // Auto-shoot: call PLH.CDEGJOBLOFO directly. The game's Input.GetMouseButton
-            // can't be patched in IL2CPP (native code bypasses C# wrappers), so we can't
-            // trick Controll.Update into firing. Instead, call the same fire function the
-            // game calls — it does the raycast + sends the network hit packet.
-            // The camera is already pointing at the target (SaveAndRedirectAim set it).
+            // Auto-shoot: set autoShootThisFrame. The postfix will set EPEEFBDJAHO=1
+            // AFTER Controll.Update has run (so it doesn't get overwritten this frame).
+            // Next frame, Controll.Update reads EPEEFBDJAHO=1 and fires through its own
+            // full code path (raycast + hit list + network hit packet).
+            // The silent aim redirect runs every frame, so the camera is pointing at
+            // the target when Controll.Update fires.
             if (Application.isFocused && mainPlayer.JPGGPPLOOML != null)
             {
-                forceShotThisFrame = true;
-                AsyncLog.Write($"[SilentAim] forceShot set, target={lastAimTargetIndex}, weapon={mainPlayer.JPGGPPLOOML?.OCDNCKANJPB}");
-            }
-            else
-            {
-                AsyncLog.Write($"[SilentAim] no fire: focused={Application.isFocused}, weapon={mainPlayer.JPGGPPLOOML == null}");
+                autoShootThisFrame = true;
             }
             aimStatus = $"silent target={lastAimTargetIndex}, angle={bestAngle:0.0} degrees";
             return;
@@ -1616,16 +1612,15 @@ public sealed class Plugin : BasePlugin
             return;
         }
 
-        // Fire directly via PLH.CDEGJOBLOFO — same fire function the game calls internally.
-        // The camera is already aimed at the target (ApplyAimRotation set it).
-        // ForceRapidFireShot runs in the prefix right after this.
+        // Set autoShootThisFrame. The postfix will set EPEEFBDJAHO=1 after Controll.Update
+        // has run, so next frame Controll.Update fires through its own full code path.
         var main = Controll.HGAODFPBGLB;
         if (main == null || main.JPGGPPLOOML == null)
         {
             return;
         }
 
-        forceShotThisFrame = true;
+        autoShootThisFrame = true;
         aimStatus = $"{aimStatus} | auto-shoot";
     }
 

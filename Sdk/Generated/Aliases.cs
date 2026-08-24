@@ -471,5 +471,549 @@ namespace BlockpostTrainer.Sdk
         {
         }
 
+        public static class Movement
+        {
+        }
+
+        public static class MouseLook
+        {
+        }
+
+        public static class Shooter
+        {
+        }
+
+        public static class Spectator
+        {
+        }
+
+        public static class Crosshair
+        {
+        }
+
+        public static class Radar
+        {
+        }
+
+        public static class MasterServer
+        {
+        }
+
+        public static class MasterServerPacket
+        {
+        }
+
+        public static class DevClient
+        {
+        }
+
+        public static class DropClient
+        {
+        }
+
+        public static class HUD
+        {
+        }
+
+        public static class HUDMessage
+        {
+        }
+
+        public static class DeathMessage
+        {
+        }
+
+        public static class BuildHUD
+        {
+        }
+
+        public static class GameEndHUD
+        {
+        }
+
+        public static class TabHUD
+        {
+        }
+
+        public static class NameTags
+        {
+        }
+
+        public static class KillFeed
+        {
+        }
+
+        public static class HUDIndicator
+        {
+        }
+
+        public static class MapMenu
+        {
+        }
+
+        public static class PlayMenu
+        {
+        }
+
+        public static class GUIManager
+        {
+        }
+
+        public static class MainMenu
+        {
+        }
+
+        public static class PlayMenuOld
+        {
+        }
+
+        public static class AdminPanel
+        {
+        }
+
+        public static class AdminMapList
+        {
+        }
+
+        public static class AdminUpload
+        {
+        }
+
+        public static class AdminSettings
+        {
+        }
+
+        public static class AdminPlayers
+        {
+        }
+
+        public static class CharacterMenu
+        {
+        }
+
+        public static class CharacterEditor
+        {
+        }
+
+        public static class SkinEditor
+        {
+        }
+
+        public static class GameSettings
+        {
+        }
+
+        public static class GameMenu
+        {
+        }
+
+        public static class SquadMenu
+        {
+        }
+
+        public static class CraftMenu
+        {
+        }
+
+        public static class CaseMenu
+        {
+        }
+
+        public static class ClanMenu
+        {
+        }
+
+        public static class IconMenu
+        {
+        }
+
+        public static class ShopMenu
+        {
+        }
+
+        public static class OptionsMenu
+        {
+        }
+
+        public static class ObjectEditor
+        {
+        }
+
+        public static class NameInput
+        {
+        }
+
+        public static class EffectsMenu
+        {
+        }
+
+        public static class ProfileMenu
+        {
+        }
+
+        public static class RankMenu
+        {
+        }
+
+        public static class GoldMenu
+        {
+        }
+
+        public static class BonusMenu
+        {
+        }
+
+        public static class GUI3D
+        {
+        }
+
+        public static class VoxelPaletteUI
+        {
+        }
+
+        public static class ChatMessage
+        {
+        }
+
+        public static class HUDManager
+        {
+        }
+
+        public static class PlayUIManager
+        {
+        }
+
+        public static class MainMenuUIManager
+        {
+        }
+
+        public static class InventoryUIManager
+        {
+        }
+
+        public static class PlaymodeUI
+        {
+        }
+
+        public static class ShopUIManager
+        {
+        }
+
+        public static class TasksUIManager
+        {
+        }
+
+        public static class RewardUIManager
+        {
+        }
+
+        public static class DropUI
+        {
+        }
+
+        public static class DropButton
+        {
+        }
+
+        public static class DropExitButton
+        {
+        }
+
+        public static class UIElement
+        {
+        }
+
+        public static class UIColors
+        {
+        }
+
+        public static class ColorPaletteUI
+        {
+        }
+
+        public static class ColorPreviewUI
+        {
+        }
+
+        public static class Main
+        {
+        }
+
+        public static class MainManager
+        {
+        }
+
+        public static class Config
+        {
+        }
+
+        public static class BackgroundManager
+        {
+        }
+
+        public static class UIManager
+        {
+        }
+
+        public static class ParticleManager
+        {
+        }
+
+        public static class SteamManager
+        {
+        }
+
+        public static class MapLoader
+        {
+        }
+
+        public static class MapGenerator
+        {
+        }
+
+        public static class MapAutoload
+        {
+        }
+
+        public static class MapEvent
+        {
+        }
+
+        public static class MapPrefab
+        {
+        }
+
+        public static class MapCulling
+        {
+        }
+
+        public static class VoxelMap
+        {
+        }
+
+        public static class BattleMap
+        {
+        }
+
+        public static class VoxelLighting
+        {
+        }
+
+        public static class BloodSplat
+        {
+        }
+
+        public static class BulletTracer
+        {
+        }
+
+        public static class CameraShake
+        {
+        }
+
+        public static class OutlineSystem
+        {
+        }
+
+        public static class MultiplayerChar
+        {
+        }
+
+        public static class MPCharAnimator
+        {
+        }
+
+        public static class TouchControls
+        {
+        }
+
+        public static class InputSystem
+        {
+        }
+
+        public static class InputHelper
+        {
+        }
+
+        public static class CameraFollow
+        {
+        }
+
+        public static class FreeFlyCamera
+        {
+        }
+
+        public static class DemoRecorder
+        {
+        }
+
+        public static class Util
+        {
+        }
+
+        public static class Util2
+        {
+        }
+
+        public static class HashUtil
+        {
+        }
+
+        public static class CharUtil
+        {
+        }
+
+        public static class GameLog
+        {
+        }
+
+        public static class DebugDraw
+        {
+        }
+
+        public static class NetDebug
+        {
+        }
+
+        public static class DevConsole
+        {
+        }
+
+        public static class Console
+        {
+        }
+
+        public static class Localization
+        {
+        }
+
+        public static class WeaponLocalization
+        {
+        }
+
+        public static class WeaponDefinition
+        {
+        }
+
+        public static class WeaponVariant
+        {
+        }
+
+        public static class WeaponCollection
+        {
+        }
+
+        public static class InventoryEntry
+        {
+        }
+
+        public static class ShopItem
+        {
+        }
+
+        public static class Achievement
+        {
+        }
+
+        public static class GameModeConfig
+        {
+        }
+
+        public static class RoomConfig
+        {
+        }
+
+        public static class IconData
+        {
+        }
+
+        public static class ExtendedIconData
+        {
+        }
+
+        public static class ParticleEffect
+        {
+        }
+
+        public static class MapMetadata
+        {
+        }
+
+        public static class MapPreview
+        {
+        }
+
+        public static class ServerBrowserEntry
+        {
+        }
+
+        public static class ChunkCoord
+        {
+        }
+
+        public static class BlockValidator
+        {
+        }
+
+        public static class CursorData
+        {
+        }
+
+        public static class HitDataMono
+        {
+        }
+
+        public static class FileSender
+        {
+        }
+
+        public static class MouseLookAxis
+        {
+        }
+
+        public static class TeamColor
+        {
+        }
+
+        public static class GameMode
+        {
+        }
+
+        public static class MaterialType
+        {
+        }
+
+        public static class GraphicsTier
+        {
+        }
+
+        public static class MotionBlurType
+        {
+        }
+
+        public static class ChunkVisibility
+        {
+        }
+
+        public static class DataStructureType
+        {
+        }
+
+        public static class CoordinateSpace
+        {
+        }
+
+        public static class PlatformMode
+        {
+        }
+
+        public static class AxisConstraint
+        {
+        }
+
+        public static class TransformOp
+        {
+        }
+
     }
 }

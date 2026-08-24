@@ -21,26 +21,221 @@ OUT_DIR = ROOT / "Sdk" / "Generated"
 
 # Classes we definitely want in the SDK. More can be added here or in the aliases.
 TARGET_CLASSES = [
+    # Core game logic
     "Controll",
     "Controll.LLECAFPENFN",
+    "Movement",
+    "MouseLook",
+    "Shooter",
+    "PLH",
+    "Spectator",
+    "Crosshair",
+    "Radar",
+    "Following",
+    "FreeFlyCamera",
+    # Player & weapon data structures
+    "KBBBHJDINCB",
+    "CGJPBNDDPIN",
+    "NAHLLMJMOED",
+    "FPNENMKEFBB",
+    "DMHBMAAFCFJ",
+    "GOMBJHAKIFE",
+    "BIMFEOACIDM",
+    "PJPKAJCOJLB",
+    "PJIMMBGGOBM",
+    "ACEDGBLFHDK",
+    "EEEBDHNOPDI",
+    "OJGPKMCPJDB",
+    "LFLEFDINMDA",
+    # Network
     "Client",
     "Client.AGAPNOPLKDB",
     "MasterClient",
     "MasterClient.DHCBFAKOCAA",
-    "PLH",
-    "KBBBHJDINCB",
     "NET",
-    "DMHBMAAFCFJ",
-    "GOMBJHAKIFE",
-    "NAHLLMJMOED",
-    "CGJPBNDDPIN",
-    "BIMFEOACIDM",
-    "FPNENMKEFBB",
-    "GUIInv",
+    "NEGGNDFJMAK",
+    "NEGGNDFJMAK.GBPCAKEGOIJ",
+    "NEGGNDFJMAK.FPEDLONKNMC",
+    "NEGGNDFJMAK.BEONIPPEOGM",
+    "DropClient",
+    # UI - HUD
     "HUD",
+    "HUDMessage",
+    "HUDMessage.JCHHGBGPFGN",
+    "HUDMessage.EKAOIFHCKNB",
+    "HUDMessage.PNCCLCBPABA",
+    "UIDeathMessage",
+    "HUDBuild",
+    "HUDGameEnd",
+    "HUDTab",
+    "HUDNames",
+    "HUDKiller",
+    "HUDIndicator",
+    # UI - Menus
+    "GUIInv",
     "GUIMap",
-    "SoundLoader",
+    "GUIPlay",
+    "GUIM",
+    "GUIMMain",
+    "GUIMPlay",
+    "GUIAdmin",
+    "GUIAdminMaplist",
+    "GUIAdminUpload",
+    "GUIAdminSettings",
+    "GUIAdminPlayers",
+    "GUIChar",
+    "GUICharEditor",
+    "GUISkinEditor",
+    "GUIGameSet",
+    "GUIGameMenu",
+    "GUIGameSquad",
+    "GUICraft",
+    "GUICase",
+    "GUIClan",
+    "GUIIcon",
+    "GUIShop",
+    "GUIOptions",
+    "GUIObj",
+    "GUIName",
+    "GUIFX",
+    "GUIProfile",
+    "GUIRank",
+    "GUIRank.MFHOMFNKDBG",
+    "GUIGold",
+    "GUIBonus",
+    "GUI3D",
+    "VoxelPaletteGUI",
+    "UIChatMessage",
+    "UIHUD",
+    "UIMPlay",
+    "UIMMainmenu",
+    "UIMInventory",
+    "UIMPlaymode",
+    "UIMShop",
+    "UIMTasks",
+    "UIMReward",
+    "UIDrop",
+    "UIDropButton",
+    "UIDropButtonExit",
+    "UIElementBase",
+    "UIColors",
+    "UIPalette",
+    "UIPaletteColorPreview",
+    # Managers
+    "Main",
+    "MainManager",
+    "MainConfig",
+    "MainBack",
+    "UIManager",
+    "ParticleManager",
+    "SteamManager",
+    "MapLoader",
+    "MapGenerator",
+    "MapAutoload",
+    "MapEvent",
+    "MapPrefab",
+    "MapCulling",
+    # Voxel/map
+    "VoxelMap",
+    "VoxelBattleMap",
+    "VoxelMapLight",
+    "VoxelMapSceneItem",
+    "VoxelMultList",
+    "VoxelGreedy",
+    "VoxelPalette",
+    "VoxelAtlas",
+    "VoxelRadiusUpdate",
+    "VCGen",
+    "VWGen",
+    "VWGen2",
+    "VWIK",
+    "VWPos",
+    "VDestr",
+    "MapOcc",
+    "BPPMap",
+    "TMap",
+    "HMap",
+    "OMap",
+    "MapLayerGenerator",
+    "GrassGenerator",
+    "TreeGenerator",
+    "MapLightBaker",
+    "MapUpload",
+    "SaveMap",
+    # Effects
+    "FXBloodSplat",
+    "FXScale",
+    "FXScaleCase",
+    "FXTracer",
+    "GeneralCameraShake",
+    "OutlineSystem",
+    "FadeLight",
+    # Animation & character
     "CharAnimator",
+    "MChar",
+    "MCharAnimator",
+    "SoundLoader",
+    # Utility & debug
+    "Util",
+    "Util2",
+    "UtilHash",
+    "UtilChar",
+    "Log",
+    "DevDraw",
+    "dbgNet",
+    "DemoRec",
+    "ConsoleBase",
+    "Console",
+    "Lang",
+    "LangWeapon",
+    # Input
+    "VInput",
+    "InputHelper",
+    "ControllTouch",
+    # Data structures (obfuscated)
+    "HOONFDNBMIM",
+    "HHMFAGJJOMH",
+    "MDADLLEFHKO",
+    "EECOBMIMJEL",
+    "CHPELPHDFJE",
+    "ICNIFLJBPDA",
+    "NMGFEEKOKDB",
+    "IFALFNHBMFO",
+    "AEKADIMKDIL",
+    "PBFLCAFNKMG",
+    "MLDGDBIFMEO",
+    "GFENDPCMKFI",
+    "JCPCKNLOIED",
+    "CFMGCCJAFCD",
+    "HELILPACLAM",
+    "KJDJGJJLOBC",
+    "IIMNEEFAPBC",
+    "MFGOJNMLKGG",
+    "LANMKMLNGOP",
+    "EICNFHFLMOF",
+    "IMMADJCIMNI",
+    "IFGNGLDKNPA",
+    "OIEJMJAPFGH",
+    "IGMIAOIMNAJ",
+    "KMGJMLHJHDD",
+    "ABPEFGNFBBC",
+    "MCCKEODPMDC",
+    "FileSender",
+    "HitData",
+    # Enums (parsed as classes for offset generation - they have values)
+    "Controll.NJPOPGGFJIH",
+    "MouseLook.NLJBDGBDDLP",
+    "PBMAFIFKGEH",
+    "FGICCBAAPGC",
+    "LIMCMHLKAPK",
+    "PHMJFCEPJLH",
+    "EDODLIKGBOC",
+    "HECKHONLMLN",
+    "IHFCHDIAMHJ",
+    "DIKJFIAOHOI",
+    "AKNKNGOIGMJ",
+    "NDANMCKCENA",
+    "JNPOJGEBDJJ",
 ]
 
 # Map of simple types to a comment-friendly size hint
@@ -63,10 +258,10 @@ def load_dump_text() -> str:
 
 
 def find_class_block(text: str, class_name: str) -> tuple[str, int] | None:
-    """Find a top-level class block by brace counting. Returns (body, start_line)."""
+    """Find a top-level class or enum block by brace counting. Returns (body, start_line)."""
     needle = class_name.replace(".", "\\.")
-    # Match the class declaration line, optionally with a base class and TypeDefIndex comment.
-    pattern = re.compile(rf"^\s*internal\s+class\s+{needle}(?:\s*:\s*[\w\.]+)?\s*(?://.*)?$", re.MULTILINE)
+    # Match the class/enum declaration line, optionally with a base class and TypeDefIndex comment.
+    pattern = re.compile(rf"^\s*(?:internal|public|private|protected)\s+(?:class|enum|struct|sealed\s+class|abstract\s+class)\s+{needle}(?:\s*:\s*[\w\.,\s]+)?\s*(?://.*)?$", re.MULTILINE)
     for m in pattern.finditer(text):
         # Find the opening brace on a subsequent line.
         after = text[m.end():]
@@ -119,19 +314,19 @@ def brace_count(text: str) -> tuple[str | None, int]:
 
 
 def parse_fields(body: str) -> list[dict]:
-    """Parse // Fields section."""
+    """Parse // Fields section (also handles enum values)."""
     fields = []
-    # Stop when we hit the methods section or the end of the body.
+    # Find the end of the Fields section: a line like "\t// Methods" or first method RVA.
+    methods_idx = re.search(r"\n\s*//\s*Methods\s*\n", body)
+    field_text = body[: methods_idx.start()] if methods_idx else body
+
+    # Standard field pattern: internal static int NAME; // 0xNN
     field_re = re.compile(
         r"^\s*(?P<modifiers>(?:internal|private|public|protected)(?:\s+(?:static|readonly|const))*)\s+"
         r"(?P<type>[\w\[\]<>.,\s]+?)\s+"
         r"(?P<name>[\w<>.]+)\s*;\s*//\s*(?P<offset>0x[0-9A-Fa-f]+)\s*$",
         re.MULTILINE,
     )
-    # Find the end of the Fields section: a line like "\t// Methods" or first method RVA.
-    methods_idx = re.search(r"\n\s*//\s*Methods\s*\n", body)
-    field_text = body[: methods_idx.start()] if methods_idx else body
-
     for m in field_re.finditer(field_text):
         mods = m.group("modifiers").split()
         is_static = "static" in mods
@@ -143,6 +338,24 @@ def parse_fields(body: str) -> list[dict]:
             "type": ftype,
             "offset": offset,
             "static": is_static,
+        })
+
+    # Enum value pattern: NAME = VALUE;  (no type, no offset comment)
+    enum_re = re.compile(
+        r"^\s*(?P<name>\w+)\s*=\s*(?P<value>-?\d+)\s*;\s*$",
+        re.MULTILINE,
+    )
+    for m in enum_re.finditer(field_text):
+        name = m.group("name").strip()
+        value = int(m.group("value"))
+        # Skip if already captured as a field
+        if any(f["name"] == name for f in fields):
+            continue
+        fields.append({
+            "name": name,
+            "type": "int",
+            "offset": value,  # For enums, offset stores the value
+            "static": True,
         })
     return fields
 

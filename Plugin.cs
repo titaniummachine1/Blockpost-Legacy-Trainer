@@ -396,21 +396,18 @@ public sealed class Plugin : BasePlugin
             return;
         }
 
+        AsyncLog.Write($"[RapidFire] forceShot=true, calling PLH.CDEGJOBLOFO");
+
         try
         {
             var main = Controll.HGAODFPBGLB;
             if (main == null || main.JPGGPPLOOML == null)
             {
-                // Don't fire if the player has no weapon — calling PLH.CDEGJOBLOFO with
-                // a null weapon can corrupt the loadout state and wipe the player's items.
+                AsyncLog.Write($"[RapidFire] skipped: main={main == null}, weapon={main?.JPGGPPLOOML == null}");
                 forceShotThisFrame = false;
                 return;
             }
 
-            // Reset the fire timer so PLH.CDEGJOBLOFO's internal "has enough time passed"
-            // check passes every tick. The old code passed Mathf.Max(LCMOBPPHLLM, 1f) which
-            // forwarded the next-fire timestamp as the fire rate, causing the method to skip
-            // the shot whenever the timer was in the future.
             Controll.LCMOBPPHLLM = 0f;
             main.FGFKPMPLNKO = -1000f;
             PLH.CDEGJOBLOFO(main, 0f, false, false);
@@ -1390,6 +1387,11 @@ public sealed class Plugin : BasePlugin
             if (Application.isFocused && mainPlayer.JPGGPPLOOML != null)
             {
                 forceShotThisFrame = true;
+                AsyncLog.Write($"[SilentAim] forceShot set, target={lastAimTargetIndex}, weapon={mainPlayer.JPGGPPLOOML?.OCDNCKANJPB}");
+            }
+            else
+            {
+                AsyncLog.Write($"[SilentAim] no fire: focused={Application.isFocused}, weapon={mainPlayer.JPGGPPLOOML == null}");
             }
             aimStatus = $"silent target={lastAimTargetIndex}, angle={bestAngle:0.0} degrees";
             return;

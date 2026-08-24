@@ -342,6 +342,7 @@ public sealed class Plugin : BasePlugin
             var main = Controll.HGAODFPBGLB;
             if (main == null || main.JPGGPPLOOML == null)
             {
+                AsyncLog.Write($"[RapidFire] skipped: main={main == null}, weapon={main?.JPGGPPLOOML == null}");
                 return;
             }
 
@@ -353,6 +354,7 @@ public sealed class Plugin : BasePlugin
             main.FGFKPMPLNKO = -1000f;
             PLH.CDEGJOBLOFO(main, 0f, false, false);
             main.FGFKPMPLNKO = 1000f;
+            AsyncLog.Write($"[RapidFire] fired: weapon={main.JPGGPPLOOML?.OCDNCKANJPB}, health={main.FDOJDJLIGLF}");
         }
         catch (Exception exception)
         {
@@ -1300,10 +1302,12 @@ public sealed class Plugin : BasePlugin
             // Always use the direct-fire path (forceShotThisFrame) for silent aim.
             // mouse_event injects a click that arrives NEXT frame — by then the angles
             // are already restored, so the shot would go to the wrong place.
-            if (autoShoot && Time.unscaledTime >= nextAutoShootTime && Application.isFocused)
+            // Fire regardless of autoShoot — if the player is holding the aim key,
+            // they want to shoot. Also fire if they're holding left mouse.
+            if (Time.unscaledTime >= nextAutoShootTime && Application.isFocused)
             {
                 forceShotThisFrame = true;
-                nextAutoShootTime = Time.unscaledTime;
+                nextAutoShootTime = Time.unscaledTime + 0.12f;
             }
             aimStatus = $"silent target={lastAimTargetIndex}, angle={bestAngle:0.0} degrees";
             return;

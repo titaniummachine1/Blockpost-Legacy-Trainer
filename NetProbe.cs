@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading;
 using BlockpostTrainer.Sdk;
+using Il2CppInterop.Runtime;
 using Raw = BlockpostTrainer.Sdk.Raw;
 using BepInEx;
 using BepInEx.Logging;
@@ -160,16 +161,40 @@ internal static class NetProbe
         clientLengthMember = AccessTools.Field(clientType, "FKEHEHGFNBD") ?? (MemberInfo?)AccessTools.Property(clientType, "FKEHEHGFNBD");
 
         // Cache method references for the server-trust fake-hit test.
-        fakeHitClient = AccessTools.Field(clientType, "LPCJFAOOIKA")?.GetValue(null)
+        // AccessTools.Field fails for IL2CPP static fields. The Client singleton is a
+        // static field "LPCJFAOOIKA" on the Client class. We try multiple approaches:
+        // 1) Standard reflection (sometimes works in newer Il2CppInterop)
+        // 2) Il2Cpp field access via the runtime API
+        try
+        {
+            var fieldInfo = clientType.GetField("LPCJFAOOIKA", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static);
+            if (fieldInfo != null)
+            {
+                fakeHitClient = fieldInfo.GetValue(null);
+            }
+        }
+        catch { }
+
+        fakeHitClient ??= AccessTools.Field(clientType, "LPCJFAOOIKA")?.GetValue(null)
             ?? AccessTools.Property(clientType, "LPCJFAOOIKA")?.GetValue(null);
-        fakeHitFlush = AccessTools.Method(clientType, "HKOFHOANEJD", Type.EmptyTypes);
-        netBegin = AccessTools.Method(netType, nameof(Raw.NET.Methods.LPAPGKDAENI), new[] { typeof(byte), typeof(byte) });
-        netF32 = AccessTools.Method(netType, nameof(Raw.NET.Methods.JBIICNJNHCI), new[] { typeof(float) });
-        netI32 = AccessTools.Method(netType, nameof(Raw.NET.Methods.FPELFNLEPGG), new[] { typeof(int) });
-        netU8 = AccessTools.Method(netType, nameof(Raw.NET.Methods.PFCLIPCCHCK), new[] { typeof(byte) });
-        netI16 = AccessTools.Method(netType, nameof(Raw.NET.Methods.APNPMHBBLDG), new[] { typeof(short) })
-            ?? AccessTools.Method(netType, nameof(Raw.NET.Methods.HMCNFGMBCOC), new[] { typeof(short) });
+
+        // AccessTools.Method with typeof(byte) etc. fails for IL2CPP types because the
+        // parameter types are Il2Cpp wrappers, not managed types. Resolve by name only.
+        fakeHitFlush = AccessTools.Method(clientType, "HKOFHOANEJD");
+        netBegin = AccessTools.Method(netType, nameof(Raw.NET.Methods.LPAPGKDAENI));
+        netF32 = AccessTools.Method(netType, nameof(Raw.NET.Methods.JBIICNJNHCI));
+        netI32 = AccessTools.Method(netType, nameof(Raw.NET.Methods.FPELFNLEPGG));
+        netU8 = AccessTools.Method(netType, nameof(Raw.NET.Methods.PFCLIPCCHCK));
+        netI16 = AccessTools.Method(netType, nameof(Raw.NET.Methods.APNPMHBBLDG))
+            ?? AccessTools.Method(netType, nameof(Raw.NET.Methods.HMCNFGMBCOC));
         netEnd = AccessTools.Method(netType, nameof(Raw.NET.Methods.EMJOGONJKIO));
+
+        source.LogInfo($"[NetProbe] fake-hit init: client={(fakeHitClient != null ? "found" : "null")}, " +
+                       $"flush={(fakeHitFlush != null ? "ok" : "null")}, begin={(netBegin != null ? "ok" : "null")}, " +
+                       $"f32={(netF32 != null ? "ok" : "null")}, i32={(netI32 != null ? "ok" : "null")}, " +
+                       $"u8={(netU8 != null ? "ok" : "null")}, i16={(netI16 != null ? "ok" : "null")}, " +
+                       $"end={(netEnd != null ? "ok" : "null")}");
+
         fakeHitReady = fakeHitClient != null && fakeHitFlush != null
             && netBegin != null && netF32 != null && netI32 != null
             && netU8 != null && netI16 != null && netEnd != null;

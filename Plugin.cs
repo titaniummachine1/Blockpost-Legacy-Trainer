@@ -234,16 +234,15 @@ public sealed class Plugin : BasePlugin
 
     private static void ControllerUpdatePostfix(Controll __instance)
     {
-        // Auto-shoot: send LEFTUP+LEFTDOWN in the postfix. The click arrives next
-        // frame when Unity polls input. Silent aim prefix redirects angles next
-        // frame too, so the game fires at the target. 1-tick delay is acceptable.
+        // Auto-shoot: hold the virtual left mouse button down while aiming at a target.
+        // Send LEFTDOWN every frame to keep it held. Only send LEFTUP when we stop
+        // aiming. The game fires at its own fire rate while the button is held.
         if (autoShootPending)
         {
             var main = Controll.HGAODFPBGLB;
             var alive = main != null && main.FDOJDJLIGLF > 0 && main.JPGGPPLOOML != null;
             if (alive)
             {
-                mouse_event(MouseEventFLeftUp, 0, 0, 0, 0);
                 mouse_event(MouseEventFLeftDown, 0, 0, 0, 0);
                 pendingLeftMouseUp = true;
             }
@@ -317,7 +316,9 @@ public sealed class Plugin : BasePlugin
     /// the same mechanism taken to its limit rather than a new code path.
     /// </summary>
     /// <summary>
-    /// Bunny hop: when the player holds space, auto-jump the moment they land.
+    /// Bunny hop: when the player holds space, send space every frame.
+    /// The game's own jump logic checks if the player is grounded — it won't
+    /// jump in mid-air. We don't need to detect grounding ourselves.
     /// </summary>
     private static void ApplyBunnyHop(KBBBHJDINCB main)
     {
@@ -328,17 +329,8 @@ public sealed class Plugin : BasePlugin
                 return;
             }
 
-            var rb = main.MJPOJOOIPPN;
-            if (rb == null)
-            {
-                return;
-            }
-
-            if (Mathf.Abs(rb.velocity.y) < 1f)
-            {
-                keybd_event(VkSpace, 0, KeyEventFKeyDown, 0);
-                keybd_event(VkSpace, 0, KeyEventFKeyUp, 0);
-            }
+            keybd_event(VkSpace, 0, KeyEventFKeyDown, 0);
+            keybd_event(VkSpace, 0, KeyEventFKeyUp, 0);
         }
         catch { }
     }

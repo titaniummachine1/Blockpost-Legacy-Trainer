@@ -40,7 +40,7 @@ public sealed class Plugin : BasePlugin
     private static readonly string[] AimStyleLabels =
     {
         "Plain aim lock",
-        "Silent aim (ghost bullets)"
+        "Silent aim"
     };
     private static Plugin? instance;
     private static bool menuVisible;
@@ -81,12 +81,23 @@ public sealed class Plugin : BasePlugin
     private static bool autoShoot = true;
     private static bool serverTrustTest;
     private static bool rapidFire;
+    private static bool ghostBullets;
     private static bool infiniteHealth;
     private static bool infiniteAmmo;
     private static bool instantReload;
     private static bool instantReloadFailureLogged;
     private static int instantReloads;
     private static float nextAutoShootTime;
+
+    // Silent aim state: the real aim angles are saved in the prefix, redirected to the
+    // target for Controll.Update (which fires the shot), then restored in the postfix
+    // before the camera renders — so the player never sees the snap.
+    private static bool silentAimRedirected;
+    private static float savedYaw;
+    private static float savedPitch;
+    private static Vector3 savedCameraPos;
+    private static Quaternion savedCameraRot;
+    private static float nextGhostBulletTime;
     private static readonly List<EspBox> espBoxes = new();
 
     private readonly struct EspBox
@@ -175,15 +186,24 @@ public sealed class Plugin : BasePlugin
         UpdateAimbotSafely();
         ApplyCheatFeatures();
         PrepareRapidFirePrefix();
+        // Silent aim: UpdateAimbotSafely may have redirected the aim angles to the target.
+        // The redirect is undone in the postfix after Controll.Update has fired the shot.
     }
 
     private static void ControllerUpdatePostfix(Controll __instance)
     {
+        // Fire the rapid-fire shot FIRST, while the silent-aim redirect is still active.
+        // RestoreSilentAim must run AFTER the shot, otherwise the shot goes to the wrong place.
+        ReleaseLeftMouseIfNeeded();
+        ForceRapidFireShot();
+
+        // Now restore the real aim angles and camera before the frame renders, so the player
+        // never sees the silent-aim snap.
+        RestoreSilentAim();
+
         NetProbe.Tick();
         FieldWatch.Tick(__instance);
         GlobalScan.Tick();
-        ReleaseLeftMouseIfNeeded();
-        ForceRapidFireShot();
         ToggleMenuIfRequested();
         ApplyCheatFeatures();
         LogRuntimeDiagnostics();
@@ -259,6 +279,11 @@ public sealed class Plugin : BasePlugin
             {
                 main.FDOJDJLIGLF = 1000;
                 main.EFHBKMHCMOH = 1000;
+                main.INGHEHAALBJ = 1000;
+                // Clear potential "dead" / "down" flags so the game doesn't keep us in
+                // the death state even after health is restored.
+                main.CLOEJLAOIGI = false;
+                main.CGHKKDBILGF = false;
             }
 
             // Infinite ammo is intentionally left as a no-op for now while we identify
@@ -817,6 +842,7 @@ public sealed class Plugin : BasePlugin
             var slot = mainPlayer.MOPBMENEGLN;
             var slotAmmo = gd == null || slot < 0 || slot >= gd.Length ? -1 : gd[slot];
             instance?.Log.LogInfo($"[Ammo] {nameof(Raw.KBBBHJDINCB.Offsets.MOPBMENEGLN)}={slot}, {nameof(Raw.KBBBHJDINCB.Offsets.ECBCOHFLJCC)}={mainPlayer.ECBCOHFLJCC}, {nameof(Raw.KBBBHJDINCB.Offsets.GDEMINMDJAC)}.Length={(gd == null ? -1 : gd.Length)}, {nameof(Raw.KBBBHJDINCB.Offsets.GDEMINMDJAC)}[{slot}]={slotAmmo}, weaponId={weaponId}, weaponNull={weapon == null}");
+            instance?.Log.LogInfo($"[Health] HP={mainPlayer.FDOJDJLIGLF}, MaxHP={mainPlayer.EFHBKMHCMOH}, Armor={mainPlayer.INGHEHAALBJ}, CLOEJLAOIGI={mainPlayer.CLOEJLAOIGI}, CGHKKDBILGF={mainPlayer.CGHKKDBILGF}, LBKINNIDKEC={mainPlayer.LBKINNIDKEC}");
         }
         catch
         {
@@ -1102,6 +1128,10 @@ public sealed class Plugin : BasePlugin
         lastAimTargetIndex = -1;
         lastAimTargetPosition = Vector3.zero;
 
+        // Ghost bullets: ignore line of sight — the server trusts client-authored hits,
+        // so we can kill targets through walls by sending fake 0x04/0x06 packets.
+        var requireLos = !ghostBullets;
+
         for (var index = 0; index < players.Length; index++)
         {
             var player = players[index];
@@ -1112,7 +1142,7 @@ public sealed class Plugin : BasePlugin
 
             var direction = headPosition - camera.transform.position;
             var angle = Vector3.Angle(camera.transform.forward, direction);
-            if (angle <= bestAngle && HasLineOfSight(camera, player, headPosition))
+            if (angle <= bestAngle && (!requireLos || HasLineOfSight(camera, player, headPosition)))
             {
                 bestAngle = angle;
                 bestPosition = headPosition;
@@ -1130,12 +1160,28 @@ public sealed class Plugin : BasePlugin
 
         var target = players[lastAimTargetIndex];
 
-        // Silent aim: don't move the camera at all. The player's view stays where it is,
-        // but when they fire we send a fake hit report (0x04 + 0x06) for the aimbot target.
-        // The server trusts client-authored hits, so the target dies without the camera snapping.
+        // Ghost bullets: send fake hit packets through walls. This is independent of aim
+        // style — it works with plain aim, silent aim, or even no aim style at all.
+        if (ghostBullets)
+        {
+            TryGhostBullet(target, bestPosition, camera);
+        }
+
+        // Silent aim: save the real aim angles, then redirect to the target. The game's
+        // own fire logic (inside Controll.Update, which runs after this prefix) will fire
+        // at the target. The postfix fires the rapid shot while angles are still redirected,
+        // then restores everything before render so the player never sees the snap.
         if (aimStyle == 1)
         {
-            TrySilentShoot(target, bestPosition, camera);
+            SaveAndRedirectAim(camera, bestPosition);
+            // Always use the direct-fire path (forceShotThisFrame) for silent aim.
+            // mouse_event injects a click that arrives NEXT frame — by then the angles
+            // are already restored, so the shot would go to the wrong place.
+            if (autoShoot && Time.unscaledTime >= nextAutoShootTime && Application.isFocused)
+            {
+                forceShotThisFrame = true;
+                nextAutoShootTime = Time.unscaledTime;
+            }
             aimStatus = $"silent target={lastAimTargetIndex}, angle={bestAngle:0.0} degrees";
             return;
         }
@@ -1145,6 +1191,85 @@ public sealed class Plugin : BasePlugin
         ApplyAimRotation(camera, targetRotation);
         TryAutoShoot(target, bestPosition, camera);
         aimStatus = $"target={lastAimTargetIndex}, angle={bestAngle:0.0} degrees";
+    }
+
+    /// <summary>
+    /// Save the player's real aim angles and camera state, then redirect aim to the target.
+    /// Controll.Update (running after this prefix) will fire at the target.
+    /// RestoreSilentAim() in the postfix puts everything back before render.
+    /// </summary>
+    private static void SaveAndRedirectAim(Camera camera, Vector3 targetPosition)
+    {
+        savedYaw = Controll.NAKNALFCOIF;
+        savedPitch = Controll.IGLCENGMMMJ;
+        savedCameraPos = camera.transform.position;
+        savedCameraRot = camera.transform.rotation;
+        silentAimRedirected = true;
+
+        var targetDirection = targetPosition - camera.transform.position;
+        var targetRotation = Quaternion.LookRotation(targetDirection);
+        var targetAngles = targetRotation.eulerAngles;
+        var pitch = NormalizeAngle(targetAngles.x);
+        pitch = Mathf.Clamp(pitch, -89f, 89f);
+
+        Controll.NAKNALFCOIF = targetAngles.y;
+        Controll.IGLCENGMMMJ = pitch;
+    }
+
+    /// <summary>
+    /// Restore the real aim angles and camera transform after Controll.Update has fired.
+    /// This runs in the postfix, before the frame renders, so the player never sees the snap.
+    /// </summary>
+    private static void RestoreSilentAim()
+    {
+        if (!silentAimRedirected)
+        {
+            return;
+        }
+
+        Controll.NAKNALFCOIF = savedYaw;
+        Controll.IGLCENGMMMJ = savedPitch;
+
+        var camera = activeCamera;
+        if (camera != null)
+        {
+            camera.transform.position = savedCameraPos;
+            camera.transform.rotation = savedCameraRot;
+        }
+
+        silentAimRedirected = false;
+    }
+
+    /// <summary>
+    /// Ghost bullets: send fake 0x04 hit report + 0x06 damage triple for the target,
+    /// ignoring line of sight. The server trusts client-authored hits, so the target
+    /// dies even through walls. Fires at a controlled rate to avoid flooding the server.
+    /// </summary>
+    private static void TryGhostBullet(KBBBHJDINCB target, Vector3 targetPosition, Camera camera)
+    {
+        if (Time.unscaledTime < nextGhostBulletTime)
+        {
+            return;
+        }
+
+        if (!Application.isFocused)
+        {
+            return;
+        }
+
+        // Only fire ghost bullets when the player is actually holding the fire key,
+        // unless auto-shoot is on.
+        if (!autoShoot && !Input.GetMouseButton(0))
+        {
+            return;
+        }
+
+        var origin = camera.transform.position;
+        if (NetProbe.TryFakeHit(target, origin, targetPosition, 100))
+        {
+            nextGhostBulletTime = Time.unscaledTime + 0.12f;
+            aimStatus = $"{aimStatus} | ghost bullet";
+        }
     }
 
     private static void ApplyAimRotation(Camera camera, Quaternion targetRotation)
@@ -1225,43 +1350,6 @@ public sealed class Plugin : BasePlugin
         mouse_event(MouseEventFLeftUp, 0, 0, 0, 0);
         nextAutoShootTime = Time.unscaledTime + 0.12f;
         aimStatus = $"{aimStatus} | auto-shoot triggered";
-    }
-
-    /// <summary>
-    /// Silent aim / ghost bullets: the camera stays where the player is looking, but we send
-    /// a fake hit report (0x04) and damage triple (0x06) for the aimbot target. The server
-    /// trusts client-authored hits, so the target dies without the view snapping.
-    ///
-    /// Fires when the player holds the activation key and either:
-    /// - autoShoot is on (fires automatically at the fire rate), or
-    /// - the player clicks left mouse (fires on their click)
-    /// </summary>
-    private static float nextSilentShotTime;
-
-    private static void TrySilentShoot(KBBBHJDINCB target, Vector3 targetPosition, Camera camera)
-    {
-        var origin = camera.transform.position;
-
-        // If auto-shoot is on, fire at the automatic rate without needing a mouse click.
-        if (autoShoot && Time.unscaledTime >= nextSilentShotTime && Application.isFocused)
-        {
-            if (NetProbe.TryFakeHit(target, origin, targetPosition, 100))
-            {
-                nextSilentShotTime = Time.unscaledTime + 0.12f;
-                aimStatus = $"{aimStatus} | ghost bullet sent";
-            }
-            return;
-        }
-
-        // If auto-shoot is off, fire on the player's own left click.
-        if (!autoShoot && Input.GetMouseButton(0) && Time.unscaledTime >= nextSilentShotTime)
-        {
-            if (NetProbe.TryFakeHit(target, origin, targetPosition, 100))
-            {
-                nextSilentShotTime = Time.unscaledTime + 0.12f;
-                aimStatus = $"{aimStatus} | ghost bullet on click";
-            }
-        }
     }
 
     private static bool TryGetHeadPosition(KBBBHJDINCB player, out Vector3 position)
@@ -1401,11 +1489,12 @@ public sealed class Plugin : BasePlugin
                 rapidFire = GUI.Toggle(new Rect(60, 364, 440, 24), rapidFire, "Rapid fire (1 shot/tick)");
             }
 
-            // The server-trust test is now built into silent aim mode. Keep the standalone
-            // toggle for plain-aim mode where it still makes sense.
-            if (aimStyle == 0)
+            ghostBullets = GUI.Toggle(new Rect(60, 388, 440, 24), ghostBullets, "Ghost bullets (hit through walls)");
+
+            // The server-trust test is the standalone version of ghost bullets for plain aim.
+            if (aimStyle == 0 && !ghostBullets)
             {
-                serverTrustTest = GUI.Toggle(new Rect(60, 388, 440, 24), serverTrustTest, "Server trust test — fake hit packets");
+                serverTrustTest = GUI.Toggle(new Rect(60, 412, 440, 24), serverTrustTest, "Server trust test — fake hit packets");
             }
         }
 

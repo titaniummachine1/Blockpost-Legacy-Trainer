@@ -67,6 +67,16 @@ namespace BlockpostTrainer.Sdk
             public const int SwayLean = Raw.KBBBHJDINCB.Offsets.MJFMDOKEFFO;
             /// <summary>int[] stats. DO NOT WRITE -- corrupts player state.</summary>
             public const int StatsArray = Raw.KBBBHJDINCB.Offsets.PPOOANLEBNI;
+            public const int AmmoCandidate1 = Raw.KBBBHJDINCB.Offsets.PELNEJDOBKH;
+            public const int AmmoCandidate2 = Raw.KBBBHJDINCB.Offsets.DECAKELAHPI;
+            public const int AmmoCandidate3 = Raw.KBBBHJDINCB.Offsets.GEDMGLAMGMD;
+            public const int AmmoCandidate4 = Raw.KBBBHJDINCB.Offsets.MHCOJFIAGLP;
+            public const int AmmoCandidate5 = Raw.KBBBHJDINCB.Offsets.JHGGICCFNFJ;
+            public const int AmmoCandidate6 = Raw.KBBBHJDINCB.Offsets.CNHNFDDJMJO;
+            public const int IsGrounded = Raw.KBBBHJDINCB.Offsets.CLOEJLAOIGI;
+            public const int IsJumping = Raw.KBBBHJDINCB.Offsets.APFNBGHAJMD;
+            public const int IsCrouching = Raw.KBBBHJDINCB.Offsets.HEADELMLILF;
+            public const int IsSprinting = Raw.KBBBHJDINCB.Offsets.CGHKKDBILGF;
             public const int JFOEOEJLDML = Raw.KBBBHJDINCB.Offsets.JFOEOEJLDML;
             public const int JDIHHMABLAJ = Raw.KBBBHJDINCB.Offsets.JDIHHMABLAJ;
             public const int BANHJLHDFLI = Raw.KBBBHJDINCB.Offsets.BANHJLHDFLI;
@@ -169,6 +179,28 @@ namespace BlockpostTrainer.Sdk
             /// <summary>int (0x1EC). Hit sequence counter, passed to Client.AHLDAPJEJNC.</summary>
             public const int HitSequence = Raw.Controll.Offsets.GAMBHJPMDON;
             public const int CanFire = Raw.Controll.Offsets.KEPGFOEOHPD;
+            public const int IsGrounded = Raw.Controll.Offsets.HLBAGIACGBI;
+            public const int IsSprinting = Raw.Controll.Offsets.PBICPLCFAGG;
+            public const int IsCrouching = Raw.Controll.Offsets.NJPDKJKJMCG;
+            public const int IsJumping = Raw.Controll.Offsets.GCHFDAPNBNB;
+            public const int IsAiming = Raw.Controll.Offsets.BFEOOOMMGLK;
+            public const int IsReloadingFlag = Raw.Controll.Offsets.EKEAAHAKHIN;
+            public const int IsFiringFlag = Raw.Controll.Offsets.DJACNOGOCKD;
+            public const int IsWeaponSwitching = Raw.Controll.Offsets.MJHNOEIFBEO;
+            public const int IsInVehicle = Raw.Controll.Offsets.JGNLBAMNEBA;
+            public const int IsInvulnerable = Raw.Controll.Offsets.HCOLPFEEENG;
+            public const int IsFrozen = Raw.Controll.Offsets.EGDKJEFGFIC;
+            public const int IsSpectating = Raw.Controll.Offsets.GLGCAOADGMN;
+            public const int AmmoInMag = Raw.Controll.Offsets.FGGKANNFBDH;
+            public const int MaxAmmo = Raw.Controll.Offsets.ILFOFIOFBAM;
+            public const int ReserveAmmo = Raw.Controll.Offsets.KJOMABGHAIJ;
+            public const int CurrentHealth = Raw.Controll.Offsets.CFACCGMPPOE;
+            public const int MaxHealth = Raw.Controll.Offsets.NKFBOBMMGCL;
+            public const int KillCount = Raw.Controll.Offsets.DEBGAILDKPC;
+            public const int DeathCount = Raw.Controll.Offsets.GKNJELHPMDE;
+            public const int TeamId = Raw.Controll.Offsets.POFKNJGAKPK;
+            public const int PlayerId = Raw.Controll.Offsets.OGDPMIBJLDH;
+            public const int InputState = Raw.Controll.Offsets.MNHBPCOOMLE;
             /// <summary>True for the duration of a reload.</summary>
             public const int IsReloading = Raw.Controll.Offsets.DJACNOGOCKD;
             /// <summary>Time.time when the reload began.</summary>

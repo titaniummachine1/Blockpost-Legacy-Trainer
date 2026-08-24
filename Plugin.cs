@@ -1324,13 +1324,11 @@ public sealed class Plugin : BasePlugin
             // Save real angles and redirect to target.
             SaveAndRedirectAim(camera, bestPosition);
 
-            // Fire the weapon. Use direct fire (forceShotThisFrame) so the shot happens
-            // THIS frame while the angles are redirected.
-            if (Time.unscaledTime >= nextAutoShootTime && Application.isFocused
-                && mainPlayer.JPGGPPLOOML != null)
+            // Auto-shoot: fire every frame while the aim key is held and we have a weapon.
+            // No throttle — the weapon's fire rate is enforced by PLH.CDEGJOBLOFO itself.
+            if (Application.isFocused && mainPlayer.JPGGPPLOOML != null)
             {
                 forceShotThisFrame = true;
-                nextAutoShootTime = Time.unscaledTime + 0.12f;
             }
             aimStatus = $"silent target={lastAimTargetIndex}, angle={bestAngle:0.0} degrees";
             return;

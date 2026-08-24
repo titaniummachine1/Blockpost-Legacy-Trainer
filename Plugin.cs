@@ -197,15 +197,17 @@ public sealed class Plugin : BasePlugin
         UpdateAimbotSafely();
         ApplyCheatFeatures();
         PrepareRapidFirePrefix();
-        // Fire the weapon NOW, in the prefix, while silent aim angles are still redirected
-        // to the target. Controll.Update hasn't run yet, so the angles are exactly where
-        // we set them. This is the same fire function the game calls internally — it sends
-        // the network hit packet.
-        ForceRapidFireShot();
+        // Silent aim: UpdateAimbotSafely may have redirected the aim angles to the target
+        // and set EPEEFBDJAHO=1 so Controll.Update fires through its own logic.
+        // The redirect is undone in the postfix after Controll.Update has fired the shot.
     }
 
     private static void ControllerUpdatePostfix(Controll __instance)
     {
+        // Fire the rapid-fire shot (if rapid fire is on).
+        ReleaseLeftMouseIfNeeded();
+        ForceRapidFireShot();
+
         // Restore the real aim angles, preserving the mouse delta that Controll.Update
         // applied during this frame. Without this, the player's mouse movement is lost
         // and the camera feels locked.
@@ -1323,14 +1325,14 @@ public sealed class Plugin : BasePlugin
             // Save real angles and redirect to target.
             SaveAndRedirectAim(camera, bestPosition);
 
-            // Auto-shoot: fire the weapon NOW via PLH.CDEGJOBLOFO while angles are
-            // redirected. ForceRapidFireShot runs in the prefix right after this,
-            // before Controll.Update — so the shot goes to the target. This is the
-            // same fire function the game calls internally, so it sends the network
-            // hit packet too.
+            // Auto-shoot: set the game's fire input flag so Controll.Update's own fire
+            // logic fires at the redirected angles. EPEEFBDJAHO is the cached left-mouse
+            // state — 1 = firing, 0 = not. The game checks this (not Input.GetMouseButton)
+            // so setting it directly makes the game fire through its full code path,
+            // including the network hit packet.
             if (Application.isFocused && mainPlayer.JPGGPPLOOML != null)
             {
-                forceShotThisFrame = true;
+                Controll.EPEEFBDJAHO = 1;
             }
             aimStatus = $"silent target={lastAimTargetIndex}, angle={bestAngle:0.0} degrees";
             return;
@@ -1468,7 +1470,7 @@ public sealed class Plugin : BasePlugin
 
     private static void TryAutoShoot(KBBBHJDINCB? target, Vector3 targetPosition, Camera camera)
     {
-        if (!autoShoot || Time.unscaledTime < nextAutoShootTime)
+        if (!autoShoot)
         {
             return;
         }
@@ -1482,6 +1484,10 @@ public sealed class Plugin : BasePlugin
         // aimbot target. If the server accepts client-authored hits, the target dies anyway.
         if (serverTrustTest && target != null)
         {
+            if (Time.unscaledTime < nextAutoShootTime)
+            {
+                return;
+            }
             var origin = camera.transform.position;
             if (NetProbe.TryFakeHit(target, origin, targetPosition, 1000))
             {
@@ -1491,19 +1497,16 @@ public sealed class Plugin : BasePlugin
             return;
         }
 
-        // Fire directly via PLH.CDEGJOBLOFO — same fire function the game calls internally,
-        // so it sends the network hit packet. No mouse_event (that arrives next frame).
-        // ForceRapidFireShot runs in the prefix right after this, while the camera is
-        // still aimed at the target.
+        // Set the game's fire input flag so Controll.Update fires through its own logic
+        // (raycast + network hit packet). EPEEFBDJAHO is the cached left-mouse state.
         var main = Controll.HGAODFPBGLB;
         if (main == null || main.JPGGPPLOOML == null)
         {
             return;
         }
 
-        forceShotThisFrame = true;
-        nextAutoShootTime = Time.unscaledTime + 0.12f;
-        aimStatus = $"{aimStatus} | auto-shoot queued";
+        Controll.EPEEFBDJAHO = 1;
+        aimStatus = $"{aimStatus} | auto-shoot";
     }
 
     private static bool TryGetHeadPosition(KBBBHJDINCB player, out Vector3 position)

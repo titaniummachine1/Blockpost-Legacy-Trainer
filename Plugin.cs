@@ -236,16 +236,17 @@ public sealed class Plugin : BasePlugin
     private static void ControllerUpdatePostfix(Controll __instance)
     {
         // Keep the virtual left mouse button held while auto-shoot is active.
-        // mouse_event arrives NEXT frame, so:
-        // - Frame N postfix: send LEFTDOWN → arrives frame N+1
-        // - Frame N+1: Unity polls input → GetMouseButton(0)=true → Controll.Update fires
-        //   at redirected angles (silent aim prefix ran)
-        // - Frame N+1 postfix: send LEFTDOWN again → keeps button held for frame N+2
-        // When autoShoot stops, send LEFTUP to release.
-        if (silentAimRedirected && autoShootPending)
+        // Send LEFTUP then LEFTDOWN each frame to simulate repeated clicking.
+        // This ensures both GetMouseButton (held) and GetMouseButtonDown (edge)
+        // return true every frame, so the game fires at full speed regardless
+        // of whether it checks held or edge-triggered input.
+        // mouse_event arrives NEXT frame — the click we send here is seen by
+        // Unity next frame, when the silent aim prefix has already redirected
+        // the angles to the target.
+        if (autoShootPending)
         {
+            mouse_event(MouseEventFLeftUp, 0, 0, 0, 0);
             mouse_event(MouseEventFLeftDown, 0, 0, 0, 0);
-            pendingLeftMouseUp = true;
         }
         else if (pendingLeftMouseUp)
         {

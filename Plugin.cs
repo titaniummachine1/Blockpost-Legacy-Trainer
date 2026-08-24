@@ -235,18 +235,17 @@ public sealed class Plugin : BasePlugin
 
     private static void ControllerUpdatePostfix(Controll __instance)
     {
-        // Keep the virtual left mouse button held while auto-shoot is active.
-        // Send LEFTUP then LEFTDOWN each frame to simulate repeated clicking.
-        // This ensures both GetMouseButton (held) and GetMouseButtonDown (edge)
-        // return true every frame, so the game fires at full speed regardless
-        // of whether it checks held or edge-triggered input.
-        // mouse_event arrives NEXT frame — the click we send here is seen by
-        // Unity next frame, when the silent aim prefix has already redirected
-        // the angles to the target.
-        if (autoShootPending)
+        // Auto-shoot: send LEFTUP+LEFTDOWN each frame to simulate rapid clicking.
+        // Only do this if the player is alive and has a weapon — don't hold the
+        // virtual mouse button while dead (causes firing at wall after respawn).
+        var main = Controll.HGAODFPBGLB;
+        var alive = main != null && main.FDOJDJLIGLF > 0 && main.JPGGPPLOOML != null;
+
+        if (autoShootPending && alive)
         {
             mouse_event(MouseEventFLeftUp, 0, 0, 0, 0);
             mouse_event(MouseEventFLeftDown, 0, 0, 0, 0);
+            pendingLeftMouseUp = true;
         }
         else if (pendingLeftMouseUp)
         {

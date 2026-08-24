@@ -98,6 +98,7 @@ public sealed class Plugin : BasePlugin
     private static bool infiniteAmmo;
     private static bool instantReload;
     private static bool instantReloadFailureLogged;
+    private static bool bunnyHop;
     private static int instantReloads;
     private static float nextAutoShootTime;
 
@@ -223,31 +224,34 @@ public sealed class Plugin : BasePlugin
         controllerRunning = true;
         forceShotThisFrame = false;
         autoShootThisFrame = false;
-        // Reset autoShootPending. If UpdateAimbotSafely sets it again (target found),
-        // the postfix will send mouse_event to keep the button held.
         autoShootPending = false;
         LogControllerStartup();
         ApplyInstantReload();
         UpdateAimbotSafely();
         ApplyCheatFeatures();
         PrepareRapidFirePrefix();
+
+        // Send the virtual click HERE in the prefix (after angles are redirected),
+        // not in the postfix. This way the click arrives during Controll.Update (same
+        // frame) and the game fires immediately at the redirected angles — no 1-tick delay.
+        if (autoShootPending)
+        {
+            var main = Controll.HGAODFPBGLB;
+            var alive = main != null && main.FDOJDJLIGLF > 0 && main.JPGGPPLOOML != null;
+            if (alive)
+            {
+                mouse_event(MouseEventFLeftUp, 0, 0, 0, 0);
+                mouse_event(MouseEventFLeftDown, 0, 0, 0, 0);
+                pendingLeftMouseUp = true;
+            }
+        }
     }
 
     private static void ControllerUpdatePostfix(Controll __instance)
     {
-        // Auto-shoot: send LEFTUP+LEFTDOWN each frame to simulate rapid clicking.
-        // Only do this if the player is alive and has a weapon — don't hold the
-        // virtual mouse button while dead (causes firing at wall after respawn).
-        var main = Controll.HGAODFPBGLB;
-        var alive = main != null && main.FDOJDJLIGLF > 0 && main.JPGGPPLOOML != null;
-
-        if (autoShootPending && alive)
-        {
-            mouse_event(MouseEventFLeftUp, 0, 0, 0, 0);
-            mouse_event(MouseEventFLeftDown, 0, 0, 0, 0);
-            pendingLeftMouseUp = true;
-        }
-        else if (pendingLeftMouseUp)
+        // Release the virtual mouse if we're not auto-shooting this frame.
+        // The click is sent in the prefix (same frame as Controll.Update).
+        if (!autoShootPending && pendingLeftMouseUp)
         {
             mouse_event(MouseEventFLeftUp, 0, 0, 0, 0);
             pendingLeftMouseUp = false;
@@ -315,6 +319,32 @@ public sealed class Plugin : BasePlugin
     /// minigame works by *subtracting* from ILGHFLMKMCO, so pulling it back to the start time is
     /// the same mechanism taken to its limit rather than a new code path.
     /// </summary>
+    /// <summary>
+    /// Bunny hop: automatically jump when the player lands. Sends spacebar via
+    /// keybd_event so the game's own jump logic handles the actual jump.
+    /// </summary>
+    private static void ApplyBunnyHop(KBBBHJDINCB main)
+    {
+        try
+        {
+            // Only hop if the player is on the ground (not already jumping).
+            // The rigidbody's velocity Y is near zero when grounded.
+            var rb = main.MJPOJOOIPPN;
+            if (rb == null)
+            {
+                return;
+            }
+
+            // If vertical velocity is near zero, we're grounded — send space.
+            if (Mathf.Abs(rb.velocity.y) < 0.5f)
+            {
+                keybd_event(VkSpace, 0, KeyEventFKeyDown, 0);
+                keybd_event(VkSpace, 0, KeyEventFKeyUp, 0);
+            }
+        }
+        catch { }
+    }
+
     private static void ApplyInstantReload()
     {
         if (!instantReload)
@@ -347,7 +377,7 @@ public sealed class Plugin : BasePlugin
 
     private static void ApplyCheatFeatures()
     {
-        if (!infiniteHealth && !infiniteAmmo)
+        if (!infiniteHealth && !infiniteAmmo && !bunnyHop)
         {
             return;
         }
@@ -365,15 +395,17 @@ public sealed class Plugin : BasePlugin
                 main.FDOJDJLIGLF = 1000;
                 main.EFHBKMHCMOH = 1000;
                 main.INGHEHAALBJ = 1000;
-                // Clear potential "dead" / "down" flags so the game doesn't keep us in
-                // the death state even after health is restored.
                 main.CLOEJLAOIGI = false;
                 main.CGHKKDBILGF = false;
             }
 
-            // Infinite ammo is intentionally left as a no-op for now while we identify
-            // the correct ammo fields. Writing the wrong offsets causes "NO WEAPON" state.
-            // The values are logged below in LogRuntimeDiagnostics.
+            // Bunny hop: send spacebar press every frame while moving forward.
+            // The game checks Input.GetKey(KeyCode.Space) for jumping — sending
+            // the key via keybd_event makes the game think space is held.
+            if (bunnyHop && Application.isFocused && main.FDOJDJLIGLF > 0)
+            {
+                ApplyBunnyHop(main);
+            }
         }
         catch (Exception exception)
         {
@@ -569,6 +601,7 @@ public sealed class Plugin : BasePlugin
                     case "infiniteHealth": infiniteHealth = val == "1"; break;
                     case "infiniteAmmo": infiniteAmmo = val == "1"; break;
                     case "instantReload": instantReload = val == "1"; break;
+                    case "bunnyHop": bunnyHop = val == "1"; break;
                     case "debugLogging": debugLogging = val == "1"; break;
                     case "heavyDiagnostics": heavyDiagnostics = val == "1"; break;
                     case "showRuntimeStatus": showRuntimeStatus = val == "1"; break;
@@ -606,6 +639,7 @@ public sealed class Plugin : BasePlugin
                 $"infiniteHealth={(infiniteHealth ? 1 : 0)}",
                 $"infiniteAmmo={(infiniteAmmo ? 1 : 0)}",
                 $"instantReload={(instantReload ? 1 : 0)}",
+                $"bunnyHop={(bunnyHop ? 1 : 0)}",
                 $"debugLogging={(debugLogging ? 1 : 0)}",
                 $"heavyDiagnostics={(heavyDiagnostics ? 1 : 0)}",
                 $"showRuntimeStatus={(showRuntimeStatus ? 1 : 0)}",
@@ -1586,6 +1620,13 @@ public sealed class Plugin : BasePlugin
     [DllImport("user32.dll")]
     private static extern void mouse_event(uint dwFlags, uint dx, uint dy, uint dwData, int dwExtraInfo);
 
+    [DllImport("user32.dll")]
+    private static extern void keybd_event(byte bVk, byte bScan, uint dwFlags, int dwExtraInfo);
+
+    private const uint KeyEventFKeyDown = 0x00;
+    private const uint KeyEventFKeyUp = 0x02;
+    private const byte VkSpace = 0x20;
+
     private const uint MouseEventFLeftDown = 0x02;
     private const uint MouseEventFLeftUp = 0x04;
 
@@ -1802,7 +1843,8 @@ public sealed class Plugin : BasePlugin
         noRecoil = GUI.Toggle(new Rect(x, y, w, 24), noRecoil, "No recoil"); y += 26;
         infiniteHealth = GUI.Toggle(new Rect(x, y, w, 24), infiniteHealth, "Infinite health"); y += 26;
         infiniteAmmo = GUI.Toggle(new Rect(x, y, w, 24), infiniteAmmo, "Infinite ammo (log only — identifying correct fields)"); y += 26;
-        instantReload = GUI.Toggle(new Rect(x, y, w, 24), instantReload, $"Instant reload (EXPERIMENTAL: only hides the minigame bar — {instantReloads})"); y += 26;
+        instantReload = GUI.Toggle(new Rect(x, y, w, 24), instantReload, $"Instant reload ({instantReloads})"); y += 26;
+        bunnyHop = GUI.Toggle(new Rect(x, y, w, 24), bunnyHop, "Bunny hop"); y += 26;
         debugLogging = GUI.Toggle(new Rect(x, y, w, 24), debugLogging, $"Verbose diagnostics (summary only, 1/{DiagnosticInterval:0}s)"); y += 26;
         if (debugLogging)
         {

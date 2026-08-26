@@ -222,6 +222,55 @@ TARGET_CLASSES = [
     "MCCKEODPMDC",
     "FileSender",
     "HitData",
+    # --- SDK expansion: game-critical classes discovered in dump survey ---
+    # HUD elements
+    "UIAmmo",
+    "UIAmmo.EEIIPJPMIGE",
+    "UIAmmo.CLDGBLEBOIC",
+    "UIReload",
+    "UIReload.KKHLKJDNAJC",
+    "UIScores",
+    "HUDSoundFX",
+    # Menu / UI
+    "GUIGameExit",
+    "MainMenu",
+    "EnvColorMenuUI",
+    "EnvColorMenuUI.PFEFIEFHKIN",
+    "EnvColorMenuUI.HLGHJCBMENJ",
+    "ContentLoader2_",
+    # Map / voxel
+    "VoxelMapData",
+    "VUtil",
+    "GHCFEALGKNG",
+    "ScopeGen",
+    "ScopeGen.LFADLAIEEFI",
+    "ScopeGen.DNCPIKNIIJD",
+    "Builder",
+    # Character / rendering
+    "FaceGen",
+    "EEKHAFBGKKA",
+    # Object / texture loading
+    "OBJ",
+    "OBJ.GKMPINHGANH",
+    "OBJ.GBBHABJJFCJ",
+    "OBJ.BFPHDJAMJOB",
+    "OBJ.GEPPKMOAMNF",
+    "GOP",
+    "TEX",
+    # Auth / login
+    "GP",
+    # Spline / animation
+    "BNKJNGIBFFM",
+    "BNKJNGIBFFM.BFCFFJEBEFE",
+    "CALNDLKOKLP",
+    # --- SDK expansion: game-logic classes found by type-reference analysis ---
+    "NIGHDHBMPCK",  # Easing/interpolation math library
+    "NLDGIOBHIKE",  # Audio effect manager (static, AudioClip/AnimationCurve)
+    "IEFPCOCLAOG",  # Bezier curve struct (4 Vector3 control points)
+    "MDDEPGFBEIA",  # Procedural mesh builder (instance)
+    "NHAMCMLKALC",  # Procedural mesh builder (static)
+    "HLHFEHCGAOF",  # Bone transform struct (6 Vector3, Transform ops)
+    "IKDHNPPLDGC",  # Curve data container (4 List<Vector3>)
     # Enums (parsed as classes for offset generation - they have values)
     "Controll.NJPOPGGFJIH",
     "MouseLook.NLJBDGBDDLP",

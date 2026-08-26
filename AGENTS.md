@@ -35,12 +35,12 @@
 - `HANDOFF.md` — Session handoff notes
 
 ## SDK Statistics
-- Aliased classes: 278 (202 target + all referenced types)
-- Field aliases: 3,971
-- Method aliases: 12,570
-- Property aliases: 411
-- Generated SDK files: 280 (278 classes + Aliases.cs + SdkIndex.cs)
-- Build: 0 errors, 5 warnings (2 pre-existing NuGet, 2 KeyCode `Equals` member hiding, 1 duplicate using)
+- Aliased classes: 324 (242 target + all referenced types)
+- Field aliases: 4,350
+- Method aliases: 15,513
+- Property aliases: 443
+- Generated SDK files: 326 (324 classes + Aliases.cs + SdkIndex.cs)
+- Build: 0 errors, 2 warnings (pre-existing NuGet dependency resolution)
 
 ## Key Classes (Obfuscated → Human)
 | Obfuscated | Human | TypeDefIndex | Purpose |
@@ -57,7 +57,34 @@
 | FPNENMKEFBB | LoadoutEntry | ~75 | Loadout slot entry |
 | Movement | Movement | 2 | Movement physics (MoveGround, MoveAir, Accelerate) |
 | MouseLook | MouseLook | ~45 | Camera look controller (sensitivity, clamps) |
-| UIAmmo | AmmoDisplay | - | HUD ammo display (_ammo, _backpack Text fields) |
+| UIAmmo | AmmoDisplay | 89 | HUD ammo display (_ammo, _backpack, _weaponName, _weaponIcon, _reloadGO, _reloadingProgress) |
+| UIReload | ReloadDisplay | 400 | Reload UI (_ammo, _backpack, _weaponName, _weaponIcon, _ammoIndicator) |
+| UIScores | Scoreboard | 192 | Scoreboard (_rdName, _rdScore, _blName, _blScore, _timer, _avatarsLeft, _avatarsRight) |
+| HUDSoundFX | SoundFX | 441 | HUD sound effects (static AudioClip fields, Play/PlayDryFire) |
+| VoxelMapData | MapData | 226 | Map metadata (MapName, PositionX/Y/Z, RotationY) |
+| VUtil | VoxelUtil | 236 | Voxel collision (headcontact, groundcontact, bodycontact, isValidBBox) |
+| GHCFEALGKNG | VoxelMeshGen | 104 | Voxel mesh generation (static, draw voxel at int+Vector3+Color) |
+| ScopeGen | ScopeGenerator | 391 | Weapon scope rendering (Texture2D, MeshFilter, MeshRenderer) |
+| Builder | MapBuilder | 337 | Map builder (toolmode, current, currblock, blockCursor, goCursor) |
+| FaceGen | FaceGenerator | 396 | Character face texture generation (returns Texture2D) |
+| EEKHAFBGKKA | BoneRigSystem | 99 | Bone rigging (SkinnedMeshRenderer, Transform[], Matrix4x4[]) |
+| OBJ | ObjLoader | 44 | OBJ model loader (objPath, materials, groups) |
+| GOP | GameObjectPool | 506 | Object pooling (Prefab, Items, Bounds, Slots) |
+| TEX | TextureLibrary | 330 | Texture library (tBlack, tWhite, tYellow, tGreen, tRed, tBlue, etc.) |
+| GP | AuthManager | 179 | Auth/login system (auth, email, token, tokenloaded, force, connect) |
+| BNKJNGIBFFM | SplineSystem | 175 | Spline animation (Vector3[] points, easing: Sine/Square/Sawtooth/Noise) |
+| CALNDLKOKLP | SplinePath | 462 | Spline path data (Vector3[] points, segments, normals, closed) |
+| GUIGameExit | ExitMenu | 204 | Exit game menu (show, strings, Rects) |
+| MainMenu | MainMenuPage | 260 | Main menu page (extends MenuBase) |
+| EnvColorMenuUI | EnvColorMenu | 154 | Environment color menu (Canvas, Sliders for RGB, Sky/Equator/Ground) |
+| ContentLoader2_ | ContentLoader | 329 | Content loading screen (currprogress, progress, tLogoEn) |
+| NIGHDHBMPCK | EasingMath | 282 | Easing/interpolation math (Vector3/Color/float, from/to/duration) |
+| NLDGIOBHIKE | AudioManager | 346 | Audio effect manager (static, AudioClip, AnimationCurve, AudioSource) |
+| IEFPCOCLAOG | BezierCurve | 54 | Bezier curve struct (4 Vector3 control points, evaluate at int) |
+| MDDEPGFBEIA | MeshBuilder | 304 | Procedural mesh builder instance (List<Vector3/Vector2/Color/int[]/Vector4>, Mesh) |
+| NHAMCMLKALC | StaticMeshBuilder | 166 | Static procedural mesh builder (same fields as MeshBuilder, static) |
+| HLHFEHCGAOF | BoneTransform | 76 | Bone transform struct (6 Vector3, Transform/float/enum ops) |
+| IKDHNPPLDGC | CurveData | 271 | Curve data container (4 List<Vector3>, copy/merge methods) |
 | GUIOptions | Settings | - | Key bindings, player settings (goldmine class) |
 | HUD | HUD | 101 | HUD rendering |
 | GUIInv | Inventory | - | Inventory UI |
@@ -171,6 +198,60 @@ Key method: PFBJDHPMIJP(int ammo, int reserve) — Update both ammo displays
 - Client.FPIDGCHIEMJ(byte[], int) = process received packet
 - No explicit opcodes in dump — hardcoded in compiled methods
 - Server validates player IDs, positions, hit data, weapon data
+
+### NET Protocol Primitives (mapped by signature analysis)
+| Category | Obfuscated | Human | Signature |
+|----------|-----------|-------|-----------|
+| Control | LPAPGKDAENI | Begin | void Begin(byte, byte) / void Begin() |
+| Control | EMJOGONJKIO | End | void End() |
+| Control | NFOMAHCEFCL | Reset | void Reset() |
+| Write int | ANJDGFJMIAL | WriteInt | void WriteInt(int) |
+| Write int | LHMNDGLMOFO | WriteInt2 | void WriteInt2(int) |
+| Write int | GJBAJNCFBLB | WriteInt3 | void WriteInt3(int) |
+| Write int | KLPOMLKDPAL | WriteInt4 | void WriteInt4(int) |
+| Write int | FPELFNLEPGG | WriteInt5 | void WriteInt5(int) |
+| Write int | CHIOALKDHOC | WriteInt6 | void WriteInt6(int) |
+| Write int | GDDMJBCNMPK | WriteInt7 | void WriteInt7(int) |
+| Write short | HMCNFGMBCOC | WriteShort | void WriteShort(short) |
+| Write short | IFINMFCPGIB | WriteShort2 | void WriteShort2(short) |
+| Write short | APNPMHBBLDG | WriteShort3 | void WriteShort3(short) |
+| Write short | IHLNBLGFGLF | WriteShort4 | void WriteShort4(short) |
+| Write float | HIPPJGAHHPC | WriteFloat | void WriteFloat(float) |
+| Write float | JBIICNJNHCI | WriteFloat2 | void WriteFloat2(float) |
+| Write float | PIMOAOKDDCC | WriteFloat3 | void WriteFloat3(float) |
+| Write byte | LMKOIABBCNK | WriteByte | void WriteByte(byte) |
+| Write byte | PFCLIPCCHCK | WriteByte2 | void WriteByte2(byte) |
+| Write ulong | MJDOMFPOPMK | WriteUlong | void WriteUlong(ulong) |
+| Write ulong | EKDBCDKOJAO | WriteUlong2 | void WriteUlong2(ulong) |
+| Write ulong | EDICJCKFAMN | WriteUlong3 | void WriteUlong3(ulong) |
+| Write string | KOIHHCOBIEJ | WriteString | void WriteString(string) |
+| Write string | KMEFAPEEHHN | WriteString2 | void WriteString2(string) |
+| Write string | PJFMOLFBKHM | WriteString3 | void WriteString3(string) |
+| Write bytes | AGIJMMKMPPB | WriteBytes | void WriteBytes(byte[], int, int) |
+| Write bytes | OANLLALAOGK | WriteBytes2 | void WriteBytes2(byte[], int, int) |
+| Write bytes | NPPBJCOFBMD | WriteBytes3 | void WriteBytes3(byte[], int) |
+| Read int | JKONBLNHFLL | ReadInt | int ReadInt() |
+| Read int | IFIEBMLBNIN | ReadInt2 | int ReadInt2() |
+| Read int | DMKDAMBHBKJ | ReadInt3 | int ReadInt3() |
+| Read float | CPJFIPAICPM | ReadFloat | float ReadFloat() |
+| Read float | OPGALLFGLDJ | ReadFloat2 | float ReadFloat2() |
+| Read string | ADBHAOJHEEK | ReadString | string ReadString() |
+| Read ulong | ECDGGIONOHM | ReadUlong | ulong ReadUlong() |
+| Read uint | OIONBLPJDBI | ReadUint | uint ReadUint() |
+| Read bool | MFAIOGPHJPL | ReadBool | bool ReadBool() |
+| Read bytes | HJMOENIPJOL | ReadBytes | byte[] ReadBytes(int) |
+
+### NET Buffer Fields
+| Field | Offset | Type | Purpose |
+|-------|--------|------|---------|
+| GLPMIOHOEOG | 0xc | byte[] | Send buffer |
+| JGDCFADACPP | 0x10 | int | Send buffer length |
+| CDKEENLDMNG | 0x14 | byte[] | Receive buffer |
+| CGMLOPLCEGP | 0x1c | int | Receive buffer length |
+| EAMFEKPMFEL | 0x20 | int | Send position (write cursor) |
+| DBOGGPHNOPB | 0x28 | int | Read position (read cursor) |
+| GAOGNNCPJGP | 0x24 | bool | Is writing flag |
+| KEHFECFHDHD | 0x30 | int | Buffer size |
 
 ## Implemented Features
 | Feature | Status | How |

@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class Util2
     {
+        public const int TypeDefIndex = 256;
+        public const string OriginalName = "Util2";
+
         /// <summary>
         /// Field and static-field offsets for Util2.
         /// </summary>
@@ -18,36 +21,66 @@ namespace BlockpostTrainer.Sdk.Raw
         /// </summary>
         public static class Methods
         {
+            /// <summary>JFBABGAFGIJ(Process HDCLPGPDIKJ) -> List<Util2.HBLBNCLJFAN></summary>
             public const uint JFBABGAFGIJ = 0x107bee40; // public List<Util2.HBLBNCLJFAN> JFBABGAFGIJ(Process HDCLPGPDIKJ)
+            /// <summary>FAHACHJHIBC(Process HDCLPGPDIKJ) -> List<Util2.HBLBNCLJFAN></summary>
             public const uint FAHACHJHIBC = 0x107bd820; // public List<Util2.HBLBNCLJFAN> FAHACHJHIBC(Process HDCLPGPDIKJ)
+            /// <summary>KFMKAJALDEC(Process HDCLPGPDIKJ) -> List<Util2.HBLBNCLJFAN></summary>
             public const uint KFMKAJALDEC = 0x107bfae0; // public List<Util2.HBLBNCLJFAN> KFMKAJALDEC(Process HDCLPGPDIKJ)
+            /// <summary>GKEBLMGLLAD(Process HDCLPGPDIKJ) -> List<Util2.HBLBNCLJFAN></summary>
             public const uint GKEBLMGLLAD = 0x107bde60; // public List<Util2.HBLBNCLJFAN> GKEBLMGLLAD(Process HDCLPGPDIKJ)
+            /// <summary>HJPIBBDJBFL(Process HDCLPGPDIKJ) -> List<Util2.HBLBNCLJFAN></summary>
             public const uint HJPIBBDJBFL = 0x107be4c0; // public List<Util2.HBLBNCLJFAN> HJPIBBDJBFL(Process HDCLPGPDIKJ)
+            /// <summary>LOPHKKCMPPP(Process HDCLPGPDIKJ) -> List<Util2.HBLBNCLJFAN></summary>
             public const uint LOPHKKCMPPP = 0x107c0ae0; // public List<Util2.HBLBNCLJFAN> LOPHKKCMPPP(Process HDCLPGPDIKJ)
+            /// <summary>LLNGCKNNJFP(Process HDCLPGPDIKJ) -> List<Util2.HBLBNCLJFAN></summary>
             public const uint LLNGCKNNJFP = 0x107c0480; // public List<Util2.HBLBNCLJFAN> LLNGCKNNJFP(Process HDCLPGPDIKJ)
+            /// <summary>IBGILOKFKGA(Process HDCLPGPDIKJ) -> List<Util2.HBLBNCLJFAN></summary>
             public const uint IBGILOKFKGA = 0x107beb00; // public List<Util2.HBLBNCLJFAN> IBGILOKFKGA(Process HDCLPGPDIKJ)
+            /// <summary>PBMOOPCMPCK(Process HDCLPGPDIKJ) -> List<Util2.HBLBNCLJFAN></summary>
             public const uint PBMOOPCMPCK = 0x107c1e00; // public List<Util2.HBLBNCLJFAN> PBMOOPCMPCK(Process HDCLPGPDIKJ)
+            /// <summary>HNIBLIMFEOP(Process HDCLPGPDIKJ) -> List<Util2.HBLBNCLJFAN></summary>
             public const uint HNIBLIMFEOP = 0x107be7e0; // public List<Util2.HBLBNCLJFAN> HNIBLIMFEOP(Process HDCLPGPDIKJ)
+            /// <summary>AIAHJDPGNIM(Process HDCLPGPDIKJ) -> List<Util2.HBLBNCLJFAN></summary>
             public const uint AIAHJDPGNIM = 0x107bc1c0; // public List<Util2.HBLBNCLJFAN> AIAHJDPGNIM(Process HDCLPGPDIKJ)
+            /// <summary>NMCBFMJPBMB(Process HDCLPGPDIKJ) -> List<Util2.HBLBNCLJFAN></summary>
             public const uint NMCBFMJPBMB = 0x107c1780; // public List<Util2.HBLBNCLJFAN> NMCBFMJPBMB(Process HDCLPGPDIKJ)
+            /// <summary>OJNKADMCBIK(Process HDCLPGPDIKJ) -> List<Util2.HBLBNCLJFAN></summary>
             public const uint OJNKADMCBIK = 0x107c1ac0; // public List<Util2.HBLBNCLJFAN> OJNKADMCBIK(Process HDCLPGPDIKJ)
+            /// <summary>BFBBCKIMNDE(Process HDCLPGPDIKJ) -> List<Util2.HBLBNCLJFAN></summary>
             public const uint BFBBCKIMNDE = 0x107bc820; // public List<Util2.HBLBNCLJFAN> BFBBCKIMNDE(Process HDCLPGPDIKJ)
+            /// <summary>CLKBOGEFFMN(Process HDCLPGPDIKJ) -> List<Util2.HBLBNCLJFAN></summary>
             public const uint CLKBOGEFFMN = 0x107bcb60; // public List<Util2.HBLBNCLJFAN> CLKBOGEFFMN(Process HDCLPGPDIKJ)
+            /// <summary>CollectModules(Process HDCLPGPDIKJ) -> List<Util2.HBLBNCLJFAN></summary>
             public const uint CollectModules = 0x107bce80; // public List<Util2.HBLBNCLJFAN> CollectModules(Process HDCLPGPDIKJ)
+            /// <summary>NABMIBPHFAC(Process HDCLPGPDIKJ) -> List<Util2.HBLBNCLJFAN></summary>
             public const uint NABMIBPHFAC = 0x107c1460; // public List<Util2.HBLBNCLJFAN> NABMIBPHFAC(Process HDCLPGPDIKJ)
-            public const uint _ctor = 0x107c2120; // public void .ctor()
+            public const uint ctor = 0x107c2120; // public void .ctor()
+            /// <summary>JILIPHCNDEF(Process HDCLPGPDIKJ) -> List<Util2.HBLBNCLJFAN></summary>
             public const uint JILIPHCNDEF = 0x107bf4a0; // public List<Util2.HBLBNCLJFAN> JILIPHCNDEF(Process HDCLPGPDIKJ)
+            /// <summary>HABLDPEPFEP(Process HDCLPGPDIKJ) -> List<Util2.HBLBNCLJFAN></summary>
             public const uint HABLDPEPFEP = 0x107be1a0; // public List<Util2.HBLBNCLJFAN> HABLDPEPFEP(Process HDCLPGPDIKJ)
+            /// <summary>MODHHCKGGGI(Process HDCLPGPDIKJ) -> List<Util2.HBLBNCLJFAN></summary>
             public const uint MODHHCKGGGI = 0x107c1120; // public List<Util2.HBLBNCLJFAN> MODHHCKGGGI(Process HDCLPGPDIKJ)
+            /// <summary>JKAMPIBLHMD(Process HDCLPGPDIKJ) -> List<Util2.HBLBNCLJFAN></summary>
             public const uint JKAMPIBLHMD = 0x107bf7c0; // public List<Util2.HBLBNCLJFAN> JKAMPIBLHMD(Process HDCLPGPDIKJ)
+            /// <summary>LMGAHKNAPJC(Process HDCLPGPDIKJ) -> List<Util2.HBLBNCLJFAN></summary>
             public const uint LMGAHKNAPJC = 0x107c07c0; // public List<Util2.HBLBNCLJFAN> LMGAHKNAPJC(Process HDCLPGPDIKJ)
+            /// <summary>GBKLIACKOAK(Process HDCLPGPDIKJ) -> List<Util2.HBLBNCLJFAN></summary>
             public const uint GBKLIACKOAK = 0x107bdb40; // public List<Util2.HBLBNCLJFAN> GBKLIACKOAK(Process HDCLPGPDIKJ)
+            /// <summary>JHHLIEBJLAM(Process HDCLPGPDIKJ) -> List<Util2.HBLBNCLJFAN></summary>
             public const uint JHHLIEBJLAM = 0x107bf180; // public List<Util2.HBLBNCLJFAN> JHHLIEBJLAM(Process HDCLPGPDIKJ)
+            /// <summary>EGFPJOHCGBJ(Process HDCLPGPDIKJ) -> List<Util2.HBLBNCLJFAN></summary>
             public const uint EGFPJOHCGBJ = 0x107bd4e0; // public List<Util2.HBLBNCLJFAN> EGFPJOHCGBJ(Process HDCLPGPDIKJ)
+            /// <summary>BBFBLEEDIHL(Process HDCLPGPDIKJ) -> List<Util2.HBLBNCLJFAN></summary>
             public const uint BBFBLEEDIHL = 0x107bc500; // public List<Util2.HBLBNCLJFAN> BBFBLEEDIHL(Process HDCLPGPDIKJ)
+            /// <summary>DNMKFECCHPH(Process HDCLPGPDIKJ) -> List<Util2.HBLBNCLJFAN></summary>
             public const uint DNMKFECCHPH = 0x107bd1c0; // public List<Util2.HBLBNCLJFAN> DNMKFECCHPH(Process HDCLPGPDIKJ)
+            /// <summary>LBCCOOJPFEN(Process HDCLPGPDIKJ) -> List<Util2.HBLBNCLJFAN></summary>
             public const uint LBCCOOJPFEN = 0x107bfe00; // public List<Util2.HBLBNCLJFAN> LBCCOOJPFEN(Process HDCLPGPDIKJ)
+            /// <summary>LCJHCFDFLGL(Process HDCLPGPDIKJ) -> List<Util2.HBLBNCLJFAN></summary>
             public const uint LCJHCFDFLGL = 0x107c0140; // public List<Util2.HBLBNCLJFAN> LCJHCFDFLGL(Process HDCLPGPDIKJ)
+            /// <summary>MEPEPINJDHE(Process HDCLPGPDIKJ) -> List<Util2.HBLBNCLJFAN></summary>
             public const uint MEPEPINJDHE = 0x107c0e00; // public List<Util2.HBLBNCLJFAN> MEPEPINJDHE(Process HDCLPGPDIKJ)
         }
     }

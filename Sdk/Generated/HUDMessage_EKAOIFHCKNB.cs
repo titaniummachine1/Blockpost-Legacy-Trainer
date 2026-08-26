@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class HUDMessage_EKAOIFHCKNB
     {
+        public const int TypeDefIndex = 245;
+        public const string OriginalName = "HUDMessage.EKAOIFHCKNB";
+
         /// <summary>
         /// Field and static-field offsets for HUDMessage.EKAOIFHCKNB.
         /// </summary>
@@ -22,7 +25,8 @@ namespace BlockpostTrainer.Sdk.Raw
         /// </summary>
         public static class Methods
         {
-            public const uint _ctor = 0x107641a0; // internal void .ctor(PBMAFIFKGEH NPHGPNPOANC, int KDOOCBDDGND, string OJEKKFDIKMG, string INIINBLHNPB)
+            /// <summary>.ctor(PBMAFIFKGEH NPHGPNPOANC, int KDOOCBDDGND, string OJEKKFDIKMG, string INIINBLHNPB)</summary>
+            public const uint ctor = 0x107641a0; // internal void .ctor(PBMAFIFKGEH NPHGPNPOANC, int KDOOCBDDGND, string OJEKKFDIKMG, string INIINBLHNPB)
         }
     }
 }

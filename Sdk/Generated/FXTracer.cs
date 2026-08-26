@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class FXTracer
     {
+        public const int TypeDefIndex = 265;
+        public const string OriginalName = "FXTracer";
+
         /// <summary>
         /// Field and static-field offsets for FXTracer.
         /// </summary>
@@ -113,7 +116,7 @@ namespace BlockpostTrainer.Sdk.Raw
             public const uint EILJIIKFDMP = 0x107cd750; // private void EILJIIKFDMP()
             public const uint JGDJDJNKMEE = 0x107d16e0; // private void JGDJDJNKMEE()
             public const uint DAPDODCLAMO = 0x107cca20; // private void DAPDODCLAMO()
-            public const uint _ctor = 0x107d58b0; // public void .ctor()
+            public const uint ctor = 0x107d58b0; // public void .ctor()
             public const uint BCNGPDEFHHN = 0x107ca8d0; // private void BCNGPDEFHHN()
             public const uint IJFNDMKHMBC = 0x107d0e50; // private void IJFNDMKHMBC()
             public const uint BBDEMINADFA = 0x107ca740; // private void BBDEMINADFA()

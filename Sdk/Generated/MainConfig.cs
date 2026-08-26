@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class MainConfig
     {
+        public const int TypeDefIndex = 472;
+        public const string OriginalName = "MainConfig";
+
         /// <summary>
         /// Field and static-field offsets for MainConfig.
         /// </summary>
@@ -30,8 +33,8 @@ namespace BlockpostTrainer.Sdk.Raw
         /// </summary>
         public static class Methods
         {
-            public const uint _ctor = 0x101a6520; // public void .ctor()
-            public const uint _cctor = 0x10c43aa0; // private static void .cctor()
+            public const uint ctor = 0x101a6520; // public void .ctor()
+            public const uint cctor = 0x10c43aa0; // private static void .cctor()
         }
     }
 }

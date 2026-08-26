@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class LANMKMLNGOP
     {
+        public const int TypeDefIndex = 423;
+        public const string OriginalName = "LANMKMLNGOP";
+
         /// <summary>
         /// Field and static-field offsets for LANMKMLNGOP.
         /// </summary>
@@ -23,7 +26,8 @@ namespace BlockpostTrainer.Sdk.Raw
         /// </summary>
         public static class Methods
         {
-            public const uint _ctor = 0x10b5caa0; // internal void .ctor(string HHGIFJHHHCM, string AGNDNDJJCGC, string AJCFNDIEJFP, string OAGLIBGJJCM, string HPNEFPPKNHD, int LIGAECICEJK)
+            /// <summary>.ctor(string HHGIFJHHHCM, string AGNDNDJJCGC, string AJCFNDIEJFP, string OAGLIBGJJCM, string HPNEFPPKNHD, int LIGAECICEJK)</summary>
+            public const uint ctor = 0x10b5caa0; // internal void .ctor(string HHGIFJHHHCM, string AGNDNDJJCGC, string AJCFNDIEJFP, string OAGLIBGJJCM, string HPNEFPPKNHD, int LIGAECICEJK)
         }
     }
 }

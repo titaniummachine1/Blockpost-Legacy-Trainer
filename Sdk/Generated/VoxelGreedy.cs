@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class VoxelGreedy
     {
+        public const int TypeDefIndex = 181;
+        public const string OriginalName = "VoxelGreedy";
+
         /// <summary>
         /// Field and static-field offsets for VoxelGreedy.
         /// </summary>
@@ -35,54 +38,94 @@ namespace BlockpostTrainer.Sdk.Raw
         /// </summary>
         public static class Methods
         {
+            /// <summary>IJDLCFGLCGD(int BCJADOIPFHE, int IAIHGIDAJEK, int LICHKMCHMMF) -> Color</summary>
             public const uint IJDLCFGLCGD = 0x105a0150; // private static Color IJDLCFGLCGD(int BCJADOIPFHE, int IAIHGIDAJEK, int LICHKMCHMMF)
+            /// <summary>PADJPEKGDNH(int BCJADOIPFHE, int IAIHGIDAJEK, int LICHKMCHMMF, int BHBFAMIAPOH) -> bool</summary>
             public const uint PADJPEKGDNH = 0x105a1180; // private static bool PADJPEKGDNH(int BCJADOIPFHE, int IAIHGIDAJEK, int LICHKMCHMMF, int BHBFAMIAPOH)
+            /// <summary>IIPCOJPCBFB(int BCJADOIPFHE, int IAIHGIDAJEK, int LICHKMCHMMF) -> bool</summary>
             public const uint IIPCOJPCBFB = 0x105a00d0; // private static bool IIPCOJPCBFB(int BCJADOIPFHE, int IAIHGIDAJEK, int LICHKMCHMMF)
+            /// <summary>FOOEFHLFLGD(int[,,] IODDKDHBMFF, Color[,,] JFFLHBFAGOM) -> Mesh</summary>
             public const uint FOOEFHLFLGD = 0x1059f980; // public static Mesh FOOEFHLFLGD(int[,,] IODDKDHBMFF, Color[,,] JFFLHBFAGOM)
+            /// <summary>OLMMJAADAHG(int BCJADOIPFHE, int IAIHGIDAJEK, int LICHKMCHMMF) -> bool</summary>
             public const uint OLMMJAADAHG = 0x105a1030; // private static bool OLMMJAADAHG(int BCJADOIPFHE, int IAIHGIDAJEK, int LICHKMCHMMF)
+            /// <summary>KGKKLCNHPLJ(int BCJADOIPFHE, int IAIHGIDAJEK, int LICHKMCHMMF) -> bool</summary>
             public const uint KGKKLCNHPLJ = 0x105a0a10; // private static bool KGKKLCNHPLJ(int BCJADOIPFHE, int IAIHGIDAJEK, int LICHKMCHMMF)
+            /// <summary>IDAPFHBFDMA() -> Mesh</summary>
             public const uint IDAPFHBFDMA = 0x1059fee0; // public static Mesh IDAPFHBFDMA()
             public const uint Start = 0x105a15c0; // private void Start()
+            /// <summary>JHJKHCMAFHC() -> Mesh</summary>
             public const uint JHJKHCMAFHC = 0x105a04a0; // public static Mesh JHJKHCMAFHC()
             public const uint MCOCDHOOGAO = 0x105a0e30; // private void MCOCDHOOGAO()
+            /// <summary>LEEFELEPHLG(int BCJADOIPFHE, int IAIHGIDAJEK, int LICHKMCHMMF, int BHBFAMIAPOH) -> bool</summary>
             public const uint LEEFELEPHLG = 0x105a0d70; // private static bool LEEFELEPHLG(int BCJADOIPFHE, int IAIHGIDAJEK, int LICHKMCHMMF, int BHBFAMIAPOH)
+            /// <summary>BOHJNPBOKMA(int BCJADOIPFHE, int IAIHGIDAJEK, int LICHKMCHMMF) -> bool</summary>
             public const uint BOHJNPBOKMA = 0x1059ac30; // private static bool BOHJNPBOKMA(int BCJADOIPFHE, int IAIHGIDAJEK, int LICHKMCHMMF)
             public const uint FONNBOHLCFI = 0x1059f800; // private void FONNBOHLCFI()
+            /// <summary>PNKBJLJKOMP(LOMEPCOKKCB NPHGPNPOANC) -> Mesh</summary>
             public const uint PNKBJLJKOMP = 0x105a14f0; // public static Mesh PNKBJLJKOMP(LOMEPCOKKCB NPHGPNPOANC)
-            public const uint _cctor = 0x105a1740; // private static void .cctor()
+            public const uint cctor = 0x105a1740; // private static void .cctor()
+            /// <summary>DIBBMGCHLBO() -> Mesh</summary>
             public const uint DIBBMGCHLBO = 0x1059ce60; // public static Mesh DIBBMGCHLBO()
+            /// <summary>AFIOANEHKDL(int BCJADOIPFHE, int IAIHGIDAJEK, int LICHKMCHMMF) -> bool</summary>
             public const uint AFIOANEHKDL = 0x10598f30; // private static bool AFIOANEHKDL(int BCJADOIPFHE, int IAIHGIDAJEK, int LICHKMCHMMF)
+            /// <summary>JKCFNPFIHFG(int BCJADOIPFHE, int IAIHGIDAJEK, int LICHKMCHMMF) -> bool</summary>
             public const uint JKCFNPFIHFG = 0x105a0690; // private static bool JKCFNPFIHFG(int BCJADOIPFHE, int IAIHGIDAJEK, int LICHKMCHMMF)
+            /// <summary>OKFHAIGLBNJ(int BCJADOIPFHE, int IAIHGIDAJEK, int LICHKMCHMMF) -> bool</summary>
             public const uint OKFHAIGLBNJ = 0x105a0fb0; // private static bool OKFHAIGLBNJ(int BCJADOIPFHE, int IAIHGIDAJEK, int LICHKMCHMMF)
+            /// <summary>EGIJDLKKOAB(LOMEPCOKKCB NPHGPNPOANC) -> Mesh</summary>
             public const uint EGIJDLKKOAB = 0x1059e6a0; // public static Mesh EGIJDLKKOAB(LOMEPCOKKCB NPHGPNPOANC)
+            /// <summary>DAOPAGJIENO(int BCJADOIPFHE, int IAIHGIDAJEK, int LICHKMCHMMF, int BHBFAMIAPOH) -> bool</summary>
             public const uint DAOPAGJIENO = 0x1059cda0; // private static bool DAOPAGJIENO(int BCJADOIPFHE, int IAIHGIDAJEK, int LICHKMCHMMF, int BHBFAMIAPOH)
+            /// <summary>PHBFHKANKKP(int BCJADOIPFHE, int IAIHGIDAJEK, int LICHKMCHMMF, int BHBFAMIAPOH) -> bool</summary>
             public const uint PHBFHKANKKP = 0x105a1240; // private static bool PHBFHKANKKP(int BCJADOIPFHE, int IAIHGIDAJEK, int LICHKMCHMMF, int BHBFAMIAPOH)
+            /// <summary>CFPMCEEGAOD(LOMEPCOKKCB NPHGPNPOANC) -> Mesh</summary>
             public const uint CFPMCEEGAOD = 0x1059cb70; // public static Mesh CFPMCEEGAOD(LOMEPCOKKCB NPHGPNPOANC)
             public const uint GPAECMFNBKF = 0x1059fd60; // private void GPAECMFNBKF()
+            /// <summary>LAMLNJKFNJL(int[,,] IODDKDHBMFF, Color[,,] JFFLHBFAGOM) -> Mesh</summary>
             public const uint LAMLNJKFNJL = 0x105a0cf0; // public static Mesh LAMLNJKFNJL(int[,,] IODDKDHBMFF, Color[,,] JFFLHBFAGOM)
+            /// <summary>Build(int[,,] IODDKDHBMFF, Color[,,] JFFLHBFAGOM) -> Mesh</summary>
             public const uint Build = 0x1059acb0; // public static Mesh Build(int[,,] IODDKDHBMFF, Color[,,] JFFLHBFAGOM)
+            /// <summary>Build() -> Mesh</summary>
             public const uint Build_2 = 0x1059ad30; // public static Mesh Build()
             public const uint GKDEFIJJJFD = 0x1059fa80; // private void GKDEFIJJJFD()
+            /// <summary>KCJPFFDALGI(int BCJADOIPFHE, int IAIHGIDAJEK, int LICHKMCHMMF) -> Color</summary>
             public const uint KCJPFFDALGI = 0x105a07e0; // private static Color KCJPFFDALGI(int BCJADOIPFHE, int IAIHGIDAJEK, int LICHKMCHMMF)
+            /// <summary>KKGBDDOOKDG(int BCJADOIPFHE, int IAIHGIDAJEK, int LICHKMCHMMF) -> bool</summary>
             public const uint KKGBDDOOKDG = 0x105a0b10; // private static bool KKGBDDOOKDG(int BCJADOIPFHE, int IAIHGIDAJEK, int LICHKMCHMMF)
+            /// <summary>BMAOFHAJCLA() -> Mesh</summary>
             public const uint BMAOFHAJCLA = 0x10599130; // public static Mesh BMAOFHAJCLA()
+            /// <summary>KKEMJJBKBFJ(int BCJADOIPFHE, int IAIHGIDAJEK, int LICHKMCHMMF) -> bool</summary>
             public const uint KKEMJJBKBFJ = 0x105a0a90; // private static bool KKEMJJBKBFJ(int BCJADOIPFHE, int IAIHGIDAJEK, int LICHKMCHMMF)
+            /// <summary>GNHLDNAJFAD(int BCJADOIPFHE, int IAIHGIDAJEK, int LICHKMCHMMF) -> Color</summary>
             public const uint GNHLDNAJFAD = 0x1059fc00; // private static Color GNHLDNAJFAD(int BCJADOIPFHE, int IAIHGIDAJEK, int LICHKMCHMMF)
+            /// <summary>COEGDOAPEDD(int BCJADOIPFHE, int IAIHGIDAJEK, int LICHKMCHMMF, int BHBFAMIAPOH) -> bool</summary>
             public const uint COEGDOAPEDD = 0x1059cc60; // private static bool COEGDOAPEDD(int BCJADOIPFHE, int IAIHGIDAJEK, int LICHKMCHMMF, int BHBFAMIAPOH)
+            /// <summary>ACAHBFPELCN(int BCJADOIPFHE, int IAIHGIDAJEK, int LICHKMCHMMF, int BHBFAMIAPOH) -> bool</summary>
             public const uint ACAHBFPELCN = 0x10598e70; // private static bool ACAHBFPELCN(int BCJADOIPFHE, int IAIHGIDAJEK, int LICHKMCHMMF, int BHBFAMIAPOH)
+            /// <summary>GIDNEFLPENO(int BCJADOIPFHE, int IAIHGIDAJEK, int LICHKMCHMMF) -> bool</summary>
             public const uint GIDNEFLPENO = 0x1059fa00; // private static bool GIDNEFLPENO(int BCJADOIPFHE, int IAIHGIDAJEK, int LICHKMCHMMF)
+            /// <summary>KCGHDGIECJH(LOMEPCOKKCB NPHGPNPOANC) -> Mesh</summary>
             public const uint KCGHDGIECJH = 0x105a0710; // public static Mesh KCGHDGIECJH(LOMEPCOKKCB NPHGPNPOANC)
+            /// <summary>OPFEHNBNINB(LOMEPCOKKCB NPHGPNPOANC) -> Mesh</summary>
             public const uint OPFEHNBNINB = 0x105a10b0; // public static Mesh OPFEHNBNINB(LOMEPCOKKCB NPHGPNPOANC)
+            /// <summary>KENFKMCPGNP(LOMEPCOKKCB NPHGPNPOANC) -> Mesh</summary>
             public const uint KENFKMCPGNP = 0x105a0940; // public static Mesh KENFKMCPGNP(LOMEPCOKKCB NPHGPNPOANC)
+            /// <summary>EBDJEJBBOAA(int BCJADOIPFHE, int IAIHGIDAJEK, int LICHKMCHMMF) -> Color</summary>
             public const uint EBDJEJBBOAA = 0x1059e540; // private static Color EBDJEJBBOAA(int BCJADOIPFHE, int IAIHGIDAJEK, int LICHKMCHMMF)
+            /// <summary>COEGDOAPEDD(int BCJADOIPFHE, int IAIHGIDAJEK, int LICHKMCHMMF) -> bool</summary>
             public const uint COEGDOAPEDD_2 = 0x1059cd20; // private static bool COEGDOAPEDD(int BCJADOIPFHE, int IAIHGIDAJEK, int LICHKMCHMMF)
+            /// <summary>IPJDBJLGCBM() -> Mesh</summary>
             public const uint IPJDBJLGCBM = 0x105a02b0; // public static Mesh IPJDBJLGCBM()
+            /// <summary>KNPBAGFKJGE(int BCJADOIPFHE, int IAIHGIDAJEK, int LICHKMCHMMF) -> Color</summary>
             public const uint KNPBAGFKJGE = 0x105a0b90; // private static Color KNPBAGFKJGE(int BCJADOIPFHE, int IAIHGIDAJEK, int LICHKMCHMMF)
             public const uint ELPILMOMEPM = 0x1059f680; // private void ELPILMOMEPM()
+            /// <summary>PHMOFNDONIN() -> Mesh</summary>
             public const uint PHMOFNDONIN = 0x105a1300; // public static Mesh PHMOFNDONIN()
             public const uint ALGDDAHOFLN = 0x10598fb0; // private void ALGDDAHOFLN()
+            /// <summary>EKAKICKOLEG() -> Mesh</summary>
             public const uint EKAKICKOLEG = 0x1059e770; // public static Mesh EKAKICKOLEG()
-            public const uint _ctor = 0x101a6520; // public void .ctor()
+            public const uint ctor = 0x101a6520; // public void .ctor()
+            /// <summary>Build(LOMEPCOKKCB NPHGPNPOANC) -> Mesh</summary>
             public const uint Build_3 = 0x1059caa0; // public static Mesh Build(LOMEPCOKKCB NPHGPNPOANC)
         }
     }

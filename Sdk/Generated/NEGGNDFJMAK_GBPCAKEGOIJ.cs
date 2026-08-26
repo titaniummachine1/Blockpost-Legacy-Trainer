@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class NEGGNDFJMAK_GBPCAKEGOIJ
     {
+        public const int TypeDefIndex = 408;
+        public const string OriginalName = "NEGGNDFJMAK.GBPCAKEGOIJ";
+
         /// <summary>
         /// Field and static-field offsets for NEGGNDFJMAK.GBPCAKEGOIJ.
         /// </summary>
@@ -20,7 +23,8 @@ namespace BlockpostTrainer.Sdk.Raw
         /// </summary>
         public static class Methods
         {
-            public const uint _ctor = 0x10abd8a0; // internal void .ctor(byte EKIJNFBGGKL, byte[] MAFKGNLGNBN, int DJGAPKEINDJ)
+            /// <summary>.ctor(byte EKIJNFBGGKL, byte[] MAFKGNLGNBN, int DJGAPKEINDJ)</summary>
+            public const uint ctor = 0x10abd8a0; // internal void .ctor(byte EKIJNFBGGKL, byte[] MAFKGNLGNBN, int DJGAPKEINDJ)
         }
     }
 }

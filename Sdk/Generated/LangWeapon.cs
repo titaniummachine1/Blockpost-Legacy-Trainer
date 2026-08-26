@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class LangWeapon
     {
+        public const int TypeDefIndex = 373;
+        public const string OriginalName = "LangWeapon";
+
         /// <summary>
         /// Field and static-field offsets for LangWeapon.
         /// </summary>
@@ -16,7 +19,7 @@ namespace BlockpostTrainer.Sdk.Raw
         /// </summary>
         public static class Methods
         {
-            public const uint _ctor = 0x101a6520; // public void .ctor()
+            public const uint ctor = 0x101a6520; // public void .ctor()
         }
     }
 }

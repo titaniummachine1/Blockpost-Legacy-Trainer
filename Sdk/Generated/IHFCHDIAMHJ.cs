@@ -4,13 +4,20 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class IHFCHDIAMHJ
     {
+        public const int TypeDefIndex = 436;
+        public const string OriginalName = "IHFCHDIAMHJ";
+
         /// <summary>
-        /// Field and static-field offsets for IHFCHDIAMHJ.
+        /// Enum values for IHFCHDIAMHJ.
         /// </summary>
         public static class Offsets
         {
-            // Instance fields
-            public const int value__ = 0x0; // int
+            // Backing field
+            public const int value = 0x0; // int
+
+            // Enum values
+            public const int Array = 0x0; // IHFCHDIAMHJ
+            public const int List = 0x1; // IHFCHDIAMHJ
         }
 
         /// <summary>

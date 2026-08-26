@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class GUIRank_MFHOMFNKDBG
     {
+        public const int TypeDefIndex = 134;
+        public const string OriginalName = "GUIRank.MFHOMFNKDBG";
+
         /// <summary>
         /// Field and static-field offsets for GUIRank.MFHOMFNKDBG.
         /// </summary>
@@ -67,7 +70,8 @@ namespace BlockpostTrainer.Sdk.Raw
         /// </summary>
         public static class Methods
         {
-            public const uint _ctor = 0x104b6630; // internal void .ctor(Rect NDJOEPKFOLG)
+            /// <summary>.ctor(Rect NDJOEPKFOLG)</summary>
+            public const uint ctor = 0x104b6630; // internal void .ctor(Rect NDJOEPKFOLG)
         }
     }
 }

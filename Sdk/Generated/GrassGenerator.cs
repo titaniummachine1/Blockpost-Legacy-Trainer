@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class GrassGenerator
     {
+        public const int TypeDefIndex = 156;
+        public const string OriginalName = "GrassGenerator";
+
         /// <summary>
         /// Field and static-field offsets for GrassGenerator.
         /// </summary>
@@ -52,7 +55,7 @@ namespace BlockpostTrainer.Sdk.Raw
             public const uint KLJIJGGPDKB = 0x105832a0; // public static void KLJIJGGPDKB()
             public const uint MAFCMLMCEKL = 0x10583810; // public static void MAFCMLMCEKL()
             public const uint MBBACFGEMHF = 0x105838d0; // public static void MBBACFGEMHF()
-            public const uint _ctor = 0x101a6520; // public void .ctor()
+            public const uint ctor = 0x101a6520; // public void .ctor()
             public const uint ABLFBAENMCL = 0x10582370; // public static void ABLFBAENMCL()
             public const uint KDEFGIKNICJ = 0x10583260; // public static void KDEFGIKNICJ()
             public const uint LPFJHMAIKMJ = 0x10583750; // public static void LPFJHMAIKMJ()

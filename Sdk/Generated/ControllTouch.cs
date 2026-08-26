@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class ControllTouch
     {
+        public const int TypeDefIndex = 415;
+        public const string OriginalName = "ControllTouch";
+
         /// <summary>
         /// Field and static-field offsets for ControllTouch.
         /// </summary>
@@ -95,7 +98,7 @@ namespace BlockpostTrainer.Sdk.Raw
         {
             public const uint HNOJMJBGGNC = 0x10ab59c0; // private void HNOJMJBGGNC()
             public const uint JBAPBHFAKGG = 0x10ab6ae0; // public void JBAPBHFAKGG()
-            public const uint _cctor = 0x10abc970; // private static void .cctor()
+            public const uint cctor = 0x10abc970; // private static void .cctor()
             public const uint Awake = 0x10aaf060; // private void Awake()
             public const uint BJDIJJCCEGI = 0x10aaf160; // private void BJDIJJCCEGI()
             public const uint KEEOCFAINMC = 0x10ab71c0; // private void KEEOCFAINMC()
@@ -134,7 +137,7 @@ namespace BlockpostTrainer.Sdk.Raw
             public const uint EGMLEODFELK = 0x10ab2fe0; // public void EGMLEODFELK()
             public const uint NILJPOPPGGM = 0x10ab85c0; // private void NILJPOPPGGM()
             public const uint IDGLMDCGDDA = 0x10ab5bf0; // private void IDGLMDCGDDA()
-            public const uint _ctor = 0x10abd140; // public void .ctor()
+            public const uint ctor = 0x10abd140; // public void .ctor()
             public const uint UpdateTouch = 0x10abc8f0; // public void UpdateTouch()
             public const uint LHBJJILCADG = 0x10ab7700; // public void LHBJJILCADG()
             public const uint DrawCell = 0x10ab2520; // public void DrawCell()

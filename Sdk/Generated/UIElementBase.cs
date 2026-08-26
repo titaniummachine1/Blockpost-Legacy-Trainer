@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class UIElementBase
     {
+        public const int TypeDefIndex = 395;
+        public const string OriginalName = "UIElementBase";
+
         /// <summary>
         /// Field and static-field offsets for UIElementBase.
         /// </summary>
@@ -24,34 +27,62 @@ namespace BlockpostTrainer.Sdk.Raw
         /// </summary>
         public static class Methods
         {
+            /// <summary>DBCBEMKJLFO() -> bool</summary>
             public const uint DBCBEMKJLFO = 0x102f9e70; // public bool DBCBEMKJLFO()
+            /// <summary>get_IsShowed() -> bool</summary>
             public const uint get_IsShowed = 0x102f9e70; // public bool get_IsShowed()
+            /// <summary>MJEJFNBOPNN() -> bool</summary>
             public const uint MJEJFNBOPNN = 0x102f9e70; // public bool MJEJFNBOPNN()
+            /// <summary>CGNIKGEACNE() -> bool</summary>
             public const uint CGNIKGEACNE = 0x102f9e70; // public bool CGNIKGEACNE()
+            /// <summary>HDADODFLMFG() -> bool</summary>
             public const uint HDADODFLMFG = 0x102f9e70; // public bool HDADODFLMFG()
+            /// <summary>PJNOLAFODJN() -> bool</summary>
             public const uint PJNOLAFODJN = 0x102f9e70; // public bool PJNOLAFODJN()
+            /// <summary>DGEDHGHOPLM() -> bool</summary>
             public const uint DGEDHGHOPLM = 0x102f9e70; // public bool DGEDHGHOPLM()
+            /// <summary>BCKDNODJNFM() -> bool</summary>
             public const uint BCKDNODJNFM = 0x102f9e70; // public bool BCKDNODJNFM()
+            /// <summary>AFGBAJHKADE() -> bool</summary>
             public const uint AFGBAJHKADE = 0x102f9e70; // public bool AFGBAJHKADE()
+            /// <summary>PGDEGPMCNLP() -> bool</summary>
             public const uint PGDEGPMCNLP = 0x102f9e70; // public bool PGDEGPMCNLP()
+            /// <summary>NHBNLEFOJAB() -> bool</summary>
             public const uint NHBNLEFOJAB = 0x102f9e70; // public bool NHBNLEFOJAB()
+            /// <summary>OFFLOMMDIGE() -> bool</summary>
             public const uint OFFLOMMDIGE = 0x102f9e70; // public bool OFFLOMMDIGE()
-            public const uint _ctor = 0x101a6520; // public void .ctor()
+            public const uint ctor = 0x101a6520; // public void .ctor()
+            /// <summary>FENBBDCBHGL() -> bool</summary>
             public const uint FENBBDCBHGL = 0x102f9e70; // public bool FENBBDCBHGL()
+            /// <summary>HAKKPHHDBIA() -> bool</summary>
             public const uint HAKKPHHDBIA = 0x102f9e70; // public bool HAKKPHHDBIA()
+            /// <summary>FKDDMKLKCEC() -> bool</summary>
             public const uint FKDDMKLKCEC = 0x102f9e70; // public bool FKDDMKLKCEC()
+            /// <summary>AKMPJDNPMIK() -> bool</summary>
             public const uint AKMPJDNPMIK = 0x102f9e70; // public bool AKMPJDNPMIK()
+            /// <summary>KNHNMNNGNDD() -> bool</summary>
             public const uint KNHNMNNGNDD = 0x102f9e70; // public bool KNHNMNNGNDD()
+            /// <summary>BNNNJNLGHGF() -> bool</summary>
             public const uint BNNNJNLGHGF = 0x102f9e70; // public bool BNNNJNLGHGF()
+            /// <summary>ACIFHBDJAPO() -> bool</summary>
             public const uint ACIFHBDJAPO = 0x102f9e70; // public bool ACIFHBDJAPO()
+            /// <summary>LBBACBBOMAA() -> bool</summary>
             public const uint LBBACBBOMAA = 0x102f9e70; // public bool LBBACBBOMAA()
+            /// <summary>PEJEHOPDPJC() -> bool</summary>
             public const uint PEJEHOPDPJC = 0x102f9e70; // public bool PEJEHOPDPJC()
+            /// <summary>OMFFNIKLJHG() -> bool</summary>
             public const uint OMFFNIKLJHG = 0x102f9e70; // public bool OMFFNIKLJHG()
+            /// <summary>LJGJHEIBFAD() -> bool</summary>
             public const uint LJGJHEIBFAD = 0x102f9e70; // public bool LJGJHEIBFAD()
+            /// <summary>PJAEPBEGLGK() -> bool</summary>
             public const uint PJAEPBEGLGK = 0x102f9e70; // public bool PJAEPBEGLGK()
+            /// <summary>DKBPCADFEAO() -> bool</summary>
             public const uint DKBPCADFEAO = 0x102f9e70; // public bool DKBPCADFEAO()
+            /// <summary>BHJCFNDCDBN() -> bool</summary>
             public const uint BHJCFNDCDBN = 0x102f9e70; // public bool BHJCFNDCDBN()
+            /// <summary>JPKOJAHIAAG() -> bool</summary>
             public const uint JPKOJAHIAAG = 0x102f9e70; // public bool JPKOJAHIAAG()
+            /// <summary>ECENDLOLCJP() -> bool</summary>
             public const uint ECENDLOLCJP = 0x102f9e70; // public bool ECENDLOLCJP()
         }
     }

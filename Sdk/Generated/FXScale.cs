@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class FXScale
     {
+        public const int TypeDefIndex = 173;
+        public const string OriginalName = "FXScale";
+
         /// <summary>
         /// Field and static-field offsets for FXScale.
         /// </summary>
@@ -46,7 +49,7 @@ namespace BlockpostTrainer.Sdk.Raw
             public const uint KCHOBKFJAKJ = 0x10594af0; // private void KCHOBKFJAKJ()
             public const uint ALNBHPCGNLM = 0x105912c0; // private void ALNBHPCGNLM()
             public const uint GBHGEPHIGNO = 0x10592fd0; // private void GBHGEPHIGNO()
-            public const uint _ctor = 0x104aa610; // public void .ctor()
+            public const uint ctor = 0x104aa610; // public void .ctor()
             public const uint OFABCHHCDGL = 0x10595c60; // private void OFABCHHCDGL()
             public const uint AOLFLIAGJPA = 0x105914b0; // private void AOLFLIAGJPA()
             public const uint FOPOKGKFLIG = 0x10592bf0; // private void FOPOKGKFLIG()

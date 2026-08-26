@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class IIMNEEFAPBC
     {
+        public const int TypeDefIndex = 418;
+        public const string OriginalName = "IIMNEEFAPBC";
+
         /// <summary>
         /// Field and static-field offsets for IIMNEEFAPBC.
         /// </summary>
@@ -29,7 +32,7 @@ namespace BlockpostTrainer.Sdk.Raw
         /// </summary>
         public static class Methods
         {
-            public const uint _ctor = 0x101ace80; // internal void .ctor()
+            public const uint ctor = 0x101ace80; // internal void .ctor()
         }
     }
 }

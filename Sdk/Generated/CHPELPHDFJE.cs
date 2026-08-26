@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class CHPELPHDFJE
     {
+        public const int TypeDefIndex = 185;
+        public const string OriginalName = "CHPELPHDFJE";
+
         /// <summary>
         /// Field and static-field offsets for CHPELPHDFJE.
         /// </summary>
@@ -20,7 +23,8 @@ namespace BlockpostTrainer.Sdk.Raw
         /// </summary>
         public static class Methods
         {
-            public const uint _ctor = 0x105a1a10; // internal void .ctor(int HAFMINBJCGN, string DHJBGJHALAL, string INIINBLHNPB)
+            /// <summary>.ctor(int HAFMINBJCGN, string DHJBGJHALAL, string INIINBLHNPB)</summary>
+            public const uint ctor = 0x105a1a10; // internal void .ctor(int HAFMINBJCGN, string DHJBGJHALAL, string INIINBLHNPB)
         }
     }
 }

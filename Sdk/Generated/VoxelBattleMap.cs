@@ -4,18 +4,21 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class VoxelBattleMap
     {
+        public const int TypeDefIndex = 202;
+        public const string OriginalName = "VoxelBattleMap";
+
         /// <summary>
         /// Field and static-field offsets for VoxelBattleMap.
         /// </summary>
         public static class Offsets
         {
             // Static fields
-            public const int _KMKCIFIPLCN_k__BackingField = 0x0; // VoxelBattleMap
+            public const int KMKCIFIPLCN_k_BackingField = 0x0; // VoxelBattleMap
 
             // Instance fields
             public const int m_Debug = 0xc; // bool
-            public const int _GHOAKHGMMIK_k__BackingField = 0x10; // VoxelBattleMapData
-            public const int _NPCJKBNNMJI_k__BackingField = 0x14; // bool
+            public const int GHOAKHGMMIK_k_BackingField = 0x10; // VoxelBattleMapData
+            public const int NPCJKBNNMJI_k_BackingField = 0x14; // bool
         }
 
         /// <summary>
@@ -36,131 +39,246 @@ namespace BlockpostTrainer.Sdk.Raw
         /// </summary>
         public static class Methods
         {
+            /// <summary>JIBPPDMGPFJ(string AKGNEFCOKGH) -> string</summary>
             public const uint JIBPPDMGPFJ = 0x1061f450; // public static string JIBPPDMGPFJ(string AKGNEFCOKGH)
+            /// <summary>NewEmpty(string AKGNEFCOKGH, int HFJEKLBDBBN, int KCDGKAPOEJI, int GJJGJJMLKJI)</summary>
             public const uint NewEmpty = 0x106205b0; // public void NewEmpty(string AKGNEFCOKGH, int HFJEKLBDBBN, int KCDGKAPOEJI, int GJJGJJMLKJI)
             public const uint ANEEGFHPMCO = 0x1061d5e0; // private void ANEEGFHPMCO()
+            /// <summary>GBIPABPJLLK() -> int</summary>
             public const uint GBIPABPJLLK = 0x1061d6d0; // private static int GBIPABPJLLK()
+            /// <summary>CGDEKHAOOGG() -> string</summary>
             public const uint CGDEKHAOOGG = 0x1061deb0; // public static string CGDEKHAOOGG()
+            /// <summary>KOFPLKMJDDB(string AKGNEFCOKGH, int HFJEKLBDBBN, int KCDGKAPOEJI, int GJJGJJMLKJI)</summary>
             public const uint KOFPLKMJDDB = 0x1061f5e0; // public void KOFPLKMJDDB(string AKGNEFCOKGH, int HFJEKLBDBBN, int KCDGKAPOEJI, int GJJGJJMLKJI)
+            /// <summary>ODIBOHEMCMD() -> string</summary>
             public const uint ODIBOHEMCMD = 0x10620660; // private static string ODIBOHEMCMD()
+            /// <summary>NJMNIBLJOPD() -> bool</summary>
             public const uint NJMNIBLJOPD = 0x101ae7c0; // public bool NJMNIBLJOPD()
+            /// <summary>MILLPCJMDOE() -> string</summary>
             public const uint MILLPCJMDOE = 0x1061fe30; // public static string MILLPCJMDOE()
+            /// <summary>HAIKMECODBG() -> VoxelBattleMapData</summary>
             public const uint HAIKMECODBG = 0x10512440; // public VoxelBattleMapData HAIKMECODBG()
+            /// <summary>HFDIGEEPDLK(string GMKCJFDLLNP) -> bool</summary>
             public const uint HFDIGEEPDLK = 0x1061ea90; // public bool HFDIGEEPDLK(string GMKCJFDLLNP)
+            /// <summary>Load(string GMKCJFDLLNP) -> IEnumerator</summary>
             public const uint Load = 0x1061fdc0; // public IEnumerator Load(string GMKCJFDLLNP)
+            /// <summary>MPKOOFKNOCJ(string GMKCJFDLLNP) -> bool</summary>
             public const uint MPKOOFKNOCJ = 0x1061fee0; // public bool MPKOOFKNOCJ(string GMKCJFDLLNP)
+            /// <summary>NPKHJKAOLKP(string AKGNEFCOKGH) -> string</summary>
             public const uint NPKHJKAOLKP = 0x10620540; // public static string NPKHJKAOLKP(string AKGNEFCOKGH)
+            /// <summary>FAHDCMBOKBO() -> bool</summary>
             public const uint FAHDCMBOKBO = 0x101ae7c0; // public bool FAHDCMBOKBO()
+            /// <summary>LECADEOLMOM(VoxelBattleMapData BGALIFJNDNF)</summary>
             public const uint LECADEOLMOM = 0x10512a00; // private void LECADEOLMOM(VoxelBattleMapData BGALIFJNDNF)
+            /// <summary>AALJBEIMNAK(VoxelBattleMapData BGALIFJNDNF)</summary>
             public const uint AALJBEIMNAK = 0x10512a00; // private void AALJBEIMNAK(VoxelBattleMapData BGALIFJNDNF)
+            /// <summary>EMNOAFECNMA() -> VoxelBattleMapData</summary>
             public const uint EMNOAFECNMA = 0x10512440; // public VoxelBattleMapData EMNOAFECNMA()
+            /// <summary>EFOEKDFMPCN(string GMKCJFDLLNP) -> IEnumerator</summary>
             public const uint EFOEKDFMPCN = 0x1061e220; // public IEnumerator EFOEKDFMPCN(string GMKCJFDLLNP)
+            /// <summary>LMMEPDMJPPO(VoxelBattleMapData BGALIFJNDNF)</summary>
             public const uint LMMEPDMJPPO = 0x10512a00; // private void LMMEPDMJPPO(VoxelBattleMapData BGALIFJNDNF)
+            /// <summary>DDIPPGABHEG() -> int</summary>
             public const uint DDIPPGABHEG = 0x1061e040; // private static int DDIPPGABHEG()
+            /// <summary>ANCHGMHMPJF(VoxelBattleMap BGALIFJNDNF)</summary>
             public const uint ANCHGMHMPJF = 0x1061d530; // private static void ANCHGMHMPJF(VoxelBattleMap BGALIFJNDNF)
+            /// <summary>BPPKKPHKOAO() -> VoxelBattleMap</summary>
             public const uint BPPKKPHKOAO = 0x1061d7a0; // public static VoxelBattleMap BPPKKPHKOAO()
+            /// <summary>CLECKLJNBHP() -> string</summary>
             public const uint CLECKLJNBHP = 0x1061df60; // private static string CLECKLJNBHP()
+            /// <summary>NKIBDNIEPPC() -> int</summary>
             public const uint NKIBDNIEPPC = 0x1061d6d0; // private static int NKIBDNIEPPC()
+            /// <summary>GDGINEFNBGH() -> VoxelBattleMap</summary>
             public const uint GDGINEFNBGH = 0x1061e9f0; // public static VoxelBattleMap GDGINEFNBGH()
+            /// <summary>AMMADEENCKJ() -> VoxelBattleMap</summary>
             public const uint AMMADEENCKJ = 0x1061d500; // public static VoxelBattleMap AMMADEENCKJ()
+            /// <summary>KMPMDNJHKBC() -> string</summary>
             public const uint KMPMDNJHKBC = 0x1061f5a0; // public static string KMPMDNJHKBC()
             public const uint MBGHIIGOEAD = 0x1061d650; // private void MBGHIIGOEAD()
+            /// <summary>ECPELFANAFB(VoxelBattleMapData BGALIFJNDNF)</summary>
             public const uint ECPELFANAFB = 0x10512a00; // private void ECPELFANAFB(VoxelBattleMapData BGALIFJNDNF)
+            /// <summary>CEEFNEHOKND() -> string</summary>
             public const uint CEEFNEHOKND = 0x1061d7d0; // private static string CEEFNEHOKND()
+            /// <summary>LFBNMGFEMCO() -> VoxelBattleMap</summary>
             public const uint LFBNMGFEMCO = 0x1061f690; // public static VoxelBattleMap LFBNMGFEMCO()
+            /// <summary>AOAFONGCOLF() -> bool</summary>
             public const uint AOAFONGCOLF = 0x101ae7c0; // public bool AOAFONGCOLF()
             public const uint DDPLJJIKKAE = 0x1061e050; // private void DDPLJJIKKAE()
+            /// <summary>GEBALDEFKLH() -> int</summary>
             public const uint GEBALDEFKLH = 0x1061e040; // private static int GEBALDEFKLH()
+            /// <summary>PCGLKBAJOHM(string GMKCJFDLLNP) -> bool</summary>
             public const uint PCGLKBAJOHM = 0x10620850; // public bool PCGLKBAJOHM(string GMKCJFDLLNP)
+            /// <summary>DHDIHKGJDEK() -> string</summary>
             public const uint DHDIHKGJDEK = 0x1061e170; // public static string DHDIHKGJDEK()
+            /// <summary>OLCMMDPHBJP() -> int</summary>
             public const uint OLCMMDPHBJP = 0x1061d6d0; // private static int OLCMMDPHBJP()
+            /// <summary>DIAJPAGLNNI(VoxelBattleMapData BGALIFJNDNF)</summary>
             public const uint DIAJPAGLNNI = 0x10512a00; // private void DIAJPAGLNNI(VoxelBattleMapData BGALIFJNDNF)
+            /// <summary>AGPAAAMIJCN(VoxelBattleMap BGALIFJNDNF)</summary>
             public const uint AGPAAAMIJCN = 0x1061d3d0; // private static void AGPAAAMIJCN(VoxelBattleMap BGALIFJNDNF)
             public const uint Awake = 0x1061d650; // private void Awake()
+            /// <summary>BPIJADCBNIK() -> string</summary>
             public const uint BPIJADCBNIK = 0x1061d760; // public static string BPIJADCBNIK()
+            /// <summary>KFCNAJBPHEK() -> bool</summary>
             public const uint KFCNAJBPHEK = 0x101ae7c0; // public bool KFCNAJBPHEK()
+            /// <summary>PKJEAGNHGBM(VoxelBattleMap BGALIFJNDNF)</summary>
             public const uint PKJEAGNHGBM = 0x106215a0; // private static void PKJEAGNHGBM(VoxelBattleMap BGALIFJNDNF)
+            /// <summary>HNBOKBJPLKC() -> VoxelBattleMap</summary>
             public const uint HNBOKBJPLKC = 0x1061f100; // public static VoxelBattleMap HNBOKBJPLKC()
             public const uint OMFDIBAPIIA = 0x106207a0; // private void OMFDIBAPIIA()
+            /// <summary>Save(string GMKCJFDLLNP) -> bool</summary>
             public const uint Save = 0x106215e0; // public bool Save(string GMKCJFDLLNP)
+            /// <summary>MNAOBAEIHKE(VoxelBattleMap BGALIFJNDNF)</summary>
             public const uint MNAOBAEIHKE = 0x1061fea0; // private static void MNAOBAEIHKE(VoxelBattleMap BGALIFJNDNF)
+            /// <summary>JGIMOKDCKGD() -> VoxelBattleMapData</summary>
             public const uint JGIMOKDCKGD = 0x10512440; // public VoxelBattleMapData JGIMOKDCKGD()
+            /// <summary>AAKAHANLFCK() -> string</summary>
             public const uint AAKAHANLFCK = 0x1061d3a0; // private static string AAKAHANLFCK()
+            /// <summary>OLLMGKLDEMH(string GMKCJFDLLNP) -> IEnumerator</summary>
             public const uint OLLMGKLDEMH = 0x10620700; // public IEnumerator OLLMGKLDEMH(string GMKCJFDLLNP)
+            /// <summary>get_Loaded() -> bool</summary>
             public const uint get_Loaded = 0x101ae7c0; // public bool get_Loaded()
+            /// <summary>OPJKJKGEBME(string AKGNEFCOKGH) -> string</summary>
             public const uint OPJKJKGEBME = 0x106207e0; // public static string OPJKJKGEBME(string AKGNEFCOKGH)
+            /// <summary>CEFHMBFCCBC(string GMKCJFDLLNP) -> bool</summary>
             public const uint CEFHMBFCCBC = 0x1061d800; // public bool CEFHMBFCCBC(string GMKCJFDLLNP)
             public const uint MEPIIBCIDBG = 0x1061d5e0; // private void MEPIIBCIDBG()
+            /// <summary>JLFALLFIGGJ() -> bool</summary>
             public const uint JLFALLFIGGJ = 0x101ae7c0; // public bool JLFALLFIGGJ()
+            /// <summary>PALNPBABBAO(VoxelBattleMapData BGALIFJNDNF)</summary>
             public const uint PALNPBABBAO = 0x10512a00; // private void PALNPBABBAO(VoxelBattleMapData BGALIFJNDNF)
+            /// <summary>IFAJBIABABO() -> string</summary>
             public const uint IFAJBIABABO = 0x1061f1a0; // private static string IFAJBIABABO()
+            /// <summary>PGHMFONPAHA() -> VoxelBattleMapData</summary>
             public const uint PGHMFONPAHA = 0x10512440; // public VoxelBattleMapData PGHMFONPAHA()
+            /// <summary>OLMIHEDMCJE() -> string</summary>
             public const uint OLMIHEDMCJE = 0x10620770; // private static string OLMIHEDMCJE()
+            /// <summary>PAIDPDCJBBI(bool BGALIFJNDNF)</summary>
             public const uint PAIDPDCJBBI = 0x1061d750; // private void PAIDPDCJBBI(bool BGALIFJNDNF)
+            /// <summary>OGDFGAHODMA() -> string</summary>
             public const uint OGDFGAHODMA = 0x10620690; // public static string OGDFGAHODMA()
             public const uint GFAOIEGNKPA = 0x1061e050; // private void GFAOIEGNKPA()
+            /// <summary>DIPFFHPHLHP(bool BGALIFJNDNF)</summary>
             public const uint DIPFFHPHLHP = 0x1061d750; // private void DIPFFHPHLHP(bool BGALIFJNDNF)
+            /// <summary>OLGCPJNDEPF() -> VoxelBattleMap</summary>
             public const uint OLGCPJNDEPF = 0x106206d0; // public static VoxelBattleMap OLGCPJNDEPF()
+            /// <summary>get_MapData() -> VoxelBattleMapData</summary>
             public const uint get_MapData = 0x10512440; // public VoxelBattleMapData get_MapData()
+            /// <summary>IDHCJBIOAKH(string GMKCJFDLLNP) -> IEnumerator</summary>
             public const uint IDHCJBIOAKH = 0x1061f130; // public IEnumerator IDHCJBIOAKH(string GMKCJFDLLNP)
+            /// <summary>DAALNPAHDEC(string GMKCJFDLLNP) -> IEnumerator</summary>
             public const uint DAALNPAHDEC = 0x1061dfd0; // public IEnumerator DAALNPAHDEC(string GMKCJFDLLNP)
+            /// <summary>APLOAPHLLNF() -> string</summary>
             public const uint APLOAPHLLNF = 0x1061d620; // private static string APLOAPHLLNF()
+            /// <summary>JCIOLJAFKKD(string GMKCJFDLLNP) -> IEnumerator</summary>
             public const uint JCIOLJAFKKD = 0x1061f330; // public IEnumerator JCIOLJAFKKD(string GMKCJFDLLNP)
+            /// <summary>DJILEFKKBLO(VoxelBattleMapData BGALIFJNDNF)</summary>
             public const uint DJILEFKKBLO = 0x10512a00; // private void DJILEFKKBLO(VoxelBattleMapData BGALIFJNDNF)
+            /// <summary>KPAPMDCECBL(bool BGALIFJNDNF)</summary>
             public const uint KPAPMDCECBL = 0x1061d750; // private void KPAPMDCECBL(bool BGALIFJNDNF)
+            /// <summary>KCACMEJDMBM(VoxelBattleMapData BGALIFJNDNF)</summary>
             public const uint KCACMEJDMBM = 0x10512a00; // private void KCACMEJDMBM(VoxelBattleMapData BGALIFJNDNF)
+            /// <summary>LFOAOFBGPJH() -> string</summary>
             public const uint LFOAOFBGPJH = 0x1061f6c0; // public static string LFOAOFBGPJH()
+            /// <summary>FBMKKAEFPFA(string AKGNEFCOKGH, int HFJEKLBDBBN, int KCDGKAPOEJI, int GJJGJJMLKJI)</summary>
             public const uint FBMKKAEFPFA = 0x1061e900; // public void FBMKKAEFPFA(string AKGNEFCOKGH, int HFJEKLBDBBN, int KCDGKAPOEJI, int GJJGJJMLKJI)
+            /// <summary>CICDDPJPIEM(string GMKCJFDLLNP) -> IEnumerator</summary>
             public const uint CICDDPJPIEM = 0x1061def0; // public IEnumerator CICDDPJPIEM(string GMKCJFDLLNP)
+            /// <summary>DIACELFOAMD() -> bool</summary>
             public const uint DIACELFOAMD = 0x101ae7c0; // public bool DIACELFOAMD()
+            /// <summary>EICDFCPPADG(VoxelBattleMap BGALIFJNDNF)</summary>
             public const uint EICDFCPPADG = 0x1061e290; // private static void EICDFCPPADG(VoxelBattleMap BGALIFJNDNF)
+            /// <summary>JMAAAGECAOB() -> string</summary>
             public const uint JMAAAGECAOB = 0x1061f4c0; // private static string JMAAAGECAOB()
+            /// <summary>CNHNHPLABAN() -> string</summary>
             public const uint CNHNHPLABAN = 0x1061df90; // public static string CNHNHPLABAN()
+            /// <summary>LKHKMENDIII(string GMKCJFDLLNP) -> bool</summary>
             public const uint LKHKMENDIII = 0x1061f700; // public bool LKHKMENDIII(string GMKCJFDLLNP)
+            /// <summary>AACEOFHKIJH() -> VoxelBattleMap</summary>
             public const uint AACEOFHKIJH = 0x1061d370; // public static VoxelBattleMap AACEOFHKIJH()
+            /// <summary>LBGDLPNNGBF() -> int</summary>
             public const uint LBGDLPNNGBF = 0x1061e040; // private static int LBGDLPNNGBF()
+            /// <summary>JAOBPLJAFEH(string AKGNEFCOKGH, int HFJEKLBDBBN, int KCDGKAPOEJI, int GJJGJJMLKJI)</summary>
             public const uint JAOBPLJAFEH = 0x1061f280; // public void JAOBPLJAFEH(string AKGNEFCOKGH, int HFJEKLBDBBN, int KCDGKAPOEJI, int GJJGJJMLKJI)
+            /// <summary>CNNHIPFKCCN() -> bool</summary>
             public const uint CNNHIPFKCCN = 0x101ae7c0; // public bool CNNHIPFKCCN()
+            /// <summary>DEKFIEIEIEC(string GMKCJFDLLNP) -> IEnumerator</summary>
             public const uint DEKFIEIEIEC = 0x1061e100; // public IEnumerator DEKFIEIEIEC(string GMKCJFDLLNP)
+            /// <summary>KFKMOALPONI() -> bool</summary>
             public const uint KFKMOALPONI = 0x101ae7c0; // public bool KFKMOALPONI()
+            /// <summary>ANDCONGLHLG(string AKGNEFCOKGH) -> string</summary>
             public const uint ANDCONGLHLG = 0x1061d570; // public static string ANDCONGLHLG(string AKGNEFCOKGH)
+            /// <summary>JEFBIAJMPCF(string AKGNEFCOKGH, int HFJEKLBDBBN, int KCDGKAPOEJI, int GJJGJJMLKJI)</summary>
             public const uint JEFBIAJMPCF = 0x1061f3a0; // public void JEFBIAJMPCF(string AKGNEFCOKGH, int HFJEKLBDBBN, int KCDGKAPOEJI, int GJJGJJMLKJI)
+            /// <summary>NBOMEDMCOMK(VoxelBattleMapData BGALIFJNDNF)</summary>
             public const uint NBOMEDMCOMK = 0x10512a00; // private void NBOMEDMCOMK(VoxelBattleMapData BGALIFJNDNF)
+            /// <summary>EMMMHDJENHF(string GMKCJFDLLNP) -> bool</summary>
             public const uint EMMMHDJENHF = 0x1061e2d0; // public bool EMMMHDJENHF(string GMKCJFDLLNP)
+            /// <summary>BDCDMOMOHHD() -> bool</summary>
             public const uint BDCDMOMOHHD = 0x101ae7c0; // public bool BDCDMOMOHHD()
+            /// <summary>IJCINEFHDFD(bool BGALIFJNDNF)</summary>
             public const uint IJCINEFHDFD = 0x1061d750; // private void IJCINEFHDFD(bool BGALIFJNDNF)
+            /// <summary>CGNOPOEBNDE(bool BGALIFJNDNF)</summary>
             public const uint CGNOPOEBNDE = 0x1061d750; // private void CGNOPOEBNDE(bool BGALIFJNDNF)
+            /// <summary>DEFJGCBJHMA(string GMKCJFDLLNP) -> IEnumerator</summary>
             public const uint DEFJGCBJHMA = 0x1061e090; // public IEnumerator DEFJGCBJHMA(string GMKCJFDLLNP)
+            /// <summary>get_Instance() -> VoxelBattleMap</summary>
             public const uint get_Instance = 0x10621c40; // public static VoxelBattleMap get_Instance()
-            public const uint _ctor = 0x101a6520; // public void .ctor()
+            public const uint ctor = 0x101a6520; // public void .ctor()
+            /// <summary>ALGBIPDGLHL(VoxelBattleMapData BGALIFJNDNF)</summary>
             public const uint ALGBIPDGLHL = 0x10512a00; // private void ALGBIPDGLHL(VoxelBattleMapData BGALIFJNDNF)
+            /// <summary>PFLPLANMJPP(string GMKCJFDLLNP) -> bool</summary>
             public const uint PFLPLANMJPP = 0x10620ea0; // public bool PFLPLANMJPP(string GMKCJFDLLNP)
+            /// <summary>get_MapsDirectory() -> string</summary>
             public const uint get_MapsDirectory = 0x10621c70; // public static string get_MapsDirectory()
+            /// <summary>KACPLKJODAA(string AKGNEFCOKGH, int HFJEKLBDBBN, int KCDGKAPOEJI, int GJJGJJMLKJI)</summary>
             public const uint KACPLKJODAA = 0x1061f4f0; // public void KACPLKJODAA(string AKGNEFCOKGH, int HFJEKLBDBBN, int KCDGKAPOEJI, int GJJGJJMLKJI)
             public const uint IIEELBCFAPF = 0x1061e050; // private void IIEELBCFAPF()
+            /// <summary>LGIKENBLHDI() -> bool</summary>
             public const uint LGIKENBLHDI = 0x101ae7c0; // public bool LGIKENBLHDI()
+            /// <summary>GetMapPath(string AKGNEFCOKGH) -> string</summary>
             public const uint GetMapPath = 0x1061ea20; // public static string GetMapPath(string AKGNEFCOKGH)
+            /// <summary>BBGABAIBHBA() -> string</summary>
             public const uint BBGABAIBHBA = 0x1061d690; // public static string BBGABAIBHBA()
+            /// <summary>OCJFKNNPECN(VoxelBattleMapData BGALIFJNDNF)</summary>
             public const uint OCJFKNNPECN = 0x10512a00; // private void OCJFKNNPECN(VoxelBattleMapData BGALIFJNDNF)
+            /// <summary>AIMFKLBNCPA() -> string</summary>
             public const uint AIMFKLBNCPA = 0x1061d410; // public static string AIMFKLBNCPA()
             public const uint AMBIJGINIMF = 0x1061d4c0; // private void AMBIJGINIMF()
+            /// <summary>EPLEIGLBKJB() -> bool</summary>
             public const uint EPLEIGLBKJB = 0x101ae7c0; // public bool EPLEIGLBKJB()
+            /// <summary>IMBPPFPGLJA(VoxelBattleMapData BGALIFJNDNF)</summary>
             public const uint IMBPPFPGLJA = 0x10512a00; // private void IMBPPFPGLJA(VoxelBattleMapData BGALIFJNDNF)
+            /// <summary>DMEFMCLAKNK(string AKGNEFCOKGH) -> string</summary>
             public const uint DMEFMCLAKNK = 0x1061e1b0; // public static string DMEFMCLAKNK(string AKGNEFCOKGH)
+            /// <summary>LPCFFIFFFBC() -> string</summary>
             public const uint LPCFFIFFFBC = 0x1061fd90; // private static string LPCFFIFFFBC()
+            /// <summary>BIDDLJJNBJH() -> int</summary>
             public const uint BIDDLJJNBJH = 0x1061d6d0; // private static int BIDDLJJNBJH()
+            /// <summary>AKCCGLDIFLD(string GMKCJFDLLNP) -> IEnumerator</summary>
             public const uint AKCCGLDIFLD = 0x1061d450; // public IEnumerator AKCCGLDIFLD(string GMKCJFDLLNP)
+            /// <summary>BPFKHGLFFOA(bool BGALIFJNDNF)</summary>
             public const uint BPFKHGLFFOA = 0x1061d750; // private void BPFKHGLFFOA(bool BGALIFJNDNF)
+            /// <summary>FDHNLPOEENK(VoxelBattleMap BGALIFJNDNF)</summary>
             public const uint FDHNLPOEENK = 0x1061e9b0; // private static void FDHNLPOEENK(VoxelBattleMap BGALIFJNDNF)
+            /// <summary>MJJOONKDIKC() -> VoxelBattleMap</summary>
             public const uint MJJOONKDIKC = 0x1061fe70; // public static VoxelBattleMap MJJOONKDIKC()
+            /// <summary>JAGJFGHFNCO(string AKGNEFCOKGH) -> string</summary>
             public const uint JAGJFGHFNCO = 0x1061d6e0; // public static string JAGJFGHFNCO(string AKGNEFCOKGH)
+            /// <summary>BLMGCMCBFAI(string AKGNEFCOKGH) -> string</summary>
             public const uint BLMGCMCBFAI = 0x1061d6e0; // public static string BLMGCMCBFAI(string AKGNEFCOKGH)
+            /// <summary>OBECHCDFHEA() -> VoxelBattleMapData</summary>
             public const uint OBECHCDFHEA = 0x10512440; // public VoxelBattleMapData OBECHCDFHEA()
+            /// <summary>PGFDDCLDHMM(string GMKCJFDLLNP) -> IEnumerator</summary>
             public const uint PGFDDCLDHMM = 0x10621500; // public IEnumerator PGFDDCLDHMM(string GMKCJFDLLNP)
+            /// <summary>IGMJAKPMFCD(string AKGNEFCOKGH, int HFJEKLBDBBN, int KCDGKAPOEJI, int GJJGJJMLKJI)</summary>
             public const uint IGMJAKPMFCD = 0x1061f1d0; // public void IGMJAKPMFCD(string AKGNEFCOKGH, int HFJEKLBDBBN, int KCDGKAPOEJI, int GJJGJJMLKJI)
+            /// <summary>FCOEFDOPPLI() -> bool</summary>
             public const uint FCOEFDOPPLI = 0x101ae7c0; // public bool FCOEFDOPPLI()
             public const uint IELAJFHJJDH = 0x1061e050; // private void IELAJFHJJDH()
+            /// <summary>EACDAAADELK() -> VoxelBattleMapData</summary>
             public const uint EACDAAADELK = 0x10512440; // public VoxelBattleMapData EACDAAADELK()
+            /// <summary>PJLAKLOGCDL() -> VoxelBattleMap</summary>
             public const uint PJLAKLOGCDL = 0x10621570; // public static VoxelBattleMap PJLAKLOGCDL()
         }
     }

@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class DropClient
     {
+        public const int TypeDefIndex = 508;
+        public const string OriginalName = "DropClient";
+
         /// <summary>
         /// Field and static-field offsets for DropClient.
         /// </summary>
@@ -27,6 +30,7 @@ namespace BlockpostTrainer.Sdk.Raw
             public const uint FKODEBCKGHD = 0x101a4700; // private void FKODEBCKGHD()
             public const uint CLABIMGCMDJ = 0x10ccbd90; // private void CLABIMGCMDJ()
             public const uint CJHMCIBNECN = 0x101a4700; // private void CJHMCIBNECN()
+            /// <summary>IBEIONBBGDO(string HAICPLNLBAI, int DKAOEDOFCOD)</summary>
             public const uint IBEIONBBGDO = 0x10cccb80; // internal void IBEIONBBGDO(string HAICPLNLBAI, int DKAOEDOFCOD)
             public const uint GJDDNOJJJBN = 0x101a4700; // private void GJDDNOJJJBN()
             public const uint HGEGNJOPLNG = 0x10cccdb0; // internal void HGEGNJOPLNG()
@@ -45,17 +49,19 @@ namespace BlockpostTrainer.Sdk.Raw
             public const uint OBAMGHGNEAO = 0x10cce000; // private void OBAMGHGNEAO()
             public const uint KPIJNDADJJO = 0x101a4700; // private void KPIJNDADJJO()
             public const uint ICEMGMEOGLA = 0x10ccce70; // private void ICEMGMEOGLA()
+            /// <summary>MNHGLMAEFOD(string HAICPLNLBAI, int DKAOEDOFCOD)</summary>
             public const uint MNHGLMAEFOD = 0x10cccb80; // internal void MNHGLMAEFOD(string HAICPLNLBAI, int DKAOEDOFCOD)
             public const uint BCNGPDEFHHN = 0x10ccc260; // private void BCNGPDEFHHN()
             public const uint KFDIMOLPPNH = 0x101a4700; // private void KFDIMOLPPNH()
             public const uint DOIECFEMHNB = 0x101a4700; // private void DOIECFEMHNB()
             public const uint OLOLEPGJOBM = 0x101a4700; // private void OLOLEPGJOBM()
             public const uint BLDBNPPDDGH = 0x10ccc500; // private void BLDBNPPDDGH()
+            /// <summary>GBNHPLJOMAJ() -> bool</summary>
             public const uint GBNHPLJOMAJ = 0x10ccc960; // internal bool GBNHPLJOMAJ()
             public const uint JGEABHKOHGC = 0x10ccd3c0; // private void JGEABHKOHGC()
             public const uint FAHPGPPLIBD = 0x10ccc230; // internal void FAHPGPPLIBD()
             public const uint OnApplicationQuit = 0x10a98620; // private void OnApplicationQuit()
-            public const uint _ctor = 0x101a6520; // public void .ctor()
+            public const uint ctor = 0x101a6520; // public void .ctor()
             public const uint ALNBHPCGNLM = 0x10ccbeb0; // private void ALNBHPCGNLM()
             public const uint PKBFCPNPBDL = 0x101a4700; // private void PKBFCPNPBDL()
             public const uint BKONJBLCGHB = 0x10ccc480; // private void BKONJBLCGHB()
@@ -71,6 +77,7 @@ namespace BlockpostTrainer.Sdk.Raw
             public const uint KNPPMCGAJJC = 0x10cccaf0; // internal void KNPPMCGAJJC()
             public const uint IHHMLDJJOJA = 0x10ccd060; // private void IHHMLDJJOJA()
             public const uint NANFFLIINAN = 0x101a4700; // private void NANFFLIINAN()
+            /// <summary>EDPHBPAHIDC(string HAICPLNLBAI, int DKAOEDOFCOD)</summary>
             public const uint EDPHBPAHIDC = 0x10cccb80; // internal void EDPHBPAHIDC(string HAICPLNLBAI, int DKAOEDOFCOD)
             public const uint JDHILFKGHCF = 0x101a4700; // private void JDHILFKGHCF()
             public const uint LMDEDHEOGEM = 0x10ccd8c0; // internal void LMDEDHEOGEM()
@@ -80,14 +87,19 @@ namespace BlockpostTrainer.Sdk.Raw
             public const uint LGGCBIFNAAI = 0x10ccbff0; // private void LGGCBIFNAAI()
             public const uint AAHBKPBHALE = 0x10ccbd60; // internal void AAHBKPBHALE()
             public const uint Start = 0x10cce3c0; // private void Start()
+            /// <summary>AFPJMLOCHKN() -> bool</summary>
             public const uint AFPJMLOCHKN = 0x10ccbea0; // internal bool AFPJMLOCHKN()
             public const uint CDIKGDLEPCJ = 0x10ccc7e0; // private void CDIKGDLEPCJ()
+            /// <summary>POGDOHPHEMM() -> bool</summary>
             public const uint POGDOHPHEMM = 0x10ccc960; // internal bool POGDOHPHEMM()
+            /// <summary>CICMKBGDBOA() -> bool</summary>
             public const uint CICMKBGDBOA = 0x10ccc960; // internal bool CICMKBGDBOA()
             public const uint BDCEDBJBPGM = 0x10ccc450; // internal void BDCEDBJBPGM()
             public const uint BAOFPCFPLOO = 0x10ccc230; // internal void BAOFPCFPLOO()
+            /// <summary>GLCJFMCGIGA() -> bool</summary>
             public const uint GLCJFMCGIGA = 0x10ccbea0; // internal bool GLCJFMCGIGA()
             public const uint Awake = 0x10ccc040; // private void Awake()
+            /// <summary>PPJLKJKHFGB() -> bool</summary>
             public const uint PPJLKJKHFGB = 0x10ccc960; // internal bool PPJLKJKHFGB()
             public const uint JPBBDDLIDNM = 0x10cccaf0; // internal void JPBBDDLIDNM()
             public const uint HABDCMGOOPO = 0x101a4700; // private void HABDCMGOOPO()
@@ -96,6 +108,7 @@ namespace BlockpostTrainer.Sdk.Raw
             public const uint JBGNLMCADKN = 0x10ccd120; // internal void JBGNLMCADKN()
             public const uint AKDIIEBLIOG = 0x101a4700; // private void AKDIIEBLIOG()
             public const uint MOLCAPOIHKG = 0x10ccddb0; // internal void MOLCAPOIHKG()
+            /// <summary>KPDOIEPJPLE(string HAICPLNLBAI, int DKAOEDOFCOD)</summary>
             public const uint KPDOIEPJPLE = 0x10cccb80; // internal void KPDOIEPJPLE(string HAICPLNLBAI, int DKAOEDOFCOD)
             public const uint FJFOPJAGGEB = 0x10ccbeb0; // private void FJFOPJAGGEB()
             public const uint FDPDKHJIJEA = 0x101a4700; // private void FDPDKHJIJEA()
@@ -116,13 +129,16 @@ namespace BlockpostTrainer.Sdk.Raw
             public const uint HEODPOMCGMA = 0x101a4700; // private void HEODPOMCGMA()
             public const uint DHDKOMLOAGM = 0x101a4700; // private void DHDKOMLOAGM()
             public const uint AIPHBCEBLBC = 0x101a4700; // private void AIPHBCEBLBC()
+            /// <summary>NKNNGACFBKN() -> bool</summary>
             public const uint NKNNGACFBKN = 0x10ccbea0; // internal bool NKNNGACFBKN()
             public const uint PMJNPHOFOJC = 0x10cce390; // internal void PMJNPHOFOJC()
             public const uint OABAKHIKLNK = 0x10ccbd60; // internal void OABAKHIKLNK()
             public const uint AKPIJLOBJPD = 0x10ccbeb0; // private void AKPIJLOBJPD()
             public const uint KNHHKDNAHKM = 0x10ccc230; // internal void KNHHKDNAHKM()
+            /// <summary>POJBGMGCNEC() -> bool</summary>
             public const uint POJBGMGCNEC = 0x10ccc960; // internal bool POJBGMGCNEC()
             public const uint AMMPHACEKOL = 0x10ccbf00; // private void AMMPHACEKOL()
+            /// <summary>DCFDGEELEGF() -> bool</summary>
             public const uint DCFDGEELEGF = 0x10ccbea0; // internal bool DCFDGEELEGF()
             public const uint LFKEJMHHFCI = 0x10ccd670; // internal void LFKEJMHHFCI()
             public const uint OnDestroy = 0x10cce260; // private void OnDestroy()
@@ -148,6 +164,7 @@ namespace BlockpostTrainer.Sdk.Raw
             public const uint AIDBPMDAFPI = 0x101a4700; // private void AIDBPMDAFPI()
             public const uint BLOHAKKEIFB = 0x10ccc5c0; // internal void BLOHAKKEIFB()
             public const uint EIENIHCNAGI = 0x10ccbd60; // internal void EIENIHCNAGI()
+            /// <summary>CLFFLKHIEOF() -> bool</summary>
             public const uint CLFFLKHIEOF = 0x10ccbea0; // internal bool CLFFLKHIEOF()
             public const uint PHKDHCAGBPA = 0x10ccd970; // internal void PHKDHCAGBPA()
             public const uint FCCFPEBKGLE = 0x101a4700; // private void FCCFPEBKGLE()

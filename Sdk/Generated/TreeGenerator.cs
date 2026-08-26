@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class TreeGenerator
     {
+        public const int TypeDefIndex = 381;
+        public const string OriginalName = "TreeGenerator";
+
         /// <summary>
         /// Field and static-field offsets for TreeGenerator.
         /// </summary>
@@ -16,7 +19,7 @@ namespace BlockpostTrainer.Sdk.Raw
         /// </summary>
         public static class Methods
         {
-            public const uint _ctor = 0x101a6520; // public void .ctor()
+            public const uint ctor = 0x101a6520; // public void .ctor()
         }
     }
 }

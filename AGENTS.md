@@ -6,8 +6,41 @@
 - BepInEx log: `C:\Steam\steamapps\common\BLOCKPOST\BepInEx\LogOutput.log`
 - Diagnostics: `C:\Steam\steamapps\common\BLOCKPOST\BepInEx\captures\diag-*.log`
 - Config: `C:\Steam\steamapps\common\BLOCKPOST\BepInEx\plugins\BlockpostTrainer.cfg`
-- SDK aliases: `Tools/sdk_aliases.json` → regenerate with `python Tools/generate_sdk.py`
+- Full SDK regeneration: `python Tools/build_sdk.py`
+- SDK aliases: `Tools/sdk_aliases.json` → regenerate with `python Tools/build_sdk.py` or `python Tools/generate_sdk.py`
+- Verify SDK: `python Tools/verify_sdk.py`
+- Search classes: `python Tools/sdk_search.py ClassName`
 - Dump file: `.tools/Il2CppDumper/dump.cs` (~240k lines)
+
+## RE Tooling (Tools/)
+- `dump_analyzer.py` — Parse dump.cs into `analysis/type_database.json` (5360 types, 43010 methods, 27516 fields)
+- `build_sdk.py` — Full pipeline: dump_analyzer → add_aliases → auto_alias → generate_sdk → dotnet build
+- `generate_sdk.py` — Generate C# SDK from dump + aliases
+- `add_aliases.py` — Merge high-confidence curated overrides into sdk_aliases.json
+- `auto_alias.py` — Auto-generate aliases for all 202 TARGET_CLASSES + every referenced type
+- `prune_aliases.py` — Remove stale alias targets that don't resolve in the generated SDK
+- `verify_sdk.py` — Validate generated SDK resolves every alias and check for duplicate human names
+- `sdk_search.py ClassName` — Search the type database and alias map
+- `inspect_class.py ClassName` — Inspect a specific class in detail
+- `deep_analysis.py` — Find cheat target candidates (ammo, network, speed, fly, noclip, ESP, chams, triggerbot)
+- `extract_strings.py` — Extract string literals (URLs, PlayerPrefs keys, field descriptions)
+- `map_net.py` — Map NET protocol primitives by signature analysis
+- `find_readable.py` — Find classes with readable (non-obfuscated) field names
+
+## RE Documentation
+- `PROTOCOL.md` — Network protocol, opcodes, transport layer (40KB, detailed)
+- `AMMO_ANALYSIS.md` — Deep ammo field analysis with implementation strategies
+- `CLASS_MAP.md` — Comprehensive class map (all important classes, fields, methods)
+- `BACKLOG.md` — Feature backlog and TODO
+- `HANDOFF.md` — Session handoff notes
+
+## SDK Statistics
+- Aliased classes: 278 (202 target + all referenced types)
+- Field aliases: 3,971
+- Method aliases: 12,570
+- Property aliases: 411
+- Generated SDK files: 280 (278 classes + Aliases.cs + SdkIndex.cs)
+- Build: 0 errors, 5 warnings (2 pre-existing NuGet, 2 KeyCode `Equals` member hiding, 1 duplicate using)
 
 ## Key Classes (Obfuscated → Human)
 | Obfuscated | Human | TypeDefIndex | Purpose |
@@ -18,13 +51,18 @@
 | PLH | Weapon | 420 | Weapon system (fire, reload, skins) |
 | Client | Network | 425 | Game server TCP client |
 | MasterClient | MasterServer | 423 | Master server TCP client |
-| NET | Net | - | Packet building primitives (F32, I32, U8, etc.) |
-| DMHBMAAFCFJ | Hit | - | Hit data (targetId, bodyPart, point) |
-| NAHLLMJMOED | WeaponData | - | Weapon definition (damage, fireRate, magSize) |
-| FPNENMKEFBB | LoadoutEntry | - | Loadout slot entry |
+| NET | Net | 348 | Packet building primitives (F32, I32, U8, etc.) |
+| DMHBMAAFCFJ | Hit | 293 | Hit data (targetId, bodyPart, point) |
+| NAHLLMJMOED | WeaponData | ~290 | Weapon definition (damage, fireRate, magSize) |
+| FPNENMKEFBB | LoadoutEntry | ~75 | Loadout slot entry |
 | Movement | Movement | 2 | Movement physics (MoveGround, MoveAir, Accelerate) |
+| MouseLook | MouseLook | ~45 | Camera look controller (sensitivity, clamps) |
+| UIAmmo | AmmoDisplay | - | HUD ammo display (_ammo, _backpack Text fields) |
+| GUIOptions | Settings | - | Key bindings, player settings (goldmine class) |
 | HUD | HUD | 101 | HUD rendering |
 | GUIInv | Inventory | - | Inventory UI |
+| FreeFlyCamera | FreeFlyCamera | ~130 | Free-fly/spectator camera |
+| MChar | CharacterModel | - | Character model (for chams) |
 
 ## Controll Class - Key Fields
 | Field | Offset | Type | Purpose |
@@ -92,6 +130,39 @@
 | speed | 64 | Sprint input |
 | aim | 128 | Aim/ADS input |
 
+## Movement Class - Static Speed Fields
+| Field | Offset | Type | Purpose |
+|-------|--------|------|---------|
+| GBHJLHFPCHK | 0x0 | float | Move speed constant (speed hack target) |
+| BOKNCBLLHED | 0x4 | float | Sprint speed constant (speed hack target) |
+| MBBPFKGLEHN | 0x8 | float | Ground accel constant |
+| PBIMHJCFMMK | 0xC | float | Air accel constant |
+| OFKFIJICIIP | 0x10 | float | Friction constant |
+
+Key methods: Accelerate(vel, wishDir, accel, maxSpeed), MoveGround(vel, wishDir), MoveAir(vel, wishDir)
+
+## MouseLook Class - Key Fields
+| Field | Offset | Type | Purpose |
+|-------|--------|------|---------|
+| active | 0xC | bool | Look active flag |
+| sensitivityX | 0x14 | float | X sensitivity (aimbot smoothing) |
+| sensitivityY | 0x18 | float | Y sensitivity (aimbot smoothing) |
+| minimumX | 0x1C | float | Min X angle |
+| maximumX | 0x20 | float | Max X angle |
+| minimumY | 0x24 | float | Min Y angle |
+| maximumY | 0x28 | float | Max Y angle |
+| EPDMPLDKCDK | 0x48 | Quaternion | Rotation (silent aim target) |
+
+## UIAmmo Class - Display Fields
+| Field | Offset | Type | Purpose |
+|-------|--------|------|---------|
+| _ammo | 0x10 | Text | Magazine ammo display |
+| _backpack | 0x14 | Text | Reserve ammo display |
+| _reloadGO | 0x28 | GameObject | Reload indicator |
+| _reloadingProgress | 0x2C | Image | Reload progress bar |
+
+Key method: PFBJDHPMIJP(int ammo, int reserve) — Update both ammo displays
+
 ## Network Protocol
 - TCP-based, custom binary protocol
 - NET class provides primitives: Begin, F32, I32, U8, I16, End, string read/write
@@ -118,13 +189,13 @@
 | Ghost bullets | In progress | NetProbe.TryFakeHit (bypasses fire logic) |
 
 ## TODO Features (Prioritized)
-1. **Infinite ammo** — Need to confirm which field is ammo (FGGKANNFBDH or PELNEJDOBKH)
-2. **Speed hack** — Time.timeScale or modify BNHEPNNOAIK (movement speed)
-3. **Fly hack** — Set Rigidbody.useGravity=false, add upward force
-4. **No clip** — Disable colliders or CharacterController.detectCollisions
-5. **Third person** — Move camera behind player
-6. **Chams** — Material override on player models
-7. **Triggerbot** — Auto-fire when crosshair on enemy (raycast check)
+1. **Infinite ammo** — Controll.FGGKANNFBDH (0xC0) = ammo in mag, Player.GDEMINMDJAC (0xA8) = ammo per slot array. See AMMO_ANALYSIS.md for 3 implementation strategies.
+2. **Speed hack** — Modify Movement.GBHJLHFPCHK (move speed) and Movement.BOKNCBLLHED (sprint speed) static fields
+3. **Fly hack** — Hook Movement.MoveGround/MoveAir to add vertical velocity, or set Player.MJPOJOOIPPN.useGravity=false
+4. **No clip** — Hook Movement.MoveGround to ignore collision checks, or disable player colliders
+5. **Third person** — Move camera behind player (FreeFlyCamera has settings for this)
+6. **Chams** — Material override on player models (MChar/MCharAnimator classes)
+7. **Triggerbot** — Auto-fire when crosshair on enemy (raycast check + PLH.CDEGJOBLOFO call)
 
 ## Auto-shoot Architecture
 - Prefix: Reset autoShootPending=false → run aimbot → if target found, set autoShootPending=true

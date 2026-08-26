@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class ParticleManager
     {
+        public const int TypeDefIndex = 93;
+        public const string OriginalName = "ParticleManager";
+
         /// <summary>
         /// Field and static-field offsets for ParticleManager.
         /// </summary>
@@ -42,7 +45,7 @@ namespace BlockpostTrainer.Sdk.Raw
             public const uint NIFALMIAJCA = 0x1038b100; // public void NIFALMIAJCA()
             public const uint HFEDNJBMHHL = 0x10387ea0; // public void HFEDNJBMHHL()
             public const uint NJCJHFMKOBF = 0x1038b210; // public void NJCJHFMKOBF()
-            public const uint _ctor = 0x101a6520; // public void .ctor()
+            public const uint ctor = 0x101a6520; // public void .ctor()
             public const uint JCFFBKGMLNH = 0x10388b80; // private void JCFFBKGMLNH()
             public const uint AOHFBHBIFIC = 0x10384c60; // private void AOHFBHBIFIC()
             public const uint AFKCAGJEGEH = 0x10384a30; // public void AFKCAGJEGEH()

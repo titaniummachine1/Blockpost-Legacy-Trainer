@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class HOONFDNBMIM
     {
+        public const int TypeDefIndex = 5;
+        public const string OriginalName = "HOONFDNBMIM";
+
         /// <summary>
         /// Field and static-field offsets for HOONFDNBMIM.
         /// </summary>
@@ -29,7 +32,8 @@ namespace BlockpostTrainer.Sdk.Raw
         /// </summary>
         public static class Methods
         {
-            public const uint _ctor = 0x102ae950; // internal void .ctor(int MKNLEJNHOPF, string DHJBGJHALAL, int CNHNFDDJMJO, int BKBBOCKFAIB, int CNKGNPAGOJJ)
+            /// <summary>.ctor(int MKNLEJNHOPF, string DHJBGJHALAL, int CNHNFDDJMJO, int BKBBOCKFAIB, int CNKGNPAGOJJ)</summary>
+            public const uint ctor = 0x102ae950; // internal void .ctor(int MKNLEJNHOPF, string DHJBGJHALAL, int CNHNFDDJMJO, int BKBBOCKFAIB, int CNKGNPAGOJJ)
         }
     }
 }

@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class OJGPKMCPJDB
     {
+        public const int TypeDefIndex = 380;
+        public const string OriginalName = "OJGPKMCPJDB";
+
         /// <summary>
         /// Field and static-field offsets for OJGPKMCPJDB.
         /// </summary>
@@ -26,53 +29,100 @@ namespace BlockpostTrainer.Sdk.Raw
         /// </summary>
         public static class Methods
         {
+            /// <summary>NFHNGALOJCL(List<OJGPKMCPJDB> COFIGHILINL)</summary>
             public const uint NFHNGALOJCL = 0x10a3c8c0; // internal static void NFHNGALOJCL(List<OJGPKMCPJDB> COFIGHILINL)
+            /// <summary>LBMANMDIGGA(List<OJGPKMCPJDB> COFIGHILINL)</summary>
             public const uint LBMANMDIGGA = 0x10a3c4b0; // internal static void LBMANMDIGGA(List<OJGPKMCPJDB> COFIGHILINL)
+            /// <summary>PMLNFHBLOPK(List<OJGPKMCPJDB> COFIGHILINL)</summary>
             public const uint PMLNFHBLOPK = 0x10a3ce90; // internal static void PMLNFHBLOPK(List<OJGPKMCPJDB> COFIGHILINL)
+            /// <summary>FIHPNPFLNGA(List<OJGPKMCPJDB> COFIGHILINL)</summary>
             public const uint FIHPNPFLNGA = 0x10a3bc90; // internal static void FIHPNPFLNGA(List<OJGPKMCPJDB> COFIGHILINL)
+            /// <summary>AHPODDKBNBC(List<OJGPKMCPJDB> COFIGHILINL)</summary>
             public const uint AHPODDKBNBC = 0x10a3b200; // internal static void AHPODDKBNBC(List<OJGPKMCPJDB> COFIGHILINL)
+            /// <summary>JNPIGPNAKOC(List<OJGPKMCPJDB> COFIGHILINL)</summary>
             public const uint JNPIGPNAKOC = 0x10a3c250; // internal static void JNPIGPNAKOC(List<OJGPKMCPJDB> COFIGHILINL)
+            /// <summary>DPAAPPPKBKH(List<OJGPKMCPJDB> COFIGHILINL)</summary>
             public const uint DPAAPPPKBKH = 0x10a3bac0; // internal static void DPAAPPPKBKH(List<OJGPKMCPJDB> COFIGHILINL)
+            /// <summary>DJEDKHLLFDK(List<OJGPKMCPJDB> COFIGHILINL)</summary>
             public const uint DJEDKHLLFDK = 0x10a3b9e0; // internal static void DJEDKHLLFDK(List<OJGPKMCPJDB> COFIGHILINL)
+            /// <summary>PBCHHFCAIOK(List<OJGPKMCPJDB> COFIGHILINL)</summary>
             public const uint PBCHHFCAIOK = 0x10a3cc40; // internal static void PBCHHFCAIOK(List<OJGPKMCPJDB> COFIGHILINL)
-            public const uint _ctor = 0x10a3d050; // internal void .ctor(LFLEFDINMDA COEGDOAPEDD, int HHPOIFPPMFC, int LNONBOFJECI, int PKLHINBBMKD)
+            /// <summary>.ctor(LFLEFDINMDA COEGDOAPEDD, int HHPOIFPPMFC, int LNONBOFJECI, int PKLHINBBMKD)</summary>
+            public const uint ctor = 0x10a3d050; // internal void .ctor(LFLEFDINMDA COEGDOAPEDD, int HHPOIFPPMFC, int LNONBOFJECI, int PKLHINBBMKD)
+            /// <summary>BJLJCIBNFKM(List<OJGPKMCPJDB> COFIGHILINL)</summary>
             public const uint BJLJCIBNFKM = 0x10a3b4e0; // internal static void BJLJCIBNFKM(List<OJGPKMCPJDB> COFIGHILINL)
+            /// <summary>NDKBJCGPNLO(List<OJGPKMCPJDB> COFIGHILINL)</summary>
             public const uint NDKBJCGPNLO = 0x10a3c7e0; // internal static void NDKBJCGPNLO(List<OJGPKMCPJDB> COFIGHILINL)
-            public const uint _cctor = 0x10a3cff0; // private static void .cctor()
+            public const uint cctor = 0x10a3cff0; // private static void .cctor()
+            /// <summary>JJAEGFCMLHK(List<OJGPKMCPJDB> COFIGHILINL)</summary>
             public const uint JJAEGFCMLHK = 0x10a3c130; // internal static void JJAEGFCMLHK(List<OJGPKMCPJDB> COFIGHILINL)
+            /// <summary>PPFFBBPENHH(List<OJGPKMCPJDB> COFIGHILINL)</summary>
             public const uint PPFFBBPENHH = 0x10a3cf40; // internal static void PPFFBBPENHH(List<OJGPKMCPJDB> COFIGHILINL)
+            /// <summary>NFMDLDDAIPM(List<OJGPKMCPJDB> COFIGHILINL)</summary>
             public const uint NFMDLDDAIPM = 0x10a3c930; // internal static void NFMDLDDAIPM(List<OJGPKMCPJDB> COFIGHILINL)
+            /// <summary>PFADKJMABBM(List<OJGPKMCPJDB> COFIGHILINL)</summary>
             public const uint PFADKJMABBM = 0x10a3cdb0; // internal static void PFADKJMABBM(List<OJGPKMCPJDB> COFIGHILINL)
+            /// <summary>NAEEEIDIDLD(List<OJGPKMCPJDB> COFIGHILINL)</summary>
             public const uint NAEEEIDIDLD = 0x10a3c770; // internal static void NAEEEIDIDLD(List<OJGPKMCPJDB> COFIGHILINL)
+            /// <summary>MAFLDBIJGPB(List<OJGPKMCPJDB> COFIGHILINL)</summary>
             public const uint MAFLDBIJGPB = 0x10a3c620; // internal static void MAFLDBIJGPB(List<OJGPKMCPJDB> COFIGHILINL)
+            /// <summary>ECLLKPOFOJP(List<OJGPKMCPJDB> COFIGHILINL)</summary>
             public const uint ECLLKPOFOJP = 0x10a3bbb0; // internal static void ECLLKPOFOJP(List<OJGPKMCPJDB> COFIGHILINL)
+            /// <summary>MMBIPCEFKGF(List<OJGPKMCPJDB> COFIGHILINL)</summary>
             public const uint MMBIPCEFKGF = 0x10a3c700; // internal static void MMBIPCEFKGF(List<OJGPKMCPJDB> COFIGHILINL)
+            /// <summary>CDCGNEAPEGC(List<OJGPKMCPJDB> COFIGHILINL)</summary>
             public const uint CDCGNEAPEGC = 0x10a3b590; // internal static void CDCGNEAPEGC(List<OJGPKMCPJDB> COFIGHILINL)
+            /// <summary>NKIONPBBLOF(List<OJGPKMCPJDB> COFIGHILINL)</summary>
             public const uint NKIONPBBLOF = 0x10a3ca30; // internal static void NKIONPBBLOF(List<OJGPKMCPJDB> COFIGHILINL)
+            /// <summary>GNNAFMMPFIM(List<OJGPKMCPJDB> COFIGHILINL)</summary>
             public const uint GNNAFMMPFIM = 0x10a3be60; // internal static void GNNAFMMPFIM(List<OJGPKMCPJDB> COFIGHILINL)
+            /// <summary>ICLHCIJACNA(List<OJGPKMCPJDB> COFIGHILINL)</summary>
             public const uint ICLHCIJACNA = 0x10a3c040; // internal static void ICLHCIJACNA(List<OJGPKMCPJDB> COFIGHILINL)
+            /// <summary>ACCEKNCAMBO(List<OJGPKMCPJDB> COFIGHILINL)</summary>
             public const uint ACCEKNCAMBO = 0x10a3b0b0; // internal static void ACCEKNCAMBO(List<OJGPKMCPJDB> COFIGHILINL)
+            /// <summary>NMLDKCKABJG(List<OJGPKMCPJDB> COFIGHILINL)</summary>
             public const uint NMLDKCKABJG = 0x10a3caf0; // internal static void NMLDKCKABJG(List<OJGPKMCPJDB> COFIGHILINL)
+            /// <summary>KEGHDBLJGMJ(List<OJGPKMCPJDB> COFIGHILINL)</summary>
             public const uint KEGHDBLJGMJ = 0x10a3c350; // internal static void KEGHDBLJGMJ(List<OJGPKMCPJDB> COFIGHILINL)
+            /// <summary>PHBCIOPBKKE(List<OJGPKMCPJDB> COFIGHILINL)</summary>
             public const uint PHBCIOPBKKE = 0x10a3ce20; // internal static void PHBCIOPBKKE(List<OJGPKMCPJDB> COFIGHILINL)
+            /// <summary>KNNGHIFDFBN(List<OJGPKMCPJDB> COFIGHILINL)</summary>
             public const uint KNNGHIFDFBN = 0x10a3c440; // internal static void KNNGHIFDFBN(List<OJGPKMCPJDB> COFIGHILINL)
+            /// <summary>LLKHGNEHLKI(List<OJGPKMCPJDB> COFIGHILINL)</summary>
             public const uint LLKHGNEHLKI = 0x10a3c5b0; // internal static void LLKHGNEHLKI(List<OJGPKMCPJDB> COFIGHILINL)
+            /// <summary>OJFCGPDOIPN(List<OJGPKMCPJDB> COFIGHILINL)</summary>
             public const uint OJFCGPDOIPN = 0x10a3cb60; // internal static void OJFCGPDOIPN(List<OJGPKMCPJDB> COFIGHILINL)
+            /// <summary>ADOIMGHGKPG(List<OJGPKMCPJDB> COFIGHILINL)</summary>
             public const uint ADOIMGHGKPG = 0x10a3b190; // internal static void ADOIMGHGKPG(List<OJGPKMCPJDB> COFIGHILINL)
+            /// <summary>DEPLIGIFFPH(List<OJGPKMCPJDB> COFIGHILINL)</summary>
             public const uint DEPLIGIFFPH = 0x10a3b7f0; // internal static void DEPLIGIFFPH(List<OJGPKMCPJDB> COFIGHILINL)
+            /// <summary>HDCFDKMEDNF(List<OJGPKMCPJDB> COFIGHILINL)</summary>
             public const uint HDCFDKMEDNF = 0x10a3bf50; // internal static void HDCFDKMEDNF(List<OJGPKMCPJDB> COFIGHILINL)
+            /// <summary>BAKALMPPMKI(List<OJGPKMCPJDB> COFIGHILINL)</summary>
             public const uint BAKALMPPMKI = 0x10a3b390; // internal static void BAKALMPPMKI(List<OJGPKMCPJDB> COFIGHILINL)
+            /// <summary>ACCOFIKIFHD(List<OJGPKMCPJDB> COFIGHILINL)</summary>
             public const uint ACCOFIKIFHD = 0x10a3b120; // internal static void ACCOFIKIFHD(List<OJGPKMCPJDB> COFIGHILINL)
+            /// <summary>AMAGIBGFLNB(List<OJGPKMCPJDB> COFIGHILINL)</summary>
             public const uint AMAGIBGFLNB = 0x10a3b2a0; // internal static void AMAGIBGFLNB(List<OJGPKMCPJDB> COFIGHILINL)
+            /// <summary>JLGKFDMMHPD(List<OJGPKMCPJDB> COFIGHILINL)</summary>
             public const uint JLGKFDMMHPD = 0x10a3c1e0; // internal static void JLGKFDMMHPD(List<OJGPKMCPJDB> COFIGHILINL)
+            /// <summary>FNKFLEKCENN(List<OJGPKMCPJDB> COFIGHILINL)</summary>
             public const uint FNKFLEKCENN = 0x10a3bd00; // internal static void FNKFLEKCENN(List<OJGPKMCPJDB> COFIGHILINL)
+            /// <summary>NEFHLAFPLNA(List<OJGPKMCPJDB> COFIGHILINL)</summary>
             public const uint NEFHLAFPLNA = 0x10a3c850; // internal static void NEFHLAFPLNA(List<OJGPKMCPJDB> COFIGHILINL)
+            /// <summary>GCDOBHKJHGN(List<OJGPKMCPJDB> COFIGHILINL)</summary>
             public const uint GCDOBHKJHGN = 0x10a3bd70; // internal static void GCDOBHKJHGN(List<OJGPKMCPJDB> COFIGHILINL)
+            /// <summary>CIFEEFNLKCM(List<OJGPKMCPJDB> COFIGHILINL)</summary>
             public const uint CIFEEFNLKCM = 0x10a3b640; // internal static void CIFEEFNLKCM(List<OJGPKMCPJDB> COFIGHILINL)
+            /// <summary>CIHAFMJNGNH(List<OJGPKMCPJDB> COFIGHILINL)</summary>
             public const uint CIHAFMJNGNH = 0x10a3b700; // internal static void CIHAFMJNGNH(List<OJGPKMCPJDB> COFIGHILINL)
+            /// <summary>EJPLLBFDOFP(List<OJGPKMCPJDB> COFIGHILINL)</summary>
             public const uint EJPLLBFDOFP = 0x10a3bc20; // internal static void EJPLLBFDOFP(List<OJGPKMCPJDB> COFIGHILINL)
+            /// <summary>DHCHCPDBDOC(List<OJGPKMCPJDB> COFIGHILINL)</summary>
             public const uint DHCHCPDBDOC = 0x10a3b8e0; // internal static void DHCHCPDBDOC(List<OJGPKMCPJDB> COFIGHILINL)
+            /// <summary>PCEJFMHBGEO(List<OJGPKMCPJDB> COFIGHILINL)</summary>
             public const uint PCEJFMHBGEO = 0x10a3ccf0; // internal static void PCEJFMHBGEO(List<OJGPKMCPJDB> COFIGHILINL)
+            /// <summary>BEGJJBNCDOK(List<OJGPKMCPJDB> COFIGHILINL)</summary>
             public const uint BEGJJBNCDOK = 0x10a3b400; // internal static void BEGJJBNCDOK(List<OJGPKMCPJDB> COFIGHILINL)
         }
     }

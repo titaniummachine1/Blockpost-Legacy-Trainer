@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class IFGNGLDKNPA
     {
+        public const int TypeDefIndex = 450;
+        public const string OriginalName = "IFGNGLDKNPA";
+
         /// <summary>
         /// Field and static-field offsets for IFGNGLDKNPA.
         /// </summary>
@@ -19,7 +22,8 @@ namespace BlockpostTrainer.Sdk.Raw
         /// </summary>
         public static class Methods
         {
-            public const uint _ctor = 0x10ba4b00; // internal void .ctor(ulong AIEPBAHGMJD, MDADLLEFHKO EJLHFMPHELL)
+            /// <summary>.ctor(ulong AIEPBAHGMJD, MDADLLEFHKO EJLHFMPHELL)</summary>
+            public const uint ctor = 0x10ba4b00; // internal void .ctor(ulong AIEPBAHGMJD, MDADLLEFHKO EJLHFMPHELL)
         }
     }
 }

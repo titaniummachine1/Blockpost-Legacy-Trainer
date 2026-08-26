@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class VoxelAtlas
     {
+        public const int TypeDefIndex = 509;
+        public const string OriginalName = "VoxelAtlas";
+
         /// <summary>
         /// Field and static-field offsets for VoxelAtlas.
         /// </summary>
@@ -42,73 +45,132 @@ namespace BlockpostTrainer.Sdk.Raw
         /// </summary>
         public static class Methods
         {
+            /// <summary>GetUV(int LOCLBKIGKOD, int KCNIGLPGAAE) -> Vector2[]</summary>
             public const uint GetUV = 0x10cdc8b0; // public static Vector2[] GetUV(int LOCLBKIGKOD, int KCNIGLPGAAE)
+            /// <summary>JFGJHHILAMF(ref int KCNIGLPGAAE, ref int LPDHHCJPDFG, ref int JDHPADPJBNB, ref int JLIFLFNBFBI) -> Vector2[]</summary>
             public const uint JFGJHHILAMF = 0x10cdeca0; // public static Vector2[] JFGJHHILAMF(ref int KCNIGLPGAAE, ref int LPDHHCJPDFG, ref int JDHPADPJBNB, ref int JLIFLFNBFBI)
+            /// <summary>KMAGKICFHFD(bool BNJGJOOJCHF)</summary>
             public const uint KMAGKICFHFD = 0x10cdf280; // public static void KMAGKICFHFD(bool BNJGJOOJCHF)
+            /// <summary>LCFPEBIPAKL(int LOCLBKIGKOD, bool HMPBJCONNHB) -> Vector2[]</summary>
             public const uint LCFPEBIPAKL = 0x10cdf6c0; // public static Vector2[] LCFPEBIPAKL(int LOCLBKIGKOD, bool HMPBJCONNHB = False)
+            /// <summary>IHEDCEJMPPP(Texture2D IPFKPJKIFBA, int BBNHJMLOJFH, int GGFPMAACHMC) -> Texture2D</summary>
             public const uint IHEDCEJMPPP = 0x10cdd1d0; // public static Texture2D IHEDCEJMPPP(Texture2D IPFKPJKIFBA, int BBNHJMLOJFH, int GGFPMAACHMC)
+            /// <summary>BNMLEHBEFBL(bool BNJGJOOJCHF)</summary>
             public const uint BNMLEHBEFBL = 0x10cdad00; // public static void BNMLEHBEFBL(bool BNJGJOOJCHF)
+            /// <summary>MKGBIHBHGAF(int LOCLBKIGKOD, bool HMPBJCONNHB) -> Vector2[]</summary>
             public const uint MKGBIHBHGAF = 0x10ce0d30; // public static Vector2[] MKGBIHBHGAF(int LOCLBKIGKOD, bool HMPBJCONNHB = False)
+            /// <summary>KMACCJONDHA(int LOCLBKIGKOD, int KCNIGLPGAAE) -> Vector2[]</summary>
             public const uint KMACCJONDHA = 0x10cdf160; // public static Vector2[] KMACCJONDHA(int LOCLBKIGKOD, int KCNIGLPGAAE)
+            /// <summary>MEABGAJBGAH(LIMCMHLKAPK FHMHFHMHMLE, int NBODBHIMPOI, int GKANKHJAJIJ)</summary>
             public const uint MEABGAJBGAH = 0x10ce0cb0; // public static void MEABGAJBGAH(LIMCMHLKAPK FHMHFHMHMLE, int NBODBHIMPOI, int GKANKHJAJIJ)
             public const uint AOOHCCLPINO = 0x10cd9da0; // public static void AOOHCCLPINO()
+            /// <summary>HMOPOBNFHBK(LIMCMHLKAPK FHMHFHMHMLE, int NBODBHIMPOI, int GKANKHJAJIJ)</summary>
             public const uint HMOPOBNFHBK = 0x10cdd160; // public static void HMOPOBNFHBK(LIMCMHLKAPK FHMHFHMHMLE, int NBODBHIMPOI, int GKANKHJAJIJ)
             public const uint PPMBFOIOMIL = 0x10ce2d40; // public static void PPMBFOIOMIL()
+            /// <summary>NHDDFOGMNHH(int LHJIPEIOIAN, int AHOPKIKEHAA, int CPGIOOFCGDN)</summary>
             public const uint NHDDFOGMNHH = 0x10ce0dc0; // public static void NHDDFOGMNHH(int LHJIPEIOIAN, int AHOPKIKEHAA, int CPGIOOFCGDN)
+            /// <summary>PCNKEKGCHML(bool BNJGJOOJCHF)</summary>
             public const uint PCNKEKGCHML = 0x10ce1e50; // public static void PCNKEKGCHML(bool BNJGJOOJCHF)
+            /// <summary>SetFilter(bool BNJGJOOJCHF)</summary>
             public const uint SetFilter = 0x10ce3a40; // public static void SetFilter(bool BNJGJOOJCHF)
+            /// <summary>LJBFAFHHHKC(bool BNJGJOOJCHF)</summary>
             public const uint LJBFAFHHHKC = 0x10cdfa10; // public static void LJBFAFHHHKC(bool BNJGJOOJCHF)
+            /// <summary>LCONNMOAMME(int LOCLBKIGKOD, int KCNIGLPGAAE) -> Vector2[]</summary>
             public const uint LCONNMOAMME = 0x10cdf750; // public static Vector2[] LCONNMOAMME(int LOCLBKIGKOD, int KCNIGLPGAAE)
+            /// <summary>GLNCAKGAGDC(int LHJIPEIOIAN, int AHOPKIKEHAA, int CPGIOOFCGDN)</summary>
             public const uint GLNCAKGAGDC = 0x10cdc3e0; // public static void GLNCAKGAGDC(int LHJIPEIOIAN, int AHOPKIKEHAA, int CPGIOOFCGDN)
+            /// <summary>KDFLLLEHFOF(int LOCLBKIGKOD, int KCNIGLPGAAE) -> Vector2[]</summary>
             public const uint KDFLLLEHFOF = 0x10cdf030; // public static Vector2[] KDFLLLEHFOF(int LOCLBKIGKOD, int KCNIGLPGAAE)
+            /// <summary>GBFDKMLAFCH(ref int KCNIGLPGAAE, ref int LPDHHCJPDFG, ref int JDHPADPJBNB, ref int JLIFLFNBFBI) -> Vector2[]</summary>
             public const uint GBFDKMLAFCH = 0x10cdc1d0; // public static Vector2[] GBFDKMLAFCH(ref int KCNIGLPGAAE, ref int LPDHHCJPDFG, ref int JDHPADPJBNB, ref int JLIFLFNBFBI)
+            /// <summary>BDJGOFGFBFM(LIMCMHLKAPK FHMHFHMHMLE, int NBODBHIMPOI, int GKANKHJAJIJ)</summary>
             public const uint BDJGOFGFBFM = 0x10cda9b0; // public static void BDJGOFGFBFM(LIMCMHLKAPK FHMHFHMHMLE, int NBODBHIMPOI, int GKANKHJAJIJ)
+            /// <summary>EDNAAMDNMIF(int LOCLBKIGKOD, int KCNIGLPGAAE) -> Vector2[]</summary>
             public const uint EDNAAMDNMIF = 0x10cdbf80; // public static Vector2[] EDNAAMDNMIF(int LOCLBKIGKOD, int KCNIGLPGAAE)
+            /// <summary>IODAGMNAMJB(ref int KCNIGLPGAAE, ref int LPDHHCJPDFG, ref int JDHPADPJBNB, ref int JLIFLFNBFBI) -> Vector2[]</summary>
             public const uint IODAGMNAMJB = 0x10cdda10; // public static Vector2[] IODAGMNAMJB(ref int KCNIGLPGAAE, ref int LPDHHCJPDFG, ref int JDHPADPJBNB, ref int JLIFLFNBFBI)
+            /// <summary>BALDMMOGDFP(int LOCLBKIGKOD, int KCNIGLPGAAE) -> Vector2[]</summary>
             public const uint BALDMMOGDFP = 0x10cda8a0; // public static Vector2[] BALDMMOGDFP(int LOCLBKIGKOD, int KCNIGLPGAAE)
+            /// <summary>AGHEIOGLADB(bool BNJGJOOJCHF)</summary>
             public const uint AGHEIOGLADB = 0x10cd9960; // public static void AGHEIOGLADB(bool BNJGJOOJCHF)
+            /// <summary>LJJADJBONDI(int LOCLBKIGKOD, bool HMPBJCONNHB) -> Vector2[]</summary>
             public const uint LJJADJBONDI = 0x10ce0070; // public static Vector2[] LJJADJBONDI(int LOCLBKIGKOD, bool HMPBJCONNHB = False)
+            /// <summary>AddCustomUV(int LHJIPEIOIAN, int AHOPKIKEHAA, int CPGIOOFCGDN)</summary>
             public const uint AddCustomUV = 0x10cda780; // public static void AddCustomUV(int LHJIPEIOIAN, int AHOPKIKEHAA, int CPGIOOFCGDN)
+            /// <summary>LOPOMBOCMJI(bool BNJGJOOJCHF)</summary>
             public const uint LOPOMBOCMJI = 0x10ce0750; // public static void LOPOMBOCMJI(bool BNJGJOOJCHF)
+            /// <summary>MBOEAHIAMMP(int LHJIPEIOIAN, int AHOPKIKEHAA, int CPGIOOFCGDN)</summary>
             public const uint MBOEAHIAMMP = 0x10ce0b90; // public static void MBOEAHIAMMP(int LHJIPEIOIAN, int AHOPKIKEHAA, int CPGIOOFCGDN)
+            /// <summary>GMFKEMONFPJ(int LOCLBKIGKOD, int KCNIGLPGAAE) -> Vector2[]</summary>
             public const uint GMFKEMONFPJ = 0x10cdc500; // public static Vector2[] GMFKEMONFPJ(int LOCLBKIGKOD, int KCNIGLPGAAE)
+            /// <summary>Resize(Texture2D IPFKPJKIFBA, int BBNHJMLOJFH, int GGFPMAACHMC) -> Texture2D</summary>
             public const uint Resize = 0x10ce3890; // public static Texture2D Resize(Texture2D IPFKPJKIFBA, int BBNHJMLOJFH, int GGFPMAACHMC)
+            /// <summary>HHBAKFLINMG(int LOCLBKIGKOD, int KCNIGLPGAAE) -> Vector2[]</summary>
             public const uint HHBAKFLINMG = 0x10cdd030; // public static Vector2[] HHBAKFLINMG(int LOCLBKIGKOD, int KCNIGLPGAAE)
+            /// <summary>PKENEACIJJP(int LOCLBKIGKOD, int KCNIGLPGAAE) -> Vector2[]</summary>
             public const uint PKENEACIJJP = 0x10ce2290; // public static Vector2[] PKENEACIJJP(int LOCLBKIGKOD, int KCNIGLPGAAE)
+            /// <summary>LFEGCIPHLEK(int LOCLBKIGKOD, int KCNIGLPGAAE) -> Vector2[]</summary>
             public const uint LFEGCIPHLEK = 0x10cdf870; // public static Vector2[] LFEGCIPHLEK(int LOCLBKIGKOD, int KCNIGLPGAAE)
+            /// <summary>JMKBNNEFMHA(int LPDHHCJPDFG, int FLFIDALKFOF, int HOIMDGPCNKC) -> Vector2Int</summary>
             public const uint JMKBNNEFMHA = 0x10cdec70; // private static Vector2Int JMKBNNEFMHA(int LPDHHCJPDFG, int FLFIDALKFOF, int HOIMDGPCNKC)
+            /// <summary>LHPNCPENFJM(LIMCMHLKAPK FHMHFHMHMLE, int NBODBHIMPOI, int GKANKHJAJIJ)</summary>
             public const uint LHPNCPENFJM = 0x10cdf9a0; // public static void LHPNCPENFJM(LIMCMHLKAPK FHMHFHMHMLE, int NBODBHIMPOI, int GKANKHJAJIJ)
+            /// <summary>BICALOCGDHG(int LOCLBKIGKOD, bool HMPBJCONNHB) -> Vector2[]</summary>
             public const uint BICALOCGDHG = 0x10cdaa20; // public static Vector2[] BICALOCGDHG(int LOCLBKIGKOD, bool HMPBJCONNHB = False)
+            /// <summary>BMHOJKBDMOJ(int LOCLBKIGKOD, bool HMPBJCONNHB) -> Vector2[]</summary>
             public const uint BMHOJKBDMOJ = 0x10cdac70; // public static Vector2[] BMHOJKBDMOJ(int LOCLBKIGKOD, bool HMPBJCONNHB = False)
+            /// <summary>GetUV_NewVoxel(ref int KCNIGLPGAAE, ref int LPDHHCJPDFG, ref int JDHPADPJBNB, ref int JLIFLFNBFBI) -> Vector2[]</summary>
             public const uint GetUV_NewVoxel = 0x10cdc610; // public static Vector2[] GetUV_NewVoxel(ref int KCNIGLPGAAE, ref int LPDHHCJPDFG, ref int JDHPADPJBNB, ref int JLIFLFNBFBI)
+            /// <summary>LMNBIPCPMEM(ref int KCNIGLPGAAE, ref int LPDHHCJPDFG, ref int JDHPADPJBNB, ref int JLIFLFNBFBI) -> Vector2[]</summary>
             public const uint LMNBIPCPMEM = 0x10ce0540; // public static Vector2[] LMNBIPCPMEM(ref int KCNIGLPGAAE, ref int LPDHHCJPDFG, ref int JDHPADPJBNB, ref int JLIFLFNBFBI)
+            /// <summary>OEGHPOMNLHG(int LOCLBKIGKOD, bool HMPBJCONNHB) -> Vector2[]</summary>
             public const uint OEGHPOMNLHG = 0x10ce1980; // public static Vector2[] OEGHPOMNLHG(int LOCLBKIGKOD, bool HMPBJCONNHB = False)
+            /// <summary>JAODGHEJKHO(int LPDHHCJPDFG, int FLFIDALKFOF, int HOIMDGPCNKC) -> Vector2Int</summary>
             public const uint JAODGHEJKHO = 0x10cdec70; // private static Vector2Int JAODGHEJKHO(int LPDHHCJPDFG, int FLFIDALKFOF, int HOIMDGPCNKC)
             public const uint HGOCJIFHNJL = 0x10cdc9d0; // public static void HGOCJIFHNJL()
+            /// <summary>NONMDNOCPDK(int LPDHHCJPDFG, int FLFIDALKFOF, int HOIMDGPCNKC) -> Vector2Int</summary>
             public const uint NONMDNOCPDK = 0x10cdec70; // private static Vector2Int NONMDNOCPDK(int LPDHHCJPDFG, int FLFIDALKFOF, int HOIMDGPCNKC)
+            /// <summary>MCOJDFNNDLD(int LPDHHCJPDFG, int FLFIDALKFOF, int HOIMDGPCNKC) -> Vector2Int</summary>
             public const uint MCOJDFNNDLD = 0x10cdec70; // private static Vector2Int MCOJDFNNDLD(int LPDHHCJPDFG, int FLFIDALKFOF, int HOIMDGPCNKC)
+            /// <summary>GBABNGAJBHF(Texture2D IPFKPJKIFBA, int BBNHJMLOJFH, int GGFPMAACHMC) -> Texture2D</summary>
             public const uint GBABNGAJBHF = 0x10cdc0a0; // public static Texture2D GBABNGAJBHF(Texture2D IPFKPJKIFBA, int BBNHJMLOJFH, int GGFPMAACHMC)
-            public const uint _ctor = 0x101a6520; // public void .ctor()
-            public const uint _cctor = 0x10ce3e70; // private static void .cctor()
+            public const uint ctor = 0x101a6520; // public void .ctor()
+            public const uint cctor = 0x10ce3e70; // private static void .cctor()
+            /// <summary>DMLDMHMCOAB(Texture2D IPFKPJKIFBA, int BBNHJMLOJFH, int GGFPMAACHMC) -> Texture2D</summary>
             public const uint DMLDMHMCOAB = 0x10cdbe50; // public static Texture2D DMLDMHMCOAB(Texture2D IPFKPJKIFBA, int BBNHJMLOJFH, int GGFPMAACHMC)
+            /// <summary>BJKBPBHCNCK(int LOCLBKIGKOD, bool HMPBJCONNHB) -> Vector2[]</summary>
             public const uint BJKBPBHCNCK = 0x10cdaab0; // public static Vector2[] BJKBPBHCNCK(int LOCLBKIGKOD, bool HMPBJCONNHB = False)
+            /// <summary>OINOPKGGNCJ(bool BNJGJOOJCHF)</summary>
             public const uint OINOPKGGNCJ = 0x10ce1a10; // public static void OINOPKGGNCJ(bool BNJGJOOJCHF)
+            /// <summary>LKFPDJKNILP(bool BNJGJOOJCHF)</summary>
             public const uint LKFPDJKNILP = 0x10ce0100; // public static void LKFPDJKNILP(bool BNJGJOOJCHF)
+            /// <summary>LHPFOLBGJAB(int LPDHHCJPDFG, int FLFIDALKFOF, int HOIMDGPCNKC) -> Vector2Int</summary>
             public const uint LHPFOLBGJAB = 0x10cdec70; // private static Vector2Int LHPFOLBGJAB(int LPDHHCJPDFG, int FLFIDALKFOF, int HOIMDGPCNKC)
+            /// <summary>LJOOOCHNMKE(int LPDHHCJPDFG, int FLFIDALKFOF, int HOIMDGPCNKC) -> Vector2Int</summary>
             public const uint LJOOOCHNMKE = 0x10cdec70; // private static Vector2Int LJOOOCHNMKE(int LPDHHCJPDFG, int FLFIDALKFOF, int HOIMDGPCNKC)
             public const uint DAGNPPBBHML = 0x10cdb580; // public static void DAGNPPBBHML()
+            /// <summary>SetBlocksCategories(LIMCMHLKAPK FHMHFHMHMLE, int NBODBHIMPOI, int GKANKHJAJIJ)</summary>
             public const uint SetBlocksCategories = 0x10ce39c0; // public static void SetBlocksCategories(LIMCMHLKAPK FHMHFHMHMLE, int NBODBHIMPOI, int GKANKHJAJIJ)
+            /// <summary>IJCAAIPGIBL(int LOCLBKIGKOD, int KCNIGLPGAAE) -> Vector2[]</summary>
             public const uint IJCAAIPGIBL = 0x10cdd300; // public static Vector2[] IJCAAIPGIBL(int LOCLBKIGKOD, int KCNIGLPGAAE)
             public const uint NOHIGJEMONF = 0x10ce0ee0; // public static void NOHIGJEMONF()
+            /// <summary>JOIFIKPHLJG(LIMCMHLKAPK FHMHFHMHMLE, int NBODBHIMPOI, int GKANKHJAJIJ)</summary>
             public const uint JOIFIKPHLJG = 0x10cdeeb0; // public static void JOIFIKPHLJG(LIMCMHLKAPK FHMHFHMHMLE, int NBODBHIMPOI, int GKANKHJAJIJ)
             public const uint Init = 0x10cddd50; // public static void Init()
             public const uint POADNOMNFNN = 0x10ce23b0; // public static void POADNOMNFNN()
+            /// <summary>CMOGBJIBGCF(bool BNJGJOOJCHF)</summary>
             public const uint CMOGBJIBGCF = 0x10cdb140; // public static void CMOGBJIBGCF(bool BNJGJOOJCHF)
+            /// <summary>LJDHIFICEFF(ref int KCNIGLPGAAE, ref int LPDHHCJPDFG, ref int JDHPADPJBNB, ref int JLIFLFNBFBI) -> Vector2[]</summary>
             public const uint LJDHIFICEFF = 0x10cdfe60; // public static Vector2[] LJDHIFICEFF(ref int KCNIGLPGAAE, ref int LPDHHCJPDFG, ref int JDHPADPJBNB, ref int JLIFLFNBFBI)
+            /// <summary>KCONOPGJPFG(int LOCLBKIGKOD, int KCNIGLPGAAE) -> Vector2[]</summary>
             public const uint KCONOPGJPFG = 0x10cdef20; // public static Vector2[] KCONOPGJPFG(int LOCLBKIGKOD, int KCNIGLPGAAE)
+            /// <summary>IOLFGDBLLJB(Texture2D IPFKPJKIFBA, int BBNHJMLOJFH, int GGFPMAACHMC) -> Texture2D</summary>
             public const uint IOLFGDBLLJB = 0x10cddc20; // public static Texture2D IOLFGDBLLJB(Texture2D IPFKPJKIFBA, int BBNHJMLOJFH, int GGFPMAACHMC)
+            /// <summary>GetUV(int LOCLBKIGKOD, bool HMPBJCONNHB) -> Vector2[]</summary>
             public const uint GetUV_2 = 0x10cdc820; // public static Vector2[] GetUV(int LOCLBKIGKOD, bool HMPBJCONNHB = False)
+            /// <summary>BJMBMGGNAGG(Texture2D IPFKPJKIFBA, int BBNHJMLOJFH, int GGFPMAACHMC) -> Texture2D</summary>
             public const uint BJMBMGGNAGG = 0x10cdab40; // public static Texture2D BJMBMGGNAGG(Texture2D IPFKPJKIFBA, int BBNHJMLOJFH, int GGFPMAACHMC)
+            /// <summary>KLDCMMDOJFC(int LPDHHCJPDFG, int FLFIDALKFOF, int HOIMDGPCNKC) -> Vector2Int</summary>
             public const uint KLDCMMDOJFC = 0x10cdec70; // private static Vector2Int KLDCMMDOJFC(int LPDHHCJPDFG, int FLFIDALKFOF, int HOIMDGPCNKC)
             public const uint IMCHLIBIKAH = 0x10cdd420; // public static void IMCHLIBIKAH()
         }

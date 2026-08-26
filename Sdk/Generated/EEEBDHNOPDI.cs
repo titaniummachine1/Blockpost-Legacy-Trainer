@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class EEEBDHNOPDI
     {
+        public const int TypeDefIndex = 382;
+        public const string OriginalName = "EEEBDHNOPDI";
+
         /// <summary>
         /// Field and static-field offsets for EEEBDHNOPDI.
         /// </summary>
@@ -23,7 +26,8 @@ namespace BlockpostTrainer.Sdk.Raw
         /// </summary>
         public static class Methods
         {
-            public const uint _ctor = 0x10a370c0; // internal void .ctor(ulong AIEPBAHGMJD, ACEDGBLFHDK JAPEILEGLEC)
+            /// <summary>.ctor(ulong AIEPBAHGMJD, ACEDGBLFHDK JAPEILEGLEC)</summary>
+            public const uint ctor = 0x10a370c0; // internal void .ctor(ulong AIEPBAHGMJD, ACEDGBLFHDK JAPEILEGLEC)
         }
     }
 }

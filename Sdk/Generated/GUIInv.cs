@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class GUIInv
     {
+        public const int TypeDefIndex = 512;
+        public const string OriginalName = "GUIInv";
+
         /// <summary>
         /// Field and static-field offsets for GUIInv.
         /// </summary>
@@ -214,70 +217,101 @@ namespace BlockpostTrainer.Sdk.Raw
             public const uint NFFHAEMBCEI = 0x10cfce20; // private static void NFFHAEMBCEI()
             public const uint AFIGBDKCANM = 0x10ce4680; // internal static void AFIGBDKCANM()
             public const uint OnResize = 0x10d004d0; // private void OnResize()
+            /// <summary>OPMGLEMEHDL(Rect HDJBDIJCIMG, string PILFNEPEODC, Texture2D[] DGIHBIBGFHD, ref int IKIHNJKFOPK, ref int KHODKDGKLLF) -> bool</summary>
             public const uint OPMGLEMEHDL = 0x10cff370; // private bool OPMGLEMEHDL(Rect HDJBDIJCIMG, string PILFNEPEODC, Texture2D[] DGIHBIBGFHD, ref int IKIHNJKFOPK, ref int KHODKDGKLLF)
+            /// <summary>PNNEFOPFCHF(int IMPGDAPCBJF) -> FPNENMKEFBB</summary>
             public const uint PNNEFOPFCHF = 0x10d06df0; // internal static FPNENMKEFBB PNNEFOPFCHF(int IMPGDAPCBJF)
+            /// <summary>LBLMCKIJFGL(Rect HDJBDIJCIMG, string PILFNEPEODC, float BNJGJOOJCHF, int NIPBHAMMACD, float BHJMGPHHBGK, int IJCAMMLKLHF)</summary>
             public const uint LBLMCKIJFGL = 0x10cf8a30; // private void LBLMCKIJFGL(Rect HDJBDIJCIMG, string PILFNEPEODC, float BNJGJOOJCHF, int NIPBHAMMACD, float BHJMGPHHBGK, int IJCAMMLKLHF)
             public const uint AJHBAOEHHOC = 0x10ce4760; // internal static void AJHBAOEHHOC()
             public const uint IOCDDMDINEC = 0x10cf6d80; // private static void IOCDDMDINEC()
             public const uint BMEBBEIKMCP = 0x10ce5870; // internal static void BMEBBEIKMCP()
             public const uint OJMMHBMKCOA = 0x10cff270; // internal static void OJMMHBMKCOA()
+            /// <summary>OHNGCKOFHFB(ulong AIEPBAHGMJD, int NIBLMFFHJHK)</summary>
             public const uint OHNGCKOFHFB = 0x10cfeb90; // internal static void OHNGCKOFHFB(ulong AIEPBAHGMJD, int NIBLMFFHJHK)
+            /// <summary>GMAPPDLMCLG(Rect HDJBDIJCIMG, string PILFNEPEODC, GFENDPCMKFI[] COHFJNMDLBM, ref GFENDPCMKFI EFBFJFBCCNI) -> bool</summary>
             public const uint GMAPPDLMCLG = 0x10ced3e0; // private bool GMAPPDLMCLG(Rect HDJBDIJCIMG, string PILFNEPEODC, GFENDPCMKFI[] COHFJNMDLBM, ref GFENDPCMKFI EFBFJFBCCNI)
             public const uint ICDOCCDEJNO = 0x10cef370; // private void ICDOCCDEJNO()
+            /// <summary>HPLIKAOFIJE(ulong AIEPBAHGMJD, int NIBLMFFHJHK)</summary>
             public const uint HPLIKAOFIJE = 0x10ced900; // internal static void HPLIKAOFIJE(ulong AIEPBAHGMJD, int NIBLMFFHJHK)
             public const uint PEMGKNICNIA = 0x10d04ea0; // internal static void PEMGKNICNIA()
             public const uint NKIHDHHDPGC = 0x10cfd510; // private void NKIHDHHDPGC()
             public const uint PBNDHAJICEH = 0x10d00ad0; // internal static void PBNDHAJICEH()
-            public const uint _cctor = 0x10d074c0; // private static void .cctor()
+            public const uint cctor = 0x10d074c0; // private static void .cctor()
             public const uint EPKFOLMMIKF = 0x10cebd70; // private void EPKFOLMMIKF()
+            /// <summary>FPIJPCOKIEC(int IMPGDAPCBJF) -> NAHLLMJMOED</summary>
             public const uint FPIJPCOKIEC = 0x10cec930; // internal static NAHLLMJMOED FPIJPCOKIEC(int IMPGDAPCBJF)
             public const uint ELIEKJELMEO = 0x10cea0d0; // private void ELIEKJELMEO()
             public const uint MEJLMAHCAHG = 0x10cfb5c0; // internal void MEJLMAHCAHG()
+            /// <summary>NIHKMMIGFPB(Rect HDJBDIJCIMG, FPNENMKEFBB DBMOPKGMECL)</summary>
             public const uint NIHKMMIGFPB = 0x10cfd260; // internal static void NIHKMMIGFPB(Rect HDJBDIJCIMG, FPNENMKEFBB DBMOPKGMECL)
             public const uint ADLIPHEBOJD = 0x10ce42f0; // internal static void ADLIPHEBOJD()
+            /// <summary>EAIFFADAHIO(Rect HDJBDIJCIMG, FPNENMKEFBB DBMOPKGMECL, string PILFNEPEODC)</summary>
             public const uint EAIFFADAHIO = 0x10ce8c70; // private void EAIFFADAHIO(Rect HDJBDIJCIMG, FPNENMKEFBB DBMOPKGMECL, string PILFNEPEODC)
+            /// <summary>BLMHMLOFAFE(Rect HDJBDIJCIMG, int HAFMINBJCGN, string PILFNEPEODC, string MGDAIKENIFL, string PICIILNDDJO, int DBNDLHCMEPG, int DDCNNCIKPPP)</summary>
             public const uint BLMHMLOFAFE = 0x10ce5220; // private void BLMHMLOFAFE(Rect HDJBDIJCIMG, int HAFMINBJCGN, string PILFNEPEODC, string MGDAIKENIFL, string PICIILNDDJO, int DBNDLHCMEPG, int DDCNNCIKPPP)
+            /// <summary>BNAFIDHFHGF(bool BNJGJOOJCHF)</summary>
             public const uint BNAFIDHFHGF = 0x10ce6050; // internal static void BNAFIDHFHGF(bool BNJGJOOJCHF)
             public const uint OnChangeSubMenu = 0x10d002b0; // private void OnChangeSubMenu()
             public const uint FKBPKKPKOEK = 0x10cec530; // internal static void FKBPKKPKOEK()
             public const uint JCKGOEMKEAO = 0x10cf6df0; // private void JCKGOEMKEAO()
+            /// <summary>KHABBLDBFKK(ulong AIEPBAHGMJD) -> FPNENMKEFBB</summary>
             public const uint KHABBLDBFKK = 0x10cf8730; // internal static FPNENMKEFBB KHABBLDBFKK(ulong AIEPBAHGMJD)
+            /// <summary>NAHLGPJFKPC(Rect HDJBDIJCIMG, FPNENMKEFBB DBMOPKGMECL, bool IACECBAKBJN, bool AKJDNNACNJH) -> bool</summary>
             public const uint NAHLGPJFKPC = 0x10cfbd20; // internal static bool NAHLGPJFKPC(Rect HDJBDIJCIMG, FPNENMKEFBB DBMOPKGMECL, bool IACECBAKBJN = False, bool AKJDNNACNJH = False)
+            /// <summary>LEHHHIOJMCL(Rect HDJBDIJCIMG, Texture2D FHOKAIADHDO, Vector2 OGHIGNGKKNG)</summary>
             public const uint LEHHHIOJMCL = 0x10cf9240; // internal static void LEHHHIOJMCL(Rect HDJBDIJCIMG, Texture2D FHOKAIADHDO, Vector2 OGHIGNGKKNG)
+            /// <summary>FAAJKFCFBKN(Rect HDJBDIJCIMG, string PILFNEPEODC, GFENDPCMKFI[] COHFJNMDLBM, ref GFENDPCMKFI EFBFJFBCCNI) -> bool</summary>
             public const uint FAAJKFCFBKN = 0x10cebff0; // private bool FAAJKFCFBKN(Rect HDJBDIJCIMG, string PILFNEPEODC, GFENDPCMKFI[] COHFJNMDLBM, ref GFENDPCMKFI EFBFJFBCCNI)
+            /// <summary>MNAJANCKGMC(Rect HDJBDIJCIMG)</summary>
             public const uint MNAJANCKGMC = 0x10cfbbf0; // private void MNAJANCKGMC(Rect HDJBDIJCIMG)
             public const uint LoadLang = 0x10cfaf50; // internal void LoadLang()
+            /// <summary>CAMMBHLEFOG(string PKDKFHFFEHL) -> NAHLLMJMOED</summary>
             public const uint CAMMBHLEFOG = 0x10ce65e0; // internal static NAHLLMJMOED CAMMBHLEFOG(string PKDKFHFFEHL)
             public const uint PFEAAMODIHA = 0x10d05270; // private void PFEAAMODIHA()
             public const uint OJGGGBLOMMJ = 0x10cff190; // private static void OJGGGBLOMMJ()
+            /// <summary>ENELIAEECMK(Rect HDJBDIJCIMG, Texture2D FHOKAIADHDO, Vector2 OGHIGNGKKNG)</summary>
             public const uint ENELIAEECMK = 0x10cebac0; // internal static void ENELIAEECMK(Rect HDJBDIJCIMG, Texture2D FHOKAIADHDO, Vector2 OGHIGNGKKNG)
+            /// <summary>BCEHFNKHHDC(Rect HDJBDIJCIMG, Texture2D FHOKAIADHDO, Vector2 OGHIGNGKKNG)</summary>
             public const uint BCEHFNKHHDC = 0x10ce4f40; // internal static void BCEHFNKHHDC(Rect HDJBDIJCIMG, Texture2D FHOKAIADHDO, Vector2 OGHIGNGKKNG)
             public const uint Reset = 0x10d06f00; // private static void Reset()
+            /// <summary>MDNGEEFBJDG(Rect HDJBDIJCIMG, Color NPHGPNPOANC)</summary>
             public const uint MDNGEEFBJDG = 0x10cfb510; // private void MDNGEEFBJDG(Rect HDJBDIJCIMG, Color NPHGPNPOANC)
+            /// <summary>JJAAIIGMKJI(Rect HDJBDIJCIMG, string PILFNEPEODC, GFENDPCMKFI[] COHFJNMDLBM, ref GFENDPCMKFI EFBFJFBCCNI) -> bool</summary>
             public const uint JJAAIIGMKJI = 0x10cf77b0; // private bool JJAAIIGMKJI(Rect HDJBDIJCIMG, string PILFNEPEODC, GFENDPCMKFI[] COHFJNMDLBM, ref GFENDPCMKFI EFBFJFBCCNI)
             public const uint OIFFDNLJKLK = 0x10cfecd0; // private void OIFFDNLJKLK()
             public const uint LoadEnd = 0x10cf9520; // public void LoadEnd()
             public const uint GJEHAEOBAFI = 0x10ceccf0; // private void GJEHAEOBAFI()
+            /// <summary>DCJKMLEOEKO(Rect HDJBDIJCIMG, Color NPHGPNPOANC)</summary>
             public const uint DCJKMLEOEKO = 0x10ce8bc0; // private void DCJKMLEOEKO(Rect HDJBDIJCIMG, Color NPHGPNPOANC)
             public const uint PDGDNILKKFK = 0x10d00fb0; // public void PDGDNILKKFK()
             public const uint EMGPPIDOKKN = 0x10ceb9e0; // private static void EMGPPIDOKKN()
+            /// <summary>PDJDHJHFGEP(Rect HDJBDIJCIMG, FPNENMKEFBB DNKOAPOGKGM, FPNENMKEFBB PJGDNCPBOHB)</summary>
             public const uint PDJDHJHFGEP = 0x10d02a00; // private void PDJDHJHFGEP(Rect HDJBDIJCIMG, FPNENMKEFBB DNKOAPOGKGM, FPNENMKEFBB PJGDNCPBOHB)
+            /// <summary>KHELAJMGPJB(Rect HDJBDIJCIMG, FPNENMKEFBB DBMOPKGMECL, string PILFNEPEODC)</summary>
             public const uint KHELAJMGPJB = 0x10cf8830; // private void KHELAJMGPJB(Rect HDJBDIJCIMG, FPNENMKEFBB DBMOPKGMECL, string PILFNEPEODC)
             public const uint JKLFGFFNHLE = 0x10cf7ce0; // private static void JKLFGFFNHLE()
+            /// <summary>FPIJPCOKIEC(string PKDKFHFFEHL) -> NAHLLMJMOED</summary>
             public const uint FPIJPCOKIEC_2 = 0x10cec9c0; // internal static NAHLLMJMOED FPIJPCOKIEC(string PKDKFHFFEHL)
+            /// <summary>NDJOCKJBLOI(Rect HDJBDIJCIMG, Texture2D FHOKAIADHDO, Vector2 OGHIGNGKKNG)</summary>
             public const uint NDJOCKJBLOI = 0x10cfcb40; // internal static void NDJOCKJBLOI(Rect HDJBDIJCIMG, Texture2D FHOKAIADHDO, Vector2 OGHIGNGKKNG)
+            /// <summary>ELCAEFBLIMG(Rect HDJBDIJCIMG)</summary>
             public const uint ELCAEFBLIMG = 0x10ce9330; // private void ELCAEFBLIMG(Rect HDJBDIJCIMG)
             public const uint IIONKEDMHAE = 0x10cf2ff0; // private void IIONKEDMHAE()
-            public const uint _ctor = 0x10d07d30; // public void .ctor()
+            public const uint ctor = 0x10d07d30; // public void .ctor()
             public const uint OnGUI = 0x10d00350; // private void OnGUI()
             public const uint PGFAPLACLHF = 0x10d06b70; // private void PGFAPLACLHF()
             public const uint GCNJFHCHLBJ = 0x10cecac0; // internal static void GCNJFHCHLBJ()
             public const uint HPNNAGMLOEE = 0x10ceda40; // private void HPNNAGMLOEE()
+            /// <summary>CJOLDKMCDAI(Rect HDJBDIJCIMG, FPNENMKEFBB DNKOAPOGKGM, FPNENMKEFBB PJGDNCPBOHB)</summary>
             public const uint CJOLDKMCDAI = 0x10ce66e0; // private void CJOLDKMCDAI(Rect HDJBDIJCIMG, FPNENMKEFBB DNKOAPOGKGM, FPNENMKEFBB PJGDNCPBOHB)
             public const uint MJIALGJFMOF = 0x10cfbb80; // private static void MJIALGJFMOF()
+            /// <summary>ECMMFAGBOEK(bool BNJGJOOJCHF)</summary>
             public const uint ECMMFAGBOEK = 0x10ce8e80; // internal static void ECMMFAGBOEK(bool BNJGJOOJCHF)
             public const uint Update = 0x10d07440; // private void Update()
+            /// <summary>NJDNGJNPHNE(int IMPGDAPCBJF) -> NAHLLMJMOED</summary>
             public const uint NJDNGJNPHNE = 0x10cfd480; // internal static NAHLLMJMOED NJDNGJNPHNE(int IMPGDAPCBJF)
+            /// <summary>IKFBJEFBBLH(int IMPGDAPCBJF) -> FPNENMKEFBB</summary>
             public const uint IKFBJEFBBLH = 0x10cf6c80; // internal static FPNENMKEFBB IKFBJEFBBLH(int IMPGDAPCBJF)
             public const uint JLAGLDPAKFB = 0x10cf8130; // private static void JLAGLDPAKFB()
         }

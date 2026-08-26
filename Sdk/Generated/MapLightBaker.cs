@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class MapLightBaker
     {
+        public const int TypeDefIndex = 296;
+        public const string OriginalName = "MapLightBaker";
+
         /// <summary>
         /// Field and static-field offsets for MapLightBaker.
         /// </summary>
@@ -24,27 +27,41 @@ namespace BlockpostTrainer.Sdk.Raw
         /// </summary>
         public static class Methods
         {
+            /// <summary>StartBakeLightDirect() -> IEnumerator</summary>
             public const uint StartBakeLightDirect = 0x108585b0; // private IEnumerator StartBakeLightDirect()
             public const uint BakeLightDirect = 0x108543f0; // public void BakeLightDirect()
+            /// <summary>LPCMLBPBNPG(GameObject DIPPFPAEKEP)</summary>
             public const uint LPCMLBPBNPG = 0x10854b30; // public void LPCMLBPBNPG(GameObject DIPPFPAEKEP)
+            /// <summary>NBHDDIBGNMD(GameObject DIPPFPAEKEP)</summary>
             public const uint NBHDDIBGNMD = 0x10855940; // public void NBHDDIBGNMD(GameObject DIPPFPAEKEP)
             public const uint CJFFGPPJKAJ = 0x10854600; // public void CJFFGPPJKAJ()
+            /// <summary>StartBakeLightAO() -> IEnumerator</summary>
             public const uint StartBakeLightAO = 0x10858540; // private IEnumerator StartBakeLightAO()
             public const uint IEFCDEHMHCM = 0x108548a0; // public void IEFCDEHMHCM()
             public const uint MBJKEBHEOII = 0x10855780; // public void MBJKEBHEOII()
+            /// <summary>DCFJHIDLBEK() -> IEnumerator</summary>
             public const uint DCFJHIDLBEK = 0x108547c0; // private IEnumerator DCFJHIDLBEK()
+            /// <summary>PKACLCHJAED(GameObject DIPPFPAEKEP)</summary>
             public const uint PKACLCHJAED = 0x10857a20; // public void PKACLCHJAED(GameObject DIPPFPAEKEP)
+            /// <summary>OHBLODAPGKD() -> IEnumerator</summary>
             public const uint OHBLODAPGKD = 0x10856ec0; // private IEnumerator OHBLODAPGKD()
+            /// <summary>ELPIDEOODBF() -> IEnumerator</summary>
             public const uint ELPIDEOODBF = 0x10854830; // private IEnumerator ELPIDEOODBF()
-            public const uint _ctor = 0x10858660; // public void .ctor()
+            public const uint ctor = 0x10858660; // public void .ctor()
+            /// <summary>BakeLightDirectGameObject(GameObject DIPPFPAEKEP)</summary>
             public const uint BakeLightDirectGameObject = 0x108538c0; // public void BakeLightDirectGameObject(GameObject DIPPFPAEKEP)
+            /// <summary>IKLKAPDHIDH() -> IEnumerator</summary>
             public const uint IKLKAPDHIDH = 0x10854a50; // private IEnumerator IKLKAPDHIDH()
+            /// <summary>JCKPEGOOHCE() -> IEnumerator</summary>
             public const uint JCKPEGOOHCE = 0x10854ac0; // private IEnumerator JCKPEGOOHCE()
             public const uint CHGOPJJCKJE = 0x108545c0; // public void CHGOPJJCKJE()
+            /// <summary>BakeLightAOGameObject(GameObject DIPPFPAEKEP)</summary>
             public const uint BakeLightAOGameObject = 0x10852a60; // public void BakeLightAOGameObject(GameObject DIPPFPAEKEP)
             public const uint BakeLightAO = 0x108536f0; // public void BakeLightAO()
             public const uint Start = 0x10858620; // public void Start()
+            /// <summary>PGGBKDCHDLK(GameObject DIPPFPAEKEP)</summary>
             public const uint PGGBKDCHDLK = 0x10856f30; // public void PGGBKDCHDLK(GameObject DIPPFPAEKEP)
+            /// <summary>NBJIGIGIPAI(GameObject DIPPFPAEKEP)</summary>
             public const uint NBJIGIGIPAI = 0x10856400; // public void NBJIGIGIPAI(GameObject DIPPFPAEKEP)
         }
     }

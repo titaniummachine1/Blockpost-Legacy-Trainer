@@ -4,13 +4,23 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class NDANMCKCENA
     {
+        public const int TypeDefIndex = 208;
+        public const string OriginalName = "NDANMCKCENA";
+
         /// <summary>
-        /// Field and static-field offsets for NDANMCKCENA.
+        /// Enum values for NDANMCKCENA.
         /// </summary>
         public static class Offsets
         {
-            // Instance fields
-            public const int value__ = 0x0; // int
+            // Backing field
+            public const int value = 0x0; // int
+
+            // Enum values
+            public const int None = 0x0; // NDANMCKCENA
+            public const int X = 0x1; // NDANMCKCENA
+            public const int Y = 0x2; // NDANMCKCENA
+            public const int Z = 0x3; // NDANMCKCENA
+            public const int Any = 0x4; // NDANMCKCENA
         }
 
         /// <summary>

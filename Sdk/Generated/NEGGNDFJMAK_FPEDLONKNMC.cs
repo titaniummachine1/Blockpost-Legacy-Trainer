@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class NEGGNDFJMAK_FPEDLONKNMC
     {
+        public const int TypeDefIndex = 409;
+        public const string OriginalName = "NEGGNDFJMAK.FPEDLONKNMC";
+
         /// <summary>
         /// Field and static-field offsets for NEGGNDFJMAK.FPEDLONKNMC.
         /// </summary>
@@ -18,7 +21,8 @@ namespace BlockpostTrainer.Sdk.Raw
         /// </summary>
         public static class Methods
         {
-            public const uint _ctor = 0x10abd880; // internal void .ctor(bool GFHEPAAJEKJ)
+            /// <summary>.ctor(bool GFHEPAAJEKJ)</summary>
+            public const uint ctor = 0x10abd880; // internal void .ctor(bool GFHEPAAJEKJ)
         }
     }
 }

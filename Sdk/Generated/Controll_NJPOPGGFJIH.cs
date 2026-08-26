@@ -4,13 +4,26 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class Controll_NJPOPGGFJIH
     {
+        public const int TypeDefIndex = 375;
+        public const string OriginalName = "Controll.NJPOPGGFJIH";
+
         /// <summary>
-        /// Field and static-field offsets for Controll.NJPOPGGFJIH.
+        /// Enum values for Controll.NJPOPGGFJIH.
         /// </summary>
         public static class Offsets
         {
-            // Instance fields
-            public const int value__ = 0x0; // int
+            // Backing field
+            public const int value = 0x0; // int
+
+            // Enum values
+            public const int plus_x = 0x1; // Controll.NJPOPGGFJIH
+            public const int minus_x = 0x2; // Controll.NJPOPGGFJIH
+            public const int plus_z = 0x4; // Controll.NJPOPGGFJIH
+            public const int minus_z = 0x8; // Controll.NJPOPGGFJIH
+            public const int jump = 0x10; // Controll.NJPOPGGFJIH
+            public const int duck = 0x20; // Controll.NJPOPGGFJIH
+            public const int speed = 0x40; // Controll.NJPOPGGFJIH
+            public const int aim = 0x80; // Controll.NJPOPGGFJIH
         }
 
         /// <summary>

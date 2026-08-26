@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class SteamManager
     {
+        public const int TypeDefIndex = 106;
+        public const string OriginalName = "SteamManager";
+
         /// <summary>
         /// Field and static-field offsets for SteamManager.
         /// </summary>
@@ -40,119 +43,180 @@ namespace BlockpostTrainer.Sdk.Raw
         /// </summary>
         public static class Methods
         {
+            /// <summary>CGOHHNNAHOP() -> bool</summary>
             public const uint CGOHHNNAHOP = 0x10428370; // public static bool CGOHHNNAHOP()
             public const uint EEFMCLDEFIH = 0x10429040; // public void EEFMCLDEFIH()
             public const uint OGGNHBFKBOI = 0x1042d030; // private void OGGNHBFKBOI()
+            /// <summary>MEHMCBLFDLL(GetAuthSessionTicketResponse_t CAEPHFMCMJK)</summary>
             public const uint MEHMCBLFDLL = 0x1042b990; // private void MEHMCBLFDLL(GetAuthSessionTicketResponse_t CAEPHFMCMJK)
             public const uint IBDNHADEJEH = 0x10429ce0; // private void IBDNHADEJEH()
+            /// <summary>HCEAGOIJNIJ(GetAuthSessionTicketResponse_t CAEPHFMCMJK)</summary>
             public const uint HCEAGOIJNIJ = 0x1042a310; // private void HCEAGOIJNIJ(GetAuthSessionTicketResponse_t CAEPHFMCMJK)
+            /// <summary>ADANOLHMDEN(SteamInventoryRequestPricesResult_t FMCGAECCLCK, bool CDKEENLDMNG)</summary>
             public const uint ADANOLHMDEN = 0x104275c0; // public void ADANOLHMDEN(SteamInventoryRequestPricesResult_t FMCGAECCLCK, bool CDKEENLDMNG)
+            /// <summary>FOJNMFLGDMI() -> SteamManager</summary>
             public const uint FOJNMFLGDMI = 0x10429ad0; // public static SteamManager FOJNMFLGDMI()
             public const uint FCADICDIILL = 0x10429710; // private void FCADICDIILL()
             public const uint LLOOEEFMAPC = 0x1042b5f0; // private void LLOOEEFMAPC()
             public const uint CIAEAKLDPIM = 0x10428440; // public void CIAEAKLDPIM()
             public const uint NLHIBBHPHMK = 0x1042c7d0; // private void NLHIBBHPHMK()
+            /// <summary>PGFENKMNKNI(GetAuthSessionTicketResponse_t CAEPHFMCMJK, bool AJENKEBHIBO)</summary>
             public const uint PGFENKMNKNI = 0x1042dcd0; // private void PGFENKMNKNI(GetAuthSessionTicketResponse_t CAEPHFMCMJK, bool AJENKEBHIBO)
+            /// <summary>FKHDNCAJGNO(int JKIGBJGKIJI, StringBuilder ANFKHDMFMKO)</summary>
             public const uint FKHDNCAJGNO = 0x10429930; // private static void FKHDNCAJGNO(int JKIGBJGKIJI, StringBuilder ANFKHDMFMKO)
+            /// <summary>CMFMFACNFPG(GetAuthSessionTicketResponse_t CAEPHFMCMJK, bool AJENKEBHIBO)</summary>
             public const uint CMFMFACNFPG = 0x104284a0; // private void CMFMFACNFPG(GetAuthSessionTicketResponse_t CAEPHFMCMJK, bool AJENKEBHIBO)
+            /// <summary>OMLDBEDBCEC(int JKIGBJGKIJI, StringBuilder ANFKHDMFMKO)</summary>
             public const uint OMLDBEDBCEC = 0x1042d320; // private static void OMLDBEDBCEC(int JKIGBJGKIJI, StringBuilder ANFKHDMFMKO)
             public const uint BKLBCJJKGIL = 0x104280f0; // public void BKLBCJJKGIL()
+            /// <summary>get_Instance() -> SteamManager</summary>
             public const uint get_Instance = 0x1042e4e0; // public static SteamManager get_Instance()
+            /// <summary>DKNMKFHKHMC(int JKIGBJGKIJI, StringBuilder ANFKHDMFMKO)</summary>
             public const uint DKNMKFHKHMC = 0x10428900; // private static void DKNMKFHKHMC(int JKIGBJGKIJI, StringBuilder ANFKHDMFMKO)
+            /// <summary>MCBPJGKMOFJ(SteamInventoryRequestPricesResult_t FMCGAECCLCK, bool CDKEENLDMNG)</summary>
             public const uint MCBPJGKMOFJ = 0x1042b810; // public void MCBPJGKMOFJ(SteamInventoryRequestPricesResult_t FMCGAECCLCK, bool CDKEENLDMNG)
             public const uint MCMCLAHJIMJ = 0x1042b8f0; // private void MCMCLAHJIMJ()
+            /// <summary>HLGMFBAPMDK(SteamInventoryRequestPricesResult_t FMCGAECCLCK, bool CDKEENLDMNG)</summary>
             public const uint HLGMFBAPMDK = 0x1042a5f0; // public void HLGMFBAPMDK(SteamInventoryRequestPricesResult_t FMCGAECCLCK, bool CDKEENLDMNG)
             public const uint EKDJAOBDOAN = 0x10429160; // private void EKDJAOBDOAN()
             public const uint BHGIOOIJLCF = 0x10427e40; // private void BHGIOOIJLCF()
             public const uint KNLHCADCOFJ = 0x1042b490; // public void KNLHCADCOFJ()
             public const uint BPHMHKOABPH = 0x10428150; // private void BPHMHKOABPH()
+            /// <summary>HHAFIMEJPHC(int JKIGBJGKIJI, StringBuilder ANFKHDMFMKO)</summary>
             public const uint HHAFIMEJPHC = 0x1042a5a0; // private static void HHAFIMEJPHC(int JKIGBJGKIJI, StringBuilder ANFKHDMFMKO)
             public const uint CDHDPJOABBP = 0x104282d0; // private void CDHDPJOABBP()
             public const uint FLFNOLDLING = 0x10429980; // private void FLFNOLDLING()
             public const uint Update = 0x10429ce0; // private void Update()
             public const uint GetAuthSessionTicket = 0x10429f70; // public void GetAuthSessionTicket()
+            /// <summary>EJALBPBLCDP() -> bool</summary>
             public const uint EJALBPBLCDP = 0x10429140; // public static bool EJALBPBLCDP()
+            /// <summary>NNCJEGBMOLI(SteamInventoryRequestPricesResult_t FMCGAECCLCK, bool CDKEENLDMNG)</summary>
             public const uint NNCJEGBMOLI = 0x1042cb10; // public void NNCJEGBMOLI(SteamInventoryRequestPricesResult_t FMCGAECCLCK, bool CDKEENLDMNG)
+            /// <summary>AGCPJABCKML(GameOverlayActivated_t FMCGAECCLCK)</summary>
             public const uint AGCPJABCKML = 0x10427740; // private void AGCPJABCKML(GameOverlayActivated_t FMCGAECCLCK)
             public const uint FBFGJMAKNBB = 0x104295c0; // private void FBFGJMAKNBB()
+            /// <summary>EFOIEPIGPFD(GameOverlayActivated_t FMCGAECCLCK)</summary>
             public const uint EFOIEPIGPFD = 0x104290d0; // private void EFOIEPIGPFD(GameOverlayActivated_t FMCGAECCLCK)
+            /// <summary>NKOACFEADKM(GetAuthSessionTicketResponse_t CAEPHFMCMJK)</summary>
             public const uint NKOACFEADKM = 0x1042c510; // private void NKOACFEADKM(GetAuthSessionTicketResponse_t CAEPHFMCMJK)
+            /// <summary>PJLAKLOGCDL() -> SteamManager</summary>
             public const uint PJLAKLOGCDL = 0x1042e060; // public static SteamManager PJLAKLOGCDL()
             public const uint DPIJLMBJMJN = 0x10428c90; // public void DPIJLMBJMJN()
+            /// <summary>HPFONBHOECD(GameOverlayActivated_t FMCGAECCLCK)</summary>
             public const uint HPFONBHOECD = 0x1042a6d0; // private void HPFONBHOECD(GameOverlayActivated_t FMCGAECCLCK)
             public const uint DPMLJALMEDC = 0x10428d20; // public void DPMLJALMEDC()
+            /// <summary>OHLAHEANJED(GetAuthSessionTicketResponse_t CAEPHFMCMJK, bool AJENKEBHIBO)</summary>
             public const uint OHLAHEANJED = 0x1042d1a0; // private void OHLAHEANJED(GetAuthSessionTicketResponse_t CAEPHFMCMJK, bool AJENKEBHIBO)
+            /// <summary>KOKKBJPPGGL(GameOverlayActivated_t FMCGAECCLCK)</summary>
             public const uint KOKKBJPPGGL = 0x1042b4f0; // private void KOKKBJPPGGL(GameOverlayActivated_t FMCGAECCLCK)
+            /// <summary>OnRequestPrices(SteamInventoryRequestPricesResult_t FMCGAECCLCK, bool CDKEENLDMNG)</summary>
             public const uint OnRequestPrices = 0x1042d820; // public void OnRequestPrices(SteamInventoryRequestPricesResult_t FMCGAECCLCK, bool CDKEENLDMNG)
+            /// <summary>NCIOAEJIIMB() -> SteamManager</summary>
             public const uint NCIOAEJIIMB = 0x1042c160; // public static SteamManager NCIOAEJIIMB()
             public const uint PGABBNAPABJ = 0x1042d990; // private void PGABBNAPABJ()
             public const uint Awake = 0x10427a90; // private void Awake()
+            /// <summary>NCCGGNANBLJ(GetAuthSessionTicketResponse_t CAEPHFMCMJK)</summary>
             public const uint NCCGGNANBLJ = 0x1042bf70; // private void NCCGGNANBLJ(GetAuthSessionTicketResponse_t CAEPHFMCMJK)
+            /// <summary>AJPBAMCJHIP(GameOverlayActivated_t FMCGAECCLCK)</summary>
             public const uint AJPBAMCJHIP = 0x10427800; // private void AJPBAMCJHIP(GameOverlayActivated_t FMCGAECCLCK)
             public const uint NHPCJNCFNID = 0x10429ce0; // private void NHPCJNCFNID()
+            /// <summary>MMCOCEAFDEP(GameOverlayActivated_t FMCGAECCLCK)</summary>
             public const uint MMCOCEAFDEP = 0x1042bd10; // private void MMCOCEAFDEP(GameOverlayActivated_t FMCGAECCLCK)
             public const uint GMPGLIGPKNM = 0x10429e10; // public void GMPGLIGPKNM()
+            /// <summary>get_Initialized() -> bool</summary>
             public const uint get_Initialized = 0x1042d180; // public static bool get_Initialized()
             public const uint KBMOMIHPPAH = 0x1042afa0; // public void KBMOMIHPPAH()
             public const uint GDDJFLJFMCB = 0x10429ce0; // private void GDDJFLJFMCB()
+            /// <summary>IOALCCAFKAK(SteamInventoryRequestPricesResult_t FMCGAECCLCK, bool CDKEENLDMNG)</summary>
             public const uint IOALCCAFKAK = 0x1042a8b0; // public void IOALCCAFKAK(SteamInventoryRequestPricesResult_t FMCGAECCLCK, bool CDKEENLDMNG)
             public const uint OnEnable = 0x1042d600; // private void OnEnable()
             public const uint CNJBEIOMNID = 0x104284f0; // public void CNJBEIOMNID()
             public const uint DDBMGMCKOGE = 0x10428720; // private void DDBMGMCKOGE()
             public const uint NABMCBLGHPK = 0x1042be10; // private void NABMCBLGHPK()
             public const uint PKOKECHFDKM = 0x1042e120; // private void PKOKECHFDKM()
+            /// <summary>JBHNFOALPKF() -> SteamManager</summary>
             public const uint JBHNFOALPKF = 0x1042aa20; // public static SteamManager JBHNFOALPKF()
+            /// <summary>ODCGPPFKBKF(GameOverlayActivated_t FMCGAECCLCK)</summary>
             public const uint ODCGPPFKBKF = 0x1042cf30; // private void ODCGPPFKBKF(GameOverlayActivated_t FMCGAECCLCK)
             public const uint FAMOCALFGAG = 0x104294e0; // public void FAMOCALFGAG()
             public const uint OFABCHHCDGL = 0x10429ce0; // private void OFABCHHCDGL()
+            /// <summary>OJJIMOCEDOM(int JKIGBJGKIJI, StringBuilder ANFKHDMFMKO)</summary>
             public const uint OJJIMOCEDOM = 0x1042d2d0; // private static void OJJIMOCEDOM(int JKIGBJGKIJI, StringBuilder ANFKHDMFMKO)
             public const uint OBAMGHGNEAO = 0x1042cbf0; // private void OBAMGHGNEAO()
             public const uint PEBNDIIHHAG = 0x1042d900; // public void PEBNDIIHHAG()
+            /// <summary>MHOPOHFPFFB(GetAuthSessionTicketResponse_t CAEPHFMCMJK, bool AJENKEBHIBO)</summary>
             public const uint MHOPOHFPFFB = 0x1042bc20; // private void MHOPOHFPFFB(GetAuthSessionTicketResponse_t CAEPHFMCMJK, bool AJENKEBHIBO)
             public const uint IEBCEGALNLA = 0x1042a740; // public void IEBCEGALNLA()
+            /// <summary>AGPOBANBPEB(GetAuthSessionTicketResponse_t CAEPHFMCMJK, bool AJENKEBHIBO)</summary>
             public const uint AGPOBANBPEB = 0x104277b0; // private void AGPOBANBPEB(GetAuthSessionTicketResponse_t CAEPHFMCMJK, bool AJENKEBHIBO)
             public const uint AALFAIKFLGO = 0x10427470; // private void AALFAIKFLGO()
+            /// <summary>GONJHAPJANN() -> bool</summary>
             public const uint GONJHAPJANN = 0x10429ea0; // public static bool GONJHAPJANN()
             public const uint AADMGDNDIAM = 0x10427410; // public void AADMGDNDIAM()
             public const uint BHJAIBMCGKB = 0x10428060; // public void BHJAIBMCGKB()
             public const uint MPPDEKCKLME = 0x1042bd80; // public void MPPDEKCKLME()
+            /// <summary>NFDJMOGEONJ() -> SteamManager</summary>
             public const uint NFDJMOGEONJ = 0x1042c220; // public static SteamManager NFDJMOGEONJ()
+            /// <summary>EKEGLHKNEOA(MicroTxnAuthorizationResponse_t CAEPHFMCMJK)</summary>
             public const uint EKEGLHKNEOA = 0x10429380; // private void EKEGLHKNEOA(MicroTxnAuthorizationResponse_t CAEPHFMCMJK)
             public const uint OnDestroy = 0x1042d410; // private void OnDestroy()
+            /// <summary>JDHDNDJEECD() -> SteamManager</summary>
             public const uint JDHDNDJEECD = 0x1042aae0; // public static SteamManager JDHDNDJEECD()
+            /// <summary>CNLBHDCCNKD(SteamInventoryRequestPricesResult_t FMCGAECCLCK, bool CDKEENLDMNG)</summary>
             public const uint CNLBHDCCNKD = 0x10428550; // public void CNLBHDCCNKD(SteamInventoryRequestPricesResult_t FMCGAECCLCK, bool CDKEENLDMNG)
+            /// <summary>PLFGGAOGMDB(int JKIGBJGKIJI, StringBuilder ANFKHDMFMKO)</summary>
             public const uint PLFGGAOGMDB = 0x1042e270; // private static void PLFGGAOGMDB(int JKIGBJGKIJI, StringBuilder ANFKHDMFMKO)
             public const uint OECBIDCBCCF = 0x1042cfa0; // public void OECBIDCBCCF()
             public const uint DOKEBMBNLKB = 0x10428950; // private void DOKEBMBNLKB()
             public const uint GAIAKLPJHNB = 0x10429b90; // private void GAIAKLPJHNB()
+            /// <summary>OHDOCJOEBMI() -> bool</summary>
             public const uint OHDOCJOEBMI = 0x1042d180; // public static bool OHDOCJOEBMI()
+            /// <summary>OIAJMDPDDAG(SteamInventoryRequestPricesResult_t FMCGAECCLCK, bool CDKEENLDMNG)</summary>
             public const uint OIAJMDPDDAG = 0x1042d1f0; // public void OIAJMDPDDAG(SteamInventoryRequestPricesResult_t FMCGAECCLCK, bool CDKEENLDMNG)
+            /// <summary>JNEOLJNAKHC(MicroTxnAuthorizationResponse_t CAEPHFMCMJK)</summary>
             public const uint JNEOLJNAKHC = 0x1042ae60; // private void JNEOLJNAKHC(MicroTxnAuthorizationResponse_t CAEPHFMCMJK)
             public const uint HBDDENCHMPN = 0x10429fd0; // private void HBDDENCHMPN()
             public const uint INFKIOCCCGK = 0x10429ce0; // private void INFKIOCCCGK()
+            /// <summary>GDGINEFNBGH() -> SteamManager</summary>
             public const uint GDGINEFNBGH = 0x10429d00; // public static SteamManager GDGINEFNBGH()
+            /// <summary>MGEKNBOGGEG(MicroTxnAuthorizationResponse_t CAEPHFMCMJK)</summary>
             public const uint MGEKNBOGGEG = 0x1042bb80; // private void MGEKNBOGGEG(MicroTxnAuthorizationResponse_t CAEPHFMCMJK)
-            public const uint _ctor = 0x101a6520; // public void .ctor()
+            public const uint ctor = 0x101a6520; // public void .ctor()
+            /// <summary>EAOAHGNACHC(GameOverlayActivated_t FMCGAECCLCK)</summary>
             public const uint EAOAHGNACHC = 0x10428db0; // private void EAOAHGNACHC(GameOverlayActivated_t FMCGAECCLCK)
+            /// <summary>NFHENOHIKKN(SteamInventoryRequestPricesResult_t FMCGAECCLCK, bool CDKEENLDMNG)</summary>
             public const uint NFHENOHIKKN = 0x1042c2e0; // public void NFHENOHIKKN(SteamInventoryRequestPricesResult_t FMCGAECCLCK, bool CDKEENLDMNG)
             public const uint AGCFMFFFJBD = 0x104276a0; // private void AGCFMFFFJBD()
+            /// <summary>GKFIGPKGENH(int JKIGBJGKIJI, StringBuilder ANFKHDMFMKO)</summary>
             public const uint GKFIGPKGENH = 0x10429dc0; // private static void GKFIGPKGENH(int JKIGBJGKIJI, StringBuilder ANFKHDMFMKO)
             public const uint ANJCNDCMOJK = 0x10427870; // private void ANJCNDCMOJK()
+            /// <summary>EMDJJCBABNN(int JKIGBJGKIJI, StringBuilder ANFKHDMFMKO)</summary>
             public const uint EMDJJCBABNN = 0x10429420; // private static void EMDJJCBABNN(int JKIGBJGKIJI, StringBuilder ANFKHDMFMKO)
+            /// <summary>IPKMAOCKBOB(MicroTxnAuthorizationResponse_t CAEPHFMCMJK)</summary>
             public const uint IPKMAOCKBOB = 0x1042a980; // private void IPKMAOCKBOB(MicroTxnAuthorizationResponse_t CAEPHFMCMJK)
+            /// <summary>FAOFMLLOHPG(int JKIGBJGKIJI, StringBuilder ANFKHDMFMKO)</summary>
             public const uint FAOFMLLOHPG = 0x10429570; // private static void FAOFMLLOHPG(int JKIGBJGKIJI, StringBuilder ANFKHDMFMKO)
+            /// <summary>OPBJILLKIIK(MicroTxnAuthorizationResponse_t CAEPHFMCMJK)</summary>
             public const uint OPBJILLKIIK = 0x1042d370; // private void OPBJILLKIIK(MicroTxnAuthorizationResponse_t CAEPHFMCMJK)
             public const uint NGEAFMBBDBE = 0x1042c3c0; // public void NGEAFMBBDBE()
+            /// <summary>JKFELOKNKFP(GameOverlayActivated_t FMCGAECCLCK)</summary>
             public const uint JKFELOKNKFP = 0x1042ad90; // private void JKFELOKNKFP(GameOverlayActivated_t FMCGAECCLCK)
+            /// <summary>JGENLNIHENO(GetAuthSessionTicketResponse_t CAEPHFMCMJK)</summary>
             public const uint JGENLNIHENO = 0x1042aba0; // private void JGENLNIHENO(GetAuthSessionTicketResponse_t CAEPHFMCMJK)
+            /// <summary>IJIPOFIHCJD(GameOverlayActivated_t FMCGAECCLCK)</summary>
             public const uint IJIPOFIHCJD = 0x1042a840; // private void IJIPOFIHCJD(GameOverlayActivated_t FMCGAECCLCK)
             public const uint DFEAOBODCGO = 0x10428870; // public void DFEAOBODCGO()
+            /// <summary>EPGJFAPMKNP(GameOverlayActivated_t FMCGAECCLCK)</summary>
             public const uint EPGJFAPMKNP = 0x10429470; // private void EPGJFAPMKNP(GameOverlayActivated_t FMCGAECCLCK)
             public const uint DALMMJDEJOP = 0x104286c0; // public void DALMMJDEJOP()
+            /// <summary>ODBLLJGNNKF() -> bool</summary>
             public const uint ODBLLJGNNKF = 0x10429140; // public static bool ODBLLJGNNKF()
             public const uint PLKPILKHOPK = 0x1042e2c0; // private void PLKPILKHOPK()
+            /// <summary>MIGNCOFCFHL(int JKIGBJGKIJI, StringBuilder ANFKHDMFMKO)</summary>
             public const uint MIGNCOFCFHL = 0x1042bc70; // private static void MIGNCOFCFHL(int JKIGBJGKIJI, StringBuilder ANFKHDMFMKO)
+            /// <summary>ENGMPAMEFMH() -> bool</summary>
             public const uint ENGMPAMEFMH = 0x10429140; // public static bool ENGMPAMEFMH()
+            /// <summary>BPINCNDLDIM(SteamInventoryRequestPricesResult_t FMCGAECCLCK, bool CDKEENLDMNG)</summary>
             public const uint BPINCNDLDIM = 0x104281f0; // public void BPINCNDLDIM(SteamInventoryRequestPricesResult_t FMCGAECCLCK, bool CDKEENLDMNG)
             public const uint KHBIFPDKNLA = 0x1042b000; // private void KHBIFPDKNLA()
             public const uint CallRequestPrices = 0x10428630; // public void CallRequestPrices()
@@ -160,17 +224,25 @@ namespace BlockpostTrainer.Sdk.Raw
             public const uint KHCMDLFIOEI = 0x1042b150; // private void KHCMDLFIOEI()
             public const uint LKGKPMMNONC = 0x1042b560; // public void LKGKPMMNONC()
             public const uint OnDisable = 0x1042d4b0; // private void OnDisable()
+            /// <summary>BGIAEPPCNJI(GameOverlayActivated_t FMCGAECCLCK)</summary>
             public const uint BGIAEPPCNJI = 0x10427dd0; // private void BGIAEPPCNJI(GameOverlayActivated_t FMCGAECCLCK)
             public const uint HCIKOAHFLJE = 0x1042a500; // private void HCIKOAHFLJE()
+            /// <summary>EDGFCEKNLHB(MicroTxnAuthorizationResponse_t CAEPHFMCMJK)</summary>
             public const uint EDGFCEKNLHB = 0x10428fa0; // private void EDGFCEKNLHB(MicroTxnAuthorizationResponse_t CAEPHFMCMJK)
+            /// <summary>NLCKBMOAJMP() -> SteamManager</summary>
             public const uint NLCKBMOAJMP = 0x1042c710; // public static SteamManager NLCKBMOAJMP()
+            /// <summary>MIPOJGLDFHI(GetAuthSessionTicketResponse_t CAEPHFMCMJK, bool AJENKEBHIBO)</summary>
             public const uint MIPOJGLDFHI = 0x1042bcc0; // private void MIPOJGLDFHI(GetAuthSessionTicketResponse_t CAEPHFMCMJK, bool AJENKEBHIBO)
+            /// <summary>JNGOBIBMIID(MicroTxnAuthorizationResponse_t CAEPHFMCMJK)</summary>
             public const uint JNGOBIBMIID = 0x1042af00; // private void JNGOBIBMIID(MicroTxnAuthorizationResponse_t CAEPHFMCMJK)
+            /// <summary>EDBCBAEABIE(SteamInventoryRequestPricesResult_t FMCGAECCLCK, bool CDKEENLDMNG)</summary>
             public const uint EDBCBAEABIE = 0x10428e20; // public void EDBCBAEABIE(SteamInventoryRequestPricesResult_t FMCGAECCLCK, bool CDKEENLDMNG)
             public const uint JLJOJBABNML = 0x1042ae00; // public void JLJOJBABNML()
             public const uint PHEKPDCPLOK = 0x1042dd20; // private void PHEKPDCPLOK()
             public const uint EDDOKFEMIOK = 0x10428f00; // public void EDDOKFEMIOK()
+            /// <summary>IHKBMBBKOAK(MicroTxnAuthorizationResponse_t CAEPHFMCMJK)</summary>
             public const uint IHKBMBBKOAK = 0x1042a7a0; // private void IHKBMBBKOAK(MicroTxnAuthorizationResponse_t CAEPHFMCMJK)
+            /// <summary>NJMMKALEBCP() -> SteamManager</summary>
             public const uint NJMMKALEBCP = 0x1042c450; // public static SteamManager NJMMKALEBCP()
         }
     }

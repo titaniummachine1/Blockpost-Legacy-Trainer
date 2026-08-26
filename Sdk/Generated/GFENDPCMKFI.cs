@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class GFENDPCMKFI
     {
+        public const int TypeDefIndex = 353;
+        public const string OriginalName = "GFENDPCMKFI";
+
         /// <summary>
         /// Field and static-field offsets for GFENDPCMKFI.
         /// </summary>
@@ -28,7 +31,8 @@ namespace BlockpostTrainer.Sdk.Raw
         /// </summary>
         public static class Methods
         {
-            public const uint _ctor = 0x10928d40; // internal void .ctor(int NDFFKGNDIAD, Color JHGGICCFNFJ, Color CDKEENLDMNG)
+            /// <summary>.ctor(int NDFFKGNDIAD, Color JHGGICCFNFJ, Color CDKEENLDMNG)</summary>
+            public const uint ctor = 0x10928d40; // internal void .ctor(int NDFFKGNDIAD, Color JHGGICCFNFJ, Color CDKEENLDMNG)
         }
     }
 }

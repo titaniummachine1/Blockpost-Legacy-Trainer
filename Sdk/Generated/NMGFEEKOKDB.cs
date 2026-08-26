@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class NMGFEEKOKDB
     {
+        public const int TypeDefIndex = 205;
+        public const string OriginalName = "NMGFEEKOKDB";
+
         /// <summary>
         /// Field and static-field offsets for NMGFEEKOKDB.
         /// </summary>
@@ -37,7 +40,8 @@ namespace BlockpostTrainer.Sdk.Raw
         /// </summary>
         public static class Methods
         {
-            public const uint _ctor = 0x1064c540; // internal void .ctor(int NPHGPNPOANC, GameObject LANBONKMIME, ParticleSystem LBHDPGBCCJN, float EBGEJOANMKA)
+            /// <summary>.ctor(int NPHGPNPOANC, GameObject LANBONKMIME, ParticleSystem LBHDPGBCCJN, float EBGEJOANMKA)</summary>
+            public const uint ctor = 0x1064c540; // internal void .ctor(int NPHGPNPOANC, GameObject LANBONKMIME, ParticleSystem LBHDPGBCCJN, float EBGEJOANMKA)
         }
     }
 }

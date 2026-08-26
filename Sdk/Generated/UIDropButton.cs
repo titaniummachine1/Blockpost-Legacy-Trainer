@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class UIDropButton
     {
+        public const int TypeDefIndex = 363;
+        public const string OriginalName = "UIDropButton";
+
         /// <summary>
         /// Field and static-field offsets for UIDropButton.
         /// </summary>
@@ -18,7 +21,7 @@ namespace BlockpostTrainer.Sdk.Raw
         /// </summary>
         public static class Methods
         {
-            public const uint _ctor = 0x101a6520; // public void .ctor()
+            public const uint ctor = 0x101a6520; // public void .ctor()
             public const uint GIMPODDJHIE = 0x10974af0; // public void GIMPODDJHIE()
             public const uint MBBPGDNDAFL = 0x10976450; // public void MBBPGDNDAFL()
             public const uint PINDHANKFIL = 0x10977100; // public void PINDHANKFIL()

@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class GUIAdminMaplist
     {
+        public const int TypeDefIndex = 440;
+        public const string OriginalName = "GUIAdminMaplist";
+
         /// <summary>
         /// Field and static-field offsets for GUIAdminMaplist.
         /// </summary>
@@ -150,7 +153,7 @@ namespace BlockpostTrainer.Sdk.Raw
             public const uint JFHGNNFNMIO = 0x10b6b720; // private void JFHGNNFNMIO()
             public const uint GHCCJCDDJIO = 0x10b693c0; // private void GHCCJCDDJIO()
             public const uint CKOJDAIJGKI = 0x10b63d10; // private void CKOJDAIJGKI()
-            public const uint _ctor = 0x10b71fc0; // public void .ctor()
+            public const uint ctor = 0x10b71fc0; // public void .ctor()
             public const uint PONECJLBLLO = 0x10b694f0; // private void PONECJLBLLO()
             public const uint OBFAMNNCOID = 0x10b709a0; // private void OBFAMNNCOID()
             public const uint LoadLang = 0x10b6ea40; // private void LoadLang()

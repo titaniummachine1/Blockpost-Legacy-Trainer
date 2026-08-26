@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class CGJPBNDDPIN
     {
+        public const int TypeDefIndex = 458;
+        public const string OriginalName = "CGJPBNDDPIN";
+
         /// <summary>
         /// Field and static-field offsets for CGJPBNDDPIN.
         /// </summary>
@@ -61,7 +64,7 @@ namespace BlockpostTrainer.Sdk.Raw
         /// </summary>
         public static class Methods
         {
-            public const uint _ctor = 0x10bb0750; // internal void .ctor()
+            public const uint ctor = 0x10bb0750; // internal void .ctor()
         }
     }
 }

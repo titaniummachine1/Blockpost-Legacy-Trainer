@@ -4,26 +4,29 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class FreeFlyCamera
     {
+        public const int TypeDefIndex = 127;
+        public const string OriginalName = "FreeFlyCamera";
+
         /// <summary>
         /// Field and static-field offsets for FreeFlyCamera.
         /// </summary>
         public static class Offsets
         {
             // Instance fields
-            public const int _active = 0xc; // bool
-            public const int _enableRotation = 0xd; // bool
-            public const int _mouseSense = 0x10; // float
-            public const int _enableTranslation = 0x14; // bool
-            public const int _translationSpeed = 0x18; // float
-            public const int _enableMovement = 0x1c; // bool
-            public const int _movementSpeed = 0x20; // float
-            public const int _boostedSpeed = 0x24; // float
-            public const int _boostSpeed = 0x28; // KeyCode
-            public const int _moveUp = 0x2c; // KeyCode
-            public const int _moveDown = 0x30; // KeyCode
-            public const int _enableSpeedAcceleration = 0x34; // bool
-            public const int _speedAccelerationFactor = 0x38; // float
-            public const int _initPositonButton = 0x3c; // KeyCode
+            public const int active = 0xc; // bool
+            public const int enableRotation = 0xd; // bool
+            public const int mouseSense = 0x10; // float
+            public const int enableTranslation = 0x14; // bool
+            public const int translationSpeed = 0x18; // float
+            public const int enableMovement = 0x1c; // bool
+            public const int movementSpeed = 0x20; // float
+            public const int boostedSpeed = 0x24; // float
+            public const int boostSpeed = 0x28; // KeyCode
+            public const int moveUp = 0x2c; // KeyCode
+            public const int moveDown = 0x30; // KeyCode
+            public const int enableSpeedAcceleration = 0x34; // bool
+            public const int speedAccelerationFactor = 0x38; // float
+            public const int initPositonButton = 0x3c; // KeyCode
             public const int JPKNCMPHDOL = 0x40; // CursorLockMode
             public const int FOGNCGAGNBL = 0x44; // float
             public const int JDOLPNIFMEO = 0x48; // float
@@ -48,15 +51,19 @@ namespace BlockpostTrainer.Sdk.Raw
             public const uint GCEADENDKAG = 0x104aa780; // private void GCEADENDKAG()
             public const uint OnEnable = 0x104aa6f0; // private void OnEnable()
             public const uint JBAGBIAEKPO = 0x104ab200; // private void JBAGBIAEKPO()
+            /// <summary>HCEDOIHIDFB(bool AOPAHJLNBHD)</summary>
             public const uint HCEDOIHIDFB = 0x104ab0c0; // private void HCEDOIHIDFB(bool AOPAHJLNBHD)
+            /// <summary>IHLECHKDFCG(bool AOPAHJLNBHD)</summary>
             public const uint IHLECHKDFCG = 0x104ab160; // private void IHLECHKDFCG(bool AOPAHJLNBHD)
             public const uint Update = 0x104ac4b0; // private void Update()
             public const uint FIFFLFHNNCJ = 0x104aa7a0; // private void FIFFLFHNNCJ()
             public const uint BMBLPHJEHEA = 0x104aa780; // private void BMBLPHJEHEA()
+            /// <summary>JKKFOHLLNHC(bool AOPAHJLNBHD)</summary>
             public const uint JKKFOHLLNHC = 0x104abb20; // private void JKKFOHLLNHC(bool AOPAHJLNBHD)
             public const uint BLFFDFPEHOI = 0x104aa710; // private void BLFFDFPEHOI()
             public const uint Start = 0x104ac440; // private void Start()
-            public const uint _ctor = 0x104acd30; // public void .ctor()
+            public const uint ctor = 0x104acd30; // public void .ctor()
+            /// <summary>AAIBBOHBAPC(bool AOPAHJLNBHD)</summary>
             public const uint AAIBBOHBAPC = 0x104aa650; // private void AAIBBOHBAPC(bool AOPAHJLNBHD)
             public const uint LBILKLFLAMA = 0x104abbc0; // private void LBILKLFLAMA()
         }

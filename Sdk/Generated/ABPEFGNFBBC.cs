@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class ABPEFGNFBBC
     {
+        public const int TypeDefIndex = 485;
+        public const string OriginalName = "ABPEFGNFBBC";
+
         /// <summary>
         /// Field and static-field offsets for ABPEFGNFBBC.
         /// </summary>
@@ -19,7 +22,8 @@ namespace BlockpostTrainer.Sdk.Raw
         /// </summary>
         public static class Methods
         {
-            public const uint _ctor = 0x10c68bc0; // internal void .ctor(string DHJBGJHALAL, string HHGBAIMJELM)
+            /// <summary>.ctor(string DHJBGJHALAL, string HHGBAIMJELM)</summary>
+            public const uint ctor = 0x10c68bc0; // internal void .ctor(string DHJBGJHALAL, string HHGBAIMJELM)
         }
     }
 }

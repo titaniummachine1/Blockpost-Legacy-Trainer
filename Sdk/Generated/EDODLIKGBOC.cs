@@ -4,13 +4,23 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class EDODLIKGBOC
     {
+        public const int TypeDefIndex = 367;
+        public const string OriginalName = "EDODLIKGBOC";
+
         /// <summary>
-        /// Field and static-field offsets for EDODLIKGBOC.
+        /// Enum values for EDODLIKGBOC.
         /// </summary>
         public static class Offsets
         {
-            // Instance fields
-            public const int value__ = 0x0; // int
+            // Backing field
+            public const int value = 0x0; // int
+
+            // Enum values
+            public const int None = 0x0; // EDODLIKGBOC
+            public const int Solid = 0x1; // EDODLIKGBOC
+            public const int Skinned = 0x2; // EDODLIKGBOC
+            public const int Cloth = 0x3; // EDODLIKGBOC
+            public const int Particle = 0x4; // EDODLIKGBOC
         }
 
         /// <summary>

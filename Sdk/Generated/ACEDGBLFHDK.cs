@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class ACEDGBLFHDK
     {
+        public const int TypeDefIndex = 261;
+        public const string OriginalName = "ACEDGBLFHDK";
+
         /// <summary>
         /// Field and static-field offsets for ACEDGBLFHDK.
         /// </summary>
@@ -27,7 +30,8 @@ namespace BlockpostTrainer.Sdk.Raw
         /// </summary>
         public static class Methods
         {
-            public const uint _ctor = 0x107a17e0; // internal void .ctor(int LDKMPMIANCE, string MGDAIKENIFL)
+            /// <summary>.ctor(int LDKMPMIANCE, string MGDAIKENIFL)</summary>
+            public const uint ctor = 0x107a17e0; // internal void .ctor(int LDKMPMIANCE, string MGDAIKENIFL)
         }
     }
 }

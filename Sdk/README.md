@@ -4,10 +4,21 @@ This is an auto-generated offset/method SDK for the key Blockpost `GameAssembly.
 
 ## Regenerating
 
-Run the generator from the repo root (it reads `.tools/Il2CppDumper/dump.cs`):
+Run the full pipeline from the repo root (it reads `.tools/Il2CppDumper/dump.cs`):
 
 ```powershell
+python Tools/build_sdk.py
+```
+
+Or run the individual steps:
+
+```powershell
+python Tools/dump_analyzer.py
+python Tools/add_aliases.py
+python Tools/auto_alias.py
 python Tools/generate_sdk.py
+python Tools/verify_sdk.py
+dotnet build -p:AutoDeploy=false
 ```
 
 You can add classes by editing `Tools/generate_sdk.py` (`TARGET_CLASSES`) or `Tools/sdk_aliases.json` for human aliases.
@@ -16,10 +27,12 @@ You can add classes by editing `Tools/generate_sdk.py` (`TARGET_CLASSES`) or `To
 
 - `Sdk/Generated/*.cs` — one **flat** file per game class, all in the
   `BlockpostTrainer.Sdk.Raw` namespace. `Raw` is a namespace, not a directory. Each has:
+  - `TypeDefIndex` and `OriginalName` metadata.
   - `Offsets` — field offsets.
   - `Methods` — method VAs.
   - `Properties` — property names, for reflection-based access.
 - `Sdk/Generated/Aliases.cs` — human aliases for the fields/methods/properties you care about.
+- `Sdk/Generated/SdkIndex.cs` — lookup tables `ByOriginalName`, `ByHumanName`, and `ByTypeDefIndex`.
 
 ## Usage
 
@@ -56,6 +69,8 @@ var fireVa = Raw.PLH.Methods.CDEGJOBLOFO;
 | `Game.MainPlayer` | `Controll.HGAODFPBGLB` |
 | `Weapon.Fire`    | `PLH.CDEGJOBLOFO` |
 | `Network.SendHitReport` | `Client.AHLDAPJEJNC` |
+| `Network.ProcessPacket` | `Client.FPIDGCHIEMJ` |
+| `Network.Flush` | `Client.HKOFHOANEJD` |
 | `Net.Begin`      | `NET.LPAPGKDAENI(byte, byte)` |
 | `Hit.TargetId`   | `DMHBMAAFCFJ.AMGLIHOLNJE` |
 | `Hit.BodyPart`   | `DMHBMAAFCFJ.KMCHFGKKICG` |

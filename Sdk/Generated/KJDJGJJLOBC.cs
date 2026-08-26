@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class KJDJGJJLOBC
     {
+        public const int TypeDefIndex = 388;
+        public const string OriginalName = "KJDJGJJLOBC";
+
         /// <summary>
         /// Field and static-field offsets for KJDJGJJLOBC.
         /// </summary>
@@ -19,7 +22,8 @@ namespace BlockpostTrainer.Sdk.Raw
         /// </summary>
         public static class Methods
         {
-            public const uint _ctor = 0x10a75470; // internal void .ctor(string INIINBLHNPB)
+            /// <summary>.ctor(string INIINBLHNPB)</summary>
+            public const uint ctor = 0x10a75470; // internal void .ctor(string INIINBLHNPB)
         }
     }
 }

@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class VoxelPalette
     {
+        public const int TypeDefIndex = 275;
+        public const string OriginalName = "VoxelPalette";
+
         /// <summary>
         /// Field and static-field offsets for VoxelPalette.
         /// </summary>
@@ -11,12 +14,12 @@ namespace BlockpostTrainer.Sdk.Raw
         {
             // Static fields
             public const int EPFHEJBGIJK = 0x0; // bool
-            public const int _CFGLKNOIINI_k__BackingField = 0x4; // Texture2D
+            public const int CFGLKNOIINI_k_BackingField = 0x4; // Texture2D
             public const int GHLLHIDJBME = 0x8; // byte[,,]
-            public const int _DMDBHNDMKNK_k__BackingField = 0xc; // Color[]
+            public const int DMDBHNDMKNK_k_BackingField = 0xc; // Color[]
             public const int currp = 0x10; // int
             public const int selectint = 0x14; // float
-            public const int _NPCJKBNNMJI_k__BackingField = 0x18; // bool
+            public const int NPCJKBNNMJI_k_BackingField = 0x18; // bool
         }
 
         /// <summary>
@@ -36,64 +39,109 @@ namespace BlockpostTrainer.Sdk.Raw
         /// </summary>
         public static class Methods
         {
+            /// <summary>SetColor(Color NPHGPNPOANC)</summary>
             public const uint SetColor = 0x10819bf0; // public static void SetColor(Color NPHGPNPOANC)
             public const uint KFKAIHDMGLD = 0x10818800; // private static void KFKAIHDMGLD()
+            /// <summary>COFOIGHFPLC(string AKGNEFCOKGH) -> string</summary>
             public const uint COFOIGHFPLC = 0x10816960; // public static string COFOIGHFPLC(string AKGNEFCOKGH)
+            /// <summary>HPMAJDLMFMA(Color NPHGPNPOANC)</summary>
             public const uint HPMAJDLMFMA = 0x10818260; // public static void HPMAJDLMFMA(Color NPHGPNPOANC)
+            /// <summary>HHPLCCBOEEG(Color[] BGALIFJNDNF)</summary>
             public const uint HHPLCCBOEEG = 0x10818080; // private static void HHPLCCBOEEG(Color[] BGALIFJNDNF)
+            /// <summary>LFJHCJKPPFJ() -> Color[]</summary>
             public const uint LFJHCJKPPFJ = 0x108194a0; // public static Color[] LFJHCJKPPFJ()
-            public const uint _ctor = 0x101a6520; // public void .ctor()
+            public const uint ctor = 0x101a6520; // public void .ctor()
+            /// <summary>KPNAMOEJACA(Color NPHGPNPOANC)</summary>
             public const uint KPNAMOEJACA = 0x10819010; // public static void KPNAMOEJACA(Color NPHGPNPOANC)
+            /// <summary>get_Loaded() -> bool</summary>
             public const uint get_Loaded = 0x10819e70; // public static bool get_Loaded()
+            /// <summary>RGBToInt(Color JFFLHBFAGOM) -> int</summary>
             public const uint RGBToInt = 0x10819ba0; // public static int RGBToInt(Color JFFLHBFAGOM)
             public const uint KPEKLDJAPCK = 0x10818de0; // private void KPEKLDJAPCK()
             public const uint BMFDFMKDMHB = 0x108166c0; // private static void BMFDFMKDMHB()
+            /// <summary>GJNFMKGABEC(string GMKCJFDLLNP) -> bool</summary>
             public const uint GJNFMKGABEC = 0x10817930; // private static bool GJNFMKGABEC(string GMKCJFDLLNP)
+            /// <summary>BCHEHPKPJLE() -> string</summary>
             public const uint BCHEHPKPJLE = 0x10816240; // public static string BCHEHPKPJLE()
+            /// <summary>GetColor() -> Color</summary>
             public const uint GetColor = 0x10817db0; // public static Color GetColor()
+            /// <summary>GAFDBIDBCCG(Color JFFLHBFAGOM) -> byte</summary>
             public const uint GAFDBIDBCCG = 0x10817510; // public static byte GAFDBIDBCCG(Color JFFLHBFAGOM)
+            /// <summary>OPPGJILPADG() -> bool</summary>
             public const uint OPPGJILPADG = 0x10819ac0; // public static bool OPPGJILPADG()
             public const uint KLOFNMKMMKF = 0x10818970; // private static void KLOFNMKMMKF()
             public const uint OLECLLCJAAL = 0x10819950; // private static void OLECLLCJAAL()
+            /// <summary>KNJKENNJCAJ(string GMKCJFDLLNP) -> bool</summary>
             public const uint KNJKENNJCAJ = 0x10818ae0; // private static bool KNJKENNJCAJ(string GMKCJFDLLNP)
             public const uint LoadEnd = 0x10819540; // private void LoadEnd()
+            /// <summary>JDNIPICNGLB(Color NPHGPNPOANC)</summary>
             public const uint JDNIPICNGLB = 0x108187a0; // public static void JDNIPICNGLB(Color NPHGPNPOANC)
             public const uint GFAJLOKBAIG = 0x108177a0; // private static void GFAJLOKBAIG()
+            /// <summary>GBKMHOHIIIC(Color NPHGPNPOANC)</summary>
             public const uint GBKMHOHIIIC = 0x108175d0; // public static void GBKMHOHIIIC(Color NPHGPNPOANC)
+            /// <summary>Init(bool PDCLLEDHKAJ)</summary>
             public const uint Init = 0x108184c0; // public static void Init(bool PDCLLEDHKAJ = False)
             public const uint IPKFOHKGDDJ = 0x10818350; // private static void IPKFOHKGDDJ()
+            /// <summary>EGIPNNPOHEL(Color NPHGPNPOANC) -> int</summary>
             public const uint EGIPNNPOHEL = 0x108172f0; // public static int EGIPNNPOHEL(Color NPHGPNPOANC)
+            /// <summary>MKGOGGNPKAD() -> bool</summary>
             public const uint MKGOGGNPKAD = 0x10819800; // public static bool MKGOGGNPKAD()
-            public const uint _cctor = 0x10819dc0; // private static void .cctor()
+            public const uint cctor = 0x10819dc0; // private static void .cctor()
+            /// <summary>BFDCIBKLLJD(string GMKCJFDLLNP) -> bool</summary>
             public const uint BFDCIBKLLJD = 0x10816280; // private static bool BFDCIBKLLJD(string GMKCJFDLLNP)
+            /// <summary>LNNEJODKJBN(Texture2D BGALIFJNDNF)</summary>
             public const uint LNNEJODKJBN = 0x108194e0; // private static void LNNEJODKJBN(Texture2D BGALIFJNDNF)
+            /// <summary>DBDMBJCPIDK(string GMKCJFDLLNP) -> bool</summary>
             public const uint DBDMBJCPIDK = 0x10816a00; // private static bool DBDMBJCPIDK(string GMKCJFDLLNP)
+            /// <summary>MCBPDKJJFKM(Color[] BGALIFJNDNF)</summary>
             public const uint MCBPDKJJFKM = 0x10819610; // private static void MCBPDKJJFKM(Color[] BGALIFJNDNF)
+            /// <summary>GetColor3D(Color JFFLHBFAGOM) -> byte</summary>
             public const uint GetColor3D = 0x10817ac0; // public static byte GetColor3D(Color JFFLHBFAGOM)
+            /// <summary>DJAFEBEJIME(Color NPHGPNPOANC) -> int</summary>
             public const uint DJAFEBEJIME = 0x10816c20; // public static int DJAFEBEJIME(Color NPHGPNPOANC)
+            /// <summary>DKCHIMPBNGE(Color NPHGPNPOANC) -> int</summary>
             public const uint DKCHIMPBNGE = 0x10816db0; // public static int DKCHIMPBNGE(Color NPHGPNPOANC)
+            /// <summary>LABGIEJCADA(int HDJBDIJCIMG, int MMGPFHAKANC, int CDKEENLDMNG) -> byte</summary>
             public const uint LABGIEJCADA = 0x10819070; // private static byte LABGIEJCADA(int HDJBDIJCIMG, int MMGPFHAKANC, int CDKEENLDMNG)
+            /// <summary>FIIOGDMDLEP(Color[] BGALIFJNDNF)</summary>
             public const uint FIIOGDMDLEP = 0x108174b0; // private static void FIIOGDMDLEP(Color[] BGALIFJNDNF)
             public const uint CKAKECBKIJF = 0x10816840; // private static void CKAKECBKIJF()
+            /// <summary>get_Palettes3DDirectory() -> string</summary>
             public const uint get_Palettes3DDirectory = 0x10819eb0; // public static string get_Palettes3DDirectory()
+            /// <summary>BGOIFGMKGDD() -> Texture2D</summary>
             public const uint BGOIFGMKGDD = 0x10816680; // public static Texture2D BGOIFGMKGDD()
+            /// <summary>GetColor(int NPHGPNPOANC) -> Color</summary>
             public const uint GetColor_2 = 0x10817b80; // public static Color GetColor(int NPHGPNPOANC)
+            /// <summary>get_palette() -> Texture2D</summary>
             public const uint get_palette = 0x10819f30; // public static Texture2D get_palette()
             public const uint ANECHCDDBAI = 0x108161a0; // private static void ANECHCDDBAI()
             public const uint HKHDNFJEFFP = 0x108180e0; // private static void HKHDNFJEFFP()
+            /// <summary>PDHMIADDKMH() -> Color</summary>
             public const uint PDHMIADDKMH = 0x10819b00; // public static Color PDHMIADDKMH()
+            /// <summary>AIEKGKLEGBB(int NPHGPNPOANC) -> Color</summary>
             public const uint AIEKGKLEGBB = 0x10816100; // public static Color AIEKGKLEGBB(int NPHGPNPOANC)
+            /// <summary>IFMKCAIFFBK() -> Texture2D</summary>
             public const uint IFMKCAIFFBK = 0x108182c0; // public static Texture2D IFMKCAIFFBK()
+            /// <summary>MDIGIIMILAI(Color NPHGPNPOANC) -> int</summary>
             public const uint MDIGIIMILAI = 0x10819670; // public static int MDIGIIMILAI(Color NPHGPNPOANC)
+            /// <summary>EDGOMPMCBHG(int HDJBDIJCIMG, int MMGPFHAKANC, int CDKEENLDMNG) -> byte</summary>
             public const uint EDGOMPMCBHG = 0x10816f60; // private static byte EDGOMPMCBHG(int HDJBDIJCIMG, int MMGPFHAKANC, int CDKEENLDMNG)
+            /// <summary>DPFPEDODAML() -> string</summary>
             public const uint DPFPEDODAML = 0x10816f30; // private static string DPFPEDODAML()
+            /// <summary>EKMCFLIDLFO() -> Texture2D</summary>
             public const uint EKMCFLIDLFO = 0x10817470; // public static Texture2D EKMCFLIDLFO()
+            /// <summary>MKNFGJABIMC(Color JFFLHBFAGOM) -> byte</summary>
             public const uint MKNFGJABIMC = 0x10819840; // public static byte MKNFGJABIMC(Color JFFLHBFAGOM)
             public const uint LBALGHJPLGB = 0x10819400; // private static void LBALGHJPLGB()
+            /// <summary>GetPalettes3DPath(string AKGNEFCOKGH) -> string</summary>
             public const uint GetPalettes3DPath = 0x10817e50; // public static string GetPalettes3DPath(string AKGNEFCOKGH)
+            /// <summary>IJCINEFHDFD(bool BGALIFJNDNF)</summary>
             public const uint IJCINEFHDFD = 0x10818300; // private static void IJCINEFHDFD(bool BGALIFJNDNF)
+            /// <summary>NIHIJPEEMHJ(bool BGALIFJNDNF)</summary>
             public const uint NIHIJPEEMHJ = 0x10819900; // private static void NIHIJPEEMHJ(bool BGALIFJNDNF)
+            /// <summary>GetColor(Color NPHGPNPOANC) -> int</summary>
             public const uint GetColor_3 = 0x10817c20; // public static int GetColor(Color NPHGPNPOANC)
+            /// <summary>get_p() -> Color[]</summary>
             public const uint get_p = 0x10819ef0; // public static Color[] get_p()
             public const uint HBGBPOPMDBN = 0x10817ef0; // private static void HBGBPOPMDBN()
         }

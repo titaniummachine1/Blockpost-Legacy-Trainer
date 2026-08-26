@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class AEKADIMKDIL
     {
+        public const int TypeDefIndex = 228;
+        public const string OriginalName = "AEKADIMKDIL";
+
         /// <summary>
         /// Field and static-field offsets for AEKADIMKDIL.
         /// </summary>
@@ -28,7 +31,8 @@ namespace BlockpostTrainer.Sdk.Raw
         /// </summary>
         public static class Methods
         {
-            public const uint _ctor = 0x106f0e80; // internal void .ctor(int LDKMPMIANCE, string NGFDENOFBLK, int GBENPOOPNHD, int ENJHLBBPJLD, int HJCLDAJFIAI, int PEBDANLADGI, int IABMFAKIAAG, int MGJBBAEJPOK)
+            /// <summary>.ctor(int LDKMPMIANCE, string NGFDENOFBLK, int GBENPOOPNHD, int ENJHLBBPJLD, int HJCLDAJFIAI, int PEBDANLADGI, int IABMFAKIAAG, int MGJBBAEJPOK)</summary>
+            public const uint ctor = 0x106f0e80; // internal void .ctor(int LDKMPMIANCE, string NGFDENOFBLK, int GBENPOOPNHD, int ENJHLBBPJLD, int HJCLDAJFIAI, int PEBDANLADGI, int IABMFAKIAAG, int MGJBBAEJPOK)
         }
     }
 }

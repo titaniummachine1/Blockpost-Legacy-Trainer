@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class MCharAnimator
     {
+        public const int TypeDefIndex = 336;
+        public const string OriginalName = "MCharAnimator";
+
         /// <summary>
         /// Field and static-field offsets for MCharAnimator.
         /// </summary>
@@ -106,7 +109,7 @@ namespace BlockpostTrainer.Sdk.Raw
             public const uint KFGEENPDFDD = 0x101a4700; // private void KFGEENPDFDD()
             public const uint ONFAEOOIPJD = 0x101a4700; // private void ONFAEOOIPJD()
             public const uint JKNGHCMEHIN = 0x108f9fc0; // private void JKNGHCMEHIN()
-            public const uint _ctor = 0x108fe790; // public void .ctor()
+            public const uint ctor = 0x108fe790; // public void .ctor()
             public const uint HJLAGAHHHOL = 0x108f9220; // private void HJLAGAHHHOL()
             public const uint EEOKPOCOGII = 0x101a4700; // private void EEOKPOCOGII()
             public const uint JOHLAKDJOLC = 0x101a4700; // private void JOHLAKDJOLC()

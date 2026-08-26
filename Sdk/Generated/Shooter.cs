@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class Shooter
     {
+        public const int TypeDefIndex = 48;
+        public const string OriginalName = "Shooter";
+
         /// <summary>
         /// Field and static-field offsets for Shooter.
         /// </summary>
@@ -53,7 +56,7 @@ namespace BlockpostTrainer.Sdk.Raw
             public const uint KCKCOMAMNHM = 0x101a4700; // public static void KCKCOMAMNHM()
             public const uint PJIFDPLOADJ = 0x101a4700; // public static void PJIFDPLOADJ()
             public const uint MGFHIMOKICF = 0x101a4700; // public static void MGFHIMOKICF()
-            public const uint _ctor = 0x101a6520; // public void .ctor()
+            public const uint ctor = 0x101a6520; // public void .ctor()
             public const uint KJCCAJEJOHN = 0x101a4700; // public static void KJCCAJEJOHN()
             public const uint JBNEJAGLMND = 0x101a4700; // public static void JBNEJAGLMND()
             public const uint IFPFOKEAENH = 0x101a4700; // public static void IFPFOKEAENH()

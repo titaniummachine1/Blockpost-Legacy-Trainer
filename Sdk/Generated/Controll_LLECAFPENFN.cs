@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class Controll_LLECAFPENFN
     {
+        public const int TypeDefIndex = 376;
+        public const string OriginalName = "Controll.LLECAFPENFN";
+
         /// <summary>
         /// Field and static-field offsets for Controll.LLECAFPENFN.
         /// </summary>
@@ -21,7 +24,8 @@ namespace BlockpostTrainer.Sdk.Raw
         /// </summary>
         public static class Methods
         {
-            public const uint _ctor = 0x10a2f8d0; // internal void .ctor(GameObject LANBONKMIME, float BCJADOIPFHE, float IAIHGIDAJEK, float LICHKMCHMMF)
+            /// <summary>.ctor(GameObject LANBONKMIME, float BCJADOIPFHE, float IAIHGIDAJEK, float LICHKMCHMMF)</summary>
+            public const uint ctor = 0x10a2f8d0; // internal void .ctor(GameObject LANBONKMIME, float BCJADOIPFHE, float IAIHGIDAJEK, float LICHKMCHMMF)
         }
     }
 }

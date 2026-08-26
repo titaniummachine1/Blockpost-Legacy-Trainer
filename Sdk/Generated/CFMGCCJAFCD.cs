@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class CFMGCCJAFCD
     {
+        public const int TypeDefIndex = 385;
+        public const string OriginalName = "CFMGCCJAFCD";
+
         /// <summary>
         /// Field and static-field offsets for CFMGCCJAFCD.
         /// </summary>
@@ -27,7 +30,8 @@ namespace BlockpostTrainer.Sdk.Raw
         /// </summary>
         public static class Methods
         {
-            public const uint _ctor = 0x10a6cbd0; // internal void .ctor(int PICIILNDDJO, string DODMKOFIFPM)
+            /// <summary>.ctor(int PICIILNDDJO, string DODMKOFIFPM)</summary>
+            public const uint ctor = 0x10a6cbd0; // internal void .ctor(int PICIILNDDJO, string DODMKOFIFPM)
         }
     }
 }

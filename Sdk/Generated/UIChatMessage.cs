@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class UIChatMessage
     {
+        public const int TypeDefIndex = 62;
+        public const string OriginalName = "UIChatMessage";
+
         /// <summary>
         /// Field and static-field offsets for UIChatMessage.
         /// </summary>
@@ -11,7 +14,7 @@ namespace BlockpostTrainer.Sdk.Raw
         {
             // Instance fields
             public const int EHCKMBKAAJI = 0xc; // float
-            public const int _DMLLIOPJCGM_k__BackingField = 0x10; // float
+            public const int DMLLIOPJCGM_k_BackingField = 0x10; // float
         }
 
         /// <summary>
@@ -28,41 +31,60 @@ namespace BlockpostTrainer.Sdk.Raw
         /// </summary>
         public static class Methods
         {
+            /// <summary>CHPJEDNGAJE(float BGALIFJNDNF)</summary>
             public const uint CHPJEDNGAJE = 0x102f9db0; // private void CHPJEDNGAJE(float BGALIFJNDNF)
+            /// <summary>CBCOEOBHMDL() -> float</summary>
             public const uint CBCOEOBHMDL = 0x102f9e30; // public float CBCOEOBHMDL()
+            /// <summary>CLBLAALOECM(float BGALIFJNDNF)</summary>
             public const uint CLBLAALOECM = 0x102f9db0; // private void CLBLAALOECM(float BGALIFJNDNF)
             public const uint LAPEJMOEAAK = 0x102f9e40; // public void LAPEJMOEAAK()
             public const uint ILOONPNEGKE = 0x102f9ea0; // public void ILOONPNEGKE()
+            /// <summary>ONEMJJDKHBM(float BGALIFJNDNF)</summary>
             public const uint ONEMJJDKHBM = 0x102f9db0; // private void ONEMJJDKHBM(float BGALIFJNDNF)
             public const uint DLMBCEHJNLA = 0x102f9e40; // public void DLMBCEHJNLA()
             public const uint JNDDHPBHPPJ = 0x102f9e40; // public void JNDDHPBHPPJ()
             public const uint KHOIKCMANLD = 0x102f9dd0; // public void KHOIKCMANLD()
             public const uint DLFIFJDGGHP = 0x102f9dd0; // public void DLFIFJDGGHP()
             public const uint Hide = 0x102f9e40; // public void Hide()
+            /// <summary>BCJGNOJHKOH(float BGALIFJNDNF)</summary>
             public const uint BCJGNOJHKOH = 0x102f9db0; // private void BCJGNOJHKOH(float BGALIFJNDNF)
+            /// <summary>EAJEOODLDJK() -> bool</summary>
             public const uint EAJEOODLDJK = 0x102f9e70; // public bool EAJEOODLDJK()
+            /// <summary>MIPKLFIADDB(float BGALIFJNDNF)</summary>
             public const uint MIPKLFIADDB = 0x102f9db0; // private void MIPKLFIADDB(float BGALIFJNDNF)
             public const uint MCOCOMENNNO = 0x102f9ea0; // public void MCOCOMENNNO()
             public const uint BHHAGEOFKPH = 0x102f9dd0; // public void BHHAGEOFKPH()
+            /// <summary>LLLENMBCKFK(float BGALIFJNDNF)</summary>
             public const uint LLLENMBCKFK = 0x102f9db0; // private void LLLENMBCKFK(float BGALIFJNDNF)
+            /// <summary>JMEPFPJFOBE(float BGALIFJNDNF)</summary>
             public const uint JMEPFPJFOBE = 0x102f9db0; // private void JMEPFPJFOBE(float BGALIFJNDNF)
             public const uint EEBHADJHPPG = 0x102f9e40; // public void EEBHADJHPPG()
+            /// <summary>DCGGGBMDDMN() -> float</summary>
             public const uint DCGGGBMDDMN = 0x102f9e30; // public float DCGGGBMDDMN()
-            public const uint _ctor = 0x102f9f30; // public void .ctor()
+            public const uint ctor = 0x102f9f30; // public void .ctor()
             public const uint EFCMJFHEILG = 0x102f9dd0; // public void EFCMJFHEILG()
+            /// <summary>LJKNOBFJDOL(float BGALIFJNDNF)</summary>
             public const uint LJKNOBFJDOL = 0x102f9db0; // private void LJKNOBFJDOL(float BGALIFJNDNF)
+            /// <summary>IDGAPLEEEBG() -> float</summary>
             public const uint IDGAPLEEEBG = 0x102f9e30; // public float IDGAPLEEEBG()
+            /// <summary>LGHFLPJHEKE() -> float</summary>
             public const uint LGHFLPJHEKE = 0x102f9e30; // public float LGHFLPJHEKE()
             public const uint PEPBGLFELJD = 0x102f9ed0; // public void PEPBGLFELJD()
+            /// <summary>get_AllowedShowTime() -> float</summary>
             public const uint get_AllowedShowTime = 0x102f9e30; // public float get_AllowedShowTime()
             public const uint FBCDCFFDJFJ = 0x102f9ea0; // public void FBCDCFFDJFJ()
+            /// <summary>LFHIOINJCJF() -> bool</summary>
             public const uint LFHIOINJCJF = 0x102f9e70; // public bool LFHIOINJCJF()
             public const uint MLPJGKAPKJI = 0x102f9dd0; // public void MLPJGKAPKJI()
+            /// <summary>CNMIEIJMKLH() -> float</summary>
             public const uint CNMIEIJMKLH = 0x102f9e30; // public float CNMIEIJMKLH()
             public const uint Show = 0x102f9dd0; // public void Show()
             public const uint OAKIHECPBGF = 0x102f9ed0; // public void OAKIHECPBGF()
+            /// <summary>OAIHLMAFFDF() -> float</summary>
             public const uint OAIHLMAFFDF = 0x102f9e30; // public float OAIHLMAFFDF()
+            /// <summary>get_IsActive() -> bool</summary>
             public const uint get_IsActive = 0x102f9e70; // public bool get_IsActive()
+            /// <summary>OMIEJLPJOAA() -> bool</summary>
             public const uint OMIEJLPJOAA = 0x102f9e70; // public bool OMIEJLPJOAA()
             public const uint HJHGMOFAMPI = 0x102f9dd0; // public void HJHGMOFAMPI()
         }

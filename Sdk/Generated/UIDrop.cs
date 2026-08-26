@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class UIDrop
     {
+        public const int TypeDefIndex = 344;
+        public const string OriginalName = "UIDrop";
+
         /// <summary>
         /// Field and static-field offsets for UIDrop.
         /// </summary>
@@ -49,7 +52,7 @@ namespace BlockpostTrainer.Sdk.Raw
             public const uint DAPDODCLAMO = 0x10947a20; // private void DAPDODCLAMO()
             public const uint MEPIIBCIDBG = 0x10947a50; // private void MEPIIBCIDBG()
             public const uint HGMKEOFPJNI = 0x10947a50; // public void HGMKEOFPJNI()
-            public const uint _ctor = 0x101a6520; // public void .ctor()
+            public const uint ctor = 0x101a6520; // public void .ctor()
             public const uint GIMOLGCHPKD = 0x10947a20; // public void GIMOLGCHPKD()
             public const uint CMKKBGDBDNI = 0x10947a20; // public void CMKKBGDBDNI()
             public const uint KLOLNNMHCGJ = 0x10947a50; // private void KLOLNNMHCGJ()

@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class MasterClient_DHCBFAKOCAA
     {
+        public const int TypeDefIndex = 287;
+        public const string OriginalName = "MasterClient.DHCBFAKOCAA";
+
         /// <summary>
         /// Field and static-field offsets for MasterClient.DHCBFAKOCAA.
         /// </summary>
@@ -19,7 +22,8 @@ namespace BlockpostTrainer.Sdk.Raw
         /// </summary>
         public static class Methods
         {
-            public const uint _ctor = 0x108527d0; // internal void .ctor(byte[] MAFKGNLGNBN, int DJGAPKEINDJ)
+            /// <summary>.ctor(byte[] MAFKGNLGNBN, int DJGAPKEINDJ)</summary>
+            public const uint ctor = 0x108527d0; // internal void .ctor(byte[] MAFKGNLGNBN, int DJGAPKEINDJ)
         }
     }
 }

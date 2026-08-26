@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class UtilChar
     {
+        public const int TypeDefIndex = 220;
+        public const string OriginalName = "UtilChar";
+
         /// <summary>
         /// Field and static-field offsets for UtilChar.
         /// </summary>
@@ -26,11 +29,11 @@ namespace BlockpostTrainer.Sdk.Raw
             public const uint PMMBKBIMGIK = 0x1068b840; // internal static void PMMBKBIMGIK()
             public const uint KPHHFLKJMAH = 0x106897c0; // internal static void KPHHFLKJMAH()
             public const uint MCAGJOAOJHE = 0x10689e40; // internal static void MCAGJOAOJHE()
-            public const uint _ctor = 0x101a6520; // public void .ctor()
+            public const uint ctor = 0x101a6520; // public void .ctor()
             public const uint GNEECNOBJEL = 0x106870b0; // internal static void GNEECNOBJEL()
             public const uint ABFOEIJNGJK = 0x10683620; // internal static void ABFOEIJNGJK()
             public const uint IFLEJNICNMP = 0x10687db0; // internal static void IFLEJNICNMP()
-            public const uint _cctor = 0x1068bec0; // private static void .cctor()
+            public const uint cctor = 0x1068bec0; // private static void .cctor()
             public const uint NCGIODBDCAO = 0x1068a4c0; // internal static void NCGIODBDCAO()
             public const uint BCEIECDGNDH = 0x106849a0; // internal static void BCEIECDGNDH()
             public const uint CLKGGKOKAHI = 0x10685020; // internal static void CLKGGKOKAHI()

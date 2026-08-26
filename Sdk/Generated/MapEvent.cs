@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class MapEvent
     {
+        public const int TypeDefIndex = 100;
+        public const string OriginalName = "MapEvent";
+
         /// <summary>
         /// Field and static-field offsets for MapEvent.
         /// </summary>
@@ -25,7 +28,7 @@ namespace BlockpostTrainer.Sdk.Raw
             public const uint AGHEKCNBAOC = 0x103de920; // public static void AGHEKCNBAOC()
             public const uint MEMBGHGNNKM = 0x103ed820; // public static void MEMBGHGNNKM()
             public const uint NHANJODFILA = 0x103f08f0; // public static void NHANJODFILA()
-            public const uint _ctor = 0x101a6520; // public void .ctor()
+            public const uint ctor = 0x101a6520; // public void .ctor()
             public const uint HMCMHDOCENL = 0x103e7f10; // public static void HMCMHDOCENL()
             public const uint IFMECINEGHL = 0x103e9e40; // public static void IFMECINEGHL()
             public const uint AJJKLMFCKEJ = 0x103dec90; // public static void AJJKLMFCKEJ()

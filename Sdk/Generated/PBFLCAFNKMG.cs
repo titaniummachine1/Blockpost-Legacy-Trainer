@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class PBFLCAFNKMG
     {
+        public const int TypeDefIndex = 281;
+        public const string OriginalName = "PBFLCAFNKMG";
+
         /// <summary>
         /// Field and static-field offsets for PBFLCAFNKMG.
         /// </summary>
@@ -23,7 +26,7 @@ namespace BlockpostTrainer.Sdk.Raw
         /// </summary>
         public static class Methods
         {
-            public const uint _ctor = 0x101ace80; // internal void .ctor()
+            public const uint ctor = 0x101ace80; // internal void .ctor()
         }
     }
 }

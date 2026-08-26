@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class MFGOJNMLKGG
     {
+        public const int TypeDefIndex = 419;
+        public const string OriginalName = "MFGOJNMLKGG";
+
         /// <summary>
         /// Field and static-field offsets for MFGOJNMLKGG.
         /// </summary>
@@ -21,82 +24,159 @@ namespace BlockpostTrainer.Sdk.Raw
         /// </summary>
         public static class Methods
         {
+            /// <summary>BKJEDAGEBAC(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD) -> Color</summary>
             public const uint BKJEDAGEBAC = 0x10b096e0; // public static Color BKJEDAGEBAC(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD)
+            /// <summary>MLMNDGCOJKA(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD) -> Color</summary>
             public const uint MLMNDGCOJKA = 0x10b0ebb0; // public static Color MLMNDGCOJKA(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD)
+            /// <summary>IECOILDGPHH() -> Color</summary>
             public const uint IECOILDGPHH = 0x10b0c8c0; // public Color IECOILDGPHH()
+            /// <summary>JCGANFMGJHO(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD) -> Color</summary>
             public const uint JCGANFMGJHO = 0x10b0d770; // public static Color JCGANFMGJHO(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD)
+            /// <summary>AAOMBIEGJOO() -> Color</summary>
             public const uint AAOMBIEGJOO = 0x10b08b70; // public Color AAOMBIEGJOO()
+            /// <summary>MKPGMNMPLDH(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD) -> Color</summary>
             public const uint MKPGMNMPLDH = 0x10b0eb20; // public static Color MKPGMNMPLDH(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD)
+            /// <summary>HHHKCFBKGDH() -> Color</summary>
             public const uint HHHKCFBKGDH = 0x10b0c310; // public Color HHHKCFBKGDH()
+            /// <summary>EOAJMOOCFOC() -> Color</summary>
             public const uint EOAJMOOCFOC = 0x10b0a8b0; // public Color EOAJMOOCFOC()
+            /// <summary>INGNABCMNNB(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD) -> Color</summary>
             public const uint INGNABCMNNB = 0x10b0d010; // public static Color INGNABCMNNB(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD)
+            /// <summary>GOILOKPCFIG() -> Color</summary>
             public const uint GOILOKPCFIG = 0x10b0bc80; // public Color GOILOKPCFIG()
+            /// <summary>DGAOEBGHDHL() -> Color</summary>
             public const uint DGAOEBGHDHL = 0x10b0a480; // public Color DGAOEBGHDHL()
+            /// <summary>BBGFCJIHEBJ() -> Color</summary>
             public const uint BBGFCJIHEBJ = 0x10b092b0; // public Color BBGFCJIHEBJ()
+            /// <summary>LAOIGMDLCDF(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD) -> Color</summary>
             public const uint LAOIGMDLCDF = 0x10b0e660; // public static Color LAOIGMDLCDF(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD)
+            /// <summary>JNCLALMLFFM() -> Color</summary>
             public const uint JNCLALMLFFM = 0x10b0de00; // public Color JNCLALMLFFM()
+            /// <summary>JAGENMEIJNO() -> Color</summary>
             public const uint JAGENMEIJNO = 0x10b0d5a0; // public Color JAGENMEIJNO()
+            /// <summary>JKEHFLJMIML() -> Color</summary>
             public const uint JKEHFLJMIML = 0x10b0da60; // public Color JKEHFLJMIML()
+            /// <summary>FMDPAFOGDDL(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD) -> Color</summary>
             public const uint FMDPAFOGDDL = 0x10b0b310; // public static Color FMDPAFOGDDL(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD)
+            /// <summary>LMMNJMIINOO(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD) -> Color</summary>
             public const uint LMMNJMIINOO = 0x10b0ea90; // public static Color LMMNJMIINOO(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD)
+            /// <summary>BIIGEEMLCND() -> Color</summary>
             public const uint BIIGEEMLCND = 0x10b09480; // public Color BIIGEEMLCND()
-            public const uint _ctor = 0x10b0fe90; // public void .ctor(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD, float JHGGICCFNFJ)
+            /// <summary>.ctor(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD, float JHGGICCFNFJ)</summary>
+            public const uint ctor = 0x10b0fe90; // public void .ctor(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD, float JHGGICCFNFJ)
+            /// <summary>DLNADPLFPIG(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD) -> Color</summary>
             public const uint DLNADPLFPIG = 0x10b0a650; // public static Color DLNADPLFPIG(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD)
+            /// <summary>HEONPHNNCIL(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD) -> Color</summary>
             public const uint HEONPHNNCIL = 0x10b0c280; // public static Color HEONPHNNCIL(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD)
+            /// <summary>CJDGLJCBENM() -> Color</summary>
             public const uint CJDGLJCBENM = 0x10b09aa0; // public Color CJDGLJCBENM()
+            /// <summary>PONNIDAHMOI(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD) -> Color</summary>
             public const uint PONNIDAHMOI = 0x10b0fa50; // public static Color PONNIDAHMOI(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD)
+            /// <summary>LFNLPJHKIFG() -> Color</summary>
             public const uint LFNLPJHKIFG = 0x10b0e8c0; // public Color LFNLPJHKIFG()
+            /// <summary>BIPDDDILDIG(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD) -> Color</summary>
             public const uint BIPDDDILDIG = 0x10b09650; // public static Color BIPDDDILDIG(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD)
+            /// <summary>NNHKPFFDMCI() -> Color</summary>
             public const uint NNHKPFFDMCI = 0x10b0f070; // public Color NNHKPFFDMCI()
+            /// <summary>PEFNIHODLEJ(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD) -> Color</summary>
             public const uint PEFNIHODLEJ = 0x10b0f410; // public static Color PEFNIHODLEJ(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD)
+            /// <summary>HADGBMMPJDA() -> Color</summary>
             public const uint HADGBMMPJDA = 0x10b0bee0; // public Color HADGBMMPJDA()
+            /// <summary>EPJFMPKFKLC() -> Color</summary>
             public const uint EPJFMPKFKLC = 0x10b0aa80; // public Color EPJFMPKFKLC()
+            /// <summary>MPPCJFGDCKA(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD) -> Color</summary>
             public const uint MPPCJFGDCKA = 0x10b0ee10; // public static Color MPPCJFGDCKA(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD)
+            /// <summary>JFNIDMONMIL() -> Color</summary>
             public const uint JFNIDMONMIL = 0x10b0d800; // public Color JFNIDMONMIL()
+            /// <summary>ALLEPMIHLMF() -> Color</summary>
             public const uint ALLEPMIHLMF = 0x10b08f10; // public Color ALLEPMIHLMF()
+            /// <summary>IHLANHHLHPK(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD) -> Color</summary>
             public const uint IHLANHHLHPK = 0x10b0cc60; // public static Color IHLANHHLHPK(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD)
+            /// <summary>HMKJDLFLEGN(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD) -> Color</summary>
             public const uint HMKJDLFLEGN = 0x10b0c6d0; // public static Color HMKJDLFLEGN(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD)
+            /// <summary>IKKKBHFDHBN() -> Color</summary>
             public const uint IKKKBHFDHBN = 0x10b0ce40; // public Color IKKKBHFDHBN()
+            /// <summary>CKHGMGODLOE(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD) -> Color</summary>
             public const uint CKHGMGODLOE = 0x10b09c70; // public static Color CKHGMGODLOE(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD)
+            /// <summary>DAPFBEMLBJL() -> Color</summary>
             public const uint DAPFBEMLBJL = 0x10b09ef0; // public Color DAPFBEMLBJL()
+            /// <summary>CPGMHCCJCNN(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD) -> Color</summary>
             public const uint CPGMHCCJCNN = 0x10b09d00; // public static Color CPGMHCCJCNN(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD)
+            /// <summary>FMIDHBLKAHK() -> Color</summary>
             public const uint FMIDHBLKAHK = 0x10b0b500; // public Color FMIDHBLKAHK()
+            /// <summary>GPKDOMMAIDE(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD) -> Color</summary>
             public const uint GPKDOMMAIDE = 0x10b0be50; // public static Color GPKDOMMAIDE(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD)
+            /// <summary>APDHCOKPEJE() -> Color</summary>
             public const uint APDHCOKPEJE = 0x10b090e0; // public Color APDHCOKPEJE()
+            /// <summary>DFOKAHOIKMF() -> Color</summary>
             public const uint DFOKAHOIKMF = 0x10b0a2b0; // public Color DFOKAHOIKMF()
+            /// <summary>PLGDKDPCLAO(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD) -> Color</summary>
             public const uint PLGDKDPCLAO = 0x10b0f7d0; // public static Color PLGDKDPCLAO(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD)
+            /// <summary>FOEHFIMHABJ(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD) -> Color</summary>
             public const uint FOEHFIMHABJ = 0x10b0b8a0; // public static Color FOEHFIMHABJ(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD)
+            /// <summary>JOJBILECCMB(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD) -> Color</summary>
             public const uint JOJBILECCMB = 0x10b0dfd0; // public static Color JOJBILECCMB(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD)
+            /// <summary>IFGIOJFEHAB() -> Color</summary>
             public const uint IFGIOJFEHAB = 0x10b0ca90; // public Color IFGIOJFEHAB()
+            /// <summary>DCKMBMOAKJJ(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD) -> Color</summary>
             public const uint DCKMBMOAKJJ = 0x10b0a0c0; // public static Color DCKMBMOAKJJ(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD)
+            /// <summary>LDEAKABLODB() -> Color</summary>
             public const uint LDEAKABLODB = 0x10b0e6f0; // public Color LDEAKABLODB()
+            /// <summary>FEIJEILDKMP(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD) -> Color</summary>
             public const uint FEIJEILDKMP = 0x10b0ae40; // public static Color FEIJEILDKMP(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD)
+            /// <summary>FDIFGFJBOGO(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD) -> Color</summary>
             public const uint FDIFGFJBOGO = 0x10b0ac50; // public static Color FDIFGFJBOGO(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD)
-            public const uint _ctor_2 = 0x10b0fed0; // public void .ctor(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD)
+            /// <summary>.ctor(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD)</summary>
+            public const uint ctor_2 = 0x10b0fed0; // public void .ctor(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD)
+            /// <summary>KKDOEGJDJFD(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD) -> Color</summary>
             public const uint KKDOEGJDJFD = 0x10b0e5d0; // public static Color KKDOEGJDJFD(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD)
+            /// <summary>NEJPCNPPABH() -> Color</summary>
             public const uint NEJPCNPPABH = 0x10b0eea0; // public Color NEJPCNPPABH()
+            /// <summary>HCECIKNIJJH() -> Color</summary>
             public const uint HCECIKNIJJH = 0x10b0c0b0; // public Color HCECIKNIJJH()
+            /// <summary>EHHNIBBHFIN() -> Color</summary>
             public const uint EHHNIBBHFIN = 0x10b0a6e0; // public Color EHHNIBBHFIN()
+            /// <summary>CIKGDNEJDPD() -> Color</summary>
             public const uint CIKGDNEJDPD = 0x10b098d0; // public Color CIKGDNEJDPD()
+            /// <summary>FJGBDHNPGCI() -> Color</summary>
             public const uint FJGBDHNPGCI = 0x10b0b150; // public Color FJGBDHNPGCI()
+            /// <summary>JKOOBDHHOPC() -> Color</summary>
             public const uint JKOOBDHHOPC = 0x10b0dc30; // public Color JKOOBDHHOPC()
+            /// <summary>KFGOBGAIEDP() -> Color</summary>
             public const uint KFGOBGAIEDP = 0x10b0e060; // public Color KFGOBGAIEDP()
+            /// <summary>HJOGGCANLKJ(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD) -> Color</summary>
             public const uint HJOGGCANLKJ = 0x10b0c4e0; // public static Color HJOGGCANLKJ(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD)
+            /// <summary>KGHIFNDPMAL() -> Color</summary>
             public const uint KGHIFNDPMAL = 0x10b0e400; // public Color KGHIFNDPMAL()
+            /// <summary>KGEKPBBCMIL() -> Color</summary>
             public const uint KGEKPBBCMIL = 0x10b0e230; // public Color KGEKPBBCMIL()
+            /// <summary>IPFCGJICAND() -> Color</summary>
             public const uint IPFCGJICAND = 0x10b0d200; // public Color IPFCGJICAND()
+            /// <summary>FMKLCFNFOMJ() -> Color</summary>
             public const uint FMKLCFNFOMJ = 0x10b0b6d0; // public Color FMKLCFNFOMJ()
+            /// <summary>MOCDECKJEAG() -> Color</summary>
             public const uint MOCDECKJEAG = 0x10b0ec40; // public Color MOCDECKJEAG()
+            /// <summary>AKKCHENLEOE() -> Color</summary>
             public const uint AKKCHENLEOE = 0x10b08d40; // public Color AKKCHENLEOE()
+            /// <summary>JAFPJAHBOFI() -> Color</summary>
             public const uint JAFPJAHBOFI = 0x10b0d3d0; // public Color JAFPJAHBOFI()
+            /// <summary>OBPBOJJDEGA() -> Color</summary>
             public const uint OBPBOJJDEGA = 0x10b0f240; // public Color OBPBOJJDEGA()
+            /// <summary>FHLLIDFACNA(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD) -> Color</summary>
             public const uint FHLLIDFACNA = 0x10b0b030; // public static Color FHLLIDFACNA(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD)
-            public const uint _ctor_3 = 0x10b0fcb0; // public void .ctor(Color JFFLHBFAGOM)
+            /// <summary>.ctor(Color JFFLHBFAGOM)</summary>
+            public const uint ctor_3 = 0x10b0fcb0; // public void .ctor(Color JFFLHBFAGOM)
+            /// <summary>JHDHHOPJCMP(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD) -> Color</summary>
             public const uint JHDHHOPJCMP = 0x10b0d9d0; // public static Color JHDHHOPJCMP(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD)
+            /// <summary>GNNKAHKDNBJ(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD) -> Color</summary>
             public const uint GNNKAHKDNBJ = 0x10b0ba90; // public static Color GNNKAHKDNBJ(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD)
+            /// <summary>POOFBKMHBGE() -> Color</summary>
             public const uint POOFBKMHBGE = 0x10b0fae0; // public Color POOFBKMHBGE()
+            /// <summary>FJFGIIFEMLL(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD) -> Color</summary>
             public const uint FJFGIIFEMLL = 0x10b0b0c0; // public static Color FJFGIIFEMLL(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD)
+            /// <summary>PMNMLNJEPJD(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD) -> Color</summary>
             public const uint PMNMLNJEPJD = 0x10b0f9c0; // public static Color PMNMLNJEPJD(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD)
+            /// <summary>PENIJKPEKHN() -> Color</summary>
             public const uint PENIJKPEKHN = 0x10b0f600; // public Color PENIJKPEKHN()
         }
     }

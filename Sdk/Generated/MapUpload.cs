@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class MapUpload
     {
+        public const int TypeDefIndex = 266;
+        public const string OriginalName = "MapUpload";
+
         /// <summary>
         /// Field and static-field offsets for MapUpload.
         /// </summary>
@@ -16,7 +19,7 @@ namespace BlockpostTrainer.Sdk.Raw
         /// </summary>
         public static class Methods
         {
-            public const uint _ctor = 0x101a6520; // public void .ctor()
+            public const uint ctor = 0x101a6520; // public void .ctor()
         }
     }
 }

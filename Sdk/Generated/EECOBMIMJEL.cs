@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class EECOBMIMJEL
     {
+        public const int TypeDefIndex = 165;
+        public const string OriginalName = "EECOBMIMJEL";
+
         /// <summary>
         /// Field and static-field offsets for EECOBMIMJEL.
         /// </summary>
@@ -31,22 +34,39 @@ namespace BlockpostTrainer.Sdk.Raw
         /// </summary>
         public static class Methods
         {
+            /// <summary>EDPHBPAHIDC(string BHHGCMGJIKM, string GOALAGKACHO, string[] AIIHIBFIBMJ)</summary>
             public const uint EDPHBPAHIDC = 0x1057adb0; // internal void EDPHBPAHIDC(string BHHGCMGJIKM, string GOALAGKACHO, string[] AIIHIBFIBMJ)
+            /// <summary>FMHBLKJCFBL(string BHHGCMGJIKM, string GOALAGKACHO, string[] AIIHIBFIBMJ)</summary>
             public const uint FMHBLKJCFBL = 0x1057aef0; // internal void FMHBLKJCFBL(string BHHGCMGJIKM, string GOALAGKACHO, string[] AIIHIBFIBMJ)
+            /// <summary>MCKFGNGIAHB(string BHHGCMGJIKM, string GOALAGKACHO, string[] AIIHIBFIBMJ)</summary>
             public const uint MCKFGNGIAHB = 0x1057b3f0; // internal void MCKFGNGIAHB(string BHHGCMGJIKM, string GOALAGKACHO, string[] AIIHIBFIBMJ)
+            /// <summary>MCLBKHGIEHN(string BHHGCMGJIKM, string GOALAGKACHO, string[] AIIHIBFIBMJ)</summary>
             public const uint MCLBKHGIEHN = 0x1057b490; // internal void MCLBKHGIEHN(string BHHGCMGJIKM, string GOALAGKACHO, string[] AIIHIBFIBMJ)
+            /// <summary>BBAANKKKONP(string BHHGCMGJIKM, string GOALAGKACHO, string[] AIIHIBFIBMJ)</summary>
             public const uint BBAANKKKONP = 0x1057abd0; // internal void BBAANKKKONP(string BHHGCMGJIKM, string GOALAGKACHO, string[] AIIHIBFIBMJ)
+            /// <summary>CCDJHKMAMCK(string BHHGCMGJIKM, string GOALAGKACHO, string[] AIIHIBFIBMJ)</summary>
             public const uint CCDJHKMAMCK = 0x1057ac70; // internal void CCDJHKMAMCK(string BHHGCMGJIKM, string GOALAGKACHO, string[] AIIHIBFIBMJ)
+            /// <summary>GGANHKEBCEA(string BHHGCMGJIKM, string GOALAGKACHO, string[] AIIHIBFIBMJ)</summary>
             public const uint GGANHKEBCEA = 0x1057af90; // internal void GGANHKEBCEA(string BHHGCMGJIKM, string GOALAGKACHO, string[] AIIHIBFIBMJ)
+            /// <summary>IDJBKEADIOB(string BHHGCMGJIKM, string GOALAGKACHO, string[] AIIHIBFIBMJ)</summary>
             public const uint IDJBKEADIOB = 0x1057b0d0; // internal void IDJBKEADIOB(string BHHGCMGJIKM, string GOALAGKACHO, string[] AIIHIBFIBMJ)
+            /// <summary>IINCOADBOOM(string BHHGCMGJIKM, string GOALAGKACHO, string[] AIIHIBFIBMJ)</summary>
             public const uint IINCOADBOOM = 0x1057b170; // internal void IINCOADBOOM(string BHHGCMGJIKM, string GOALAGKACHO, string[] AIIHIBFIBMJ)
+            /// <summary>HIONKIKDLOL(string BHHGCMGJIKM, string GOALAGKACHO, string[] AIIHIBFIBMJ)</summary>
             public const uint HIONKIKDLOL = 0x1057b030; // internal void HIONKIKDLOL(string BHHGCMGJIKM, string GOALAGKACHO, string[] AIIHIBFIBMJ)
+            /// <summary>EKHMGNMLMPM(string BHHGCMGJIKM, string GOALAGKACHO, string[] AIIHIBFIBMJ)</summary>
             public const uint EKHMGNMLMPM = 0x1057ae50; // internal void EKHMGNMLMPM(string BHHGCMGJIKM, string GOALAGKACHO, string[] AIIHIBFIBMJ)
+            /// <summary>LCDFDMDOEHM(string BHHGCMGJIKM, string GOALAGKACHO, string[] AIIHIBFIBMJ)</summary>
             public const uint LCDFDMDOEHM = 0x1057b2b0; // internal void LCDFDMDOEHM(string BHHGCMGJIKM, string GOALAGKACHO, string[] AIIHIBFIBMJ)
+            /// <summary>LHIPGLLCEPI(string BHHGCMGJIKM, string GOALAGKACHO, string[] AIIHIBFIBMJ)</summary>
             public const uint LHIPGLLCEPI = 0x1057b350; // internal void LHIPGLLCEPI(string BHHGCMGJIKM, string GOALAGKACHO, string[] AIIHIBFIBMJ)
-            public const uint _ctor = 0x1057b5d0; // internal void .ctor(int LDKMPMIANCE, string BHHGCMGJIKM, string GOALAGKACHO, string[] AIIHIBFIBMJ)
+            /// <summary>.ctor(int LDKMPMIANCE, string BHHGCMGJIKM, string GOALAGKACHO, string[] AIIHIBFIBMJ)</summary>
+            public const uint ctor = 0x1057b5d0; // internal void .ctor(int LDKMPMIANCE, string BHHGCMGJIKM, string GOALAGKACHO, string[] AIIHIBFIBMJ)
+            /// <summary>KPDOIEPJPLE(string BHHGCMGJIKM, string GOALAGKACHO, string[] AIIHIBFIBMJ)</summary>
             public const uint KPDOIEPJPLE = 0x1057b210; // internal void KPDOIEPJPLE(string BHHGCMGJIKM, string GOALAGKACHO, string[] AIIHIBFIBMJ)
+            /// <summary>CMCPNHIOHAF(string BHHGCMGJIKM, string GOALAGKACHO, string[] AIIHIBFIBMJ)</summary>
             public const uint CMCPNHIOHAF = 0x1057ad10; // internal void CMCPNHIOHAF(string BHHGCMGJIKM, string GOALAGKACHO, string[] AIIHIBFIBMJ)
+            /// <summary>OKLDEBJLGOG(string BHHGCMGJIKM, string GOALAGKACHO, string[] AIIHIBFIBMJ)</summary>
             public const uint OKLDEBJLGOG = 0x1057b530; // internal void OKLDEBJLGOG(string BHHGCMGJIKM, string GOALAGKACHO, string[] AIIHIBFIBMJ)
         }
     }

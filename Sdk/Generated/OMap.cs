@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class OMap
     {
+        public const int TypeDefIndex = 361;
+        public const string OriginalName = "OMap";
+
         /// <summary>
         /// Field and static-field offsets for OMap.
         /// </summary>
@@ -61,7 +64,7 @@ namespace BlockpostTrainer.Sdk.Raw
             public const uint AHFCKILODOP = 0x101a4700; // private void AHFCKILODOP()
             public const uint PELMGLDGHLF = 0x101a4700; // private void PELMGLDGHLF()
             public const uint OONKLAODIDP = 0x101a4700; // private void OONKLAODIDP()
-            public const uint _ctor = 0x101a6520; // public void .ctor()
+            public const uint ctor = 0x101a6520; // public void .ctor()
             public const uint BALMKADALCP = 0x101a4700; // private void BALMKADALCP()
         }
     }

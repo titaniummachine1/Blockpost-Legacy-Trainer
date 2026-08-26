@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class MLDGDBIFMEO
     {
+        public const int TypeDefIndex = 349;
+        public const string OriginalName = "MLDGDBIFMEO";
+
         /// <summary>
         /// Field and static-field offsets for MLDGDBIFMEO.
         /// </summary>
@@ -18,7 +21,7 @@ namespace BlockpostTrainer.Sdk.Raw
         /// </summary>
         public static class Methods
         {
-            public const uint _ctor = 0x109380d0; // internal void .ctor()
+            public const uint ctor = 0x109380d0; // internal void .ctor()
         }
     }
 }

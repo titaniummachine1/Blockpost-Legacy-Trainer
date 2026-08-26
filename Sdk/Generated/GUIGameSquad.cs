@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class GUIGameSquad
     {
+        public const int TypeDefIndex = 460;
+        public const string OriginalName = "GUIGameSquad";
+
         /// <summary>
         /// Field and static-field offsets for GUIGameSquad.
         /// </summary>
@@ -33,7 +36,7 @@ namespace BlockpostTrainer.Sdk.Raw
             public const uint BALMKADALCP = 0x101a4700; // private void BALMKADALCP()
             public const uint KBGEILKEHJO = 0x101a4700; // private void KBGEILKEHJO()
             public const uint LOKHOLLGKEA = 0x101a4700; // private void LOKHOLLGKEA()
-            public const uint _ctor = 0x101a6520; // public void .ctor()
+            public const uint ctor = 0x101a6520; // public void .ctor()
             public const uint GDDJFLJFMCB = 0x101a4700; // private void GDDJFLJFMCB()
             public const uint LOKHFPNOOOL = 0x101a4700; // private void LOKHFPNOOOL()
             public const uint GPAECMFNBKF = 0x101a4700; // private void GPAECMFNBKF()

@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class UIMTasks
     {
+        public const int TypeDefIndex = 130;
+        public const string OriginalName = "UIMTasks";
+
         /// <summary>
         /// Field and static-field offsets for UIMTasks.
         /// </summary>
@@ -91,7 +94,7 @@ namespace BlockpostTrainer.Sdk.Raw
             public const uint PPBOIOHHCEG = 0x101a4700; // private void PPBOIOHHCEG()
             public const uint OAOJMICIFJO = 0x104bb1e0; // public void OAOJMICIFJO()
             public const uint JNJMCNEFIIH = 0x101a4700; // private void JNJMCNEFIIH()
-            public const uint _ctor = 0x101a6520; // public void .ctor()
+            public const uint ctor = 0x101a6520; // public void .ctor()
             public const uint MBGHIIGOEAD = 0x104bb3e0; // private void MBGHIIGOEAD()
             public const uint GHCEEGEEFIG = 0x101a4700; // private void GHCEEGEEFIG()
             public const uint HPHONCKLEDA = 0x101a4700; // private void HPHONCKLEDA()

@@ -4,15 +4,18 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class UIPaletteColorPreview
     {
+        public const int TypeDefIndex = 366;
+        public const string OriginalName = "UIPaletteColorPreview";
+
         /// <summary>
         /// Field and static-field offsets for UIPaletteColorPreview.
         /// </summary>
         public static class Offsets
         {
             // Instance fields
-            public const int _colorImage = 0xc; // Image
-            public const int _selectionImage = 0x10; // Image
-            public const int _selectionColorImage = 0x14; // Image
+            public const int colorImage = 0xc; // Image
+            public const int selectionImage = 0x10; // Image
+            public const int selectionColorImage = 0x14; // Image
         }
 
         /// <summary>
@@ -20,50 +23,94 @@ namespace BlockpostTrainer.Sdk.Raw
         /// </summary>
         public static class Methods
         {
-            public const uint _ctor = 0x101a6520; // public void .ctor()
+            public const uint ctor = 0x101a6520; // public void .ctor()
+            /// <summary>IACIHCMDGHI(bool BNJGJOOJCHF)</summary>
             public const uint IACIHCMDGHI = 0x10a36f40; // public void IACIHCMDGHI(bool BNJGJOOJCHF)
+            /// <summary>NAJFKCEIGGC(Color JFFLHBFAGOM)</summary>
             public const uint NAJFKCEIGGC = 0x10a36f00; // public void NAJFKCEIGGC(Color JFFLHBFAGOM)
+            /// <summary>AIKLHPOCBAD(bool BNJGJOOJCHF)</summary>
             public const uint AIKLHPOCBAD = 0x10a36f40; // public void AIKLHPOCBAD(bool BNJGJOOJCHF)
+            /// <summary>PCCJCNEKBEG(Color JFFLHBFAGOM)</summary>
             public const uint PCCJCNEKBEG = 0x10a36f00; // public void PCCJCNEKBEG(Color JFFLHBFAGOM)
+            /// <summary>KDEKFMGOLPD(bool BNJGJOOJCHF)</summary>
             public const uint KDEKFMGOLPD = 0x10a36f40; // public void KDEKFMGOLPD(bool BNJGJOOJCHF)
+            /// <summary>IFJKDEDKNGP(Color JFFLHBFAGOM)</summary>
             public const uint IFJKDEDKNGP = 0x10a36f00; // public void IFJKDEDKNGP(Color JFFLHBFAGOM)
+            /// <summary>NNECFGAFFCA(Color JFFLHBFAGOM)</summary>
             public const uint NNECFGAFFCA = 0x10a36f00; // public void NNECFGAFFCA(Color JFFLHBFAGOM)
+            /// <summary>IEBLCLGPJIK(Color JFFLHBFAGOM)</summary>
             public const uint IEBLCLGPJIK = 0x10a36f00; // public void IEBLCLGPJIK(Color JFFLHBFAGOM)
+            /// <summary>CKHMBJIHELJ(Color JFFLHBFAGOM)</summary>
             public const uint CKHMBJIHELJ = 0x10a36f00; // public void CKHMBJIHELJ(Color JFFLHBFAGOM)
+            /// <summary>CJJDDCNDGID(Color JFFLHBFAGOM)</summary>
             public const uint CJJDDCNDGID = 0x10a36f00; // public void CJJDDCNDGID(Color JFFLHBFAGOM)
+            /// <summary>NFMNMCOAJGA(Color JFFLHBFAGOM)</summary>
             public const uint NFMNMCOAJGA = 0x10a36f00; // public void NFMNMCOAJGA(Color JFFLHBFAGOM)
+            /// <summary>IPFNDBOOAGC(Color JFFLHBFAGOM)</summary>
             public const uint IPFNDBOOAGC = 0x10a36f00; // public void IPFNDBOOAGC(Color JFFLHBFAGOM)
+            /// <summary>PJOAJGMGGOC(bool BNJGJOOJCHF)</summary>
             public const uint PJOAJGMGGOC = 0x10a36f40; // public void PJOAJGMGGOC(bool BNJGJOOJCHF)
+            /// <summary>FFKKOFPFFIG(bool BNJGJOOJCHF)</summary>
             public const uint FFKKOFPFFIG = 0x10a36f40; // public void FFKKOFPFFIG(bool BNJGJOOJCHF)
+            /// <summary>NOJHKHDGLLP(Color JFFLHBFAGOM)</summary>
             public const uint NOJHKHDGLLP = 0x10a36f00; // public void NOJHKHDGLLP(Color JFFLHBFAGOM)
+            /// <summary>LLCDMCJKILE(bool BNJGJOOJCHF)</summary>
             public const uint LLCDMCJKILE = 0x10a36f40; // public void LLCDMCJKILE(bool BNJGJOOJCHF)
+            /// <summary>BPCDLICHKAD(Color JFFLHBFAGOM)</summary>
             public const uint BPCDLICHKAD = 0x10a36f00; // public void BPCDLICHKAD(Color JFFLHBFAGOM)
+            /// <summary>GMOPDGDGNFE(bool BNJGJOOJCHF)</summary>
             public const uint GMOPDGDGNFE = 0x10a37000; // public void GMOPDGDGNFE(bool BNJGJOOJCHF)
+            /// <summary>MLOFJHEJDNI(Color JFFLHBFAGOM)</summary>
             public const uint MLOFJHEJDNI = 0x10a36f00; // public void MLOFJHEJDNI(Color JFFLHBFAGOM)
+            /// <summary>HEGGELOPKOG(bool BNJGJOOJCHF)</summary>
             public const uint HEGGELOPKOG = 0x10a37000; // public void HEGGELOPKOG(bool BNJGJOOJCHF)
+            /// <summary>EKPMKMJJBAA(Color JFFLHBFAGOM)</summary>
             public const uint EKPMKMJJBAA = 0x10a36f00; // public void EKPMKMJJBAA(Color JFFLHBFAGOM)
+            /// <summary>EEEGEGEIECC(bool BNJGJOOJCHF)</summary>
             public const uint EEEGEGEIECC = 0x10a36f40; // public void EEEGEGEIECC(bool BNJGJOOJCHF)
+            /// <summary>DDBPOPKHNJI(Color JFFLHBFAGOM)</summary>
             public const uint DDBPOPKHNJI = 0x10a36f00; // public void DDBPOPKHNJI(Color JFFLHBFAGOM)
+            /// <summary>GBKMHOHIIIC(Color JFFLHBFAGOM)</summary>
             public const uint GBKMHOHIIIC = 0x10a36f00; // public void GBKMHOHIIIC(Color JFFLHBFAGOM)
+            /// <summary>ADPGEIPBIDL(Color JFFLHBFAGOM)</summary>
             public const uint ADPGEIPBIDL = 0x10a36f00; // public void ADPGEIPBIDL(Color JFFLHBFAGOM)
+            /// <summary>OGOAJFGJDNA(Color JFFLHBFAGOM)</summary>
             public const uint OGOAJFGJDNA = 0x10a36f00; // public void OGOAJFGJDNA(Color JFFLHBFAGOM)
+            /// <summary>JPOMBPDCFMO(bool BNJGJOOJCHF)</summary>
             public const uint JPOMBPDCFMO = 0x10a37000; // public void JPOMBPDCFMO(bool BNJGJOOJCHF)
+            /// <summary>OFGMINILJIA(bool BNJGJOOJCHF)</summary>
             public const uint OFGMINILJIA = 0x10a37000; // public void OFGMINILJIA(bool BNJGJOOJCHF)
+            /// <summary>HCGPMADANPP(Color JFFLHBFAGOM)</summary>
             public const uint HCGPMADANPP = 0x10a36f00; // public void HCGPMADANPP(Color JFFLHBFAGOM)
+            /// <summary>SetColor(Color JFFLHBFAGOM)</summary>
             public const uint SetColor = 0x10a36f00; // public void SetColor(Color JFFLHBFAGOM)
+            /// <summary>KDFCBAMPLPA(Color JFFLHBFAGOM)</summary>
             public const uint KDFCBAMPLPA = 0x10a36f00; // public void KDFCBAMPLPA(Color JFFLHBFAGOM)
+            /// <summary>HDJBPDONGEG(Color JFFLHBFAGOM)</summary>
             public const uint HDJBPDONGEG = 0x10a36f00; // public void HDJBPDONGEG(Color JFFLHBFAGOM)
+            /// <summary>EBAPLJCECHL(bool BNJGJOOJCHF)</summary>
             public const uint EBAPLJCECHL = 0x10a36f40; // public void EBAPLJCECHL(bool BNJGJOOJCHF)
+            /// <summary>DECEANICGOC(bool BNJGJOOJCHF)</summary>
             public const uint DECEANICGOC = 0x10a37000; // public void DECEANICGOC(bool BNJGJOOJCHF)
+            /// <summary>HGJCKDJHNPB(Color JFFLHBFAGOM)</summary>
             public const uint HGJCKDJHNPB = 0x10a36f00; // public void HGJCKDJHNPB(Color JFFLHBFAGOM)
+            /// <summary>PAFGFCJMDOM(bool BNJGJOOJCHF)</summary>
             public const uint PAFGFCJMDOM = 0x10a37000; // public void PAFGFCJMDOM(bool BNJGJOOJCHF)
+            /// <summary>FAABMDFGPKG(Color JFFLHBFAGOM)</summary>
             public const uint FAABMDFGPKG = 0x10a36f00; // public void FAABMDFGPKG(Color JFFLHBFAGOM)
+            /// <summary>SetSelected(bool BNJGJOOJCHF)</summary>
             public const uint SetSelected = 0x10a37000; // public void SetSelected(bool BNJGJOOJCHF)
+            /// <summary>KPNAMOEJACA(Color JFFLHBFAGOM)</summary>
             public const uint KPNAMOEJACA = 0x10a36f00; // public void KPNAMOEJACA(Color JFFLHBFAGOM)
+            /// <summary>AJMKNPHMEPE(Color JFFLHBFAGOM)</summary>
             public const uint AJMKNPHMEPE = 0x10a36f00; // public void AJMKNPHMEPE(Color JFFLHBFAGOM)
+            /// <summary>LIPHEKLNPHI(Color JFFLHBFAGOM)</summary>
             public const uint LIPHEKLNPHI = 0x10a36f00; // public void LIPHEKLNPHI(Color JFFLHBFAGOM)
+            /// <summary>PGLPIBKBOFK(bool BNJGJOOJCHF)</summary>
             public const uint PGLPIBKBOFK = 0x10a36f40; // public void PGLPIBKBOFK(bool BNJGJOOJCHF)
+            /// <summary>BPFFJEMMGOB(bool BNJGJOOJCHF)</summary>
             public const uint BPFFJEMMGOB = 0x10a36f40; // public void BPFFJEMMGOB(bool BNJGJOOJCHF)
+            /// <summary>PGBOHJLEDPO(bool BNJGJOOJCHF)</summary>
             public const uint PGBOHJLEDPO = 0x10a37000; // public void PGBOHJLEDPO(bool BNJGJOOJCHF)
         }
     }

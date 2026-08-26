@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class Client_AGAPNOPLKDB
     {
+        public const int TypeDefIndex = 424;
+        public const string OriginalName = "Client.AGAPNOPLKDB";
+
         /// <summary>
         /// Field and static-field offsets for Client.AGAPNOPLKDB.
         /// </summary>
@@ -19,7 +22,8 @@ namespace BlockpostTrainer.Sdk.Raw
         /// </summary>
         public static class Methods
         {
-            public const uint _ctor = 0x10b47110; // internal void .ctor(byte[] MAFKGNLGNBN, int DJGAPKEINDJ)
+            /// <summary>.ctor(byte[] MAFKGNLGNBN, int DJGAPKEINDJ)</summary>
+            public const uint ctor = 0x10b47110; // internal void .ctor(byte[] MAFKGNLGNBN, int DJGAPKEINDJ)
         }
     }
 }

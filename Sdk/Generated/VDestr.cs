@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class VDestr
     {
+        public const int TypeDefIndex = 59;
+        public const string OriginalName = "VDestr";
+
         /// <summary>
         /// Field and static-field offsets for VDestr.
         /// </summary>
@@ -20,62 +23,95 @@ namespace BlockpostTrainer.Sdk.Raw
         /// </summary>
         public static class Methods
         {
+            /// <summary>JKFNHOIALOF(Collider MPEBIGNKLPJ)</summary>
             public const uint JKFNHOIALOF = 0x10c679e0; // private void JKFNHOIALOF(Collider MPEBIGNKLPJ)
             public const uint DLLCMBJIBAI = 0x10c66020; // private void DLLCMBJIBAI()
             public const uint GAHEOEDEIMA = 0x10c66020; // private void GAHEOEDEIMA()
+            /// <summary>BGPBLDJCCNG(Collider MPEBIGNKLPJ)</summary>
             public const uint BGPBLDJCCNG = 0x10c66060; // private void BGPBLDJCCNG(Collider MPEBIGNKLPJ)
+            /// <summary>HNNCNJNCLIO(Collider MPEBIGNKLPJ)</summary>
             public const uint HNNCNJNCLIO = 0x10c66e00; // private void HNNCNJNCLIO(Collider MPEBIGNKLPJ)
             public const uint KHLAKJKJAAP = 0x10c66020; // private void KHLAKJKJAAP()
+            /// <summary>JHMAIBMOGOK(Collider MPEBIGNKLPJ)</summary>
             public const uint JHMAIBMOGOK = 0x10c674d0; // private void JHMAIBMOGOK(Collider MPEBIGNKLPJ)
+            /// <summary>OnTriggerEnter(Collider MPEBIGNKLPJ)</summary>
             public const uint OnTriggerEnter = 0x10c68530; // private void OnTriggerEnter(Collider MPEBIGNKLPJ)
             public const uint FGPKCFBEKCM = 0x10c66020; // private void FGPKCFBEKCM()
+            /// <summary>BJPHCAPBFIF(Collider MPEBIGNKLPJ)</summary>
             public const uint BJPHCAPBFIF = 0x10c660c0; // private void BJPHCAPBFIF(Collider MPEBIGNKLPJ)
             public const uint BDIIFDINOKD = 0x10c66020; // private void BDIIFDINOKD()
+            /// <summary>EMCBCGGFKMF(Collider MPEBIGNKLPJ)</summary>
             public const uint EMCBCGGFKMF = 0x10c66730; // private void EMCBCGGFKMF(Collider MPEBIGNKLPJ)
+            /// <summary>KMJDPAMBAHB(Collider MPEBIGNKLPJ)</summary>
             public const uint KMJDPAMBAHB = 0x10c67d60; // private void KMJDPAMBAHB(Collider MPEBIGNKLPJ)
+            /// <summary>IFLHAMHPGJC(Collider MPEBIGNKLPJ)</summary>
             public const uint IFLHAMHPGJC = 0x10c66ff0; // private void IFLHAMHPGJC(Collider MPEBIGNKLPJ)
             public const uint BKPIMEADBHP = 0x10c66020; // private void BKPIMEADBHP()
+            /// <summary>ONLLEJOKNAA(Collider MPEBIGNKLPJ)</summary>
             public const uint ONLLEJOKNAA = 0x10c683a0; // private void ONLLEJOKNAA(Collider MPEBIGNKLPJ)
             public const uint EILJIIKFDMP = 0x10c66020; // private void EILJIIKFDMP()
+            /// <summary>AONBNKLLHMM(Collider MPEBIGNKLPJ)</summary>
             public const uint AONBNKLLHMM = 0x10c65e60; // private void AONBNKLLHMM(Collider MPEBIGNKLPJ)
+            /// <summary>PPPHJHMJONO(Collider MPEBIGNKLPJ)</summary>
             public const uint PPPHJHMJONO = 0x10c68a30; // private void PPPHJHMJONO(Collider MPEBIGNKLPJ)
+            /// <summary>JDIFGAOEDLC(Collider MPEBIGNKLPJ)</summary>
             public const uint JDIFGAOEDLC = 0x10c67180; // private void JDIFGAOEDLC(Collider MPEBIGNKLPJ)
+            /// <summary>ACJJKNNNBBE(Collider MPEBIGNKLPJ)</summary>
             public const uint ACJJKNNNBBE = 0x10c657f0; // private void ACJJKNNNBBE(Collider MPEBIGNKLPJ)
+            /// <summary>AMIGDHNOEFO(Collider MPEBIGNKLPJ)</summary>
             public const uint AMIGDHNOEFO = 0x10c65980; // private void AMIGDHNOEFO(Collider MPEBIGNKLPJ)
             public const uint IJOOOMGGJML = 0x10c66020; // private void IJOOOMGGJML()
             public const uint ICEMGMEOGLA = 0x10c66020; // private void ICEMGMEOGLA()
+            /// <summary>PGPOKLFMCJH(Collider MPEBIGNKLPJ)</summary>
             public const uint PGPOKLFMCJH = 0x10c686e0; // private void PGPOKLFMCJH(Collider MPEBIGNKLPJ)
             public const uint CMMEHEMEDMN = 0x10c66020; // private void CMMEHEMEDMN()
             public const uint KECOLFDPBJJ = 0x10c66020; // private void KECOLFDPBJJ()
             public const uint GFAOIEGNKPA = 0x10c66020; // private void GFAOIEGNKPA()
+            /// <summary>DBAAPOHCDEA(Collider MPEBIGNKLPJ)</summary>
             public const uint DBAAPOHCDEA = 0x10c66250; // private void DBAAPOHCDEA(Collider MPEBIGNKLPJ)
             public const uint DILKHCIGCFC = 0x10c66020; // private void DILKHCIGCFC()
+            /// <summary>JIBHNNEELHD(Collider MPEBIGNKLPJ)</summary>
             public const uint JIBHNNEELHD = 0x10c67660; // private void JIBHNNEELHD(Collider MPEBIGNKLPJ)
+            /// <summary>GAJNHKOBEPA(Collider MPEBIGNKLPJ)</summary>
             public const uint GAJNHKOBEPA = 0x10c66a80; // private void GAJNHKOBEPA(Collider MPEBIGNKLPJ)
             public const uint MEPIIBCIDBG = 0x10c66020; // private void MEPIIBCIDBG()
+            /// <summary>FBLAPPKNLOK(Collider MPEBIGNKLPJ)</summary>
             public const uint FBLAPPKNLOK = 0x10c668f0; // private void FBLAPPKNLOK(Collider MPEBIGNKLPJ)
             public const uint OBAMGHGNEAO = 0x10c66020; // private void OBAMGHGNEAO()
             public const uint OBFAMNNCOID = 0x10c66020; // private void OBFAMNNCOID()
+            /// <summary>AOCPBLJCADL(Collider MPEBIGNKLPJ)</summary>
             public const uint AOCPBLJCADL = 0x10c65ca0; // private void AOCPBLJCADL(Collider MPEBIGNKLPJ)
+            /// <summary>PHKEJDDBOKD(Collider MPEBIGNKLPJ)</summary>
             public const uint PHKEJDDBOKD = 0x10c68870; // private void PHKEJDDBOKD(Collider MPEBIGNKLPJ)
             public const uint FDKDHLNGLPF = 0x10c66020; // private void FDKDHLNGLPF()
+            /// <summary>NBOHIAMICNN(Collider MPEBIGNKLPJ)</summary>
             public const uint NBOHIAMICNN = 0x10c68080; // private void NBOHIAMICNN(Collider MPEBIGNKLPJ)
+            /// <summary>HLPPNLNOIAE(Collider MPEBIGNKLPJ)</summary>
             public const uint HLPPNLNOIAE = 0x10c66c40; // private void HLPPNLNOIAE(Collider MPEBIGNKLPJ)
             public const uint BPGELMPILFH = 0x10c66020; // private void BPGELMPILFH()
+            /// <summary>NAEHLANHOLO(Collider MPEBIGNKLPJ)</summary>
             public const uint NAEHLANHOLO = 0x10c67ef0; // private void NAEHLANHOLO(Collider MPEBIGNKLPJ)
+            /// <summary>HOPADHLFDNM(Collider MPEBIGNKLPJ)</summary>
             public const uint HOPADHLFDNM = 0x10c66f90; // private void HOPADHLFDNM(Collider MPEBIGNKLPJ)
+            /// <summary>DLMOMLPDAON(Collider MPEBIGNKLPJ)</summary>
             public const uint DLMOMLPDAON = 0x10c663e0; // private void DLMOMLPDAON(Collider MPEBIGNKLPJ)
             public const uint MGHFADELFIK = 0x10c66020; // private void MGHFADELFIK()
+            /// <summary>JIKAJKONODK(Collider MPEBIGNKLPJ)</summary>
             public const uint JIKAJKONODK = 0x10c67820; // private void JIKAJKONODK(Collider MPEBIGNKLPJ)
+            /// <summary>KLMODKIHILA(Collider MPEBIGNKLPJ)</summary>
             public const uint KLMODKIHILA = 0x10c67ba0; // private void KLMODKIHILA(Collider MPEBIGNKLPJ)
             public const uint JDFFPFKDEDP = 0x10c66020; // private void JDFFPFKDEDP()
+            /// <summary>EDKDBMIFHOO(Collider MPEBIGNKLPJ)</summary>
             public const uint EDKDBMIFHOO = 0x10c665a0; // private void EDKDBMIFHOO(Collider MPEBIGNKLPJ)
             public const uint JGDJDJNKMEE = 0x10c66020; // private void JGDJDJNKMEE()
-            public const uint _ctor = 0x101a6520; // public void .ctor()
+            public const uint ctor = 0x101a6520; // public void .ctor()
+            /// <summary>JFDGDFBIADC(Collider MPEBIGNKLPJ)</summary>
             public const uint JFDGDFBIADC = 0x10c67340; // private void JFDGDFBIADC(Collider MPEBIGNKLPJ)
+            /// <summary>OABDLKCNION(Collider MPEBIGNKLPJ)</summary>
             public const uint OABDLKCNION = 0x10c68210; // private void OABDLKCNION(Collider MPEBIGNKLPJ)
             public const uint Awake = 0x10c66020; // private void Awake()
             public const uint CMJDBJFGEDI = 0x10c66020; // private void CMJDBJFGEDI()
+            /// <summary>ANBJPLCEMOI(Collider MPEBIGNKLPJ)</summary>
             public const uint ANBJPLCEMOI = 0x10c65b10; // private void ANBJPLCEMOI(Collider MPEBIGNKLPJ)
             public const uint EGDFAMICFIO = 0x10c66020; // private void EGDFAMICFIO()
         }

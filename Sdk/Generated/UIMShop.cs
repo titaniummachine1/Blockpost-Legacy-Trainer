@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class UIMShop
     {
+        public const int TypeDefIndex = 182;
+        public const string OriginalName = "UIMShop";
+
         /// <summary>
         /// Field and static-field offsets for UIMShop.
         /// </summary>
@@ -40,7 +43,7 @@ namespace BlockpostTrainer.Sdk.Raw
             public const uint GCEADENDKAG = 0x101a4700; // private void GCEADENDKAG()
             public const uint JBCAKJOIGIA = 0x101a4700; // private void JBCAKJOIGIA()
             public const uint KHFNNDMIAMG = 0x101a4700; // private void KHFNNDMIAMG()
-            public const uint _ctor = 0x101a6520; // public void .ctor()
+            public const uint ctor = 0x101a6520; // public void .ctor()
             public const uint CMADIPOMNFJ = 0x101a4700; // private void CMADIPOMNFJ()
             public const uint JFEFDAKLCPE = 0x101a4700; // private void JFEFDAKLCPE()
         }

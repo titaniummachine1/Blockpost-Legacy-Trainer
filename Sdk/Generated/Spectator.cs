@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class Spectator
     {
+        public const int TypeDefIndex = 94;
+        public const string OriginalName = "Spectator";
+
         /// <summary>
         /// Field and static-field offsets for Spectator.
         /// </summary>
@@ -23,7 +26,7 @@ namespace BlockpostTrainer.Sdk.Raw
             public const uint PELMGLDGHLF = 0x1039c2e0; // private void PELMGLDGHLF()
             public const uint GBHGEPHIGNO = 0x10391fa0; // private void GBHGEPHIGNO()
             public const uint EAIMKIEACIF = 0x1038f100; // private void EAIMKIEACIF()
-            public const uint _ctor = 0x1039da50; // public void .ctor()
+            public const uint ctor = 0x1039da50; // public void .ctor()
             public const uint EPBPLMIGIFK = 0x10390090; // private void EPBPLMIGIFK()
             public const uint FMGJICHDHNE = 0x103917e0; // private void FMGJICHDHNE()
             public const uint LBILKLFLAMA = 0x10398c70; // private void LBILKLFLAMA()

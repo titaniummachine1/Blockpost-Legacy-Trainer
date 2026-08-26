@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class GeneralCameraShake
     {
+        public const int TypeDefIndex = 370;
+        public const string OriginalName = "GeneralCameraShake";
+
         /// <summary>
         /// Field and static-field offsets for GeneralCameraShake.
         /// </summary>
@@ -76,7 +79,7 @@ namespace BlockpostTrainer.Sdk.Raw
             public const uint JDCGELLCHGO = 0x10a29720; // private void JDCGELLCHGO()
             public const uint LOKHOLLGKEA = 0x10a2b6c0; // private void LOKHOLLGKEA()
             public const uint IOCFKNGCFDC = 0x10a29300; // private void IOCFKNGCFDC()
-            public const uint _ctor = 0x10a2f810; // public void .ctor()
+            public const uint ctor = 0x10a2f810; // public void .ctor()
             public const uint LOKHFPNOOOL = 0x10a2b2a0; // private void LOKHFPNOOOL()
             public const uint LFNPDOAHOGB = 0x10a2a7a0; // private void LFNPDOAHOGB()
             public const uint CHGOPJJCKJE = 0x10a24530; // private void CHGOPJJCKJE()

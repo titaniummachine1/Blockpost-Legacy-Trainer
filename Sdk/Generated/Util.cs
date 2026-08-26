@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class Util
     {
+        public const int TypeDefIndex = 232;
+        public const string OriginalName = "Util";
+
         /// <summary>
         /// Field and static-field offsets for Util.
         /// </summary>
@@ -16,27 +19,48 @@ namespace BlockpostTrainer.Sdk.Raw
         /// </summary>
         public static class Methods
         {
+            /// <summary>PDDJMFHLGKJ(Vector3 INABADNCINL, Vector3 LMCNGFGOOND)</summary>
             public const uint PDDJMFHLGKJ = 0x10704280; // public static void PDDJMFHLGKJ(Vector3 INABADNCINL, Vector3 LMCNGFGOOND)
+            /// <summary>LIJGNPIOHDK(Matrix4x4 FNBOPBHIMPM)</summary>
             public const uint LIJGNPIOHDK = 0x10702e70; // public static void LIJGNPIOHDK(Matrix4x4 FNBOPBHIMPM)
+            /// <summary>DJLOCLMFFLH(Vector3 INABADNCINL, Vector3 LMCNGFGOOND)</summary>
             public const uint DJLOCLMFFLH = 0x106feba0; // public static void DJLOCLMFFLH(Vector3 INABADNCINL, Vector3 LMCNGFGOOND)
+            /// <summary>GetBrowserPath() -> string</summary>
             public const uint GetBrowserPath = 0x10700520; // public static string GetBrowserPath()
+            /// <summary>BCLGAMAGOGI() -> string</summary>
             public const uint BCLGAMAGOGI = 0x106fe300; // public static string BCLGAMAGOGI()
+            /// <summary>NHFLFBIGNLM() -> string</summary>
             public const uint NHFLFBIGNLM = 0x10704030; // public static string NHFLFBIGNLM()
+            /// <summary>EOEEMEDILDD() -> string</summary>
             public const uint EOEEMEDILDD = 0x106ff700; // public static string EOEEMEDILDD()
+            /// <summary>JEPFGDFCMKP(Matrix4x4 FNBOPBHIMPM)</summary>
             public const uint JEPFGDFCMKP = 0x10701930; // public static void JEPFGDFCMKP(Matrix4x4 FNBOPBHIMPM)
+            /// <summary>HOAKJMIGELA(Vector3 INABADNCINL, Vector3 LMCNGFGOOND)</summary>
             public const uint HOAKJMIGELA = 0x10700770; // public static void HOAKJMIGELA(Vector3 INABADNCINL, Vector3 LMCNGFGOOND)
+            /// <summary>IAMPEEBBPLO(Vector3 INABADNCINL, Vector3 LMCNGFGOOND)</summary>
             public const uint IAMPEEBBPLO = 0x10700d20; // public static void IAMPEEBBPLO(Vector3 INABADNCINL, Vector3 LMCNGFGOOND)
+            /// <summary>KOMOCCMHCBM(Matrix4x4 FNBOPBHIMPM)</summary>
             public const uint KOMOCCMHCBM = 0x10702810; // public static void KOMOCCMHCBM(Matrix4x4 FNBOPBHIMPM)
+            /// <summary>JIKHLKAIDBP() -> string</summary>
             public const uint JIKHLKAIDBP = 0x107025c0; // public static string JIKHLKAIDBP()
+            /// <summary>NFMPMDLLIFK(Vector3 INABADNCINL, Vector3 LMCNGFGOOND)</summary>
             public const uint NFMPMDLLIFK = 0x10703a80; // public static void NFMPMDLLIFK(Vector3 INABADNCINL, Vector3 LMCNGFGOOND)
+            /// <summary>JGGFNMAMEOI(Matrix4x4 FNBOPBHIMPM)</summary>
             public const uint JGGFNMAMEOI = 0x10701f60; // public static void JGGFNMAMEOI(Matrix4x4 FNBOPBHIMPM)
+            /// <summary>NFDHHELFDNG(Vector3 INABADNCINL, Vector3 LMCNGFGOOND)</summary>
             public const uint NFDHHELFDNG = 0x107034d0; // public static void NFDHHELFDNG(Vector3 INABADNCINL, Vector3 LMCNGFGOOND)
+            /// <summary>DrawPlane(Vector3 INABADNCINL, Vector3 LMCNGFGOOND)</summary>
             public const uint DrawPlane = 0x106ff150; // public static void DrawPlane(Vector3 INABADNCINL, Vector3 LMCNGFGOOND)
+            /// <summary>PJBFBJIPNOG(Vector3 INABADNCINL, Vector3 LMCNGFGOOND)</summary>
             public const uint PJBFBJIPNOG = 0x10704830; // public static void PJBFBJIPNOG(Vector3 INABADNCINL, Vector3 LMCNGFGOOND)
+            /// <summary>JBAIGNHKLAH(Matrix4x4 FNBOPBHIMPM)</summary>
             public const uint JBAIGNHKLAH = 0x107012d0; // public static void JBAIGNHKLAH(Matrix4x4 FNBOPBHIMPM)
+            /// <summary>FEEMPJNCFLE(Matrix4x4 FNBOPBHIMPM)</summary>
             public const uint FEEMPJNCFLE = 0x106fff00; // public static void FEEMPJNCFLE(Matrix4x4 FNBOPBHIMPM)
-            public const uint _ctor = 0x101a6520; // public void .ctor()
+            public const uint ctor = 0x101a6520; // public void .ctor()
+            /// <summary>CalculateFrustumPlanes(Matrix4x4 FNBOPBHIMPM)</summary>
             public const uint CalculateFrustumPlanes = 0x106fe550; // public static void CalculateFrustumPlanes(Matrix4x4 FNBOPBHIMPM)
+            /// <summary>FADMMCGNPAI(Vector3 INABADNCINL, Vector3 LMCNGFGOOND)</summary>
             public const uint FADMMCGNPAI = 0x106ff950; // public static void FADMMCGNPAI(Vector3 INABADNCINL, Vector3 LMCNGFGOOND)
         }
     }

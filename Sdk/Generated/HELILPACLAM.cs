@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class HELILPACLAM
     {
+        public const int TypeDefIndex = 387;
+        public const string OriginalName = "HELILPACLAM";
+
         /// <summary>
         /// Field and static-field offsets for HELILPACLAM.
         /// </summary>
@@ -19,7 +22,7 @@ namespace BlockpostTrainer.Sdk.Raw
         /// </summary>
         public static class Methods
         {
-            public const uint _ctor = 0x10a75400; // internal void .ctor()
+            public const uint ctor = 0x10a75400; // internal void .ctor()
         }
     }
 }

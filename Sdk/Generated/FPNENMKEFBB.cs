@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class FPNENMKEFBB
     {
+        public const int TypeDefIndex = 77;
+        public const string OriginalName = "FPNENMKEFBB";
+
         /// <summary>
         /// Field and static-field offsets for FPNENMKEFBB.
         /// </summary>
@@ -28,26 +31,47 @@ namespace BlockpostTrainer.Sdk.Raw
         /// </summary>
         public static class Methods
         {
+            /// <summary>CBEOOGDGMCE() -> int</summary>
             public const uint CBEOOGDGMCE = 0x1034dca0; // internal int CBEOOGDGMCE()
+            /// <summary>MLMILHAFECN() -> int</summary>
             public const uint MLMILHAFECN = 0x1034de30; // internal int MLMILHAFECN()
+            /// <summary>KINHGPFBAKM() -> int</summary>
             public const uint KINHGPFBAKM = 0x1034dde0; // internal int KINHGPFBAKM()
+            /// <summary>BDALGPFOKMO() -> int</summary>
             public const uint BDALGPFOKMO = 0x1034dc30; // internal int BDALGPFOKMO()
+            /// <summary>KLGFENNGGBP() -> int</summary>
             public const uint KLGFENNGGBP = 0x1034de00; // internal int KLGFENNGGBP()
+            /// <summary>JBLOFFPNJKD() -> int</summary>
             public const uint JBLOFFPNJKD = 0x1034dd50; // internal int JBLOFFPNJKD()
+            /// <summary>BEOBPMEFCOM() -> int</summary>
             public const uint BEOBPMEFCOM = 0x1034dc60; // internal int BEOBPMEFCOM()
+            /// <summary>BIJACGOOHGJ() -> int</summary>
             public const uint BIJACGOOHGJ = 0x1034dc80; // internal int BIJACGOOHGJ()
+            /// <summary>IFBBBNGLPMM() -> int</summary>
             public const uint IFBBBNGLPMM = 0x1034dd10; // internal int IFBBBNGLPMM()
-            public const uint _ctor = 0x1034def0; // internal void .ctor(ulong AIEPBAHGMJD, NAHLLMJMOED ADMGNABJBNM)
+            /// <summary>.ctor(ulong AIEPBAHGMJD, NAHLLMJMOED ADMGNABJBNM)</summary>
+            public const uint ctor = 0x1034def0; // internal void .ctor(ulong AIEPBAHGMJD, NAHLLMJMOED ADMGNABJBNM)
+            /// <summary>OECHLECBCPF() -> int</summary>
             public const uint OECHLECBCPF = 0x1034de80; // internal int OECHLECBCPF()
+            /// <summary>NFGDBPFDMNO() -> int</summary>
             public const uint NFGDBPFDMNO = 0x1034de50; // internal int NFGDBPFDMNO()
+            /// <summary>JNPBEEJPING() -> int</summary>
             public const uint JNPBEEJPING = 0x1034dda0; // internal int JNPBEEJPING()
+            /// <summary>JKJBCBBGCKI() -> int</summary>
             public const uint JKJBCBBGCKI = 0x1034dd70; // internal int JKJBCBBGCKI()
+            /// <summary>OHGDFNPKDFC() -> int</summary>
             public const uint OHGDFNPKDFC = 0x1034deb0; // internal int OHGDFNPKDFC()
+            /// <summary>CBHAPKGBBAC() -> int</summary>
             public const uint CBHAPKGBBAC = 0x1034dcb0; // internal int CBHAPKGBBAC()
+            /// <summary>GBFOEMKCDLB() -> int</summary>
             public const uint GBFOEMKCDLB = 0x1034dcd0; // internal int GBFOEMKCDLB()
+            /// <summary>IJMPFFNEHOD() -> int</summary>
             public const uint IJMPFFNEHOD = 0x1034dd30; // internal int IJMPFFNEHOD()
+            /// <summary>KCKHEJJJPFF() -> int</summary>
             public const uint KCKHEJJJPFF = 0x1034ddc0; // internal int KCKHEJJJPFF()
+            /// <summary>HBFBFNDINOL() -> int</summary>
             public const uint HBFBFNDINOL = 0x1034dcf0; // internal int HBFBFNDINOL()
+            /// <summary>PAHILIJIEEP() -> int</summary>
             public const uint PAHILIJIEEP = 0x1034ded0; // internal int PAHILIJIEEP()
         }
     }

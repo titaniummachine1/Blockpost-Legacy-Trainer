@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class GUIObj
     {
+        public const int TypeDefIndex = 191;
+        public const string OriginalName = "GUIObj";
+
         /// <summary>
         /// Field and static-field offsets for GUIObj.
         /// </summary>
@@ -78,18 +81,24 @@ namespace BlockpostTrainer.Sdk.Raw
         public static class Methods
         {
             public const uint ICCKPACCBME = 0x105de240; // internal static void ICCKPACCBME()
+            /// <summary>JJDEPDDBCAG(Rect HDJBDIJCIMG, OJGPKMCPJDB PAIMMEEHCNB)</summary>
             public const uint JJDEPDDBCAG = 0x105e1db0; // private void JJDEPDDBCAG(Rect HDJBDIJCIMG, OJGPKMCPJDB PAIMMEEHCNB)
             public const uint AMFNNDOPFAO = 0x105d5e80; // private void AMFNNDOPFAO()
             public const uint LNAMDGLELBI = 0x105e33d0; // private void LNAMDGLELBI()
+            /// <summary>FLNFHGCDHJM(Rect HDJBDIJCIMG, OJGPKMCPJDB PAIMMEEHCNB)</summary>
             public const uint FLNFHGCDHJM = 0x105dc960; // private void FLNFHGCDHJM(Rect HDJBDIJCIMG, OJGPKMCPJDB PAIMMEEHCNB)
             public const uint DJFHJHBMBFJ = 0x105d85d0; // private void DJFHJHBMBFJ()
+            /// <summary>PJKEBHLMJPJ(float FFJMAPNMNAA, int JAFHCLBDANB) -> float</summary>
             public const uint PJKEBHLMJPJ = 0x105e9000; // private float PJKEBHLMJPJ(float FFJMAPNMNAA, int JAFHCLBDANB)
             public const uint OnResize = 0x105e8cb0; // private void OnResize()
             public const uint OPBJPDEGCGO = 0x105e8a20; // internal static void OPBJPDEGCGO()
             public const uint NOJCOHKLOIG = 0x105e43a0; // private void NOJCOHKLOIG()
+            /// <summary>GBPLDCFGFGD(float FFJMAPNMNAA, int JAFHCLBDANB) -> float</summary>
             public const uint GBPLDCFGFGD = 0x105dd890; // private float GBPLDCFGFGD(float FFJMAPNMNAA, int JAFHCLBDANB)
+            /// <summary>BJFNFMLEGIA(Rect HDJBDIJCIMG, OJGPKMCPJDB PAIMMEEHCNB)</summary>
             public const uint BJFNFMLEGIA = 0x105d6220; // private void BJFNFMLEGIA(Rect HDJBDIJCIMG, OJGPKMCPJDB PAIMMEEHCNB)
             public const uint NHGNPAMPAJM = 0x105e40c0; // private void NHGNPAMPAJM()
+            /// <summary>ECMMFAGBOEK(bool BNJGJOOJCHF)</summary>
             public const uint ECMMFAGBOEK = 0x105d8750; // internal static void ECMMFAGBOEK(bool BNJGJOOJCHF)
             public const uint COACDFENBBK = 0x105d8330; // public void COACDFENBBK()
             public const uint HFMIHMBPHCB = 0x105de080; // private void HFMIHMBPHCB()
@@ -108,20 +117,25 @@ namespace BlockpostTrainer.Sdk.Raw
             public const uint PPAGNBENOEO = 0x105e9440; // private void PPAGNBENOEO()
             public const uint GGPCOIBCKKA = 0x105ddda0; // private void GGPCOIBCKKA()
             public const uint OJAODAMMODO = 0x105e4950; // internal void OJAODAMMODO()
+            /// <summary>CDBFPMDECLF(float FFJMAPNMNAA, int JAFHCLBDANB) -> float</summary>
             public const uint CDBFPMDECLF = 0x105d7140; // private float CDBFPMDECLF(float FFJMAPNMNAA, int JAFHCLBDANB)
             public const uint PBFPBAPAPOD = 0x105e8ef0; // internal static void PBFPBAPAPOD()
             public const uint LoadEnd = 0x105e3550; // public void LoadEnd()
+            /// <summary>CGBGEOLOBHD(Rect HDJBDIJCIMG, OJGPKMCPJDB PAIMMEEHCNB)</summary>
             public const uint CGBGEOLOBHD = 0x105d7580; // private void CGBGEOLOBHD(Rect HDJBDIJCIMG, OJGPKMCPJDB PAIMMEEHCNB)
             public const uint LoadLang = 0x105e37f0; // internal void LoadLang()
             public const uint AMHGOJPGADD = 0x105d5fe0; // private void AMHGOJPGADD()
-            public const uint _cctor = 0x105e95c0; // private static void .cctor()
+            public const uint cctor = 0x105e95c0; // private static void .cctor()
             public const uint IDAKAOHKBFI = 0x105de350; // private void IDAKAOHKBFI()
+            /// <summary>JAEGJPIEFDN(bool BNJGJOOJCHF)</summary>
             public const uint JAEGJPIEFDN = 0x105de4f0; // internal static void JAEGJPIEFDN(bool BNJGJOOJCHF)
+            /// <summary>OOFBLLIJBAI(bool BNJGJOOJCHF)</summary>
             public const uint OOFBLLIJBAI = 0x105e5220; // internal static void OOFBLLIJBAI(bool BNJGJOOJCHF)
+            /// <summary>NPLGKMCMMPI(float FFJMAPNMNAA, int JAFHCLBDANB) -> float</summary>
             public const uint NPLGKMCMMPI = 0x105e4500; // private float NPLGKMCMMPI(float FFJMAPNMNAA, int JAFHCLBDANB)
             public const uint HHABDAPDFNN = 0x105de130; // internal static void HHABDAPDFNN()
             public const uint NIPKEMBLADH = 0x105e4240; // private void NIPKEMBLADH()
-            public const uint _ctor = 0x105e9810; // public void .ctor()
+            public const uint ctor = 0x105e9810; // public void .ctor()
         }
     }
 }

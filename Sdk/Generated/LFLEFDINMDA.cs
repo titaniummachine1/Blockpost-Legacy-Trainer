@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class LFLEFDINMDA
     {
+        public const int TypeDefIndex = 504;
+        public const string OriginalName = "LFLEFDINMDA";
+
         /// <summary>
         /// Field and static-field offsets for LFLEFDINMDA.
         /// </summary>
@@ -27,31 +30,56 @@ namespace BlockpostTrainer.Sdk.Raw
         /// </summary>
         public static class Methods
         {
+            /// <summary>PHBCIOPBKKE(LFLEFDINMDA[] COFIGHILINL)</summary>
             public const uint PHBCIOPBKKE = 0x10ccf1a0; // internal static void PHBCIOPBKKE(LFLEFDINMDA[] COFIGHILINL)
+            /// <summary>JLGKFDMMHPD(LFLEFDINMDA[] COFIGHILINL)</summary>
             public const uint JLGKFDMMHPD = 0x10cceab0; // internal static void JLGKFDMMHPD(LFLEFDINMDA[] COFIGHILINL)
+            /// <summary>ADOIMGHGKPG(LFLEFDINMDA[] COFIGHILINL)</summary>
             public const uint ADOIMGHGKPG = 0x10cce4c0; // internal static void ADOIMGHGKPG(LFLEFDINMDA[] COFIGHILINL)
+            /// <summary>NAEEEIDIDLD(LFLEFDINMDA[] COFIGHILINL)</summary>
             public const uint NAEEEIDIDLD = 0x10cced10; // internal static void NAEEEIDIDLD(LFLEFDINMDA[] COFIGHILINL)
+            /// <summary>NFHNGALOJCL(LFLEFDINMDA[] COFIGHILINL)</summary>
             public const uint NFHNGALOJCL = 0x10ccee70; // internal static void NFHNGALOJCL(LFLEFDINMDA[] COFIGHILINL)
+            /// <summary>HDCFDKMEDNF(LFLEFDINMDA[] COFIGHILINL)</summary>
             public const uint HDCFDKMEDNF = 0x10cce970; // internal static void HDCFDKMEDNF(LFLEFDINMDA[] COFIGHILINL)
+            /// <summary>PCEJFMHBGEO(LFLEFDINMDA[] COFIGHILINL)</summary>
             public const uint PCEJFMHBGEO = 0x10ccf0e0; // internal static void PCEJFMHBGEO(LFLEFDINMDA[] COFIGHILINL)
+            /// <summary>JNPIGPNAKOC(LFLEFDINMDA[] COFIGHILINL)</summary>
             public const uint JNPIGPNAKOC = 0x10cceb90; // internal static void JNPIGPNAKOC(LFLEFDINMDA[] COFIGHILINL)
+            /// <summary>LLKHGNEHLKI(LFLEFDINMDA[] COFIGHILINL)</summary>
             public const uint LLKHGNEHLKI = 0x10ccec50; // internal static void LLKHGNEHLKI(LFLEFDINMDA[] COFIGHILINL)
+            /// <summary>CIHAFMJNGNH(LFLEFDINMDA[] COFIGHILINL)</summary>
             public const uint CIHAFMJNGNH = 0x10cce6b0; // internal static void CIHAFMJNGNH(LFLEFDINMDA[] COFIGHILINL)
+            /// <summary>ICLHCIJACNA(LFLEFDINMDA[] COFIGHILINL)</summary>
             public const uint ICLHCIJACNA = 0x10ccea50; // internal static void ICLHCIJACNA(LFLEFDINMDA[] COFIGHILINL)
+            /// <summary>KEGHDBLJGMJ(LFLEFDINMDA[] COFIGHILINL)</summary>
             public const uint KEGHDBLJGMJ = 0x10ccebf0; // internal static void KEGHDBLJGMJ(LFLEFDINMDA[] COFIGHILINL)
+            /// <summary>PBCHHFCAIOK(LFLEFDINMDA[] COFIGHILINL)</summary>
             public const uint PBCHHFCAIOK = 0x10ccf050; // internal static void PBCHHFCAIOK(LFLEFDINMDA[] COFIGHILINL)
+            /// <summary>FIHPNPFLNGA(LFLEFDINMDA[] COFIGHILINL)</summary>
             public const uint FIHPNPFLNGA = 0x10cce7f0; // internal static void FIHPNPFLNGA(LFLEFDINMDA[] COFIGHILINL)
+            /// <summary>NMLDKCKABJG(LFLEFDINMDA[] COFIGHILINL)</summary>
             public const uint NMLDKCKABJG = 0x10ccef30; // internal static void NMLDKCKABJG(LFLEFDINMDA[] COFIGHILINL)
+            /// <summary>NKIONPBBLOF(LFLEFDINMDA[] COFIGHILINL)</summary>
             public const uint NKIONPBBLOF = 0x10cceed0; // internal static void NKIONPBBLOF(LFLEFDINMDA[] COFIGHILINL)
+            /// <summary>BJLJCIBNFKM(LFLEFDINMDA[] COFIGHILINL)</summary>
             public const uint BJLJCIBNFKM = 0x10cce5d0; // internal static void BJLJCIBNFKM(LFLEFDINMDA[] COFIGHILINL)
+            /// <summary>BAKALMPPMKI(LFLEFDINMDA[] COFIGHILINL)</summary>
             public const uint BAKALMPPMKI = 0x10cce550; // internal static void BAKALMPPMKI(LFLEFDINMDA[] COFIGHILINL)
+            /// <summary>ECLLKPOFOJP(LFLEFDINMDA[] COFIGHILINL)</summary>
             public const uint ECLLKPOFOJP = 0x10cce790; // internal static void ECLLKPOFOJP(LFLEFDINMDA[] COFIGHILINL)
-            public const uint _ctor = 0x10ccf3a0; // internal void .ctor(int HAFMINBJCGN, string PILFNEPEODC, string BDFLACIIPGB, Texture2D HBJMAILOHCF, Texture2D KGFPNPKDAEK, int NPHGPNPOANC, int JAFHCLBDANB)
+            /// <summary>.ctor(int HAFMINBJCGN, string PILFNEPEODC, string BDFLACIIPGB, Texture2D HBJMAILOHCF, Texture2D KGFPNPKDAEK, int NPHGPNPOANC, int JAFHCLBDANB)</summary>
+            public const uint ctor = 0x10ccf3a0; // internal void .ctor(int HAFMINBJCGN, string PILFNEPEODC, string BDFLACIIPGB, Texture2D HBJMAILOHCF, Texture2D KGFPNPKDAEK, int NPHGPNPOANC, int JAFHCLBDANB)
+            /// <summary>PPFFBBPENHH(LFLEFDINMDA[] COFIGHILINL)</summary>
             public const uint PPFFBBPENHH = 0x10ccf280; // internal static void PPFFBBPENHH(LFLEFDINMDA[] COFIGHILINL)
+            /// <summary>FNKFLEKCENN(LFLEFDINMDA[] COFIGHILINL)</summary>
             public const uint FNKFLEKCENN = 0x10cce8b0; // internal static void FNKFLEKCENN(LFLEFDINMDA[] COFIGHILINL)
-            public const uint _cctor = 0x10ccf340; // private static void .cctor()
+            public const uint cctor = 0x10ccf340; // private static void .cctor()
+            /// <summary>NEFHLAFPLNA(LFLEFDINMDA[] COFIGHILINL)</summary>
             public const uint NEFHLAFPLNA = 0x10ccedb0; // internal static void NEFHLAFPLNA(LFLEFDINMDA[] COFIGHILINL)
+            /// <summary>OJFCGPDOIPN(LFLEFDINMDA[] COFIGHILINL)</summary>
             public const uint OJFCGPDOIPN = 0x10ccef90; // internal static void OJFCGPDOIPN(LFLEFDINMDA[] COFIGHILINL)
+            /// <summary>MMBIPCEFKGF(LFLEFDINMDA[] COFIGHILINL)</summary>
             public const uint MMBIPCEFKGF = 0x10ccecb0; // internal static void MMBIPCEFKGF(LFLEFDINMDA[] COFIGHILINL)
         }
     }

@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class dbgNet
     {
+        public const int TypeDefIndex = 91;
+        public const string OriginalName = "dbgNet";
+
         /// <summary>
         /// Field and static-field offsets for dbgNet.
         /// </summary>
@@ -30,7 +33,7 @@ namespace BlockpostTrainer.Sdk.Raw
         public static class Methods
         {
             public const uint FGPKCFBEKCM = 0x1039e370; // private void FGPKCFBEKCM()
-            public const uint _ctor = 0x1039f1b0; // public void .ctor()
+            public const uint ctor = 0x1039f1b0; // public void .ctor()
             public const uint LAAOJCJGFKL = 0x1039e940; // private void LAAOJCJGFKL()
             public const uint HAAAMKONHNN = 0x1039e400; // private void HAAAMKONHNN()
             public const uint MGHFADELFIK = 0x1039ebc0; // private void MGHFADELFIK()

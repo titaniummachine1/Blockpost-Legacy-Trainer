@@ -250,6 +250,43 @@ SIZE_HINTS = {
     "string": -1,
 }
 
+# Names that would hide inherited System.Object members when used as constants.
+RESERVED_CSHARP_NAMES = {
+    "Equals", "GetHashCode", "GetType", "ToString", "Finalize",
+    "MemberwiseClone", "ReferenceEquals",
+}
+
+
+def safe_member_name(name: str, seen: dict) -> str:
+    """Return a C# member name that is not reserved and is unique within `seen`.
+
+    `seen` maps the base (sanitized) name to a counter. The returned name is
+    added to `seen` and incremented if it already exists.
+    """
+    base = csharp_identifier(name)
+    if base in RESERVED_CSHARP_NAMES:
+        base = f"{base}_"
+    seen[base] = seen.get(base, 0) + 1
+    return base if seen[base] == 1 else f"{base}_{seen[base]}"
+
+
+def unique_name(name: str, seen: dict) -> str:
+    """Return a unique sanitized C# member name, appending a counter for duplicates."""
+    base = csharp_identifier(name)
+    seen[base] = seen.get(base, 0) + 1
+    return base if seen[base] == 1 else f"{base}_{seen[base]}"
+
+
+def offset_literal(value: int) -> str:
+    """Return a C# int literal for an Il2Cpp field offset or enum value.
+
+    Values with the high bit set are cast from a uint literal to avoid the
+    `uint to int' compile error while keeping the same bit pattern.
+    """
+    if value >= 0x80000000:
+        return f"unchecked((int){hex(value)}u)"
+    return hex(value)
+
 
 def load_dump_text() -> str:
     if not DUMP_CS.exists():
@@ -257,11 +294,21 @@ def load_dump_text() -> str:
     return DUMP_CS.read_text(encoding="utf-8", errors="ignore")
 
 
-def find_class_block(text: str, class_name: str) -> tuple[str, int] | None:
-    """Find a top-level class or enum block by brace counting. Returns (body, start_line)."""
+def find_class_block(text: str, class_name: str) -> tuple[str | None, int, str]:
+    """Find a top-level class or enum block by brace counting.
+
+    Returns (body, start_line, kind) where kind is "enum", "struct" or "class".
+    On failure returns (None, 0, "").
+    """
     needle = class_name.replace(".", "\\.")
     # Match the class/enum declaration line, optionally with a base class and TypeDefIndex comment.
-    pattern = re.compile(rf"^\s*(?:internal|public|private|protected)\s+(?:class|enum|struct|sealed\s+class|abstract\s+class)\s+{needle}(?:\s*:\s*[\w\.,\s]+)?\s*(?://.*)?$", re.MULTILINE)
+    pattern = re.compile(
+        rf"^(?P<attrs>(?:\[[^\]]+\]\s*)*)"
+        rf"\s*(?P<mods>(?:internal|public|private|protected)(?:\s+(?:sealed|abstract|static|readonly))*)\s+"
+        rf'(?P<kind>class|enum|struct)\s+{needle}(?:\s*:\s*[\w\.,\s<>"()]+)?\s*'
+        rf"(?://\s*TypeDefIndex:\s*(?P<tdi>\d+))?\s*$",
+        re.MULTILINE,
+    )
     for m in pattern.finditer(text):
         # Find the opening brace on a subsequent line.
         after = text[m.end():]
@@ -272,8 +319,9 @@ def find_class_block(text: str, class_name: str) -> tuple[str, int] | None:
         body, _ = brace_count(text[body_start:])
         if body is not None:
             line_no = text[:body_start].count("\n") + 1
-            return body, line_no
-    return None, 0
+            tdi = int(m.group("tdi")) if m.group("tdi") else -1
+            return body, line_no, m.group("kind"), tdi
+    return None, 0, "", -1
 
 
 def brace_count(text: str) -> tuple[str | None, int]:
@@ -313,8 +361,8 @@ def brace_count(text: str) -> tuple[str | None, int]:
     return None, 0
 
 
-def parse_fields(body: str) -> list[dict]:
-    """Parse // Fields section (also handles enum values)."""
+def parse_fields(body: str, is_enum: bool = False) -> list[dict]:
+    """Parse // Fields section. For enums, also parses named enum members."""
     fields = []
     # Find the end of the Fields section: a line like "\t// Methods" or first method RVA.
     methods_idx = re.search(r"\n\s*//\s*Methods\s*\n", body)
@@ -340,23 +388,47 @@ def parse_fields(body: str) -> list[dict]:
             "static": is_static,
         })
 
-    # Enum value pattern: NAME = VALUE;  (no type, no offset comment)
-    enum_re = re.compile(
-        r"^\s*(?P<name>\w+)\s*=\s*(?P<value>-?\d+)\s*;\s*$",
-        re.MULTILINE,
-    )
-    for m in enum_re.finditer(field_text):
-        name = m.group("name").strip()
-        value = int(m.group("value"))
-        # Skip if already captured as a field
-        if any(f["name"] == name for f in fields):
-            continue
-        fields.append({
-            "name": name,
-            "type": "int",
-            "offset": value,  # For enums, offset stores the value
-            "static": True,
-        })
+    # Enum value parsing — only for actual enums. Non-enum classes may have
+    # "public const int X = 5;" constants that are NOT offsets; parsing them
+    # here would misinterpret constant values as field offsets.
+    if is_enum:
+        # Il2CppDumper emits enum members as
+        #   "public const <EnumType> <Name> = <Value>;"
+        enum_re = re.compile(
+            r"^\s*(?P<modifiers>(?:internal|private|public|protected)(?:\s+(?:static|readonly|const))*)\s+"
+            r"(?P<type>[\w\[\]<>.,\s]+?)\s+"
+            r"(?P<name>\w+)\s*=\s*(?P<value>-?\d+)\s*;\s*$",
+            re.MULTILINE,
+        )
+        for m in enum_re.finditer(field_text):
+            name = m.group("name").strip()
+            value = int(m.group("value"))
+            # Skip if already captured as a regular field (e.g. value__)
+            if any(f["name"] == name for f in fields):
+                continue
+            fields.append({
+                "name": name,
+                "type": m.group("type").strip(),
+                "offset": value,  # For enums, offset stores the value
+                "static": True,
+            })
+
+        # Bare enum form: "Name = Value;" (no type, no offset comment)
+        bare_enum_re = re.compile(
+            r"^\s*(?P<name>\w+)\s*=\s*(?P<value>-?\d+)\s*;\s*$",
+            re.MULTILINE,
+        )
+        for m in bare_enum_re.finditer(field_text):
+            name = m.group("name").strip()
+            value = int(m.group("value"))
+            if any(f["name"] == name for f in fields):
+                continue
+            fields.append({
+                "name": name,
+                "type": "int",
+                "offset": value,
+                "static": True,
+            })
     return fields
 
 
@@ -398,7 +470,7 @@ def parse_properties(body: str) -> list[dict]:
 
 
 def parse_methods(body: str) -> list[dict]:
-    """Parse // Methods section."""
+    """Parse // Methods section with full signatures including parameter types."""
     methods = []
     # Match RVA/Offset/VA line followed by the method header line.
     rva_re = re.compile(
@@ -408,8 +480,8 @@ def parse_methods(body: str) -> list[dict]:
     for rva in rva_re.finditer(body):
         # The method signature is on one of the next few non-blank, non-comment lines.
         start = rva.end()
-        # Find the next non-blank/non-comment line that starts a method or property.
         rest = body[start:]
+        header = None
         for line in rest.splitlines():
             line = line.strip()
             if not line or line.startswith("//"):
@@ -417,9 +489,7 @@ def parse_methods(body: str) -> list[dict]:
             if "(" in line:
                 header = line
                 break
-            # Sometimes the header is on a blank line? skip
-            continue
-        else:
+        if not header:
             continue
 
         # Extract return type and name from the part before '('.
@@ -432,15 +502,47 @@ def parse_methods(body: str) -> list[dict]:
         tokens = header_part.split()
         if len(tokens) < 2:
             continue
-        # Last token before '(' is the method name; everything before is return type + modifiers.
         method_name = tokens[-1]
         ret_and_mods = " ".join(tokens[:-1])
 
-        # Skip the static .cctor and .ctor noise if desired, but keep them for completeness.
+        # Separate return type from modifiers
+        ret_type = ""
+        modifiers = []
+        for t in tokens[:-1]:
+            if t in ("internal", "private", "public", "protected", "static",
+                      "virtual", "override", "abstract", "sealed", "extern", "new"):
+                modifiers.append(t)
+            else:
+                ret_type = (ret_type + " " + t).strip() if ret_type else t
+
+        # Parse args into structured list
+        parsed_args = []
+        if args_part.strip():
+            for arg in _split_args(args_part):
+                arg = arg.strip()
+                if not arg:
+                    continue
+                # Strip default values: "float X = 1024" -> "float X"
+                eq_idx = arg.find("=")
+                if eq_idx != -1:
+                    arg = arg[:eq_idx].strip()
+                arg_tokens = arg.split()
+                if len(arg_tokens) >= 2:
+                    parsed_args.append({
+                        "type": arg_tokens[-2],
+                        "name": arg_tokens[-1],
+                        "modifiers": [m for m in arg_tokens[:-2] if m in ("ref", "out", "in", "params")],
+                    })
+                else:
+                    parsed_args.append({"type": arg, "name": "", "modifiers": []})
+
         methods.append({
             "name": method_name,
             "ret_and_mods": ret_and_mods,
+            "return_type": ret_type,
+            "modifiers": modifiers,
             "args": args_part.strip(),
+            "parsed_args": parsed_args,
             "rva": int(rva.group("rva"), 16),
             "offset": int(rva.group("offset"), 16),
             "va": int(rva.group("va"), 16),
@@ -448,10 +550,43 @@ def parse_methods(body: str) -> list[dict]:
     return methods
 
 
+def _split_args(s: str) -> list[str]:
+    """Split method args on commas, respecting nested generics/arrays."""
+    args = []
+    depth = 0
+    start = 0
+    for i, ch in enumerate(s):
+        if ch in "<[(":
+            depth += 1
+        elif ch in ">])":
+            depth -= 1
+        elif ch == "," and depth == 0:
+            args.append(s[start:i])
+            start = i + 1
+    if start < len(s):
+        args.append(s[start:])
+    return args
+
+
 def csharp_identifier(name: str) -> str:
     """Make a safe C# identifier from a class/method/field name."""
     # . in original class name becomes _ for generated SDK class name.
-    return name.replace(".", "_").replace("<", "_").replace(">", "_").replace(" ", "_")
+    # Also sanitize [], <>, spaces, and other invalid chars from auto-generated aliases.
+    result = name.replace(".", "_").replace("<", "_").replace(">", "_").replace(" ", "_")
+    result = result.replace("[", "_").replace("]", "_").replace(",", "_")
+    result = result.replace("{", "_").replace("}", "_").replace("(", "_").replace(")", "_")
+    result = result.replace("+", "_").replace("-", "_").replace("*", "_")
+    result = result.replace("&", "_").replace("@", "_").replace(":", "_")
+    result = result.replace("?", "_")
+    # Collapse multiple underscores
+    while "__" in result:
+        result = result.replace("__", "_")
+    # Remove leading/trailing underscores
+    result = result.strip("_")
+    # Ensure it starts with a letter or underscore
+    if result and result[0].isdigit():
+        result = "_" + result
+    return result if result else "_"
 
 
 def vector_suffixes(ftype: str) -> list[tuple[str, int]] | None:
@@ -469,7 +604,8 @@ def vector_suffixes(ftype: str) -> list[tuple[str, int]] | None:
     return None
 
 
-def write_class_sdk(class_name: str, fields: list[dict], properties: list[dict], methods: list[dict], out_dir: Path) -> None:
+def write_class_sdk(class_name: str, fields: list[dict], properties: list[dict], methods: list[dict],
+                    out_dir: Path, is_enum: bool = False, typedef_index: int = -1) -> None:
     safe_name = csharp_identifier(class_name)
     file = out_dir / f"{safe_name}.cs"
     sb = []
@@ -479,8 +615,15 @@ def write_class_sdk(class_name: str, fields: list[dict], properties: list[dict],
     sb.append("{")
     sb.append(f"    internal static class {safe_name}")
     sb.append("    {")
+    if typedef_index >= 0:
+        sb.append(f"        public const int TypeDefIndex = {typedef_index};")
+    sb.append(f"        public const string OriginalName = \"{class_name}\";")
+    sb.append("")
     sb.append("        /// <summary>")
-    sb.append(f"        /// Field and static-field offsets for {class_name}.")
+    if is_enum:
+        sb.append(f"        /// Enum values for {class_name}.")
+    else:
+        sb.append(f"        /// Field and static-field offsets for {class_name}.")
     sb.append("        /// </summary>")
     sb.append("        public static class Offsets")
     sb.append("        {")
@@ -488,31 +631,45 @@ def write_class_sdk(class_name: str, fields: list[dict], properties: list[dict],
     instance_fields = [f for f in fields if not f["static"]]
     static_fields = [f for f in fields if f["static"]]
 
-    if static_fields:
-        sb.append("            // Static fields")
-        for f in static_fields:
-            cname = csharp_identifier(f["name"])
-            comp = vector_suffixes(f["type"])
-            if comp:
-                sb.append(f"            public const int {cname} = {hex(f['offset'])}; // {f['type']} ({SIZE_HINTS.get(f['type'], 4)} bytes)")
-                for comp_name, delta in comp:
-                    sb.append(f"            public const int {cname}_{comp_name} = {hex(f['offset'] + delta)};")
-            else:
-                sb.append(f"            public const int {cname} = {hex(f['offset'])}; // {f['type']}")
-
-    if instance_fields:
-        if static_fields:
-            sb.append("")
-        sb.append("            // Instance fields")
+    if is_enum:
+        # For enums, emit value__ as the backing field and the named members as
+        # integer constants. Enum members are static const in the dump.
+        sb.append("            // Backing field")
         for f in instance_fields:
             cname = csharp_identifier(f["name"])
-            comp = vector_suffixes(f["type"])
-            if comp:
-                sb.append(f"            public const int {cname} = {hex(f['offset'])}; // {f['type']} ({SIZE_HINTS.get(f['type'], 4)} bytes)")
-                for comp_name, delta in comp:
-                    sb.append(f"            public const int {cname}_{comp_name} = {hex(f['offset'] + delta)};")
-            else:
-                sb.append(f"            public const int {cname} = {hex(f['offset'])}; // {f['type']}")
+            sb.append(f"            public const int {cname} = {offset_literal(f['offset'])}; // {f['type']}")
+        if static_fields:
+            sb.append("")
+            sb.append("            // Enum values")
+            for f in static_fields:
+                cname = csharp_identifier(f["name"])
+                sb.append(f"            public const int {cname} = {offset_literal(f['offset'])}; // {f['type']}")
+    else:
+        if static_fields:
+            sb.append("            // Static fields")
+            for f in static_fields:
+                cname = csharp_identifier(f["name"])
+                comp = vector_suffixes(f["type"])
+                if comp:
+                    sb.append(f"            public const int {cname} = {offset_literal(f['offset'])}; // {f['type']} ({SIZE_HINTS.get(f['type'], 4)} bytes)")
+                    for comp_name, delta in comp:
+                        sb.append(f"            public const int {cname}_{comp_name} = {offset_literal(f['offset'] + delta)};")
+                else:
+                    sb.append(f"            public const int {cname} = {offset_literal(f['offset'])}; // {f['type']}")
+
+        if instance_fields:
+            if static_fields:
+                sb.append("")
+            sb.append("            // Instance fields")
+            for f in instance_fields:
+                cname = csharp_identifier(f["name"])
+                comp = vector_suffixes(f["type"])
+                if comp:
+                    sb.append(f"            public const int {cname} = {offset_literal(f['offset'])}; // {f['type']} ({SIZE_HINTS.get(f['type'], 4)} bytes)")
+                    for comp_name, delta in comp:
+                        sb.append(f"            public const int {cname}_{comp_name} = {offset_literal(f['offset'] + delta)};")
+                else:
+                    sb.append(f"            public const int {cname} = {offset_literal(f['offset'])}; // {f['type']}")
 
     sb.append("        }")
     sb.append("")
@@ -523,8 +680,9 @@ def write_class_sdk(class_name: str, fields: list[dict], properties: list[dict],
         sb.append("        /// </summary>")
         sb.append("        public static class Properties")
         sb.append("        {")
+        seen_props = {}
         for p in properties:
-            cname = csharp_identifier(p["name"])
+            cname = unique_name(p["name"], seen_props)
             gs = []
             if p["get"]:
                 gs.append("get")
@@ -540,16 +698,32 @@ def write_class_sdk(class_name: str, fields: list[dict], properties: list[dict],
     sb.append("        /// </summary>")
     sb.append("        public static class Methods")
     sb.append("        {")
-    seen = {}
+    seen_methods = {}
     for m in methods:
         base_mname = csharp_identifier(m["name"])
-        if base_mname in ("get", "set", "add", "remove", "op_") or not base_mname:
+        if not base_mname or base_mname in ("get", "set", "add", "remove"):
             # skip broken/special names
             continue
-        seen[base_mname] = seen.get(base_mname, 0) + 1
-        mname = base_mname if seen[base_mname] == 1 else f"{base_mname}_{seen[base_mname]}"
-        # Quote the original method name in the comment so it can still be found by string.
+        if base_mname in RESERVED_CSHARP_NAMES:
+            # skip inherited Object members that would hide class constants
+            continue
+        mname = unique_name(m["name"], seen_methods)
+        # Full signature in comment for reverse engineering.
         sig = f"{m['ret_and_mods']} {m['name']}({m['args']})"
+        # Add param type summary for methods with non-trivial args
+        param_types = []
+        if "parsed_args" in m:
+            for arg in m["parsed_args"]:
+                if arg["modifiers"]:
+                    param_types.append(f"{' '.join(arg['modifiers'])} {arg['type']} {arg['name']}")
+                else:
+                    param_types.append(f"{arg['type']} {arg['name']}")
+        param_summary = ", ".join(param_types) if param_types else m["args"]
+        ret_type = m.get("return_type", "")
+        if ret_type and ret_type not in ("void", ""):
+            sb.append(f"            /// <summary>{m['name']}({param_summary}) -> {ret_type}</summary>")
+        elif param_types:
+            sb.append(f"            /// <summary>{m['name']}({param_summary})</summary>")
         sb.append(f"            public const uint {mname} = {hex(m['va'])}; // {sig}")
     sb.append("        }")
     sb.append("    }")
@@ -558,7 +732,7 @@ def write_class_sdk(class_name: str, fields: list[dict], properties: list[dict],
     file.write_text("\n".join(sb), encoding="utf-8")
 
 
-def write_aliases(aliases: dict, out_dir: Path) -> None:
+def write_aliases(aliases: dict, out_dir: Path, valid_fields: dict = None, valid_methods: dict = None, valid_props: dict = None) -> None:
     if not aliases:
         return
     file = out_dir / "Aliases.cs"
@@ -571,17 +745,36 @@ def write_aliases(aliases: dict, out_dir: Path) -> None:
     sb.append("    /// </summary>")
     sb.append("    public static class Aliases")
     sb.append("    {")
-    for orig_class, mapping in aliases.items():
-        safe_orig = orig_class.replace(".", "_")
-        human = mapping.get("HumanClass", orig_class.replace(".", ""))
-        sb.append(f"        public static class {human}")
+    skipped = 0
+    seen_humans = {}
+    # Sort so a class whose original name matches its human name gets the un-suffixed alias.
+    def _alias_sort_key(item):
+        orig, mapping = item
+        return (0 if csharp_identifier(orig) == csharp_identifier(mapping.get("HumanClass", orig)) else 1, orig)
+    for orig_class, mapping in sorted(aliases.items(), key=_alias_sort_key):
+        safe_orig = csharp_identifier(orig_class)
+        human = mapping.get("HumanClass", orig_class)
+        safe_human = unique_name(human, seen_humans)
+        # Skip if the Raw class doesn't exist (not in TARGET_CLASSES and not generated)
+        if valid_fields is not None and safe_orig not in valid_fields and safe_orig not in valid_methods:
+            # Skip classes that don't have a generated Raw file
+            # (e.g. Unity engine types like Texture2D, GameObject, etc.)
+            skipped += 1
+            continue
+        sb.append(f"        public static class {safe_human}")
         sb.append("        {")
         fields = mapping.get("Fields", {})
         methods = mapping.get("Methods", {})
         notes = mapping.get("Notes", {})
+        class_valid_fields = valid_fields.get(safe_orig, set()) if valid_fields else None
+        class_valid_methods = valid_methods.get(safe_orig, set()) if valid_methods else None
         for human_name, orig_name in fields.items():
             safe_h = csharp_identifier(human_name)
             safe_o = csharp_identifier(orig_name)
+            # Skip if the field doesn't exist in the generated Raw class
+            if class_valid_fields is not None and safe_o not in class_valid_fields:
+                skipped += 1
+                continue
             note = notes.get(human_name)
             if note:
                 sb.append(f"            /// <summary>{note}</summary>")
@@ -589,17 +782,31 @@ def write_aliases(aliases: dict, out_dir: Path) -> None:
         for human_name, orig_name in methods.items():
             safe_h = csharp_identifier(human_name)
             safe_o = csharp_identifier(orig_name)
+            # Skip if the method doesn't exist in the generated Raw class
+            if class_valid_methods is not None and safe_o not in class_valid_methods:
+                skipped += 1
+                continue
             sb.append(f"            public const uint {safe_h} = Raw.{safe_orig}.Methods.{safe_o};")
         # Properties are emitted as name strings, for reflection-based access.
+        # Only emit if the Raw class has a Properties section.
+        # We check by looking at whether the class has any properties in the dump.
+        # Since we don't have that info here, we wrap in a check.
+        class_valid_props = valid_props.get(safe_orig, set()) if valid_props else None
         for human_name, orig_name in mapping.get("Properties", {}).items():
             safe_h = csharp_identifier(human_name)
             safe_o = csharp_identifier(orig_name)
+            # Skip if the property doesn't exist in the generated Raw class
+            if class_valid_props is not None and safe_o not in class_valid_props:
+                skipped += 1
+                continue
             sb.append(f"            public const string {safe_h} = Raw.{safe_orig}.Properties.{safe_o};")
         sb.append("        }")
         sb.append("")
     sb.append("    }")
     sb.append("}")
     file.write_text("\n".join(sb), encoding="utf-8")
+    if skipped:
+        print(f"  (skipped {skipped} alias entries referencing non-existent fields/methods/classes)")
 
 
 def load_aliases() -> dict:
@@ -608,25 +815,101 @@ def load_aliases() -> dict:
     return json.loads(ALIASES_FILE.read_text(encoding="utf-8"))
 
 
+def write_sdk_index(class_index: list[dict], out_dir: Path) -> None:
+    """Write SdkIndex.cs with lookups for all generated raw classes."""
+    file = out_dir / "SdkIndex.cs"
+    sb = []
+    sb.append("// Auto-generated by Tools/generate_sdk.py")
+    sb.append("namespace BlockpostTrainer.Sdk")
+    sb.append("{")
+    sb.append("    /// <summary>")
+    sb.append("    /// Index of every generated raw class, its original Il2Cpp name, human alias and TypeDefIndex.")
+    sb.append("    /// </summary>")
+    sb.append("    public static class SdkIndex")
+    sb.append("    {")
+    sb.append("        public static class ByOriginalName")
+    sb.append("        {")
+    for entry in class_index:
+        safe = csharp_identifier(entry["original"])
+        sb.append(f"            public const string {safe} = \"{entry['safe']}\";")
+    sb.append("        }")
+    sb.append("")
+    sb.append("        public static class ByHumanName")
+    sb.append("        {")
+    seen_human = {}
+    for entry in class_index:
+        human = unique_name(entry["human"], seen_human)
+        sb.append(f"            public const string {human} = \"{entry['safe']}\";")
+    sb.append("        }")
+    sb.append("")
+    sb.append("        public static class ByTypeDefIndex")
+    sb.append("        {")
+    for entry in class_index:
+        if entry["tdi"] >= 0:
+            safe = csharp_identifier(entry["original"])
+            sb.append(f"            public const string Tdi{entry['tdi']} = \"{entry['safe']}\"; // {entry['original']}")
+    sb.append("        }")
+    sb.append("    }")
+    sb.append("}")
+    file.write_text("\n".join(sb), encoding="utf-8")
+
+
 def main() -> int:
     print(f"Reading {DUMP_CS} ...")
     text = load_dump_text()
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     aliases = load_aliases()
 
-    for class_name in TARGET_CLASSES:
-        body, line = find_class_block(text, class_name)
+    # Generate SDK for target classes plus every class that has alias data.
+    class_names = list(dict.fromkeys(TARGET_CLASSES + list(aliases.keys())))
+
+    # Track valid field/method/property names per class for alias validation
+    valid_fields: dict[str, set[str]] = {}
+    valid_methods: dict[str, set[str]] = {}
+    valid_props: dict[str, set[str]] = {}
+
+    sdk_index = []
+    for class_name in class_names:
+        body, line, kind, tdi = find_class_block(text, class_name)
         if body is None:
             print(f"  ! {class_name}: not found")
             continue
-        print(f"  + {class_name} at line {line}")
-        fields = parse_fields(body)
+        print(f"  + {class_name} at line {line} ({kind}) tdi={tdi}")
+        fields = parse_fields(body, is_enum=(kind == "enum"))
         properties = parse_properties(body)
         methods = parse_methods(body)
-        write_class_sdk(class_name, fields, properties, methods, OUT_DIR)
+        safe_name = csharp_identifier(class_name)
+        write_class_sdk(class_name, fields, properties, methods, OUT_DIR,
+                        is_enum=(kind == "enum"), typedef_index=tdi)
 
-    write_aliases(aliases, OUT_DIR)
-    print(f"Done. Output in {OUT_DIR}")
+        sdk_index.append({"original": class_name, "safe": safe_name, "tdi": tdi,
+                          "human": aliases.get(class_name, {}).get("HumanClass", class_name)})
+
+        # Record valid field/method/property names (sanitized) for alias validation.
+        # Include vector component names so aliases like zeroVector_X resolve.
+        field_set = set()
+        for f in fields:
+            if f["offset"] is None:
+                continue
+            cname = csharp_identifier(f["name"])
+            field_set.add(cname)
+            comp = vector_suffixes(f["type"])
+            if comp:
+                for comp_name, _ in comp:
+                    field_set.add(f"{cname}_{comp_name}")
+        valid_fields[safe_name] = field_set
+        valid_methods[safe_name] = {
+            csharp_identifier(m["name"])
+            for m in methods
+            if not m["name"].startswith(".") and csharp_identifier(m["name"]) not in RESERVED_CSHARP_NAMES
+        }
+        # Properties are deduplicated in write_class_sdk with unique_name; use the same logic.
+        seen_props = {}
+        valid_props[safe_name] = {unique_name(p["name"], seen_props) for p in properties}
+
+    write_aliases(aliases, OUT_DIR, valid_fields, valid_methods, valid_props)
+    write_sdk_index(sdk_index, OUT_DIR)
+    print(f"Done. Generated {len(sdk_index)} classes in {OUT_DIR}")
     return 0
 
 

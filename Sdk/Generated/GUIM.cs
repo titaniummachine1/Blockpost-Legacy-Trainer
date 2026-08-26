@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class GUIM
     {
+        public const int TypeDefIndex = 407;
+        public const string OriginalName = "GUIM";
+
         /// <summary>
         /// Field and static-field offsets for GUIM.
         /// </summary>
@@ -60,100 +63,163 @@ namespace BlockpostTrainer.Sdk.Raw
         /// </summary>
         public static class Methods
         {
+            /// <summary>BGDJNEPBFJI(Rect HDJBDIJCIMG, Vector2 BGGCKMFCLOC) -> bool</summary>
             public const uint BGDJNEPBFJI = 0x10a98ef0; // public static bool BGDJNEPBFJI(Rect HDJBDIJCIMG, Vector2 BGGCKMFCLOC)
+            /// <summary>ADKIGCFFBCF(Rect HDJBDIJCIMG, PBMAFIFKGEH NPHGPNPOANC, string BDFLACIIPGB, TextAnchor LIGFDCDJMCJ, PBMAFIFKGEH OGHIGNGKKNG, int DJMEODKBJLF, int MLBDNAGFEJF, bool DJAPBOGGCOJ) -> bool</summary>
             public const uint ADKIGCFFBCF = 0x10a987e0; // public static bool ADKIGCFFBCF(Rect HDJBDIJCIMG, PBMAFIFKGEH NPHGPNPOANC, string BDFLACIIPGB, TextAnchor LIGFDCDJMCJ, PBMAFIFKGEH OGHIGNGKKNG, int DJMEODKBJLF, int MLBDNAGFEJF, bool DJAPBOGGCOJ)
             public const uint GHPFAMHMPPP = 0x10a9f370; // public void GHPFAMHMPPP()
+            /// <summary>DrawEdit(Rect HDJBDIJCIMG, ref string BDFLACIIPGB, TextAnchor MKNLEJNHOPF, PBMAFIFKGEH NMLMGNNMHIO, int INAMCDPFHLI, int DAPFKDOAKFP, bool BGDGBPNAENP)</summary>
             public const uint DrawEdit = 0x10a9cf40; // public static void DrawEdit(Rect HDJBDIJCIMG, ref string BDFLACIIPGB, TextAnchor MKNLEJNHOPF, PBMAFIFKGEH NMLMGNNMHIO, int INAMCDPFHLI, int DAPFKDOAKFP, bool BGDGBPNAENP)
+            /// <summary>Contains(Rect HDJBDIJCIMG, Rect PDDDCANNCIG) -> bool</summary>
             public const uint Contains = 0x10a9c020; // public static bool Contains(Rect HDJBDIJCIMG, Rect PDDDCANNCIG)
+            /// <summary>DLDBIBLJOCG(Rect HDJBDIJCIMG, Rect PDDDCANNCIG) -> bool</summary>
             public const uint DLDBIBLJOCG = 0x10a9c670; // public static bool DLDBIBLJOCG(Rect HDJBDIJCIMG, Rect PDDDCANNCIG)
+            /// <summary>DrawBox(Rect HDJBDIJCIMG, Texture2D GOALAGKACHO, float JHGGICCFNFJ)</summary>
             public const uint DrawBox = 0x10a9ce70; // public static void DrawBox(Rect HDJBDIJCIMG, Texture2D GOALAGKACHO, float JHGGICCFNFJ)
+            /// <summary>IOHAOIDIDCN(float BNJGJOOJCHF) -> float</summary>
             public const uint IOHAOIDIDCN = 0x10aa0770; // public static float IOHAOIDIDCN(float BNJGJOOJCHF)
+            /// <summary>FDGLDOKMIJH(Rect HDJBDIJCIMG, PBMAFIFKGEH NPHGPNPOANC, string BDFLACIIPGB, TextAnchor LIGFDCDJMCJ, PBMAFIFKGEH OGHIGNGKKNG, int DJMEODKBJLF, int MLBDNAGFEJF, bool DJAPBOGGCOJ) -> bool</summary>
             public const uint FDGLDOKMIJH = 0x10a9ebe0; // public static bool FDGLDOKMIJH(Rect HDJBDIJCIMG, PBMAFIFKGEH NPHGPNPOANC, string BDFLACIIPGB, TextAnchor LIGFDCDJMCJ, PBMAFIFKGEH OGHIGNGKKNG, int DJMEODKBJLF, int MLBDNAGFEJF, bool DJAPBOGGCOJ)
+            /// <summary>CalcSize(string BDFLACIIPGB, int INAMCDPFHLI, int DAPFKDOAKFP) -> Vector2</summary>
             public const uint CalcSize = 0x10a9be80; // public static Vector2 CalcSize(string BDFLACIIPGB, int INAMCDPFHLI, int DAPFKDOAKFP)
+            /// <summary>CJFFCKBLDEG(Rect HDJBDIJCIMG, string BDFLACIIPGB, TextAnchor MKNLEJNHOPF, PBMAFIFKGEH NMLMGNNMHIO, int INAMCDPFHLI, int DAPFKDOAKFP, PBMAFIFKGEH MDJLIBODMIP)</summary>
             public const uint CJFFCKBLDEG = 0x10a9aca0; // public static void CJFFCKBLDEG(Rect HDJBDIJCIMG, string BDFLACIIPGB, TextAnchor MKNLEJNHOPF, PBMAFIFKGEH NMLMGNNMHIO, int INAMCDPFHLI, int DAPFKDOAKFP, PBMAFIFKGEH MDJLIBODMIP)
+            /// <summary>JKIEFIBAPLO(float BNJGJOOJCHF) -> float</summary>
             public const uint JKIEFIBAPLO = 0x10aa09f0; // public static float JKIEFIBAPLO(float BNJGJOOJCHF)
+            /// <summary>PMMHIACNPNA(Rect HDJBDIJCIMG, Vector2 BGGCKMFCLOC) -> bool</summary>
             public const uint PMMHIACNPNA = 0x10aa3fa0; // public static bool PMMHIACNPNA(Rect HDJBDIJCIMG, Vector2 BGGCKMFCLOC)
+            /// <summary>PKBEDLIIFLH(Rect OAHGPCPGHKO, Vector2 OKMHPKGHDEK, Rect AEPIMLPFMIJ) -> Vector2</summary>
             public const uint PKBEDLIIFLH = 0x10aa3ae0; // public static Vector2 PKBEDLIIFLH(Rect OAHGPCPGHKO, Vector2 OKMHPKGHDEK, Rect AEPIMLPFMIJ)
             public const uint AutoSetName = 0x10a98c00; // public void AutoSetName()
+            /// <summary>JOGOHPAOEMI(Rect HDJBDIJCIMG, PBMAFIFKGEH NPHGPNPOANC, string BDFLACIIPGB, TextAnchor LIGFDCDJMCJ, PBMAFIFKGEH OGHIGNGKKNG, int DJMEODKBJLF, int MLBDNAGFEJF, bool DJAPBOGGCOJ, Texture2D IFEPNOCNOGE) -> bool</summary>
             public const uint JOGOHPAOEMI = 0x10aa10c0; // public static bool JOGOHPAOEMI(Rect HDJBDIJCIMG, PBMAFIFKGEH NPHGPNPOANC, string BDFLACIIPGB, TextAnchor LIGFDCDJMCJ, PBMAFIFKGEH OGHIGNGKKNG, int DJMEODKBJLF, int MLBDNAGFEJF, bool DJAPBOGGCOJ, Texture2D IFEPNOCNOGE)
             public const uint CHJPBNKKMMC = 0x10a9aa80; // public static void CHJPBNKKMMC()
-            public const uint _cctor = 0x10aa4350; // private static void .cctor()
+            public const uint cctor = 0x10aa4350; // private static void .cctor()
+            /// <summary>HideButtonDown(Rect HDJBDIJCIMG) -> bool</summary>
             public const uint HideButtonDown = 0x10a9fa00; // public static bool HideButtonDown(Rect HDJBDIJCIMG)
+            /// <summary>DrawBar(Texture2D AHOPKIKEHAA, Texture2D PEEDPHIIHKF, Texture2D CPGIOOFCGDN)</summary>
             public const uint DrawBar = 0x10a9c750; // public static void DrawBar(Texture2D AHOPKIKEHAA, Texture2D PEEDPHIIHKF, Texture2D CPGIOOFCGDN)
+            /// <summary>NDGIPNPDLNP(Rect HDJBDIJCIMG, Rect PDDDCANNCIG) -> bool</summary>
             public const uint NDGIPNPDLNP = 0x10aa2f00; // public static bool NDGIPNPDLNP(Rect HDJBDIJCIMG, Rect PDDDCANNCIG)
+            /// <summary>NPDKLBMPAPA(Rect HDJBDIJCIMG, ref string BDFLACIIPGB, TextAnchor MKNLEJNHOPF, PBMAFIFKGEH NMLMGNNMHIO, int INAMCDPFHLI, int DAPFKDOAKFP, bool BGDGBPNAENP)</summary>
             public const uint NPDKLBMPAPA = 0x10aa30a0; // public static void NPDKLBMPAPA(Rect HDJBDIJCIMG, ref string BDFLACIIPGB, TextAnchor MKNLEJNHOPF, PBMAFIFKGEH NMLMGNNMHIO, int INAMCDPFHLI, int DAPFKDOAKFP, bool BGDGBPNAENP)
             public const uint CPKGPHHHCMN = 0x10a9bde0; // public void CPKGPHHHCMN()
+            /// <summary>HCOOEMOHBDL(Rect HDJBDIJCIMG, Texture2D GOALAGKACHO, float JHGGICCFNFJ)</summary>
             public const uint HCOOEMOHBDL = 0x10a9f4b0; // public static void HCOOEMOHBDL(Rect HDJBDIJCIMG, Texture2D GOALAGKACHO, float JHGGICCFNFJ)
+            /// <summary>GAMKFAELDOM(Rect OAHGPCPGHKO, Vector2 OKMHPKGHDEK, Rect AEPIMLPFMIJ) -> Vector2</summary>
             public const uint GAMKFAELDOM = 0x10a9f0e0; // public static Vector2 GAMKFAELDOM(Rect OAHGPCPGHKO, Vector2 OKMHPKGHDEK, Rect AEPIMLPFMIJ)
+            /// <summary>YRES(float BNJGJOOJCHF) -> float</summary>
             public const uint YRES = 0x10aa4320; // public static float YRES(float BNJGJOOJCHF)
+            /// <summary>DrawTextShadow(Rect HDJBDIJCIMG, string BDFLACIIPGB, TextAnchor MKNLEJNHOPF, PBMAFIFKGEH NMLMGNNMHIO, int INAMCDPFHLI, int DAPFKDOAKFP, PBMAFIFKGEH MDJLIBODMIP)</summary>
             public const uint DrawTextShadow = 0x10a9dbc0; // public static void DrawTextShadow(Rect HDJBDIJCIMG, string BDFLACIIPGB, TextAnchor MKNLEJNHOPF, PBMAFIFKGEH NMLMGNNMHIO, int INAMCDPFHLI, int DAPFKDOAKFP, PBMAFIFKGEH MDJLIBODMIP)
             public const uint BLJHJFCGKGB = 0x10a99090; // public void BLJHJFCGKGB()
+            /// <summary>ELCPCNHMBCC(float BNJGJOOJCHF) -> float</summary>
             public const uint ELCPCNHMBCC = 0x10a9ea90; // public static float ELCPCNHMBCC(float BNJGJOOJCHF)
+            /// <summary>NATIVERES(float BNJGJOOJCHF) -> float</summary>
             public const uint NATIVERES = 0x10aa2e00; // public static float NATIVERES(float BNJGJOOJCHF)
             public const uint HBEDMAJOEND = 0x10a9f460; // public static void HBEDMAJOEND()
+            /// <summary>DrawBox(Rect HDJBDIJCIMG, Texture2D GOALAGKACHO)</summary>
             public const uint DrawBox_2 = 0x10a9cdb0; // public static void DrawBox(Rect HDJBDIJCIMG, Texture2D GOALAGKACHO)
+            /// <summary>COMJMEIKJBI(Rect HDJBDIJCIMG, string BDFLACIIPGB, TextAnchor MKNLEJNHOPF, PBMAFIFKGEH NMLMGNNMHIO, int INAMCDPFHLI, int DAPFKDOAKFP, PBMAFIFKGEH MDJLIBODMIP)</summary>
             public const uint COMJMEIKJBI = 0x10a9ba30; // public static void COMJMEIKJBI(Rect HDJBDIJCIMG, string BDFLACIIPGB, TextAnchor MKNLEJNHOPF, PBMAFIFKGEH NMLMGNNMHIO, int INAMCDPFHLI, int DAPFKDOAKFP, PBMAFIFKGEH MDJLIBODMIP)
             public const uint FNHIIMFAILB = 0x10a9f000; // public static void FNHIIMFAILB()
+            /// <summary>DrawBoxBorder(Rect HDJBDIJCIMG, Texture2D GOALAGKACHO, float JHGGICCFNFJ)</summary>
             public const uint DrawBoxBorder = 0x10a9ca90; // public static void DrawBoxBorder(Rect HDJBDIJCIMG, Texture2D GOALAGKACHO, float JHGGICCFNFJ)
             public const uint COACDFENBBK = 0x10a9b270; // public void COACDFENBBK()
+            /// <summary>JLNBCFHIGJL(float BNJGJOOJCHF) -> float</summary>
             public const uint JLNBCFHIGJL = 0x10aa0a20; // public static float JLNBCFHIGJL(float BNJGJOOJCHF)
+            /// <summary>LIFCPAJNJEF(float BNJGJOOJCHF) -> float</summary>
             public const uint LIFCPAJNJEF = 0x10aa2150; // public static float LIFCPAJNJEF(float BNJGJOOJCHF)
+            /// <summary>JMFNBCEHKEA(Texture2D AHOPKIKEHAA, Texture2D PEEDPHIIHKF, Texture2D CPGIOOFCGDN)</summary>
             public const uint JMFNBCEHKEA = 0x10aa0d80; // public static void JMFNBCEHKEA(Texture2D AHOPKIKEHAA, Texture2D PEEDPHIIHKF, Texture2D CPGIOOFCGDN)
             public const uint HHBBEMONBJI = 0x10a9f7e0; // public static void HHBBEMONBJI()
+            /// <summary>Contains(Rect HDJBDIJCIMG, Vector2 BGGCKMFCLOC) -> bool</summary>
             public const uint Contains_2 = 0x10a9bfa0; // public static bool Contains(Rect HDJBDIJCIMG, Vector2 BGGCKMFCLOC)
+            /// <summary>ButtonPic(Rect HDJBDIJCIMG, PBMAFIFKGEH NPHGPNPOANC, string BDFLACIIPGB, TextAnchor LIGFDCDJMCJ, PBMAFIFKGEH OGHIGNGKKNG, int DJMEODKBJLF, int MLBDNAGFEJF, bool DJAPBOGGCOJ, Texture2D IFEPNOCNOGE) -> bool</summary>
             public const uint ButtonPic = 0x10a99cb0; // public static bool ButtonPic(Rect HDJBDIJCIMG, PBMAFIFKGEH NPHGPNPOANC, string BDFLACIIPGB, TextAnchor LIGFDCDJMCJ, PBMAFIFKGEH OGHIGNGKKNG, int DJMEODKBJLF, int MLBDNAGFEJF, bool DJAPBOGGCOJ, Texture2D IFEPNOCNOGE)
             public const uint IGJKOKAGIDI = 0x10a9fcd0; // public static void IGJKOKAGIDI()
             public const uint SetFocus = 0x10aa4160; // public void SetFocus()
+            /// <summary>IKCDIFPDLOL(Rect HDJBDIJCIMG, string BDFLACIIPGB, TextAnchor MKNLEJNHOPF, PBMAFIFKGEH NMLMGNNMHIO, int INAMCDPFHLI, int DAPFKDOAKFP, bool BGDGBPNAENP)</summary>
             public const uint IKCDIFPDLOL = 0x10a9ff20; // public static void IKCDIFPDLOL(Rect HDJBDIJCIMG, string BDFLACIIPGB, TextAnchor MKNLEJNHOPF, PBMAFIFKGEH NMLMGNNMHIO, int INAMCDPFHLI, int DAPFKDOAKFP, bool BGDGBPNAENP)
+            /// <summary>NKBKIDPNJJC(Rect HDJBDIJCIMG, Texture2D GOALAGKACHO)</summary>
             public const uint NKBKIDPNJJC = 0x10aa2fe0; // public static void NKBKIDPNJJC(Rect HDJBDIJCIMG, Texture2D GOALAGKACHO)
+            /// <summary>LCHFCFIFGMH(float BNJGJOOJCHF) -> float</summary>
             public const uint LCHFCFIFGMH = 0x10aa2120; // public static float LCHFCFIFGMH(float BNJGJOOJCHF)
             public const uint BLPJDEOEHNE = 0x10a99850; // public void BLPJDEOEHNE()
+            /// <summary>MHODJDGLJJA(float BNJGJOOJCHF) -> float</summary>
             public const uint MHODJDGLJJA = 0x10aa2b20; // public static float MHODJDGLJJA(float BNJGJOOJCHF)
+            /// <summary>KPECEEKKJKM(Rect HDJBDIJCIMG, int MLBDNAGFEJF, float DEOAEIKBGLA, float EACAOFBADFO, float BNJGJOOJCHF) -> float</summary>
             public const uint KPECEEKKJKM = 0x10aa1d90; // public static float KPECEEKKJKM(Rect HDJBDIJCIMG, int MLBDNAGFEJF, float DEOAEIKBGLA, float EACAOFBADFO, float BNJGJOOJCHF)
+            /// <summary>KACDNHDCEFH(float BNJGJOOJCHF) -> float</summary>
             public const uint KACDNHDCEFH = 0x10aa1cd0; // public static float KACDNHDCEFH(float BNJGJOOJCHF)
             public const uint ResetGUI = 0x10aa4020; // public static void ResetGUI()
+            /// <summary>DrawTextColor(Rect HDJBDIJCIMG, string BDFLACIIPGB, TextAnchor MKNLEJNHOPF, PBMAFIFKGEH NMLMGNNMHIO, int INAMCDPFHLI, int DAPFKDOAKFP, bool BGDGBPNAENP)</summary>
             public const uint DrawTextColor = 0x10a9d770; // public static void DrawTextColor(Rect HDJBDIJCIMG, string BDFLACIIPGB, TextAnchor MKNLEJNHOPF, PBMAFIFKGEH NMLMGNNMHIO, int INAMCDPFHLI, int DAPFKDOAKFP, bool BGDGBPNAENP)
+            /// <summary>EFBPNADJNMP(Rect HDJBDIJCIMG, Vector2 BGGCKMFCLOC) -> bool</summary>
             public const uint EFBPNADJNMP = 0x10a9e430; // public static bool EFBPNADJNMP(Rect HDJBDIJCIMG, Vector2 BGGCKMFCLOC)
             public const uint EndScrollViewORG = 0x10a9eac0; // public static void EndScrollViewORG()
+            /// <summary>JMAADHJKDIM(Rect HDJBDIJCIMG, Texture2D GOALAGKACHO, float JHGGICCFNFJ)</summary>
             public const uint JMAADHJKDIM = 0x10aa0a50; // public static void JMAADHJKDIM(Rect HDJBDIJCIMG, Texture2D GOALAGKACHO, float JHGGICCFNFJ)
+            /// <summary>Contains(Rect HDJBDIJCIMG) -> bool</summary>
             public const uint Contains_3 = 0x10a9c100; // public static bool Contains(Rect HDJBDIJCIMG)
+            /// <summary>EDGLKBNEJBC(Rect HDJBDIJCIMG, Texture2D GOALAGKACHO)</summary>
             public const uint EDGLKBNEJBC = 0x10a9e370; // public static void EDGLKBNEJBC(Rect HDJBDIJCIMG, Texture2D GOALAGKACHO)
+            /// <summary>PAFFPLJNGEI(Rect HDJBDIJCIMG, string BDFLACIIPGB, TextAnchor MKNLEJNHOPF, PBMAFIFKGEH NMLMGNNMHIO, int INAMCDPFHLI, int DAPFKDOAKFP, bool BGDGBPNAENP)</summary>
             public const uint PAFFPLJNGEI = 0x10aa3620; // public static void PAFFPLJNGEI(Rect HDJBDIJCIMG, string BDFLACIIPGB, TextAnchor MKNLEJNHOPF, PBMAFIFKGEH NMLMGNNMHIO, int INAMCDPFHLI, int DAPFKDOAKFP, bool BGDGBPNAENP)
             public const uint DKGCNAEGMCP = 0x10a9c620; // public static void DKGCNAEGMCP()
+            /// <summary>DrawSlider(Rect HDJBDIJCIMG, int MLBDNAGFEJF, float DEOAEIKBGLA, float EACAOFBADFO, float BNJGJOOJCHF) -> float</summary>
             public const uint DrawSlider = 0x10a9d3e0; // public static float DrawSlider(Rect HDJBDIJCIMG, int MLBDNAGFEJF, float DEOAEIKBGLA, float EACAOFBADFO, float BNJGJOOJCHF)
+            /// <summary>IFCCDFLNBII(Rect HDJBDIJCIMG, Rect PDDDCANNCIG) -> bool</summary>
             public const uint IFCCDFLNBII = 0x10a9fba0; // public static bool IFCCDFLNBII(Rect HDJBDIJCIMG, Rect PDDDCANNCIG)
+            /// <summary>ECHKKLBFAEH(Rect HDJBDIJCIMG, Texture2D GOALAGKACHO)</summary>
             public const uint ECHKKLBFAEH = 0x10a9e2b0; // public static void ECHKKLBFAEH(Rect HDJBDIJCIMG, Texture2D GOALAGKACHO)
+            /// <summary>MNOAJGCHJCN(Rect HDJBDIJCIMG, Vector2 BGGCKMFCLOC) -> bool</summary>
             public const uint MNOAJGCHJCN = 0x10aa2d80; // public static bool MNOAJGCHJCN(Rect HDJBDIJCIMG, Vector2 BGGCKMFCLOC)
+            /// <summary>DrawText(Rect HDJBDIJCIMG, string BDFLACIIPGB, TextAnchor MKNLEJNHOPF, PBMAFIFKGEH NMLMGNNMHIO, int INAMCDPFHLI, int DAPFKDOAKFP, bool BGDGBPNAENP)</summary>
             public const uint DrawText = 0x10a9df70; // public static void DrawText(Rect HDJBDIJCIMG, string BDFLACIIPGB, TextAnchor MKNLEJNHOPF, PBMAFIFKGEH NMLMGNNMHIO, int INAMCDPFHLI, int DAPFKDOAKFP, bool BGDGBPNAENP)
-            public const uint _ctor = 0x101a6520; // public void .ctor()
+            public const uint ctor = 0x101a6520; // public void .ctor()
+            /// <summary>KNEBDHKLCGL(Rect HDJBDIJCIMG) -> bool</summary>
             public const uint KNEBDHKLCGL = 0x10aa1d00; // public static bool KNEBDHKLCGL(Rect HDJBDIJCIMG)
             public const uint MNLGIOJFAJP = 0x10aa2ce0; // public void MNLGIOJFAJP()
             public const uint Update = 0x10aa4200; // private void Update()
+            /// <summary>PKHOHNGPHKG(Rect HDJBDIJCIMG) -> bool</summary>
             public const uint PKHOHNGPHKG = 0x10aa3d70; // public static bool PKHOHNGPHKG(Rect HDJBDIJCIMG)
+            /// <summary>NCFDJMILBPJ(Rect HDJBDIJCIMG, Texture2D GOALAGKACHO, float JHGGICCFNFJ)</summary>
             public const uint NCFDJMILBPJ = 0x10aa2e30; // public static void NCFDJMILBPJ(Rect HDJBDIJCIMG, Texture2D GOALAGKACHO, float JHGGICCFNFJ)
+            /// <summary>OGIHLCMHIGP(Rect HDJBDIJCIMG, Texture2D GOALAGKACHO, float JHGGICCFNFJ)</summary>
             public const uint OGIHLCMHIGP = 0x10aa3550; // public static void OGIHLCMHIGP(Rect HDJBDIJCIMG, Texture2D GOALAGKACHO, float JHGGICCFNFJ)
+            /// <summary>CDKENLNAKLM(Texture2D AHOPKIKEHAA, Texture2D PEEDPHIIHKF, Texture2D CPGIOOFCGDN)</summary>
             public const uint CDKENLNAKLM = 0x10a9a6a0; // public static void CDKENLNAKLM(Texture2D AHOPKIKEHAA, Texture2D PEEDPHIIHKF, Texture2D CPGIOOFCGDN)
             public const uint BCNJJCHIDHK = 0x10a98ca0; // public static void BCNJJCHIDHK()
+            /// <summary>HideButton(Rect HDJBDIJCIMG) -> bool</summary>
             public const uint HideButton = 0x10a9fb10; // public static bool HideButton(Rect HDJBDIJCIMG)
+            /// <summary>Button(Rect HDJBDIJCIMG, PBMAFIFKGEH NPHGPNPOANC, string BDFLACIIPGB, TextAnchor LIGFDCDJMCJ, PBMAFIFKGEH OGHIGNGKKNG, int DJMEODKBJLF, int MLBDNAGFEJF, bool DJAPBOGGCOJ) -> bool</summary>
             public const uint Button = 0x10a9a280; // public static bool Button(Rect HDJBDIJCIMG, PBMAFIFKGEH NPHGPNPOANC, string BDFLACIIPGB, TextAnchor LIGFDCDJMCJ, PBMAFIFKGEH OGHIGNGKKNG, int DJMEODKBJLF, int MLBDNAGFEJF, bool DJAPBOGGCOJ)
             public const uint PLOBMHDJMNO = 0x10aa3e80; // private void PLOBMHDJMNO()
             public const uint LoadEnd = 0x10aa2180; // public void LoadEnd()
+            /// <summary>JPCPAIEIKCK(Rect HDJBDIJCIMG, PBMAFIFKGEH NPHGPNPOANC, string BDFLACIIPGB, TextAnchor LIGFDCDJMCJ, PBMAFIFKGEH OGHIGNGKKNG, int DJMEODKBJLF, int MLBDNAGFEJF, bool DJAPBOGGCOJ, Texture2D IFEPNOCNOGE) -> bool</summary>
             public const uint JPCPAIEIKCK = 0x10aa16a0; // public static bool JPCPAIEIKCK(Rect HDJBDIJCIMG, PBMAFIFKGEH NPHGPNPOANC, string BDFLACIIPGB, TextAnchor LIGFDCDJMCJ, PBMAFIFKGEH OGHIGNGKKNG, int DJMEODKBJLF, int MLBDNAGFEJF, bool DJAPBOGGCOJ, Texture2D IFEPNOCNOGE)
+            /// <summary>BeginScrollViewORG(Rect OAHGPCPGHKO, Vector2 OKMHPKGHDEK, Rect AEPIMLPFMIJ) -> Vector2</summary>
             public const uint BeginScrollViewORG = 0x10a99940; // public static Vector2 BeginScrollViewORG(Rect OAHGPCPGHKO, Vector2 OKMHPKGHDEK, Rect AEPIMLPFMIJ)
             public const uint LoadFont = 0x10aa2900; // public static void LoadFont()
             public const uint SetFocusHack = 0x10aa4070; // public void SetFocusHack()
             public const uint MLNLHDKNMOC = 0x10aa2c90; // public static void MLNLHDKNMOC()
+            /// <summary>BeginScrollView(Rect OAHGPCPGHKO, Vector2 OKMHPKGHDEK, Rect AEPIMLPFMIJ) -> Vector2</summary>
             public const uint BeginScrollView = 0x10a99bd0; // public static Vector2 BeginScrollView(Rect OAHGPCPGHKO, Vector2 OKMHPKGHDEK, Rect AEPIMLPFMIJ)
             public const uint MLGOHLKOOAJ = 0x10aa2bf0; // public void MLGOHLKOOAJ()
             public const uint Init = 0x10aa07a0; // public static void Init()
+            /// <summary>PFHNIDBGICE(float BNJGJOOJCHF) -> float</summary>
             public const uint PFHNIDBGICE = 0x10aa3ab0; // public static float PFHNIDBGICE(float BNJGJOOJCHF)
             public const uint CGDNNKCGMHA = 0x10a9a9e0; // public void CGDNNKCGMHA()
             public const uint EndScrollView = 0x10a9eb00; // public static void EndScrollView()
             public const uint MJCILJIJAIH = 0x10aa2b50; // public void MJCILJIJAIH()
+            /// <summary>EJGADFJLBHI(Rect HDJBDIJCIMG, PBMAFIFKGEH NPHGPNPOANC, string BDFLACIIPGB, TextAnchor LIGFDCDJMCJ, PBMAFIFKGEH OGHIGNGKKNG, int DJMEODKBJLF, int MLBDNAGFEJF, bool DJAPBOGGCOJ, Texture2D IFEPNOCNOGE) -> bool</summary>
             public const uint EJGADFJLBHI = 0x10a9e4b0; // public static bool EJGADFJLBHI(Rect HDJBDIJCIMG, PBMAFIFKGEH NPHGPNPOANC, string BDFLACIIPGB, TextAnchor LIGFDCDJMCJ, PBMAFIFKGEH OGHIGNGKKNG, int DJMEODKBJLF, int MLBDNAGFEJF, bool DJAPBOGGCOJ, Texture2D IFEPNOCNOGE)
+            /// <summary>IKODLGIOOEB(Rect HDJBDIJCIMG, string BDFLACIIPGB, TextAnchor MKNLEJNHOPF, PBMAFIFKGEH NMLMGNNMHIO, int INAMCDPFHLI, int DAPFKDOAKFP, PBMAFIFKGEH MDJLIBODMIP)</summary>
             public const uint IKODLGIOOEB = 0x10aa03c0; // public static void IKODLGIOOEB(Rect HDJBDIJCIMG, string BDFLACIIPGB, TextAnchor MKNLEJNHOPF, PBMAFIFKGEH NMLMGNNMHIO, int INAMCDPFHLI, int DAPFKDOAKFP, PBMAFIFKGEH MDJLIBODMIP)
             public const uint BKOCKHDPCNC = 0x10a98f70; // private void BKOCKHDPCNC()
             public const uint CLGEFEHMOOC = 0x10a9b050; // public static void CLGEFEHMOOC()
+            /// <summary>DIFHHAIBKKL(Rect HDJBDIJCIMG, PBMAFIFKGEH NPHGPNPOANC, string BDFLACIIPGB, TextAnchor LIGFDCDJMCJ, PBMAFIFKGEH OGHIGNGKKNG, int DJMEODKBJLF, int MLBDNAGFEJF, bool DJAPBOGGCOJ) -> bool</summary>
             public const uint DIFHHAIBKKL = 0x10a9c200; // public static bool DIFHHAIBKKL(Rect HDJBDIJCIMG, PBMAFIFKGEH NPHGPNPOANC, string BDFLACIIPGB, TextAnchor LIGFDCDJMCJ, PBMAFIFKGEH OGHIGNGKKNG, int DJMEODKBJLF, int MLBDNAGFEJF, bool DJAPBOGGCOJ)
         }
     }

@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class FXScaleCase
     {
+        public const int TypeDefIndex = 129;
+        public const string OriginalName = "FXScaleCase";
+
         /// <summary>
         /// Field and static-field offsets for FXScaleCase.
         /// </summary>
@@ -32,7 +35,7 @@ namespace BlockpostTrainer.Sdk.Raw
             public const uint NCJKOOMANAO = 0x104aa070; // private void NCJKOOMANAO()
             public const uint BKOCKHDPCNC = 0x104a87b0; // private void BKOCKHDPCNC()
             public const uint EPBPLMIGIFK = 0x104a8c30; // private void EPBPLMIGIFK()
-            public const uint _ctor = 0x104aa610; // public void .ctor()
+            public const uint ctor = 0x104aa610; // public void .ctor()
             public const uint HGCKIADDDPL = 0x104a92f0; // private void HGCKIADDDPL()
             public const uint FIFFLFHNNCJ = 0x104a8d50; // private void FIFFLFHNNCJ()
             public const uint EAIMKIEACIF = 0x104a89f0; // private void EAIMKIEACIF()

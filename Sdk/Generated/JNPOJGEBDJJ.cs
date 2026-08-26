@@ -4,13 +4,21 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class JNPOJGEBDJJ
     {
+        public const int TypeDefIndex = 83;
+        public const string OriginalName = "JNPOJGEBDJJ";
+
         /// <summary>
-        /// Field and static-field offsets for JNPOJGEBDJJ.
+        /// Enum values for JNPOJGEBDJJ.
         /// </summary>
         public static class Offsets
         {
-            // Instance fields
-            public const int value__ = 0x0; // int
+            // Backing field
+            public const int value = 0x0; // int
+
+            // Enum values
+            public const int Move = 0x0; // JNPOJGEBDJJ
+            public const int Rotate = 0x1; // JNPOJGEBDJJ
+            public const int Scale = 0x2; // JNPOJGEBDJJ
         }
 
         /// <summary>

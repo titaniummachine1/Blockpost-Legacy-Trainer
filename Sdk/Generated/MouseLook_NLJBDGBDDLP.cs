@@ -4,13 +4,21 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class MouseLook_NLJBDGBDDLP
     {
+        public const int TypeDefIndex = 52;
+        public const string OriginalName = "MouseLook.NLJBDGBDDLP";
+
         /// <summary>
-        /// Field and static-field offsets for MouseLook.NLJBDGBDDLP.
+        /// Enum values for MouseLook.NLJBDGBDDLP.
         /// </summary>
         public static class Offsets
         {
-            // Instance fields
-            public const int value__ = 0x0; // int
+            // Backing field
+            public const int value = 0x0; // int
+
+            // Enum values
+            public const int MouseXAndY = 0x0; // MouseLook.NLJBDGBDDLP
+            public const int MouseX = 0x1; // MouseLook.NLJBDGBDDLP
+            public const int MouseY = 0x2; // MouseLook.NLJBDGBDDLP
         }
 
         /// <summary>

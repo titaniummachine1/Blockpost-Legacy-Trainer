@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class MapCulling
     {
+        public const int TypeDefIndex = 365;
+        public const string OriginalName = "MapCulling";
+
         /// <summary>
         /// Field and static-field offsets for MapCulling.
         /// </summary>
@@ -57,7 +60,7 @@ namespace BlockpostTrainer.Sdk.Raw
             public const uint JHCBBGFOHEG = 0x10970bc0; // private void JHCBBGFOHEG()
             public const uint OnGUI = 0x10972dc0; // private void OnGUI()
             public const uint JOJFKMMOLAJ = 0x10970da0; // private void JOJFKMMOLAJ()
-            public const uint _ctor = 0x10973970; // public void .ctor()
+            public const uint ctor = 0x10973970; // public void .ctor()
             public const uint ENCPODMJODA = 0x1096ee40; // private void ENCPODMJODA()
             public const uint MHHMALGJGLF = 0x10971e10; // private void MHHMALGJGLF()
             public const uint DKFAAMMFAJG = 0x1096e7e0; // private void DKFAAMMFAJG()

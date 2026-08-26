@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class DMHBMAAFCFJ
     {
+        public const int TypeDefIndex = 293;
+        public const string OriginalName = "DMHBMAAFCFJ";
+
         /// <summary>
         /// Field and static-field offsets for DMHBMAAFCFJ.
         /// </summary>
@@ -23,7 +26,8 @@ namespace BlockpostTrainer.Sdk.Raw
         /// </summary>
         public static class Methods
         {
-            public const uint _ctor = 0x10852860; // internal void .ctor(int AMGLIHOLNJE, int KMCHFGKKICG, Vector3 HDAFLOCABNG)
+            /// <summary>.ctor(int AMGLIHOLNJE, int KMCHFGKKICG, Vector3 HDAFLOCABNG)</summary>
+            public const uint ctor = 0x10852860; // internal void .ctor(int AMGLIHOLNJE, int KMCHFGKKICG, Vector3 HDAFLOCABNG)
         }
     }
 }

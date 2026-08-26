@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class NAHLLMJMOED
     {
+        public const int TypeDefIndex = 276;
+        public const string OriginalName = "NAHLLMJMOED";
+
         /// <summary>
         /// Field and static-field offsets for NAHLLMJMOED.
         /// </summary>
@@ -63,7 +66,7 @@ namespace BlockpostTrainer.Sdk.Raw
             public const uint CEFDNMFLBNP = 0x10822400; // internal void CEFDNMFLBNP()
             public const uint DJPFGJLOHDO = 0x108229c0; // internal void DJPFGJLOHDO()
             public const uint PGCLCBPKJJI = 0x10826900; // internal void PGCLCBPKJJI()
-            public const uint _ctor = 0x108271a0; // internal void .ctor()
+            public const uint ctor = 0x108271a0; // internal void .ctor()
             public const uint AFBIFDLNEII = 0x108215b0; // internal void AFBIFDLNEII()
             public const uint MOIBAKPJODK = 0x10825200; // internal void MOIBAKPJODK()
             public const uint JNPJPOOJCDN = 0x10824960; // internal void JNPJPOOJCDN()

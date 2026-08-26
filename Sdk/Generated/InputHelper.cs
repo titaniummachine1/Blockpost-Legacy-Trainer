@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class InputHelper
     {
+        public const int TypeDefIndex = 125;
+        public const string OriginalName = "InputHelper";
+
         /// <summary>
         /// Field and static-field offsets for InputHelper.
         /// </summary>
@@ -18,23 +21,40 @@ namespace BlockpostTrainer.Sdk.Raw
         /// </summary>
         public static class Methods
         {
+            /// <summary>KCDODIMGIHP() -> List<Touch></summary>
             public const uint KCDODIMGIHP = 0x104b54f0; // public static List<Touch> KCDODIMGIHP()
+            /// <summary>PDBNPFHLEEA() -> List<Touch></summary>
             public const uint PDBNPFHLEEA = 0x104b57f0; // public static List<Touch> PDBNPFHLEEA()
+            /// <summary>DENBINANCLB() -> List<Touch></summary>
             public const uint DENBINANCLB = 0x104b50f0; // public static List<Touch> DENBINANCLB()
+            /// <summary>JGKKCNEFJAC() -> List<Touch></summary>
             public const uint JGKKCNEFJAC = 0x104b5470; // public static List<Touch> JGKKCNEFJAC()
+            /// <summary>IIDNCOCDAMD() -> List<Touch></summary>
             public const uint IIDNCOCDAMD = 0x104b5370; // public static List<Touch> IIDNCOCDAMD()
+            /// <summary>CJEHBDEPIAJ() -> List<Touch></summary>
             public const uint CJEHBDEPIAJ = 0x104b5070; // public static List<Touch> CJEHBDEPIAJ()
+            /// <summary>KFIHKKPJCGG() -> List<Touch></summary>
             public const uint KFIHKKPJCGG = 0x104b5570; // public static List<Touch> KFIHKKPJCGG()
+            /// <summary>JAEINBJKNFO() -> List<Touch></summary>
             public const uint JAEINBJKNFO = 0x104b53f0; // public static List<Touch> JAEINBJKNFO()
+            /// <summary>DKFNIGJOEAJ() -> List<Touch></summary>
             public const uint DKFNIGJOEAJ = 0x104b5170; // public static List<Touch> DKFNIGJOEAJ()
+            /// <summary>BDMDNBKHHKE() -> List<Touch></summary>
             public const uint BDMDNBKHHKE = 0x104b4ff0; // public static List<Touch> BDMDNBKHHKE()
+            /// <summary>MMKEDIGIAKC() -> List<Touch></summary>
             public const uint MMKEDIGIAKC = 0x104b56f0; // public static List<Touch> MMKEDIGIAKC()
-            public const uint _ctor = 0x101a6520; // public void .ctor()
+            public const uint ctor = 0x101a6520; // public void .ctor()
+            /// <summary>MDMAACFKGKE() -> List<Touch></summary>
             public const uint MDMAACFKGKE = 0x104b5670; // public static List<Touch> MDMAACFKGKE()
+            /// <summary>FKLFPPEKEEJ() -> List<Touch></summary>
             public const uint FKLFPPEKEEJ = 0x104b5270; // public static List<Touch> FKLFPPEKEEJ()
+            /// <summary>KMBGMMGFIIC() -> List<Touch></summary>
             public const uint KMBGMMGFIIC = 0x104b55f0; // public static List<Touch> KMBGMMGFIIC()
+            /// <summary>ELAGOLPPEBK() -> List<Touch></summary>
             public const uint ELAGOLPPEBK = 0x104b51f0; // public static List<Touch> ELAGOLPPEBK()
+            /// <summary>GetTouches() -> List<Touch></summary>
             public const uint GetTouches = 0x104b52f0; // public static List<Touch> GetTouches()
+            /// <summary>MMLPBKCMNNA() -> List<Touch></summary>
             public const uint MMLPBKCMNNA = 0x104b5770; // public static List<Touch> MMLPBKCMNNA()
         }
     }

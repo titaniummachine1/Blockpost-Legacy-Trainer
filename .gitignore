@@ -5,6 +5,8 @@ interop/
 logs/
 *.log
 .tools/
+Tools/__pycache__/
+Tools/analysis/
 
 # keep captured evidence even though *.log is ignored above
 !captures/*.log

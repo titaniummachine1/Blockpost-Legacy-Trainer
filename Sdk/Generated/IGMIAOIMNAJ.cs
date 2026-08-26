@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class IGMIAOIMNAJ
     {
+        public const int TypeDefIndex = 461;
+        public const string OriginalName = "IGMIAOIMNAJ";
+
         /// <summary>
         /// Field and static-field offsets for IGMIAOIMNAJ.
         /// </summary>
@@ -22,7 +25,7 @@ namespace BlockpostTrainer.Sdk.Raw
         /// </summary>
         public static class Methods
         {
-            public const uint _ctor = 0x101ace80; // public void .ctor()
+            public const uint ctor = 0x101ace80; // public void .ctor()
         }
     }
 }

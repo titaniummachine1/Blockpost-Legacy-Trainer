@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class UIColors
     {
+        public const int TypeDefIndex = 55;
+        public const string OriginalName = "UIColors";
+
         /// <summary>
         /// Field and static-field offsets for UIColors.
         /// </summary>
@@ -40,39 +43,71 @@ namespace BlockpostTrainer.Sdk.Raw
         /// </summary>
         public static class Methods
         {
+            /// <summary>get_Gray0() -> Color</summary>
             public const uint get_Gray0 = 0x10c65580; // public static Color get_Gray0()
+            /// <summary>GetBaseColor(PBMAFIFKGEH JFFLHBFAGOM) -> Color</summary>
             public const uint GetBaseColor = 0x10c650d0; // public static Color GetBaseColor(PBMAFIFKGEH JFFLHBFAGOM)
+            /// <summary>NHIKHLEAAEC() -> Color</summary>
             public const uint NHIKHLEAAEC = 0x10c65260; // public static Color NHIKHLEAAEC()
+            /// <summary>get_White15() -> Color</summary>
             public const uint get_White15 = 0x10c65730; // public static Color get_White15()
+            /// <summary>CKOHKMCNIHB() -> Color</summary>
             public const uint CKOHKMCNIHB = 0x10c65040; // public static Color CKOHKMCNIHB()
+            /// <summary>get_Gray2() -> Color</summary>
             public const uint get_Gray2 = 0x10c655e0; // public static Color get_Gray2()
+            /// <summary>PLPNDNMNBOO() -> Color</summary>
             public const uint PLPNDNMNBOO = 0x10c65290; // public static Color PLPNDNMNBOO()
+            /// <summary>PNHLCOOCIEE() -> Color</summary>
             public const uint PNHLCOOCIEE = 0x10c652c0; // public static Color PNHLCOOCIEE()
+            /// <summary>get_Yellow() -> Color</summary>
             public const uint get_Yellow = 0x10c657c0; // public static Color get_Yellow()
+            /// <summary>MMMAFJELPHI() -> Color</summary>
             public const uint MMMAFJELPHI = 0x10c65200; // public static Color MMMAFJELPHI()
+            /// <summary>LPANNACFIMO() -> Color</summary>
             public const uint LPANNACFIMO = 0x10c651a0; // public static Color LPANNACFIMO()
+            /// <summary>CPLKOGGCFJA() -> Color</summary>
             public const uint CPLKOGGCFJA = 0x10c65070; // public static Color CPLKOGGCFJA()
+            /// <summary>LBADCDDAMKP() -> Color</summary>
             public const uint LBADCDDAMKP = 0x10c65140; // public static Color LBADCDDAMKP()
-            public const uint _cctor = 0x10c652f0; // private static void .cctor()
+            public const uint cctor = 0x10c652f0; // private static void .cctor()
+            /// <summary>get_LightBlue() -> Color</summary>
             public const uint get_LightBlue = 0x10c65670; // public static Color get_LightBlue()
+            /// <summary>get_Blue() -> Color</summary>
             public const uint get_Blue = 0x10c65550; // public static Color get_Blue()
+            /// <summary>get_LightGray() -> Color</summary>
             public const uint get_LightGray = 0x10c656a0; // public static Color get_LightGray()
+            /// <summary>get_Red() -> Color</summary>
             public const uint get_Red = 0x10c65700; // public static Color get_Red()
+            /// <summary>get_White25() -> Color</summary>
             public const uint get_White25 = 0x10c65760; // public static Color get_White25()
+            /// <summary>CFFDPKGHCBF() -> Color</summary>
             public const uint CFFDPKGHCBF = 0x10c65010; // public static Color CFFDPKGHCBF()
+            /// <summary>BMJNIALIKAF() -> Color</summary>
             public const uint BMJNIALIKAF = 0x10c64fe0; // public static Color BMJNIALIKAF()
+            /// <summary>get_Orange() -> Color</summary>
             public const uint get_Orange = 0x10c656d0; // public static Color get_Orange()
+            /// <summary>get_Green() -> Color</summary>
             public const uint get_Green = 0x10c65640; // public static Color get_Green()
+            /// <summary>GBKHOFCNGIH() -> Color</summary>
             public const uint GBKHOFCNGIH = 0x10c650a0; // public static Color GBKHOFCNGIH()
+            /// <summary>get_Black15() -> Color</summary>
             public const uint get_Black15 = 0x10c65520; // public static Color get_Black15()
+            /// <summary>NDDLMFDDFNE() -> Color</summary>
             public const uint NDDLMFDDFNE = 0x10c65230; // public static Color NDDLMFDDFNE()
+            /// <summary>LPNFDFCGNGG() -> Color</summary>
             public const uint LPNFDFCGNGG = 0x10c651d0; // public static Color LPNFDFCGNGG()
+            /// <summary>get_Gray() -> Color</summary>
             public const uint get_Gray = 0x10c65610; // public static Color get_Gray()
+            /// <summary>LLAHHIJODGG() -> Color</summary>
             public const uint LLAHHIJODGG = 0x10c65170; // public static Color LLAHHIJODGG()
-            public const uint _ctor = 0x101a6520; // public void .ctor()
+            public const uint ctor = 0x101a6520; // public void .ctor()
+            /// <summary>APCNADBELJO() -> Color</summary>
             public const uint APCNADBELJO = 0x10c64f80; // public static Color APCNADBELJO()
+            /// <summary>BDKICCBIIOH() -> Color</summary>
             public const uint BDKICCBIIOH = 0x10c64fb0; // public static Color BDKICCBIIOH()
+            /// <summary>get_Yellow15() -> Color</summary>
             public const uint get_Yellow15 = 0x10c65790; // public static Color get_Yellow15()
+            /// <summary>get_Gray1() -> Color</summary>
             public const uint get_Gray1 = 0x10c655b0; // public static Color get_Gray1()
         }
     }

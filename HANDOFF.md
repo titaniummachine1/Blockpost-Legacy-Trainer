@@ -62,3 +62,13 @@ expose them.
    connected socket, so `Client.FPIDGCHIEMJ` is not the live read path. Until this is fixed we
    cannot see whether the server ever corrects or rejects anything.
 3. Rebuild rapid fire on top of the game's own fire path once the fire cooldown field is known.
+
+## SDK state (latest)
+
+- `Tools/build_sdk.py` now regenerates the entire SDK in one command and passes `verify_sdk.py`.
+- `Client.ProcessPacket` is correctly aliased to `FPIDGCHIEMJ`; `Client.Flush` is `HKOFHOANEJD`.
+- SDK now covers 278 aliased classes (up from 252), 3,971 field aliases, 12,570 method aliases, 411
+  property aliases, with `SdkIndex.cs` providing `ByOriginalName`, `ByHumanName`, and
+  `ByTypeDefIndex` lookups.
+- Build is clean: 0 errors, 5 warnings (pre-existing NuGet + KeyCode `Equals` hiding + duplicate
+  `using`).

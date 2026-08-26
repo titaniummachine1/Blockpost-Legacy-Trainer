@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class EICNFHFLMOF
     {
+        public const int TypeDefIndex = 426;
+        public const string OriginalName = "EICNFHFLMOF";
+
         /// <summary>
         /// Field and static-field offsets for EICNFHFLMOF.
         /// </summary>
@@ -21,7 +24,7 @@ namespace BlockpostTrainer.Sdk.Raw
         /// </summary>
         public static class Methods
         {
-            public const uint _ctor = 0x101ace80; // internal void .ctor()
+            public const uint ctor = 0x101ace80; // internal void .ctor()
         }
     }
 }

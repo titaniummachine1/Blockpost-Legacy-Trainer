@@ -4,13 +4,30 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class PBMAFIFKGEH
     {
+        public const int TypeDefIndex = 19;
+        public const string OriginalName = "PBMAFIFKGEH";
+
         /// <summary>
-        /// Field and static-field offsets for PBMAFIFKGEH.
+        /// Enum values for PBMAFIFKGEH.
         /// </summary>
         public static class Offsets
         {
-            // Instance fields
-            public const int value__ = 0x0; // int
+            // Backing field
+            public const int value = 0x0; // int
+
+            // Enum values
+            public const int Black = 0x0; // PBMAFIFKGEH
+            public const int White = 0x1; // PBMAFIFKGEH
+            public const int Red = 0x2; // PBMAFIFKGEH
+            public const int Green = 0x3; // PBMAFIFKGEH
+            public const int Blue = 0x4; // PBMAFIFKGEH
+            public const int Yellow = 0x5; // PBMAFIFKGEH
+            public const int Gray = 0x6; // PBMAFIFKGEH
+            public const int Orange = 0x7; // PBMAFIFKGEH
+            public const int Block = 0x8; // PBMAFIFKGEH
+            public const int LightGray = 0x9; // PBMAFIFKGEH
+            public const int LightGray2 = 0xa; // PBMAFIFKGEH
+            public const int DarkGray = 0xb; // PBMAFIFKGEH
         }
 
         /// <summary>

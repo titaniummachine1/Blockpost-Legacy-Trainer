@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class VInput
     {
+        public const int TypeDefIndex = 510;
+        public const string OriginalName = "VInput";
+
         /// <summary>
         /// Field and static-field offsets for VInput.
         /// </summary>
@@ -39,7 +42,7 @@ namespace BlockpostTrainer.Sdk.Raw
             public const uint Update = 0x10cd96d0; // private void Update()
             public const uint GCPEPANDFNB = 0x10cd6a80; // private void GCPEPANDFNB()
             public const uint GIHFCKKONHG = 0x10cd6e00; // private void GIHFCKKONHG()
-            public const uint _ctor = 0x101a6520; // public void .ctor()
+            public const uint ctor = 0x101a6520; // public void .ctor()
             public const uint DDCGNOJIKDI = 0x10cd55b0; // private void DDCGNOJIKDI()
             public const uint MJGCIDIGKCL = 0x10cd8ac0; // private void MJGCIDIGKCL()
             public const uint ONOKOFKGDFP = 0x10cd91a0; // private void ONOKOFKGDFP()

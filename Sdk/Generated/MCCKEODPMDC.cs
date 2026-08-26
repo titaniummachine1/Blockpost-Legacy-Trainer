@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class MCCKEODPMDC
     {
+        public const int TypeDefIndex = 487;
+        public const string OriginalName = "MCCKEODPMDC";
+
         /// <summary>
         /// Field and static-field offsets for MCCKEODPMDC.
         /// </summary>
@@ -19,7 +22,8 @@ namespace BlockpostTrainer.Sdk.Raw
         /// </summary>
         public static class Methods
         {
-            public const uint _ctor = 0x10c6f910; // internal void .ctor(int AIEPBAHGMJD, AEKADIMKDIL HENOJJHIHME)
+            /// <summary>.ctor(int AIEPBAHGMJD, AEKADIMKDIL HENOJJHIHME)</summary>
+            public const uint ctor = 0x10c6f910; // internal void .ctor(int AIEPBAHGMJD, AEKADIMKDIL HENOJJHIHME)
         }
     }
 }

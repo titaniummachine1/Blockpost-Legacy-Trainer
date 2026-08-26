@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class MDADLLEFHKO
     {
+        public const int TypeDefIndex = 109;
+        public const string OriginalName = "MDADLLEFHKO";
+
         /// <summary>
         /// Field and static-field offsets for MDADLLEFHKO.
         /// </summary>
@@ -24,7 +27,7 @@ namespace BlockpostTrainer.Sdk.Raw
         /// </summary>
         public static class Methods
         {
-            public const uint _ctor = 0x101ace80; // internal void .ctor()
+            public const uint ctor = 0x101ace80; // internal void .ctor()
         }
     }
 }

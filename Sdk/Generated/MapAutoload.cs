@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class MapAutoload
     {
+        public const int TypeDefIndex = 133;
+        public const string OriginalName = "MapAutoload";
+
         /// <summary>
         /// Field and static-field offsets for MapAutoload.
         /// </summary>
@@ -32,33 +35,41 @@ namespace BlockpostTrainer.Sdk.Raw
             public const uint KIKMPEDPIID = 0x104b9150; // private void KIKMPEDPIID()
             public const uint NENIMPCGAMI = 0x104b99d0; // private void NENIMPCGAMI()
             public const uint ANKKIGAMHHL = 0x104b7250; // private void ANKKIGAMHHL()
-            public const uint _ctor = 0x101a6520; // public void .ctor()
+            public const uint ctor = 0x101a6520; // public void .ctor()
             public const uint DLLCMBJIBAI = 0x104b7a50; // private void DLLCMBJIBAI()
+            /// <summary>GKNCJJELJMI(Texture FHOKAIADHDO)</summary>
             public const uint GKNCJJELJMI = 0x104b84b0; // public static void GKNCJJELJMI(Texture FHOKAIADHDO)
             public const uint JFPCBIBALOM = 0x104b8d30; // private void JFPCBIBALOM()
             public const uint NLHIBBHPHMK = 0x104b9b70; // private void NLHIBBHPHMK()
             public const uint MGEDOOBLFPC = 0x104b9930; // private void MGEDOOBLFPC()
+            /// <summary>HLLGMJDPDMJ(Texture FHOKAIADHDO)</summary>
             public const uint HLLGMJDPDMJ = 0x104b87d0; // public static void HLLGMJDPDMJ(Texture FHOKAIADHDO)
             public const uint AMBIJGINIMF = 0x104b7210; // private void AMBIJGINIMF()
             public const uint KNMJMECBEDG = 0x104b92d0; // private void KNMJMECBEDG()
             public const uint LPCOAICNLLD = 0x104b96f0; // private void LPCOAICNLLD()
+            /// <summary>SetAtlasPreview(Texture FHOKAIADHDO)</summary>
             public const uint SetAtlasPreview = 0x104b9dd0; // public static void SetAtlasPreview(Texture FHOKAIADHDO)
+            /// <summary>BOOCOPFEENC(Texture FHOKAIADHDO)</summary>
             public const uint BOOCOPFEENC = 0x104b7670; // public static void BOOCOPFEENC(Texture FHOKAIADHDO)
+            /// <summary>FAEFHJKDLPK(Texture FHOKAIADHDO)</summary>
             public const uint FAEFHJKDLPK = 0x104b7f50; // public static void FAEFHJKDLPK(Texture FHOKAIADHDO)
             public const uint EEDNDMBNIIM = 0x104b7af0; // private void EEDNDMBNIIM()
             public const uint BOMIAFPNCOO = 0x104b7610; // private void BOMIAFPNCOO()
             public const uint ELADJKGDJHG = 0x104b7e90; // private void ELADJKGDJHG()
             public const uint COHOBBIKGMH = 0x104b7930; // private void COHOBBIKGMH()
+            /// <summary>AFAOHDKDMEF(Texture FHOKAIADHDO)</summary>
             public const uint AFAOHDKDMEF = 0x104b6fd0; // public static void AFAOHDKDMEF(Texture FHOKAIADHDO)
             public const uint ACOGPDIFANK = 0x104b6f30; // private void ACOGPDIFANK()
             public const uint Start = 0x104b9e90; // private void Start()
             public const uint GAMBOPHFCFN = 0x104b8310; // private void GAMBOPHFCFN()
+            /// <summary>AFKCICLFNFM(Texture FHOKAIADHDO)</summary>
             public const uint AFKCICLFNFM = 0x104b7090; // public static void AFKCICLFNFM(Texture FHOKAIADHDO)
             public const uint KBGEILKEHJO = 0x104b8f50; // private void KBGEILKEHJO()
             public const uint ONNLIDCNDGJ = 0x104b9bf0; // private void ONNLIDCNDGJ()
             public const uint OMFDIBAPIIA = 0x104b9bb0; // private void OMFDIBAPIIA()
             public const uint GIHNLFGLBOD = 0x104b8370; // private void GIHNLFGLBOD()
             public const uint ICPEAGIKCFA = 0x104b8890; // private void ICPEAGIKCFA()
+            /// <summary>KEPODKFPMCP(Texture FHOKAIADHDO)</summary>
             public const uint KEPODKFPMCP = 0x104b9090; // public static void KEPODKFPMCP(Texture FHOKAIADHDO)
             public const uint CODLMBDNPEJ = 0x104b78f0; // private void CODLMBDNPEJ()
             public const uint DDEDNMDJDDI = 0x104b7990; // private void DDEDNMDJDDI()
@@ -68,35 +79,45 @@ namespace BlockpostTrainer.Sdk.Raw
             public const uint IGNEFBCCJOB = 0x104b8970; // private void IGNEFBCCJOB()
             public const uint IELAJFHJJDH = 0x104b8930; // private void IELAJFHJJDH()
             public const uint Awake = 0x104b7390; // private void Awake()
+            /// <summary>JCPEGKCOCDI(Texture FHOKAIADHDO)</summary>
             public const uint JCPEGKCOCDI = 0x104b8c30; // public static void JCPEGKCOCDI(Texture FHOKAIADHDO)
             public const uint MEPIIBCIDBG = 0x104b98f0; // private void MEPIIBCIDBG()
+            /// <summary>JLCGPGAPEHH(Texture FHOKAIADHDO)</summary>
             public const uint JLCGPGAPEHH = 0x104b8d90; // public static void JLCGPGAPEHH(Texture FHOKAIADHDO)
             public const uint MDOPNHEKGKJ = 0x104b97b0; // private void MDOPNHEKGKJ()
+            /// <summary>GMNIKBCCAFA(Texture FHOKAIADHDO)</summary>
             public const uint GMNIKBCCAFA = 0x104b8570; // public static void GMNIKBCCAFA(Texture FHOKAIADHDO)
             public const uint DHBFIHEOEDK = 0x104b79d0; // private void DHBFIHEOEDK()
             public const uint DIGJPIIEFDG = 0x104b7a10; // private void DIGJPIIEFDG()
             public const uint BPGELMPILFH = 0x104b7730; // private void BPGELMPILFH()
             public const uint EEOKPOCOGII = 0x104b7c10; // private void EEOKPOCOGII()
             public const uint FABPHBAFDOM = 0x104b7ef0; // private void FABPHBAFDOM()
+            /// <summary>BLBDJGHJGBL(Texture FHOKAIADHDO)</summary>
             public const uint BLBDJGHJGBL = 0x104b7550; // public static void BLBDJGHJGBL(Texture FHOKAIADHDO)
             public const uint JBOBMMIEGPK = 0x104b8af0; // private void JBOBMMIEGPK()
             public const uint JLCHLPNDALD = 0x104b8e50; // private void JLCHLPNDALD()
             public const uint ACIFIFLNKAO = 0x104b6df0; // private void ACIFIFLNKAO()
             public const uint ACEGCMJIABO = 0x104b6d90; // private void ACEGCMJIABO()
             public const uint BPNANAKLCEG = 0x104b7770; // private void BPNANAKLCEG()
+            /// <summary>CHOBKMBHHDI(Texture FHOKAIADHDO)</summary>
             public const uint CHOBKMBHHDI = 0x104b7830; // public static void CHOBKMBHHDI(Texture FHOKAIADHDO)
             public const uint LFHIIINFLMC = 0x104b9570; // private void LFHIIINFLMC()
             public const uint CDLHJEPOBEC = 0x104b77d0; // private void CDLHJEPOBEC()
+            /// <summary>LBLHLAEKHEG(Texture FHOKAIADHDO)</summary>
             public const uint LBLHLAEKHEG = 0x104b9370; // public static void LBLHLAEKHEG(Texture FHOKAIADHDO)
             public const uint FKMAHKPJOJF = 0x104b8190; // private void FKMAHKPJOJF()
             public const uint LPKBDFIPIAE = 0x104b9750; // private void LPKBDFIPIAE()
+            /// <summary>AIJKFJPEJHI(Texture FHOKAIADHDO)</summary>
             public const uint AIJKFJPEJHI = 0x104b7150; // public static void AIJKFJPEJHI(Texture FHOKAIADHDO)
             public const uint ICPGDJCMAFG = 0x104b88f0; // private void ICPGDJCMAFG()
             public const uint LEJDKDGOHAA = 0x104b9430; // private void LEJDKDGOHAA()
             public const uint HHGEAAMAKPO = 0x104b8770; // private void HHGEAAMAKPO()
+            /// <summary>PHOKGOFDMFL(Texture FHOKAIADHDO)</summary>
             public const uint PHOKGOFDMFL = 0x104b9c50; // public static void PHOKGOFDMFL(Texture FHOKAIADHDO)
             public const uint BKKGLEEKFJF = 0x104b7410; // private void BKKGLEEKFJF()
+            /// <summary>KBFLEIHMHHH(Texture FHOKAIADHDO)</summary>
             public const uint KBFLEIHMHHH = 0x104b8e90; // public static void KBFLEIHMHHH(Texture FHOKAIADHDO)
+            /// <summary>PMKMLMCDBDC(Texture FHOKAIADHDO)</summary>
             public const uint PMKMLMCDBDC = 0x104b9d10; // public static void PMKMLMCDBDC(Texture FHOKAIADHDO)
             public const uint EKGOKIDDNNC = 0x104b7d50; // private void EKGOKIDDNNC()
             public const uint IJOOOMGGJML = 0x104b8ab0; // private void IJOOOMGGJML()

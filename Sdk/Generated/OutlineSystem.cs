@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class OutlineSystem
     {
+        public const int TypeDefIndex = 372;
+        public const string OriginalName = "OutlineSystem";
+
         /// <summary>
         /// Field and static-field offsets for OutlineSystem.
         /// </summary>
@@ -42,12 +45,15 @@ namespace BlockpostTrainer.Sdk.Raw
         {
             public const uint OnGUI = 0x10a34fd0; // private void OnGUI()
             public const uint ALGLEAPCJGO = 0x10a2f990; // private void ALGLEAPCJGO()
+            /// <summary>ILEFKOLHBPE() -> Vector2</summary>
             public const uint ILEFKOLHBPE = 0x10a2f930; // public Vector2 ILEFKOLHBPE()
             public const uint BNBGBOOMOII = 0x10a30700; // private void BNBGBOOMOII()
+            /// <summary>PNBCNGADPAP() -> Vector2</summary>
             public const uint PNBCNGADPAP = 0x10a2f930; // public Vector2 PNBCNGADPAP()
             public const uint Awake = 0x10a302f0; // private void Awake()
             public const uint DBPCHHAPCCE = 0x10a308a0; // private void DBPCHHAPCCE()
             public const uint ILFIAHPENKO = 0x10a32740; // private void ILFIAHPENKO()
+            /// <summary>EALBCDLNLGF() -> Vector2</summary>
             public const uint EALBCDLNLGF = 0x10a2f930; // public Vector2 EALBCDLNLGF()
             public const uint PBBAFOGJOLN = 0x10a350e0; // private void PBBAFOGJOLN()
             public const uint GIEBONNNKGC = 0x10a31b50; // private void GIEBONNNKGC()
@@ -57,20 +63,26 @@ namespace BlockpostTrainer.Sdk.Raw
             public const uint FPJAGAKCKJN = 0x10a31840; // private void FPJAGAKCKJN()
             public const uint EKDJKHIOMBA = 0x10a30ce0; // private void EKDJKHIOMBA()
             public const uint NHKKENOLMEB = 0x10a34650; // private void NHKKENOLMEB()
+            /// <summary>NIPGJJFBDIM() -> Vector2</summary>
             public const uint NIPGJJFBDIM = 0x10a2f930; // public Vector2 NIPGJJFBDIM()
             public const uint FCHFPNMACHL = 0x10a30ff0; // private void FCHFPNMACHL()
             public const uint BFPHALCOMMN = 0x10a303f0; // private void BFPHALCOMMN()
             public const uint LFDHJHGBNBD = 0x10a33e10; // private void LFDHJHGBNBD()
             public const uint ANPGIBIKDAG = 0x10a2fdb0; // private void ANPGIBIKDAG()
+            /// <summary>FHILHELAJLI() -> Vector2</summary>
             public const uint FHILHELAJLI = 0x10a2f930; // public Vector2 FHILHELAJLI()
             public const uint LateUpdate = 0x10a33f20; // private void LateUpdate()
+            /// <summary>IANKCJECJKK() -> Vector2</summary>
             public const uint IANKCJECJKK = 0x10a2f930; // public Vector2 IANKCJECJKK()
             public const uint HBDLMBCEOHO = 0x10a31e60; // private void HBDLMBCEOHO()
+            /// <summary>HADGNBFKEDE() -> Vector2</summary>
             public const uint HADGNBFKEDE = 0x10a2f930; // public Vector2 HADGNBFKEDE()
+            /// <summary>PKCHHGHLONI() -> Vector2</summary>
             public const uint PKCHHGHLONI = 0x10a2f930; // public Vector2 PKCHHGHLONI()
             public const uint KNEDOOKGNOH = 0x10a33ae0; // private void KNEDOOKGNOH()
             public const uint BDIIFDINOKD = 0x10a30370; // private void BDIIFDINOKD()
             public const uint JHIPOCDLCMO = 0x10a32960; // private void JHIPOCDLCMO()
+            /// <summary>ScreenDimension() -> Vector2</summary>
             public const uint ScreenDimension = 0x10a2f930; // public Vector2 ScreenDimension()
             public const uint KIPIIPBNDPP = 0x10a33610; // private void KIPIIPBNDPP()
             public const uint FKPLHBLCDFH = 0x10a31300; // private void FKPLHBLCDFH()
@@ -79,6 +91,7 @@ namespace BlockpostTrainer.Sdk.Raw
             public const uint KANHOEKKLOP = 0x10a32d80; // private void KANHOEKKLOP()
             public const uint IIMDBDAPLPM = 0x10a326c0; // private void IIMDBDAPLPM()
             public const uint KEKHEEDFOAP = 0x10a331d0; // private void KEKHEEDFOAP()
+            /// <summary>KDEGAJMOKOK() -> Vector2</summary>
             public const uint KDEGAJMOKOK = 0x10a2f930; // public Vector2 KDEGAJMOKOK()
             public const uint KLOLNNMHCGJ = 0x10a33a60; // private void KLOLNNMHCGJ()
             public const uint IHGKJCEIHHJ = 0x10a323b0; // private void IHGKJCEIHHJ()
@@ -86,15 +99,18 @@ namespace BlockpostTrainer.Sdk.Raw
             public const uint NNJHODKIHCB = 0x10a34db0; // private void NNJHODKIHCB()
             public const uint HOPDAOAHNLN = 0x10a322a0; // private void HOPDAOAHNLN()
             public const uint LEHMAMABCIM = 0x10a33d00; // private void LEHMAMABCIM()
+            /// <summary>ADOOGNKGOPB() -> Vector2</summary>
             public const uint ADOOGNKGOPB = 0x10a2f930; // public Vector2 ADOOGNKGOPB()
             public const uint APPHDEBHPMB = 0x10a301e0; // private void APPHDEBHPMB()
+            /// <summary>EPMLDAEEHJL() -> Vector2</summary>
             public const uint EPMLDAEEHJL = 0x10a2f930; // public Vector2 EPMLDAEEHJL()
             public const uint LHOLBLDJJAJ = 0x10a33e90; // private void LHOLBLDJJAJ()
             public const uint NMBLKAECNNP = 0x10a34aa0; // private void NMBLKAECNNP()
             public const uint NGPHHJCAHOA = 0x10a342c0; // private void NGPHHJCAHOA()
             public const uint OCONAGIMGAO = 0x10a34ec0; // private void OCONAGIMGAO()
-            public const uint _ctor = 0x10a35700; // public void .ctor()
+            public const uint ctor = 0x10a35700; // public void .ctor()
             public const uint FLFOKIJELHB = 0x10a31390; // private void FLFOKIJELHB()
+            /// <summary>HMCHBANLLNC() -> Vector2</summary>
             public const uint HMCHBANLLNC = 0x10a2f930; // public Vector2 HMCHBANLLNC()
             public const uint FNOFEJDILEC = 0x10a317b0; // private void FNOFEJDILEC()
         }

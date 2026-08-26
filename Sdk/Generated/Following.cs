@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class Following
     {
+        public const int TypeDefIndex = 58;
+        public const string OriginalName = "Following";
+
         /// <summary>
         /// Field and static-field offsets for Following.
         /// </summary>
@@ -71,7 +74,7 @@ namespace BlockpostTrainer.Sdk.Raw
             public const uint PELMGLDGHLF = 0x10c63280; // private void PELMGLDGHLF()
             public const uint PONECJLBLLO = 0x10c63d60; // private void PONECJLBLLO()
             public const uint ELPILMOMEPM = 0x10c5c1e0; // private void ELPILMOMEPM()
-            public const uint _ctor = 0x101a6520; // public void .ctor()
+            public const uint ctor = 0x101a6520; // public void .ctor()
             public const uint BKOCKHDPCNC = 0x10c5a9a0; // private void BKOCKHDPCNC()
             public const uint Start = 0x10c643f0; // private void Start()
             public const uint GEIEPHAEODN = 0x10c5d730; // private void GEIEPHAEODN()

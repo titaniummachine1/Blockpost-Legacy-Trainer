@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class GUIAdminPlayers
     {
+        public const int TypeDefIndex = 38;
+        public const string OriginalName = "GUIAdminPlayers";
+
         /// <summary>
         /// Field and static-field offsets for GUIAdminPlayers.
         /// </summary>
@@ -95,7 +98,7 @@ namespace BlockpostTrainer.Sdk.Raw
             public const uint LKPOCBOKNBH = 0x10626c50; // private void LKPOCBOKNBH()
             public const uint GGLJJGOLMKJ = 0x106254c0; // private void GGLJJGOLMKJ()
             public const uint GCAFAKFGIIC = 0x10624f10; // public void GCAFAKFGIIC()
-            public const uint _ctor = 0x1062a660; // public void .ctor()
+            public const uint ctor = 0x1062a660; // public void .ctor()
             public const uint OnResize = 0x10629670; // public void OnResize()
             public const uint OEHJEPLAPLE = 0x10628eb0; // private void OEHJEPLAPLE()
             public const uint AMOBDHIOGFM = 0x106225a0; // private void AMOBDHIOGFM()

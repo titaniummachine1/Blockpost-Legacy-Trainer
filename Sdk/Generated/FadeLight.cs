@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class FadeLight
     {
+        public const int TypeDefIndex = 184;
+        public const string OriginalName = "FadeLight";
+
         /// <summary>
         /// Field and static-field offsets for FadeLight.
         /// </summary>
@@ -40,7 +43,7 @@ namespace BlockpostTrainer.Sdk.Raw
             public const uint LMINFJJBKFL = 0x105a3870; // private void LMINFJJBKFL()
             public const uint ACOGPDIFANK = 0x105a2180; // private void ACOGPDIFANK()
             public const uint PKHAKGEPOIF = 0x105a2180; // private void PKHAKGEPOIF()
-            public const uint _ctor = 0x105a3f70; // public void .ctor()
+            public const uint ctor = 0x105a3f70; // public void .ctor()
             public const uint GEAJLHMMKJL = 0x105a2d10; // private void GEAJLHMMKJL()
             public const uint BBDEMINADFA = 0x105a2180; // private void BBDEMINADFA()
             public const uint DEAHMNPJFIG = 0x105a2610; // private void DEAHMNPJFIG()

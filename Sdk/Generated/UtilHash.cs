@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class UtilHash
     {
+        public const int TypeDefIndex = 86;
+        public const string OriginalName = "UtilHash";
+
         /// <summary>
         /// Field and static-field offsets for UtilHash.
         /// </summary>
@@ -16,19 +19,32 @@ namespace BlockpostTrainer.Sdk.Raw
         /// </summary>
         public static class Methods
         {
+            /// <summary>BLHNBKCMLPJ(string CLPEINKHPAH) -> string</summary>
             public const uint BLHNBKCMLPJ = 0x103687c0; // public static string BLHNBKCMLPJ(string CLPEINKHPAH)
+            /// <summary>BKPKALPCFCP(string CLPEINKHPAH) -> string</summary>
             public const uint BKPKALPCFCP = 0x103686e0; // public static string BKPKALPCFCP(string CLPEINKHPAH)
+            /// <summary>JIFCNBNDIPE(byte[] COEGDOAPEDD) -> string</summary>
             public const uint JIFCNBNDIPE = 0x10368d20; // public static string JIFCNBNDIPE(byte[] COEGDOAPEDD)
+            /// <summary>MCEALOKNDEH(byte[] COEGDOAPEDD) -> string</summary>
             public const uint MCEALOKNDEH = 0x10368ea0; // public static string MCEALOKNDEH(byte[] COEGDOAPEDD)
-            public const uint _ctor = 0x101a6520; // public void .ctor()
+            public const uint ctor = 0x101a6520; // public void .ctor()
+            /// <summary>KNFECIDHLBC(byte[] COEGDOAPEDD) -> string</summary>
             public const uint KNFECIDHLBC = 0x10368de0; // public static string KNFECIDHLBC(byte[] COEGDOAPEDD)
+            /// <summary>EKANDFMBMPC(string CLPEINKHPAH) -> string</summary>
             public const uint EKANDFMBMPC = 0x10368b50; // public static string EKANDFMBMPC(string CLPEINKHPAH)
+            /// <summary>BCOKKBDPENM(byte[] COEGDOAPEDD) -> string</summary>
             public const uint BCOKKBDPENM = 0x10368620; // public static string BCOKKBDPENM(byte[] COEGDOAPEDD)
+            /// <summary>MKJAGKMLHJK(string CLPEINKHPAH) -> string</summary>
             public const uint MKJAGKMLHJK = 0x10368f60; // public static string MKJAGKMLHJK(string CLPEINKHPAH)
+            /// <summary>Calc(byte[] COEGDOAPEDD) -> string</summary>
             public const uint Calc = 0x103689a0; // public static string Calc(byte[] COEGDOAPEDD)
+            /// <summary>Calc(string CLPEINKHPAH) -> string</summary>
             public const uint Calc_2 = 0x10368a60; // public static string Calc(string CLPEINKHPAH)
+            /// <summary>JGMKANPNBPM(string CLPEINKHPAH) -> string</summary>
             public const uint JGMKANPNBPM = 0x10368c40; // public static string JGMKANPNBPM(string CLPEINKHPAH)
+            /// <summary>PEICMDCHNIB(byte[] COEGDOAPEDD) -> string</summary>
             public const uint PEICMDCHNIB = 0x10369040; // public static string PEICMDCHNIB(byte[] COEGDOAPEDD)
+            /// <summary>CHNAOIOCDDP(string CLPEINKHPAH) -> string</summary>
             public const uint CHNAOIOCDDP = 0x103688b0; // public static string CHNAOIOCDDP(string CLPEINKHPAH)
         }
     }

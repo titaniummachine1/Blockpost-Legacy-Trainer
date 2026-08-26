@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class FXBloodSplat
     {
+        public const int TypeDefIndex = 74;
+        public const string OriginalName = "FXBloodSplat";
+
         /// <summary>
         /// Field and static-field offsets for FXBloodSplat.
         /// </summary>
@@ -64,7 +67,7 @@ namespace BlockpostTrainer.Sdk.Raw
             public const uint KPOIBKMFBFK = 0x103197b0; // private void KPOIBKMFBFK()
             public const uint PELMGLDGHLF = 0x103198f0; // private void PELMGLDGHLF()
             public const uint DLLCMBJIBAI = 0x10318870; // private void DLLCMBJIBAI()
-            public const uint _ctor = 0x101a6520; // public void .ctor()
+            public const uint ctor = 0x101a6520; // public void .ctor()
             public const uint JCCIEADEOCC = 0x10318870; // private void JCCIEADEOCC()
             public const uint GIHFCKKONHG = 0x103190d0; // private void GIHFCKKONHG()
             public const uint PJPIDBCLLEK = 0x10319990; // private void PJPIDBCLLEK()

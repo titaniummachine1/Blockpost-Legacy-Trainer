@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class UIMInventory
     {
+        public const int TypeDefIndex = 210;
+        public const string OriginalName = "UIMInventory";
+
         /// <summary>
         /// Field and static-field offsets for UIMInventory.
         /// </summary>
@@ -36,7 +39,7 @@ namespace BlockpostTrainer.Sdk.Raw
             public const uint EFIBGDMIFBC = 0x101a4700; // private void EFIBGDMIFBC()
             public const uint CFLODBKAFHA = 0x101a4700; // private void CFLODBKAFHA()
             public const uint JIJKAAHMHNK = 0x104bb1e0; // public void JIJKAAHMHNK()
-            public const uint _ctor = 0x101a6520; // public void .ctor()
+            public const uint ctor = 0x101a6520; // public void .ctor()
             public const uint ACDPNCJGFOI = 0x101a4700; // private void ACDPNCJGFOI()
             public const uint KMIKIACPNCA = 0x1064c7d0; // private void KMIKIACPNCA()
             public const uint BNAGABJEDDH = 0x101a4700; // private void BNAGABJEDDH()

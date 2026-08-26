@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class HUDMessage_JCHHGBGPFGN
     {
+        public const int TypeDefIndex = 244;
+        public const string OriginalName = "HUDMessage.JCHHGBGPFGN";
+
         /// <summary>
         /// Field and static-field offsets for HUDMessage.JCHHGBGPFGN.
         /// </summary>
@@ -33,7 +36,8 @@ namespace BlockpostTrainer.Sdk.Raw
         /// </summary>
         public static class Methods
         {
-            public const uint _ctor = 0x107641f0; // internal void .ctor(int PBGOLCEIKFA, int HAJEJOEABFP, int NDNIKDNFIFK, int LLBFJBCHBKF, string BBPEGIMHJCB, string NAEAEKFGFMF, string PAABMEICODI, int PBIDEJANLFK, Texture2D HHMINOPPMIB, Vector2 LJHBCFHEFPO, PBMAFIFKGEH LGIHFDDIPGA, PBMAFIFKGEH MKACIBAMJJN)
+            /// <summary>.ctor(int PBGOLCEIKFA, int HAJEJOEABFP, int NDNIKDNFIFK, int LLBFJBCHBKF, string BBPEGIMHJCB, string NAEAEKFGFMF, string PAABMEICODI, int PBIDEJANLFK, Texture2D HHMINOPPMIB, Vector2 LJHBCFHEFPO, PBMAFIFKGEH LGIHFDDIPGA, PBMAFIFKGEH MKACIBAMJJN)</summary>
+            public const uint ctor = 0x107641f0; // internal void .ctor(int PBGOLCEIKFA, int HAJEJOEABFP, int NDNIKDNFIFK, int LLBFJBCHBKF, string BBPEGIMHJCB, string NAEAEKFGFMF, string PAABMEICODI, int PBIDEJANLFK, Texture2D HHMINOPPMIB, Vector2 LJHBCFHEFPO, PBMAFIFKGEH LGIHFDDIPGA, PBMAFIFKGEH MKACIBAMJJN)
         }
     }
 }

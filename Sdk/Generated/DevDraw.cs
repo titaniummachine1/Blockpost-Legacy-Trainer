@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class DevDraw
     {
+        public const int TypeDefIndex = 237;
+        public const string OriginalName = "DevDraw";
+
         /// <summary>
         /// Field and static-field offsets for DevDraw.
         /// </summary>
@@ -30,7 +33,7 @@ namespace BlockpostTrainer.Sdk.Raw
             public const uint JEFIFLIFOIB = 0x107352c0; // private void JEFIFLIFOIB()
             public const uint AHFCKILODOP = 0x10732b40; // private void AHFCKILODOP()
             public const uint Start = 0x107365c0; // private void Start()
-            public const uint _ctor = 0x101a6520; // public void .ctor()
+            public const uint ctor = 0x101a6520; // public void .ctor()
             public const uint BALMKADALCP = 0x10732e20; // private void BALMKADALCP()
             public const uint EAIMKIEACIF = 0x107335d0; // private void EAIMKIEACIF()
             public const uint GBHGEPHIGNO = 0x10733f60; // private void GBHGEPHIGNO()

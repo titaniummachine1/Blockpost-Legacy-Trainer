@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class IFALFNHBMFO
     {
+        public const int TypeDefIndex = 218;
+        public const string OriginalName = "IFALFNHBMFO";
+
         /// <summary>
         /// Field and static-field offsets for IFALFNHBMFO.
         /// </summary>
@@ -23,7 +26,8 @@ namespace BlockpostTrainer.Sdk.Raw
         /// </summary>
         public static class Methods
         {
-            public const uint _ctor = 0x106751d0; // internal void .ctor(int HAFMINBJCGN, string DHJBGJHALAL, string MDCEEKBLKLP, int LIIEKJLNNGP, int FCOEFGEDINI, int CNKGNPAGOJJ)
+            /// <summary>.ctor(int HAFMINBJCGN, string DHJBGJHALAL, string MDCEEKBLKLP, int LIIEKJLNNGP, int FCOEFGEDINI, int CNKGNPAGOJJ)</summary>
+            public const uint ctor = 0x106751d0; // internal void .ctor(int HAFMINBJCGN, string DHJBGJHALAL, string MDCEEKBLKLP, int LIIEKJLNNGP, int FCOEFGEDINI, int CNKGNPAGOJJ)
         }
     }
 }

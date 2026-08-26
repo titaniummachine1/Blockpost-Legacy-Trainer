@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class Movement
     {
+        public const int TypeDefIndex = 2;
+        public const string OriginalName = "Movement";
+
         /// <summary>
         /// Field and static-field offsets for Movement.
         /// </summary>
@@ -22,22 +25,37 @@ namespace BlockpostTrainer.Sdk.Raw
         /// </summary>
         public static class Methods
         {
+            /// <summary>EIMFLELLFIE(Vector3 CMOOLEDBICD, Vector3 FDPPNBGFBNB) -> Vector3</summary>
             public const uint EIMFLELLFIE = 0x102b73d0; // public static Vector3 EIMFLELLFIE(Vector3 CMOOLEDBICD, Vector3 FDPPNBGFBNB)
+            /// <summary>EKJMOMCPGGO(Vector3 CMOOLEDBICD, Vector3 FDPPNBGFBNB, float CFLJOPGGHDK, float JPFIHFGHAGK) -> Vector3</summary>
             public const uint EKJMOMCPGGO = 0x102b7530; // public static Vector3 EKJMOMCPGGO(Vector3 CMOOLEDBICD, Vector3 FDPPNBGFBNB, float CFLJOPGGHDK, float JPFIHFGHAGK)
+            /// <summary>IKHBHMGBGKC(Vector3 CMOOLEDBICD, Vector3 FDPPNBGFBNB, float CFLJOPGGHDK, float JPFIHFGHAGK) -> Vector3</summary>
             public const uint IKHBHMGBGKC = 0x102b7860; // public static Vector3 IKHBHMGBGKC(Vector3 CMOOLEDBICD, Vector3 FDPPNBGFBNB, float CFLJOPGGHDK, float JPFIHFGHAGK)
+            /// <summary>HNIBDJDCBFI(Vector3 CMOOLEDBICD, Vector3 FDPPNBGFBNB, float CFLJOPGGHDK, float JPFIHFGHAGK) -> Vector3</summary>
             public const uint HNIBDJDCBFI = 0x102b7640; // public static Vector3 HNIBDJDCBFI(Vector3 CMOOLEDBICD, Vector3 FDPPNBGFBNB, float CFLJOPGGHDK, float JPFIHFGHAGK)
+            /// <summary>MoveGround(Vector3 CMOOLEDBICD, Vector3 FDPPNBGFBNB) -> Vector3</summary>
             public const uint MoveGround = 0x102b7ec0; // public static Vector3 MoveGround(Vector3 CMOOLEDBICD, Vector3 FDPPNBGFBNB)
+            /// <summary>DHOGMMMMPPG(Vector3 CMOOLEDBICD, Vector3 FDPPNBGFBNB) -> Vector3</summary>
             public const uint DHOGMMMMPPG = 0x102b7330; // public static Vector3 DHOGMMMMPPG(Vector3 CMOOLEDBICD, Vector3 FDPPNBGFBNB)
-            public const uint _ctor = 0x101a6520; // public void .ctor()
-            public const uint _cctor = 0x102b8320; // private static void .cctor()
+            public const uint ctor = 0x101a6520; // public void .ctor()
+            public const uint cctor = 0x102b8320; // private static void .cctor()
+            /// <summary>IJCMLFMHMEA(Vector3 CMOOLEDBICD, Vector3 FDPPNBGFBNB, float CFLJOPGGHDK, float JPFIHFGHAGK) -> Vector3</summary>
             public const uint IJCMLFMHMEA = 0x102b7750; // public static Vector3 IJCMLFMHMEA(Vector3 CMOOLEDBICD, Vector3 FDPPNBGFBNB, float CFLJOPGGHDK, float JPFIHFGHAGK)
+            /// <summary>CCNCGDOAFNM(Vector3 CMOOLEDBICD, Vector3 FDPPNBGFBNB, float CFLJOPGGHDK, float JPFIHFGHAGK) -> Vector3</summary>
             public const uint CCNCGDOAFNM = 0x102b7220; // public static Vector3 CCNCGDOAFNM(Vector3 CMOOLEDBICD, Vector3 FDPPNBGFBNB, float CFLJOPGGHDK, float JPFIHFGHAGK)
+            /// <summary>Accelerate(Vector3 CMOOLEDBICD, Vector3 FDPPNBGFBNB, float CFLJOPGGHDK, float JPFIHFGHAGK) -> Vector3</summary>
             public const uint Accelerate = 0x102b6f20; // public static Vector3 Accelerate(Vector3 CMOOLEDBICD, Vector3 FDPPNBGFBNB, float CFLJOPGGHDK, float JPFIHFGHAGK)
+            /// <summary>NGDCIJOJKPL(Vector3 CMOOLEDBICD, Vector3 FDPPNBGFBNB, float CFLJOPGGHDK, float JPFIHFGHAGK) -> Vector3</summary>
             public const uint NGDCIJOJKPL = 0x102b80b0; // public static Vector3 NGDCIJOJKPL(Vector3 CMOOLEDBICD, Vector3 FDPPNBGFBNB, float CFLJOPGGHDK, float JPFIHFGHAGK)
+            /// <summary>OCELCKEMBBL(Vector3 CMOOLEDBICD, Vector3 FDPPNBGFBNB) -> Vector3</summary>
             public const uint OCELCKEMBBL = 0x102b81c0; // public static Vector3 OCELCKEMBBL(Vector3 CMOOLEDBICD, Vector3 FDPPNBGFBNB)
+            /// <summary>LKPNJIJLBCI(Vector3 CMOOLEDBICD, Vector3 FDPPNBGFBNB) -> Vector3</summary>
             public const uint LKPNJIJLBCI = 0x102b7c30; // public static Vector3 LKPNJIJLBCI(Vector3 CMOOLEDBICD, Vector3 FDPPNBGFBNB)
+            /// <summary>CBDPDEFNOCL(Vector3 CMOOLEDBICD, Vector3 FDPPNBGFBNB) -> Vector3</summary>
             public const uint CBDPDEFNOCL = 0x102b7030; // public static Vector3 CBDPDEFNOCL(Vector3 CMOOLEDBICD, Vector3 FDPPNBGFBNB)
+            /// <summary>MoveAir(Vector3 CMOOLEDBICD, Vector3 FDPPNBGFBNB) -> Vector3</summary>
             public const uint MoveAir = 0x102b7e20; // public static Vector3 MoveAir(Vector3 CMOOLEDBICD, Vector3 FDPPNBGFBNB)
+            /// <summary>LAAMDDLEOOH(Vector3 CMOOLEDBICD, Vector3 FDPPNBGFBNB) -> Vector3</summary>
             public const uint LAAMDDLEOOH = 0x102b7970; // public static Vector3 LAAMDDLEOOH(Vector3 CMOOLEDBICD, Vector3 FDPPNBGFBNB)
         }
     }

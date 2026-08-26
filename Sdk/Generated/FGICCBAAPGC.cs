@@ -4,13 +4,22 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class FGICCBAAPGC
     {
+        public const int TypeDefIndex = 180;
+        public const string OriginalName = "FGICCBAAPGC";
+
         /// <summary>
-        /// Field and static-field offsets for FGICCBAAPGC.
+        /// Enum values for FGICCBAAPGC.
         /// </summary>
         public static class Offsets
         {
-            // Instance fields
-            public const int value__ = 0x0; // int
+            // Backing field
+            public const int value = 0x0; // int
+
+            // Enum values
+            public const int Classic = 0x0; // FGICCBAAPGC
+            public const int ClassicWithOptimization = 0x1; // FGICCBAAPGC
+            public const int ClassicWithOptimizationAndGlass = 0x2; // FGICCBAAPGC
+            public const int Battleroyale = 0x3; // FGICCBAAPGC
         }
 
         /// <summary>

@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class GUIFX
     {
+        public const int TypeDefIndex = 269;
+        public const string OriginalName = "GUIFX";
+
         /// <summary>
         /// Field and static-field offsets for GUIFX.
         /// </summary>
@@ -104,7 +107,7 @@ namespace BlockpostTrainer.Sdk.Raw
             public const uint CIKJOACNGCE = 0x107ec780; // public static void CIKJOACNGCE()
             public const uint IGHLJAFOBPI = 0x107ee780; // public static void IGHLJAFOBPI()
             public const uint HOCFGCFGGMJ = 0x107ee410; // public static void HOCFGCFGGMJ()
-            public const uint _ctor = 0x101a6520; // public void .ctor()
+            public const uint ctor = 0x101a6520; // public void .ctor()
             public const uint FACBEFCPFDP = 0x107ed850; // public static void FACBEFCPFDP()
             public const uint BOPGNFLKMKJ = 0x107ebfd0; // public static void BOPGNFLKMKJ()
             public const uint JCKAMAGNJKH = 0x107eeac0; // public static void JCKAMAGNJKH()

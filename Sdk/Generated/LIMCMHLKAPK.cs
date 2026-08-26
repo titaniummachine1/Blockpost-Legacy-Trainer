@@ -4,13 +4,22 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class LIMCMHLKAPK
     {
+        public const int TypeDefIndex = 386;
+        public const string OriginalName = "LIMCMHLKAPK";
+
         /// <summary>
-        /// Field and static-field offsets for LIMCMHLKAPK.
+        /// Enum values for LIMCMHLKAPK.
         /// </summary>
         public static class Offsets
         {
-            // Instance fields
-            public const int value__ = 0x0; // int
+            // Backing field
+            public const int value = 0x0; // int
+
+            // Enum values
+            public const int Air = 0x0; // LIMCMHLKAPK
+            public const int Standard = 0x1; // LIMCMHLKAPK
+            public const int GlassStatic = 0x2; // LIMCMHLKAPK
+            public const int GlassDynamic = 0x3; // LIMCMHLKAPK
         }
 
         /// <summary>

@@ -4,13 +4,21 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class HECKHONLMLN
     {
+        public const int TypeDefIndex = 484;
+        public const string OriginalName = "HECKHONLMLN";
+
         /// <summary>
-        /// Field and static-field offsets for HECKHONLMLN.
+        /// Enum values for HECKHONLMLN.
         /// </summary>
         public static class Offsets
         {
-            // Instance fields
-            public const int value__ = 0x0; // byte
+            // Backing field
+            public const int value = 0x0; // byte
+
+            // Enum values
+            public const int NoChunk = 0x0; // HECKHONLMLN
+            public const int Visible = 0x1; // HECKHONLMLN
+            public const int Hidden = 0x2; // HECKHONLMLN
         }
 
         /// <summary>

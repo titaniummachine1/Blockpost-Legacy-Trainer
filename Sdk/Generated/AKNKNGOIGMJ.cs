@@ -4,13 +4,20 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class AKNKNGOIGMJ
     {
+        public const int TypeDefIndex = 194;
+        public const string OriginalName = "AKNKNGOIGMJ";
+
         /// <summary>
-        /// Field and static-field offsets for AKNKNGOIGMJ.
+        /// Enum values for AKNKNGOIGMJ.
         /// </summary>
         public static class Offsets
         {
-            // Instance fields
-            public const int value__ = 0x0; // int
+            // Backing field
+            public const int value = 0x0; // int
+
+            // Enum values
+            public const int Mobile = 0x0; // AKNKNGOIGMJ
+            public const int Classic = 0x1; // AKNKNGOIGMJ
         }
 
         /// <summary>

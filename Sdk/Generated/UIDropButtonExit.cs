@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class UIDropButtonExit
     {
+        public const int TypeDefIndex = 422;
+        public const string OriginalName = "UIDropButtonExit";
+
         /// <summary>
         /// Field and static-field offsets for UIDropButtonExit.
         /// </summary>
@@ -45,7 +48,7 @@ namespace BlockpostTrainer.Sdk.Raw
             public const uint LLNMBIOBHMC = 0x10b607f0; // public void LLNMBIOBHMC()
             public const uint JOGDEEIIHLI = 0x10b603d0; // public void JOGDEEIIHLI()
             public const uint LOBGPPCCLKP = 0x10b60a00; // public void LOBGPPCCLKP()
-            public const uint _ctor = 0x101a6520; // public void .ctor()
+            public const uint ctor = 0x101a6520; // public void .ctor()
             public const uint LLKMFDHNPMO = 0x10b60740; // public void LLKMFDHNPMO()
             public const uint COPOIBBMIAF = 0x10b5f8d0; // public void COPOIBBMIAF()
             public const uint EBEKCIGCAEI = 0x10b5fa30; // public void EBEKCIGCAEI()

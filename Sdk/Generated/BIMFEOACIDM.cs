@@ -4,6 +4,9 @@ namespace BlockpostTrainer.Sdk.Raw
 {
     internal static class BIMFEOACIDM
     {
+        public const int TypeDefIndex = 403;
+        public const string OriginalName = "BIMFEOACIDM";
+
         /// <summary>
         /// Field and static-field offsets for BIMFEOACIDM.
         /// </summary>
@@ -19,7 +22,8 @@ namespace BlockpostTrainer.Sdk.Raw
         /// </summary>
         public static class Methods
         {
-            public const uint _ctor = 0x10a97580; // internal void .ctor(int LDKMPMIANCE)
+            /// <summary>.ctor(int LDKMPMIANCE)</summary>
+            public const uint ctor = 0x10a97580; // internal void .ctor(int LDKMPMIANCE)
         }
     }
 }

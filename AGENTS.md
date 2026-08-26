@@ -297,11 +297,12 @@ Key method: PFBJDHPMIJP(int ammo, int reserve) — Update both ammo displays
 | No clip | Working | Disable all Collider components on player root GameObject |
 | Weapon unlock | Working | Populate GUIInv.LoadoutEntries with FPNENMKEFBB for every NAHLLMJMOED in AllWeapons |
 | Ghost bullets | In progress | NetProbe.TryFakeHit (bypasses fire logic) |
+| Third person | Working | Camera positioned behind player using yaw angle, looks at head |
+| Chams | Working | Override Renderer.material with transparent colored material on enemy players |
+| Triggerbot | Working | Raycast from camera center, auto-fire when crosshair hits enemy player |
 
 ## TODO Features (Prioritized)
-1. **Third person** — Move camera behind player (FreeFlyCamera has settings for this)
-2. **Chams** — Material override on player models (MChar/MCharAnimator classes)
-3. **Triggerbot** — Auto-fire when crosshair on enemy (raycast check + PLH.CDEGJOBLOFO call)
+1. **More network protocol decoders** — See BACKLOG.md for inbound packet decoders
 
 ## Weapon Unlock Architecture (Server-Dead Workaround)
 

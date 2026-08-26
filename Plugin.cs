@@ -110,6 +110,12 @@ public sealed class Plugin : BasePlugin
     private static bool weaponUnlockApplied;
     private static int weaponUnlockCount;
     private static bool weaponUnlockFailureLogged;
+    private static bool thirdPerson;
+    private static float thirdPersonDistance = 4f;
+    private static float thirdPersonHeight = 2f;
+    private static bool chams;
+    private static bool triggerbot;
+    private static float triggerbotRange = 200f;
     private static int instantReloads;
     private static float nextAutoShootTime;
 
@@ -283,6 +289,16 @@ public sealed class Plugin : BasePlugin
         GlobalScan.Tick();
         ToggleMenuIfRequested();
         ApplyCheatFeatures();
+        if (chams)
+        {
+            ApplyChams();
+        }
+
+        if (triggerbot && !menuVisible)
+        {
+            ApplyTriggerbot();
+        }
+
         LogRuntimeDiagnostics();
         LogInventoryDump();
         DumpAllPlayerWeapons();
@@ -414,6 +430,209 @@ public sealed class Plugin : BasePlugin
         catch { }
     }
 
+    /// <summary>
+    /// Moves the camera behind and above the player for a third-person view.
+    /// Uses the player's position and yaw angle (Controll.NAKNALFCOIF) to compute
+    /// the camera position, then makes the camera look at the player.
+    /// </summary>
+    private static void ApplyThirdPerson(KBBBHJDINCB main)
+    {
+        try
+        {
+            var camera = Controll.CDFACGAFFFH;
+            if (camera == null)
+            {
+                return;
+            }
+
+            var playerPos = main.OOMJGHCFODI;
+            var yaw = Controll.NAKNALFCOIF * Mathf.Deg2Rad;
+
+            // Position camera behind player based on yaw, plus height offset.
+            var offset = new Vector3(
+                -Mathf.Sin(yaw) * thirdPersonDistance,
+                thirdPersonHeight,
+                -Mathf.Cos(yaw) * thirdPersonDistance);
+
+            camera.transform.position = playerPos + offset;
+
+            // Look at a point slightly above the player (head level).
+            var lookTarget = playerPos + Vector3.up * 1.5f;
+            camera.transform.LookAt(lookTarget);
+        }
+        catch { }
+    }
+
+    private static Material? _chamsMaterial;
+    private static readonly Color ChamsEnemyColor = new(1f, 0f, 0f, 0.5f);
+    private static readonly Color ChamsTeamColor = new(0f, 0.5f, 1f, 0.5f);
+
+    /// <summary>
+    /// Overrides all Renderer materials on enemy player models with a transparent
+    /// colored material so they are visible through walls. Runs each frame on all
+    /// players in the match.
+    /// </summary>
+    private static void ApplyChams()
+    {
+        try
+        {
+            if (_chamsMaterial == null)
+            {
+                // Create a simple transparent material for chams.
+                _chamsMaterial = new Material(Shader.Find("Hidden/Internal-Colored") ?? Shader.Find("Standard") ?? Shader.Find("Sprites/Default"));
+                _chamsMaterial.SetFloat("_Mode", 3); // Transparent mode
+                _chamsMaterial.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
+                _chamsMaterial.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+                _chamsMaterial.SetInt("_ZWrite", 0);
+                _chamsMaterial.SetInt("_Cull", (int)UnityEngine.Rendering.CullMode.Off); // Render both sides
+            }
+
+            var players = PLH.BAKLNPIEHMI;
+            if (players == null)
+            {
+                return;
+            }
+
+            var mainPlayer = Controll.HGAODFPBGLB;
+            var mainTeam = mainPlayer?.MMMGPDBMOLM ?? -1;
+
+            for (var i = 0; i < players.Length; i++)
+            {
+                var player = players[i];
+                if (player == null || player.FDOJDJLIGLF <= 0)
+                {
+                    continue;
+                }
+
+                if (player == mainPlayer)
+                {
+                    continue;
+                }
+
+                var root = player.LANBONKMIME;
+                if (root == null)
+                {
+                    continue;
+                }
+
+                var isEnemy = mainTeam < 0 || player.MMMGPDBMOLM != mainTeam;
+                _chamsMaterial.color = isEnemy ? ChamsEnemyColor : ChamsTeamColor;
+
+                var renderers = root.GetComponentsInChildren<Renderer>(true);
+                if (renderers == null)
+                {
+                    continue;
+                }
+
+                foreach (var r in renderers)
+                {
+                    if (r == null)
+                    {
+                        continue;
+                    }
+
+                    // Only override if not already overridden (check material color).
+                    if (r.material == null || r.material.color != _chamsMaterial.color)
+                    {
+                        r.material = _chamsMaterial;
+                    }
+                }
+            }
+        }
+        catch { }
+    }
+
+    /// <summary>
+    /// Auto-fires when the crosshair is over an enemy player. Uses a raycast from
+    /// the camera center; if it hits an enemy player's collider, triggers fire input.
+    /// </summary>
+    private static void ApplyTriggerbot()
+    {
+        try
+        {
+            var camera = Controll.CDFACGAFFFH;
+            if (camera == null)
+            {
+                return;
+            }
+
+            var mainPlayer = Controll.HGAODFPBGLB;
+            if (mainPlayer == null || mainPlayer.FDOJDJLIGLF <= 0)
+            {
+                return;
+            }
+
+            // Raycast from camera center.
+            var ray = camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
+            if (!Physics.Raycast(ray, out var hit, triggerbotRange))
+            {
+                return;
+            }
+
+            // Check if the hit object belongs to an enemy player.
+            var hitTransform = hit.transform;
+            if (hitTransform == null)
+            {
+                return;
+            }
+
+            // Walk up the hierarchy to find a player root.
+            var players = PLH.BAKLNPIEHMI;
+            if (players == null)
+            {
+                return;
+            }
+
+            var mainTeam = mainPlayer.MMMGPDBMOLM;
+            KBBBHJDINCB? targetPlayer = null;
+            for (var i = 0; i < players.Length; i++)
+            {
+                var p = players[i];
+                if (p == null || p == mainPlayer || p.FDOJDJLIGLF <= 0)
+                {
+                    continue;
+                }
+
+                var root = p.LANBONKMIME;
+                if (root == null)
+                {
+                    continue;
+                }
+
+                // Check if the hit transform is a child of this player's root.
+                var t = hitTransform;
+                while (t != null)
+                {
+                    if (t.gameObject == root)
+                    {
+                        // Check team: only fire at enemies.
+                        if (mainTeam < 0 || p.MMMGPDBMOLM != mainTeam)
+                        {
+                            targetPlayer = p;
+                        }
+
+                        break;
+                    }
+
+                    t = t.parent;
+                }
+
+                if (targetPlayer != null)
+                {
+                    break;
+                }
+            }
+
+            if (targetPlayer != null)
+            {
+                // Trigger fire by setting the fire input flag.
+                Controll.EPEEFBDJAHO = 1f;
+                forceShotThisFrame = true;
+            }
+        }
+        catch { }
+    }
+
     private static void ApplyInstantReload()
     {
         if (!instantReload)
@@ -446,7 +665,7 @@ public sealed class Plugin : BasePlugin
 
     private static void ApplyCheatFeatures()
     {
-        if (!infiniteHealth && !infiniteAmmo && !bunnyHop && !fovChanger && !speedHack && !flyHack && !noClip)
+        if (!infiniteHealth && !infiniteAmmo && !bunnyHop && !fovChanger && !speedHack && !flyHack && !noClip && !thirdPerson)
         {
             return;
         }
@@ -535,6 +754,11 @@ public sealed class Plugin : BasePlugin
             if (flyHack || noClip)
             {
                 ApplyFlyNoClip(main);
+            }
+
+            if (thirdPerson)
+            {
+                ApplyThirdPerson(main);
             }
         }
         catch (Exception exception)
@@ -740,6 +964,11 @@ public sealed class Plugin : BasePlugin
                     case "flyHack": flyHack = val == "1"; break;
                     case "noClip": noClip = val == "1"; break;
                     case "weaponUnlock": weaponUnlock = val == "1"; break;
+                    case "thirdPerson": thirdPerson = val == "1"; break;
+                    case "thirdPersonDistance": float.TryParse(val, out thirdPersonDistance); break;
+                    case "chams": chams = val == "1"; break;
+                    case "triggerbot": triggerbot = val == "1"; break;
+                    case "triggerbotRange": float.TryParse(val, out triggerbotRange); break;
                     case "debugLogging": debugLogging = val == "1"; break;
                     case "heavyDiagnostics": heavyDiagnostics = val == "1"; break;
                     case "showRuntimeStatus": showRuntimeStatus = val == "1"; break;
@@ -786,6 +1015,11 @@ public sealed class Plugin : BasePlugin
                 $"flyHack={(flyHack ? 1 : 0)}",
                 $"noClip={(noClip ? 1 : 0)}",
                 $"weaponUnlock={(weaponUnlock ? 1 : 0)}",
+                $"thirdPerson={(thirdPerson ? 1 : 0)}",
+                $"thirdPersonDistance={thirdPersonDistance:0.###}",
+                $"chams={(chams ? 1 : 0)}",
+                $"triggerbot={(triggerbot ? 1 : 0)}",
+                $"triggerbotRange={triggerbotRange:0.###}",
                 $"debugLogging={(debugLogging ? 1 : 0)}",
                 $"heavyDiagnostics={(heavyDiagnostics ? 1 : 0)}",
                 $"showRuntimeStatus={(showRuntimeStatus ? 1 : 0)}",
@@ -2133,6 +2367,21 @@ public sealed class Plugin : BasePlugin
         flyHack = GUI.Toggle(new Rect(x, y, w, 24), flyHack, "Fly hack (Space=up, Shift=down)"); y += 26;
         noClip = GUI.Toggle(new Rect(x, y, w, 24), noClip, "No clip"); y += 26;
         weaponUnlock = GUI.Toggle(new Rect(x, y, w, 24), weaponUnlock, $"Unlock all weapons ({(weaponUnlockApplied ? weaponUnlockCount.ToString() : "off")})"); y += 26;
+        thirdPerson = GUI.Toggle(new Rect(x, y, w, 24), thirdPerson, "Third person camera"); y += 26;
+        if (thirdPerson)
+        {
+            GUI.Label(new Rect(x, y, w, 20), $"Distance: {thirdPersonDistance:0.0}");
+            thirdPersonDistance = GUI.HorizontalSlider(new Rect(x + 80, y + 4, w - 80, 20), thirdPersonDistance, 2f, 10f);
+            y += 26;
+        }
+        chams = GUI.Toggle(new Rect(x, y, w, 24), chams, "Chams (see players through walls)"); y += 26;
+        triggerbot = GUI.Toggle(new Rect(x, y, w, 24), triggerbot, "Triggerbot (auto-fire on crosshair)"); y += 26;
+        if (triggerbot)
+        {
+            GUI.Label(new Rect(x, y, w, 20), $"Range: {triggerbotRange:0}m");
+            triggerbotRange = GUI.HorizontalSlider(new Rect(x + 80, y + 4, w - 80, 20), triggerbotRange, 50f, 500f);
+            y += 26;
+        }
         debugLogging = GUI.Toggle(new Rect(x, y, w, 24), debugLogging, $"Verbose diagnostics (summary only, 1/{DiagnosticInterval:0}s)"); y += 26;
         if (debugLogging)
         {

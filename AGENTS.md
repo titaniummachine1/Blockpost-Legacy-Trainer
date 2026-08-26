@@ -35,11 +35,11 @@
 - `HANDOFF.md` — Session handoff notes
 
 ## SDK Statistics
-- Aliased classes: 324 (242 target + all referenced types)
-- Field aliases: 4,350
-- Method aliases: 15,513
-- Property aliases: 443
-- Generated SDK files: 326 (324 classes + Aliases.cs + SdkIndex.cs)
+- Aliased classes: 350 (268 target + all referenced types)
+- Field aliases: 4,445
+- Method aliases: 16,438
+- Property aliases: 477
+- Generated SDK files: 352 (350 classes + Aliases.cs + SdkIndex.cs)
 - Build: 0 errors, 2 warnings (pre-existing NuGet dependency resolution)
 
 ## Key Classes (Obfuscated → Human)
@@ -87,9 +87,24 @@
 | IKDHNPPLDGC | CurveData | 271 | Curve data container (4 List<Vector3>, copy/merge methods) |
 | GUIOptions | Settings | - | Key bindings, player settings (goldmine class) |
 | HUD | HUD | 101 | HUD rendering |
-| GUIInv | Inventory | - | Inventory UI |
+| GUIInv | Inventory | - | Inventory UI (master weapon/loadout/case arrays) |
 | FreeFlyCamera | FreeFlyCamera | ~130 | Free-fly/spectator camera |
 | MChar | CharacterModel | - | Character model (for chams) |
+| GP2 | AuthManager2 | - | Secondary auth (email, token parts, SignIn, ClearData) |
+| GUIGold | GoldShop | - | Gold/donate shop (discount, OpenUrl, UpdatePrice) |
+| GUIBonus | BonusUI | - | Bonus/reward UI |
+| GUIChar | CharacterUI | - | Character customization UI |
+| GUIProfile | ProfileUI | - | Player profile (sLevel, sExp, sF/sD/sA/sH stats, hash_stats) |
+| GUIRank | RankUI | - | Rank/leaderboard UI |
+| PredictionPath | TrajectoryPredictor | - | Bullet trajectory (ShootingPoint, Bullet, InitialVelocity) |
+| VMap | VoxelChunkMap | - | Voxel map chunk grid (collision, block ops) |
+| DM | DestructionManager | - | Destruction manager (destroylist) |
+| GOpt | GraphicsOptions | - | Graphics options (custom_render, custom_fog) |
+| FBlock | FallingBlock | - | Falling block physics (OnCollisionEnter/Stay) |
+| DistanceDraw | DistanceRenderer | - | Distance-based render optimization |
+| NHMPEIHDFBK | ConfigManager | - | Localization/config (string->string lookups) |
+| ReShaders | ShaderManager | - | Shader manager (renderers, materials, shaders) |
+| EngineSettings | EngineConfig | - | Engine settings (Version, MeshBuilderMode) |
 
 ## Controll Class - Key Fields
 | Field | Offset | Type | Purpose |
@@ -277,6 +292,68 @@ Key method: PFBJDHPMIJP(int ammo, int reserve) — Update both ammo displays
 5. **Third person** — Move camera behind player (FreeFlyCamera has settings for this)
 6. **Chams** — Material override on player models (MChar/MCharAnimator classes)
 7. **Triggerbot** — Auto-fire when crosshair on enemy (raycast check + PLH.CDEGJOBLOFO call)
+8. **Weapon unlock (all weapons)** — See Weapon Unlock Architecture below
+
+## Weapon Unlock Architecture (Server-Dead Workaround)
+
+### Inventory System Data Structures
+| Class | Human | Key Fields | Purpose |
+|-------|-------|------------|---------|
+| NAHLLMJMOED | WeaponData | HAFMINBJCGN (id), OJEKKFDIKMG/NGFDENOFBLK (names), NIKINLIKGCP/MOGDFDEMPLE (stats), PPOKPPFDNDH (icon) | Weapon definition (damage, fireRate, magSize, icon) |
+| FPNENMKEFBB | LoadoutEntry | AIEPBAHGMJD (ulong uniqueId), ADMGNABJBNM (WeaponData ref), NIBLMFFHJHK/PICIILNDDJO (ints), COAAKMDBKJM (byte[]) | Owned weapon instance in player loadout |
+| ACEDGBLFHDK | CaseData | LDKMPMIANCE (id), OJEKKFDIKMG/NGFDENOFBLK (names), JFOEOEJLDML (WeaponData[] in case) | Case/loot box definition |
+| BIMFEOACIDM | LoadoutCategory | LDKMPMIANCE (categoryId), DBMOPKGMECL (LoadoutEntry[]) | Weapon category with entries |
+| EEEBDHNOPDI | ShopItem | AIEPBAHGMJD (ulong), JAPEILEGLEC (CaseData), FGEEHNDNHAM (name), GGMIOCBKKCD (float price) | Shop/case item entry |
+| IFGNGLDKNPA | ShopItem2 | AIEPBAHGMJD (ulong), EJLHFMPHELL (item data) | Shop item variant 2 |
+| MCCKEODPMDC | ShopItem3 | AIEPBAHGMJD (int), HENOJJHIHME (item data) | Shop item variant 3 |
+
+### GUIInv - Master Inventory Arrays (static fields)
+| Field | Obfuscated | Type | Purpose |
+|-------|-----------|------|---------|
+| AllWeapons | OIHNJCKDOIG | NAHLLMJMOED[] | All weapon definitions (game catalog) |
+| LoadoutEntries | KNCJNHILDLJ | List<FPNENMKEFBB> | **Owned weapon instances (player loadout)** |
+| LoadoutCategories | JDIHHMABLAJ | BIMFEOACIDM[] | Weapon categories |
+| Cases | MMNCKDECLNA | ACEDGBLFHDK[] | Case definitions |
+| ShopItems | AMJMKCLNKLB | List<EEEBDHNOPDI> | Shop items |
+| ShopItems2 | LAJJDAIHOIG | MDADLLEFHKO[] | Shop items variant 2 |
+| ShopItems3 | NJFHBNCFMBI | List<IFGNGLDKNPA> | Shop items variant 3 |
+| ShopItems4 | IJCEALOLKJH | AEKADIMKDIL[] | Shop item data |
+| ShopItems5 | OOPKGBIBNKG | List<MCCKEODPMDC> | Shop items variant 4 |
+| SelectedLoadout | MHLJKCMDJGG | FPNENMKEFBB | Currently selected loadout entry |
+| SelectedWeapon | KAOCDKAKFEF | CGJPBNDDPIN | Currently selected weapon instance |
+
+### GUIOptions - Player Profile (static fields)
+| Field | Obfuscated | Type | Purpose |
+|-------|-----------|------|---------|
+| PlayerId | gid | int | Player ID |
+| AuthKey | authkey | string | Auth key |
+| Exp | exp | int | Experience points |
+| PlayerName | playername | string | Player display name |
+| Gold | Gold | int | Gold currency |
+| Level | level | int | Player level |
+
+### Client - Inventory Network Methods
+| Method | Obfuscated | Signature | Purpose |
+|--------|-----------|-----------|---------|
+| SendWeaponData | MGPBPDIGDBO | void(NAHLLMJMOED) | Send weapon data to server |
+| SendLoadoutList | MPOCJJJJBAN | void(List<FPNENMKEFBB>) | Send loadout to server |
+| SendLoadoutList2 | HLHODPPHCIP | void(List<FPNENMKEFBB>) | Send loadout (variant 2) |
+| SendWeaponData2 | FLFBOKOFCHN | void(NAHLLMJMOED) | Send weapon data (variant 2) |
+| SendLoadoutList3 | DLDMEBGIJNP | void(List<FPNENMKEFBB>) | Send loadout (variant 3) |
+| SendLoadoutList4 | EEKLOPBNDAC | void(List<FPNENMKEFBB>) | Send loadout (variant 4) |
+
+### PLH (Weapon) - Weapon Lookup Methods
+| Method | Obfuscated | Signature | Purpose |
+|--------|-----------|-----------|---------|
+| GetWeaponData | FPIJPCOKIEC | NAHLLMJMOED(KBBBHJDINCB, string) | Get weapon data by name |
+| GetLoadoutEntry | BEDNBOCOJHO | FPNENMKEFBB(KBBBHJDINCB, string) | Get loadout entry by name |
+| GetLoadoutEntry2 | GFLLLJKKEFE | FPNENMKEFBB(KBBBHJDINCB, string) | Get loadout entry (variant 2) |
+| GetLoadoutEntry3 | AFOFIPDGBBI | FPNENMKEFBB(KBBBHJDINCB, string) | Get loadout entry (variant 3) |
+
+### Weapon Unlock Strategy (3 approaches)
+1. **Populate inventory** — At game start, iterate GUIInv.AllWeapons (NAHLLMJMOED[]) and create FPNENMKEFBB entries for each. Add them to GUIInv.LoadoutEntries (List<FPNENMKEFBB>). Constructor: `FPNENMKEFBB(ulong id, NAHLLMJMOED weaponData)`.
+2. **Bypass ownership check** — Hook PLH.GetLoadoutEntry variants to always return a valid entry, or hook the equip/select logic to skip ownership validation.
+3. **Local profile injection** — Set GUIOptions.Gold to a large value and GUIOptions.Level high enough to unlock all weapons, then use the shop UI normally (if shop still works offline).
 
 ## Auto-shoot Architecture
 - Prefix: Reset autoShootPending=false → run aimbot → if target found, set autoShootPending=true

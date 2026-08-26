@@ -271,6 +271,36 @@ TARGET_CLASSES = [
     "NHAMCMLKALC",  # Procedural mesh builder (static)
     "HLHFEHCGAOF",  # Bone transform struct (6 Vector3, Transform ops)
     "IKDHNPPLDGC",  # Curve data container (4 List<Vector3>)
+    # --- SDK expansion: inventory / shop / loadout / auth / profile ---
+    "GP2",            # Secondary auth manager (email, token parts, SignIn, ClearData)
+    "GUIGold",        # Gold/donate shop (discount, OpenUrl, UpdatePrice)
+    "GUIGold.GKNIHCLGNJB",  # Gold shop item entry
+    "GUIBonus",       # Bonus/reward UI
+    "GUIBonus.EBFMDPFMIDL",  # Bonus item entry
+    "GUIChar",        # Character customization UI
+    "GUIProfile",     # Player profile UI (level, exp, stats, hash_stats)
+    "GUIRank",        # Rank/leaderboard UI
+    "GUIRank.MFHOMFNKDBG",  # Rank entry
+    # --- SDK expansion: game-logic / physics / rendering ---
+    "PredictionPath",  # Bullet trajectory prediction (ShootingPoint, Bullet, InitialVelocity)
+    "VMap",            # Voxel map chunk grid (collision checks, block operations)
+    "VMap.MDBKKGKFMPD",  # Voxel map chunk struct
+    "DM",              # Destruction manager (destroylist)
+    "GOpt",            # Graphics options (custom_render, custom_fog)
+    "MAT",             # Material manager
+    "MP",              # Multiplayer manager
+    "MSC",             # Mesh scene cache (cfull, cmesh)
+    "FBlock",          # Falling block physics (OnCollisionEnter/Stay)
+    "CLC",             # Static game logic controller (72 methods)
+    "DistanceDraw",    # Distance-based render optimization
+    "NHMPEIHDFBK",     # Localization/config manager (string->string lookups)
+    "JKJNIFDBKNF.PCILFOKOPCD",  # Nested game type
+    "IBLIOCOMPNF.LLBAMLFFCFC",  # Nested game type
+    "Util2.HBLBNCLJFAN",  # Util2 nested type
+    "ReShaders",       # Shader manager (renderers, materials, shaders)
+    "EngineSettings",  # Engine settings (Version, MainEngineMode, MeshBuilderMode)
+    "SoundLoader.AOCAGFBOMON",  # Sound loader nested type (weapon sounds)
+    "MasterClient.FGLOEOAFJIE",  # Master client nested type
     # Enums (parsed as classes for offset generation - they have values)
     "Controll.NJPOPGGFJIH",
     "MouseLook.NLJBDGBDDLP",

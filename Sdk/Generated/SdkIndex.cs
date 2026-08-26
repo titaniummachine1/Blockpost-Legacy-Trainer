@@ -237,6 +237,28 @@ namespace BlockpostTrainer.Sdk
             public const string NHAMCMLKALC = "NHAMCMLKALC";
             public const string HLHFEHCGAOF = "HLHFEHCGAOF";
             public const string IKDHNPPLDGC = "IKDHNPPLDGC";
+            public const string GP2 = "GP2";
+            public const string GUIGold_GKNIHCLGNJB = "GUIGold_GKNIHCLGNJB";
+            public const string GUIBonus_EBFMDPFMIDL = "GUIBonus_EBFMDPFMIDL";
+            public const string PredictionPath = "PredictionPath";
+            public const string VMap = "VMap";
+            public const string VMap_MDBKKGKFMPD = "VMap_MDBKKGKFMPD";
+            public const string DM = "DM";
+            public const string GOpt = "GOpt";
+            public const string MAT = "MAT";
+            public const string MP = "MP";
+            public const string MSC = "MSC";
+            public const string FBlock = "FBlock";
+            public const string CLC = "CLC";
+            public const string DistanceDraw = "DistanceDraw";
+            public const string NHMPEIHDFBK = "NHMPEIHDFBK";
+            public const string JKJNIFDBKNF_PCILFOKOPCD = "JKJNIFDBKNF_PCILFOKOPCD";
+            public const string IBLIOCOMPNF_LLBAMLFFCFC = "IBLIOCOMPNF_LLBAMLFFCFC";
+            public const string Util2_HBLBNCLJFAN = "Util2_HBLBNCLJFAN";
+            public const string ReShaders = "ReShaders";
+            public const string EngineSettings = "EngineSettings";
+            public const string SoundLoader_AOCAGFBOMON = "SoundLoader_AOCAGFBOMON";
+            public const string MasterClient_FGLOEOAFJIE = "MasterClient_FGLOEOAFJIE";
             public const string Controll_NJPOPGGFJIH = "Controll_NJPOPGGFJIH";
             public const string MouseLook_NLJBDGBDDLP = "MouseLook_NLJBDGBDDLP";
             public const string PBMAFIFKGEH = "PBMAFIFKGEH";
@@ -332,6 +354,10 @@ namespace BlockpostTrainer.Sdk
             public const string SkinnedMeshRenderer = "SkinnedMeshRenderer";
             public const string IBLIOCOMPNF = "IBLIOCOMPNF";
             public const string AmplifyMotionObjectBase = "AmplifyMotionObjectBase";
+            public const string Renderer = "Renderer";
+            public const string IntPtr = "IntPtr";
+            public const string GBFJPNPFMMP = "GBFJPNPFMMP";
+            public const string MeshCollider = "MeshCollider";
         }
 
         public static class ByHumanName
@@ -393,7 +419,7 @@ namespace BlockpostTrainer.Sdk
             public const string AdminUpload = "GUIAdminUpload";
             public const string AdminSettings = "GUIAdminSettings";
             public const string AdminPlayers = "GUIAdminPlayers";
-            public const string CharacterMenu = "GUIChar";
+            public const string CharacterUI = "GUIChar";
             public const string CharacterEditor = "GUICharEditor";
             public const string SkinEditor = "GUISkinEditor";
             public const string GameSettings = "GUIGameSet";
@@ -404,15 +430,15 @@ namespace BlockpostTrainer.Sdk
             public const string ClanMenu = "GUIClan";
             public const string IconMenu = "GUIIcon";
             public const string ShopMenu = "GUIShop";
-            public const string OptionsMenu = "GUIOptions";
+            public const string Settings = "GUIOptions";
             public const string ObjectEditor = "GUIObj";
             public const string NameInput = "GUIName";
             public const string EffectsMenu = "GUIFX";
-            public const string ProfileMenu = "GUIProfile";
-            public const string RankMenu = "GUIRank";
+            public const string ProfileUI = "GUIProfile";
+            public const string RankUI = "GUIRank";
             public const string GUIRank_MFHOMFNKDBG = "GUIRank_MFHOMFNKDBG";
-            public const string GoldMenu = "GUIGold";
-            public const string BonusMenu = "GUIBonus";
+            public const string GoldShop = "GUIGold";
+            public const string BonusUI = "GUIBonus";
             public const string GUI3D = "GUI3D";
             public const string VoxelPaletteUI = "VoxelPaletteGUI";
             public const string ChatMessage = "UIChatMessage";
@@ -565,6 +591,28 @@ namespace BlockpostTrainer.Sdk
             public const string StaticMeshBuilder = "NHAMCMLKALC";
             public const string BoneTransform = "HLHFEHCGAOF";
             public const string CurveData = "IKDHNPPLDGC";
+            public const string AuthManager2 = "GP2";
+            public const string GUIGold_GKNIHCLGNJB = "GUIGold_GKNIHCLGNJB";
+            public const string GUIBonus_EBFMDPFMIDL = "GUIBonus_EBFMDPFMIDL";
+            public const string TrajectoryPredictor = "PredictionPath";
+            public const string VoxelChunkMap = "VMap";
+            public const string VMap_MDBKKGKFMPD = "VMap_MDBKKGKFMPD";
+            public const string DestructionManager = "DM";
+            public const string GraphicsOptions = "GOpt";
+            public const string MAT = "MAT";
+            public const string MP = "MP";
+            public const string MeshSceneCache = "MSC";
+            public const string FallingBlock = "FBlock";
+            public const string CLC = "CLC";
+            public const string DistanceRenderer = "DistanceDraw";
+            public const string ConfigManager = "NHMPEIHDFBK";
+            public const string JKJNIFDBKNF_PCILFOKOPCD = "JKJNIFDBKNF_PCILFOKOPCD";
+            public const string IBLIOCOMPNF_LLBAMLFFCFC = "IBLIOCOMPNF_LLBAMLFFCFC";
+            public const string Util2_HBLBNCLJFAN = "Util2_HBLBNCLJFAN";
+            public const string ShaderManager = "ReShaders";
+            public const string EngineConfig = "EngineSettings";
+            public const string SoundLoader_AOCAGFBOMON = "SoundLoader_AOCAGFBOMON";
+            public const string MasterClient_FGLOEOAFJIE = "MasterClient_FGLOEOAFJIE";
             public const string MovementFlags = "Controll_NJPOPGGFJIH";
             public const string MouseLookAxis = "MouseLook_NLJBDGBDDLP";
             public const string TeamColor = "PBMAFIFKGEH";
@@ -660,6 +708,10 @@ namespace BlockpostTrainer.Sdk
             public const string SkinnedMeshRenderer = "SkinnedMeshRenderer";
             public const string IBLIOCOMPNF = "IBLIOCOMPNF";
             public const string AmplifyMotionObjectBase = "AmplifyMotionObjectBase";
+            public const string Renderer = "Renderer";
+            public const string IntPtr = "IntPtr";
+            public const string GBFJPNPFMMP = "GBFJPNPFMMP";
+            public const string MeshCollider = "MeshCollider";
         }
 
         public static class ByTypeDefIndex
@@ -893,6 +945,28 @@ namespace BlockpostTrainer.Sdk
             public const string Tdi166 = "NHAMCMLKALC"; // NHAMCMLKALC
             public const string Tdi76 = "HLHFEHCGAOF"; // HLHFEHCGAOF
             public const string Tdi271 = "IKDHNPPLDGC"; // IKDHNPPLDGC
+            public const string Tdi437 = "GP2"; // GP2
+            public const string Tdi137 = "GUIGold_GKNIHCLGNJB"; // GUIGold.GKNIHCLGNJB
+            public const string Tdi17 = "GUIBonus_EBFMDPFMIDL"; // GUIBonus.EBFMDPFMIDL
+            public const string Tdi488 = "PredictionPath"; // PredictionPath
+            public const string Tdi259 = "VMap"; // VMap
+            public const string Tdi258 = "VMap_MDBKKGKFMPD"; // VMap.MDBKKGKFMPD
+            public const string Tdi178 = "DM"; // DM
+            public const string Tdi63 = "GOpt"; // GOpt
+            public const string Tdi29 = "MAT"; // MAT
+            public const string Tdi480 = "MP"; // MP
+            public const string Tdi183 = "MSC"; // MSC
+            public const string Tdi270 = "FBlock"; // FBlock
+            public const string Tdi211 = "CLC"; // CLC
+            public const string Tdi249 = "DistanceDraw"; // DistanceDraw
+            public const string Tdi347 = "NHMPEIHDFBK"; // NHMPEIHDFBK
+            public const string Tdi122 = "JKJNIFDBKNF_PCILFOKOPCD"; // JKJNIFDBKNF.PCILFOKOPCD
+            public const string Tdi11 = "IBLIOCOMPNF_LLBAMLFFCFC"; // IBLIOCOMPNF.LLBAMLFFCFC
+            public const string Tdi255 = "Util2_HBLBNCLJFAN"; // Util2.HBLBNCLJFAN
+            public const string Tdi176 = "ReShaders"; // ReShaders
+            public const string Tdi4 = "EngineSettings"; // EngineSettings
+            public const string Tdi278 = "SoundLoader_AOCAGFBOMON"; // SoundLoader.AOCAGFBOMON
+            public const string Tdi288 = "MasterClient_FGLOEOAFJIE"; // MasterClient.FGLOEOAFJIE
             public const string Tdi375 = "Controll_NJPOPGGFJIH"; // Controll.NJPOPGGFJIH
             public const string Tdi52 = "MouseLook_NLJBDGBDDLP"; // MouseLook.NLJBDGBDDLP
             public const string Tdi19 = "PBMAFIFKGEH"; // PBMAFIFKGEH
@@ -988,6 +1062,10 @@ namespace BlockpostTrainer.Sdk
             public const string Tdi4252 = "SkinnedMeshRenderer"; // SkinnedMeshRenderer
             public const string Tdi12 = "IBLIOCOMPNF"; // IBLIOCOMPNF
             public const string Tdi242 = "AmplifyMotionObjectBase"; // AmplifyMotionObjectBase
+            public const string Tdi4219 = "Renderer"; // Renderer
+            public const string Tdi934 = "IntPtr"; // IntPtr
+            public const string Tdi105 = "GBFJPNPFMMP"; // GBFJPNPFMMP
+            public const string Tdi5369 = "MeshCollider"; // MeshCollider
         }
     }
 }

@@ -439,6 +439,375 @@ KNOWN_OVERRIDES = {
             "PointsD": "FADIMOOJPPI",
         },
     },
+    # --- SDK expansion: inventory / shop / loadout / auth / profile ---
+    "GP2": {
+        "HumanClass": "AuthManager2",
+        "Fields": {
+            "Instance": "cs",
+            "Email": "email",
+            "TokenPart0": "token_part0",
+            "TokenPart1": "token_part1",
+        },
+        "Methods": {
+            "SendAuth": "SendAuth",
+            "Auth": "Auth",
+            "SignIn": "SignIn",
+            "SignInNoSilent": "SignInNoSilent",
+            "ClearData": "ClearData",
+            "Chop": "Chop",
+        },
+    },
+    "GUIGold": {
+        "HumanClass": "GoldShop",
+        "Fields": {
+            "Show": "show",
+            "Instance": "cs",
+            "DrawOrderList": "draworderlist",
+            "Tex1": "BIAEBFGDOOJ",
+            "Tex2": "PFOGOBJNICE",
+            "Tex3": "ONDOMLODILA",
+            "Items": "BHOHPAKFOEI",
+            "Title": "JODKCJJBGLN",
+            "Discount": "discount",
+            "TimerFloat": "DDOCIKCJKJA",
+        },
+        "Methods": {
+            "OpenUrl": "OpenUrl",
+            "UpdatePrice": "UpdatePrice",
+            "UpdateTextures": "UpdateTextures",
+            "SetActive": "SetActive",
+            "Awake": "Awake",
+        },
+    },
+    "GUIBonus": {
+        "HumanClass": "BonusUI",
+        "Fields": {
+            "Instance": "cs",
+            "Show": "show",
+            "Items": "FJLOPOIFKCN",
+            "Int1": "DEPHNHJNOEF",
+            "Int2": "ACHJNCHLGDN",
+            "Int3": "PBCODLDLHKL",
+            "ShowNext": "shownext",
+        },
+        "Methods": {
+            "Awake": "Awake",
+            "LoadEnd": "LoadEnd",
+            "LoadLang": "LoadLang",
+            "OnResize": "OnResize",
+        },
+    },
+    "GUIChar": {
+        "HumanClass": "CharacterUI",
+        "Fields": {
+            "Show": "show",
+            "Tex1": "BMCPLPJIMGH",
+            "ModelGO": "MFNFGODECFM",
+            "Int1": "HIDMDLLHEKO",
+            "Int2": "PFGNALDDNDB",
+            "TimerFloat": "NKCIOJGAABI",
+        },
+        "Methods": {
+            "Update": "Update",
+            "OnGUI": "OnGUI",
+        },
+    },
+    "GUIProfile": {
+        "HumanClass": "ProfileUI",
+        "Fields": {
+            "Show": "show",
+            "Tex1": "BIAEBFGDOOJ",
+            "Tex2": "HDMOMKHANAO",
+            "LevelStr": "sLevel",
+            "ExpStr": "sExp",
+            "LevelProgressStr": "sLevelProgress",
+            "LevelProgressFloat": "fLevelProgress",
+            "ExpProgressStr": "sExpProgress",
+            "KillsStr": "sF",
+            "DeathsStr": "sD",
+            "AssistsStr": "sA",
+            "HeadshotsStr": "sH",
+            "FinalDeathStr": "sFD",
+            "HashStats": "hash_stats",
+            "LevelTextStr": "sLeveltext",
+        },
+        "Methods": {
+            "OnGUI": "OnGUI",
+            "SetActive": "SetActive",
+            "LoadEnd": "LoadEnd",
+            "LoadLang": "LoadLang",
+        },
+    },
+    "GUIRank": {
+        "HumanClass": "RankUI",
+        "Fields": {
+            "Show": "CBFLNECJIFF",
+            "Tex1": "BIAEBFGDOOJ",
+            "Tex2": "HDMOMKHANAO",
+            "Tex3": "CGOGLNCAHFP",
+            "Tex4": "JEJJNPILBAE",
+            "Tex5": "PFOGOBJNICE",
+            "Entries": "HDPPMGMECHD",
+            "Entries2": "OGHIGNGKKNG",
+            "Int1": "AHHHAFEGJKB",
+            "Str1": "GEKDOAHHCPO",
+            "Int2": "INABADNCINL",
+            "Float1": "HHPOIFPPMFC",
+            "Str2": "LEKIPKNCCHC",
+            "Str3": "ONKLHONPCHE",
+            "Str4": "AEDGCKMKKJG",
+            "RankEntries": "HLKMCMLCDCJ",
+            "CurrentRank": "JIIMJCFDCEI",
+        },
+    },
+    "PredictionPath": {
+        "HumanClass": "TrajectoryPredictor",
+        "Fields": {
+            "Cube": "Cube",
+            "Points": "MINIGPIOAOI",
+            "ShootingPoint": "ShootingPoint",
+            "EffectGO": "BAAGJMOOJDM",
+            "Bullet": "Bullet",
+            "Offset": "EIFLGFOOIFD",
+            "FrequencyMultiplier": "FrequencyMultiplier",
+            "Amount": "Ammount",
+            "InitialVelocity": "InitialVelocity",
+        },
+    },
+    "VMap": {
+        "HumanClass": "VoxelChunkMap",
+        "Fields": {
+            "ChunkGrid": "chunk",
+            "RootGO": "EOBMOEKEHLC",
+        },
+    },
+    "DM": {
+        "HumanClass": "DestructionManager",
+        "Fields": {
+            "DestroyList": "destroylist",
+        },
+    },
+    "GOpt": {
+        "HumanClass": "GraphicsOptions",
+        "Fields": {
+            "CustomRender": "custom_render",
+            "CustomFog": "custom_fog",
+            "CustomFogStart": "custom_fogstart",
+            "CustomFogEnd": "custom_fogend",
+        },
+    },
+    "MSC": {
+        "HumanClass": "MeshSceneCache",
+        "Fields": {
+            "FullMesh": "cfull",
+            "MeshData": "cmesh",
+        },
+    },
+    "FBlock": {
+        "HumanClass": "FallingBlock",
+        "Methods": {
+            "OnCollisionEnter": "OnCollisionEnter",
+            "OnCollisionStay": "OnCollisionStay",
+        },
+    },
+    "DistanceDraw": {
+        "HumanClass": "DistanceRenderer",
+        "Fields": {
+            "IntArray": "HKPMJHCGMDE",
+            "Int1": "KNELGJDCJKB",
+            "Int2": "CAHOBOPACCF",
+            "CameraTransform": "IJLPLONACIA",
+            "Int3": "AIHGALBLKEE",
+            "Int4": "KMDGOMBCGPE",
+            "Str1": "GNDKDPAMAGI",
+            "Str2": "JBNKAGCMJGP",
+        },
+        "Methods": {
+            "Update": "Update",
+            "Awake": "Awake",
+        },
+    },
+    "NHMPEIHDFBK": {
+        "HumanClass": "ConfigManager",
+        "Fields": {
+            "Int1": "PIJHEDNJIFG",
+            "Int2": "DCGEHGIDMFF",
+            "Int3": "FPNHCOFPDKK",
+            "Float1": "EBMLPPEHJHM",
+            "Bool1": "NNBODLNCPJL",
+            "Bool2": "IKLJJBNPMJL",
+        },
+    },
+    "ReShaders": {
+        "HumanClass": "ShaderManager",
+        "Fields": {
+            "Renderers": "renderers",
+            "Materials": "materials",
+            "Shaders": "shaders",
+        },
+    },
+    "EngineSettings": {
+        "HumanClass": "EngineConfig",
+        "Fields": {
+            "Version": "Version",
+            "MainEngineMode": "MainEngineMode",
+            "ControlSnapToBlock": "ControlSnapToBlock",
+            "MeshBuilderMode": "MeshBuilderMode",
+            "BuildOptimizedWeaponMesh": "BuildOptimizedWeaponMesh",
+            "BuildWeaponWithVerticesOffset": "BuildWeaponWithVerticesOffset",
+            "BuildWeaponVerticesOffset": "BuildWeaponVerticesOffset",
+        },
+    },
+    # Client inventory/loadout network methods (verified from dump)
+    "Client": {
+        "HumanClass": "Network",
+        "Methods": {
+            "SendHitReport": "AHLDAPJEJNC",
+            "ProcessPacket": "FPIDGCHIEMJ",
+            "Flush": "HKOFHOANEJD",
+            "SendWeaponData": "MGPBPDIGDBO",
+            "SendLoadoutList": "MPOCJJJJBAN",
+            "SendLoadoutList2": "HLHODPPHCIP",
+            "SendWeaponData2": "FLFBOKOFCHN",
+            "SendLoadoutList3": "DLDMEBGIJNP",
+            "SendLoadoutList4": "EEKLOPBNDAC",
+        },
+        "Notes": {
+            "SendWeaponData": "void MGPBPDIGDBO(NAHLLMJMOED) - send weapon data to server",
+            "SendLoadoutList": "void MPOCJJJJBAN(List<FPNENMKEFBB>) - send loadout entries to server",
+            "SendLoadoutList2": "void HLHODPPHCIP(List<FPNENMKEFBB>) - send loadout entries (variant 2)",
+            "SendWeaponData2": "void FLFBOKOFCHN(NAHLLMJMOED) - send weapon data (variant 2)",
+            "SendLoadoutList3": "void DLDMEBGIJNP(List<FPNENMKEFBB>) - send loadout entries (variant 3)",
+            "SendLoadoutList4": "void EEKLOPBNDAC(List<FPNENMKEFBB>) - send loadout entries (variant 4)",
+        },
+    },
+    # PLH (Weapon) weapon lookup methods (verified from dump)
+    "PLH": {
+        "HumanClass": "Weapon",
+        "Methods": {
+            "Fire": "CDEGJOBLOFO",
+            "FireAlt": "MFHJFPPOHLC",
+            "GetWeaponData": "FPIJPCOKIEC",
+            "GetWeaponData2": "OIOKLCCFNBM",
+            "GetLoadoutEntry": "BEDNBOCOJHO",
+            "GetLoadoutEntry2": "GFLLLJKKEFE",
+            "GetLoadoutEntry3": "AFOFIPDGBBI",
+            "GetWeaponData3": "EJBFDBKKECM",
+        },
+        "Notes": {
+            "GetWeaponData": "NAHLLMJMOED FPIJPCOKIEC(KBBBHJDINCB player, string weaponName) - get weapon data by name",
+            "GetLoadoutEntry": "FPNENMKEFBB BEDNBOCOJHO(KBBBHJDINCB player, string weaponName) - get loadout entry by name",
+        },
+    },
+    # GUIInv - master inventory arrays (verified from dump)
+    "GUIInv": {
+        "HumanClass": "Inventory",
+        "Fields": {
+            "Show": "CBFLNECJIFF",
+            "Bool1": "HIMLDGKPFPO",
+            "Bool2": "DGIJIEDOAEG",
+            "AllWeapons": "OIHNJCKDOIG",
+            "LoadoutEntries": "KNCJNHILDLJ",
+            "LoadoutCategories": "JDIHHMABLAJ",
+            "Cases": "MMNCKDECLNA",
+            "ShopItems": "AMJMKCLNKLB",
+            "ShopItems2": "LAJJDAIHOIG",
+            "ShopItems3": "NJFHBNCFMBI",
+            "ShopItems4": "IJCEALOLKJH",
+            "ShopItems5": "OOPKGBIBNKG",
+            "ModelGO": "MFNFGODECFM",
+            "Camera": "KKDJBDOBOJH",
+            "PlayerModel": "GKGPFPNLIBE",
+            "SelectedLoadout": "MHLJKCMDJGG",
+            "SelectedCategory": "LPCJFAOOIKA",
+            "SelectedWeapon": "KAOCDKAKFEF",
+            "Bool3": "HKFEGAMNGEB",
+            "SelectedSkin": "IKKIINGIICF",
+            "Int1": "MPBHJGCJBDE",
+            "Float1": "JMACIGCBFBD",
+            "CurrentLoadoutEntry": "PJMELMGMNDO",
+        },
+        "Notes": {
+            "AllWeapons": "NAHLLMJMOED[] OIHNJCKDOIG - all weapon definitions",
+            "LoadoutEntries": "List<FPNENMKEFBB> KNCJNHILDLJ - owned weapon instances (loadout)",
+            "LoadoutCategories": "BIMFEOACIDM[] JDIHHMABLAJ - weapon categories",
+            "Cases": "ACEDGBLFHDK[] MMNCKDECLNA - case definitions",
+        },
+    },
+    # GUIOptions - player profile/gold/level (verified from dump)
+    "GUIOptions": {
+        "HumanClass": "Settings",
+        "Fields": {
+            "Show": "show",
+            "PlayerId": "gid",
+            "AuthKey": "authkey",
+            "Exp": "exp",
+            "PlayerName": "playername",
+            "GoldStr": "sGold",
+            "Gold": "Gold",
+            "NameCount": "NameCount",
+            "NameKey": "namekey",
+            "Level": "level",
+            "GidStr": "sGid",
+            "GlobalPresetLoad": "globalpresetload",
+            "DistanceView": "distanceview",
+            "GlobalPreset": "globalpreset",
+            "HealthPosition": "health_position",
+            "Resolution": "res",
+            "DirectLight": "directlight",
+            "AA": "aa",
+            "Flare": "flare",
+            "Motion": "motion",
+            "Particles": "particles",
+            "SSAO": "ssao",
+            "GameVolume": "gamevolume",
+            "MusicVolume": "musicvolume",
+            "MobileRes": "mobileres",
+            "MobileFPS": "mobilefps",
+            "MobileGreedy": "mobilegreedy",
+            "MobileFOV": "mobilefov",
+            "MobileSecondAttack": "mobilesecondattack",
+            "ShowInGame": "showingame",
+            "KeyForward": "keyForward",
+            "KeyBackward": "keyBackward",
+            "KeyStrafeLeft": "keyStrafeLeft",
+            "KeyStrafeRight": "keyStrafeRight",
+            "KeyCrouch": "keyCrouch",
+            "KeyPrimary": "keyPrimary",
+            "KeySecondary": "keySecondary",
+            "KeyShovel": "keyShovel",
+            "KeyBlock": "keyBlock",
+            "KeyPrevWeapon": "keyPrevWeapon",
+            "KeySpecial": "keySpecial",
+            "KeyChat": "keyChat",
+            "KeyClanChat": "keyClanChat",
+            "KeyTeamChat": "keyTeamChat",
+            "KeyChangeSet": "keyChangeSet",
+            "KeyChangeTeam": "keyChangeTeam",
+        },
+        "Methods": {
+            "LoadConfigTouch": "LoadConfigTouch",
+            "OnGUI": "OnGUI",
+            "LoadEnd": "LoadEnd",
+        },
+    },
+    # GP - auth manager (verified from dump)
+    "GP": {
+        "HumanClass": "AuthManager",
+        "Fields": {
+            "Instance": "cs",
+            "Authenticated": "auth",
+            "Email": "email",
+            "Token": "token",
+            "TokenLoaded": "tokenloaded",
+            "Force": "force",
+            "Connect": "connect",
+        },
+        "Methods": {
+            "Awake": "Awake",
+            "LoadEndFirst": "LoadEndFirst",
+        },
+    },
 }
 
 # Optional user-editable file for extra curated aliases.
@@ -453,6 +822,21 @@ def deep_update(base: dict, override: dict) -> dict:
         else:
             base[key] = value
     return base
+
+
+def _remove_duplicate_targets(existing: dict, override: dict, key: str) -> None:
+    """Remove entries from existing[key] that point to the same target as override[key].
+
+    This prevents duplicate aliases for the same field/method/property, which would
+    cause the generator to silently skip one of them.
+    """
+    if key not in override or key not in existing:
+        return
+    new_targets = set(override[key].values())
+    # Remove existing entries whose target is being overridden.
+    to_remove = [h for h, o in existing[key].items() if o in new_targets and h not in override[key]]
+    for h in to_remove:
+        del existing[key][h]
 
 
 def main() -> int:
@@ -473,6 +857,10 @@ def main() -> int:
             added += 1
         else:
             updated += 1
+        # Remove existing aliases that point to the same targets as the curated
+        # overrides, so the curated name wins and no duplicates remain.
+        for key in ("Fields", "Methods", "Properties"):
+            _remove_duplicate_targets(data[class_name], mapping, key)
         data[class_name] = deep_update(data[class_name], mapping)
         print(f"  {'+' if is_new else '='} {class_name}")
 

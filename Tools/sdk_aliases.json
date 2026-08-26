@@ -15,7 +15,6 @@
       "MuzzleForward": "FLILDBNOFMK",
       "Spread": "FGFKPMPLNKO",
       "FireTimer": "LCMOBPPHLLM",
-      "IsFiring": "APFNBGHAJMD",
       "IsDead": "CLOEJLAOIGI",
       "IsDown": "CGHKKDBILGF",
       "SpawnProtected": "LBKINNIDKEC",
@@ -47,10 +46,8 @@
       "AmmoCandidate4": "MHCOJFIAGLP",
       "AmmoCandidate5": "JHGGICCFNFJ",
       "AmmoCandidate6": "CNHNFDDJMJO",
-      "IsGrounded": "CLOEJLAOIGI",
       "IsJumping": "APFNBGHAJMD",
       "IsCrouching": "HEADELMLILF",
-      "IsSprinting": "CGHKKDBILGF",
       "JFOEOEJLDML": "JFOEOEJLDML",
       "JDIHHMABLAJ": "JDIHHMABLAJ",
       "BANHJLHDFLI": "BANHJLHDFLI",
@@ -72,10 +69,6 @@
       "BCACFHNPIBP": "BCACFHNPIBP",
       "ONOGCCOHPJC": "ONOGCCOHPJC",
       "CIPOBFGAMOP": "CIPOBFGAMOP",
-      "GEDMGLAMGMD": "GEDMGLAMGMD",
-      "MHCOJFIAGLP": "MHCOJFIAGLP",
-      "JHGGICCFNFJ": "JHGGICCFNFJ",
-      "CNHNFDDJMJO": "CNHNFDDJMJO",
       "HJLHOFPDEAA": "HJLHOFPDEAA",
       "OLOOMMIKDPJ": "OLOOMMIKDPJ",
       "DDKPBGMMNIA": "DDKPBGMMNIA",
@@ -84,10 +77,7 @@
       "NHJDPAAFIKO": "NHJDPAAFIKO",
       "LNIDBHIAJJI": "LNIDBHIAJJI",
       "ACAIGMNLLEC": "ACAIGMNLLEC",
-      "PELNEJDOBKH": "PELNEJDOBKH",
-      "DECAKELAHPI": "DECAKELAHPI",
       "COCGLNFEFAF": "COCGLNFEFAF",
-      "HEADELMLILF": "HEADELMLILF",
       "NMJKANFIDFM": "NMJKANFIDFM",
       "OIDEDEHDLGA": "OIDEDEHDLGA",
       "NCDOKAKJEJF": "NCDOKAKJEJF",
@@ -97,7 +87,6 @@
       "BCIPLGMEKEN": "BCIPLGMEKEN",
       "OLDBINBEFFG": "OLDBINBEFFG",
       "CHEFKHPIMEB": "CHEFKHPIMEB",
-      "IGBIBDAMMLE": "IGBIBDAMMLE",
       "FNBOPBHIMPM": "FNBOPBHIMPM",
       "OBPKNGEEOOA": "OBPKNGEEOOA",
       "LPABNMLLMFI": "LPABNMLLMFI",
@@ -320,7 +309,6 @@
       "IsJumping": "GCHFDAPNBNB",
       "IsAiming": "BFEOOOMMGLK",
       "IsReloadingFlag": "EKEAAHAKHIN",
-      "IsFiringFlag": "DJACNOGOCKD",
       "IsWeaponSwitching": "MJHNOEIFBEO",
       "IsInVehicle": "JGNLBAMNEBA",
       "IsInvulnerable": "HCOLPFEEENG",
@@ -342,8 +330,6 @@
       "ReloadMarkerPos": "JADIDAJFOGK",
       "ReloadPromptActive": "KOPOBDGHLFL",
       "ReloadRequestTime": "CLEHDNFKJPB",
-      "MaxFireRate": "FBINCNDDPAO",
-      "CurrentFireRate": "ILGHFLMKMCO",
       "BIAHHOIOFKG": "BIAHHOIOFKG",
       "BNHEPNNOAIK": "BNHEPNNOAIK",
       "BNALIDHMCIG": "BNALIDHMCIG",
@@ -358,27 +344,11 @@
       "ONGHDHKFEBG": "ONGHDHKFEBG",
       "NIGBIPNBOPC": "NIGBIPNBOPC",
       "PNCOIFMEIDJ": "PNCOIFMEIDJ",
-      "HLBAGIACGBI": "HLBAGIACGBI",
-      "PBICPLCFAGG": "PBICPLCFAGG",
-      "NJPDKJKJMCG": "NJPDKJKJMCG",
-      "GCHFDAPNBNB": "GCHFDAPNBNB",
-      "BFEOOOMMGLK": "BFEOOOMMGLK",
-      "EKEAAHAKHIN": "EKEAAHAKHIN",
-      "MJHNOEIFBEO": "MJHNOEIFBEO",
-      "JGNLBAMNEBA": "JGNLBAMNEBA",
-      "HCOLPFEEENG": "HCOLPFEEENG",
-      "EGDKJEFGFIC": "EGDKJEFGFIC",
-      "GLGCAOADGMN": "GLGCAOADGMN",
-      "FGGKANNFBDH": "FGGKANNFBDH",
       "LKPFNJHLOHL": "LKPFNJHLOHL",
-      "ILFOFIOFBAM": "ILFOFIOFBAM",
-      "KJOMABGHAIJ": "KJOMABGHAIJ",
       "Position": "OOMJGHCFODI",
       "CNMJPOMLDDF": "CNMJPOMLDDF",
       "IPCNAHJLMAP": "IPCNAHJLMAP",
       "CGJDLMEINBJ": "CGJDLMEINBJ",
-      "CFACCGMPPOE": "CFACCGMPPOE",
-      "NKFBOBMMGCL": "NKFBOBMMGCL",
       "CMGGPFHFKCM": "CMGGPFHFKCM",
       "MKFDGFOCKNO": "MKFDGFOCKNO",
       "LEKCBKLAILO": "LEKCBKLAILO",
@@ -389,8 +359,6 @@
       "PEPKIHHGDHG": "PEPKIHHGDHG",
       "MBFKABGNPCM": "MBFKABGNPCM",
       "AJKBMMMOPMF": "AJKBMMMOPMF",
-      "DEBGAILDKPC": "DEBGAILDKPC",
-      "GKNJELHPMDE": "GKNJELHPMDE",
       "OPKDIOMKKFB": "OPKDIOMKKFB",
       "IJMKKLIBAFG": "IJMKKLIBAFG",
       "GHLDENBLDPH": "GHLDENBLDPH",
@@ -399,7 +367,6 @@
       "DGNDKAKOEPD": "DGNDKAKOEPD",
       "BEJBLGGGOCC": "BEJBLGGGOCC",
       "JELGPAKAJPE": "JELGPAKAJPE",
-      "MNHBPCOOMLE": "MNHBPCOOMLE",
       "MBLGPNKENLH": "MBLGPNKENLH",
       "AFDPPPDHDGP": "AFDPPPDHDGP",
       "IPKHNCADMPM": "IPKHNCADMPM",
@@ -440,8 +407,6 @@
       "LCFGKOHHLIB": "LCFGKOHHLIB",
       "HDOIJLAMGCN": "HDOIJLAMGCN",
       "JDKOCMHHIEI": "JDKOCMHHIEI",
-      "POFKNJGAKPK": "POFKNJGAKPK",
-      "OGDPMIBJLDH": "OGDPMIBJLDH",
       "FlareLayer_EOIL": "EOILMNBFJID",
       "AmplifyMotionEffect_AANG": "AANGCAGCDII",
       "AmplifyOcclusionEffect_PDHC": "PDHCCEMNNHH",
@@ -24641,5 +24606,95 @@
     "Methods": {},
     "Properties": {},
     "Notes": {}
+  },
+  "KIIIBLDGIPO": {
+    "HumanClass": "PacketHeader",
+    "Fields": {
+      "Field1": "BCJADOIPFHE",
+      "Field2": "IAIHGIDAJEK",
+      "Field3": "LICHKMCHMMF",
+      "Data": "COEGDOAPEDD"
+    }
+  },
+  "GOMBDODCNCD": {
+    "HumanClass": "BoundsPair",
+    "Fields": {
+      "Min": "BBMGOKPOEFH",
+      "Max": "AJNDINEJHGH"
+    }
+  },
+  "MPNIMJEBACL": {
+    "HumanClass": "StringProvider",
+    "Methods": {
+      "GetString0": "JHDKLEKKCPL",
+      "GetString1": "GBIMIDOGIPC",
+      "GetString2": "EEAGDEGGIGE",
+      "GetString3": "JJCBDNOHCBO",
+      "GetString4": "ABHHBAHJKGJ",
+      "GetString5": "OBAHFPJIKCD",
+      "GetString6": "MGKEFAFGEJO",
+      "GetString7": "GPEDOOINGHO",
+      "GetString8": "NJACBDKLJGL",
+      "GetString9": "ADJDMJOOOIF"
+    }
+  },
+  "INLDDHNCPOE": {
+    "HumanClass": "IntTriple",
+    "Fields": {
+      "A": "BCJADOIPFHE",
+      "B": "IAIHGIDAJEK",
+      "C": "LICHKMCHMMF"
+    }
+  },
+  "AOPJEHKMPFE": {
+    "HumanClass": "ClothRenderer",
+    "Fields": {
+      "Cloth": "JIFENDCEHGH",
+      "Renderer": "EENDPLLKLKJ",
+      "Matrix1": "MPHJDGLDOOL",
+      "Matrix2": "FAIEPFJLGEH",
+      "Int1": "MOOOLBBCFFK",
+      "IntArray": "MPODOLJLAMO",
+      "Vec3Array1": "BONDIMBOOLH",
+      "Vec3Array2": "LBCOCHEJFGG",
+      "Mesh": "EKDHGFHEIMO",
+      "MotionStates": "PJKGHFFCBHJ"
+    }
+  },
+  "OKMMGFGOLCN": {
+    "HumanClass": "MeshTransformRenderer",
+    "Fields": {
+      "MeshRenderer": "DKNILOBCBAG",
+      "Matrix1": "MPHJDGLDOOL",
+      "Matrix2": "FAIEPFJLGEH",
+      "Position": "BLNPPKNCGGM",
+      "Rotation": "IGCCIPCGJPN",
+      "Scale": "EPOGIAJCBNG",
+      "Mesh": "DKOBILLAEBI",
+      "MotionStates": "PJKGHFFCBHJ",
+      "Bool1": "AAGAIHBIBKG",
+      "Bool2": "PPFLMDEMOHA"
+    }
+  },
+  "ICIDCKCOICB": {
+    "HumanClass": "ParticleMeshBuilder",
+    "Fields": {
+      "ParticleSystem": "FNNGDBNNELH",
+      "Renderer": "EENDPLLKLKJ",
+      "Mesh": "DKOBILLAEBI",
+      "RotationOverLifetime": "BMBDHAFKHCE",
+      "RotationBySpeed": "EFKEPNEIACK",
+      "Particles": "LCKDILHCGAD",
+      "ParticleDict": "HBBDDAAEHBP",
+      "ParticleList": "LFDJCAHNNAK",
+      "ParticleStack": "FPDDOLKOHJE",
+      "Int1": "DAFPIBIBEOE"
+    }
+  },
+  "NCJNPBHLFEH": {
+    "HumanClass": "FloatLUT",
+    "Fields": {
+      "Data": "PMGGKMJLEPN"
+    }
   }
 }

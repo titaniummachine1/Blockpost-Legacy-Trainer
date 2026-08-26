@@ -106,6 +106,10 @@ public sealed class Plugin : BasePlugin
     private static float speedMultiplier = 2f;
     private static bool flyHack;
     private static bool noClip;
+    private static bool weaponUnlock;
+    private static bool weaponUnlockApplied;
+    private static int weaponUnlockCount;
+    private static bool weaponUnlockFailureLogged;
     private static int instantReloads;
     private static float nextAutoShootTime;
 
@@ -464,6 +468,33 @@ public sealed class Plugin : BasePlugin
                 main.CGHKKDBILGF = false;
             }
 
+            if (infiniteAmmo)
+            {
+                // Controll.FGGKANNFBDH (0xC0) = ammo in magazine
+                // Controll.ILFOFIOFBAM (0xC8) = max ammo (-1 = no weapon equipped)
+                // Controll.KJOMABGHAIJ (0xCC) = reserve ammo
+                // Only refill if a weapon is actually equipped (maxAmmo != -1).
+                var maxAmmo = Controll.ILFOFIOFBAM;
+                if (maxAmmo > 0)
+                {
+                    Controll.FGGKANNFBDH = maxAmmo;
+                    Controll.KJOMABGHAIJ = 999;
+                }
+
+                // Also refill the player's per-slot ammo array (GDEMINMDJAC at 0xA8).
+                var slotAmmo = main.GDEMINMDJAC;
+                if (slotAmmo != null && slotAmmo.Length > 0)
+                {
+                    for (var i = 0; i < slotAmmo.Length; i++)
+                    {
+                        if (slotAmmo[i] < 999)
+                        {
+                            slotAmmo[i] = 999;
+                        }
+                    }
+                }
+            }
+
             if (bunnyHop && Application.isFocused && main.FDOJDJLIGLF > 0)
             {
                 ApplyBunnyHop(main);
@@ -481,10 +512,24 @@ public sealed class Plugin : BasePlugin
             if (speedHack)
             {
                 Time.timeScale = speedMultiplier;
+                // Also boost Movement static speed constants for more natural movement.
+                // GBHJLHFPCHK = move speed, BOKNCBLLHED = sprint speed.
+                try
+                {
+                    Movement.GBHJLHFPCHK = 8f * speedMultiplier;
+                    Movement.BOKNCBLLHED = 12f * speedMultiplier;
+                }
+                catch { /* static field access may vary by interop version */ }
             }
             else if (Time.timeScale != 1f)
             {
                 Time.timeScale = 1f;
+                try
+                {
+                    Movement.GBHJLHFPCHK = 6f;
+                    Movement.BOKNCBLLHED = 9f;
+                }
+                catch { }
             }
 
             if (flyHack || noClip)
@@ -694,6 +739,7 @@ public sealed class Plugin : BasePlugin
                     case "speedMultiplier": float.TryParse(val, out speedMultiplier); break;
                     case "flyHack": flyHack = val == "1"; break;
                     case "noClip": noClip = val == "1"; break;
+                    case "weaponUnlock": weaponUnlock = val == "1"; break;
                     case "debugLogging": debugLogging = val == "1"; break;
                     case "heavyDiagnostics": heavyDiagnostics = val == "1"; break;
                     case "showRuntimeStatus": showRuntimeStatus = val == "1"; break;
@@ -739,6 +785,7 @@ public sealed class Plugin : BasePlugin
                 $"speedMultiplier={speedMultiplier:0.###}",
                 $"flyHack={(flyHack ? 1 : 0)}",
                 $"noClip={(noClip ? 1 : 0)}",
+                $"weaponUnlock={(weaponUnlock ? 1 : 0)}",
                 $"debugLogging={(debugLogging ? 1 : 0)}",
                 $"heavyDiagnostics={(heavyDiagnostics ? 1 : 0)}",
                 $"showRuntimeStatus={(showRuntimeStatus ? 1 : 0)}",
@@ -928,6 +975,84 @@ public sealed class Plugin : BasePlugin
         }
     }
 
+    /// <summary>
+    /// Populates GUIInv.LoadoutEntries (KNCJNHILDLJ) with a FPNENMKEFBB entry for every
+    /// weapon in GUIInv.AllWeapons (OIHNJCKDOIG). This gives the player access to every
+    /// weapon definition in the game client-side, bypassing the dead server's ownership
+    /// validation. Only runs once per inventory-open session to avoid duplicate entries.
+    /// </summary>
+    private static void ApplyWeaponUnlock()
+    {
+        if (!weaponUnlock || weaponUnlockApplied)
+        {
+            return;
+        }
+
+        try
+        {
+            var allWeapons = GUIInv.OIHNJCKDOIG;
+            if (allWeapons == null || allWeapons.Length == 0)
+            {
+                instance?.Log.LogInfo("[WeaponUnlock] AllWeapons is null/empty - inventory not loaded yet.");
+                return;
+            }
+
+            var loadout = GUIInv.KNCJNHILDLJ;
+            if (loadout == null)
+            {
+                instance?.Log.LogInfo("[WeaponUnlock] LoadoutEntries list is null - inventory not loaded yet.");
+                return;
+            }
+
+            // Build a set of weapon IDs already in the loadout to avoid duplicates.
+            var existing = new HashSet<ulong>();
+            for (var i = 0; i < loadout.Count; i++)
+            {
+                var e = loadout[i];
+                if (e?.ADMGNABJBNM != null)
+                {
+                    existing.Add((ulong)e.ADMGNABJBNM.HAFMINBJCGN);
+                }
+            }
+
+            var added = 0;
+            for (var i = 0; i < allWeapons.Length; i++)
+            {
+                var w = allWeapons[i];
+                if (w == null)
+                {
+                    continue;
+                }
+
+                var wid = (ulong)w.HAFMINBJCGN;
+                if (existing.Contains(wid))
+                {
+                    continue;
+                }
+
+                // Construct a new loadout entry: FPNENMKEFBB(ulong uniqueId, NAHLLMJMOED weaponData)
+                // Use the weapon ID as the unique ID so entries are stable across re-runs.
+                var entry = new FPNENMKEFBB(wid, w);
+                loadout.Add(entry);
+                existing.Add(wid);
+                added++;
+            }
+
+            weaponUnlockApplied = true;
+            weaponUnlockCount = added;
+            instance?.Log.LogInfo($"[WeaponUnlock] Added {added} weapons to loadout. Total loadout entries: {loadout.Count}");
+            NetProbe.Note($"weapon-unlock: added {added} weapons, total loadout={loadout.Count}");
+        }
+        catch (Exception exception)
+        {
+            if (!weaponUnlockFailureLogged)
+            {
+                instance?.Log.LogWarning($"[WeaponUnlock] failed: {exception}");
+                weaponUnlockFailureLogged = true;
+            }
+        }
+    }
+
     private static void LogInventoryDump()
     {
         if (Input.GetKeyDown(KeyCode.F9))
@@ -987,8 +1112,12 @@ public sealed class Plugin : BasePlugin
         if (!GUIInv.CBFLNECJIFF)
         {
             inventoryDumped = false;
+            weaponUnlockApplied = false; // reset so re-opening inventory re-applies
             return;
         }
+
+        // Apply weapon unlock as early as possible when inventory opens.
+        ApplyWeaponUnlock();
 
         // Draw dump/scan buttons on the inventory screen so they are available even if F9 does not register.
         if (GUI.Button(new Rect(Screen.width - 170, 10, 160, 32), "DUMP WEAPONS"))
@@ -1983,7 +2112,7 @@ public sealed class Plugin : BasePlugin
 
         noRecoil = GUI.Toggle(new Rect(x, y, w, 24), noRecoil, "No recoil"); y += 26;
         infiniteHealth = GUI.Toggle(new Rect(x, y, w, 24), infiniteHealth, "Infinite health"); y += 26;
-        infiniteAmmo = GUI.Toggle(new Rect(x, y, w, 24), infiniteAmmo, "Infinite ammo (log only — identifying correct fields)"); y += 26;
+        infiniteAmmo = GUI.Toggle(new Rect(x, y, w, 24), infiniteAmmo, "Infinite ammo"); y += 26;
         instantReload = GUI.Toggle(new Rect(x, y, w, 24), instantReload, $"Instant reload ({instantReloads})"); y += 26;
         bunnyHop = GUI.Toggle(new Rect(x, y, w, 24), bunnyHop, "Bunny hop"); y += 26;
         fovChanger = GUI.Toggle(new Rect(x, y, w, 24), fovChanger, "FOV changer"); y += 26;
@@ -2003,6 +2132,7 @@ public sealed class Plugin : BasePlugin
         }
         flyHack = GUI.Toggle(new Rect(x, y, w, 24), flyHack, "Fly hack (Space=up, Shift=down)"); y += 26;
         noClip = GUI.Toggle(new Rect(x, y, w, 24), noClip, "No clip"); y += 26;
+        weaponUnlock = GUI.Toggle(new Rect(x, y, w, 24), weaponUnlock, $"Unlock all weapons ({(weaponUnlockApplied ? weaponUnlockCount.ToString() : "off")})"); y += 26;
         debugLogging = GUI.Toggle(new Rect(x, y, w, 24), debugLogging, $"Verbose diagnostics (summary only, 1/{DiagnosticInterval:0}s)"); y += 26;
         if (debugLogging)
         {

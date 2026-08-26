@@ -35,12 +35,13 @@
 - `HANDOFF.md` — Session handoff notes
 
 ## SDK Statistics
-- Aliased classes: 359 (277 target + all referenced types)
-- Field aliases: 4,503
-- Method aliases: 16,438
+- Aliased classes: 367 (279 target + all referenced types + 8 remaining obfuscated)
+- Field aliases: 4,508
+- Method aliases: 16,448
 - Property aliases: 477
-- Generated SDK files: 361 (359 classes + Aliases.cs + SdkIndex.cs)
+- Generated SDK files: 369 (367 classes + Aliases.cs + SdkIndex.cs)
 - Build: 0 errors, 2 warnings (pre-existing NuGet dependency resolution)
+- Duplicate-target conflicts: 0 (all resolved)
 
 ## Key Classes (Obfuscated → Human)
 | Obfuscated | Human | TypeDefIndex | Purpose |
@@ -290,17 +291,17 @@ Key method: PFBJDHPMIJP(int ammo, int reserve) — Update both ammo displays
 | FOV changer | Working | Camera.fieldOfView = targetFov |
 | Custom crosshair | Working | OnGUI line drawing |
 | Rapid fire | Working | FGFKPMPLNKO manipulation |
+| Infinite ammo | Working | Set Controll.FGGKANNFBDH=maxAmmo, KJOMABGHAIJ=999, Player.GDEMINMDJAC[]=999 |
+| Speed hack | Working | Time.timeScale + Movement.GBHJLHFPCHK/BOKNCBLLHED static fields |
+| Fly hack | Working | Player.MJPOJOOIPPN.useGravity=false + Space/Shift vertical velocity |
+| No clip | Working | Disable all Collider components on player root GameObject |
+| Weapon unlock | Working | Populate GUIInv.LoadoutEntries with FPNENMKEFBB for every NAHLLMJMOED in AllWeapons |
 | Ghost bullets | In progress | NetProbe.TryFakeHit (bypasses fire logic) |
 
 ## TODO Features (Prioritized)
-1. **Infinite ammo** — Controll.FGGKANNFBDH (0xC0) = ammo in mag, Player.GDEMINMDJAC (0xA8) = ammo per slot array. See AMMO_ANALYSIS.md for 3 implementation strategies.
-2. **Speed hack** — Modify Movement.GBHJLHFPCHK (move speed) and Movement.BOKNCBLLHED (sprint speed) static fields
-3. **Fly hack** — Hook Movement.MoveGround/MoveAir to add vertical velocity, or set Player.MJPOJOOIPPN.useGravity=false
-4. **No clip** — Hook Movement.MoveGround to ignore collision checks, or disable player colliders
-5. **Third person** — Move camera behind player (FreeFlyCamera has settings for this)
-6. **Chams** — Material override on player models (MChar/MCharAnimator classes)
-7. **Triggerbot** — Auto-fire when crosshair on enemy (raycast check + PLH.CDEGJOBLOFO call)
-8. **Weapon unlock (all weapons)** — See Weapon Unlock Architecture below
+1. **Third person** — Move camera behind player (FreeFlyCamera has settings for this)
+2. **Chams** — Material override on player models (MChar/MCharAnimator classes)
+3. **Triggerbot** — Auto-fire when crosshair on enemy (raycast check + PLH.CDEGJOBLOFO call)
 
 ## Weapon Unlock Architecture (Server-Dead Workaround)
 

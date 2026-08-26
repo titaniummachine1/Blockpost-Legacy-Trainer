@@ -9826,6 +9826,20 @@ namespace BlockpostTrainer.Sdk
             public const int Classic = Raw.AKNKNGOIGMJ.Offsets.Classic;
         }
 
+        public static class ClothRenderer
+        {
+            public const int Cloth = Raw.AOPJEHKMPFE.Offsets.JIFENDCEHGH;
+            public const int Renderer = Raw.AOPJEHKMPFE.Offsets.EENDPLLKLKJ;
+            public const int Matrix1 = Raw.AOPJEHKMPFE.Offsets.MPHJDGLDOOL;
+            public const int Matrix2 = Raw.AOPJEHKMPFE.Offsets.FAIEPFJLGEH;
+            public const int Int1 = Raw.AOPJEHKMPFE.Offsets.MOOOLBBCFFK;
+            public const int IntArray = Raw.AOPJEHKMPFE.Offsets.MPODOLJLAMO;
+            public const int Vec3Array1 = Raw.AOPJEHKMPFE.Offsets.BONDIMBOOLH;
+            public const int Vec3Array2 = Raw.AOPJEHKMPFE.Offsets.LBCOCHEJFGG;
+            public const int Mesh = Raw.AOPJEHKMPFE.Offsets.EKDHGFHEIMO;
+            public const int MotionStates = Raw.AOPJEHKMPFE.Offsets.PJKGHFFCBHJ;
+        }
+
         public static class SplineSystem
         {
             public const int EasingType = Raw.BNKJNGIBFFM.Offsets.PBGMGGGBNAI;
@@ -10878,7 +10892,6 @@ namespace BlockpostTrainer.Sdk
             public const int IsJumping = Raw.Controll.Offsets.GCHFDAPNBNB;
             public const int IsAiming = Raw.Controll.Offsets.BFEOOOMMGLK;
             public const int IsReloadingFlag = Raw.Controll.Offsets.EKEAAHAKHIN;
-            public const int IsFiringFlag = Raw.Controll.Offsets.DJACNOGOCKD;
             public const int IsWeaponSwitching = Raw.Controll.Offsets.MJHNOEIFBEO;
             public const int IsInVehicle = Raw.Controll.Offsets.JGNLBAMNEBA;
             public const int IsInvulnerable = Raw.Controll.Offsets.HCOLPFEEENG;
@@ -10904,10 +10917,6 @@ namespace BlockpostTrainer.Sdk
             public const int ReloadMarkerPos = Raw.Controll.Offsets.JADIDAJFOGK;
             public const int ReloadPromptActive = Raw.Controll.Offsets.KOPOBDGHLFL;
             public const int ReloadRequestTime = Raw.Controll.Offsets.CLEHDNFKJPB;
-            /// <summary>float (0x1A8). Same offset as ReloadStartTime — fire rate cap.</summary>
-            public const int MaxFireRate = Raw.Controll.Offsets.FBINCNDDPAO;
-            /// <summary>float (0x1AC). Same offset as ReloadEndTime — current fire rate timer.</summary>
-            public const int CurrentFireRate = Raw.Controll.Offsets.ILGHFLMKMCO;
             public const int BIAHHOIOFKG = Raw.Controll.Offsets.BIAHHOIOFKG;
             public const int BNHEPNNOAIK = Raw.Controll.Offsets.BNHEPNNOAIK;
             public const int BNALIDHMCIG = Raw.Controll.Offsets.BNALIDHMCIG;
@@ -10922,27 +10931,11 @@ namespace BlockpostTrainer.Sdk
             public const int ONGHDHKFEBG = Raw.Controll.Offsets.ONGHDHKFEBG;
             public const int NIGBIPNBOPC = Raw.Controll.Offsets.NIGBIPNBOPC;
             public const int PNCOIFMEIDJ = Raw.Controll.Offsets.PNCOIFMEIDJ;
-            public const int HLBAGIACGBI = Raw.Controll.Offsets.HLBAGIACGBI;
-            public const int PBICPLCFAGG = Raw.Controll.Offsets.PBICPLCFAGG;
-            public const int NJPDKJKJMCG = Raw.Controll.Offsets.NJPDKJKJMCG;
-            public const int GCHFDAPNBNB = Raw.Controll.Offsets.GCHFDAPNBNB;
-            public const int BFEOOOMMGLK = Raw.Controll.Offsets.BFEOOOMMGLK;
-            public const int EKEAAHAKHIN = Raw.Controll.Offsets.EKEAAHAKHIN;
-            public const int MJHNOEIFBEO = Raw.Controll.Offsets.MJHNOEIFBEO;
-            public const int JGNLBAMNEBA = Raw.Controll.Offsets.JGNLBAMNEBA;
-            public const int HCOLPFEEENG = Raw.Controll.Offsets.HCOLPFEEENG;
-            public const int EGDKJEFGFIC = Raw.Controll.Offsets.EGDKJEFGFIC;
-            public const int GLGCAOADGMN = Raw.Controll.Offsets.GLGCAOADGMN;
-            public const int FGGKANNFBDH = Raw.Controll.Offsets.FGGKANNFBDH;
             public const int LKPFNJHLOHL = Raw.Controll.Offsets.LKPFNJHLOHL;
-            public const int ILFOFIOFBAM = Raw.Controll.Offsets.ILFOFIOFBAM;
-            public const int KJOMABGHAIJ = Raw.Controll.Offsets.KJOMABGHAIJ;
             public const int Position = Raw.Controll.Offsets.OOMJGHCFODI;
             public const int CNMJPOMLDDF = Raw.Controll.Offsets.CNMJPOMLDDF;
             public const int IPCNAHJLMAP = Raw.Controll.Offsets.IPCNAHJLMAP;
             public const int CGJDLMEINBJ = Raw.Controll.Offsets.CGJDLMEINBJ;
-            public const int CFACCGMPPOE = Raw.Controll.Offsets.CFACCGMPPOE;
-            public const int NKFBOBMMGCL = Raw.Controll.Offsets.NKFBOBMMGCL;
             public const int CMGGPFHFKCM = Raw.Controll.Offsets.CMGGPFHFKCM;
             public const int MKFDGFOCKNO = Raw.Controll.Offsets.MKFDGFOCKNO;
             public const int LEKCBKLAILO = Raw.Controll.Offsets.LEKCBKLAILO;
@@ -10953,8 +10946,6 @@ namespace BlockpostTrainer.Sdk
             public const int PEPKIHHGDHG = Raw.Controll.Offsets.PEPKIHHGDHG;
             public const int MBFKABGNPCM = Raw.Controll.Offsets.MBFKABGNPCM;
             public const int AJKBMMMOPMF = Raw.Controll.Offsets.AJKBMMMOPMF;
-            public const int DEBGAILDKPC = Raw.Controll.Offsets.DEBGAILDKPC;
-            public const int GKNJELHPMDE = Raw.Controll.Offsets.GKNJELHPMDE;
             public const int OPKDIOMKKFB = Raw.Controll.Offsets.OPKDIOMKKFB;
             public const int IJMKKLIBAFG = Raw.Controll.Offsets.IJMKKLIBAFG;
             public const int GHLDENBLDPH = Raw.Controll.Offsets.GHLDENBLDPH;
@@ -10963,7 +10954,6 @@ namespace BlockpostTrainer.Sdk
             public const int DGNDKAKOEPD = Raw.Controll.Offsets.DGNDKAKOEPD;
             public const int BEJBLGGGOCC = Raw.Controll.Offsets.BEJBLGGGOCC;
             public const int JELGPAKAJPE = Raw.Controll.Offsets.JELGPAKAJPE;
-            public const int MNHBPCOOMLE = Raw.Controll.Offsets.MNHBPCOOMLE;
             public const int MBLGPNKENLH = Raw.Controll.Offsets.MBLGPNKENLH;
             public const int AFDPPPDHDGP = Raw.Controll.Offsets.AFDPPPDHDGP;
             public const int IPKHNCADMPM = Raw.Controll.Offsets.IPKHNCADMPM;
@@ -11004,8 +10994,6 @@ namespace BlockpostTrainer.Sdk
             public const int LCFGKOHHLIB = Raw.Controll.Offsets.LCFGKOHHLIB;
             public const int HDOIJLAMGCN = Raw.Controll.Offsets.HDOIJLAMGCN;
             public const int JDKOCMHHIEI = Raw.Controll.Offsets.JDKOCMHHIEI;
-            public const int POFKNJGAKPK = Raw.Controll.Offsets.POFKNJGAKPK;
-            public const int OGDPMIBJLDH = Raw.Controll.Offsets.OGDPMIBJLDH;
             public const int FlareLayer_EOIL = Raw.Controll.Offsets.EOILMNBFJID;
             public const int AmplifyMotionEffect_AANG = Raw.Controll.Offsets.AANGCAGCDII;
             public const int AmplifyOcclusionEffect_PDHC = Raw.Controll.Offsets.PDHCCEMNNHH;
@@ -12556,6 +12544,12 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_CDIN = Raw.GHCFEALGKNG.Methods.CDINOALLLGP;
             public const uint Action_JHDK = Raw.GHCFEALGKNG.Methods.JHDKLOKKEBO;
             public const uint Action_PCPI = Raw.GHCFEALGKNG.Methods.PCPIBJJLKGK;
+        }
+
+        public static class BoundsPair
+        {
+            public const int Min = Raw.GOMBDODCNCD.Offsets.BBMGOKPOEFH;
+            public const int Max = Raw.GOMBDODCNCD.Offsets.AJNDINEJHGH;
         }
 
         public static class BlockValidator
@@ -17648,6 +17642,20 @@ namespace BlockpostTrainer.Sdk
             public const int Int1 = Raw.IBLIOCOMPNF_ANMBJKPDAKI.Offsets.HEKFIJPBCPP;
         }
 
+        public static class ParticleMeshBuilder
+        {
+            public const int ParticleSystem = Raw.ICIDCKCOICB.Offsets.FNNGDBNNELH;
+            public const int Renderer = Raw.ICIDCKCOICB.Offsets.EENDPLLKLKJ;
+            public const int Mesh = Raw.ICIDCKCOICB.Offsets.DKOBILLAEBI;
+            public const int RotationOverLifetime = Raw.ICIDCKCOICB.Offsets.BMBDHAFKHCE;
+            public const int RotationBySpeed = Raw.ICIDCKCOICB.Offsets.EFKEPNEIACK;
+            public const int Particles = Raw.ICIDCKCOICB.Offsets.LCKDILHCGAD;
+            public const int ParticleDict = Raw.ICIDCKCOICB.Offsets.HBBDDAAEHBP;
+            public const int ParticleList = Raw.ICIDCKCOICB.Offsets.LFDJCAHNNAK;
+            public const int ParticleStack = Raw.ICIDCKCOICB.Offsets.FPDDOLKOHJE;
+            public const int Int1 = Raw.ICIDCKCOICB.Offsets.DAFPIBIBEOE;
+        }
+
         public static class BezierCurve
         {
             public const int Point0 = Raw.IEFPCOCLAOG.Offsets.ILJIKLBMLHD;
@@ -17737,6 +17745,13 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_PGIJ = Raw.IKDHNPPLDGC.Methods.PGIJIAMAMOB;
         }
 
+        public static class IntTriple
+        {
+            public const int A = Raw.INLDDHNCPOE.Offsets.BCJADOIPFHE;
+            public const int B = Raw.INLDDHNCPOE.Offsets.IAIHGIDAJEK;
+            public const int C = Raw.INLDDHNCPOE.Offsets.LICHKMCHMMF;
+        }
+
         public static class TimestampStruct
         {
             public const int Time1 = Raw.JKJNIFDBKNF_PFAKIJFDDJJ.Offsets.AEHHJOLEPKD;
@@ -17772,7 +17787,6 @@ namespace BlockpostTrainer.Sdk
             /// <summary>Current weapon spread / recoil accumulator. Set to -1000f before fire, +1000f after for rapid fire.</summary>
             public const int Spread = Raw.KBBBHJDINCB.Offsets.FGFKPMPLNKO;
             public const int FireTimer = Raw.KBBBHJDINCB.Offsets.LCMOBPPHLLM;
-            public const int IsFiring = Raw.KBBBHJDINCB.Offsets.APFNBGHAJMD;
             /// <summary>Bool. Clear to false for infinite health (prevents death state persisting).</summary>
             public const int IsDead = Raw.KBBBHJDINCB.Offsets.CLOEJLAOIGI;
             /// <summary>Bool. Clear to false for infinite health (prevents downed state persisting).</summary>
@@ -17819,10 +17833,8 @@ namespace BlockpostTrainer.Sdk
             public const int AmmoCandidate4 = Raw.KBBBHJDINCB.Offsets.MHCOJFIAGLP;
             public const int AmmoCandidate5 = Raw.KBBBHJDINCB.Offsets.JHGGICCFNFJ;
             public const int AmmoCandidate6 = Raw.KBBBHJDINCB.Offsets.CNHNFDDJMJO;
-            public const int IsGrounded = Raw.KBBBHJDINCB.Offsets.CLOEJLAOIGI;
             public const int IsJumping = Raw.KBBBHJDINCB.Offsets.APFNBGHAJMD;
             public const int IsCrouching = Raw.KBBBHJDINCB.Offsets.HEADELMLILF;
-            public const int IsSprinting = Raw.KBBBHJDINCB.Offsets.CGHKKDBILGF;
             public const int JFOEOEJLDML = Raw.KBBBHJDINCB.Offsets.JFOEOEJLDML;
             public const int JDIHHMABLAJ = Raw.KBBBHJDINCB.Offsets.JDIHHMABLAJ;
             public const int BANHJLHDFLI = Raw.KBBBHJDINCB.Offsets.BANHJLHDFLI;
@@ -17844,10 +17856,6 @@ namespace BlockpostTrainer.Sdk
             public const int BCACFHNPIBP = Raw.KBBBHJDINCB.Offsets.BCACFHNPIBP;
             public const int ONOGCCOHPJC = Raw.KBBBHJDINCB.Offsets.ONOGCCOHPJC;
             public const int CIPOBFGAMOP = Raw.KBBBHJDINCB.Offsets.CIPOBFGAMOP;
-            public const int GEDMGLAMGMD = Raw.KBBBHJDINCB.Offsets.GEDMGLAMGMD;
-            public const int MHCOJFIAGLP = Raw.KBBBHJDINCB.Offsets.MHCOJFIAGLP;
-            public const int JHGGICCFNFJ = Raw.KBBBHJDINCB.Offsets.JHGGICCFNFJ;
-            public const int CNHNFDDJMJO = Raw.KBBBHJDINCB.Offsets.CNHNFDDJMJO;
             public const int HJLHOFPDEAA = Raw.KBBBHJDINCB.Offsets.HJLHOFPDEAA;
             public const int OLOOMMIKDPJ = Raw.KBBBHJDINCB.Offsets.OLOOMMIKDPJ;
             public const int DDKPBGMMNIA = Raw.KBBBHJDINCB.Offsets.DDKPBGMMNIA;
@@ -17856,10 +17864,7 @@ namespace BlockpostTrainer.Sdk
             public const int NHJDPAAFIKO = Raw.KBBBHJDINCB.Offsets.NHJDPAAFIKO;
             public const int LNIDBHIAJJI = Raw.KBBBHJDINCB.Offsets.LNIDBHIAJJI;
             public const int ACAIGMNLLEC = Raw.KBBBHJDINCB.Offsets.ACAIGMNLLEC;
-            public const int PELNEJDOBKH = Raw.KBBBHJDINCB.Offsets.PELNEJDOBKH;
-            public const int DECAKELAHPI = Raw.KBBBHJDINCB.Offsets.DECAKELAHPI;
             public const int COCGLNFEFAF = Raw.KBBBHJDINCB.Offsets.COCGLNFEFAF;
-            public const int HEADELMLILF = Raw.KBBBHJDINCB.Offsets.HEADELMLILF;
             public const int NMJKANFIDFM = Raw.KBBBHJDINCB.Offsets.NMJKANFIDFM;
             public const int OIDEDEHDLGA = Raw.KBBBHJDINCB.Offsets.OIDEDEHDLGA;
             public const int NCDOKAKJEJF = Raw.KBBBHJDINCB.Offsets.NCDOKAKJEJF;
@@ -17869,7 +17874,6 @@ namespace BlockpostTrainer.Sdk
             public const int BCIPLGMEKEN = Raw.KBBBHJDINCB.Offsets.BCIPLGMEKEN;
             public const int OLDBINBEFFG = Raw.KBBBHJDINCB.Offsets.OLDBINBEFFG;
             public const int CHEFKHPIMEB = Raw.KBBBHJDINCB.Offsets.CHEFKHPIMEB;
-            public const int IGBIBDAMMLE = Raw.KBBBHJDINCB.Offsets.IGBIBDAMMLE;
             public const int FNBOPBHIMPM = Raw.KBBBHJDINCB.Offsets.FNBOPBHIMPM;
             public const int OBPKNGEEOOA = Raw.KBBBHJDINCB.Offsets.OBPKNGEEOOA;
             public const int LPABNMLLMFI = Raw.KBBBHJDINCB.Offsets.LPABNMLLMFI;
@@ -18035,6 +18039,14 @@ namespace BlockpostTrainer.Sdk
             public const string IsAlive = Raw.KBBBHJDINCB.Properties.HIECLOJIFIL;
             public const string IconA = Raw.KBBBHJDINCB.Properties.GNIGDNCENCC;
             public const string IconB = Raw.KBBBHJDINCB.Properties.GNMEOACGHHC;
+        }
+
+        public static class PacketHeader
+        {
+            public const int Field1 = Raw.KIIIBLDGIPO.Offsets.BCJADOIPFHE;
+            public const int Field2 = Raw.KIIIBLDGIPO.Offsets.IAIHGIDAJEK;
+            public const int Field3 = Raw.KIIIBLDGIPO.Offsets.LICHKMCHMMF;
+            public const int Data = Raw.KIIIBLDGIPO.Offsets.COEGDOAPEDD;
         }
 
         public static class ServerBrowserEntry
@@ -18662,6 +18674,20 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_DGMG = Raw.MDDEPGFBEIA.Methods.DGMGDEDBEAD;
         }
 
+        public static class StringProvider
+        {
+            public const uint GetString0 = Raw.MPNIMJEBACL.Methods.JHDKLEKKCPL;
+            public const uint GetString1 = Raw.MPNIMJEBACL.Methods.GBIMIDOGIPC;
+            public const uint GetString2 = Raw.MPNIMJEBACL.Methods.EEAGDEGGIGE;
+            public const uint GetString3 = Raw.MPNIMJEBACL.Methods.JJCBDNOHCBO;
+            public const uint GetString4 = Raw.MPNIMJEBACL.Methods.ABHHBAHJKGJ;
+            public const uint GetString5 = Raw.MPNIMJEBACL.Methods.OBAHFPJIKCD;
+            public const uint GetString6 = Raw.MPNIMJEBACL.Methods.MGKEFAFGEJO;
+            public const uint GetString7 = Raw.MPNIMJEBACL.Methods.GPEDOOINGHO;
+            public const uint GetString8 = Raw.MPNIMJEBACL.Methods.NJACBDKLJGL;
+            public const uint GetString9 = Raw.MPNIMJEBACL.Methods.ADJDMJOOOIF;
+        }
+
         public static class MeshSceneCache
         {
             public const int FullMesh = Raw.MSC.Offsets.cfull;
@@ -19269,6 +19295,11 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_OLKI = Raw.NAHLLMJMOED.Methods.OLKIFKBCNGA;
         }
 
+        public static class FloatLUT
+        {
+            public const int Data = Raw.NCJNPBHLFEH.Offsets.PMGGKMJLEPN;
+        }
+
         public static class AxisConstraint
         {
             public const int value = Raw.NDANMCKCENA.Offsets.value;
@@ -19801,6 +19832,20 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_DHCH = Raw.OJGPKMCPJDB.Methods.DHCHCPDBDOC;
             public const uint Action_PCEJ = Raw.OJGPKMCPJDB.Methods.PCEJFMHBGEO;
             public const uint Action_BEGJ = Raw.OJGPKMCPJDB.Methods.BEGJJBNCDOK;
+        }
+
+        public static class MeshTransformRenderer
+        {
+            public const int MeshRenderer = Raw.OKMMGFGOLCN.Offsets.DKNILOBCBAG;
+            public const int Matrix1 = Raw.OKMMGFGOLCN.Offsets.MPHJDGLDOOL;
+            public const int Matrix2 = Raw.OKMMGFGOLCN.Offsets.FAIEPFJLGEH;
+            public const int Position = Raw.OKMMGFGOLCN.Offsets.BLNPPKNCGGM;
+            public const int Rotation = Raw.OKMMGFGOLCN.Offsets.IGCCIPCGJPN;
+            public const int Scale = Raw.OKMMGFGOLCN.Offsets.EPOGIAJCBNG;
+            public const int Mesh = Raw.OKMMGFGOLCN.Offsets.DKOBILLAEBI;
+            public const int MotionStates = Raw.OKMMGFGOLCN.Offsets.PJKGHFFCBHJ;
+            public const int Bool1 = Raw.OKMMGFGOLCN.Offsets.AAGAIHBIBKG;
+            public const int Bool2 = Raw.OKMMGFGOLCN.Offsets.PPFLMDEMOHA;
         }
 
         public static class CursorData

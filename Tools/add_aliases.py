@@ -218,7 +218,6 @@ KNOWN_OVERRIDES = {
     "OBJ": {
         "HumanClass": "ObjLoader",
         "Fields": {
-            "Instance": "cs",
             "ObjPath": "objPath",
         },
     },
@@ -649,10 +648,8 @@ KNOWN_OVERRIDES = {
     "EngineSettings": {
         "HumanClass": "EngineConfig",
         "Fields": {
-            "Version": "Version",
             "MainEngineMode": "MainEngineMode",
             "ControlSnapToBlock": "ControlSnapToBlock",
-            "MeshBuilderMode": "MeshBuilderMode",
             "BuildOptimizedWeaponMesh": "BuildOptimizedWeaponMesh",
             "BuildWeaponWithVerticesOffset": "BuildWeaponWithVerticesOffset",
             "BuildWeaponVerticesOffset": "BuildWeaponVerticesOffset",
@@ -906,7 +903,97 @@ KNOWN_OVERRIDES = {
             "Time1": "AEHHJOLEPKD",
             "Time2": "DEDBHOGMJBG",
             "Time3": "PBABPCLKEIN",
-            "Value": "LIJDPIDMADF",
+        },
+    },
+    # --- Remaining unmapped obfuscated classes ---
+    "KIIIBLDGIPO": {
+        "HumanClass": "PacketHeader",
+        "Fields": {
+            "Field1": "BCJADOIPFHE",
+            "Field2": "IAIHGIDAJEK",
+            "Field3": "LICHKMCHMMF",
+            "Data": "COEGDOAPEDD",
+        },
+    },
+    "GOMBDODCNCD": {
+        "HumanClass": "BoundsPair",
+        "Fields": {
+            "Min": "BBMGOKPOEFH",
+            "Max": "AJNDINEJHGH",
+        },
+    },
+    "MPNIMJEBACL": {
+        "HumanClass": "StringProvider",
+        "Methods": {
+            "GetString0": "JHDKLEKKCPL",
+            "GetString1": "GBIMIDOGIPC",
+            "GetString2": "EEAGDEGGIGE",
+            "GetString3": "JJCBDNOHCBO",
+            "GetString4": "ABHHBAHJKGJ",
+            "GetString5": "OBAHFPJIKCD",
+            "GetString6": "MGKEFAFGEJO",
+            "GetString7": "GPEDOOINGHO",
+            "GetString8": "NJACBDKLJGL",
+            "GetString9": "ADJDMJOOOIF",
+        },
+    },
+    "INLDDHNCPOE": {
+        "HumanClass": "IntTriple",
+        "Fields": {
+            "A": "BCJADOIPFHE",
+            "B": "IAIHGIDAJEK",
+            "C": "LICHKMCHMMF",
+        },
+    },
+    "AOPJEHKMPFE": {
+        "HumanClass": "ClothRenderer",
+        "Fields": {
+            "Cloth": "JIFENDCEHGH",
+            "Renderer": "EENDPLLKLKJ",
+            "Matrix1": "MPHJDGLDOOL",
+            "Matrix2": "FAIEPFJLGEH",
+            "Int1": "MOOOLBBCFFK",
+            "IntArray": "MPODOLJLAMO",
+            "Vec3Array1": "BONDIMBOOLH",
+            "Vec3Array2": "LBCOCHEJFGG",
+            "Mesh": "EKDHGFHEIMO",
+            "MotionStates": "PJKGHFFCBHJ",
+        },
+    },
+    "OKMMGFGOLCN": {
+        "HumanClass": "MeshTransformRenderer",
+        "Fields": {
+            "MeshRenderer": "DKNILOBCBAG",
+            "Matrix1": "MPHJDGLDOOL",
+            "Matrix2": "FAIEPFJLGEH",
+            "Position": "BLNPPKNCGGM",
+            "Rotation": "IGCCIPCGJPN",
+            "Scale": "EPOGIAJCBNG",
+            "Mesh": "DKOBILLAEBI",
+            "MotionStates": "PJKGHFFCBHJ",
+            "Bool1": "AAGAIHBIBKG",
+            "Bool2": "PPFLMDEMOHA",
+        },
+    },
+    "ICIDCKCOICB": {
+        "HumanClass": "ParticleMeshBuilder",
+        "Fields": {
+            "ParticleSystem": "FNNGDBNNELH",
+            "Renderer": "EENDPLLKLKJ",
+            "Mesh": "DKOBILLAEBI",
+            "RotationOverLifetime": "BMBDHAFKHCE",
+            "RotationBySpeed": "EFKEPNEIACK",
+            "Particles": "LCKDILHCGAD",
+            "ParticleDict": "HBBDDAAEHBP",
+            "ParticleList": "LFDJCAHNNAK",
+            "ParticleStack": "FPDDOLKOHJE",
+            "Int1": "DAFPIBIBEOE",
+        },
+    },
+    "NCJNPBHLFEH": {
+        "HumanClass": "FloatLUT",
+        "Fields": {
+            "Data": "PMGGKMJLEPN",
         },
     },
 }

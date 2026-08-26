@@ -367,6 +367,14 @@ namespace BlockpostTrainer.Sdk
             public const string IntPtr = "IntPtr";
             public const string GBFJPNPFMMP = "GBFJPNPFMMP";
             public const string MeshCollider = "MeshCollider";
+            public const string KIIIBLDGIPO = "KIIIBLDGIPO";
+            public const string GOMBDODCNCD = "GOMBDODCNCD";
+            public const string MPNIMJEBACL = "MPNIMJEBACL";
+            public const string INLDDHNCPOE = "INLDDHNCPOE";
+            public const string AOPJEHKMPFE = "AOPJEHKMPFE";
+            public const string OKMMGFGOLCN = "OKMMGFGOLCN";
+            public const string ICIDCKCOICB = "ICIDCKCOICB";
+            public const string NCJNPBHLFEH = "NCJNPBHLFEH";
         }
 
         public static class ByHumanName
@@ -730,6 +738,14 @@ namespace BlockpostTrainer.Sdk
             public const string IntPtr = "IntPtr";
             public const string GBFJPNPFMMP = "GBFJPNPFMMP";
             public const string MeshCollider = "MeshCollider";
+            public const string PacketHeader = "KIIIBLDGIPO";
+            public const string BoundsPair = "GOMBDODCNCD";
+            public const string StringProvider = "MPNIMJEBACL";
+            public const string IntTriple = "INLDDHNCPOE";
+            public const string ClothRenderer = "AOPJEHKMPFE";
+            public const string MeshTransformRenderer = "OKMMGFGOLCN";
+            public const string ParticleMeshBuilder = "ICIDCKCOICB";
+            public const string FloatLUT = "NCJNPBHLFEH";
         }
 
         public static class ByTypeDefIndex
@@ -1093,6 +1109,14 @@ namespace BlockpostTrainer.Sdk
             public const string Tdi934 = "IntPtr"; // IntPtr
             public const string Tdi105 = "GBFJPNPFMMP"; // GBFJPNPFMMP
             public const string Tdi5369 = "MeshCollider"; // MeshCollider
+            public const string Tdi301 = "KIIIBLDGIPO"; // KIIIBLDGIPO
+            public const string Tdi439 = "GOMBDODCNCD"; // GOMBDODCNCD
+            public const string Tdi92 = "MPNIMJEBACL"; // MPNIMJEBACL
+            public const string Tdi445 = "INLDDHNCPOE"; // INLDDHNCPOE
+            public const string Tdi447 = "AOPJEHKMPFE"; // AOPJEHKMPFE
+            public const string Tdi383 = "OKMMGFGOLCN"; // OKMMGFGOLCN
+            public const string Tdi197 = "ICIDCKCOICB"; // ICIDCKCOICB
+            public const string Tdi515 = "NCJNPBHLFEH"; // NCJNPBHLFEH
         }
     }
 }

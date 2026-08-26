@@ -11529,6 +11529,30 @@ namespace BlockpostTrainer.Sdk
             public const uint GetBool_EBAF = Raw.DemoRec.Methods.EBAFFFPJFJL;
         }
 
+        public static class DemoEvent
+        {
+            public const int Data = Raw.DemoRec_ICPPIMDCCID.Offsets.DJCKPFHMAOI;
+            public const int Int1 = Raw.DemoRec_ICPPIMDCCID.Offsets.BODPAKCCICG;
+            public const int Float1 = Raw.DemoRec_ICPPIMDCCID.Offsets.GGMIOCBKKCD;
+            public const int Int2 = Raw.DemoRec_ICPPIMDCCID.Offsets.PEBKKLKCHPH;
+        }
+
+        public static class DemoSnapshot
+        {
+            public const int Name = Raw.DemoRec_PLAEPKANLLE.Offsets.DHJBGJHALAL;
+            public const int IntArray1 = Raw.DemoRec_PLAEPKANLLE.Offsets.COGPMADIADO;
+            public const int IntArray2 = Raw.DemoRec_PLAEPKANLLE.Offsets.HJLNDGPNNOO;
+            public const int Int1 = Raw.DemoRec_PLAEPKANLLE.Offsets.CAHMOANNNIC;
+            public const int Int2 = Raw.DemoRec_PLAEPKANLLE.Offsets.GNMCLDCPOPF;
+            public const int Int3 = Raw.DemoRec_PLAEPKANLLE.Offsets.AACBOAMMEOL;
+            public const int Int4 = Raw.DemoRec_PLAEPKANLLE.Offsets.MKFMAGAHIPH;
+            public const int Ammo1 = Raw.DemoRec_PLAEPKANLLE.Offsets.GEDMGLAMGMD;
+            public const int Ammo2 = Raw.DemoRec_PLAEPKANLLE.Offsets.MHCOJFIAGLP;
+            public const int Int5 = Raw.DemoRec_PLAEPKANLLE.Offsets.IKNBNODGPJO;
+            public const int KillCount = Raw.DemoRec_PLAEPKANLLE.Offsets.GLFBKBKFPCL;
+            public const int KillCount_1 = Raw.DemoRec_PLAEPKANLLE.Offsets.CCINALOJCNH;
+        }
+
         public static class DebugDraw
         {
             public const int MaterialPropertyBlock_IODD = Raw.DevDraw.Offsets.IODDKDHBMFF;
@@ -14082,6 +14106,16 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_FEFK = Raw.GUIClan.Methods.FEFKDODJJIA;
             public const uint Action_DIMD = Raw.GUIClan.Methods.DIMDKEIAHNB;
             public const uint Action_CDIK = Raw.GUIClan.Methods.CDIKDJEPKGA;
+        }
+
+        public static class ClanUILayout
+        {
+            public const int Rect1 = Raw.GUIClan_GEEBCFKNENM.Offsets.COLEBDBKMAI;
+            public const int Rect2 = Raw.GUIClan_GEEBCFKNENM.Offsets.FCGJBICELDG;
+            public const int Rect3 = Raw.GUIClan_GEEBCFKNENM.Offsets.BMCOMGGKIIJ;
+            public const int Rect4 = Raw.GUIClan_GEEBCFKNENM.Offsets.EPIIPAHGGDJ;
+            public const int Rect5 = Raw.GUIClan_GEEBCFKNENM.Offsets.DFEHFHPDKFK;
+            public const int Rect6 = Raw.GUIClan_GEEBCFKNENM.Offsets.JDCHHDFKCIJ;
         }
 
         public static class CraftMenu
@@ -16859,6 +16893,15 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_BBAA = Raw.HLHFEHCGAOF.Methods.BBAANKKKONP;
         }
 
+        public static class HeightmapChunk
+        {
+            public const int X = Raw.HMap_BOCMFMGPIAL.Offsets.BCJADOIPFHE;
+            public const int Z = Raw.HMap_BOCMFMGPIAL.Offsets.LICHKMCHMMF;
+            public const int BlockData = Raw.HMap_BOCMFMGPIAL.Offsets.JEAFPDJIGBL;
+            public const int HeightData = Raw.HMap_BOCMFMGPIAL.Offsets.IODDKDHBMFF;
+            public const int ColorData = Raw.HMap_BOCMFMGPIAL.Offsets.JFFLHBFAGOM;
+        }
+
         public static class GameModeConfig
         {
             public const int Health = Raw.HOONFDNBMIM.Offsets.GLFBKBKFPCL;
@@ -17597,6 +17640,14 @@ namespace BlockpostTrainer.Sdk
             public const int Count_1 = Raw.HitData.Offsets.IEOLALIAJAI;
         }
 
+        public static class MeshGroupEntry
+        {
+            public const int Name = Raw.IBLIOCOMPNF_ANMBJKPDAKI.Offsets.OJEKKFDIKMG;
+            public const int SubEntries = Raw.IBLIOCOMPNF_ANMBJKPDAKI.Offsets.LHBGMHNBFIJ;
+            public const int Vertices = Raw.IBLIOCOMPNF_ANMBJKPDAKI.Offsets.JNOIHNNAHHE;
+            public const int Int1 = Raw.IBLIOCOMPNF_ANMBJKPDAKI.Offsets.HEKFIJPBCPP;
+        }
+
         public static class BezierCurve
         {
             public const int Point0 = Raw.IEFPCOCLAOG.Offsets.ILJIKLBMLHD;
@@ -17684,6 +17735,13 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_AFEJ = Raw.IKDHNPPLDGC.Methods.AFEJPPMFJHK;
             public const uint Action_FCPJ = Raw.IKDHNPPLDGC.Methods.FCPJFOMIAAD;
             public const uint Action_PGIJ = Raw.IKDHNPPLDGC.Methods.PGIJIAMAMOB;
+        }
+
+        public static class TimestampStruct
+        {
+            public const int Time1 = Raw.JKJNIFDBKNF_PFAKIJFDDJJ.Offsets.AEHHJOLEPKD;
+            public const int Time2 = Raw.JKJNIFDBKNF_PFAKIJFDDJJ.Offsets.DEDBHOGMJBG;
+            public const int Time3 = Raw.JKJNIFDBKNF_PFAKIJFDDJJ.Offsets.PBABPCLKEIN;
         }
 
         public static class TransformOp
@@ -20485,6 +20543,22 @@ namespace BlockpostTrainer.Sdk
             public const uint GetTexture_LCAK = Raw.TEX.Methods.LCAKKGLJKAE;
         }
 
+        public static class TerrainChunk
+        {
+            public const int X = Raw.TMap_HEPCNDINFAP.Offsets.BCJADOIPFHE;
+            public const int Z = Raw.TMap_HEPCNDINFAP.Offsets.LICHKMCHMMF;
+            public const int HeightData = Raw.TMap_HEPCNDINFAP.Offsets.IODDKDHBMFF;
+            public const int BlockData = Raw.TMap_HEPCNDINFAP.Offsets.JEAFPDJIGBL;
+            public const int ColorData = Raw.TMap_HEPCNDINFAP.Offsets.JFFLHBFAGOM;
+            public const int RootGO = Raw.TMap_HEPCNDINFAP.Offsets.LANBONKMIME;
+            public const int MeshFilter = Raw.TMap_HEPCNDINFAP.Offsets.GHLKMAIOBAL;
+            public const int MeshRenderer = Raw.TMap_HEPCNDINFAP.Offsets.CMCACFDLCCM;
+            public const int MeshCollider = Raw.TMap_HEPCNDINFAP.Offsets.MIMOMNBOOOH;
+            public const int Mesh = Raw.TMap_HEPCNDINFAP.Offsets.IGGFCNPPBPE;
+            public const int Index = Raw.TMap_HEPCNDINFAP.Offsets.EMLNBIEFNHK;
+            public const int Index_1 = Raw.TMap_HEPCNDINFAP.Offsets.DLKMGBOLJEP;
+        }
+
         public static class AmmoDisplay
         {
             public const int Instance = Raw.UIAmmo.Offsets.IOEOEOEJJOH;
@@ -22439,6 +22513,17 @@ namespace BlockpostTrainer.Sdk
             public const uint GetPosition_GOAM = Raw.VUtil.Methods.GOAMKAGEPMG;
         }
 
+        public static class GameObjectTransform
+        {
+            public const int Position = Raw.VWIK_AEJLFKOGHGN.Offsets.NIPBHAMMACD;
+            public const int Rotation = Raw.VWIK_AEJLFKOGHGN.Offsets.OOLLEKIPLOE;
+            public const int Float1 = Raw.VWIK_AEJLFKOGHGN.Offsets.CFEHFGEBDMK;
+            public const int Float2 = Raw.VWIK_AEJLFKOGHGN.Offsets.KGMHFNDIMOH;
+            public const int Float3 = Raw.VWIK_AEJLFKOGHGN.Offsets.GOALAGKACHO;
+            public const int Int1 = Raw.VWIK_AEJLFKOGHGN.Offsets.POLBBAJLPEF;
+            public const int Bool1 = Raw.VWIK_AEJLFKOGHGN.Offsets.PIOAJIHCJOM;
+        }
+
         public static class BattleMap
         {
             public const int m_Debug = Raw.VoxelBattleMap.Offsets.m_Debug;
@@ -22573,6 +22658,15 @@ namespace BlockpostTrainer.Sdk
             public const string Prop_DLOO = Raw.VoxelBattleMap.Properties.DLOOCPOFHCJ;
             public const string Prop_KJEN = Raw.VoxelBattleMap.Properties.KJENPOALCPB;
             public const string Prop_AOOO = Raw.VoxelBattleMap.Properties.AOOOFPCIPIB;
+        }
+
+        public static class VoxelChunkData
+        {
+            public const int X = Raw.VoxelMap_CABKODKKFIC.Offsets.CJILNKLNDJC;
+            public const int Y = Raw.VoxelMap_CABKODKKFIC.Offsets.GHEGCFLIMDE;
+            public const int Z = Raw.VoxelMap_CABKODKKFIC.Offsets.MKOLJIEHCPJ;
+            public const int Flags = Raw.VoxelMap_CABKODKKFIC.Offsets.JNOHOBGOOAL;
+            public const int Color = Raw.VoxelMap_CABKODKKFIC.Offsets.DHADJFHNDME;
         }
 
         public static class MapData

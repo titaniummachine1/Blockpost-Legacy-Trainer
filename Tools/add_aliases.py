@@ -808,6 +808,107 @@ KNOWN_OVERRIDES = {
             "LoadEndFirst": "LoadEndFirst",
         },
     },
+    # --- SDK expansion: nested game types ---
+    "DemoRec.PLAEPKANLLE": {
+        "HumanClass": "DemoSnapshot",
+        "Fields": {
+            "Name": "DHJBGJHALAL",
+            "IntArray1": "COGPMADIADO",
+            "IntArray2": "HJLNDGPNNOO",
+            "Int1": "CAHMOANNNIC",
+            "Int2": "GNMCLDCPOPF",
+            "Int3": "AACBOAMMEOL",
+            "Int4": "MKFMAGAHIPH",
+            "Ammo1": "GEDMGLAMGMD",
+            "Ammo2": "MHCOJFIAGLP",
+            "Int5": "IKNBNODGPJO",
+        },
+    },
+    "DemoRec.ICPPIMDCCID": {
+        "HumanClass": "DemoEvent",
+        "Fields": {
+            "Data": "DJCKPFHMAOI",
+            "Int1": "BODPAKCCICG",
+            "Float1": "GGMIOCBKKCD",
+            "Int2": "PEBKKLKCHPH",
+        },
+    },
+    "TMap.HEPCNDINFAP": {
+        "HumanClass": "TerrainChunk",
+        "Fields": {
+            "X": "BCJADOIPFHE",
+            "Z": "LICHKMCHMMF",
+            "HeightData": "IODDKDHBMFF",
+            "BlockData": "JEAFPDJIGBL",
+            "ColorData": "JFFLHBFAGOM",
+            "RootGO": "LANBONKMIME",
+            "MeshFilter": "GHLKMAIOBAL",
+            "MeshRenderer": "CMCACFDLCCM",
+            "MeshCollider": "MIMOMNBOOOH",
+            "Mesh": "IGGFCNPPBPE",
+        },
+    },
+    "HMap.BOCMFMGPIAL": {
+        "HumanClass": "HeightmapChunk",
+        "Fields": {
+            "X": "BCJADOIPFHE",
+            "Z": "LICHKMCHMMF",
+            "BlockData": "JEAFPDJIGBL",
+            "HeightData": "IODDKDHBMFF",
+            "ColorData": "JFFLHBFAGOM",
+        },
+    },
+    "VoxelMap.CABKODKKFIC": {
+        "HumanClass": "VoxelChunkData",
+        "Fields": {
+            "X": "CJILNKLNDJC",
+            "Y": "GHEGCFLIMDE",
+            "Z": "MKOLJIEHCPJ",
+            "Flags": "JNOHOBGOOAL",
+            "Color": "DHADJFHNDME",
+        },
+    },
+    "IBLIOCOMPNF.ANMBJKPDAKI": {
+        "HumanClass": "MeshGroupEntry",
+        "Fields": {
+            "Name": "OJEKKFDIKMG",
+            "SubEntries": "LHBGMHNBFIJ",
+            "Vertices": "JNOIHNNAHHE",
+            "Int1": "HEKFIJPBCPP",
+        },
+    },
+    "GUIClan.GEEBCFKNENM": {
+        "HumanClass": "ClanUILayout",
+        "Fields": {
+            "Rect1": "COLEBDBKMAI",
+            "Rect2": "FCGJBICELDG",
+            "Rect3": "BMCOMGGKIIJ",
+            "Rect4": "EPIIPAHGGDJ",
+            "Rect5": "DFEHFHPDKFK",
+            "Rect6": "JDCHHDFKCIJ",
+        },
+    },
+    "VWIK.AEJLFKOGHGN": {
+        "HumanClass": "GameObjectTransform",
+        "Fields": {
+            "Position": "NIPBHAMMACD",
+            "Rotation": "OOLLEKIPLOE",
+            "Float1": "CFEHFGEBDMK",
+            "Float2": "KGMHFNDIMOH",
+            "Float3": "GOALAGKACHO",
+            "Int1": "POLBBAJLPEF",
+            "Bool1": "PIOAJIHCJOM",
+        },
+    },
+    "JKJNIFDBKNF.PFAKIJFDDJJ": {
+        "HumanClass": "TimestampStruct",
+        "Fields": {
+            "Time1": "AEHHJOLEPKD",
+            "Time2": "DEDBHOGMJBG",
+            "Time3": "PBABPCLKEIN",
+            "Value": "LIJDPIDMADF",
+        },
+    },
 }
 
 # Optional user-editable file for extra curated aliases.

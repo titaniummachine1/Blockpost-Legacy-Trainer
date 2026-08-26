@@ -35,11 +35,11 @@
 - `HANDOFF.md` — Session handoff notes
 
 ## SDK Statistics
-- Aliased classes: 350 (268 target + all referenced types)
-- Field aliases: 4,445
+- Aliased classes: 359 (277 target + all referenced types)
+- Field aliases: 4,503
 - Method aliases: 16,438
 - Property aliases: 477
-- Generated SDK files: 352 (350 classes + Aliases.cs + SdkIndex.cs)
+- Generated SDK files: 361 (359 classes + Aliases.cs + SdkIndex.cs)
 - Build: 0 errors, 2 warnings (pre-existing NuGet dependency resolution)
 
 ## Key Classes (Obfuscated → Human)
@@ -105,6 +105,14 @@
 | NHMPEIHDFBK | ConfigManager | - | Localization/config (string->string lookups) |
 | ReShaders | ShaderManager | - | Shader manager (renderers, materials, shaders) |
 | EngineSettings | EngineConfig | - | Engine settings (Version, MeshBuilderMode) |
+| DemoRec.PLAEPKANLLE | DemoSnapshot | - | Demo recording player snapshot (name, int[], 8 ints) |
+| DemoRec.ICPPIMDCCID | DemoEvent | - | Demo recording event (byte[], int, float, int) |
+| TMap.HEPCNDINFAP | TerrainChunk | - | Terrain chunk (int[,] height/block, Color[,], Mesh) |
+| HMap.BOCMFMGPIAL | HeightmapChunk | - | Heightmap chunk (int[,], Color[,]) |
+| VoxelMap.CABKODKKFIC | VoxelChunkData | - | Voxel chunk data (4 ints, Color) |
+| IBLIOCOMPNF.ANMBJKPDAKI | MeshGroupEntry | - | Mesh group entry (name, sub-entries, vertices) |
+| VWIK.AEJLFKOGHGN | GameObjectTransform | - | Game object transform (2 Vector3, 3 floats, int, bool) |
+| JKJNIFDBKNF.PFAKIJFDDJJ | TimestampStruct | - | Timestamp struct (3 longs, int) |
 
 ## Controll Class - Key Fields
 | Field | Offset | Type | Purpose |

@@ -301,6 +301,16 @@ TARGET_CLASSES = [
     "EngineSettings",  # Engine settings (Version, MainEngineMode, MeshBuilderMode)
     "SoundLoader.AOCAGFBOMON",  # Sound loader nested type (weapon sounds)
     "MasterClient.FGLOEOAFJIE",  # Master client nested type
+    # --- SDK expansion: nested game types (chunk data, demo entries, mesh groups) ---
+    "DemoRec.PLAEPKANLLE",   # Demo recording player snapshot (string, int[], 8 ints)
+    "DemoRec.ICPPIMDCCID",   # Demo recording event (byte[], int, float, int)
+    "TMap.HEPCNDINFAP",      # Terrain chunk (int[,], Color[,], MeshFilter/Renderer/Collider)
+    "HMap.BOCMFMGPIAL",      # Heightmap chunk (int[,], Color[,])
+    "VoxelMap.CABKODKKFIC",  # Voxel chunk data (4 ints, Color)
+    "IBLIOCOMPNF.ANMBJKPDAKI",  # Mesh group entry (string, 2 Lists, int)
+    "GUIClan.GEEBCFKNENM",   # Clan UI layout (6 Rects)
+    "VWIK.AEJLFKOGHGN",      # Game object transform data (2 Vector3, 3 floats, int, bool)
+    "JKJNIFDBKNF.PFAKIJFDDJJ",  # Time/timestamp struct (3 longs, int)
     # Enums (parsed as classes for offset generation - they have values)
     "Controll.NJPOPGGFJIH",
     "MouseLook.NLJBDGBDDLP",

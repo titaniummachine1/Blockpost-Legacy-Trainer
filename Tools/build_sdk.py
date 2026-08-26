@@ -25,7 +25,12 @@ ROOT = Path(__file__).resolve().parent.parent
 
 def run(cmd: list[str], cwd: Path) -> int:
     print(f"\n==> {' '.join(cmd)}")
-    return subprocess.run(cmd, cwd=cwd, check=False).returncode
+    result = subprocess.run(cmd, cwd=cwd, check=False, capture_output=True, text=True)
+    if result.stdout:
+        print(result.stdout, end="")
+    if result.stderr:
+        print(result.stderr, end="", file=sys.stderr)
+    return result.returncode
 
 
 def main() -> int:

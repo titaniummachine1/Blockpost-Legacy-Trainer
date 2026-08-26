@@ -167,7 +167,7 @@ namespace BlockpostTrainer.Sdk.Raw
             /// <summary>IOLFGDBLLJB(Texture2D IPFKPJKIFBA, int BBNHJMLOJFH, int GGFPMAACHMC) -> Texture2D</summary>
             public const uint IOLFGDBLLJB = 0x10cddc20; // public static Texture2D IOLFGDBLLJB(Texture2D IPFKPJKIFBA, int BBNHJMLOJFH, int GGFPMAACHMC)
             /// <summary>GetUV(int LOCLBKIGKOD, bool HMPBJCONNHB) -> Vector2[]</summary>
-            public const uint GetUV_2 = 0x10cdc820; // public static Vector2[] GetUV(int LOCLBKIGKOD, bool HMPBJCONNHB = False)
+            public const uint GetUV_1 = 0x10cdc820; // public static Vector2[] GetUV(int LOCLBKIGKOD, bool HMPBJCONNHB = False)
             /// <summary>BJMBMGGNAGG(Texture2D IPFKPJKIFBA, int BBNHJMLOJFH, int GGFPMAACHMC) -> Texture2D</summary>
             public const uint BJMBMGGNAGG = 0x10cdab40; // public static Texture2D BJMBMGGNAGG(Texture2D IPFKPJKIFBA, int BBNHJMLOJFH, int GGFPMAACHMC)
             /// <summary>KLDCMMDOJFC(int LPDHHCJPDFG, int FLFIDALKFOF, int HOIMDGPCNKC) -> Vector2Int</summary>

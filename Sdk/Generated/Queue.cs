@@ -38,11 +38,11 @@ namespace BlockpostTrainer.Sdk.Raw
         {
             public const uint ctor = 0x11115cf0; // public void .ctor()
             /// <summary>.ctor(int capacity)</summary>
-            public const uint ctor_2 = 0x11115cd0; // public void .ctor(int capacity)
+            public const uint ctor_1 = 0x11115cd0; // public void .ctor(int capacity)
             /// <summary>.ctor(int capacity, float growFactor)</summary>
-            public const uint ctor_3 = 0x11115980; // public void .ctor(int capacity, float growFactor)
+            public const uint ctor_2 = 0x11115980; // public void .ctor(int capacity, float growFactor)
             /// <summary>.ctor(ICollection col)</summary>
-            public const uint ctor_4 = 0x11115b20; // public void .ctor(ICollection col)
+            public const uint ctor_3 = 0x11115b20; // public void .ctor(ICollection col)
             /// <summary>GetElement(int i) -> object</summary>
             public const uint GetElement = 0x11115760; // internal object GetElement(int i)
             /// <summary>SetCapacity(int capacity)</summary>

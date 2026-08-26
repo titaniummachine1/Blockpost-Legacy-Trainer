@@ -63,7 +63,7 @@ namespace BlockpostTrainer.Sdk.Raw
             /// <summary>Open(string text, TouchScreenKeyboardType keyboardType, bool autocorrection, bool multiline, bool secure, bool alert, string textPlaceholder, int characterLimit) -> TouchScreenKeyboard</summary>
             public const uint Open = 0x112e36e0; // public static TouchScreenKeyboard Open(string text, TouchScreenKeyboardType keyboardType, bool autocorrection, bool multiline, bool secure, bool alert, string textPlaceholder, int characterLimit)
             /// <summary>Open(string text, TouchScreenKeyboardType keyboardType, bool autocorrection, bool multiline, bool secure) -> TouchScreenKeyboard</summary>
-            public const uint Open_2 = 0x112e3800; // public static TouchScreenKeyboard Open(string text, TouchScreenKeyboardType keyboardType, bool autocorrection, bool multiline, bool secure)
+            public const uint Open_1 = 0x112e3800; // public static TouchScreenKeyboard Open(string text, TouchScreenKeyboardType keyboardType, bool autocorrection, bool multiline, bool secure)
             /// <summary>get_text() -> string</summary>
             public const uint get_text = 0x112e3c50; // public string get_text()
             /// <summary>set_text(string value)</summary>

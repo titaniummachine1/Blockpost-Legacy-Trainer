@@ -43,7 +43,7 @@ namespace BlockpostTrainer.Sdk.Raw
             public const string determinant = "determinant"; // float { get }
             public const string inverse = "inverse"; // Matrix4x4 { get }
             public const string Item = "Item"; // float { get/set }
-            public const string Item_2 = "Item"; // float { get/set }
+            public const string Item_1 = "Item"; // float { get/set }
             public const string identity = "identity"; // Matrix4x4 { get }
         }
 
@@ -75,9 +75,9 @@ namespace BlockpostTrainer.Sdk.Raw
             /// <summary>set_Item(int row, int column, float value)</summary>
             public const uint set_Item = 0x112c6630; // public void set_Item(int row, int column, float value)
             /// <summary>get_Item(int index) -> float</summary>
-            public const uint get_Item_2 = 0x112c5e20; // public float get_Item(int index)
+            public const uint get_Item_1 = 0x112c5e20; // public float get_Item(int index)
             /// <summary>set_Item(int index, float value)</summary>
-            public const uint set_Item_2 = 0x112c6490; // public void set_Item(int index, float value)
+            public const uint set_Item_1 = 0x112c6490; // public void set_Item(int index, float value)
             /// <summary>op_Multiply(Matrix4x4 lhs, Matrix4x4 rhs) -> Matrix4x4</summary>
             public const uint op_Multiply = 0x112c6100; // public static Matrix4x4 op_Multiply(Matrix4x4 lhs, Matrix4x4 rhs)
             /// <summary>GetColumn(int index) -> Vector4</summary>

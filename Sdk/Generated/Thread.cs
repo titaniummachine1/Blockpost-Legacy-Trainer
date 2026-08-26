@@ -59,14 +59,14 @@ namespace BlockpostTrainer.Sdk.Raw
             /// <summary>.ctor(ThreadStart start)</summary>
             public const uint ctor = 0x111e3f90; // public void .ctor(ThreadStart start)
             /// <summary>.ctor(ParameterizedThreadStart start)</summary>
-            public const uint ctor_2 = 0x111e4000; // public void .ctor(ParameterizedThreadStart start)
+            public const uint ctor_1 = 0x111e4000; // public void .ctor(ParameterizedThreadStart start)
             /// <summary>.ctor(ParameterizedThreadStart start, int maxStackSize)</summary>
-            public const uint ctor_3 = 0x111e3eb0; // public void .ctor(ParameterizedThreadStart start, int maxStackSize)
+            public const uint ctor_2 = 0x111e3eb0; // public void .ctor(ParameterizedThreadStart start, int maxStackSize)
             public const uint Start = 0x111e3c00; // public void Start()
             /// <summary>Start(object parameter)</summary>
-            public const uint Start_2 = 0x111e3d40; // public void Start(object parameter)
+            public const uint Start_1 = 0x111e3d40; // public void Start(object parameter)
             /// <summary>Start(ref StackCrawlMark stackMark)</summary>
-            public const uint Start_3 = 0x111e3c20; // private void Start(ref StackCrawlMark stackMark)
+            public const uint Start_2 = 0x111e3c20; // private void Start(ref StackCrawlMark stackMark)
             /// <summary>GetExecutionContextReader() -> ExecutionContext.Reader</summary>
             public const uint GetExecutionContextReader = 0x111e3580; // internal ExecutionContext.Reader GetExecutionContextReader()
             /// <summary>get_ExecutionContextBelongsToCurrentScope() -> bool</summary>
@@ -78,7 +78,7 @@ namespace BlockpostTrainer.Sdk.Raw
             /// <summary>SetExecutionContext(ExecutionContext value, bool belongsToCurrentScope)</summary>
             public const uint SetExecutionContext = 0x111e3730; // internal void SetExecutionContext(ExecutionContext value, bool belongsToCurrentScope)
             /// <summary>SetExecutionContext(ExecutionContext.Reader value, bool belongsToCurrentScope)</summary>
-            public const uint SetExecutionContext_2 = 0x111e3730; // internal void SetExecutionContext(ExecutionContext.Reader value, bool belongsToCurrentScope)
+            public const uint SetExecutionContext_1 = 0x111e3730; // internal void SetExecutionContext(ExecutionContext.Reader value, bool belongsToCurrentScope)
             /// <summary>JoinInternal(int millisecondsTimeout) -> bool</summary>
             public const uint JoinInternal = 0x111e3700; // private bool JoinInternal(int millisecondsTimeout)
             public const uint Join = 0x111e3720; // public void Join()

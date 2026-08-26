@@ -78,18 +78,18 @@ namespace BlockpostTrainer.Sdk.Raw
             /// <summary>SendMessage(string methodName, object value, SendMessageOptions options)</summary>
             public const uint SendMessage = 0x112d52b0; // public void SendMessage(string methodName, object value, SendMessageOptions options)
             /// <summary>SendMessage(string methodName, object value)</summary>
-            public const uint SendMessage_2 = 0x112d5320; // public void SendMessage(string methodName, object value)
+            public const uint SendMessage_1 = 0x112d5320; // public void SendMessage(string methodName, object value)
             /// <summary>SendMessage(string methodName)</summary>
-            public const uint SendMessage_3 = 0x112d52f0; // public void SendMessage(string methodName)
+            public const uint SendMessage_2 = 0x112d52f0; // public void SendMessage(string methodName)
             /// <summary>BroadcastMessage(string methodName, object parameter, SendMessageOptions options)</summary>
-            public const uint BroadcastMessage_2 = 0x112d5000; // public void BroadcastMessage(string methodName, object parameter, SendMessageOptions options)
+            public const uint BroadcastMessage_1 = 0x112d5000; // public void BroadcastMessage(string methodName, object parameter, SendMessageOptions options)
             /// <summary>BroadcastMessage(string methodName)</summary>
-            public const uint BroadcastMessage_3 = 0x112d5040; // public void BroadcastMessage(string methodName)
+            public const uint BroadcastMessage_2 = 0x112d5040; // public void BroadcastMessage(string methodName)
             /// <summary>.ctor(string name)</summary>
             public const uint ctor = 0x112d53b0; // public void .ctor(string name)
-            public const uint ctor_2 = 0x112d54f0; // public void .ctor()
+            public const uint ctor_1 = 0x112d54f0; // public void .ctor()
             /// <summary>.ctor(string name, Type[] components)</summary>
-            public const uint ctor_3 = 0x112d5420; // public void .ctor(string name, Type[] components)
+            public const uint ctor_2 = 0x112d5420; // public void .ctor(string name, Type[] components)
             /// <summary>Internal_CreateGameObject(GameObject self, string name)</summary>
             public const uint Internal_CreateGameObject = 0x112d5280; // private static void Internal_CreateGameObject(GameObject self, string name)
             /// <summary>Find(string name) -> GameObject</summary>

@@ -12,7 +12,6 @@ using Raw = BlockpostTrainer.Sdk.Raw;
 using BepInEx;
 using BepInEx.Logging;
 using HarmonyLib;
-using Il2CppInterop.Runtime;
 using Il2CppInterop.Runtime.InteropTypes;
 using Il2CppInterop.Runtime.InteropTypes.Arrays;
 using UnityEngine;

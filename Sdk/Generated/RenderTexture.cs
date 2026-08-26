@@ -64,7 +64,7 @@ namespace BlockpostTrainer.Sdk.Raw
             /// <summary>DiscardContents(bool discardColor, bool discardDepth)</summary>
             public const uint DiscardContents = 0x112cb230; // public void DiscardContents(bool discardColor, bool discardDepth)
             public const uint MarkRestoreExpected = 0x112cc400; // public void MarkRestoreExpected()
-            public const uint DiscardContents_2 = 0x112cb200; // public void DiscardContents()
+            public const uint DiscardContents_1 = 0x112cb200; // public void DiscardContents()
             /// <summary>Create() -> bool</summary>
             public const uint Create = 0x112cb1d0; // public bool Create()
             public const uint Release = 0x112cc460; // public void Release()
@@ -84,37 +84,37 @@ namespace BlockpostTrainer.Sdk.Raw
             public const uint ReleaseTemporary = 0x112cc430; // public static void ReleaseTemporary(RenderTexture temp)
             public const uint ctor = 0x112cd230; // protected internal void .ctor()
             /// <summary>.ctor(RenderTextureDescriptor desc)</summary>
-            public const uint ctor_2 = 0x112ccc40; // public void .ctor(RenderTextureDescriptor desc)
+            public const uint ctor_1 = 0x112ccc40; // public void .ctor(RenderTextureDescriptor desc)
             /// <summary>.ctor(RenderTexture textureToCopy)</summary>
-            public const uint ctor_3 = 0x112cd3a0; // public void .ctor(RenderTexture textureToCopy)
+            public const uint ctor_2 = 0x112cd3a0; // public void .ctor(RenderTexture textureToCopy)
             /// <summary>.ctor(int width, int height, int depth, DefaultFormat format)</summary>
-            public const uint ctor_4 = 0x112cd170; // public void .ctor(int width, int height, int depth, DefaultFormat format)
+            public const uint ctor_3 = 0x112cd170; // public void .ctor(int width, int height, int depth, DefaultFormat format)
             /// <summary>.ctor(int width, int height, int depth, GraphicsFormat format)</summary>
-            public const uint ctor_5 = 0x112cca10; // public void .ctor(int width, int height, int depth, GraphicsFormat format)
+            public const uint ctor_4 = 0x112cca10; // public void .ctor(int width, int height, int depth, GraphicsFormat format)
             /// <summary>.ctor(int width, int height, int depth, GraphicsFormat format, int mipCount)</summary>
-            public const uint ctor_6 = 0x112ccef0; // public void .ctor(int width, int height, int depth, GraphicsFormat format, int mipCount)
+            public const uint ctor_5 = 0x112ccef0; // public void .ctor(int width, int height, int depth, GraphicsFormat format, int mipCount)
             /// <summary>.ctor(int width, int height, GraphicsFormat colorFormat, GraphicsFormat depthStencilFormat, int mipCount)</summary>
-            public const uint ctor_7 = 0x112cca70; // public void .ctor(int width, int height, GraphicsFormat colorFormat, GraphicsFormat depthStencilFormat, int mipCount)
+            public const uint ctor_6 = 0x112cca70; // public void .ctor(int width, int height, GraphicsFormat colorFormat, GraphicsFormat depthStencilFormat, int mipCount)
             /// <summary>.ctor(int width, int height, GraphicsFormat colorFormat, GraphicsFormat depthStencilFormat)</summary>
-            public const uint ctor_8 = 0x112cd340; // public void .ctor(int width, int height, GraphicsFormat colorFormat, GraphicsFormat depthStencilFormat)
+            public const uint ctor_7 = 0x112cd340; // public void .ctor(int width, int height, GraphicsFormat colorFormat, GraphicsFormat depthStencilFormat)
             /// <summary>.ctor(int width, int height, int depth, RenderTextureFormat format, RenderTextureReadWrite readWrite)</summary>
-            public const uint ctor_9 = 0x112cd0d0; // public void .ctor(int width, int height, int depth, RenderTextureFormat format, RenderTextureReadWrite readWrite)
+            public const uint ctor_8 = 0x112cd0d0; // public void .ctor(int width, int height, int depth, RenderTextureFormat format, RenderTextureReadWrite readWrite)
             /// <summary>.ctor(int width, int height, int depth, RenderTextureFormat format)</summary>
-            public const uint ctor_10 = 0x112cce20; // public void .ctor(int width, int height, int depth, RenderTextureFormat format)
+            public const uint ctor_9 = 0x112cce20; // public void .ctor(int width, int height, int depth, RenderTextureFormat format)
             /// <summary>.ctor(int width, int height, int depth)</summary>
-            public const uint ctor_11 = 0x112ccd50; // public void .ctor(int width, int height, int depth)
+            public const uint ctor_10 = 0x112ccd50; // public void .ctor(int width, int height, int depth)
             /// <summary>.ctor(int width, int height, int depth, RenderTextureFormat format, int mipCount)</summary>
-            public const uint ctor_12 = 0x112cd2b0; // public void .ctor(int width, int height, int depth, RenderTextureFormat format, int mipCount)
+            public const uint ctor_11 = 0x112cd2b0; // public void .ctor(int width, int height, int depth, RenderTextureFormat format, int mipCount)
             /// <summary>Initialize(int width, int height, int depth, RenderTextureFormat format, RenderTextureReadWrite readWrite, int mipCount)</summary>
             public const uint Initialize = 0x112cc230; // private void Initialize(int width, int height, int depth, RenderTextureFormat format, RenderTextureReadWrite readWrite, int mipCount)
             /// <summary>GetDepthStencilFormatLegacy(int depthBits, GraphicsFormat colorFormat) -> GraphicsFormat</summary>
             public const uint GetDepthStencilFormatLegacy = 0x112cb5f0; // internal static GraphicsFormat GetDepthStencilFormatLegacy(int depthBits, GraphicsFormat colorFormat)
             /// <summary>GetDepthStencilFormatLegacy(int depthBits, RenderTextureFormat format) -> GraphicsFormat</summary>
-            public const uint GetDepthStencilFormatLegacy_2 = 0x112cb5d0; // internal static GraphicsFormat GetDepthStencilFormatLegacy(int depthBits, RenderTextureFormat format)
+            public const uint GetDepthStencilFormatLegacy_1 = 0x112cb5d0; // internal static GraphicsFormat GetDepthStencilFormatLegacy(int depthBits, RenderTextureFormat format)
             /// <summary>GetDepthStencilFormatLegacy(int depthBits, DefaultFormat format) -> GraphicsFormat</summary>
-            public const uint GetDepthStencilFormatLegacy_3 = 0x112cb5d0; // internal static GraphicsFormat GetDepthStencilFormatLegacy(int depthBits, DefaultFormat format)
+            public const uint GetDepthStencilFormatLegacy_2 = 0x112cb5d0; // internal static GraphicsFormat GetDepthStencilFormatLegacy(int depthBits, DefaultFormat format)
             /// <summary>GetDepthStencilFormatLegacy(int depthBits, bool requestedShadowMap) -> GraphicsFormat</summary>
-            public const uint GetDepthStencilFormatLegacy_4 = 0x112cb560; // internal static GraphicsFormat GetDepthStencilFormatLegacy(int depthBits, bool requestedShadowMap)
+            public const uint GetDepthStencilFormatLegacy_3 = 0x112cb560; // internal static GraphicsFormat GetDepthStencilFormatLegacy(int depthBits, bool requestedShadowMap)
             /// <summary>get_descriptor() -> RenderTextureDescriptor</summary>
             public const uint get_descriptor = 0x112cd5d0; // public RenderTextureDescriptor get_descriptor()
             /// <summary>ValidateRenderTextureDesc(RenderTextureDescriptor desc)</summary>
@@ -130,21 +130,21 @@ namespace BlockpostTrainer.Sdk.Raw
             /// <summary>GetTemporaryImpl(int width, int height, GraphicsFormat depthStencilFormat, GraphicsFormat colorFormat, int antiAliasing, RenderTextureMemoryless memorylessMode, VRTextureUsage vrUsage, bool useDynamicScale) -> RenderTexture</summary>
             public const uint GetTemporaryImpl = 0x112cb6d0; // private static RenderTexture GetTemporaryImpl(int width, int height, GraphicsFormat depthStencilFormat, GraphicsFormat colorFormat, int antiAliasing = 1, RenderTextureMemoryless memorylessMode = 0, VRTextureUsage vrUsage = 0, bool useDynamicScale = False)
             /// <summary>GetTemporary(int width, int height, int depthBuffer, RenderTextureFormat format, RenderTextureReadWrite readWrite, int antiAliasing, RenderTextureMemoryless memorylessMode, VRTextureUsage vrUsage, bool useDynamicScale) -> RenderTexture</summary>
-            public const uint GetTemporary_2 = 0x112cc0f0; // public static RenderTexture GetTemporary(int width, int height, int depthBuffer, RenderTextureFormat format, RenderTextureReadWrite readWrite, int antiAliasing, RenderTextureMemoryless memorylessMode, VRTextureUsage vrUsage, bool useDynamicScale)
+            public const uint GetTemporary_1 = 0x112cc0f0; // public static RenderTexture GetTemporary(int width, int height, int depthBuffer, RenderTextureFormat format, RenderTextureReadWrite readWrite, int antiAliasing, RenderTextureMemoryless memorylessMode, VRTextureUsage vrUsage, bool useDynamicScale)
             /// <summary>GetTemporary(int width, int height, int depthBuffer, RenderTextureFormat format, RenderTextureReadWrite readWrite, int antiAliasing, RenderTextureMemoryless memorylessMode, VRTextureUsage vrUsage) -> RenderTexture</summary>
-            public const uint GetTemporary_3 = 0x112cbbc0; // public static RenderTexture GetTemporary(int width, int height, int depthBuffer, RenderTextureFormat format, RenderTextureReadWrite readWrite, int antiAliasing, RenderTextureMemoryless memorylessMode, VRTextureUsage vrUsage)
+            public const uint GetTemporary_2 = 0x112cbbc0; // public static RenderTexture GetTemporary(int width, int height, int depthBuffer, RenderTextureFormat format, RenderTextureReadWrite readWrite, int antiAliasing, RenderTextureMemoryless memorylessMode, VRTextureUsage vrUsage)
             /// <summary>GetTemporary(int width, int height, int depthBuffer, RenderTextureFormat format, RenderTextureReadWrite readWrite, int antiAliasing, RenderTextureMemoryless memorylessMode) -> RenderTexture</summary>
-            public const uint GetTemporary_4 = 0x112cb970; // public static RenderTexture GetTemporary(int width, int height, int depthBuffer, RenderTextureFormat format, RenderTextureReadWrite readWrite, int antiAliasing, RenderTextureMemoryless memorylessMode)
+            public const uint GetTemporary_3 = 0x112cb970; // public static RenderTexture GetTemporary(int width, int height, int depthBuffer, RenderTextureFormat format, RenderTextureReadWrite readWrite, int antiAliasing, RenderTextureMemoryless memorylessMode)
             /// <summary>GetTemporary(int width, int height, int depthBuffer, RenderTextureFormat format, RenderTextureReadWrite readWrite, int antiAliasing) -> RenderTexture</summary>
-            public const uint GetTemporary_5 = 0x112cbcf0; // public static RenderTexture GetTemporary(int width, int height, int depthBuffer, RenderTextureFormat format, RenderTextureReadWrite readWrite, int antiAliasing)
+            public const uint GetTemporary_4 = 0x112cbcf0; // public static RenderTexture GetTemporary(int width, int height, int depthBuffer, RenderTextureFormat format, RenderTextureReadWrite readWrite, int antiAliasing)
             /// <summary>GetTemporary(int width, int height, int depthBuffer, RenderTextureFormat format, RenderTextureReadWrite readWrite) -> RenderTexture</summary>
-            public const uint GetTemporary_6 = 0x112cbe10; // public static RenderTexture GetTemporary(int width, int height, int depthBuffer, RenderTextureFormat format, RenderTextureReadWrite readWrite)
+            public const uint GetTemporary_5 = 0x112cbe10; // public static RenderTexture GetTemporary(int width, int height, int depthBuffer, RenderTextureFormat format, RenderTextureReadWrite readWrite)
             /// <summary>GetTemporary(int width, int height, int depthBuffer, RenderTextureFormat format) -> RenderTexture</summary>
-            public const uint GetTemporary_7 = 0x112cbfd0; // public static RenderTexture GetTemporary(int width, int height, int depthBuffer, RenderTextureFormat format)
+            public const uint GetTemporary_6 = 0x112cbfd0; // public static RenderTexture GetTemporary(int width, int height, int depthBuffer, RenderTextureFormat format)
             /// <summary>GetTemporary(int width, int height, int depthBuffer) -> RenderTexture</summary>
-            public const uint GetTemporary_8 = 0x112cb850; // public static RenderTexture GetTemporary(int width, int height, int depthBuffer)
+            public const uint GetTemporary_7 = 0x112cb850; // public static RenderTexture GetTemporary(int width, int height, int depthBuffer)
             /// <summary>GetTemporary(int width, int height) -> RenderTexture</summary>
-            public const uint GetTemporary_9 = 0x112cbaa0; // public static RenderTexture GetTemporary(int width, int height)
+            public const uint GetTemporary_8 = 0x112cbaa0; // public static RenderTexture GetTemporary(int width, int height)
             /// <summary>GetColorBuffer_Injected(out RenderBuffer ret)</summary>
             public const uint GetColorBuffer_Injected = 0x112cb280; // private void GetColorBuffer_Injected(out RenderBuffer ret)
             /// <summary>GetDepthBuffer_Injected(out RenderBuffer ret)</summary>

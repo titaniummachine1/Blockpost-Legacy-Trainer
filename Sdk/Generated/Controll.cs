@@ -351,7 +351,7 @@ namespace BlockpostTrainer.Sdk.Raw
             /// <summary>GHPIFFKFEOD(float BCJADOIPFHE, float IAIHGIDAJEK, float LICHKMCHMMF)</summary>
             public const uint GHPIFFKFEOD = 0x109e3ee0; // internal static void GHPIFFKFEOD(float BCJADOIPFHE, float IAIHGIDAJEK, float LICHKMCHMMF)
             /// <summary>ENPNNPMEGNG(Vector3 CIBFIOICEJE)</summary>
-            public const uint ENPNNPMEGNG_2 = 0x109ddc00; // internal static void ENPNNPMEGNG(Vector3 CIBFIOICEJE)
+            public const uint ENPNNPMEGNG_1 = 0x109ddc00; // internal static void ENPNNPMEGNG(Vector3 CIBFIOICEJE)
             /// <summary>DEGDDOFGPMK(RaycastHit AGEGMNCLLHC, NAHLLMJMOED ADMGNABJBNM) -> bool</summary>
             public const uint DEGDDOFGPMK = 0x109d91a0; // private static bool DEGDDOFGPMK(RaycastHit AGEGMNCLLHC, NAHLLMJMOED ADMGNABJBNM)
             public const uint GFDGMMMPAAN = 0x109e1a90; // internal static void GFDGMMMPAAN()

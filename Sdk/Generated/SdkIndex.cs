@@ -319,7 +319,7 @@ namespace BlockpostTrainer.Sdk
             public const string MasterServer = "MasterClient";
             public const string MasterServerPacket = "MasterClient_DHCBFAKOCAA";
             public const string Net = "NET";
-            public const string DevClient = "NEGGNDFJMAK";
+            public const string NEGGNDFJMAK = "NEGGNDFJMAK";
             public const string NEGGNDFJMAK_GBPCAKEGOIJ = "NEGGNDFJMAK_GBPCAKEGOIJ";
             public const string NEGGNDFJMAK_FPEDLONKNMC = "NEGGNDFJMAK_FPEDLONKNMC";
             public const string NEGGNDFJMAK_BEONIPPEOGM = "NEGGNDFJMAK_BEONIPPEOGM";
@@ -529,7 +529,7 @@ namespace BlockpostTrainer.Sdk
             public const string SteamAPIWarningMessageHook_t = "SteamAPIWarningMessageHook_t";
             public const string TransformGizmo = "TransformGizmo";
             public const string ColorPicker = "ColorPicker";
-            public const string DevClient_2 = "DevClient";
+            public const string DevClient = "DevClient";
             public const string KAELOOPDOPJ = "KAELOOPDOPJ";
             public const string AudioListener = "AudioListener";
             public const string Stack = "Stack";

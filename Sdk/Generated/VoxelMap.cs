@@ -281,7 +281,7 @@ namespace BlockpostTrainer.Sdk.Raw
             /// <summary>JINFJFHGCHA() -> Color</summary>
             public const uint JINFJFHGCHA = 0x10293180; // public static Color JINFJFHGCHA()
             /// <summary>DelEnt(JHGOKEAJNMO EBOJHEBAGEM)</summary>
-            public const uint DelEnt_2 = 0x1028b920; // public static void DelEnt(JHGOKEAJNMO EBOJHEBAGEM)
+            public const uint DelEnt_1 = 0x1028b920; // public static void DelEnt(JHGOKEAJNMO EBOJHEBAGEM)
             /// <summary>GetChunkByBlock(ref int BCJADOIPFHE, ref int IAIHGIDAJEK, ref int LICHKMCHMMF) -> LOMEPCOKKCB</summary>
             public const uint GetChunkByBlock = 0x10290e30; // public static LOMEPCOKKCB GetChunkByBlock(ref int BCJADOIPFHE, ref int IAIHGIDAJEK, ref int LICHKMCHMMF)
             /// <summary>PLDJDBOEMAC(int BCJADOIPFHE, int IAIHGIDAJEK, int LICHKMCHMMF)</summary>
@@ -317,7 +317,7 @@ namespace BlockpostTrainer.Sdk.Raw
             /// <summary>IAJDOJNFDNB(int BCJADOIPFHE, int IAIHGIDAJEK, int LICHKMCHMMF) -> int</summary>
             public const uint IAJDOJNFDNB = 0x10292140; // public static int IAJDOJNFDNB(int BCJADOIPFHE, int IAIHGIDAJEK, int LICHKMCHMMF)
             /// <summary>GetBlock_NewVoxel(ref Vector3 INABADNCINL) -> int</summary>
-            public const uint GetBlock_NewVoxel_2 = 0x102905b0; // public static int GetBlock_NewVoxel(ref Vector3 INABADNCINL)
+            public const uint GetBlock_NewVoxel_1 = 0x102905b0; // public static int GetBlock_NewVoxel(ref Vector3 INABADNCINL)
             /// <summary>SetActiveChunks(int ADDHOOLMHGP, int IMFCLBGKFNA, bool JAFHCLBDANB)</summary>
             public const uint SetActiveChunks = 0x102a3300; // public static void SetActiveChunks(int ADDHOOLMHGP, int IMFCLBGKFNA, bool JAFHCLBDANB)
             /// <summary>GenerateFlatQuad() -> Mesh</summary>
@@ -343,7 +343,7 @@ namespace BlockpostTrainer.Sdk.Raw
             /// <summary>FMCPJOEJBNH() -> Mesh</summary>
             public const uint FMCPJOEJBNH = 0x1028e7e0; // public static Mesh FMCPJOEJBNH()
             /// <summary>GetBlock(Vector3 MKNLEJNHOPF) -> int</summary>
-            public const uint GetBlock_2 = 0x10290b50; // public static int GetBlock(Vector3 MKNLEJNHOPF)
+            public const uint GetBlock_1 = 0x10290b50; // public static int GetBlock(Vector3 MKNLEJNHOPF)
             /// <summary>RenderMesh(LOMEPCOKKCB EEKMDEMALFI)</summary>
             public const uint RenderMesh = 0x1029ec40; // public static void RenderMesh(LOMEPCOKKCB EEKMDEMALFI)
             public const uint CreateGlass = 0x1028af30; // public static void CreateGlass()
@@ -358,9 +358,9 @@ namespace BlockpostTrainer.Sdk.Raw
             public const uint JENOCAGCNCD = 0x10292630; // public static void JENOCAGCNCD()
             public const uint UnlinkChunk = 0x102a48e0; // public static void UnlinkChunk()
             /// <summary>SetBlock(int BCJADOIPFHE, int IAIHGIDAJEK, int LICHKMCHMMF, Color NPHGPNPOANC, int LOCLBKIGKOD) -> bool</summary>
-            public const uint SetBlock_2 = 0x102a3880; // public static bool SetBlock(int BCJADOIPFHE, int IAIHGIDAJEK, int LICHKMCHMMF, Color NPHGPNPOANC, int LOCLBKIGKOD)
+            public const uint SetBlock_1 = 0x102a3880; // public static bool SetBlock(int BCJADOIPFHE, int IAIHGIDAJEK, int LICHKMCHMMF, Color NPHGPNPOANC, int LOCLBKIGKOD)
             /// <summary>GetEnt(int BCJADOIPFHE, int IAIHGIDAJEK, int LICHKMCHMMF) -> int</summary>
-            public const uint GetEnt_2 = 0x10290f90; // public static int GetEnt(int BCJADOIPFHE, int IAIHGIDAJEK, int LICHKMCHMMF)
+            public const uint GetEnt_1 = 0x10290f90; // public static int GetEnt(int BCJADOIPFHE, int IAIHGIDAJEK, int LICHKMCHMMF)
         }
     }
 }

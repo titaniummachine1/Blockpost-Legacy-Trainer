@@ -55,7 +55,7 @@ namespace BlockpostTrainer.Sdk.Raw
             /// <summary>LookRotation(Vector3 forward, Vector3 upwards) -> Quaternion</summary>
             public const uint LookRotation = 0x112ddba0; // public static Quaternion LookRotation(Vector3 forward, Vector3 upwards)
             /// <summary>LookRotation(Vector3 forward) -> Quaternion</summary>
-            public const uint LookRotation_2 = 0x112ddb00; // public static Quaternion LookRotation(Vector3 forward)
+            public const uint LookRotation_1 = 0x112ddb00; // public static Quaternion LookRotation(Vector3 forward)
             /// <summary>.ctor(float x, float y, float z, float w)</summary>
             public const uint ctor = 0x1019e000; // public void .ctor(float x, float y, float z, float w)
             /// <summary>get_identity() -> Quaternion</summary>
@@ -63,7 +63,7 @@ namespace BlockpostTrainer.Sdk.Raw
             /// <summary>op_Multiply(Quaternion lhs, Quaternion rhs) -> Quaternion</summary>
             public const uint op_Multiply = 0x104a8070; // public static Quaternion op_Multiply(Quaternion lhs, Quaternion rhs)
             /// <summary>op_Multiply(Quaternion rotation, Vector3 point) -> Vector3</summary>
-            public const uint op_Multiply_2 = 0x112de0f0; // public static Vector3 op_Multiply(Quaternion rotation, Vector3 point)
+            public const uint op_Multiply_1 = 0x112de0f0; // public static Vector3 op_Multiply(Quaternion rotation, Vector3 point)
             /// <summary>IsEqualUsingDot(float dot) -> bool</summary>
             public const uint IsEqualUsingDot = 0x112ddab0; // private static bool IsEqualUsingDot(float dot)
             /// <summary>op_Equality(Quaternion lhs, Quaternion rhs) -> bool</summary>
@@ -79,7 +79,7 @@ namespace BlockpostTrainer.Sdk.Raw
             /// <summary>Euler(float x, float y, float z) -> Quaternion</summary>
             public const uint Euler = 0x112dd770; // public static Quaternion Euler(float x, float y, float z)
             /// <summary>Euler(Vector3 euler) -> Quaternion</summary>
-            public const uint Euler_2 = 0x112dd6e0; // public static Quaternion Euler(Vector3 euler)
+            public const uint Euler_1 = 0x112dd6e0; // public static Quaternion Euler(Vector3 euler)
             public const uint cctor = 0x112ddec0; // private static void .cctor()
             /// <summary>FromToRotation_Injected(ref Vector3 fromDirection, ref Vector3 toDirection, out Quaternion ret)</summary>
             public const uint FromToRotation_Injected = 0x112dd800; // private static void FromToRotation_Injected(ref Vector3 fromDirection, ref Vector3 toDirection, out Quaternion ret)

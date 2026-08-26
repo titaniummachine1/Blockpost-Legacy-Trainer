@@ -131,7 +131,7 @@ namespace BlockpostTrainer.Sdk.Raw
             public const uint KOHICEFPKIK = 0x107b4cc0; // private void KOHICEFPKIK()
             public const uint HDINJCKENLI = 0x107b0550; // private void HDINJCKENLI()
             /// <summary>PEPDLHOHDKP(Rect HDJBDIJCIMG, string PILFNEPEODC, int GFIMMMNPKLD, int ICPDEFLDMLF, ref int PCNCLNBOFOI)</summary>
-            public const uint PEPDLHOHDKP_2 = 0x107ba5f0; // private void PEPDLHOHDKP(Rect HDJBDIJCIMG, string PILFNEPEODC, int GFIMMMNPKLD, int ICPDEFLDMLF, ref int PCNCLNBOFOI)
+            public const uint PEPDLHOHDKP_1 = 0x107ba5f0; // private void PEPDLHOHDKP(Rect HDJBDIJCIMG, string PILFNEPEODC, int GFIMMMNPKLD, int ICPDEFLDMLF, ref int PCNCLNBOFOI)
             public const uint PNDOENNFCMF = 0x107bb700; // private void PNDOENNFCMF()
         }
     }

@@ -35,7 +35,7 @@ namespace BlockpostTrainer.Sdk.Raw
         {
             public const uint ctor = 0x11118bc0; // public void .ctor()
             /// <summary>.ctor(int initialCapacity)</summary>
-            public const uint ctor_2 = 0x11118b00; // public void .ctor(int initialCapacity)
+            public const uint ctor_1 = 0x11118b00; // public void .ctor(int initialCapacity)
         }
     }
 }

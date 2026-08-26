@@ -292,7 +292,7 @@ namespace BlockpostTrainer.Sdk.Raw
             public const uint KHELAJMGPJB = 0x10cf8830; // private void KHELAJMGPJB(Rect HDJBDIJCIMG, FPNENMKEFBB DBMOPKGMECL, string PILFNEPEODC)
             public const uint JKLFGFFNHLE = 0x10cf7ce0; // private static void JKLFGFFNHLE()
             /// <summary>FPIJPCOKIEC(string PKDKFHFFEHL) -> NAHLLMJMOED</summary>
-            public const uint FPIJPCOKIEC_2 = 0x10cec9c0; // internal static NAHLLMJMOED FPIJPCOKIEC(string PKDKFHFFEHL)
+            public const uint FPIJPCOKIEC_1 = 0x10cec9c0; // internal static NAHLLMJMOED FPIJPCOKIEC(string PKDKFHFFEHL)
             /// <summary>NDJOCKJBLOI(Rect HDJBDIJCIMG, Texture2D FHOKAIADHDO, Vector2 OGHIGNGKKNG)</summary>
             public const uint NDJOCKJBLOI = 0x10cfcb40; // internal static void NDJOCKJBLOI(Rect HDJBDIJCIMG, Texture2D FHOKAIADHDO, Vector2 OGHIGNGKKNG)
             /// <summary>ELCAEFBLIMG(Rect HDJBDIJCIMG)</summary>

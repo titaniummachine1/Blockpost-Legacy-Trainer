@@ -39,7 +39,7 @@ namespace BlockpostTrainer.Sdk.Raw
             public const uint set_clickable = 0x113e4d10; // public void set_clickable(Clickable value)
             public const uint ctor = 0x113e4ce0; // public void .ctor()
             /// <summary>.ctor(Action clickEvent)</summary>
-            public const uint ctor_2 = 0x113e4b30; // public void .ctor(Action clickEvent)
+            public const uint ctor_1 = 0x113e4b30; // public void .ctor(Action clickEvent)
             /// <summary>OnNavigationSubmit(NavigationSubmitEvent evt)</summary>
             public const uint OnNavigationSubmit = 0x113e4a70; // private void OnNavigationSubmit(NavigationSubmitEvent evt)
             /// <summary>OnKeyDown(KeyDownEvent evt)</summary>

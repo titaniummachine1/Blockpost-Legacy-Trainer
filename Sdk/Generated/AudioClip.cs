@@ -50,13 +50,13 @@ namespace BlockpostTrainer.Sdk.Raw
             /// <summary>get_channels() -> int</summary>
             public const uint get_channels = 0x112b7cf0; // public int get_channels()
             /// <summary>GetData(float[] data, int offsetSamples) -> bool</summary>
-            public const uint GetData_2 = 0x112b7780; // public bool GetData(float[] data, int offsetSamples)
+            public const uint GetData_1 = 0x112b7780; // public bool GetData(float[] data, int offsetSamples)
             /// <summary>SetData(float[] data, int offsetSamples) -> bool</summary>
-            public const uint SetData_2 = 0x112b7950; // public bool SetData(float[] data, int offsetSamples)
+            public const uint SetData_1 = 0x112b7950; // public bool SetData(float[] data, int offsetSamples)
             /// <summary>Create(string name, int lengthSamples, int channels, int frequency, bool stream) -> AudioClip</summary>
             public const uint Create = 0x112b7750; // public static AudioClip Create(string name, int lengthSamples, int channels, int frequency, bool stream)
             /// <summary>Create(string name, int lengthSamples, int channels, int frequency, bool stream, AudioClip.PCMReaderCallback pcmreadercallback, AudioClip.PCMSetPositionCallback pcmsetpositioncallback) -> AudioClip</summary>
-            public const uint Create_2 = 0x112b74c0; // public static AudioClip Create(string name, int lengthSamples, int channels, int frequency, bool stream, AudioClip.PCMReaderCallback pcmreadercallback, AudioClip.PCMSetPositionCallback pcmsetpositioncallback)
+            public const uint Create_1 = 0x112b74c0; // public static AudioClip Create(string name, int lengthSamples, int channels, int frequency, bool stream, AudioClip.PCMReaderCallback pcmreadercallback, AudioClip.PCMSetPositionCallback pcmsetpositioncallback)
             /// <summary>add_m_PCMReaderCallback(AudioClip.PCMReaderCallback value)</summary>
             public const uint add_m_PCMReaderCallback = 0x112b7bf0; // private void add_m_PCMReaderCallback(AudioClip.PCMReaderCallback value)
             /// <summary>remove_m_PCMReaderCallback(AudioClip.PCMReaderCallback value)</summary>

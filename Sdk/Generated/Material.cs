@@ -40,9 +40,9 @@ namespace BlockpostTrainer.Sdk.Raw
             /// <summary>.ctor(Shader shader)</summary>
             public const uint ctor = 0x112c4580; // public void .ctor(Shader shader)
             /// <summary>.ctor(Material source)</summary>
-            public const uint ctor_2 = 0x112c4660; // public void .ctor(Material source)
+            public const uint ctor_1 = 0x112c4660; // public void .ctor(Material source)
             /// <summary>.ctor(string contents)</summary>
-            public const uint ctor_3 = 0x112c45f0; // public void .ctor(string contents)
+            public const uint ctor_2 = 0x112c45f0; // public void .ctor(string contents)
             /// <summary>get_shader() -> Shader</summary>
             public const uint get_shader = 0x112c4870; // public Shader get_shader()
             /// <summary>set_shader(Shader value)</summary>
@@ -58,7 +58,7 @@ namespace BlockpostTrainer.Sdk.Raw
             /// <summary>HasProperty(int nameID) -> bool</summary>
             public const uint HasProperty = 0x112c3f70; // public bool HasProperty(int nameID)
             /// <summary>HasProperty(string name) -> bool</summary>
-            public const uint HasProperty_2 = 0x112c3fa0; // public bool HasProperty(string name)
+            public const uint HasProperty_1 = 0x112c3fa0; // public bool HasProperty(string name)
             /// <summary>EnableKeyword(string keyword)</summary>
             public const uint EnableKeyword = 0x112c3aa0; // public void EnableKeyword(string keyword)
             /// <summary>DisableKeyword(string keyword)</summary>
@@ -102,11 +102,11 @@ namespace BlockpostTrainer.Sdk.Raw
             /// <summary>SetFloat(string name, float value)</summary>
             public const uint SetFloat = 0x112c4200; // public void SetFloat(string name, float value)
             /// <summary>SetFloat(int nameID, float value)</summary>
-            public const uint SetFloat_2 = 0x112c41c0; // public void SetFloat(int nameID, float value)
+            public const uint SetFloat_1 = 0x112c41c0; // public void SetFloat(int nameID, float value)
             /// <summary>SetColor(string name, Color value)</summary>
             public const uint SetColor = 0x112c4160; // public void SetColor(string name, Color value)
             /// <summary>SetColor(int nameID, Color value)</summary>
-            public const uint SetColor_2 = 0x112c4120; // public void SetColor(int nameID, Color value)
+            public const uint SetColor_1 = 0x112c4120; // public void SetColor(int nameID, Color value)
             /// <summary>SetVector(string name, Vector4 value)</summary>
             public const uint SetVector = 0x112c4160; // public void SetVector(string name, Vector4 value)
             /// <summary>SetMatrix(string name, Matrix4x4 value)</summary>
@@ -114,21 +114,21 @@ namespace BlockpostTrainer.Sdk.Raw
             /// <summary>SetTexture(string name, Texture value)</summary>
             public const uint SetTexture = 0x112c4520; // public void SetTexture(string name, Texture value)
             /// <summary>SetTexture(int nameID, Texture value)</summary>
-            public const uint SetTexture_2 = 0x112c4370; // public void SetTexture(int nameID, Texture value)
+            public const uint SetTexture_1 = 0x112c4370; // public void SetTexture(int nameID, Texture value)
             /// <summary>SetBuffer(string name, ComputeBuffer value)</summary>
             public const uint SetBuffer = 0x112c4060; // public void SetBuffer(string name, ComputeBuffer value)
             /// <summary>GetFloat(string name) -> float</summary>
             public const uint GetFloat = 0x112c3c70; // public float GetFloat(string name)
             /// <summary>GetFloat(int nameID) -> float</summary>
-            public const uint GetFloat_2 = 0x112c3c40; // public float GetFloat(int nameID)
+            public const uint GetFloat_1 = 0x112c3c40; // public float GetFloat(int nameID)
             /// <summary>GetColor(string name) -> Color</summary>
             public const uint GetColor = 0x112c3b40; // public Color GetColor(string name)
             /// <summary>GetColor(int nameID) -> Color</summary>
-            public const uint GetColor_2 = 0x112c3bc0; // public Color GetColor(int nameID)
+            public const uint GetColor_1 = 0x112c3bc0; // public Color GetColor(int nameID)
             /// <summary>GetTexture(string name) -> Texture</summary>
             public const uint GetTexture = 0x112c3f20; // public Texture GetTexture(string name)
             /// <summary>GetTexture(int nameID) -> Texture</summary>
-            public const uint GetTexture_2 = 0x112c3da0; // public Texture GetTexture(int nameID)
+            public const uint GetTexture_1 = 0x112c3da0; // public Texture GetTexture(int nameID)
             /// <summary>SetTextureOffset(string name, Vector2 value)</summary>
             public const uint SetTextureOffset = 0x112c4400; // public void SetTextureOffset(string name, Vector2 value)
             /// <summary>SetTextureScale(string name, Vector2 value)</summary>
@@ -136,7 +136,7 @@ namespace BlockpostTrainer.Sdk.Raw
             /// <summary>GetTextureOffset(string name) -> Vector2</summary>
             public const uint GetTextureOffset = 0x112c3e30; // public Vector2 GetTextureOffset(string name)
             /// <summary>GetTextureOffset(int nameID) -> Vector2</summary>
-            public const uint GetTextureOffset_2 = 0x112c3dd0; // public Vector2 GetTextureOffset(int nameID)
+            public const uint GetTextureOffset_1 = 0x112c3dd0; // public Vector2 GetTextureOffset(int nameID)
             /// <summary>SetColorImpl_Injected(int name, ref Color value)</summary>
             public const uint SetColorImpl_Injected = 0x112c40c0; // private void SetColorImpl_Injected(int name, ref Color value)
             /// <summary>SetMatrixImpl_Injected(int name, ref Matrix4x4 value)</summary>

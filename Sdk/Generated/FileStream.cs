@@ -55,23 +55,23 @@ namespace BlockpostTrainer.Sdk.Raw
             /// <summary>.ctor(IntPtr handle, FileAccess access, bool ownsHandle, int bufferSize)</summary>
             public const uint ctor = 0x11152d80; // public void .ctor(IntPtr handle, FileAccess access, bool ownsHandle, int bufferSize)
             /// <summary>.ctor(IntPtr handle, FileAccess access, bool ownsHandle, int bufferSize, bool isAsync, bool isConsoleWrapper)</summary>
-            public const uint ctor_2 = 0x111522f0; // internal void .ctor(IntPtr handle, FileAccess access, bool ownsHandle, int bufferSize, bool isAsync, bool isConsoleWrapper)
+            public const uint ctor_1 = 0x111522f0; // internal void .ctor(IntPtr handle, FileAccess access, bool ownsHandle, int bufferSize, bool isAsync, bool isConsoleWrapper)
             /// <summary>.ctor(string path, FileMode mode)</summary>
-            public const uint ctor_3 = 0x11152c90; // public void .ctor(string path, FileMode mode)
+            public const uint ctor_2 = 0x11152c90; // public void .ctor(string path, FileMode mode)
             /// <summary>.ctor(string path, FileMode mode, FileAccess access)</summary>
-            public const uint ctor_4 = 0x11152450; // public void .ctor(string path, FileMode mode, FileAccess access)
+            public const uint ctor_3 = 0x11152450; // public void .ctor(string path, FileMode mode, FileAccess access)
             /// <summary>.ctor(string path, FileMode mode, FileAccess access, FileShare share)</summary>
-            public const uint ctor_5 = 0x11152cf0; // public void .ctor(string path, FileMode mode, FileAccess access, FileShare share)
+            public const uint ctor_4 = 0x11152cf0; // public void .ctor(string path, FileMode mode, FileAccess access, FileShare share)
             /// <summary>.ctor(string path, FileMode mode, FileAccess access, FileShare share, int bufferSize)</summary>
-            public const uint ctor_6 = 0x111522c0; // public void .ctor(string path, FileMode mode, FileAccess access, FileShare share, int bufferSize)
+            public const uint ctor_5 = 0x111522c0; // public void .ctor(string path, FileMode mode, FileAccess access, FileShare share, int bufferSize)
             /// <summary>.ctor(string path, FileMode mode, FileAccess access, FileShare share, int bufferSize, bool useAsync)</summary>
-            public const uint ctor_7 = 0x11152d20; // public void .ctor(string path, FileMode mode, FileAccess access, FileShare share, int bufferSize, bool useAsync)
+            public const uint ctor_6 = 0x11152d20; // public void .ctor(string path, FileMode mode, FileAccess access, FileShare share, int bufferSize, bool useAsync)
             /// <summary>.ctor(string path, FileMode mode, FileAccess access, FileShare share, int bufferSize, FileOptions options)</summary>
-            public const uint ctor_8 = 0x11152d50; // public void .ctor(string path, FileMode mode, FileAccess access, FileShare share, int bufferSize, FileOptions options)
+            public const uint ctor_7 = 0x11152d50; // public void .ctor(string path, FileMode mode, FileAccess access, FileShare share, int bufferSize, FileOptions options)
             /// <summary>.ctor(string path, FileMode mode, FileAccess access, FileShare share, int bufferSize, bool isAsync, bool anonymous)</summary>
-            public const uint ctor_9 = 0x11152cc0; // internal void .ctor(string path, FileMode mode, FileAccess access, FileShare share, int bufferSize, bool isAsync, bool anonymous)
+            public const uint ctor_8 = 0x11152cc0; // internal void .ctor(string path, FileMode mode, FileAccess access, FileShare share, int bufferSize, bool isAsync, bool anonymous)
             /// <summary>.ctor(string path, FileMode mode, FileAccess access, FileShare share, int bufferSize, bool anonymous, FileOptions options)</summary>
-            public const uint ctor_10 = 0x11152480; // internal void .ctor(string path, FileMode mode, FileAccess access, FileShare share, int bufferSize, bool anonymous, FileOptions options)
+            public const uint ctor_9 = 0x11152480; // internal void .ctor(string path, FileMode mode, FileAccess access, FileShare share, int bufferSize, bool anonymous, FileOptions options)
             /// <summary>Init(SafeFileHandle safeHandle, FileAccess access, bool ownsHandle, int bufferSize, bool isAsync, bool isConsoleWrapper)</summary>
             public const uint Init = 0x11150da0; // private void Init(SafeFileHandle safeHandle, FileAccess access, bool ownsHandle, int bufferSize, bool isAsync, bool isConsoleWrapper)
             public const uint ExposeHandle = 0x111507b0; // private void ExposeHandle()
@@ -93,7 +93,7 @@ namespace BlockpostTrainer.Sdk.Raw
             /// <summary>GetSecureFileName(string filename) -> string</summary>
             public const uint GetSecureFileName = 0x11150a50; // private string GetSecureFileName(string filename)
             /// <summary>GetSecureFileName(string filename, bool full) -> string</summary>
-            public const uint GetSecureFileName_2 = 0x111509d0; // private string GetSecureFileName(string filename, bool full)
+            public const uint GetSecureFileName_1 = 0x111509d0; // private string GetSecureFileName(string filename, bool full)
             public const uint cctor = 0x11152250; // private static void .cctor()
         }
     }

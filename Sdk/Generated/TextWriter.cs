@@ -38,7 +38,7 @@ namespace BlockpostTrainer.Sdk.Raw
         {
             public const uint ctor = 0x1114a8b0; // protected void .ctor()
             /// <summary>.ctor(IFormatProvider formatProvider)</summary>
-            public const uint ctor_2 = 0x1114a940; // protected void .ctor(IFormatProvider formatProvider)
+            public const uint ctor_1 = 0x1114a940; // protected void .ctor(IFormatProvider formatProvider)
             /// <summary>Synchronized(TextWriter writer) -> TextWriter</summary>
             public const uint Synchronized = 0x1114a420; // public static TextWriter Synchronized(TextWriter writer)
             public const uint cctor = 0x1114a7b0; // private static void .cctor()

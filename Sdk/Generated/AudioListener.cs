@@ -53,8 +53,8 @@ namespace BlockpostTrainer.Sdk.Raw
             /// <summary>PlayOneShot(AudioClip clip)</summary>
             public const uint PlayOneShot = 0x112b82d0; // public void PlayOneShot(AudioClip clip)
             /// <summary>PlayOneShot(AudioClip clip, float volumeScale)</summary>
-            public const uint PlayOneShot_2 = 0x112b8390; // public void PlayOneShot(AudioClip clip, float volumeScale)
-            public const uint Stop_2 = 0x112b84c0; // public void Stop()
+            public const uint PlayOneShot_1 = 0x112b8390; // public void PlayOneShot(AudioClip clip, float volumeScale)
+            public const uint Stop_1 = 0x112b84c0; // public void Stop()
             /// <summary>PlayClipAtPoint(AudioClip clip, Vector3 position, float volume)</summary>
             public const uint PlayClipAtPoint = 0x112b8010; // public static void PlayClipAtPoint(AudioClip clip, Vector3 position, float volume)
             /// <summary>set_playOnAwake(bool value)</summary>

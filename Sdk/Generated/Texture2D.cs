@@ -62,31 +62,31 @@ namespace BlockpostTrainer.Sdk.Raw
             /// <summary>GetPixels(int x, int y, int blockWidth, int blockHeight, int miplevel) -> Color[]</summary>
             public const uint GetPixels = 0x112cf590; // public Color[] GetPixels(int x, int y, int blockWidth, int blockHeight, int miplevel)
             /// <summary>GetPixels(int x, int y, int blockWidth, int blockHeight) -> Color[]</summary>
-            public const uint GetPixels_2 = 0x112cf450; // public Color[] GetPixels(int x, int y, int blockWidth, int blockHeight)
+            public const uint GetPixels_1 = 0x112cf450; // public Color[] GetPixels(int x, int y, int blockWidth, int blockHeight)
             /// <summary>GetPixels32(int miplevel) -> Color32[]</summary>
             public const uint GetPixels32 = 0x112cf3f0; // public Color32[] GetPixels32(int miplevel)
             /// <summary>GetPixels32() -> Color32[]</summary>
-            public const uint GetPixels32_2 = 0x112cf420; // public Color32[] GetPixels32()
+            public const uint GetPixels32_1 = 0x112cf420; // public Color32[] GetPixels32()
             /// <summary>ValidateFormat(TextureFormat format, int width, int height) -> bool</summary>
             public const uint ValidateFormat = 0x112cfca0; // internal bool ValidateFormat(TextureFormat format, int width, int height)
             /// <summary>.ctor(int width, int height, TextureFormat textureFormat, int mipCount, bool linear, IntPtr nativeTex)</summary>
             public const uint ctor = 0x112cfd60; // internal void .ctor(int width, int height, TextureFormat textureFormat, int mipCount, bool linear, IntPtr nativeTex)
             /// <summary>.ctor(int width, int height, TextureFormat textureFormat, int mipCount, bool linear)</summary>
-            public const uint ctor_2 = 0x112d0000; // public void .ctor(int width, int height, TextureFormat textureFormat, int mipCount, bool linear)
+            public const uint ctor_1 = 0x112d0000; // public void .ctor(int width, int height, TextureFormat textureFormat, int mipCount, bool linear)
             /// <summary>.ctor(int width, int height, TextureFormat textureFormat, bool mipChain, bool linear)</summary>
-            public const uint ctor_3 = 0x112d0050; // public void .ctor(int width, int height, TextureFormat textureFormat, bool mipChain, bool linear)
+            public const uint ctor_2 = 0x112d0050; // public void .ctor(int width, int height, TextureFormat textureFormat, bool mipChain, bool linear)
             /// <summary>.ctor(int width, int height, TextureFormat textureFormat, bool mipChain)</summary>
-            public const uint ctor_4 = 0x112d00b0; // public void .ctor(int width, int height, TextureFormat textureFormat, bool mipChain)
+            public const uint ctor_3 = 0x112d00b0; // public void .ctor(int width, int height, TextureFormat textureFormat, bool mipChain)
             /// <summary>.ctor(int width, int height)</summary>
-            public const uint ctor_5 = 0x112cff90; // public void .ctor(int width, int height)
+            public const uint ctor_4 = 0x112cff90; // public void .ctor(int width, int height)
             /// <summary>SetPixel(int x, int y, Color color)</summary>
             public const uint SetPixel = 0x112cfab0; // public void SetPixel(int x, int y, Color color)
             /// <summary>SetPixels(int x, int y, int blockWidth, int blockHeight, Color[] colors, int miplevel)</summary>
             public const uint SetPixels = 0x112cfba0; // public void SetPixels(int x, int y, int blockWidth, int blockHeight, Color[] colors, int miplevel)
             /// <summary>SetPixels(int x, int y, int blockWidth, int blockHeight, Color[] colors)</summary>
-            public const uint SetPixels_2 = 0x112cfc70; // public void SetPixels(int x, int y, int blockWidth, int blockHeight, Color[] colors)
+            public const uint SetPixels_1 = 0x112cfc70; // public void SetPixels(int x, int y, int blockWidth, int blockHeight, Color[] colors)
             /// <summary>SetPixels(Color[] colors)</summary>
-            public const uint SetPixels_3 = 0x112cfc20; // public void SetPixels(Color[] colors)
+            public const uint SetPixels_2 = 0x112cfc20; // public void SetPixels(Color[] colors)
             /// <summary>GetPixel(int x, int y) -> Color</summary>
             public const uint GetPixel = 0x112cf350; // public Color GetPixel(int x, int y)
             /// <summary>GetPixelBilinear(float u, float v) -> Color</summary>
@@ -94,24 +94,24 @@ namespace BlockpostTrainer.Sdk.Raw
             /// <summary>Apply(bool updateMipmaps, bool makeNoLongerReadable)</summary>
             public const uint Apply = 0x112cf0b0; // public void Apply(bool updateMipmaps, bool makeNoLongerReadable)
             /// <summary>Apply(bool updateMipmaps)</summary>
-            public const uint Apply_2 = 0x112cf140; // public void Apply(bool updateMipmaps)
-            public const uint Apply_3 = 0x112cf120; // public void Apply()
+            public const uint Apply_1 = 0x112cf140; // public void Apply(bool updateMipmaps)
+            public const uint Apply_2 = 0x112cf120; // public void Apply()
             /// <summary>Reinitialize(int width, int height) -> bool</summary>
             public const uint Reinitialize = 0x112cf8f0; // public bool Reinitialize(int width, int height)
             /// <summary>Reinitialize(int width, int height, TextureFormat format, bool hasMipMap) -> bool</summary>
-            public const uint Reinitialize_2 = 0x112cf960; // public bool Reinitialize(int width, int height, TextureFormat format, bool hasMipMap)
+            public const uint Reinitialize_1 = 0x112cf960; // public bool Reinitialize(int width, int height, TextureFormat format, bool hasMipMap)
             /// <summary>ReadPixels(Rect source, int destX, int destY, bool recalculateMipMaps)</summary>
             public const uint ReadPixels = 0x112cf800; // public void ReadPixels(Rect source, int destX, int destY, bool recalculateMipMaps)
             /// <summary>ReadPixels(Rect source, int destX, int destY)</summary>
-            public const uint ReadPixels_2 = 0x112cf780; // public void ReadPixels(Rect source, int destX, int destY)
+            public const uint ReadPixels_1 = 0x112cf780; // public void ReadPixels(Rect source, int destX, int destY)
             /// <summary>SetPixels32(Color32[] colors, int miplevel)</summary>
             public const uint SetPixels32 = 0x112cfa00; // public void SetPixels32(Color32[] colors, int miplevel)
             /// <summary>SetPixels32(Color32[] colors)</summary>
-            public const uint SetPixels32_2 = 0x112cfb30; // public void SetPixels32(Color32[] colors)
+            public const uint SetPixels32_1 = 0x112cfb30; // public void SetPixels32(Color32[] colors)
             /// <summary>GetPixels(int miplevel) -> Color[]</summary>
-            public const uint GetPixels_3 = 0x112cf480; // public Color[] GetPixels(int miplevel)
+            public const uint GetPixels_2 = 0x112cf480; // public Color[] GetPixels(int miplevel)
             /// <summary>GetPixels() -> Color[]</summary>
-            public const uint GetPixels_4 = 0x112cf510; // public Color[] GetPixels()
+            public const uint GetPixels_3 = 0x112cf510; // public Color[] GetPixels()
             /// <summary>SetPixelImpl_Injected(int image, int mip, int x, int y, ref Color color)</summary>
             public const uint SetPixelImpl_Injected = 0x112cfa30; // private void SetPixelImpl_Injected(int image, int mip, int x, int y, ref Color color)
             /// <summary>GetPixelImpl_Injected(int image, int mip, int x, int y, out Color ret)</summary>

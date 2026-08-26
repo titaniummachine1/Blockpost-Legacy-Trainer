@@ -162,7 +162,7 @@ namespace BlockpostTrainer.Sdk.Raw
             public const uint SetDefaultFont = 0x11302ed0; // internal static void SetDefaultFont(Font font)
             public const uint ctor = 0x11303160; // public void .ctor()
             /// <summary>.ctor(GUIStyle other)</summary>
-            public const uint ctor_2 = 0x113030a0; // public void .ctor(GUIStyle other)
+            public const uint ctor_1 = 0x113030a0; // public void .ctor(GUIStyle other)
             /// <summary>get_name() -> string</summary>
             public const uint get_name = 0x113035f0; // public string get_name()
             /// <summary>set_name(string value)</summary>
@@ -186,23 +186,23 @@ namespace BlockpostTrainer.Sdk.Raw
             /// <summary>Draw(Rect position, bool isHover, bool isActive, bool on, bool hasKeyboardFocus)</summary>
             public const uint Draw = 0x113024c0; // public void Draw(Rect position, bool isHover, bool isActive, bool on, bool hasKeyboardFocus)
             /// <summary>Draw(Rect position, GUIContent content, bool isHover, bool isActive, bool on, bool hasKeyboardFocus)</summary>
-            public const uint Draw_2 = 0x11302470; // public void Draw(Rect position, GUIContent content, bool isHover, bool isActive, bool on, bool hasKeyboardFocus)
+            public const uint Draw_1 = 0x11302470; // public void Draw(Rect position, GUIContent content, bool isHover, bool isActive, bool on, bool hasKeyboardFocus)
             /// <summary>Draw(Rect position, GUIContent content, int controlID)</summary>
-            public const uint Draw_3 = 0x11302540; // public void Draw(Rect position, GUIContent content, int controlID)
+            public const uint Draw_2 = 0x11302540; // public void Draw(Rect position, GUIContent content, int controlID)
             /// <summary>Draw(Rect position, GUIContent content, int controlID, bool on)</summary>
-            public const uint Draw_4 = 0x113023b0; // public void Draw(Rect position, GUIContent content, int controlID, bool on)
+            public const uint Draw_3 = 0x113023b0; // public void Draw(Rect position, GUIContent content, int controlID, bool on)
             /// <summary>Draw(Rect position, GUIContent content, int controlID, bool on, bool hover)</summary>
-            public const uint Draw_5 = 0x11302570; // public void Draw(Rect position, GUIContent content, int controlID, bool on, bool hover)
+            public const uint Draw_4 = 0x11302570; // public void Draw(Rect position, GUIContent content, int controlID, bool on, bool hover)
             /// <summary>Draw(Rect position, GUIContent content, int controlId, bool isHover, bool isActive, bool on, bool hasKeyboardFocus)</summary>
-            public const uint Draw_6 = 0x113023e0; // private void Draw(Rect position, GUIContent content, int controlId, bool isHover, bool isActive, bool on, bool hasKeyboardFocus)
+            public const uint Draw_5 = 0x113023e0; // private void Draw(Rect position, GUIContent content, int controlId, bool isHover, bool isActive, bool on, bool hasKeyboardFocus)
             /// <summary>DrawCursor(Rect position, GUIContent content, int controlID, int character)</summary>
             public const uint DrawCursor = 0x11301b20; // public void DrawCursor(Rect position, GUIContent content, int controlID, int character)
             /// <summary>DrawWithTextSelection(Rect position, GUIContent content, bool isActive, bool hasKeyboardFocus, int firstSelectedCharacter, int lastSelectedCharacter, bool drawSelectionAsComposition, Color selectionColor)</summary>
             public const uint DrawWithTextSelection = 0x11301dd0; // internal void DrawWithTextSelection(Rect position, GUIContent content, bool isActive, bool hasKeyboardFocus, int firstSelectedCharacter, int lastSelectedCharacter, bool drawSelectionAsComposition, Color selectionColor)
             /// <summary>DrawWithTextSelection(Rect position, GUIContent content, int controlID, int firstSelectedCharacter, int lastSelectedCharacter, bool drawSelectionAsComposition)</summary>
-            public const uint DrawWithTextSelection_2 = 0x11302260; // internal void DrawWithTextSelection(Rect position, GUIContent content, int controlID, int firstSelectedCharacter, int lastSelectedCharacter, bool drawSelectionAsComposition)
+            public const uint DrawWithTextSelection_1 = 0x11302260; // internal void DrawWithTextSelection(Rect position, GUIContent content, int controlID, int firstSelectedCharacter, int lastSelectedCharacter, bool drawSelectionAsComposition)
             /// <summary>DrawWithTextSelection(Rect position, GUIContent content, int controlID, int firstSelectedCharacter, int lastSelectedCharacter)</summary>
-            public const uint DrawWithTextSelection_3 = 0x11302110; // public void DrawWithTextSelection(Rect position, GUIContent content, int controlID, int firstSelectedCharacter, int lastSelectedCharacter)
+            public const uint DrawWithTextSelection_2 = 0x11302110; // public void DrawWithTextSelection(Rect position, GUIContent content, int controlID, int firstSelectedCharacter, int lastSelectedCharacter)
             /// <summary>op_Implicit(string str) -> GUIStyle</summary>
             public const uint op_Implicit = 0x11303880; // public static GUIStyle op_Implicit(string str)
             /// <summary>get_none() -> GUIStyle</summary>

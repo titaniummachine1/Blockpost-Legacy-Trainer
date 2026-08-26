@@ -84,7 +84,7 @@ namespace BlockpostTrainer.Sdk.Raw
             public const uint ADBHAOJHEEK = 0x109382b0; // internal static string ADBHAOJHEEK()
             /// <summary>HJMOENIPJOL(ulong HIAOEAGEJGB) -> byte[]</summary>
             public const uint HJMOENIPJOL = 0x10939910; // internal static byte[] HJMOENIPJOL(ulong HIAOEAGEJGB)
-            public const uint LPAPGKDAENI_2 = 0x1093a560; // internal static void LPAPGKDAENI()
+            public const uint LPAPGKDAENI_1 = 0x1093a560; // internal static void LPAPGKDAENI()
             /// <summary>ODONEEFGGDP() -> int</summary>
             public const uint ODONEEFGGDP = 0x1093ac80; // internal static int ODONEEFGGDP()
             /// <summary>JIBFMIPGJEF() -> float</summary>

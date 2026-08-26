@@ -94,7 +94,7 @@ namespace BlockpostTrainer.Sdk.Raw
             public const int Colon = 0x3a; // KeyCode
             public const int Semicolon = 0x3b; // KeyCode
             public const int Less = 0x3c; // KeyCode
-            public const int Equals = 0x3d; // KeyCode
+            public const int Equals_ = 0x3d; // KeyCode
             public const int Greater = 0x3e; // KeyCode
             public const int Question = 0x3f; // KeyCode
             public const int At = 0x40; // KeyCode

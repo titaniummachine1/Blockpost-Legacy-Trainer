@@ -33,7 +33,7 @@ namespace BlockpostTrainer.Sdk.Raw
             /// <summary>op_Explicit(uint value) -> HAuthTicket</summary>
             public const uint op_Explicit = 0x10280760; // public static HAuthTicket op_Explicit(uint value)
             /// <summary>op_Explicit(HAuthTicket that) -> uint</summary>
-            public const uint op_Explicit_2 = 0x10280760; // public static uint op_Explicit(HAuthTicket that)
+            public const uint op_Explicit_1 = 0x10280760; // public static uint op_Explicit(HAuthTicket that)
             public const uint cctor = 0x102834b0; // private static void .cctor()
         }
     }

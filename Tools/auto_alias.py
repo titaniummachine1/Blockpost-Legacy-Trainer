@@ -85,6 +85,10 @@ METHOD_OVERRIDES = {
         "CDEGJOBLOFO": "Fire",
         "MFHJFPPOHLC": "FireAlt",
     },
+    "NET": {
+        "LPAPGKDAENI": "Begin",
+        "EMJOGONJKIO": "End",
+    },
 }
 
 FIELD_OVERRIDES = {

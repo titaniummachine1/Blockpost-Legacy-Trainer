@@ -384,7 +384,7 @@ namespace BlockpostTrainer.Sdk.Raw
             public const uint OnGUI = 0x10360a40; // private void OnGUI()
             public const uint BMHNCGGEPEO = 0x103518a0; // private void BMHNCGGEPEO()
             /// <summary>SelectMenu(EECOBMIMJEL CDKEENLDMNG)</summary>
-            public const uint SelectMenu_2 = 0x10361ce0; // private static void SelectMenu(EECOBMIMJEL CDKEENLDMNG)
+            public const uint SelectMenu_1 = 0x10361ce0; // private static void SelectMenu(EECOBMIMJEL CDKEENLDMNG)
             /// <summary>FFGMPKAINKE(int GCOJEEECAMG)</summary>
             public const uint FFGMPKAINKE = 0x103547c0; // internal static void FFGMPKAINKE(int GCOJEEECAMG)
             /// <summary>IMKBGIOJGDK(int PICIILNDDJO) -> int</summary>
@@ -405,7 +405,7 @@ namespace BlockpostTrainer.Sdk.Raw
             /// <summary>FOPKBNPKFGJ(int LDKMPMIANCE, Rect HDJBDIJCIMG, Rect BNBAJIOGABH, string BDFLACIIPGB)</summary>
             public const uint FOPKBNPKFGJ = 0x10355090; // private static void FOPKBNPKFGJ(int LDKMPMIANCE, Rect HDJBDIJCIMG, Rect BNBAJIOGABH, string BDFLACIIPGB)
             /// <summary>SelectMenu(int IDPMGIKMBBD, bool HPBGBMKFOFN)</summary>
-            public const uint SelectMenu_3 = 0x10361b20; // internal static void SelectMenu(int IDPMGIKMBBD, bool HPBGBMKFOFN)
+            public const uint SelectMenu_2 = 0x10361b20; // internal static void SelectMenu(int IDPMGIKMBBD, bool HPBGBMKFOFN)
             public const uint FPNDLHAMAPE = 0x10355690; // private void FPNDLHAMAPE()
             /// <summary>BFKGFICLIFN(EECOBMIMJEL CDKEENLDMNG)</summary>
             public const uint BFKGFICLIFN = 0x10350f00; // private static void BFKGFICLIFN(EECOBMIMJEL CDKEENLDMNG)

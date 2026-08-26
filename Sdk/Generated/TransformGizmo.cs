@@ -112,7 +112,7 @@ namespace BlockpostTrainer.Sdk.Raw
             public const uint OBADGCKFAEM = 0x104eaa60; // private Vector3 OBADGCKFAEM()
             public const uint GEAJLHMMKJL = 0x104e6730; // private void GEAJLHMMKJL()
             /// <summary>KKMHGFCGFAJ(JNPOJGEBDJJ POLBBAJLPEF) -> IEnumerator</summary>
-            public const uint KKMHGFCGFAJ_2 = 0x104e8150; // private IEnumerator KKMHGFCGFAJ(JNPOJGEBDJJ POLBBAJLPEF)
+            public const uint KKMHGFCGFAJ_1 = 0x104e8150; // private IEnumerator KKMHGFCGFAJ(JNPOJGEBDJJ POLBBAJLPEF)
             public const uint HBOKCKNAINA = 0x104e6f50; // private void HBOKCKNAINA()
             public const uint CCIPCCKGLBD = 0x104e4990; // private void CCIPCCKGLBD()
             public const uint DPDAPBMECOH = 0x104e54f0; // private void DPDAPBMECOH()

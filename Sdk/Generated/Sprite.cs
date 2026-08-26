@@ -88,13 +88,13 @@ namespace BlockpostTrainer.Sdk.Raw
             /// <summary>Create(Texture2D texture, Rect rect, Vector2 pivot, float pixelsPerUnit, uint extrude, SpriteMeshType meshType, Vector4 border, bool generateFallbackPhysicsShape) -> Sprite</summary>
             public const uint Create = 0x112e09d0; // public static Sprite Create(Texture2D texture, Rect rect, Vector2 pivot, float pixelsPerUnit, uint extrude, SpriteMeshType meshType, Vector4 border, bool generateFallbackPhysicsShape)
             /// <summary>Create(Texture2D texture, Rect rect, Vector2 pivot, float pixelsPerUnit, uint extrude, SpriteMeshType meshType, Vector4 border) -> Sprite</summary>
-            public const uint Create_2 = 0x112e08a0; // public static Sprite Create(Texture2D texture, Rect rect, Vector2 pivot, float pixelsPerUnit, uint extrude, SpriteMeshType meshType, Vector4 border)
+            public const uint Create_1 = 0x112e08a0; // public static Sprite Create(Texture2D texture, Rect rect, Vector2 pivot, float pixelsPerUnit, uint extrude, SpriteMeshType meshType, Vector4 border)
             /// <summary>Create(Texture2D texture, Rect rect, Vector2 pivot, float pixelsPerUnit, uint extrude, SpriteMeshType meshType) -> Sprite</summary>
-            public const uint Create_3 = 0x112e08f0; // public static Sprite Create(Texture2D texture, Rect rect, Vector2 pivot, float pixelsPerUnit, uint extrude, SpriteMeshType meshType)
+            public const uint Create_2 = 0x112e08f0; // public static Sprite Create(Texture2D texture, Rect rect, Vector2 pivot, float pixelsPerUnit, uint extrude, SpriteMeshType meshType)
             /// <summary>Create(Texture2D texture, Rect rect, Vector2 pivot, float pixelsPerUnit, uint extrude) -> Sprite</summary>
-            public const uint Create_4 = 0x112e0df0; // public static Sprite Create(Texture2D texture, Rect rect, Vector2 pivot, float pixelsPerUnit, uint extrude)
+            public const uint Create_3 = 0x112e0df0; // public static Sprite Create(Texture2D texture, Rect rect, Vector2 pivot, float pixelsPerUnit, uint extrude)
             /// <summary>Create(Texture2D texture, Rect rect, Vector2 pivot, float pixelsPerUnit) -> Sprite</summary>
-            public const uint Create_5 = 0x112e0960; // public static Sprite Create(Texture2D texture, Rect rect, Vector2 pivot, float pixelsPerUnit)
+            public const uint Create_4 = 0x112e0960; // public static Sprite Create(Texture2D texture, Rect rect, Vector2 pivot, float pixelsPerUnit)
             /// <summary>GetTextureRect_Injected(out Rect ret)</summary>
             public const uint GetTextureRect_Injected = 0x112e1040; // private void GetTextureRect_Injected(out Rect ret)
             /// <summary>GetInnerUVs_Injected(out Vector4 ret)</summary>

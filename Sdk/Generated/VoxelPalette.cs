@@ -111,7 +111,7 @@ namespace BlockpostTrainer.Sdk.Raw
             /// <summary>BGOIFGMKGDD() -> Texture2D</summary>
             public const uint BGOIFGMKGDD = 0x10816680; // public static Texture2D BGOIFGMKGDD()
             /// <summary>GetColor(int NPHGPNPOANC) -> Color</summary>
-            public const uint GetColor_2 = 0x10817b80; // public static Color GetColor(int NPHGPNPOANC)
+            public const uint GetColor_1 = 0x10817b80; // public static Color GetColor(int NPHGPNPOANC)
             /// <summary>get_palette() -> Texture2D</summary>
             public const uint get_palette = 0x10819f30; // public static Texture2D get_palette()
             public const uint ANECHCDDBAI = 0x108161a0; // private static void ANECHCDDBAI()
@@ -140,7 +140,7 @@ namespace BlockpostTrainer.Sdk.Raw
             /// <summary>NIHIJPEEMHJ(bool BGALIFJNDNF)</summary>
             public const uint NIHIJPEEMHJ = 0x10819900; // private static void NIHIJPEEMHJ(bool BGALIFJNDNF)
             /// <summary>GetColor(Color NPHGPNPOANC) -> int</summary>
-            public const uint GetColor_3 = 0x10817c20; // public static int GetColor(Color NPHGPNPOANC)
+            public const uint GetColor_2 = 0x10817c20; // public static int GetColor(Color NPHGPNPOANC)
             /// <summary>get_p() -> Color[]</summary>
             public const uint get_p = 0x10819ef0; // public static Color[] get_p()
             public const uint HBGBPOPMDBN = 0x10817ef0; // private static void HBGBPOPMDBN()

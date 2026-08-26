@@ -39,7 +39,7 @@ namespace BlockpostTrainer.Sdk.Raw
             /// <summary>Calc(byte[] COEGDOAPEDD) -> string</summary>
             public const uint Calc = 0x103689a0; // public static string Calc(byte[] COEGDOAPEDD)
             /// <summary>Calc(string CLPEINKHPAH) -> string</summary>
-            public const uint Calc_2 = 0x10368a60; // public static string Calc(string CLPEINKHPAH)
+            public const uint Calc_1 = 0x10368a60; // public static string Calc(string CLPEINKHPAH)
             /// <summary>JGMKANPNBPM(string CLPEINKHPAH) -> string</summary>
             public const uint JGMKANPNBPM = 0x10368c40; // public static string JGMKANPNBPM(string CLPEINKHPAH)
             /// <summary>PEICMDCHNIB(byte[] COEGDOAPEDD) -> string</summary>

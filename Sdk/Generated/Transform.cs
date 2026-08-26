@@ -90,7 +90,7 @@ namespace BlockpostTrainer.Sdk.Raw
             /// <summary>SetParent(Transform p)</summary>
             public const uint SetParent = 0x112e4f00; // public void SetParent(Transform p)
             /// <summary>SetParent(Transform parent, bool worldPositionStays)</summary>
-            public const uint SetParent_2 = 0x112e4f30; // public void SetParent(Transform parent, bool worldPositionStays)
+            public const uint SetParent_1 = 0x112e4f30; // public void SetParent(Transform parent, bool worldPositionStays)
             /// <summary>get_worldToLocalMatrix() -> Matrix4x4</summary>
             public const uint get_worldToLocalMatrix = 0x112e5cf0; // public Matrix4x4 get_worldToLocalMatrix()
             /// <summary>get_localToWorldMatrix() -> Matrix4x4</summary>
@@ -98,23 +98,23 @@ namespace BlockpostTrainer.Sdk.Raw
             /// <summary>Translate(Vector3 translation, Space relativeTo)</summary>
             public const uint Translate = 0x112e5150; // public void Translate(Vector3 translation, Space relativeTo)
             /// <summary>Translate(Vector3 translation)</summary>
-            public const uint Translate_2 = 0x112e5060; // public void Translate(Vector3 translation)
+            public const uint Translate_1 = 0x112e5060; // public void Translate(Vector3 translation)
             /// <summary>Rotate(Vector3 eulers, Space relativeTo)</summary>
             public const uint Rotate = 0x112e4930; // public void Rotate(Vector3 eulers, Space relativeTo)
             /// <summary>Rotate(Vector3 eulers)</summary>
-            public const uint Rotate_2 = 0x112e4780; // public void Rotate(Vector3 eulers)
+            public const uint Rotate_1 = 0x112e4780; // public void Rotate(Vector3 eulers)
             /// <summary>Rotate(float xAngle, float yAngle, float zAngle)</summary>
-            public const uint Rotate_3 = 0x112e48f0; // public void Rotate(float xAngle, float yAngle, float zAngle)
+            public const uint Rotate_2 = 0x112e48f0; // public void Rotate(float xAngle, float yAngle, float zAngle)
             /// <summary>RotateAroundInternal(Vector3 axis, float angle)</summary>
             public const uint RotateAroundInternal = 0x112e44a0; // internal void RotateAroundInternal(Vector3 axis, float angle)
             /// <summary>Rotate(Vector3 axis, float angle, Space relativeTo)</summary>
-            public const uint Rotate_4 = 0x112e47b0; // public void Rotate(Vector3 axis, float angle, Space relativeTo)
+            public const uint Rotate_3 = 0x112e47b0; // public void Rotate(Vector3 axis, float angle, Space relativeTo)
             /// <summary>RotateAround(Vector3 point, Vector3 axis, float angle)</summary>
             public const uint RotateAround = 0x112e44e0; // public void RotateAround(Vector3 point, Vector3 axis, float angle)
             /// <summary>LookAt(Vector3 worldPosition, Vector3 worldUp)</summary>
             public const uint LookAt = 0x112e4380; // public void LookAt(Vector3 worldPosition, Vector3 worldUp)
             /// <summary>LookAt(Vector3 worldPosition)</summary>
-            public const uint LookAt_2 = 0x112e43e0; // public void LookAt(Vector3 worldPosition)
+            public const uint LookAt_1 = 0x112e43e0; // public void LookAt(Vector3 worldPosition)
             /// <summary>Internal_LookAt(Vector3 worldPosition, Vector3 worldUp)</summary>
             public const uint Internal_LookAt = 0x112e4220; // private void Internal_LookAt(Vector3 worldPosition, Vector3 worldUp)
             /// <summary>TransformDirection(Vector3 direction) -> Vector3</summary>

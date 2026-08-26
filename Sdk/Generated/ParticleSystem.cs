@@ -38,7 +38,7 @@ namespace BlockpostTrainer.Sdk.Raw
             /// <summary>Emit(Vector3 position, Vector3 velocity, float size, float lifetime, Color32 color)</summary>
             public const uint Emit = 0x1131b6a0; // public void Emit(Vector3 position, Vector3 velocity, float size, float lifetime, Color32 color)
             /// <summary>Emit(ParticleSystem.Particle particle)</summary>
-            public const uint Emit_2 = 0x1131b830; // public void Emit(ParticleSystem.Particle particle)
+            public const uint Emit_1 = 0x1131b830; // public void Emit(ParticleSystem.Particle particle)
             /// <summary>set_startSpeed(float value)</summary>
             public const uint set_startSpeed = 0x1131bba0; // public void set_startSpeed(float value)
             /// <summary>set_startColor(Color value)</summary>
@@ -56,15 +56,15 @@ namespace BlockpostTrainer.Sdk.Raw
             /// <summary>GetParticles(ParticleSystem.Particle[] particles, int size, int offset) -> int</summary>
             public const uint GetParticles = 0x1131b900; // public int GetParticles([Out] ParticleSystem.Particle[] particles, int size, int offset)
             /// <summary>GetParticles(ParticleSystem.Particle[] particles, int size) -> int</summary>
-            public const uint GetParticles_2 = 0x1131b940; // public int GetParticles([Out] ParticleSystem.Particle[] particles, int size)
+            public const uint GetParticles_1 = 0x1131b940; // public int GetParticles([Out] ParticleSystem.Particle[] particles, int size)
             /// <summary>GetParticles(ParticleSystem.Particle[] particles) -> int</summary>
-            public const uint GetParticles_3 = 0x1131b8d0; // public int GetParticles([Out] ParticleSystem.Particle[] particles)
+            public const uint GetParticles_2 = 0x1131b8d0; // public int GetParticles([Out] ParticleSystem.Particle[] particles)
             /// <summary>Emit(int count)</summary>
-            public const uint Emit_3 = 0x1131b670; // public void Emit(int count)
+            public const uint Emit_2 = 0x1131b670; // public void Emit(int count)
             /// <summary>Emit_Internal(int count)</summary>
             public const uint Emit_Internal = 0x1131b670; // private void Emit_Internal(int count)
             /// <summary>Emit(ParticleSystem.EmitParams emitParams, int count)</summary>
-            public const uint Emit_4 = 0x1131b860; // public void Emit(ParticleSystem.EmitParams emitParams, int count)
+            public const uint Emit_3 = 0x1131b860; // public void Emit(ParticleSystem.EmitParams emitParams, int count)
             /// <summary>EmitOld_Internal(ref ParticleSystem.Particle particle)</summary>
             public const uint EmitOld_Internal = 0x1131b610; // private void EmitOld_Internal(ref ParticleSystem.Particle particle)
             /// <summary>get_main() -> ParticleSystem.MainModule</summary>

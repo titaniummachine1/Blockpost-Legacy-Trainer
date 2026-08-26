@@ -119,7 +119,7 @@ namespace BlockpostTrainer.Sdk.Raw
             public const uint NATIVERES = 0x10aa2e00; // public static float NATIVERES(float BNJGJOOJCHF)
             public const uint HBEDMAJOEND = 0x10a9f460; // public static void HBEDMAJOEND()
             /// <summary>DrawBox(Rect HDJBDIJCIMG, Texture2D GOALAGKACHO)</summary>
-            public const uint DrawBox_2 = 0x10a9cdb0; // public static void DrawBox(Rect HDJBDIJCIMG, Texture2D GOALAGKACHO)
+            public const uint DrawBox_1 = 0x10a9cdb0; // public static void DrawBox(Rect HDJBDIJCIMG, Texture2D GOALAGKACHO)
             /// <summary>COMJMEIKJBI(Rect HDJBDIJCIMG, string BDFLACIIPGB, TextAnchor MKNLEJNHOPF, PBMAFIFKGEH NMLMGNNMHIO, int INAMCDPFHLI, int DAPFKDOAKFP, PBMAFIFKGEH MDJLIBODMIP)</summary>
             public const uint COMJMEIKJBI = 0x10a9ba30; // public static void COMJMEIKJBI(Rect HDJBDIJCIMG, string BDFLACIIPGB, TextAnchor MKNLEJNHOPF, PBMAFIFKGEH NMLMGNNMHIO, int INAMCDPFHLI, int DAPFKDOAKFP, PBMAFIFKGEH MDJLIBODMIP)
             public const uint FNHIIMFAILB = 0x10a9f000; // public static void FNHIIMFAILB()
@@ -134,7 +134,7 @@ namespace BlockpostTrainer.Sdk.Raw
             public const uint JMFNBCEHKEA = 0x10aa0d80; // public static void JMFNBCEHKEA(Texture2D AHOPKIKEHAA, Texture2D PEEDPHIIHKF, Texture2D CPGIOOFCGDN)
             public const uint HHBBEMONBJI = 0x10a9f7e0; // public static void HHBBEMONBJI()
             /// <summary>Contains(Rect HDJBDIJCIMG, Vector2 BGGCKMFCLOC) -> bool</summary>
-            public const uint Contains_2 = 0x10a9bfa0; // public static bool Contains(Rect HDJBDIJCIMG, Vector2 BGGCKMFCLOC)
+            public const uint Contains_1 = 0x10a9bfa0; // public static bool Contains(Rect HDJBDIJCIMG, Vector2 BGGCKMFCLOC)
             /// <summary>ButtonPic(Rect HDJBDIJCIMG, PBMAFIFKGEH NPHGPNPOANC, string BDFLACIIPGB, TextAnchor LIGFDCDJMCJ, PBMAFIFKGEH OGHIGNGKKNG, int DJMEODKBJLF, int MLBDNAGFEJF, bool DJAPBOGGCOJ, Texture2D IFEPNOCNOGE) -> bool</summary>
             public const uint ButtonPic = 0x10a99cb0; // public static bool ButtonPic(Rect HDJBDIJCIMG, PBMAFIFKGEH NPHGPNPOANC, string BDFLACIIPGB, TextAnchor LIGFDCDJMCJ, PBMAFIFKGEH OGHIGNGKKNG, int DJMEODKBJLF, int MLBDNAGFEJF, bool DJAPBOGGCOJ, Texture2D IFEPNOCNOGE)
             public const uint IGJKOKAGIDI = 0x10a9fcd0; // public static void IGJKOKAGIDI()
@@ -161,7 +161,7 @@ namespace BlockpostTrainer.Sdk.Raw
             /// <summary>JMAADHJKDIM(Rect HDJBDIJCIMG, Texture2D GOALAGKACHO, float JHGGICCFNFJ)</summary>
             public const uint JMAADHJKDIM = 0x10aa0a50; // public static void JMAADHJKDIM(Rect HDJBDIJCIMG, Texture2D GOALAGKACHO, float JHGGICCFNFJ)
             /// <summary>Contains(Rect HDJBDIJCIMG) -> bool</summary>
-            public const uint Contains_3 = 0x10a9c100; // public static bool Contains(Rect HDJBDIJCIMG)
+            public const uint Contains_2 = 0x10a9c100; // public static bool Contains(Rect HDJBDIJCIMG)
             /// <summary>EDGLKBNEJBC(Rect HDJBDIJCIMG, Texture2D GOALAGKACHO)</summary>
             public const uint EDGLKBNEJBC = 0x10a9e370; // public static void EDGLKBNEJBC(Rect HDJBDIJCIMG, Texture2D GOALAGKACHO)
             /// <summary>PAFFPLJNGEI(Rect HDJBDIJCIMG, string BDFLACIIPGB, TextAnchor MKNLEJNHOPF, PBMAFIFKGEH NMLMGNNMHIO, int INAMCDPFHLI, int DAPFKDOAKFP, bool BGDGBPNAENP)</summary>

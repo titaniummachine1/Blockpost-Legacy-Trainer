@@ -62,13 +62,13 @@ namespace BlockpostTrainer.Sdk.Raw
         {
             public const uint ctor = 0x1103dbc0; // protected void .ctor()
             /// <summary>.ctor(int codePage)</summary>
-            public const uint ctor_2 = 0x1103dc00; // protected void .ctor(int codePage)
+            public const uint ctor_1 = 0x1103dc00; // protected void .ctor(int codePage)
             public const uint OnDeserializing = 0x1103d6d0; // internal void OnDeserializing()
             public const uint OnDeserialized = 0x1103d680; // internal void OnDeserialized()
             /// <summary>OnDeserializing(StreamingContext ctx)</summary>
-            public const uint OnDeserializing_2 = 0x1103d6d0; // private void OnDeserializing(StreamingContext ctx)
+            public const uint OnDeserializing_1 = 0x1103d6d0; // private void OnDeserializing(StreamingContext ctx)
             /// <summary>OnDeserialized(StreamingContext ctx)</summary>
-            public const uint OnDeserialized_2 = 0x1103d630; // private void OnDeserialized(StreamingContext ctx)
+            public const uint OnDeserialized_1 = 0x1103d630; // private void OnDeserialized(StreamingContext ctx)
             /// <summary>OnSerializing(StreamingContext ctx)</summary>
             public const uint OnSerializing = 0x1103d710; // private void OnSerializing(StreamingContext ctx)
             /// <summary>DeserializeEncoding(SerializationInfo info, StreamingContext context)</summary>
@@ -80,9 +80,9 @@ namespace BlockpostTrainer.Sdk.Raw
             /// <summary>GetEncoding(int codepage) -> Encoding</summary>
             public const uint GetEncoding = 0x1103c660; // public static Encoding GetEncoding(int codepage)
             /// <summary>GetEncoding(int codepage, EncoderFallback encoderFallback, DecoderFallback decoderFallback) -> Encoding</summary>
-            public const uint GetEncoding_2 = 0x1103c3a0; // public static Encoding GetEncoding(int codepage, EncoderFallback encoderFallback, DecoderFallback decoderFallback)
+            public const uint GetEncoding_1 = 0x1103c3a0; // public static Encoding GetEncoding(int codepage, EncoderFallback encoderFallback, DecoderFallback decoderFallback)
             /// <summary>GetEncoding(string name) -> Encoding</summary>
-            public const uint GetEncoding_3 = 0x1103c5d0; // public static Encoding GetEncoding(string name)
+            public const uint GetEncoding_2 = 0x1103c5d0; // public static Encoding GetEncoding(string name)
             /// <summary>get_EncoderFallback() -> EncoderFallback</summary>
             public const uint get_EncoderFallback = 0x104b9fb0; // public EncoderFallback get_EncoderFallback()
             /// <summary>set_EncoderFallback(EncoderFallback value)</summary>
@@ -100,7 +100,7 @@ namespace BlockpostTrainer.Sdk.Raw
             /// <summary>GetString(byte* bytes, int byteCount) -> string</summary>
             public const uint GetString = 0x1103d400; // public string GetString(byte* bytes, int byteCount)
             /// <summary>GetString(ReadOnlySpan<byte> bytes) -> string</summary>
-            public const uint GetString_2 = 0x1103d4e0; // public string GetString(ReadOnlySpan<byte> bytes)
+            public const uint GetString_1 = 0x1103d4e0; // public string GetString(ReadOnlySpan<byte> bytes)
             /// <summary>CreateDefaultEncoding() -> Encoding</summary>
             public const uint CreateDefaultEncoding = 0x1103b270; // private static Encoding CreateDefaultEncoding()
             /// <summary>setReadOnly(bool value)</summary>
@@ -119,10 +119,10 @@ namespace BlockpostTrainer.Sdk.Raw
             public const uint get_UTF32 = 0x1103e020; // public static Encoding get_UTF32()
             public const uint ThrowBytesOverflow = 0x1103d900; // internal void ThrowBytesOverflow()
             /// <summary>ThrowBytesOverflow(EncoderNLS encoder, bool nothingEncoded)</summary>
-            public const uint ThrowBytesOverflow_2 = 0x1103d9e0; // internal void ThrowBytesOverflow(EncoderNLS encoder, bool nothingEncoded)
+            public const uint ThrowBytesOverflow_1 = 0x1103d9e0; // internal void ThrowBytesOverflow(EncoderNLS encoder, bool nothingEncoded)
             public const uint ThrowCharsOverflow = 0x1103da60; // internal void ThrowCharsOverflow()
             /// <summary>ThrowCharsOverflow(DecoderNLS decoder, bool nothingDecoded)</summary>
-            public const uint ThrowCharsOverflow_2 = 0x1103db40; // internal void ThrowCharsOverflow(DecoderNLS decoder, bool nothingDecoded)
+            public const uint ThrowCharsOverflow_1 = 0x1103db40; // internal void ThrowCharsOverflow(DecoderNLS decoder, bool nothingDecoded)
         }
     }
 }

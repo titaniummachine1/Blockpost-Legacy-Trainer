@@ -18,6 +18,8 @@ namespace BlockpostTrainer.Sdk
 
         public static class AmplifyMotionEffect
         {
+            public const uint get_Instance = Raw.AmplifyMotionEffect.Methods.get_Instance;
+            public const uint get_FirstInstance = Raw.AmplifyMotionEffect.Methods.get_FirstInstance;
             public const uint Get_ABGE = Raw.AmplifyMotionEffect.Methods.ABGEPLEGGKH;
             public const uint Get_PNEN = Raw.AmplifyMotionEffect.Methods.PNENIHBNMMK;
             public const uint Get_OIAN = Raw.AmplifyMotionEffect.Methods.OIANGIELGIO;
@@ -33,8 +35,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Get_NFDJ = Raw.AmplifyMotionEffect.Methods.NFDJMOGEONJ;
             public const uint Get_LJLC = Raw.AmplifyMotionEffect.Methods.LJLCEAJNHAI;
             public const uint Get_GDDG = Raw.AmplifyMotionEffect.Methods.GDDGHGEAOMD;
-            public const uint get_Instance = Raw.AmplifyMotionEffect.Methods.get_Instance;
-            public const uint get_FirstInstance = Raw.AmplifyMotionEffect.Methods.get_FirstInstance;
             public const uint Get_PMJO = Raw.AmplifyMotionEffect.Methods.PMJOBMCCOAF;
             public const uint Get_EMIK = Raw.AmplifyMotionEffect.Methods.EMIKGKBGJFL;
             public const uint Get_GGEB = Raw.AmplifyMotionEffect.Methods.GGEBDIDGGJP;
@@ -395,9 +395,9 @@ namespace BlockpostTrainer.Sdk
             public const int TargetPoint_9 = Raw.CharAnimator.Offsets.OFDEFEIOCBI;
             public const int Factor_4 = Raw.CharAnimator.Offsets.AOCACDMADLE;
             public const int CharAnimator_LPCJ = Raw.CharAnimator.Offsets.LPCJFAOOIKA;
+            public const uint Awake = Raw.CharAnimator.Methods.Awake;
             public const uint Action_HPBJ = Raw.CharAnimator.Methods.HPBJLJFFHNO;
             public const uint Action_DHKN = Raw.CharAnimator.Methods.DHKNPNKFBCP;
-            public const uint Awake = Raw.CharAnimator.Methods.Awake;
             public const uint Action_LPJM = Raw.CharAnimator.Methods.LPJMPCFIGPH;
             public const uint Action_PKHA = Raw.CharAnimator.Methods.PKHAKGEPOIF;
             public const uint Action_MGPO = Raw.CharAnimator.Methods.MGPOBNAODDL;
@@ -565,18 +565,20 @@ namespace BlockpostTrainer.Sdk
             public const int KillCount_4 = Raw.ColorPicker.Offsets.HBNFLBACMBG;
             public const int KillCount_5 = Raw.ColorPicker.Offsets.MLBDNAGFEJF;
             public const int KillCount_6 = Raw.ColorPicker.Offsets.DDFFCPDCDDN;
+            public const uint OnGUI = Raw.ColorPicker.Methods.OnGUI;
+            public const uint OnResize = Raw.ColorPicker.Methods.OnResize;
+            public const uint SetCursorSize = Raw.ColorPicker.Methods.SetCursorSize;
+            public const uint Awake = Raw.ColorPicker.Methods.Awake;
             public const uint Action_IMND = Raw.ColorPicker.Methods.IMNDBGNJJKB;
             public const uint Action_MCAP = Raw.ColorPicker.Methods.MCAPHMMOEGG;
             public const uint Action_AEKF = Raw.ColorPicker.Methods.AEKFJEDHOEP;
             public const uint Action_FFOI = Raw.ColorPicker.Methods.FFOIAEMDGEG;
-            public const uint OnGUI = Raw.ColorPicker.Methods.OnGUI;
             public const uint Action_BBFB = Raw.ColorPicker.Methods.BBFBFNAMHIB;
             public const uint Action_FKPH = Raw.ColorPicker.Methods.FKPHDBCCIMG;
             public const uint Action_JGDJ = Raw.ColorPicker.Methods.JGDJDJNKMEE;
             public const uint Action_OMOL = Raw.ColorPicker.Methods.OMOLPAJKNKB;
             public const uint Action_NNNI = Raw.ColorPicker.Methods.NNNIFEFMBDK;
             public const uint Action_NLBG = Raw.ColorPicker.Methods.NLBGIELFMFD;
-            public const uint OnResize = Raw.ColorPicker.Methods.OnResize;
             public const uint Action_JHNB = Raw.ColorPicker.Methods.JHNBBLIPPKL;
             public const uint Action_PFJF = Raw.ColorPicker.Methods.PFJFNFDJOEJ;
             public const uint Action_EKHJ = Raw.ColorPicker.Methods.EKHJGDIHKGE;
@@ -594,7 +596,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_KMCJ = Raw.ColorPicker.Methods.KMCJFHAKEME;
             public const uint Action_BCNI = Raw.ColorPicker.Methods.BCNIMCFCCNM;
             public const uint Action_MNKP = Raw.ColorPicker.Methods.MNKPAKJFMPO;
-            public const uint SetCursorSize = Raw.ColorPicker.Methods.SetCursorSize;
             public const uint Action_BMEH = Raw.ColorPicker.Methods.BMEHJGBMKBH;
             public const uint Action_PEAF = Raw.ColorPicker.Methods.PEAFANFNEFM;
             public const uint Action_DCLI = Raw.ColorPicker.Methods.DCLIMENCNPC;
@@ -627,12 +628,156 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_LHOP = Raw.ColorPicker.Methods.LHOPPEFMCAB;
             public const uint Action_LDNB = Raw.ColorPicker.Methods.LDNBBCMNAFK;
             public const uint Action_OMGO = Raw.ColorPicker.Methods.OMGODAGHABE;
-            public const uint Awake = Raw.ColorPicker.Methods.Awake;
             public const uint Action_EFCE = Raw.ColorPicker.Methods.EFCEJEJPCBA;
         }
 
         public static class Console
         {
+            public const int cs = Raw.Console.Offsets.cs;
+            public const int IsActive = Raw.Console.Offsets.CBFLNECJIFF;
+            public const int Texture = Raw.Console.Offsets.BMCPLPJIMGH;
+            public const int UIRect = Raw.Console.Offsets.OKHHIDJJLMN;
+            public const int UIRect_1 = Raw.Console.Offsets.BPDELOHKHDD;
+            public const int Hash = Raw.Console.Offsets.FKDOBHDICKD;
+            public const int List_string_GCFK = Raw.Console.Offsets.GCFKPMDHKCG;
+            public const int List_string_AKLP = Raw.Console.Offsets.AKLPJLMBLCM;
+            public const int Count = Raw.Console.Offsets.FBPHMDDHGHI;
+            public const int showfps = Raw.Console.Offsets.showfps;
+            public const int version = Raw.Console.Offsets.version;
+            public const int GameObject = Raw.Console.Offsets.NIIOIMCEEGF;
+            public const int Rate = Raw.Console.Offsets.OBFODDKJCIK;
+            public const int Rate_1 = Raw.Console.Offsets.GNAPOHDAJOE;
+            public const int Count_1 = Raw.Console.Offsets.FJJFKALFHPM;
+            public const int Rate_2 = Raw.Console.Offsets.GKALPGOOCCI;
+            public const int Hash_1 = Raw.Console.Offsets.BFIAOIPDBIA;
+            public const int PBMAFIFKGEH_MOKG = Raw.Console.Offsets.MOKGCDOGPLP;
+            public const int Hash_2 = Raw.Console.Offsets.JIPHFHDNKDF;
+            public const int UIRect_2 = Raw.Console.Offsets.GAMJPNKPGDH;
+            public const int UIRect_3 = Raw.Console.Offsets.HJMFJEOMEEP;
+            public const int UIRect_4 = Raw.Console.Offsets.BNBAJIOGABH;
+            public const int UIRect_5 = Raw.Console.Offsets.FNDNAIEMOBN;
+            public const int Rate_3 = Raw.Console.Offsets.HDOJFAHCLII;
+            public const uint OnResize = Raw.Console.Methods.OnResize;
+            public const uint OnDisable = Raw.Console.Methods.OnDisable;
+            public const uint OnGUI = Raw.Console.Methods.OnGUI;
+            public const uint SetActive = Raw.Console.Methods.SetActive;
+            public const uint isActive = Raw.Console.Methods.isActive;
+            public const uint Command = Raw.Console.Methods.Command;
+            public const uint browser_run = Raw.Console.Methods.browser_run;
+            public const uint LoadEnd = Raw.Console.Methods.LoadEnd;
+            public const uint ToggleActive = Raw.Console.Methods.ToggleActive;
+            public const uint Update = Raw.Console.Methods.Update;
+            public const uint LogMessage = Raw.Console.Methods.LogMessage;
+            public const uint OnEnable = Raw.Console.Methods.OnEnable;
+            public const uint Action_INNB = Raw.Console.Methods.INNBCJJKCHP;
+            public const uint Action_AMEK = Raw.Console.Methods.AMEKEBPMPOB;
+            public const uint Action_BOJM = Raw.Console.Methods.BOJMHMOEPCO;
+            public const uint Action_IHDN = Raw.Console.Methods.IHDNCJMCBAK;
+            public const uint Action_PHOL = Raw.Console.Methods.PHOLPHHEGMJ;
+            public const uint Action_CLBK = Raw.Console.Methods.CLBKKHGLDFE;
+            public const uint Action_GPPL = Raw.Console.Methods.GPPLHAPNFBJ;
+            public const uint Action_MGGI = Raw.Console.Methods.MGGIPAKAJAD;
+            public const uint GetBool_KMNJ = Raw.Console.Methods.KMNJLKBMODE;
+            public const uint Action_PJLK = Raw.Console.Methods.PJLKNJFODPE;
+            public const uint Action_JLJM = Raw.Console.Methods.JLJMCNOCMHJ;
+            public const uint Action_GPAP = Raw.Console.Methods.GPAPPNOHJAL;
+            public const uint Action_LEBM = Raw.Console.Methods.LEBMDHOPPGL;
+            public const uint Action_NIMG = Raw.Console.Methods.NIMGNPCEMPD;
+            public const uint Action_ELJF = Raw.Console.Methods.ELJFAPNHLEI;
+            public const uint Action_MJMP = Raw.Console.Methods.MJMPHMBNKOA;
+            public const uint Action_DNPM = Raw.Console.Methods.DNPMHADLHLB;
+            public const uint Action_BAPJ = Raw.Console.Methods.BAPJCPJJNGI;
+            public const uint Action_CBHO = Raw.Console.Methods.CBHONNBEDOD;
+            public const uint Action_HKHI = Raw.Console.Methods.HKHICKPAKIB;
+            public const uint Action_LIFK = Raw.Console.Methods.LIFKAKGPLGD;
+            public const uint Action_MMGO = Raw.Console.Methods.MMGOAEACMLN;
+            public const uint Action_AHOJ = Raw.Console.Methods.AHOJIFGNNGB;
+            public const uint Action_EHPF = Raw.Console.Methods.EHPFDIGJABP;
+            public const uint Action_IJPH = Raw.Console.Methods.IJPHKIDJFNJ;
+            public const uint Action_KIPA = Raw.Console.Methods.KIPAKKGAFOF;
+            public const uint Action_BOLD = Raw.Console.Methods.BOLDKJGADIN;
+            public const uint Action_GNHE = Raw.Console.Methods.GNHEEBALICC;
+            public const uint Action_OLCM = Raw.Console.Methods.OLCMIJJCJLO;
+            public const uint Action_PNNL = Raw.Console.Methods.PNNLBABPPJO;
+            public const uint Action_MICH = Raw.Console.Methods.MICHKEPMAOG;
+            public const uint Action_HLKO = Raw.Console.Methods.HLKOBNNLLBH;
+            public const uint Action_AKIH = Raw.Console.Methods.AKIHAJMIKII;
+            public const uint Action_BGNI = Raw.Console.Methods.BGNIGFDDPHJ;
+            public const uint GetBool_EOJK = Raw.Console.Methods.EOJKDJECLEN;
+            public const uint Action_OKAB = Raw.Console.Methods.OKABBOCGAEK;
+            public const uint Action_CDAG = Raw.Console.Methods.CDAGOECDJIE;
+            public const uint Action_AEPF = Raw.Console.Methods.AEPFLDDIJEL;
+            public const uint Action_GNEK = Raw.Console.Methods.GNEKHFOLPML;
+            public const uint Action_KDML = Raw.Console.Methods.KDMLEBPMOHL;
+            public const uint Action_EOEA = Raw.Console.Methods.EOEAALKMAJB;
+            public const uint Action_FLEH = Raw.Console.Methods.FLEHLCILLPB;
+            public const uint Action_MGBK = Raw.Console.Methods.MGBKFFCFAKD;
+            public const uint Action_DDPM = Raw.Console.Methods.DDPMIMMOJOJ;
+            public const uint GetBool_EBEK = Raw.Console.Methods.EBEKMHCLJIL;
+            public const uint GetBool_EBBA = Raw.Console.Methods.EBBAHJEJEIG;
+            public const uint Action_CLPM = Raw.Console.Methods.CLPMGIGHOKN;
+            public const uint Action_ACNB = Raw.Console.Methods.ACNBHCHPOAI;
+            public const uint Action_MNOP = Raw.Console.Methods.MNOPPBFBBGD;
+            public const uint Action_PLAF = Raw.Console.Methods.PLAFOOEFEKE;
+            public const uint Action_LMIN = Raw.Console.Methods.LMINFJJBKFL;
+            public const uint Action_HHEN = Raw.Console.Methods.HHENNEFOHOO;
+            public const uint Action_FIIL = Raw.Console.Methods.FIILOGKMPCB;
+            public const uint Action_HJOM = Raw.Console.Methods.HJOMMCGLLCH;
+            public const uint Action_FOPO = Raw.Console.Methods.FOPOKGKFLIG;
+            public const uint Action_EBDH = Raw.Console.Methods.EBDHEFAFMJA;
+            public const uint Action_PGNP = Raw.Console.Methods.PGNPEKEICHJ;
+            public const uint Action_NFKE = Raw.Console.Methods.NFKEFAOFFNL;
+            public const uint GetBool_GIAO = Raw.Console.Methods.GIAONIHNJCB;
+            public const uint Action_HNIO = Raw.Console.Methods.HNIOJPKGNGD;
+            public const uint Action_JHNK = Raw.Console.Methods.JHNKBAKFECP;
+            public const uint Action_PEKM = Raw.Console.Methods.PEKMFIGLBDF;
+            public const uint Action_MDFG = Raw.Console.Methods.MDFGADEFAPI;
+            public const uint Action_EJOJ = Raw.Console.Methods.EJOJGGDJHFC;
+            public const uint Action_MFNM = Raw.Console.Methods.MFNMHMMEPLD;
+            public const uint Action_ACHE = Raw.Console.Methods.ACHELKKEJHH;
+            public const uint Action_EEHG = Raw.Console.Methods.EEHGHBFEEKE;
+            public const uint Action_FMAN = Raw.Console.Methods.FMANEHEAHJI;
+            public const uint Action_CFLH = Raw.Console.Methods.CFLHLMFFNKP;
+            public const uint Action_AJBO = Raw.Console.Methods.AJBOCPHKFJJ;
+            public const uint Action_AFAC = Raw.Console.Methods.AFACDMPABKH;
+            public const uint Action_CAKG = Raw.Console.Methods.CAKGKMIFOOO;
+            public const uint Action_KOMG = Raw.Console.Methods.KOMGJJNINEI;
+            public const uint Action_CNFG = Raw.Console.Methods.CNFGDHPJFGD;
+            public const uint Action_DIAF = Raw.Console.Methods.DIAFFDKBAOA;
+            public const uint Action_PPBO = Raw.Console.Methods.PPBOIOHHCEG;
+            public const uint Action_PONE = Raw.Console.Methods.PONEGKANCDI;
+            public const uint Action_KPND = Raw.Console.Methods.KPNDFICIDOO;
+            public const uint Action_HLLJ = Raw.Console.Methods.HLLJNEINPGC;
+            public const uint Action_BFEH = Raw.Console.Methods.BFEHIIOOLNH;
+            public const uint GetBool_CJHG = Raw.Console.Methods.CJHGDIEBNDO;
+            public const uint Action_EJJE = Raw.Console.Methods.EJJELNMMOOI;
+            public const uint Action_MIBD = Raw.Console.Methods.MIBDBBFCAAP;
+            public const uint Action_GGCM = Raw.Console.Methods.GGCMLPDGMAB;
+            public const uint Action_PCNP = Raw.Console.Methods.PCNPFLPPNIJ;
+            public const uint Action_EOCM = Raw.Console.Methods.EOCMKGMIKLJ;
+            public const uint GetBool_DGKH = Raw.Console.Methods.DGKHDODGCGM;
+            public const uint Action_KBAB = Raw.Console.Methods.KBABAFNOIGA;
+            public const uint Action_PIAH = Raw.Console.Methods.PIAHHNBDACO;
+            public const uint Action_EKOO = Raw.Console.Methods.EKOOLMMOLOJ;
+            public const uint Action_HDCE = Raw.Console.Methods.HDCENCPCOLC;
+            public const uint Action_LMBI = Raw.Console.Methods.LMBIHAPOLAE;
+            public const uint Action_LCKE = Raw.Console.Methods.LCKELKIKMHH;
+            public const uint Action_FIDH = Raw.Console.Methods.FIDHEBLHCJB;
+            public const uint Action_BMEH = Raw.Console.Methods.BMEHJGBMKBH;
+            public const uint Action_FPPG = Raw.Console.Methods.FPPGOJCPIBE;
+            public const uint Action_KKGA = Raw.Console.Methods.KKGACKHLGCN;
+            public const uint Action_ODIC = Raw.Console.Methods.ODICGHDFOPM;
+            public const uint Action_EABH = Raw.Console.Methods.EABHBNKHCJN;
+            public const uint Action_JKII = Raw.Console.Methods.JKIIPPNGPOG;
+            public const uint Action_BBLF = Raw.Console.Methods.BBLFJOMLCCH;
+            public const uint Action_MMPL = Raw.Console.Methods.MMPLJLCLGFN;
+            public const uint Action_EIEH = Raw.Console.Methods.EIEHBNPIBCH;
+            public const uint Action_FFAJ = Raw.Console.Methods.FFAJDPFIMKD;
+            public const uint Action_HDIN = Raw.Console.Methods.HDINGGBDPKH;
+            public const uint Action_KEIL = Raw.Console.Methods.KEILCPBBKAP;
+            public const uint Action_ODEP = Raw.Console.Methods.ODEPBKIHOMH;
+            public const uint Action_GCOF = Raw.Console.Methods.GCOFAJJKGHM;
+            public const uint Action_BEFM = Raw.Console.Methods.BEFMEFFCEFD;
         }
 
         public static class ConsoleCancelEventHandler
@@ -680,6 +825,15 @@ namespace BlockpostTrainer.Sdk
             public const int TeamColor_1 = Raw.Crosshair.Offsets.MAOGONMMPEG;
             public const int Rate_2 = Raw.Crosshair.Offsets.GOALAGKACHO;
             public const int Rate_3 = Raw.Crosshair.Offsets.JOOMPNNEOJF;
+            public const uint SetCursor = Raw.Crosshair.Methods.SetCursor;
+            public const uint OnGUI = Raw.Crosshair.Methods.OnGUI;
+            public const uint SetCrosshair = Raw.Crosshair.Methods.SetCrosshair;
+            public const uint SetActive = Raw.Crosshair.Methods.SetActive;
+            public const uint SetCrosshairSize = Raw.Crosshair.Methods.SetCrosshairSize;
+            public const uint Update = Raw.Crosshair.Methods.Update;
+            public const uint SetMark = Raw.Crosshair.Methods.SetMark;
+            public const uint OnResize = Raw.Crosshair.Methods.OnResize;
+            public const uint LoadEnd = Raw.Crosshair.Methods.LoadEnd;
             public const uint Action_NPBH = Raw.Crosshair.Methods.NPBHPOOLLJP;
             public const uint Action_PLEF = Raw.Crosshair.Methods.PLEFNADFPAF;
             public const uint Action_EGNA = Raw.Crosshair.Methods.EGNAFCLJCGA;
@@ -695,21 +849,16 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_LLKJ = Raw.Crosshair.Methods.LLKJOPMEPBG;
             public const uint Action_JMCF = Raw.Crosshair.Methods.JMCFMPHJPCA;
             public const uint Action_KNED = Raw.Crosshair.Methods.KNEDOOKGNOH;
-            public const uint SetCursor = Raw.Crosshair.Methods.SetCursor;
             public const uint Action_MJAG = Raw.Crosshair.Methods.MJAGPOKKLOD;
             public const uint Action_CCJO = Raw.Crosshair.Methods.CCJOHGDBEMF;
             public const uint Action_KLPO = Raw.Crosshair.Methods.KLPOBIPHNFJ;
-            public const uint OnGUI = Raw.Crosshair.Methods.OnGUI;
             public const uint Action_JDLL = Raw.Crosshair.Methods.JDLLKDONDML;
             public const uint Action_NOPC = Raw.Crosshair.Methods.NOPCOCPDKFE;
             public const uint Action_JKPO = Raw.Crosshair.Methods.JKPOIIAGMBB;
-            public const uint SetCrosshair = Raw.Crosshair.Methods.SetCrosshair;
             public const uint Action_NONG = Raw.Crosshair.Methods.NONGIGHAEKF;
-            public const uint SetActive = Raw.Crosshair.Methods.SetActive;
             public const uint Action_CJDD = Raw.Crosshair.Methods.CJDDOLJINKJ;
             public const uint Action_KKHG = Raw.Crosshair.Methods.KKHGBBCHEBK;
             public const uint Action_ABLP = Raw.Crosshair.Methods.ABLPNMIFKAC;
-            public const uint SetCrosshairSize = Raw.Crosshair.Methods.SetCrosshairSize;
             public const uint Action_BNMB = Raw.Crosshair.Methods.BNMBLNCALHG;
             public const uint Action_AOMJ = Raw.Crosshair.Methods.AOMJCPLMHLI;
             public const uint Action_LFOH = Raw.Crosshair.Methods.LFOHPGGBIFE;
@@ -736,11 +885,9 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_DKCB = Raw.Crosshair.Methods.DKCBNBINCFF;
             public const uint Action_NCFB = Raw.Crosshair.Methods.NCFBNIJNJGJ;
             public const uint Action_MGBM = Raw.Crosshair.Methods.MGBMDBACDBL;
-            public const uint Update = Raw.Crosshair.Methods.Update;
             public const uint Action_JJED = Raw.Crosshair.Methods.JJEDKOLIIGK;
             public const uint Action_BGHO = Raw.Crosshair.Methods.BGHOBGICEKE;
             public const uint Action_OOJI = Raw.Crosshair.Methods.OOJIBFMMCEO;
-            public const uint SetMark = Raw.Crosshair.Methods.SetMark;
             public const uint Action_CLEB = Raw.Crosshair.Methods.CLEBAKJJPMC;
             public const uint Action_PMKC = Raw.Crosshair.Methods.PMKCHECPHID;
             public const uint Action_GLEG = Raw.Crosshair.Methods.GLEGODDIOCF;
@@ -757,7 +904,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_OLPM = Raw.Crosshair.Methods.OLPMEBANCGF;
             public const uint Action_JIPF = Raw.Crosshair.Methods.JIPFAPAAEKP;
             public const uint Action_FONI = Raw.Crosshair.Methods.FONIIKHEIBG;
-            public const uint OnResize = Raw.Crosshair.Methods.OnResize;
             public const uint Action_PAEF = Raw.Crosshair.Methods.PAEFPBCGFLD;
             public const uint Action_HCAC = Raw.Crosshair.Methods.HCACHALGEMP;
             public const uint Action_HJOB = Raw.Crosshair.Methods.HJOBMIKAKAN;
@@ -775,7 +921,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_OFMG = Raw.Crosshair.Methods.OFMGGLFKLFO;
             public const uint Action_DFOH = Raw.Crosshair.Methods.DFOHCOPMNJJ;
             public const uint Action_JMEI = Raw.Crosshair.Methods.JMEIADPJBIO;
-            public const uint LoadEnd = Raw.Crosshair.Methods.LoadEnd;
             public const uint Action_DEFM = Raw.Crosshair.Methods.DEFMGIDCJLA;
             public const uint Action_LLMK = Raw.Crosshair.Methods.LLMKHHHNMDI;
             public const uint Action_APNK = Raw.Crosshair.Methods.APNKDENEGDB;
@@ -841,6 +986,10 @@ namespace BlockpostTrainer.Sdk
         {
             public const int NEGGNDFJMAK_ABLE = Raw.DevClient.Offsets.ABLEKPCJIOL;
             public const int Timer = Raw.DevClient.Offsets.OJLBOPJKOKD;
+            public const uint OnDisable = Raw.DevClient.Methods.OnDisable;
+            public const uint OnApplicationQuit = Raw.DevClient.Methods.OnApplicationQuit;
+            public const uint Update = Raw.DevClient.Methods.Update;
+            public const uint Awake = Raw.DevClient.Methods.Awake;
             public const uint Action_PKPP = Raw.DevClient.Methods.PKPPOOIEEBD;
             public const uint Action_PLDD = Raw.DevClient.Methods.PLDDCABDPIH;
             public const uint Action_NCJK = Raw.DevClient.Methods.NCJKOOMANAO;
@@ -853,9 +1002,7 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_NGPH = Raw.DevClient.Methods.NGPHHJCAHOA;
             public const uint Action_EBDO = Raw.DevClient.Methods.EBDOKAEKNPF;
             public const uint Action_BALM = Raw.DevClient.Methods.BALMKADALCP;
-            public const uint OnDisable = Raw.DevClient.Methods.OnDisable;
             public const uint Action_BCJH = Raw.DevClient.Methods.BCJHGKCIAJI;
-            public const uint OnApplicationQuit = Raw.DevClient.Methods.OnApplicationQuit;
             public const uint Action_DAMP = Raw.DevClient.Methods.DAMPLHMHHMH;
             public const uint Action_PDDH = Raw.DevClient.Methods.PDDHAIFHBLL;
             public const uint Action_CCDL = Raw.DevClient.Methods.CCDLKOBOICL;
@@ -872,14 +1019,12 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_KGBI = Raw.DevClient.Methods.KGBINHGCNEK;
             public const uint Action_CPDH = Raw.DevClient.Methods.CPDHDEKDJMH;
             public const uint Action_DOIE = Raw.DevClient.Methods.DOIECFEMHNB;
-            public const uint Update = Raw.DevClient.Methods.Update;
             public const uint Action_AGBD = Raw.DevClient.Methods.AGBDKHLHILK;
             public const uint Action_KPIJ = Raw.DevClient.Methods.KPIJNDADJJO;
             public const uint Action_KLOL = Raw.DevClient.Methods.KLOLNNMHCGJ;
             public const uint Action_FKCE = Raw.DevClient.Methods.FKCEMOMIGHP;
             public const uint Action_CIKD = Raw.DevClient.Methods.CIKDCLNFAPN;
             public const uint Action_DPDP = Raw.DevClient.Methods.DPDPHAAGLIP;
-            public const uint Awake = Raw.DevClient.Methods.Awake;
             public const uint Action_PNCN = Raw.DevClient.Methods.PNCNMBFHGIE;
             public const uint Action_OAMO = Raw.DevClient.Methods.OAMOGOKPAKK;
             public const uint Action_BLNG = Raw.DevClient.Methods.BLNGENOBACM;
@@ -893,6 +1038,12 @@ namespace BlockpostTrainer.Sdk
             public const int Flag = Raw.DropClient.Offsets.BJDDCIJJCCA;
             public const int UIDrop_MOAA = Raw.DropClient.Offsets.MOAABLEBEAK;
             public const int Timer = Raw.DropClient.Offsets.OJLBOPJKOKD;
+            public const uint OnApplicationQuit = Raw.DropClient.Methods.OnApplicationQuit;
+            public const uint Start = Raw.DropClient.Methods.Start;
+            public const uint Awake = Raw.DropClient.Methods.Awake;
+            public const uint OnDisable = Raw.DropClient.Methods.OnDisable;
+            public const uint Update = Raw.DropClient.Methods.Update;
+            public const uint OnDestroy = Raw.DropClient.Methods.OnDestroy;
             public const uint Action_FKOD = Raw.DropClient.Methods.FKODEBCKGHD;
             public const uint Action_CLAB = Raw.DropClient.Methods.CLABIMGCMDJ;
             public const uint Action_CJHM = Raw.DropClient.Methods.CJHMCIBNECN;
@@ -923,7 +1074,6 @@ namespace BlockpostTrainer.Sdk
             public const uint GetBool_GBNH = Raw.DropClient.Methods.GBNHPLJOMAJ;
             public const uint Action_JGEA = Raw.DropClient.Methods.JGEABHKOHGC;
             public const uint Action_FAHP = Raw.DropClient.Methods.FAHPGPPLIBD;
-            public const uint OnApplicationQuit = Raw.DropClient.Methods.OnApplicationQuit;
             public const uint Action_ALNB = Raw.DropClient.Methods.ALNBHPCGNLM;
             public const uint Action_PKBF = Raw.DropClient.Methods.PKBFCPNPBDL;
             public const uint Action_BKON = Raw.DropClient.Methods.BKONJBLCGHB;
@@ -947,7 +1097,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_MCJI = Raw.DropClient.Methods.MCJIMMOCFHI;
             public const uint Action_LGGC = Raw.DropClient.Methods.LGGCBIFNAAI;
             public const uint Action_AAHB = Raw.DropClient.Methods.AAHBKPBHALE;
-            public const uint Start = Raw.DropClient.Methods.Start;
             public const uint GetBool_AFPJ = Raw.DropClient.Methods.AFPJMLOCHKN;
             public const uint Action_CDIK = Raw.DropClient.Methods.CDIKGDLEPCJ;
             public const uint GetBool_POGD = Raw.DropClient.Methods.POGDOHPHEMM;
@@ -955,7 +1104,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_BDCE = Raw.DropClient.Methods.BDCEDBJBPGM;
             public const uint Action_BAOF = Raw.DropClient.Methods.BAOFPCFPLOO;
             public const uint GetBool_GLCJ = Raw.DropClient.Methods.GLCJFMCGIGA;
-            public const uint Awake = Raw.DropClient.Methods.Awake;
             public const uint GetBool_PPJL = Raw.DropClient.Methods.PPJLKJKHFGB;
             public const uint Action_JPBB = Raw.DropClient.Methods.JPBBDDLIDNM;
             public const uint Action_HABD = Raw.DropClient.Methods.HABDCMGOOPO;
@@ -973,13 +1121,11 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_MOKC = Raw.DropClient.Methods.MOKCFPECDLE;
             public const uint Action_JGNO = Raw.DropClient.Methods.JGNOJHDJKAG;
             public const uint Action_LOAJ = Raw.DropClient.Methods.LOAJFNGICHL;
-            public const uint OnDisable = Raw.DropClient.Methods.OnDisable;
             public const uint Action_MNKP = Raw.DropClient.Methods.MNKPAKJFMPO;
             public const uint Action_CPEK = Raw.DropClient.Methods.CPEKLHBENBJ;
             public const uint Action_ADJL = Raw.DropClient.Methods.ADJLFODGPPI;
             public const uint Action_AOLF = Raw.DropClient.Methods.AOLFLIAGJPA;
             public const uint Action_FKDP = Raw.DropClient.Methods.FKDPKMGOJJG;
-            public const uint Update = Raw.DropClient.Methods.Update;
             public const uint Action_LIAG = Raw.DropClient.Methods.LIAGODHMHDF;
             public const uint Action_HEOD = Raw.DropClient.Methods.HEODPOMCGMA;
             public const uint Action_DHDK = Raw.DropClient.Methods.DHDKOMLOAGM;
@@ -993,7 +1139,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_AMMP = Raw.DropClient.Methods.AMMPHACEKOL;
             public const uint GetBool_DCFD = Raw.DropClient.Methods.DCFDGEELEGF;
             public const uint Action_LFKE = Raw.DropClient.Methods.LFKEJMHHFCI;
-            public const uint OnDestroy = Raw.DropClient.Methods.OnDestroy;
             public const uint Action_DLKL = Raw.DropClient.Methods.DLKLFGPPAGJ;
             public const uint Action_JMKP = Raw.DropClient.Methods.JMKPLONKIJK;
             public const uint Action_CJLJ = Raw.DropClient.Methods.CJLJIPCMHOB;
@@ -1128,6 +1273,7 @@ namespace BlockpostTrainer.Sdk
             public const int Distance_2 = Raw.FXScale.Offsets.IFLCCLLGFEF;
             public const int Transform = Raw.FXScale.Offsets.IJLPLONACIA;
             public const int Position = Raw.FXScale.Offsets.MKNLEJNHOPF;
+            public const uint Update = Raw.FXScale.Methods.Update;
             public const uint Action_IHJE = Raw.FXScale.Methods.IHJEAOMLMOE;
             public const uint Action_HPHO = Raw.FXScale.Methods.HPHONCKLEDA;
             public const uint Action_IOBB = Raw.FXScale.Methods.IOBBKKBNALP;
@@ -1138,7 +1284,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_BALM = Raw.FXScale.Methods.BALMKADALCP;
             public const uint Action_FANM = Raw.FXScale.Methods.FANMMMGPFFH;
             public const uint Action_IPJP = Raw.FXScale.Methods.IPJPJFGLDGM;
-            public const uint Update = Raw.FXScale.Methods.Update;
             public const uint Action_LMIN = Raw.FXScale.Methods.LMINFJJBKFL;
             public const uint Action_EAIM = Raw.FXScale.Methods.EAIMKIEACIF;
             public const uint Action_PJPI = Raw.FXScale.Methods.PJPIDBCLLEK;
@@ -1183,6 +1328,7 @@ namespace BlockpostTrainer.Sdk
             public const int Distance = Raw.FXScaleCase.Offsets.LAJFIPGPDEB;
             public const int Distance_1 = Raw.FXScaleCase.Offsets.LLGNAOBKJEJ;
             public const int Distance_2 = Raw.FXScaleCase.Offsets.IFLCCLLGFEF;
+            public const uint Update = Raw.FXScaleCase.Methods.Update;
             public const uint Action_OONK = Raw.FXScaleCase.Methods.OONKLAODIDP;
             public const uint Action_GBHG = Raw.FXScaleCase.Methods.GBHGEPHIGNO;
             public const uint Action_AOLF = Raw.FXScaleCase.Methods.AOLFLIAGJPA;
@@ -1197,7 +1343,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_EAIM = Raw.FXScaleCase.Methods.EAIMKIEACIF;
             public const uint Action_IHJE = Raw.FXScaleCase.Methods.IHJEAOMLMOE;
             public const uint Action_GDDJ = Raw.FXScaleCase.Methods.GDDJFLJFMCB;
-            public const uint Update = Raw.FXScaleCase.Methods.Update;
             public const uint Action_PELM = Raw.FXScaleCase.Methods.PELMGLDGHLF;
             public const uint Action_JBAG = Raw.FXScaleCase.Methods.JBAGBIAEKPO;
             public const uint Action_MJGC = Raw.FXScaleCase.Methods.MJGCIDIGKCL;
@@ -1221,6 +1366,8 @@ namespace BlockpostTrainer.Sdk
             public const int maxTime = Raw.FadeLight.Offsets.maxTime;
             public const int Sensitivity = Raw.FadeLight.Offsets.NBGGECNKGGD;
             public const int Sensitivity_1 = Raw.FadeLight.Offsets.CKOENAMBJEK;
+            public const uint Update = Raw.FadeLight.Methods.Update;
+            public const uint Awake = Raw.FadeLight.Methods.Awake;
             public const uint Action_NGPH = Raw.FadeLight.Methods.NGPHHJCAHOA;
             public const uint Action_JDFF = Raw.FadeLight.Methods.JDFFPFKDEDP;
             public const uint Action_GPMF = Raw.FadeLight.Methods.GPMFDKAMANB;
@@ -1229,7 +1376,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_IPJP = Raw.FadeLight.Methods.IPJPJFGLDGM;
             public const uint Action_LEEC = Raw.FadeLight.Methods.LEECHAOPAIB;
             public const uint Action_KCHO = Raw.FadeLight.Methods.KCHOBKFJAKJ;
-            public const uint Update = Raw.FadeLight.Methods.Update;
             public const uint Action_PJPI = Raw.FadeLight.Methods.PJPIDBCLLEK;
             public const uint Action_FMGJ = Raw.FadeLight.Methods.FMGJICHDHNE;
             public const uint Action_BKOC = Raw.FadeLight.Methods.BKOCKHDPCNC;
@@ -1254,7 +1400,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_IIMD = Raw.FadeLight.Methods.IIMDBDAPLPM;
             public const uint Action_OONK = Raw.FadeLight.Methods.OONKLAODIDP;
             public const uint Action_GDDJ = Raw.FadeLight.Methods.GDDJFLJFMCB;
-            public const uint Awake = Raw.FadeLight.Methods.Awake;
             public const uint Action_KMEP = Raw.FadeLight.Methods.KMEPJIOBPII;
             public const uint Action_OBFA = Raw.FadeLight.Methods.OBFAMNNCOID;
             public const uint Action_GDGI = Raw.FadeLight.Methods.GDGIKHLLBEI;
@@ -1287,6 +1432,9 @@ namespace BlockpostTrainer.Sdk
             public const int Name = Raw.FileSender.Offsets.AFBGEODGJHG;
             public const int Id_2 = Raw.FileSender.Offsets.MKNLEJNHOPF;
             public const int ReceiveBuffer_1 = Raw.FileSender.Offsets.PEGEIKDNHLL;
+            public const uint Update = Raw.FileSender.Methods.Update;
+            public const uint Send = Raw.FileSender.Methods.Send;
+            public const uint Awake = Raw.FileSender.Methods.Awake;
             public const uint Action_IIGF = Raw.FileSender.Methods.IIGFDHKNNHE;
             public const uint Action_JBKM = Raw.FileSender.Methods.JBKMNOFAJAK;
             public const uint Action_AEAK = Raw.FileSender.Methods.AEAKMOJDJEL;
@@ -1303,7 +1451,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_JDFF = Raw.FileSender.Methods.JDFFPFKDEDP;
             public const uint Action_OPFL = Raw.FileSender.Methods.OPFLCJOEPIB;
             public const uint Action_EEDC = Raw.FileSender.Methods.EEDCJOACOAP;
-            public const uint Update = Raw.FileSender.Methods.Update;
             public const uint Action_PNAN = Raw.FileSender.Methods.PNANHGOGNIA;
             public const uint Action_AAGK = Raw.FileSender.Methods.AAGKANFFBIK;
             public const uint Action_BHLM = Raw.FileSender.Methods.BHLMHEGKAAL;
@@ -1392,11 +1539,9 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_IIMD = Raw.FileSender.Methods.IIMDBDAPLPM;
             public const uint Action_POIC = Raw.FileSender.Methods.POICODEJOLN;
             public const uint Action_IDEE = Raw.FileSender.Methods.IDEENKHLNLM;
-            public const uint Send = Raw.FileSender.Methods.Send;
             public const uint Action_ANJK = Raw.FileSender.Methods.ANJKGNMOOCI;
             public const uint Action_BMKL = Raw.FileSender.Methods.BMKLDKPHGDP;
             public const uint Action_GKIL = Raw.FileSender.Methods.GKILPKPIOLO;
-            public const uint Awake = Raw.FileSender.Methods.Awake;
             public const uint Action_KNNO = Raw.FileSender.Methods.KNNODPOIACN;
             public const uint Action_MPJH = Raw.FileSender.Methods.MPJHJJHJJGO;
             public const uint Action_FIFF = Raw.FileSender.Methods.FIFFLFHNNCJ;
@@ -1469,20 +1614,20 @@ namespace BlockpostTrainer.Sdk
             public const int Yaw_1 = Raw.FreeFlyCamera.Offsets.JDOLPNIFMEO;
             public const int Forward = Raw.FreeFlyCamera.Offsets.BBOPPLJDKPB;
             public const int Forward_1 = Raw.FreeFlyCamera.Offsets.IFMJLPHEDHC;
+            public const uint OnEnable = Raw.FreeFlyCamera.Methods.OnEnable;
+            public const uint Update = Raw.FreeFlyCamera.Methods.Update;
+            public const uint Start = Raw.FreeFlyCamera.Methods.Start;
             public const uint Action_BHGI = Raw.FreeFlyCamera.Methods.BHGIOOIJLCF;
             public const uint Action_OKMP = Raw.FreeFlyCamera.Methods.OKMPBABKHPA;
             public const uint Action_JBCA = Raw.FreeFlyCamera.Methods.JBCAKJOIGIA;
             public const uint Action_GCEA = Raw.FreeFlyCamera.Methods.GCEADENDKAG;
-            public const uint OnEnable = Raw.FreeFlyCamera.Methods.OnEnable;
             public const uint Action_JBAG = Raw.FreeFlyCamera.Methods.JBAGBIAEKPO;
             public const uint Action_HCED = Raw.FreeFlyCamera.Methods.HCEDOIHIDFB;
             public const uint Action_IHLE = Raw.FreeFlyCamera.Methods.IHLECHKDFCG;
-            public const uint Update = Raw.FreeFlyCamera.Methods.Update;
             public const uint Action_FIFF = Raw.FreeFlyCamera.Methods.FIFFLFHNNCJ;
             public const uint Action_BMBL = Raw.FreeFlyCamera.Methods.BMBLPHJEHEA;
             public const uint Action_JKKF = Raw.FreeFlyCamera.Methods.JKKFOHLLNHC;
             public const uint Action_BLFF = Raw.FreeFlyCamera.Methods.BLFFDFPEHOI;
-            public const uint Start = Raw.FreeFlyCamera.Methods.Start;
             public const uint Action_AAIB = Raw.FreeFlyCamera.Methods.AAIBBOHBAPC;
             public const uint Action_LBIL = Raw.FreeFlyCamera.Methods.LBILKLFLAMA;
         }
@@ -1499,6 +1644,9 @@ namespace BlockpostTrainer.Sdk
             public const int csCam = Raw.GUI3D.Offsets.csCam;
             public const int Value = Raw.GUI3D.Offsets.LCJPDJJKNDM;
             public const int Timer = Raw.GUI3D.Offsets.EGAPCEFBMNB;
+            public const uint Awake = Raw.GUI3D.Methods.Awake;
+            public const uint SetFX = Raw.GUI3D.Methods.SetFX;
+            public const uint Draw = Raw.GUI3D.Methods.Draw;
             public const uint Action_GFHH = Raw.GUI3D.Methods.GFHHGHKLEJO;
             public const uint Action_OPJL = Raw.GUI3D.Methods.OPJLKDOEJNI;
             public const uint Action_DBJB = Raw.GUI3D.Methods.DBJBJHEGLEB;
@@ -1576,9 +1724,7 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_KCIJ = Raw.GUI3D.Methods.KCIJLKHPAGP;
             public const uint Action_GMDM = Raw.GUI3D.Methods.GMDMHFKDAHM;
             public const uint Action_MNAF = Raw.GUI3D.Methods.MNAFKBIBMDP;
-            public const uint Awake = Raw.GUI3D.Methods.Awake;
             public const uint Action_AJJB = Raw.GUI3D.Methods.AJJBBICIGOP;
-            public const uint SetFX = Raw.GUI3D.Methods.SetFX;
             public const uint Action_BPCF = Raw.GUI3D.Methods.BPCFNENKHDP;
             public const uint Action_ALGG = Raw.GUI3D.Methods.ALGGAPCLGIM;
             public const uint Action_ICGJ = Raw.GUI3D.Methods.ICGJAANGMOL;
@@ -1588,7 +1734,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_LEBC = Raw.GUI3D.Methods.LEBCCNLMEHK;
             public const uint Action_PGLJ = Raw.GUI3D.Methods.PGLJOKGPEJE;
             public const uint Action_IGFJ = Raw.GUI3D.Methods.IGFJOHKILHL;
-            public const uint Draw = Raw.GUI3D.Methods.Draw;
             public const uint Action_KPOM = Raw.GUI3D.Methods.KPOMOCLGLFL;
             public const uint Action_LEDA = Raw.GUI3D.Methods.LEDAPEEFAHO;
             public const uint Action_OEEN = Raw.GUI3D.Methods.OEENMDHKDNA;
@@ -1640,11 +1785,14 @@ namespace BlockpostTrainer.Sdk
             public const int Value = Raw.GUIDevDemoViewer.Offsets.OINEHMOGLLL;
             public const int StringArray = Raw.GUIDevDemoViewer.Offsets.CJBNDHHEMCE;
             public const int Speed_1 = Raw.GUIDevDemoViewer.Offsets.CKANCAEIBGG;
+            public const uint OnResize = Raw.GUIDevDemoViewer.Methods.OnResize;
+            public const uint demo_loadlist = Raw.GUIDevDemoViewer.Methods.demo_loadlist;
+            public const uint Start = Raw.GUIDevDemoViewer.Methods.Start;
+            public const uint OnGUI = Raw.GUIDevDemoViewer.Methods.OnGUI;
             public const uint Action_OPJD = Raw.GUIDevDemoViewer.Methods.OPJDMLMIDBH;
             public const uint Action_HAIH = Raw.GUIDevDemoViewer.Methods.HAIHAOMMFLK;
             public const uint Action_HKDF = Raw.GUIDevDemoViewer.Methods.HKDFHCKGMAK;
             public const uint Action_EEIM = Raw.GUIDevDemoViewer.Methods.EEIMJBGOJBD;
-            public const uint OnResize = Raw.GUIDevDemoViewer.Methods.OnResize;
             public const uint Action_DNMK = Raw.GUIDevDemoViewer.Methods.DNMKCNJEPCF;
             public const uint Action_JLJM = Raw.GUIDevDemoViewer.Methods.JLJMCNOCMHJ;
             public const uint Action_MONA = Raw.GUIDevDemoViewer.Methods.MONAFHFNGFF;
@@ -1654,11 +1802,9 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_EFFO = Raw.GUIDevDemoViewer.Methods.EFFOAJPPJLD;
             public const uint Action_BHLN = Raw.GUIDevDemoViewer.Methods.BHLNDIJHKAO;
             public const uint Action_IGHL = Raw.GUIDevDemoViewer.Methods.IGHLAKJKMMP;
-            public const uint demo_loadlist = Raw.GUIDevDemoViewer.Methods.demo_loadlist;
             public const uint Action_GFFI = Raw.GUIDevDemoViewer.Methods.GFFIHMDJACM;
             public const uint Action_IDAP = Raw.GUIDevDemoViewer.Methods.IDAPHBHIBJP;
             public const uint Action_DLPK = Raw.GUIDevDemoViewer.Methods.DLPKOFNOJKK;
-            public const uint Start = Raw.GUIDevDemoViewer.Methods.Start;
             public const uint Action_GPNM = Raw.GUIDevDemoViewer.Methods.GPNMIMMIKON;
             public const uint Action_ENOO = Raw.GUIDevDemoViewer.Methods.ENOOLHDFOOF;
             public const uint Action_EJHD = Raw.GUIDevDemoViewer.Methods.EJHDBAAHMMB;
@@ -1680,7 +1826,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_PLNA = Raw.GUIDevDemoViewer.Methods.PLNAOHLBIMB;
             public const uint Action_DALB = Raw.GUIDevDemoViewer.Methods.DALBHKDHBHB;
             public const uint Action_JKII = Raw.GUIDevDemoViewer.Methods.JKIIIHJDOCD;
-            public const uint OnGUI = Raw.GUIDevDemoViewer.Methods.OnGUI;
             public const uint Action_IBFN = Raw.GUIDevDemoViewer.Methods.IBFNCDJPMIJ;
             public const uint Action_BKHH = Raw.GUIDevDemoViewer.Methods.BKHHAAABMLM;
             public const uint Action_MIBG = Raw.GUIDevDemoViewer.Methods.MIBGEMFANBP;
@@ -1877,6 +2022,7 @@ namespace BlockpostTrainer.Sdk
 
         public static class GrassGenerator
         {
+            public const uint Generate = Raw.GrassGenerator.Methods.Generate;
             public const uint Action_INLC = Raw.GrassGenerator.Methods.INLCHMNELGO;
             public const uint Action_HMEK = Raw.GrassGenerator.Methods.HMEKAOOBOHO;
             public const uint Action_HPAM = Raw.GrassGenerator.Methods.HPAMDFGHBKP;
@@ -1918,7 +2064,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_LPFJ = Raw.GrassGenerator.Methods.LPFJHMAIKMJ;
             public const uint Action_MNEK = Raw.GrassGenerator.Methods.MNEKCJALJPP;
             public const uint Action_OILG = Raw.GrassGenerator.Methods.OILGIJICFLM;
-            public const uint Generate = Raw.GrassGenerator.Methods.Generate;
             public const uint Action_HNJM = Raw.GrassGenerator.Methods.HNJMLFACBEK;
             public const uint Action_KOJJ = Raw.GrassGenerator.Methods.KOJJADBAKDK;
             public const uint Action_AGID = Raw.GrassGenerator.Methods.AGIDKGHOMLK;
@@ -1961,6 +2106,13 @@ namespace BlockpostTrainer.Sdk
             public const int preview = Raw.HMap.Offsets.preview;
             public const int TeamColor = Raw.HMap.Offsets.NPHGPNPOANC;
             public const int TeamColor_1 = Raw.HMap.Offsets.JBFGBKPADAF;
+            public const uint LoadTextureMap = Raw.HMap.Methods.LoadTextureMap;
+            public const uint LoadChunk = Raw.HMap.Methods.LoadChunk;
+            public const uint GetColor = Raw.HMap.Methods.GetColor;
+            public const uint CreatePreview = Raw.HMap.Methods.CreatePreview;
+            public const uint GetFlag = Raw.HMap.Methods.GetFlag;
+            public const uint GetHeight = Raw.HMap.Methods.GetHeight;
+            public const uint CreateMiniMap = Raw.HMap.Methods.CreateMiniMap;
             public const uint Action_PMNH = Raw.HMap.Methods.PMNHDPKGALJ;
             public const uint GetInt_LPAH = Raw.HMap.Methods.LPAHHJPFBBN;
             public const uint Action_AFHF = Raw.HMap.Methods.AFHFNOLGCIB;
@@ -1977,21 +2129,15 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_LOLG = Raw.HMap.Methods.LOLGLOGBAEA;
             public const uint Action_MICB = Raw.HMap.Methods.MICBGEFIIMN;
             public const uint GetFloat_BCOJ = Raw.HMap.Methods.BCOJKHNPPND;
-            public const uint LoadTextureMap = Raw.HMap.Methods.LoadTextureMap;
             public const uint GetFloat_FEDF = Raw.HMap.Methods.FEDFLJBDNHO;
             public const uint GetInt_MOCD = Raw.HMap.Methods.MOCDLAHFLIB;
             public const uint Action_AGNH = Raw.HMap.Methods.AGNHMDHGNIN;
             public const uint Action_DCGN = Raw.HMap.Methods.DCGNGGNILDP;
-            public const uint LoadChunk = Raw.HMap.Methods.LoadChunk;
             public const uint GetFloat_AENP = Raw.HMap.Methods.AENPLPMBEOM;
             public const uint GetInt_FKBI = Raw.HMap.Methods.FKBIOCMIAKB;
-            public const uint GetColor = Raw.HMap.Methods.GetColor;
-            public const uint CreatePreview = Raw.HMap.Methods.CreatePreview;
             public const uint Action_CEJN = Raw.HMap.Methods.CEJNNBDLELN;
             public const uint GetInt_GPIB = Raw.HMap.Methods.GPIBLNNNGJL;
-            public const uint GetFlag = Raw.HMap.Methods.GetFlag;
             public const uint Action_ELPC = Raw.HMap.Methods.ELPCPACBANN;
-            public const uint GetHeight = Raw.HMap.Methods.GetHeight;
             public const uint Action_KAJK = Raw.HMap.Methods.KAJKHAFKGCP;
             public const uint Get_EKKE = Raw.HMap.Methods.EKKEICEKDIK;
             public const uint Action_AGDH = Raw.HMap.Methods.AGDHPDNIBLB;
@@ -2003,7 +2149,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_NAJM = Raw.HMap.Methods.NAJMKNOIJNM;
             public const uint Action_HNAO = Raw.HMap.Methods.HNAOPHGFKPA;
             public const uint GetFloat_KPGD = Raw.HMap.Methods.KPGDDCEDEGH;
-            public const uint CreateMiniMap = Raw.HMap.Methods.CreateMiniMap;
             public const uint GetInt_IKAM = Raw.HMap.Methods.IKAMCPMOBAM;
             public const uint Action_HMLH = Raw.HMap.Methods.HMLHOFHIPAB;
             public const uint Action_JIOI = Raw.HMap.Methods.JIOIHDAKIPM;
@@ -2188,6 +2333,12 @@ namespace BlockpostTrainer.Sdk
             public const int PlayerName_17 = Raw.HUD.Offsets.PGBHFOEPNBE;
             public const int PlayerName_18 = Raw.HUD.Offsets.MINMCMFHJNE;
             public const int AudioClip_DBOL = Raw.HUD.Offsets.DBOLIEAOGJP;
+            public const uint LoadEnd = Raw.HUD.Methods.LoadEnd;
+            public const uint LoadLang = Raw.HUD.Methods.LoadLang;
+            public const uint Update = Raw.HUD.Methods.Update;
+            public const uint OnGUI = Raw.HUD.Methods.OnGUI;
+            public const uint Awake = Raw.HUD.Methods.Awake;
+            public const uint OnResize = Raw.HUD.Methods.OnResize;
             public const uint Action_ECMM = Raw.HUD.Methods.ECMMFAGBOEK;
             public const uint Action_KHPH = Raw.HUD.Methods.KHPHGOOLOOL;
             public const uint Action_PLCF = Raw.HUD.Methods.PLCFHIEBIND;
@@ -2210,7 +2361,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_MOID = Raw.HUD.Methods.MOIDNBLPGKF;
             public const uint Action_NCHO = Raw.HUD.Methods.NCHOKGAOGII;
             public const uint Action_PBOI = Raw.HUD.Methods.PBOIIBKEKJF;
-            public const uint LoadEnd = Raw.HUD.Methods.LoadEnd;
             public const uint Action_EPKJ = Raw.HUD.Methods.EPKJHJLOEBE;
             public const uint Action_LBKC = Raw.HUD.Methods.LBKCNPLINHO;
             public const uint Action_LPBJ = Raw.HUD.Methods.LPBJNMAJDCA;
@@ -2272,16 +2422,13 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_FLMN = Raw.HUD.Methods.FLMNBNDHPJH;
             public const uint Action_EMKF = Raw.HUD.Methods.EMKFGCDFBKF;
             public const uint Action_KMHE = Raw.HUD.Methods.KMHEJNFIIDO;
-            public const uint LoadLang = Raw.HUD.Methods.LoadLang;
             public const uint Action_OBKO = Raw.HUD.Methods.OBKOIAMPOPM;
-            public const uint Update = Raw.HUD.Methods.Update;
             public const uint Action_JFBK = Raw.HUD.Methods.JFBKGLLOKCC;
             public const uint Action_NKCF = Raw.HUD.Methods.NKCFBMHNCPO;
             public const uint Action_ANJN = Raw.HUD.Methods.ANJNCJLEALB;
             public const uint Action_PIAH = Raw.HUD.Methods.PIAHHNBDACO;
             public const uint Action_EDIA = Raw.HUD.Methods.EDIAIOPDEFI;
             public const uint Action_JPPJ = Raw.HUD.Methods.JPPJMLJIIBN;
-            public const uint OnGUI = Raw.HUD.Methods.OnGUI;
             public const uint Action_CGEJ = Raw.HUD.Methods.CGEJEFOBODE;
             public const uint Action_INDF = Raw.HUD.Methods.INDFDAOGCLD;
             public const uint Action_EMPC = Raw.HUD.Methods.EMPCLPJPEDC;
@@ -2305,7 +2452,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_BAFG = Raw.HUD.Methods.BAFGLCMOHFH;
             public const uint Action_KELG = Raw.HUD.Methods.KELGOPFLHBG;
             public const uint Action_LHOK = Raw.HUD.Methods.LHOKOHHEKLN;
-            public const uint Awake = Raw.HUD.Methods.Awake;
             public const uint Action_NKEI = Raw.HUD.Methods.NKEIFDEOAGH;
             public const uint Action_BLJH = Raw.HUD.Methods.BLJHJFCGKGB;
             public const uint Action_FKCC = Raw.HUD.Methods.FKCCAPDNBFE;
@@ -2323,7 +2469,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_FKIK = Raw.HUD.Methods.FKIKLGJNHCI;
             public const uint Action_MKOE = Raw.HUD.Methods.MKOENMJBAFH;
             public const uint Action_GCPI = Raw.HUD.Methods.GCPIHMLGDAJ;
-            public const uint OnResize = Raw.HUD.Methods.OnResize;
             public const uint Action_JDNK = Raw.HUD.Methods.JDNKLMAAKHP;
             public const uint GetBool_DGKH = Raw.HUD.Methods.DGKHDODGCGM;
             public const uint GetBool_BMNM = Raw.HUD.Methods.BMNMBFMMNOP;
@@ -2343,8 +2488,13 @@ namespace BlockpostTrainer.Sdk
             public const int Rect = Raw.HUDIndicator.Offsets.HDJBDIJCIMG;
             public const int Texture = Raw.HUDIndicator.Offsets.CLKFLEKDIDG;
             public const int Timer = Raw.HUDIndicator.Offsets.EKNABJAJEOA;
-            public const uint Action_BGML = Raw.HUDIndicator.Methods.BGMLKENBGJF;
             public const uint Set = Raw.HUDIndicator.Methods.Set;
+            public const uint AngleSigned = Raw.HUDIndicator.Methods.AngleSigned;
+            public const uint SetActive = Raw.HUDIndicator.Methods.SetActive;
+            public const uint LoadEnd = Raw.HUDIndicator.Methods.LoadEnd;
+            public const uint OnResize = Raw.HUDIndicator.Methods.OnResize;
+            public const uint OnGUI = Raw.HUDIndicator.Methods.OnGUI;
+            public const uint Action_BGML = Raw.HUDIndicator.Methods.BGMLKENBGJF;
             public const uint Action_KHMI = Raw.HUDIndicator.Methods.KHMILPLCKKO;
             public const uint Action_PKHM = Raw.HUDIndicator.Methods.PKHMJMKAJLN;
             public const uint Action_CODN = Raw.HUDIndicator.Methods.CODNLJEGHLA;
@@ -2376,7 +2526,6 @@ namespace BlockpostTrainer.Sdk
             public const uint GetFloat_IKBN = Raw.HUDIndicator.Methods.IKBNHJMPKNH;
             public const uint Action_FPPG = Raw.HUDIndicator.Methods.FPPGOJCPIBE;
             public const uint Action_GGAN = Raw.HUDIndicator.Methods.GGANHKEBCEA;
-            public const uint AngleSigned = Raw.HUDIndicator.Methods.AngleSigned;
             public const uint Action_OBMI = Raw.HUDIndicator.Methods.OBMIPICONNC;
             public const uint Action_BEDG = Raw.HUDIndicator.Methods.BEDGOAAJNGB;
             public const uint Action_EFPD = Raw.HUDIndicator.Methods.EFPDEPCBGOB;
@@ -2398,15 +2547,12 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_HFEM = Raw.HUDIndicator.Methods.HFEMAPJHHID;
             public const uint Action_JLBL = Raw.HUDIndicator.Methods.JLBLLMACOEI;
             public const uint Action_EOEA = Raw.HUDIndicator.Methods.EOEAALKMAJB;
-            public const uint SetActive = Raw.HUDIndicator.Methods.SetActive;
             public const uint Action_FKEL = Raw.HUDIndicator.Methods.FKELNOOGMOB;
             public const uint Action_BBMM = Raw.HUDIndicator.Methods.BBMMOBFFDKO;
             public const uint Action_CIPJ = Raw.HUDIndicator.Methods.CIPJKJEOCJN;
-            public const uint LoadEnd = Raw.HUDIndicator.Methods.LoadEnd;
             public const uint Action_PNNL = Raw.HUDIndicator.Methods.PNNLBABPPJO;
             public const uint Action_BNHN = Raw.HUDIndicator.Methods.BNHNECMHNAA;
             public const uint Action_GCAF = Raw.HUDIndicator.Methods.GCAFAKFGIIC;
-            public const uint OnResize = Raw.HUDIndicator.Methods.OnResize;
             public const uint Action_NFDD = Raw.HUDIndicator.Methods.NFDDECMGIDD;
             public const uint Action_ECMM = Raw.HUDIndicator.Methods.ECMMLJIPCGF;
             public const uint Action_LEJB = Raw.HUDIndicator.Methods.LEJBNNJEHPC;
@@ -2417,7 +2563,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_LMIO = Raw.HUDIndicator.Methods.LMIOMFBCIMI;
             public const uint Action_MCKF = Raw.HUDIndicator.Methods.MCKFGNGIAHB;
             public const uint Action_PGAG = Raw.HUDIndicator.Methods.PGAGKCDPOLJ;
-            public const uint OnGUI = Raw.HUDIndicator.Methods.OnGUI;
             public const uint Action_OMAA = Raw.HUDIndicator.Methods.OMAAAJEFDCO;
             public const uint Action_PNFC = Raw.HUDIndicator.Methods.PNFCMCCJIIE;
             public const uint GetFloat_CFHI = Raw.HUDIndicator.Methods.CFHIJBJJGKG;
@@ -2478,6 +2623,9 @@ namespace BlockpostTrainer.Sdk
             public const int Sensitivity_2 = Raw.HUDMessage.Offsets.CKHLLJAJPAJ;
             public const int UIRect_13 = Raw.HUDMessage.Offsets.NAMNECPOCHI;
             public const int UIRect_14 = Raw.HUDMessage.Offsets.FIHKAJNIKNK;
+            public const uint OnGUI = Raw.HUDMessage.Methods.OnGUI;
+            public const uint LoadLang = Raw.HUDMessage.Methods.LoadLang;
+            public const uint LoadEnd = Raw.HUDMessage.Methods.LoadEnd;
             public const uint Action_MDDL = Raw.HUDMessage.Methods.MDDLMKAELHF;
             public const uint Action_EHFN = Raw.HUDMessage.Methods.EHFNGKGFPNE;
             public const uint Action_MKOE = Raw.HUDMessage.Methods.MKOENMJBAFH;
@@ -2485,10 +2633,8 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_PDEO = Raw.HUDMessage.Methods.PDEOKIKJOHN;
             public const uint Action_EIMG = Raw.HUDMessage.Methods.EIMGALLGKFM;
             public const uint Action_MPIF = Raw.HUDMessage.Methods.MPIFKAOJDHF;
-            public const uint Action_LOJK = Raw.HUDMessage.Methods.LOJKHKLKONJ;
             public const uint Action_LEDN = Raw.HUDMessage.Methods.LEDNOMDJBIC;
             public const uint Action_FAFN = Raw.HUDMessage.Methods.FAFNHLNBMPD;
-            public const uint OnGUI = Raw.HUDMessage.Methods.OnGUI;
             public const uint Action_OPKC = Raw.HUDMessage.Methods.OPKCIKPOJBK;
             public const uint Action_EJGG = Raw.HUDMessage.Methods.EJGGLACFLEI;
             public const uint Action_HAMD = Raw.HUDMessage.Methods.HAMDDPADEKC;
@@ -2515,7 +2661,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_CDIK = Raw.HUDMessage.Methods.CDIKDJEPKGA;
             public const uint Action_IDAK = Raw.HUDMessage.Methods.IDAKICACMHP;
             public const uint Action_ECKL = Raw.HUDMessage.Methods.ECKLGNIOCGG;
-            public const uint LoadLang = Raw.HUDMessage.Methods.LoadLang;
             public const uint Action_BDNG = Raw.HUDMessage.Methods.BDNGFLPLKAH;
             public const uint Action_MFHD = Raw.HUDMessage.Methods.MFHDGADEJPF;
             public const uint Action_LEON = Raw.HUDMessage.Methods.LEONHMLNGFG;
@@ -2530,9 +2675,9 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_GGGC = Raw.HUDMessage.Methods.GGGCBDBMKDF;
             public const uint Action_OBHD = Raw.HUDMessage.Methods.OBHDNPBPBKG;
             public const uint Action_NPOB = Raw.HUDMessage.Methods.NPOBJALEDCL;
-            public const uint LoadEnd = Raw.HUDMessage.Methods.LoadEnd;
             public const uint Action_MHDC = Raw.HUDMessage.Methods.MHDCHGMBFHB;
             public const uint Action_BOLG = Raw.HUDMessage.Methods.BOLGDEMMFOB;
+            public const uint Action_LOJK = Raw.HUDMessage.Methods.LOJKHKLKONJ;
         }
 
         public static class HUDMessage_EKAOIFHCKNB
@@ -2821,6 +2966,7 @@ namespace BlockpostTrainer.Sdk
         public static class InputHelper
         {
             public const int ICFOIOGNCEG_FIJC = Raw.InputHelper.Offsets.FIJCMMCFDJI;
+            public const uint GetTouches = Raw.InputHelper.Methods.GetTouches;
             public const uint Get_KCDO = Raw.InputHelper.Methods.KCDODIMGIHP;
             public const uint Get_PDBN = Raw.InputHelper.Methods.PDBNPFHLEEA;
             public const uint Get_DENB = Raw.InputHelper.Methods.DENBINANCLB;
@@ -2836,7 +2982,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Get_FKLF = Raw.InputHelper.Methods.FKLFPPEKEEJ;
             public const uint Get_KMBG = Raw.InputHelper.Methods.KMBGMMGFIIC;
             public const uint Get_ELAG = Raw.InputHelper.Methods.ELAGOLPPEBK;
-            public const uint GetTouches = Raw.InputHelper.Methods.GetTouches;
             public const uint Get_MMLP = Raw.InputHelper.Methods.MMLPBKCMNNA;
         }
 
@@ -3160,7 +3305,7 @@ namespace BlockpostTrainer.Sdk
             public const int Colon = Raw.KeyCode.Offsets.Colon;
             public const int Semicolon = Raw.KeyCode.Offsets.Semicolon;
             public const int Less = Raw.KeyCode.Offsets.Less;
-            public const int Equals = Raw.KeyCode.Offsets.Equals;
+            public const int Equals_ = Raw.KeyCode.Offsets.Equals_;
             public const int Greater = Raw.KeyCode.Offsets.Greater;
             public const int Question = Raw.KeyCode.Offsets.Question;
             public const int At = Raw.KeyCode.Offsets.At;
@@ -3799,6 +3944,12 @@ namespace BlockpostTrainer.Sdk
             public const int PlayerName_50 = Raw.Main.Offsets.INNDPCJBIEJ;
             public const int PlayerName_51 = Raw.Main.Offsets.AMIGJDMJJFF;
             public const int IsReloading_5 = Raw.Main.Offsets.CJFAPJCFIGD;
+            public const uint OnResize = Raw.Main.Methods.OnResize;
+            public const uint LoadEnd = Raw.Main.Methods.LoadEnd;
+            public const uint SelectMenu = Raw.Main.Methods.SelectMenu;
+            public const uint LoadEndFirst = Raw.Main.Methods.LoadEndFirst;
+            public const uint LoadLang = Raw.Main.Methods.LoadLang;
+            public const uint OnGUI = Raw.Main.Methods.OnGUI;
             public const uint Action_LKJA = Raw.Main.Methods.LKJAMEKEJHJ;
             public const uint Action_CCLI = Raw.Main.Methods.CCLINHKCPKC;
             public const uint Action_HOOA = Raw.Main.Methods.HOOAAFMDIDM;
@@ -3811,10 +3962,8 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_DCDI = Raw.Main.Methods.DCDIAEIALEE;
             public const uint Action_EFDO = Raw.Main.Methods.EFDOOKMOHEI;
             public const uint Action_LGNE = Raw.Main.Methods.LGNEMOKLHGJ;
-            public const uint OnResize = Raw.Main.Methods.OnResize;
             public const uint Action_IHDN = Raw.Main.Methods.IHDNCJMCBAK;
             public const uint Action_KLBE = Raw.Main.Methods.KLBECPCBGED;
-            public const uint LoadEnd = Raw.Main.Methods.LoadEnd;
             public const uint Action_HFHM = Raw.Main.Methods.HFHMFOLHLJE;
             public const uint GetInt_CIDH = Raw.Main.Methods.CIDHLDGEONC;
             public const uint Action_CFCK = Raw.Main.Methods.CFCKNOJHKFN;
@@ -3823,7 +3972,6 @@ namespace BlockpostTrainer.Sdk
             public const uint GetBool_INOK = Raw.Main.Methods.INOKKPFDMIM;
             public const uint GetInt_OANP = Raw.Main.Methods.OANPOEPAKPJ;
             public const uint Get_PBNK = Raw.Main.Methods.PBNKGDCPAPA;
-            public const uint SelectMenu = Raw.Main.Methods.SelectMenu;
             public const uint GetInt_JBEP = Raw.Main.Methods.JBEPAJEBJCO;
             public const uint Action_CDOP = Raw.Main.Methods.CDOPHKPCGNJ;
             public const uint GetInt_JAHH = Raw.Main.Methods.JAHHOMDJMCG;
@@ -3845,7 +3993,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_GNPE = Raw.Main.Methods.GNPENAOPFFG;
             public const uint Action_NEKB = Raw.Main.Methods.NEKBECJPFPO;
             public const uint Action_BIEG = Raw.Main.Methods.BIEGOHFPGGE;
-            public const uint LoadEndFirst = Raw.Main.Methods.LoadEndFirst;
             public const uint Action_JLGP = Raw.Main.Methods.JLGPPKDJOCN;
             public const uint Action_BBDK = Raw.Main.Methods.BBDKKHILMMN;
             public const uint Action_CNKJ = Raw.Main.Methods.CNKJGFJKCBK;
@@ -3854,7 +4001,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_NKLE = Raw.Main.Methods.NKLEHIKJDLN;
             public const uint GetInt_NNHP = Raw.Main.Methods.NNHPGHCELND;
             public const uint Action_JIIO = Raw.Main.Methods.JIIOGGILDFA;
-            public const uint LoadLang = Raw.Main.Methods.LoadLang;
             public const uint Get_LJKL = Raw.Main.Methods.LJKLLKENEBC;
             public const uint Action_PFON = Raw.Main.Methods.PFONOOECFDN;
             public const uint Action_NIIO = Raw.Main.Methods.NIIOKIKPLDB;
@@ -3878,7 +4024,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_DALB = Raw.Main.Methods.DALBHKDHBHB;
             public const uint Action_EIME = Raw.Main.Methods.EIMEKJIIOMN;
             public const uint GetBool_FEOJ = Raw.Main.Methods.FEOJCHEGCBI;
-            public const uint OnGUI = Raw.Main.Methods.OnGUI;
             public const uint Action_BMHN = Raw.Main.Methods.BMHNCGGEPEO;
             public const uint Action_FFGM = Raw.Main.Methods.FFGMPKAINKE;
             public const uint GetInt_IMKB = Raw.Main.Methods.IMKBGIOJGDK;
@@ -3928,6 +4073,10 @@ namespace BlockpostTrainer.Sdk
             public const int UseNewWeaponData = Raw.MainManager.Offsets.UseNewWeaponData;
             public const int NewAsyncSceneLoading = Raw.MainManager.Offsets.NewAsyncSceneLoading;
             public const int bytemaplist = Raw.MainManager.Offsets.bytemaplist;
+            public const uint LoadEndFirst = Raw.MainManager.Methods.LoadEndFirst;
+            public const uint SetState = Raw.MainManager.Methods.SetState;
+            public const uint Awake = Raw.MainManager.Methods.Awake;
+            public const uint get_Viewer = Raw.MainManager.Methods.get_Viewer;
             public const uint Action_HEAL = Raw.MainManager.Methods.HEALGMDHHON;
             public const uint Action_AKEF = Raw.MainManager.Methods.AKEFNADHKJJ;
             public const uint Action_HKKA = Raw.MainManager.Methods.HKKACELHNGI;
@@ -3957,9 +4106,7 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_OLCI = Raw.MainManager.Methods.OLCIDBDEBGN;
             public const uint Action_NECK = Raw.MainManager.Methods.NECKJHJIEDA;
             public const uint Action_BDAL = Raw.MainManager.Methods.BDALFIBKKMN;
-            public const uint LoadEndFirst = Raw.MainManager.Methods.LoadEndFirst;
             public const uint Action_HMEA = Raw.MainManager.Methods.HMEAFOIBOAE;
-            public const uint SetState = Raw.MainManager.Methods.SetState;
             public const uint GetBool_KCJF = Raw.MainManager.Methods.KCJFJIAMMAN;
             public const uint Action_DKBM = Raw.MainManager.Methods.DKBMEAKMOLF;
             public const uint Action_IHCM = Raw.MainManager.Methods.IHCMLMDNPLD;
@@ -3988,7 +4135,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_LNEC = Raw.MainManager.Methods.LNECKJDPJHC;
             public const uint Action_OEGF = Raw.MainManager.Methods.OEGFNIJIFPD;
             public const uint Action_MPLJ = Raw.MainManager.Methods.MPLJNBFOAIN;
-            public const uint Awake = Raw.MainManager.Methods.Awake;
             public const uint Action_GIIK = Raw.MainManager.Methods.GIIKHFIJLDL;
             public const uint Action_JAJJ = Raw.MainManager.Methods.JAJJOEHDNNJ;
             public const uint Action_MLND = Raw.MainManager.Methods.MLNDBAEKOMC;
@@ -3999,7 +4145,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_KINJ = Raw.MainManager.Methods.KINJBNDFENG;
             public const uint Action_CJBB = Raw.MainManager.Methods.CJBBHMFBFHE;
             public const uint Action_JNEP = Raw.MainManager.Methods.JNEPLLBDFMD;
-            public const uint get_Viewer = Raw.MainManager.Methods.get_Viewer;
             public const uint Action_JFAL = Raw.MainManager.Methods.JFALHMDOBAK;
             public const uint Action_OKGN = Raw.MainManager.Methods.OKGNAMGDKKA;
             public const uint Action_FJEO = Raw.MainManager.Methods.FJEOOBEICHN;
@@ -4059,6 +4204,9 @@ namespace BlockpostTrainer.Sdk
             public const int m_SkipMapLoading = Raw.MapAutoload.Offsets.m_SkipMapLoading;
             public const int m_Console = Raw.MapAutoload.Offsets.m_Console;
             public const int m_Atlas = Raw.MapAutoload.Offsets.m_Atlas;
+            public const uint SetAtlasPreview = Raw.MapAutoload.Methods.SetAtlasPreview;
+            public const uint Start = Raw.MapAutoload.Methods.Start;
+            public const uint Awake = Raw.MapAutoload.Methods.Awake;
             public const uint Action_ADCH = Raw.MapAutoload.Methods.ADCHHMPBGBF;
             public const uint Action_BDII = Raw.MapAutoload.Methods.BDIIFDINOKD;
             public const uint Action_JFHG = Raw.MapAutoload.Methods.JFHGNNFNMIO;
@@ -4076,7 +4224,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_AMBI = Raw.MapAutoload.Methods.AMBIJGINIMF;
             public const uint Action_KNMJ = Raw.MapAutoload.Methods.KNMJMECBEDG;
             public const uint Action_LPCO = Raw.MapAutoload.Methods.LPCOAICNLLD;
-            public const uint SetAtlasPreview = Raw.MapAutoload.Methods.SetAtlasPreview;
             public const uint Action_BOOC = Raw.MapAutoload.Methods.BOOCOPFEENC;
             public const uint Action_FAEF = Raw.MapAutoload.Methods.FAEFHJKDLPK;
             public const uint Action_EEDN = Raw.MapAutoload.Methods.EEDNDMBNIIM;
@@ -4085,7 +4232,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_COHO = Raw.MapAutoload.Methods.COHOBBIKGMH;
             public const uint Action_AFAO = Raw.MapAutoload.Methods.AFAOHDKDMEF;
             public const uint Action_ACOG = Raw.MapAutoload.Methods.ACOGPDIFANK;
-            public const uint Start = Raw.MapAutoload.Methods.Start;
             public const uint Action_GAMB = Raw.MapAutoload.Methods.GAMBOPHFCFN;
             public const uint Action_AFKC = Raw.MapAutoload.Methods.AFKCICLFNFM;
             public const uint Action_KBGE = Raw.MapAutoload.Methods.KBGEILKEHJO;
@@ -4101,7 +4247,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_NJAF = Raw.MapAutoload.Methods.NJAFNJJEHMI;
             public const uint Action_IGNE = Raw.MapAutoload.Methods.IGNEFBCCJOB;
             public const uint Action_IELA = Raw.MapAutoload.Methods.IELAJFHJJDH;
-            public const uint Awake = Raw.MapAutoload.Methods.Awake;
             public const uint Action_JCPE = Raw.MapAutoload.Methods.JCPEGKCOCDI;
             public const uint Action_MEPI = Raw.MapAutoload.Methods.MEPIIBCIDBG;
             public const uint Action_JLCG = Raw.MapAutoload.Methods.JLCGPGAPEHH;
@@ -4146,6 +4291,9 @@ namespace BlockpostTrainer.Sdk
             public const int StringArray = Raw.MapCulling.Offsets.MAPABGHKECB;
             public const int Name = Raw.MapCulling.Offsets.GBNLMEENPFO;
             public const int Value = Raw.MapCulling.Offsets.KEIPLJCLOGN;
+            public const uint OnDrawGizmosSelected = Raw.MapCulling.Methods.OnDrawGizmosSelected;
+            public const uint OnGUI = Raw.MapCulling.Methods.OnGUI;
+            public const uint Update = Raw.MapCulling.Methods.Update;
             public const uint Action_PDPK = Raw.MapCulling.Methods.PDPKBJEKLGC;
             public const uint Action_JNCB = Raw.MapCulling.Methods.JNCBEGOHKFB;
             public const uint Action_FAFJ = Raw.MapCulling.Methods.FAFJPOMBPHF;
@@ -4165,7 +4313,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_IHDN = Raw.MapCulling.Methods.IHDNCJMCBAK;
             public const uint Action_LDPL = Raw.MapCulling.Methods.LDPLHLHLLHE;
             public const uint Action_NOPD = Raw.MapCulling.Methods.NOPDLFNBOKF;
-            public const uint OnDrawGizmosSelected = Raw.MapCulling.Methods.OnDrawGizmosSelected;
             public const uint Action_LLED = Raw.MapCulling.Methods.LLEDGHDKKIE;
             public const uint Action_EOKP = Raw.MapCulling.Methods.EOKPGJDJCIK;
             public const uint Action_HJPO = Raw.MapCulling.Methods.HJPOOPCNJDJ;
@@ -4181,7 +4328,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_JEFL = Raw.MapCulling.Methods.JEFLIMOGLOK;
             public const uint Action_CIKN = Raw.MapCulling.Methods.CIKNOEDFFPA;
             public const uint Action_JHCB = Raw.MapCulling.Methods.JHCBBGFOHEG;
-            public const uint OnGUI = Raw.MapCulling.Methods.OnGUI;
             public const uint Action_JOJF = Raw.MapCulling.Methods.JOJFKMMOLAJ;
             public const uint Action_ENCP = Raw.MapCulling.Methods.ENCPODMJODA;
             public const uint Action_MHHM = Raw.MapCulling.Methods.MHHMALGJGLF;
@@ -4197,16 +4343,17 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_LBIL = Raw.MapCulling.Methods.LBILKLFLAMA;
             public const uint Action_OPFM = Raw.MapCulling.Methods.OPFMJFOPBPJ;
             public const uint Action_DALB = Raw.MapCulling.Methods.DALBHKDHBHB;
-            public const uint Update = Raw.MapCulling.Methods.Update;
         }
 
         public static class MapEvent
         {
             public const int GameObject_HAKP = Raw.MapEvent.Offsets.HAKPJHIBGDN;
             public const int golist = Raw.MapEvent.Offsets.golist;
+            public const uint Set = Raw.MapEvent.Methods.Set;
+            public const uint Clear = Raw.MapEvent.Methods.Clear;
+            public const uint Init = Raw.MapEvent.Methods.Init;
             public const uint Action_IINC = Raw.MapEvent.Methods.IINCOADBOOM;
             public const uint Action_BBAA = Raw.MapEvent.Methods.BBAANKKKONP;
-            public const uint Set = Raw.MapEvent.Methods.Set;
             public const uint Action_AGHE = Raw.MapEvent.Methods.AGHEKCNBAOC;
             public const uint Action_MEMB = Raw.MapEvent.Methods.MEMBGHGNNKM;
             public const uint Action_NHAN = Raw.MapEvent.Methods.NHANJODFILA;
@@ -4230,8 +4377,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_MJBH = Raw.MapEvent.Methods.MJBHGHHHDBH;
             public const uint Action_GGAN = Raw.MapEvent.Methods.GGANHKEBCEA;
             public const uint Action_ODLN = Raw.MapEvent.Methods.ODLNIOIIOLE;
-            public const uint Clear = Raw.MapEvent.Methods.Clear;
-            public const uint Init = Raw.MapEvent.Methods.Init;
             public const uint Action_PELC = Raw.MapEvent.Methods.PELCPIINEJI;
             public const uint Action_AMJI = Raw.MapEvent.Methods.AMJINKOJJOA;
             public const uint Action_FNGI = Raw.MapEvent.Methods.FNGINHKNLKI;
@@ -4324,6 +4469,9 @@ namespace BlockpostTrainer.Sdk
             public const int IsActive_1 = Raw.MapGenerator.Offsets.HIMLDGKPFPO;
             public const int Rate_3 = Raw.MapGenerator.Offsets.NALIJEIGHNJ;
             public const int Health_4 = Raw.MapGenerator.Offsets.MIDOMIIKAKD;
+            public const uint OnGUI = Raw.MapGenerator.Methods.OnGUI;
+            public const uint Start = Raw.MapGenerator.Methods.Start;
+            public const uint Update = Raw.MapGenerator.Methods.Update;
             public const uint Action_LBPL = Raw.MapGenerator.Methods.LBPLAOJACDG;
             public const uint Action_GEBM = Raw.MapGenerator.Methods.GEBMMIADBOI;
             public const uint Action_PILL = Raw.MapGenerator.Methods.PILLHHELMCN;
@@ -4333,7 +4481,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_EEDN = Raw.MapGenerator.Methods.EEDNDMBNIIM;
             public const uint Action_JACL = Raw.MapGenerator.Methods.JACLMNODBFH;
             public const uint Action_DONM = Raw.MapGenerator.Methods.DONMANFANHB;
-            public const uint OnGUI = Raw.MapGenerator.Methods.OnGUI;
             public const uint Action_DGNC = Raw.MapGenerator.Methods.DGNCKPBAFFG;
             public const uint Action_CKPP = Raw.MapGenerator.Methods.CKPPNHDNBEE;
             public const uint Action_APBK = Raw.MapGenerator.Methods.APBKCMPAKGE;
@@ -4344,7 +4491,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_OFAB = Raw.MapGenerator.Methods.OFABCHHCDGL;
             public const uint Action_IOBB = Raw.MapGenerator.Methods.IOBBKKBNALP;
             public const uint Action_NHDE = Raw.MapGenerator.Methods.NHDEBDNNHOL;
-            public const uint Start = Raw.MapGenerator.Methods.Start;
             public const uint Action_CGNK = Raw.MapGenerator.Methods.CGNKEFMGPLI;
             public const uint Action_JLFF = Raw.MapGenerator.Methods.JLFFLMJGGAG;
             public const uint Action_BCLD = Raw.MapGenerator.Methods.BCLDNEAFMHK;
@@ -4381,10 +4527,8 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_KBGE = Raw.MapGenerator.Methods.KBGEILKEHJO;
             public const uint Action_PIJI = Raw.MapGenerator.Methods.PIJIKPPGPNK;
             public const uint Action_EEOL = Raw.MapGenerator.Methods.EEOLMOEAIAD;
-            public const uint Update = Raw.MapGenerator.Methods.Update;
             public const uint Action_MIIN = Raw.MapGenerator.Methods.MIINFMHDFBC;
             public const uint Action_NCHN = Raw.MapGenerator.Methods.NCHNEHMJNAN;
-            public const uint Action_PEPD = Raw.MapGenerator.Methods.PEPDLHOHDKP;
             public const uint Action_NNJH = Raw.MapGenerator.Methods.NNJHODKIHCB;
             public const uint Action_INGB = Raw.MapGenerator.Methods.INGBLDMEGHG;
             public const uint Action_DNNP = Raw.MapGenerator.Methods.DNNPNHOANKB;
@@ -4395,6 +4539,7 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_KOHI = Raw.MapGenerator.Methods.KOHICEFPKIK;
             public const uint Action_HDIN = Raw.MapGenerator.Methods.HDINJCKENLI;
             public const uint Action_PNDO = Raw.MapGenerator.Methods.PNDOENNFCMF;
+            public const uint Action_PEPD = Raw.MapGenerator.Methods.PEPDLHOHDKP;
         }
 
         public static class MapLayerGenerator
@@ -4402,6 +4547,8 @@ namespace BlockpostTrainer.Sdk
             public const int Texture2D_BJKJ = Raw.MapLayerGenerator.Offsets.BJKJJCFLOIN;
             public const int Count = Raw.MapLayerGenerator.Offsets.EKNABJAJEOA;
             public const int Count_1 = Raw.MapLayerGenerator.Offsets.JEAFPDJIGBL;
+            public const uint Start = Raw.MapLayerGenerator.Methods.Start;
+            public const uint Update = Raw.MapLayerGenerator.Methods.Update;
             public const uint Action_CEKC = Raw.MapLayerGenerator.Methods.CEKCHBOPIDC;
             public const uint Action_BLBD = Raw.MapLayerGenerator.Methods.BLBDCKGFEHB;
             public const uint Action_AFMF = Raw.MapLayerGenerator.Methods.AFMFJLIMOFN;
@@ -4482,11 +4629,9 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_CFCM = Raw.MapLayerGenerator.Methods.CFCMDHCPBEH;
             public const uint Action_MFON = Raw.MapLayerGenerator.Methods.MFONEPNEDOI;
             public const uint Action_CFEN = Raw.MapLayerGenerator.Methods.CFENOOKADGB;
-            public const uint Start = Raw.MapLayerGenerator.Methods.Start;
             public const uint Action_IHEA = Raw.MapLayerGenerator.Methods.IHEADOLPDLL;
             public const uint Action_GAPA = Raw.MapLayerGenerator.Methods.GAPACNLCCBL;
             public const uint Action_DDIP = Raw.MapLayerGenerator.Methods.DDIPFLEPNFL;
-            public const uint Update = Raw.MapLayerGenerator.Methods.Update;
             public const uint Action_EABH = Raw.MapLayerGenerator.Methods.EABHBNKHCJN;
             public const uint Action_ACHM = Raw.MapLayerGenerator.Methods.ACHMEJILAHF;
             public const uint Action_MDFG = Raw.MapLayerGenerator.Methods.MDFGADEFAPI;
@@ -4532,29 +4677,33 @@ namespace BlockpostTrainer.Sdk
             public const int averageNormals = Raw.MapLightBaker.Offsets.averageNormals;
             public const uint StartBakeLightDirect = Raw.MapLightBaker.Methods.StartBakeLightDirect;
             public const uint BakeLightDirect = Raw.MapLightBaker.Methods.BakeLightDirect;
+            public const uint StartBakeLightAO = Raw.MapLightBaker.Methods.StartBakeLightAO;
+            public const uint BakeLightDirectGameObject = Raw.MapLightBaker.Methods.BakeLightDirectGameObject;
+            public const uint BakeLightAOGameObject = Raw.MapLightBaker.Methods.BakeLightAOGameObject;
+            public const uint BakeLightAO = Raw.MapLightBaker.Methods.BakeLightAO;
+            public const uint Start = Raw.MapLightBaker.Methods.Start;
             public const uint Action_LPCM = Raw.MapLightBaker.Methods.LPCMLBPBNPG;
             public const uint Action_NBHD = Raw.MapLightBaker.Methods.NBHDDIBGNMD;
             public const uint Action_CJFF = Raw.MapLightBaker.Methods.CJFFGPPJKAJ;
-            public const uint StartBakeLightAO = Raw.MapLightBaker.Methods.StartBakeLightAO;
             public const uint Action_IEFC = Raw.MapLightBaker.Methods.IEFCDEHMHCM;
             public const uint Action_MBJK = Raw.MapLightBaker.Methods.MBJKEBHEOII;
             public const uint Get_DCFJ = Raw.MapLightBaker.Methods.DCFJHIDLBEK;
             public const uint Action_PKAC = Raw.MapLightBaker.Methods.PKACLCHJAED;
             public const uint Get_OHBL = Raw.MapLightBaker.Methods.OHBLODAPGKD;
             public const uint Get_ELPI = Raw.MapLightBaker.Methods.ELPIDEOODBF;
-            public const uint BakeLightDirectGameObject = Raw.MapLightBaker.Methods.BakeLightDirectGameObject;
             public const uint Get_IKLK = Raw.MapLightBaker.Methods.IKLKAPDHIDH;
             public const uint Get_JCKP = Raw.MapLightBaker.Methods.JCKPEGOOHCE;
             public const uint Action_CHGO = Raw.MapLightBaker.Methods.CHGOPJJCKJE;
-            public const uint BakeLightAOGameObject = Raw.MapLightBaker.Methods.BakeLightAOGameObject;
-            public const uint BakeLightAO = Raw.MapLightBaker.Methods.BakeLightAO;
-            public const uint Start = Raw.MapLightBaker.Methods.Start;
             public const uint Action_PGGB = Raw.MapLightBaker.Methods.PGGBKDCHDLK;
             public const uint Action_NBJI = Raw.MapLightBaker.Methods.NBJIGIGIPAI;
         }
 
         public static class MapLoader
         {
+            public const uint BuildBox = Raw.MapLoader.Methods.BuildBox;
+            public const uint GenerateTerrain = Raw.MapLoader.Methods.GenerateTerrain;
+            public const uint GenerateMap = Raw.MapLoader.Methods.GenerateMap;
+            public const uint GenerateClearMap = Raw.MapLoader.Methods.GenerateClearMap;
             public const uint Action_GBMA = Raw.MapLoader.Methods.GBMAGLLFKGG;
             public const uint Action_EBAM = Raw.MapLoader.Methods.EBAMADCDPAK;
             public const uint Action_KEIN = Raw.MapLoader.Methods.KEINOPOPLEJ;
@@ -4625,7 +4774,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_HBEI = Raw.MapLoader.Methods.HBEIPHLFEKK;
             public const uint Action_ONBN = Raw.MapLoader.Methods.ONBNIABBDKO;
             public const uint Action_NNEN = Raw.MapLoader.Methods.NNENKOADAIH;
-            public const uint BuildBox = Raw.MapLoader.Methods.BuildBox;
             public const uint Action_OBBP = Raw.MapLoader.Methods.OBBPHGCIOHE;
             public const uint Action_ONMN = Raw.MapLoader.Methods.ONMNILOOPJD;
             public const uint Action_NCBA = Raw.MapLoader.Methods.NCBAABDBIOE;
@@ -4644,7 +4792,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_MPHF = Raw.MapLoader.Methods.MPHFAGBLFEI;
             public const uint Action_KMLM = Raw.MapLoader.Methods.KMLMKLMNEOD;
             public const uint Action_JFFF = Raw.MapLoader.Methods.JFFFJFAEPNK;
-            public const uint GenerateTerrain = Raw.MapLoader.Methods.GenerateTerrain;
             public const uint Action_EJOJ = Raw.MapLoader.Methods.EJOJKEBCHFC;
             public const uint Action_GKBF = Raw.MapLoader.Methods.GKBFOCGLOJN;
             public const uint Action_FBEA = Raw.MapLoader.Methods.FBEAKNOJBAP;
@@ -4659,13 +4806,11 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_HLDF = Raw.MapLoader.Methods.HLDFBFHPEGC;
             public const uint Action_CPEC = Raw.MapLoader.Methods.CPECPIKLMKP;
             public const uint Action_AGJO = Raw.MapLoader.Methods.AGJOLHOCCJA;
-            public const uint GenerateMap = Raw.MapLoader.Methods.GenerateMap;
             public const uint Action_JKBJ = Raw.MapLoader.Methods.JKBJIDKBIID;
             public const uint Action_FBLP = Raw.MapLoader.Methods.FBLPDJFPLHF;
             public const uint Action_AEIG = Raw.MapLoader.Methods.AEIGCEFGOFB;
             public const uint Action_EDOK = Raw.MapLoader.Methods.EDOKCIOCPAN;
             public const uint Action_JDPP = Raw.MapLoader.Methods.JDPPHHNEJPC;
-            public const uint GenerateClearMap = Raw.MapLoader.Methods.GenerateClearMap;
             public const uint Action_MKFF = Raw.MapLoader.Methods.MKFFLEHFDML;
             public const uint Action_BNMI = Raw.MapLoader.Methods.BNMIOLPBJKA;
             public const uint Action_LEAB = Raw.MapLoader.Methods.LEABABBPGKC;
@@ -4688,6 +4833,8 @@ namespace BlockpostTrainer.Sdk
             public const int Id = Raw.MapOcc.Offsets.ANJGKCCKEED;
             public const int Id_1 = Raw.MapOcc.Offsets.GDEAEJEEKAL;
             public const int Id_2 = Raw.MapOcc.Offsets.LBCNENEFMLB;
+            public const uint Start = Raw.MapOcc.Methods.Start;
+            public const uint Update = Raw.MapOcc.Methods.Update;
             public const uint Action_GGAF = Raw.MapOcc.Methods.GGAFGMAEEFG;
             public const uint Action_HPHO = Raw.MapOcc.Methods.HPHONCKLEDA;
             public const uint Action_JGNH = Raw.MapOcc.Methods.JGNHJBEHCHJ;
@@ -4747,7 +4894,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_DJOI = Raw.MapOcc.Methods.DJOIOKEEGMN;
             public const uint Action_AADH = Raw.MapOcc.Methods.AADHIEHPIEJ;
             public const uint Action_GGPN = Raw.MapOcc.Methods.GGPNNDLAOLP;
-            public const uint Start = Raw.MapOcc.Methods.Start;
             public const uint Action_FMGJ = Raw.MapOcc.Methods.FMGJICHDHNE;
             public const uint Action_DGPK = Raw.MapOcc.Methods.DGPKGCKAJOI;
             public const uint Action_FPGD = Raw.MapOcc.Methods.FPGDKBNHLIJ;
@@ -4772,7 +4918,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_AHFC = Raw.MapOcc.Methods.AHFCALIKOGK;
             public const uint Action_FBDG = Raw.MapOcc.Methods.FBDGDDALAOJ;
             public const uint Action_OKCF = Raw.MapOcc.Methods.OKCFPLOPKMN;
-            public const uint Update = Raw.MapOcc.Methods.Update;
             public const uint Action_ELKE = Raw.MapOcc.Methods.ELKEEGJCMEE;
             public const uint Action_KFGE = Raw.MapOcc.Methods.KFGEENPDFDD;
             public const uint Action_NBED = Raw.MapOcc.Methods.NBEDLJAJEMK;
@@ -4944,7 +5089,6 @@ namespace BlockpostTrainer.Sdk
             public const int identityMatrix = Raw.Matrix4x4.Offsets.identityMatrix;
             public const uint GetDeterminant = Raw.Matrix4x4.Methods.GetDeterminant;
             public const uint get_determinant = Raw.Matrix4x4.Methods.get_determinant;
-            public const uint Get_TRS = Raw.Matrix4x4.Methods.TRS;
             public const uint SetTRS = Raw.Matrix4x4.Methods.SetTRS;
             public const uint Inverse3DAffine = Raw.Matrix4x4.Methods.Inverse3DAffine;
             public const uint Inverse = Raw.Matrix4x4.Methods.Inverse;
@@ -4965,6 +5109,7 @@ namespace BlockpostTrainer.Sdk
             public const uint Inverse3DAffine_Injected = Raw.Matrix4x4.Methods.Inverse3DAffine_Injected;
             public const uint Inverse_Injected = Raw.Matrix4x4.Methods.Inverse_Injected;
             public const uint Ortho_Injected = Raw.Matrix4x4.Methods.Ortho_Injected;
+            public const uint Get_TRS = Raw.Matrix4x4.Methods.TRS;
             public const string determinant = Raw.Matrix4x4.Properties.determinant;
             public const string inverse = Raw.Matrix4x4.Properties.inverse;
             public const string Item = Raw.Matrix4x4.Properties.Item;
@@ -5008,16 +5153,16 @@ namespace BlockpostTrainer.Sdk
             public const int m_owner = Raw.MotionState.Offsets.m_owner;
             public const int m_obj = Raw.MotionState.Offsets.m_obj;
             public const int m_materialWarnings = Raw.MotionState.Offsets.m_materialWarnings;
+            public const uint get_Error = Raw.MotionState.Methods.get_Error;
+            public const uint get_Owner = Raw.MotionState.Methods.get_Owner;
+            public const uint get_Initialized = Raw.MotionState.Methods.get_Initialized;
             public const uint Action_NIHC = Raw.MotionState.Methods.NIHCKFHOEBC;
             public const uint GetBool_JCOP = Raw.MotionState.Methods.JCOPICONJIB;
-            public const uint get_Error = Raw.MotionState.Methods.get_Error;
             public const uint Get_MBLB = Raw.MotionState.Methods.MBLBMHHFGLE;
             public const uint Action_DAJN = Raw.MotionState.Methods.DAJNEMIMJJG;
             public const uint GetBool_PNHE = Raw.MotionState.Methods.PNHEBBBOLLI;
             public const uint Action_KHEK = Raw.MotionState.Methods.KHEKKBKPCIL;
             public const uint Action_FIFB = Raw.MotionState.Methods.FIFBLNKDGJB;
-            public const uint get_Owner = Raw.MotionState.Methods.get_Owner;
-            public const uint get_Initialized = Raw.MotionState.Methods.get_Initialized;
             public const string Owner = Raw.MotionState.Properties.Owner;
             public const string Initialized = Raw.MotionState.Properties.Initialized;
             public const string Error = Raw.MotionState.Properties.Error;
@@ -5041,8 +5186,10 @@ namespace BlockpostTrainer.Sdk
             public const int FireRate_3 = Raw.MouseLook.Offsets.PGKOCMFEMGC;
             public const int frameCounter = Raw.MouseLook.Offsets.frameCounter;
             public const int Quaternion_EPDM = Raw.MouseLook.Offsets.EPDMPLDKCDK;
-            public const uint Action_FMAC = Raw.MouseLook.Methods.FMACDMAFKMP;
             public const uint Start = Raw.MouseLook.Methods.Start;
+            public const uint Update = Raw.MouseLook.Methods.Update;
+            public const uint ClampAngle = Raw.MouseLook.Methods.ClampAngle;
+            public const uint Action_FMAC = Raw.MouseLook.Methods.FMACDMAFKMP;
             public const uint GetFloat_BHMO = Raw.MouseLook.Methods.BHMOHHEBMPP;
             public const uint Action_DLEP = Raw.MouseLook.Methods.DLEPHFDBPEK;
             public const uint Action_LEBM = Raw.MouseLook.Methods.LEBMDHOPPGL;
@@ -5070,7 +5217,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_DLJJ = Raw.MouseLook.Methods.DLJJBHNHCFH;
             public const uint Action_PKNH = Raw.MouseLook.Methods.PKNHLEMKCGP;
             public const uint Action_OGGH = Raw.MouseLook.Methods.OGGHBHGDIFC;
-            public const uint Update = Raw.MouseLook.Methods.Update;
             public const uint Action_COHD = Raw.MouseLook.Methods.COHDPGJCBME;
             public const uint Action_MPDB = Raw.MouseLook.Methods.MPDBIDCEKJG;
             public const uint Action_KPOI = Raw.MouseLook.Methods.KPOIBKMFBFK;
@@ -5084,7 +5230,6 @@ namespace BlockpostTrainer.Sdk
             public const uint GetFloat_DFOI = Raw.MouseLook.Methods.DFOIJPBFKMB;
             public const uint GetFloat_NDDD = Raw.MouseLook.Methods.NDDDNCKFHBF;
             public const uint GetFloat_HFNL = Raw.MouseLook.Methods.HFNLCNLLKDB;
-            public const uint ClampAngle = Raw.MouseLook.Methods.ClampAngle;
             public const uint Action_CLHG = Raw.MouseLook.Methods.CLHGEMCBFBG;
             public const uint Action_MACJ = Raw.MouseLook.Methods.MACJIHONAGD;
             public const uint Action_FLAH = Raw.MouseLook.Methods.FLAHGANDBDG;
@@ -5169,21 +5314,173 @@ namespace BlockpostTrainer.Sdk
             public const int Factor_2 = Raw.Movement.Offsets.MBBPFKGLEHN;
             public const int Factor_3 = Raw.Movement.Offsets.PBIMHJCFMMK;
             public const int Factor_4 = Raw.Movement.Offsets.OFKFIJICIIP;
+            public const uint MoveGround = Raw.Movement.Methods.MoveGround;
+            public const uint Accelerate = Raw.Movement.Methods.Accelerate;
+            public const uint MoveAir = Raw.Movement.Methods.MoveAir;
             public const uint GetPosition_EIMF = Raw.Movement.Methods.EIMFLELLFIE;
             public const uint GetPosition_EKJM = Raw.Movement.Methods.EKJMOMCPGGO;
             public const uint GetPosition_IKHB = Raw.Movement.Methods.IKHBHMGBGKC;
             public const uint GetPosition_HNIB = Raw.Movement.Methods.HNIBDJDCBFI;
-            public const uint MoveGround = Raw.Movement.Methods.MoveGround;
             public const uint GetPosition_DHOG = Raw.Movement.Methods.DHOGMMMMPPG;
             public const uint GetPosition_IJCM = Raw.Movement.Methods.IJCMLFMHMEA;
             public const uint GetPosition_CCNC = Raw.Movement.Methods.CCNCGDOAFNM;
-            public const uint Accelerate = Raw.Movement.Methods.Accelerate;
             public const uint GetPosition_NGDC = Raw.Movement.Methods.NGDCIJOJKPL;
             public const uint GetPosition_OCEL = Raw.Movement.Methods.OCELCKEMBBL;
             public const uint GetPosition_LKPN = Raw.Movement.Methods.LKPNJIJLBCI;
             public const uint GetPosition_CBDP = Raw.Movement.Methods.CBDPDEFNOCL;
-            public const uint MoveAir = Raw.Movement.Methods.MoveAir;
             public const uint GetPosition_LAAM = Raw.Movement.Methods.LAAMDDLEOOH;
+        }
+
+        public static class NEGGNDFJMAK
+        {
+            public const int Slot = Raw.NEGGNDFJMAK.Offsets.EDHABHFLGBM;
+            public const int IsCrouching = Raw.NEGGNDFJMAK.Offsets.HCDCCCHOCJB;
+            public const int Slot_1 = Raw.NEGGNDFJMAK.Offsets.KGIDCFCCKMD;
+            public const int DisplayName = Raw.NEGGNDFJMAK.Offsets.IOCKAKPFGGG;
+            public const int Slot_2 = Raw.NEGGNDFJMAK.Offsets.KLFDILCDEAH;
+            public const int Slot_3 = Raw.NEGGNDFJMAK.Offsets.IFGBDAHDJLA;
+            public const int Slot_4 = Raw.NEGGNDFJMAK.Offsets.KGPOMFBAOFO;
+            public const int ushort_PDFN = Raw.NEGGNDFJMAK.Offsets.PDFNPELPOCG;
+            public const int IsCrouching_1 = Raw.NEGGNDFJMAK.Offsets.JCGBABGKMOA;
+            public const int Slot_5 = Raw.NEGGNDFJMAK.Offsets.JPJAKMICGHA;
+            public const int TcpClient = Raw.NEGGNDFJMAK.Offsets.HPDGDLFMEKI;
+            public const int IsCrouching_2 = Raw.NEGGNDFJMAK.Offsets.NGBODNKNGLB;
+            public const int IsCrouching_3 = Raw.NEGGNDFJMAK.Offsets.OOGFNLOELIG;
+            public const int List_NEGGNDFJMAK_GBPCAKEGOIJ_GGKH = Raw.NEGGNDFJMAK.Offsets.GGKHKKIJDML;
+            public const int List_NEGGNDFJMAK_GBPCAKEGOIJ_EHMO = Raw.NEGGNDFJMAK.Offsets.EHMOABJOMCL;
+            public const int ReceiveBuffer = Raw.NEGGNDFJMAK.Offsets.PEGEIKDNHLL;
+            public const int Slot_6 = Raw.NEGGNDFJMAK.Offsets.FKEHEHGFNBD;
+            public const int NEGGNDFJMAK_JLCFPHCMFOB_KGIN = Raw.NEGGNDFJMAK.Offsets.KGINABKLOIG;
+            public const int NEGGNDFJMAK_JLCFPHCMFOB_HJKK = Raw.NEGGNDFJMAK.Offsets.HJKKNJIFKLJ;
+            public const int NEGGNDFJMAK_JLCFPHCMFOB_BGOM = Raw.NEGGNDFJMAK.Offsets.BGOMNMLBMLF;
+            public const int NEGGNDFJMAK_JLCFPHCMFOB_KALD = Raw.NEGGNDFJMAK.Offsets.KALDGKAGAPG;
+            public const int NEGGNDFJMAK_JLCFPHCMFOB_ANPD = Raw.NEGGNDFJMAK.Offsets.ANPDCFAKLPH;
+            public const int Slot_7 = Raw.NEGGNDFJMAK.Offsets.MPOLJOFDIKK;
+            public const int DisplayName_1 = Raw.NEGGNDFJMAK.Offsets.HCKCBIEOMCI;
+            public const int IsCrouching_4 = Raw.NEGGNDFJMAK.Offsets.MKNFMHNPAAG;
+            public const int Slot_8 = Raw.NEGGNDFJMAK.Offsets.EMNBCCBIBPH;
+            public const int Slot_9 = Raw.NEGGNDFJMAK.Offsets.GLBLFMACOMG;
+            public const int Slot_10 = Raw.NEGGNDFJMAK.Offsets.ONMBEADPENC;
+            public const int Slot_11 = Raw.NEGGNDFJMAK.Offsets.EJAJFGOOPLL;
+            public const int Slot_12 = Raw.NEGGNDFJMAK.Offsets.HNHOAMJBHDG;
+            public const int ReceiveBuffer_1 = Raw.NEGGNDFJMAK.Offsets.MPEBMGMMOEI;
+            public const int Slot_13 = Raw.NEGGNDFJMAK.Offsets.ALCNBPBEAGG;
+            public const int Slot_14 = Raw.NEGGNDFJMAK.Offsets.JMGOFIGJMAC;
+            public const int Rate = Raw.NEGGNDFJMAK.Offsets.PNAEFNBJIPD;
+            public const int Rate_1 = Raw.NEGGNDFJMAK.Offsets.OAAKLAEODPJ;
+            public const int IsCrouching_5 = Raw.NEGGNDFJMAK.Offsets.BPPFPCAGDMO;
+            public const int IsCrouching_6 = Raw.NEGGNDFJMAK.Offsets.FNKNJHEDIPL;
+            public const int NEGGNDFJMAK_FPEDLONKNMC_JOKM = Raw.NEGGNDFJMAK.Offsets.JOKMPPIKENG;
+            public const int List_NEGGNDFJMAK_GBPCAKEGOIJ_OONK = Raw.NEGGNDFJMAK.Offsets.OONKIFFFCPG;
+            public const int List_NEGGNDFJMAK_GBPCAKEGOIJ_IBKF = Raw.NEGGNDFJMAK.Offsets.IBKFPIKIOMK;
+            public const int IsCrouching_7 = Raw.NEGGNDFJMAK.Offsets.PHONNFLOCPC;
+            public const int IsCrouching_8 = Raw.NEGGNDFJMAK.Offsets.FNFIJCILJCL;
+            public const int Slot_15 = Raw.NEGGNDFJMAK.Offsets.MEGABNLIKGD;
+            public const int Slot_16 = Raw.NEGGNDFJMAK.Offsets.KBDDBMHFAAJ;
+            public const int Rate_2 = Raw.NEGGNDFJMAK.Offsets.FOABGMAAKAH;
+            public const int Rate_3 = Raw.NEGGNDFJMAK.Offsets.MDPCDEPLBKO;
+            public const int Slot_17 = Raw.NEGGNDFJMAK.Offsets.IPLOEKHEHCG;
+            public const uint GetInt_OJGI = Raw.NEGGNDFJMAK.Methods.OJGIPNMNGFD;
+            public const uint Action_LBPE = Raw.NEGGNDFJMAK.Methods.LBPEEFAMNJO;
+            public const uint Action_HCAC = Raw.NEGGNDFJMAK.Methods.HCACHALGEMP;
+            public const uint Action_JCFN = Raw.NEGGNDFJMAK.Methods.JCFNHIKJBMJ;
+            public const uint Action_FPKE = Raw.NEGGNDFJMAK.Methods.FPKEAECEOPE;
+            public const uint Action_NGGP = Raw.NEGGNDFJMAK.Methods.NGGPBFPBKHF;
+            public const uint Action_HKAJ = Raw.NEGGNDFJMAK.Methods.HKAJLJNLGEG;
+            public const uint Action_GAMK = Raw.NEGGNDFJMAK.Methods.GAMKMKBJMHK;
+            public const uint Action_NHCD = Raw.NEGGNDFJMAK.Methods.NHCDCMDOJHG;
+            public const uint Action_GEHO = Raw.NEGGNDFJMAK.Methods.GEHOFKHCNFB;
+            public const uint Action_BLIA = Raw.NEGGNDFJMAK.Methods.BLIANAGDPKG;
+            public const uint Action_GOIC = Raw.NEGGNDFJMAK.Methods.GOICKCLEAKH;
+            public const uint Action_PLDD = Raw.NEGGNDFJMAK.Methods.PLDDCABDPIH;
+            public const uint Action_FEBJ = Raw.NEGGNDFJMAK.Methods.FEBJJNPABDK;
+            public const uint GetInt_MANC = Raw.NEGGNDFJMAK.Methods.MANCIBHDNJD;
+            public const uint Action_HGJC = Raw.NEGGNDFJMAK.Methods.HGJCKJJACLM;
+            public const uint Action_LFHK = Raw.NEGGNDFJMAK.Methods.LFHKAOLALCG;
+            public const uint Action_HANB = Raw.NEGGNDFJMAK.Methods.HANBBPIHIJG;
+            public const uint Action_CDLJ = Raw.NEGGNDFJMAK.Methods.CDLJJJPECED;
+            public const uint Action_PDCC = Raw.NEGGNDFJMAK.Methods.PDCCOFFNFHM;
+            public const uint Action_MNNA = Raw.NEGGNDFJMAK.Methods.MNNAHBDAFJF;
+            public const uint Action_FAFI = Raw.NEGGNDFJMAK.Methods.FAFIAPBBBGJ;
+            public const uint Action_JBAN = Raw.NEGGNDFJMAK.Methods.JBANHMKIPBJ;
+            public const uint GetString_EENL = Raw.NEGGNDFJMAK.Methods.EENLECPIILO;
+            public const uint Action_DNAG = Raw.NEGGNDFJMAK.Methods.DNAGAOHDMLC;
+            public const uint Action_KLNH = Raw.NEGGNDFJMAK.Methods.KLNHOABLADK;
+            public const uint Action_BMJJ = Raw.NEGGNDFJMAK.Methods.BMJJCBAPAHP;
+            public const uint Action_MAMJ = Raw.NEGGNDFJMAK.Methods.MAMJFAEAPHG;
+            public const uint Action_BLPC = Raw.NEGGNDFJMAK.Methods.BLPCNHBKJAJ;
+            public const uint Action_AMLE = Raw.NEGGNDFJMAK.Methods.AMLECMHLJFE;
+            public const uint Action_KPBP = Raw.NEGGNDFJMAK.Methods.KPBPDBDDOFG;
+            public const uint Action_HMHB = Raw.NEGGNDFJMAK.Methods.HMHBJDIJPJN;
+            public const uint Action_JOII = Raw.NEGGNDFJMAK.Methods.JOIIOCBHLKM;
+            public const uint GetInt_EJFK = Raw.NEGGNDFJMAK.Methods.EJFKHKLJCHI;
+            public const uint Action_FLLD = Raw.NEGGNDFJMAK.Methods.FLLDBGPJPJH;
+            public const uint Action_HGEE = Raw.NEGGNDFJMAK.Methods.HGEENDFMMCP;
+            public const uint Action_NPHN = Raw.NEGGNDFJMAK.Methods.NPHNMODFDHE;
+            public const uint Action_OMKG = Raw.NEGGNDFJMAK.Methods.OMKGIJEJKPE;
+            public const uint Action_EIAJ = Raw.NEGGNDFJMAK.Methods.EIAJIHCOOID;
+            public const uint Action_BKHD = Raw.NEGGNDFJMAK.Methods.BKHDADBGLKO;
+            public const uint Action_BPGF = Raw.NEGGNDFJMAK.Methods.BPGFKMPDLEH;
+            public const uint GetInt_BBNH = Raw.NEGGNDFJMAK.Methods.BBNHCHNMKHA;
+            public const uint GetInt_GBPC = Raw.NEGGNDFJMAK.Methods.GBPCOEAJKIA;
+            public const uint Action_JGGJ = Raw.NEGGNDFJMAK.Methods.JGGJNEBCDPH;
+            public const uint Action_COHC = Raw.NEGGNDFJMAK.Methods.COHCMLAJMEK;
+            public const uint Action_MFFG = Raw.NEGGNDFJMAK.Methods.MFFGJGHOJJO;
+            public const uint Action_IGHA = Raw.NEGGNDFJMAK.Methods.IGHAMBPFLPA;
+            public const uint Action_KIHM = Raw.NEGGNDFJMAK.Methods.KIHMFDMHOOF;
+            public const uint Action_LAHH = Raw.NEGGNDFJMAK.Methods.LAHHMLBEMNK;
+            public const uint Action_DPDP = Raw.NEGGNDFJMAK.Methods.DPDPHAAGLIP;
+            public const uint Action_LKCM = Raw.NEGGNDFJMAK.Methods.LKCMAEFEDHA;
+            public const uint GetBool_GBNH = Raw.NEGGNDFJMAK.Methods.GBNHPLJOMAJ;
+            public const uint Action_BMKP = Raw.NEGGNDFJMAK.Methods.BMKPJHOBHGK;
+            public const uint Action_BIPD = Raw.NEGGNDFJMAK.Methods.BIPDCGNBGMO;
+            public const uint Action_ELJA = Raw.NEGGNDFJMAK.Methods.ELJADLANGJM;
+            public const uint GetInt_JNIP = Raw.NEGGNDFJMAK.Methods.JNIPKNHIHAM;
+            public const uint Action_OPAC = Raw.NEGGNDFJMAK.Methods.OPACGECFDEC;
+            public const uint GetInt_FENG = Raw.NEGGNDFJMAK.Methods.FENGAINNJGA;
+            public const uint Action_HMAD = Raw.NEGGNDFJMAK.Methods.HMADHLNFIJI;
+            public const uint GetInt_FKEN = Raw.NEGGNDFJMAK.Methods.FKENANPMOKK;
+            public const uint Action_LOPJ = Raw.NEGGNDFJMAK.Methods.LOPJFECKMJM;
+            public const uint Action_EPMP = Raw.NEGGNDFJMAK.Methods.EPMPPGKEMLJ;
+            public const uint GetInt_OEEO = Raw.NEGGNDFJMAK.Methods.OEEOELIJCJF;
+            public const uint GetInt_LKFF = Raw.NEGGNDFJMAK.Methods.LKFFPBKKABF;
+            public const uint Action_EDHP = Raw.NEGGNDFJMAK.Methods.EDHPODDNCNH;
+            public const uint Action_LLGA = Raw.NEGGNDFJMAK.Methods.LLGAHALHOIL;
+            public const uint Action_GCJF = Raw.NEGGNDFJMAK.Methods.GCJFIMNGHAC;
+            public const uint Action_ECPB = Raw.NEGGNDFJMAK.Methods.ECPBHCOCMAP;
+            public const uint GetBool_EJDG = Raw.NEGGNDFJMAK.Methods.EJDGGHFOAKM;
+            public const uint Action_LFJB = Raw.NEGGNDFJMAK.Methods.LFJBIKGOHEA;
+            public const uint GetInt_HFEM = Raw.NEGGNDFJMAK.Methods.HFEMBOCMAKG;
+            public const uint Action_FDJL = Raw.NEGGNDFJMAK.Methods.FDJLMNBMJJH;
+            public const uint Action_BPEO = Raw.NEGGNDFJMAK.Methods.BPEOMKMMODL;
+            public const uint GetInt_JELA = Raw.NEGGNDFJMAK.Methods.JELAOCNMOGJ;
+            public const uint Action_AIEN = Raw.NEGGNDFJMAK.Methods.AIENIFIKOLD;
+            public const uint Action_ACHI = Raw.NEGGNDFJMAK.Methods.ACHIDMFLOMD;
+            public const uint Action_IAKN = Raw.NEGGNDFJMAK.Methods.IAKNHLPALCA;
+            public const uint Action_LDPP = Raw.NEGGNDFJMAK.Methods.LDPPLANHGPD;
+            public const uint Action_KPMH = Raw.NEGGNDFJMAK.Methods.KPMHKBLMNAD;
+            public const uint Action_OEDJ = Raw.NEGGNDFJMAK.Methods.OEDJIFKELEL;
+            public const uint Action_OLAI = Raw.NEGGNDFJMAK.Methods.OLAIENFHJHM;
+            public const uint GetInt_PCNI = Raw.NEGGNDFJMAK.Methods.PCNIINAKBJH;
+            public const uint Action_HJDB = Raw.NEGGNDFJMAK.Methods.HJDBIKJDEPL;
+            public const uint Action_DFFI = Raw.NEGGNDFJMAK.Methods.DFFIFPOKOPJ;
+            public const uint Action_FBMM = Raw.NEGGNDFJMAK.Methods.FBMMECELJHH;
+            public const uint GetInt_JHMN = Raw.NEGGNDFJMAK.Methods.JHMNIOALMKP;
+            public const uint Action_MPJK = Raw.NEGGNDFJMAK.Methods.MPJKKIABBGB;
+            public const uint Action_NNLJ = Raw.NEGGNDFJMAK.Methods.NNLJJLENDLH;
+            public const uint Action_KCNA = Raw.NEGGNDFJMAK.Methods.KCNAMAKGDEG;
+            public const uint GetInt_BCAE = Raw.NEGGNDFJMAK.Methods.BCAECDKIPLJ;
+            public const uint Action_HKOF = Raw.NEGGNDFJMAK.Methods.HKOFHOANEJD;
+            public const uint Action_FMKM = Raw.NEGGNDFJMAK.Methods.FMKMNGAOHNM;
+            public const uint Action_BJGL = Raw.NEGGNDFJMAK.Methods.BJGLNDJBJAG;
+            public const uint Action_EOJO = Raw.NEGGNDFJMAK.Methods.EOJODLMLBIA;
+            public const uint GetBool_GBCO = Raw.NEGGNDFJMAK.Methods.GBCOGJLOPDO;
+            public const uint Action_FALD = Raw.NEGGNDFJMAK.Methods.FALDHMMMHKD;
+            public const uint Action_NMEI = Raw.NEGGNDFJMAK.Methods.NMEIGAAKADN;
+            public const uint GetInt_NJHJ = Raw.NEGGNDFJMAK.Methods.NJHJLMPIKMI;
+            public const uint Action_HMDD = Raw.NEGGNDFJMAK.Methods.HMDDJGFMIBP;
+            public const uint Action_BCCB = Raw.NEGGNDFJMAK.Methods.BCCBFHJOIKJ;
+            public const uint Action_LMLF = Raw.NEGGNDFJMAK.Methods.LMLFOLHCDGG;
         }
 
         public static class NEGGNDFJMAK_BEONIPPEOGM
@@ -5217,6 +5514,8 @@ namespace BlockpostTrainer.Sdk
 
         public static class OMap
         {
+            public const uint Update = Raw.OMap.Methods.Update;
+            public const uint Start = Raw.OMap.Methods.Start;
             public const uint Action_JNCB = Raw.OMap.Methods.JNCBEGOHKFB;
             public const uint Action_GOLA = Raw.OMap.Methods.GOLAKBGKBLE;
             public const uint Action_HPHO = Raw.OMap.Methods.HPHONCKLEDA;
@@ -5225,7 +5524,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_EPBP = Raw.OMap.Methods.EPBPLMIGIFK;
             public const uint Action_GPMF = Raw.OMap.Methods.GPMFDKAMANB;
             public const uint Action_JCFF = Raw.OMap.Methods.JCFFBKGMLNH;
-            public const uint Update = Raw.OMap.Methods.Update;
             public const uint Action_NIPN = Raw.OMap.Methods.NIPNEOHNJEG;
             public const uint Action_IHJE = Raw.OMap.Methods.IHJEAOMLMOE;
             public const uint Action_GNJE = Raw.OMap.Methods.GNJEHPJCIOJ;
@@ -5234,7 +5532,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_HGCK = Raw.OMap.Methods.HGCKIADDDPL;
             public const uint Action_FEPE = Raw.OMap.Methods.FEPEFHEIPDL;
             public const uint Action_MCOC = Raw.OMap.Methods.MCOCDHOOGAO;
-            public const uint Start = Raw.OMap.Methods.Start;
             public const uint Action_KPOI = Raw.OMap.Methods.KPOIBKMFBFK;
             public const uint Action_GDDJ = Raw.OMap.Methods.GDDJFLJFMCB;
             public const uint Action_NHDE = Raw.OMap.Methods.NHDEBDNNHOL;
@@ -5285,11 +5582,13 @@ namespace BlockpostTrainer.Sdk
             public const int outlineMaterial = Raw.OutlineSystem.Offsets.outlineMaterial;
             public const int Vector2 = Raw.OutlineSystem.Offsets.HHKPKDJDLLJ;
             public const uint OnGUI = Raw.OutlineSystem.Methods.OnGUI;
+            public const uint Awake = Raw.OutlineSystem.Methods.Awake;
+            public const uint LateUpdate = Raw.OutlineSystem.Methods.LateUpdate;
+            public const uint ScreenDimension = Raw.OutlineSystem.Methods.ScreenDimension;
             public const uint Action_ALGL = Raw.OutlineSystem.Methods.ALGLEAPCJGO;
             public const uint Get_ILEF = Raw.OutlineSystem.Methods.ILEFKOLHBPE;
             public const uint Action_BNBG = Raw.OutlineSystem.Methods.BNBGBOOMOII;
             public const uint Get_PNBC = Raw.OutlineSystem.Methods.PNBCNGADPAP;
-            public const uint Awake = Raw.OutlineSystem.Methods.Awake;
             public const uint Action_DBPC = Raw.OutlineSystem.Methods.DBPCHHAPCCE;
             public const uint Action_ILFI = Raw.OutlineSystem.Methods.ILFIAHPENKO;
             public const uint Get_EALB = Raw.OutlineSystem.Methods.EALBCDLNLGF;
@@ -5307,7 +5606,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_LFDH = Raw.OutlineSystem.Methods.LFDHJHGBNBD;
             public const uint Action_ANPG = Raw.OutlineSystem.Methods.ANPGIBIKDAG;
             public const uint Get_FHIL = Raw.OutlineSystem.Methods.FHILHELAJLI;
-            public const uint LateUpdate = Raw.OutlineSystem.Methods.LateUpdate;
             public const uint Get_IANK = Raw.OutlineSystem.Methods.IANKCJECJKK;
             public const uint Action_HBDL = Raw.OutlineSystem.Methods.HBDLMBCEOHO;
             public const uint Get_HADG = Raw.OutlineSystem.Methods.HADGNBFKEDE;
@@ -5315,7 +5613,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_KNED = Raw.OutlineSystem.Methods.KNEDOOKGNOH;
             public const uint Action_BDII = Raw.OutlineSystem.Methods.BDIIFDINOKD;
             public const uint Action_JHIP = Raw.OutlineSystem.Methods.JHIPOCDLCMO;
-            public const uint ScreenDimension = Raw.OutlineSystem.Methods.ScreenDimension;
             public const uint Action_KIPI = Raw.OutlineSystem.Methods.KIPIIPBNDPP;
             public const uint Action_FKPL = Raw.OutlineSystem.Methods.FKPLHBLCDFH;
             public const uint Action_INCD = Raw.OutlineSystem.Methods.INCDKJAAODJ;
@@ -5352,6 +5649,8 @@ namespace BlockpostTrainer.Sdk
             public const int disableObject = Raw.ParticleManager.Offsets.disableObject;
             public const int goToDisable = Raw.ParticleManager.Offsets.goToDisable;
             public const uint GoForward = Raw.ParticleManager.Methods.GoForward;
+            public const uint GoBackward = Raw.ParticleManager.Methods.GoBackward;
+            public const uint Start = Raw.ParticleManager.Methods.Start;
             public const uint Action_LEJD = Raw.ParticleManager.Methods.LEJDKDGOHAA;
             public const uint Action_CEJB = Raw.ParticleManager.Methods.CEJBEDKGFFN;
             public const uint Action_MHFB = Raw.ParticleManager.Methods.MHFBJJJBBAN;
@@ -5383,7 +5682,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_ECKB = Raw.ParticleManager.Methods.ECKBEMBADGO;
             public const uint Action_KBGE = Raw.ParticleManager.Methods.KBGEILKEHJO;
             public const uint Action_DGPF = Raw.ParticleManager.Methods.DGPFLNMOKEB;
-            public const uint GoBackward = Raw.ParticleManager.Methods.GoBackward;
             public const uint Action_JGDF = Raw.ParticleManager.Methods.JGDFMPPDMNH;
             public const uint Action_ELPI = Raw.ParticleManager.Methods.ELPILMOMEPM;
             public const uint Action_BMKH = Raw.ParticleManager.Methods.BMKHHNCIPLL;
@@ -5410,7 +5708,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_IOCF = Raw.ParticleManager.Methods.IOCFKNGCFDC;
             public const uint Action_JEFI = Raw.ParticleManager.Methods.JEFIFLIFOIB;
             public const uint Action_MECB = Raw.ParticleManager.Methods.MECBCJJNBEC;
-            public const uint Start = Raw.ParticleManager.Methods.Start;
             public const uint Action_KFMB = Raw.ParticleManager.Methods.KFMBCHOJMEK;
             public const uint Action_DDPG = Raw.ParticleManager.Methods.DDPGBLNOMMG;
             public const uint Action_HOOO = Raw.ParticleManager.Methods.HOOOCFKLGKN;
@@ -5518,6 +5815,11 @@ namespace BlockpostTrainer.Sdk
             public const int Rect = Raw.Radar.Offsets.BLCMIBOGPJL;
             public const int RootObject = Raw.Radar.Offsets.FAPBBAEGFMP;
             public const int RootObject_1 = Raw.Radar.Offsets.HPDLKKOGJOF;
+            public const uint OnResize = Raw.Radar.Methods.OnResize;
+            public const uint OnGUI = Raw.Radar.Methods.OnGUI;
+            public const uint GenerateRadar = Raw.Radar.Methods.GenerateRadar;
+            public const uint SetActive = Raw.Radar.Methods.SetActive;
+            public const uint LoadEnd = Raw.Radar.Methods.LoadEnd;
             public const uint Action_EGNA = Raw.Radar.Methods.EGNAFCLJCGA;
             public const uint Action_PHKG = Raw.Radar.Methods.PHKGDPCFLEA;
             public const uint Action_FOEE = Raw.Radar.Methods.FOEEIBMDFJP;
@@ -5551,7 +5853,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_OMAA = Raw.Radar.Methods.OMAAAJEFDCO;
             public const uint Action_CMAM = Raw.Radar.Methods.CMAMMPKDNGN;
             public const uint Action_ANHK = Raw.Radar.Methods.ANHKHAIFGLL;
-            public const uint OnResize = Raw.Radar.Methods.OnResize;
             public const uint Action_APHN = Raw.Radar.Methods.APHNKFDECOG;
             public const uint Action_NBMN = Raw.Radar.Methods.NBMNJMFJNND;
             public const uint Get_OGNH = Raw.Radar.Methods.OGNHCEPAOJK;
@@ -5567,8 +5868,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_JAIB = Raw.Radar.Methods.JAIBICGGCIF;
             public const uint Action_AMHG = Raw.Radar.Methods.AMHGOJPGADD;
             public const uint Action_AFFP = Raw.Radar.Methods.AFFPNNDMKJG;
-            public const uint OnGUI = Raw.Radar.Methods.OnGUI;
-            public const uint GenerateRadar = Raw.Radar.Methods.GenerateRadar;
             public const uint Action_MKOE = Raw.Radar.Methods.MKOENMJBAFH;
             public const uint Action_AICB = Raw.Radar.Methods.AICBMLHIOFA;
             public const uint Action_NJEC = Raw.Radar.Methods.NJECOFDODKH;
@@ -5578,7 +5877,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_FHCC = Raw.Radar.Methods.FHCCNKEGAJL;
             public const uint Action_JMNK = Raw.Radar.Methods.JMNKPNDPBIB;
             public const uint Action_CNFG = Raw.Radar.Methods.CNFGDHPJFGD;
-            public const uint SetActive = Raw.Radar.Methods.SetActive;
             public const uint Action_CIDN = Raw.Radar.Methods.CIDNIKPGFAH;
             public const uint Action_FPPG = Raw.Radar.Methods.FPPGOJCPIBE;
             public const uint Action_AOEN = Raw.Radar.Methods.AOENGONCEEA;
@@ -5611,7 +5909,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_NCMM = Raw.Radar.Methods.NCMMGMGACDC;
             public const uint Action_ODIC = Raw.Radar.Methods.ODICGHDFOPM;
             public const uint Action_HOEJ = Raw.Radar.Methods.HOEJGOFCNIH;
-            public const uint LoadEnd = Raw.Radar.Methods.LoadEnd;
             public const uint Action_BDGO = Raw.Radar.Methods.BDGOIFMIDCP;
             public const uint Action_AMLA = Raw.Radar.Methods.AMLAMOPMPCB;
             public const uint Action_DGGL = Raw.Radar.Methods.DGGLAAEOIAF;
@@ -5811,6 +6108,12 @@ namespace BlockpostTrainer.Sdk
             public const int Saved = Raw.SaveMap.Offsets.Saved;
             public const int Codename_1 = Raw.SaveMap.Offsets.FNBDAILHEKL;
             public const int Codename_2 = Raw.SaveMap.Offsets.GLKGJFGOPIC;
+            public const uint Toggle = Raw.SaveMap.Methods.Toggle;
+            public const uint LoadLang = Raw.SaveMap.Methods.LoadLang;
+            public const uint SetActive = Raw.SaveMap.Methods.SetActive;
+            public const uint LoadEnd = Raw.SaveMap.Methods.LoadEnd;
+            public const uint OnGUI = Raw.SaveMap.Methods.OnGUI;
+            public const uint OnResize = Raw.SaveMap.Methods.OnResize;
             public const uint Action_KINN = Raw.SaveMap.Methods.KINNKGJCJMD;
             public const uint Action_KEGK = Raw.SaveMap.Methods.KEGKCIHGGJC;
             public const uint Action_EGFF = Raw.SaveMap.Methods.EGFFGLLCMKB;
@@ -5850,14 +6153,12 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_ODGD = Raw.SaveMap.Methods.ODGDGFOJHJB;
             public const uint Action_BEKL = Raw.SaveMap.Methods.BEKLKANHOPB;
             public const uint Action_NJMI = Raw.SaveMap.Methods.NJMIAICCOMN;
-            public const uint Toggle = Raw.SaveMap.Methods.Toggle;
             public const uint Action_OOFB = Raw.SaveMap.Methods.OOFBLLIJBAI;
             public const uint Action_FIBP = Raw.SaveMap.Methods.FIBPDOGEBMK;
             public const uint Action_NACL = Raw.SaveMap.Methods.NACLMIPJNMO;
             public const uint Action_EFPN = Raw.SaveMap.Methods.EFPNHGFLAMO;
             public const uint Action_PKMB = Raw.SaveMap.Methods.PKMBKCGDBFG;
             public const uint Action_FLIM = Raw.SaveMap.Methods.FLIMKEHHECK;
-            public const uint LoadLang = Raw.SaveMap.Methods.LoadLang;
             public const uint Action_GNGP = Raw.SaveMap.Methods.GNGPONEGELN;
             public const uint Action_KJAK = Raw.SaveMap.Methods.KJAKFNNMEEL;
             public const uint Action_LEHM = Raw.SaveMap.Methods.LEHMAMABCIM;
@@ -5899,7 +6200,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_NGKI = Raw.SaveMap.Methods.NGKIJMCCCFI;
             public const uint Action_NKBH = Raw.SaveMap.Methods.NKBHONBKFEE;
             public const uint Action_GLMD = Raw.SaveMap.Methods.GLMDNIKFGHD;
-            public const uint SetActive = Raw.SaveMap.Methods.SetActive;
             public const uint Action_MACB = Raw.SaveMap.Methods.MACBBLKGJGJ;
             public const uint Action_JEBB = Raw.SaveMap.Methods.JEBBFCCKIFL;
             public const uint Action_POFK = Raw.SaveMap.Methods.POFKJEDHCME;
@@ -5925,7 +6225,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_FHCC = Raw.SaveMap.Methods.FHCCNKEGAJL;
             public const uint Action_DBFM = Raw.SaveMap.Methods.DBFMGNBJALG;
             public const uint Action_ANHK_1 = Raw.SaveMap.Methods.ANHKFJGDGKO;
-            public const uint LoadEnd = Raw.SaveMap.Methods.LoadEnd;
             public const uint Action_KKLA = Raw.SaveMap.Methods.KKLACKECPEM;
             public const uint Action_LCPB = Raw.SaveMap.Methods.LCPBIDBEIIM;
             public const uint Action_MOID = Raw.SaveMap.Methods.MOIDNNBLEPP;
@@ -5941,7 +6240,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_NKCN = Raw.SaveMap.Methods.NKCNGOIKPFC;
             public const uint Action_GONO = Raw.SaveMap.Methods.GONOCBNIOPO;
             public const uint Action_PIAH = Raw.SaveMap.Methods.PIAHHNBDACO;
-            public const uint OnGUI = Raw.SaveMap.Methods.OnGUI;
             public const uint Action_JHPH = Raw.SaveMap.Methods.JHPHJHAFFFN;
             public const uint Action_JAKJ = Raw.SaveMap.Methods.JAKJOGBADEF;
             public const uint Action_BMNA = Raw.SaveMap.Methods.BMNAJJBIAAL;
@@ -5960,7 +6258,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_MCFJ = Raw.SaveMap.Methods.MCFJBNHDHFB;
             public const uint Action_PGNF = Raw.SaveMap.Methods.PGNFPMLKGLP;
             public const uint Action_DKHJ = Raw.SaveMap.Methods.DKHJGNPBNFK;
-            public const uint OnResize = Raw.SaveMap.Methods.OnResize;
             public const uint Action_PFPJ = Raw.SaveMap.Methods.PFPJMJCALFM;
             public const uint Action_IOBL = Raw.SaveMap.Methods.IOBLBADAFLE;
             public const uint Action_NHKC = Raw.SaveMap.Methods.NHKCEEHEGLH;
@@ -5970,6 +6267,7 @@ namespace BlockpostTrainer.Sdk
 
         public static class Shooter
         {
+            public const uint UpdateWeaponAttack = Raw.Shooter.Methods.UpdateWeaponAttack;
             public const uint Action_AAJA = Raw.Shooter.Methods.AAJALNPNLBA;
             public const uint Action_GDKI = Raw.Shooter.Methods.GDKIMFBDENC;
             public const uint Action_FGIH = Raw.Shooter.Methods.FGIHGIODKMD;
@@ -6013,12 +6311,12 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_MECO = Raw.Shooter.Methods.MECOJOHHOFF;
             public const uint Action_LKCN = Raw.Shooter.Methods.LKCNANEHIMK;
             public const uint Action_JMCL = Raw.Shooter.Methods.JMCLEBIAJNO;
-            public const uint UpdateWeaponAttack = Raw.Shooter.Methods.UpdateWeaponAttack;
         }
 
         public static class SoundLoader
         {
             public const int SoundLoader_LPCJ = Raw.SoundLoader.Offsets.LPCJFAOOIKA;
+            public const uint Awake = Raw.SoundLoader.Methods.Awake;
             public const uint Action_EJNF = Raw.SoundLoader.Methods.EJNFOGDFPCI;
             public const uint Action_CAGN = Raw.SoundLoader.Methods.CAGNHLGEMAL;
             public const uint Get_JBBG = Raw.SoundLoader.Methods.JBBGJBMFDNF;
@@ -6110,7 +6408,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_JDFF = Raw.SoundLoader.Methods.JDFFPFKDEDP;
             public const uint Action_GOEL = Raw.SoundLoader.Methods.GOELOJANDMN;
             public const uint Get_NAPK = Raw.SoundLoader.Methods.NAPKAPDACJE;
-            public const uint Awake = Raw.SoundLoader.Methods.Awake;
             public const uint Get_GCNJ = Raw.SoundLoader.Methods.GCNJFHCHLBJ;
             public const uint Action_LLDB = Raw.SoundLoader.Methods.LLDBGMDNADO;
             public const uint Action_PGLJ = Raw.SoundLoader.Methods.PGLJOKGPEJE;
@@ -6124,6 +6421,7 @@ namespace BlockpostTrainer.Sdk
         {
             public const int active = Raw.Spectator.Offsets.active;
             public const int speed = Raw.Spectator.Offsets.speed;
+            public const uint Update = Raw.Spectator.Methods.Update;
             public const uint Action_AHFC = Raw.Spectator.Methods.AHFCKILODOP;
             public const uint Action_PELM = Raw.Spectator.Methods.PELMGLDGHLF;
             public const uint Action_GBHG = Raw.Spectator.Methods.GBHGEPHIGNO;
@@ -6131,7 +6429,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_EPBP = Raw.Spectator.Methods.EPBPLMIGIFK;
             public const uint Action_FMGJ = Raw.Spectator.Methods.FMGJICHDHNE;
             public const uint Action_LBIL = Raw.Spectator.Methods.LBILKLFLAMA;
-            public const uint Update = Raw.Spectator.Methods.Update;
             public const uint Action_HPHO = Raw.Spectator.Methods.HPHONCKLEDA;
             public const uint Action_OONK = Raw.Spectator.Methods.OONKLAODIDP;
             public const uint Action_GDDJ = Raw.Spectator.Methods.GDDJFLJFMCB;
@@ -6246,6 +6543,16 @@ namespace BlockpostTrainer.Sdk
             public const int CallResult_SteamInventoryRequestPricesResult_t_KCOC = Raw.SteamManager.Offsets.KCOCMMEGKCB;
             public const int Callback_GameOverlayActivated_t_KOJC = Raw.SteamManager.Offsets.KOJCKNHNFPD;
             public const int Callback_MicroTxnAuthorizationResponse_t_LHBB = Raw.SteamManager.Offsets.LHBBHGCGKOB;
+            public const uint get_Instance = Raw.SteamManager.Methods.get_Instance;
+            public const uint Update = Raw.SteamManager.Methods.Update;
+            public const uint GetAuthSessionTicket = Raw.SteamManager.Methods.GetAuthSessionTicket;
+            public const uint OnRequestPrices = Raw.SteamManager.Methods.OnRequestPrices;
+            public const uint Awake = Raw.SteamManager.Methods.Awake;
+            public const uint get_Initialized = Raw.SteamManager.Methods.get_Initialized;
+            public const uint OnEnable = Raw.SteamManager.Methods.OnEnable;
+            public const uint OnDestroy = Raw.SteamManager.Methods.OnDestroy;
+            public const uint CallRequestPrices = Raw.SteamManager.Methods.CallRequestPrices;
+            public const uint OnDisable = Raw.SteamManager.Methods.OnDisable;
             public const uint GetBool_CGOH = Raw.SteamManager.Methods.CGOHHNNAHOP;
             public const uint Action_EEFM = Raw.SteamManager.Methods.EEFMCLDEFIH;
             public const uint Action_OGGN = Raw.SteamManager.Methods.OGGNHBFKBOI;
@@ -6263,7 +6570,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_CMFM = Raw.SteamManager.Methods.CMFMFACNFPG;
             public const uint Action_OMLD = Raw.SteamManager.Methods.OMLDBEDBCEC;
             public const uint Action_BKLB = Raw.SteamManager.Methods.BKLBCJJKGIL;
-            public const uint get_Instance = Raw.SteamManager.Methods.get_Instance;
             public const uint Action_DKNM = Raw.SteamManager.Methods.DKNMKFHKHMC;
             public const uint Action_MCBP = Raw.SteamManager.Methods.MCBPJGKMOFJ;
             public const uint Action_MCMC = Raw.SteamManager.Methods.MCMCLAHJIMJ;
@@ -6275,8 +6581,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_HHAF = Raw.SteamManager.Methods.HHAFIMEJPHC;
             public const uint Action_CDHD = Raw.SteamManager.Methods.CDHDPJOABBP;
             public const uint Action_FLFN = Raw.SteamManager.Methods.FLFNOLDLING;
-            public const uint Update = Raw.SteamManager.Methods.Update;
-            public const uint GetAuthSessionTicket = Raw.SteamManager.Methods.GetAuthSessionTicket;
             public const uint GetBool_EJAL = Raw.SteamManager.Methods.EJALBPBLCDP;
             public const uint Action_NNCJ = Raw.SteamManager.Methods.NNCJEGBMOLI;
             public const uint Action_AGCP = Raw.SteamManager.Methods.AGCPJABCKML;
@@ -6289,20 +6593,16 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_DPML = Raw.SteamManager.Methods.DPMLJALMEDC;
             public const uint Action_OHLA = Raw.SteamManager.Methods.OHLAHEANJED;
             public const uint Action_KOKK = Raw.SteamManager.Methods.KOKKBJPPGGL;
-            public const uint OnRequestPrices = Raw.SteamManager.Methods.OnRequestPrices;
             public const uint Get_NCIO = Raw.SteamManager.Methods.NCIOAEJIIMB;
             public const uint Action_PGAB = Raw.SteamManager.Methods.PGABBNAPABJ;
-            public const uint Awake = Raw.SteamManager.Methods.Awake;
             public const uint Action_NCCG = Raw.SteamManager.Methods.NCCGGNANBLJ;
             public const uint Action_AJPB = Raw.SteamManager.Methods.AJPBAMCJHIP;
             public const uint Action_NHPC = Raw.SteamManager.Methods.NHPCJNCFNID;
             public const uint Action_MMCO = Raw.SteamManager.Methods.MMCOCEAFDEP;
             public const uint Action_GMPG = Raw.SteamManager.Methods.GMPGLIGPKNM;
-            public const uint get_Initialized = Raw.SteamManager.Methods.get_Initialized;
             public const uint Action_KBMO = Raw.SteamManager.Methods.KBMOMIHPPAH;
             public const uint Action_GDDJ = Raw.SteamManager.Methods.GDDJFLJFMCB;
             public const uint Action_IOAL = Raw.SteamManager.Methods.IOALCCAFKAK;
-            public const uint OnEnable = Raw.SteamManager.Methods.OnEnable;
             public const uint Action_CNJB = Raw.SteamManager.Methods.CNJBEIOMNID;
             public const uint Action_DDBM = Raw.SteamManager.Methods.DDBMGMCKOGE;
             public const uint Action_NABM = Raw.SteamManager.Methods.NABMCBLGHPK;
@@ -6324,7 +6624,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_MPPD = Raw.SteamManager.Methods.MPPDEKCKLME;
             public const uint Get_NFDJ = Raw.SteamManager.Methods.NFDJMOGEONJ;
             public const uint Action_EKEG = Raw.SteamManager.Methods.EKEGLHKNEOA;
-            public const uint OnDestroy = Raw.SteamManager.Methods.OnDestroy;
             public const uint Get_JDHD = Raw.SteamManager.Methods.JDHDNDJEECD;
             public const uint Action_CNLB = Raw.SteamManager.Methods.CNLBHDCCNKD;
             public const uint Action_PLFG = Raw.SteamManager.Methods.PLFGGAOGMDB;
@@ -6360,11 +6659,9 @@ namespace BlockpostTrainer.Sdk
             public const uint GetBool_ENGM = Raw.SteamManager.Methods.ENGMPAMEFMH;
             public const uint Action_BPIN = Raw.SteamManager.Methods.BPINCNDLDIM;
             public const uint Action_KHBI = Raw.SteamManager.Methods.KHBIFPDKNLA;
-            public const uint CallRequestPrices = Raw.SteamManager.Methods.CallRequestPrices;
             public const uint Action_NADC = Raw.SteamManager.Methods.NADCJLPMEGC;
             public const uint Action_KHCM = Raw.SteamManager.Methods.KHCMDLFIOEI;
             public const uint Action_LKGK = Raw.SteamManager.Methods.LKGKPMMNONC;
-            public const uint OnDisable = Raw.SteamManager.Methods.OnDisable;
             public const uint Action_BGIA = Raw.SteamManager.Methods.BGIAEPPCNJI;
             public const uint Action_HCIK = Raw.SteamManager.Methods.HCIKOAHFLJE;
             public const uint Action_EDGF = Raw.SteamManager.Methods.EDGFCEKNLHB;
@@ -6388,13 +6685,23 @@ namespace BlockpostTrainer.Sdk
             public const int stats = Raw.TMap.Offsets.stats;
             public const int goMap = Raw.TMap.Offsets.goMap;
             public const int bool_JNCE = Raw.TMap.Offsets.JNCEKOOFHFM;
+            public const uint RenderAll = Raw.TMap.Methods.RenderAll;
+            public const uint TestLod = Raw.TMap.Methods.TestLod;
+            public const uint GetBlockHeight = Raw.TMap.Methods.GetBlockHeight;
+            public const uint FixHeight = Raw.TMap.Methods.FixHeight;
+            public const uint CreateLOD = Raw.TMap.Methods.CreateLOD;
+            public const uint Render = Raw.TMap.Methods.Render;
+            public const uint SetBlock = Raw.TMap.Methods.SetBlock;
+            public const uint LoadData = Raw.TMap.Methods.LoadData;
+            public const uint GetBlock = Raw.TMap.Methods.GetBlock;
+            public const uint RenderCollider = Raw.TMap.Methods.RenderCollider;
+            public const uint CreateLODMerge = Raw.TMap.Methods.CreateLODMerge;
             public const uint Action_AKEG = Raw.TMap.Methods.AKEGBDFBBKD;
             public const uint Action_JOFI = Raw.TMap.Methods.JOFIBEBPBAL;
             public const uint Action_BFIC = Raw.TMap.Methods.BFICAMKNGHL;
             public const uint Action_JNMB = Raw.TMap.Methods.JNMBLALJNCC;
             public const uint Action_HGNA = Raw.TMap.Methods.HGNAIGJLBEN;
             public const uint Action_HIMP = Raw.TMap.Methods.HIMPADLPCFH;
-            public const uint RenderAll = Raw.TMap.Methods.RenderAll;
             public const uint Action_EBHP = Raw.TMap.Methods.EBHPKAMKMAK;
             public const uint Action_DLCH = Raw.TMap.Methods.DLCHBDHANIE;
             public const uint GetInt_DIII = Raw.TMap.Methods.DIIIAPNKGHI;
@@ -6430,9 +6737,7 @@ namespace BlockpostTrainer.Sdk
             public const uint GetBool_LKJJ = Raw.TMap.Methods.LKJJDBOIIMO;
             public const uint Action_DNGG = Raw.TMap.Methods.DNGGJCINGME;
             public const uint GetInt_CAAM = Raw.TMap.Methods.CAAMDDLIKLE;
-            public const uint TestLod = Raw.TMap.Methods.TestLod;
             public const uint GetInt_NBDC = Raw.TMap.Methods.NBDCCBLJKOH;
-            public const uint GetBlockHeight = Raw.TMap.Methods.GetBlockHeight;
             public const uint Action_HMHN = Raw.TMap.Methods.HMHNOPDCFHK;
             public const uint Action_FFCA = Raw.TMap.Methods.FFCAABDMLGP;
             public const uint Action_PIDE = Raw.TMap.Methods.PIDEOJAFEOH;
@@ -6466,33 +6771,25 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_BPFN = Raw.TMap.Methods.BPFNCODJBPI;
             public const uint Action_OACK = Raw.TMap.Methods.OACKFIMNPLA;
             public const uint Action_PNIC = Raw.TMap.Methods.PNICGMJBCOO;
-            public const uint FixHeight = Raw.TMap.Methods.FixHeight;
             public const uint GetBool_MBNL = Raw.TMap.Methods.MBNLLEAJFJC;
             public const uint GetInt_LPKN = Raw.TMap.Methods.LPKNMHONDIA;
             public const uint Action_KCON = Raw.TMap.Methods.KCONDADOLKJ;
-            public const uint CreateLOD = Raw.TMap.Methods.CreateLOD;
             public const uint Action_KJPO = Raw.TMap.Methods.KJPOBKFDIMI;
-            public const uint Render = Raw.TMap.Methods.Render;
             public const uint GetInt_AIEA = Raw.TMap.Methods.AIEABLBIGDP;
             public const uint Action_LKEN = Raw.TMap.Methods.LKENNMBKADP;
-            public const uint SetBlock = Raw.TMap.Methods.SetBlock;
             public const uint Action_AAIL = Raw.TMap.Methods.AAILOLIJFAG;
             public const uint Action_IOGK = Raw.TMap.Methods.IOGKBHHNPFJ;
-            public const uint LoadData = Raw.TMap.Methods.LoadData;
             public const uint Action_LJGA = Raw.TMap.Methods.LJGAAMHNCHK;
             public const uint Action_BDGB = Raw.TMap.Methods.BDGBLHBHFDJ;
             public const uint GetBool_JGGJ = Raw.TMap.Methods.JGGJIKMPCEE;
-            public const uint GetBlock = Raw.TMap.Methods.GetBlock;
             public const uint Action_DIHJ = Raw.TMap.Methods.DIHJCBCMMAK;
             public const uint GetInt_FFMA = Raw.TMap.Methods.FFMANKLOGCO;
-            public const uint RenderCollider = Raw.TMap.Methods.RenderCollider;
             public const uint Action_ADPF = Raw.TMap.Methods.ADPFIKJEPGO;
             public const uint Action_NNMG = Raw.TMap.Methods.NNMGKCJFNDH;
             public const uint Action_APBN = Raw.TMap.Methods.APBNMEKCHCE;
             public const uint Action_DFMN = Raw.TMap.Methods.DFMNJBDHLPL;
             public const uint Action_APKP = Raw.TMap.Methods.APKPJCOGKJC;
             public const uint Action_CDJM = Raw.TMap.Methods.CDJMBEDDGCM;
-            public const uint CreateLODMerge = Raw.TMap.Methods.CreateLODMerge;
             public const uint Action_HEOD = Raw.TMap.Methods.HEODKOGLNJP;
             public const uint Action_KKIL = Raw.TMap.Methods.KKILAEKJMPP;
             public const uint Action_PMJN = Raw.TMap.Methods.PMJNFGMLCNN;
@@ -6862,16 +7159,18 @@ namespace BlockpostTrainer.Sdk
             public const int Camera = Raw.TransformGizmo.Offsets.FACMNJPGMJH;
             public const int Material = Raw.TransformGizmo.Offsets.AODGLGPDJJD;
             public const int IKDHNPPLDGC_NKAA = Raw.TransformGizmo.Offsets.NKAAOKPIEAA;
+            public const uint OnGUI = Raw.TransformGizmo.Methods.OnGUI;
+            public const uint Awake = Raw.TransformGizmo.Methods.Awake;
+            public const uint Update = Raw.TransformGizmo.Methods.Update;
+            public const uint LateUpdate = Raw.TransformGizmo.Methods.LateUpdate;
             public const uint Get_GCDP = Raw.TransformGizmo.Methods.GCDPHKHIKNG;
             public const uint Action_IPHL = Raw.TransformGizmo.Methods.IPHLKHJHHKD;
-            public const uint OnGUI = Raw.TransformGizmo.Methods.OnGUI;
             public const uint Action_LIOJ = Raw.TransformGizmo.Methods.LIOJAIIEPIL;
             public const uint GetFloat_OOGK = Raw.TransformGizmo.Methods.OOGKNAFMCNH;
             public const uint Action_JANC = Raw.TransformGizmo.Methods.JANCAKGMCKN;
             public const uint Action_JEJJ = Raw.TransformGizmo.Methods.JEJJGIBADGP;
             public const uint Action_LHOL = Raw.TransformGizmo.Methods.LHOLBLDJJAJ;
             public const uint Get_MMEB = Raw.TransformGizmo.Methods.MMEBGBKEHCF;
-            public const uint Action_KKMH = Raw.TransformGizmo.Methods.KKMHGFCGFAJ;
             public const uint Action_DHHO = Raw.TransformGizmo.Methods.DHHODKIKLCK;
             public const uint Action_LHDE = Raw.TransformGizmo.Methods.LHDEFOMKJHD;
             public const uint Action_PFFO = Raw.TransformGizmo.Methods.PFFOFFINABB;
@@ -6895,9 +7194,7 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_KGBF = Raw.TransformGizmo.Methods.KGBFEMIJPHL;
             public const uint Action_LLLO = Raw.TransformGizmo.Methods.LLLOLPKMOBD;
             public const uint Action_KCIL = Raw.TransformGizmo.Methods.KCILLDLPCOA;
-            public const uint Awake = Raw.TransformGizmo.Methods.Awake;
             public const uint Action_NLME = Raw.TransformGizmo.Methods.NLMEAHKFHOL;
-            public const uint Update = Raw.TransformGizmo.Methods.Update;
             public const uint Action_FMNN = Raw.TransformGizmo.Methods.FMNNAJJNCLD;
             public const uint Action_NGAJ = Raw.TransformGizmo.Methods.NGAJEMBNKLK;
             public const uint GetFloat_FKHL = Raw.TransformGizmo.Methods.FKHLPADLDOB;
@@ -6911,7 +7208,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_LBOH = Raw.TransformGizmo.Methods.LBOHMPOOKGL;
             public const uint GetFloat_HAJH = Raw.TransformGizmo.Methods.HAJHILELGPE;
             public const uint Action_OPLB = Raw.TransformGizmo.Methods.OPLBELEMFBL;
-            public const uint LateUpdate = Raw.TransformGizmo.Methods.LateUpdate;
             public const uint Action_LAAO = Raw.TransformGizmo.Methods.LAAOJCJGFKL;
             public const uint Action_AMCP = Raw.TransformGizmo.Methods.AMCPMOILCLC;
             public const uint Action_NEGL = Raw.TransformGizmo.Methods.NEGLAFIOPKM;
@@ -6931,36 +7227,36 @@ namespace BlockpostTrainer.Sdk
             public const int Color_JNGF = Raw.UIColors.Offsets.JNGFOOHGIEO;
             public const uint get_Gray0 = Raw.UIColors.Methods.get_Gray0;
             public const uint GetBaseColor = Raw.UIColors.Methods.GetBaseColor;
-            public const uint Get_NHIK = Raw.UIColors.Methods.NHIKHLEAAEC;
             public const uint get_White15 = Raw.UIColors.Methods.get_White15;
-            public const uint Get_CKOH = Raw.UIColors.Methods.CKOHKMCNIHB;
             public const uint get_Gray2 = Raw.UIColors.Methods.get_Gray2;
-            public const uint Get_PLPN = Raw.UIColors.Methods.PLPNDNMNBOO;
-            public const uint Get_PNHL = Raw.UIColors.Methods.PNHLCOOCIEE;
             public const uint get_Yellow = Raw.UIColors.Methods.get_Yellow;
-            public const uint Get_MMMA = Raw.UIColors.Methods.MMMAFJELPHI;
-            public const uint Get_LPAN = Raw.UIColors.Methods.LPANNACFIMO;
-            public const uint Get_CPLK = Raw.UIColors.Methods.CPLKOGGCFJA;
-            public const uint Get_LBAD = Raw.UIColors.Methods.LBADCDDAMKP;
             public const uint get_LightBlue = Raw.UIColors.Methods.get_LightBlue;
             public const uint get_Blue = Raw.UIColors.Methods.get_Blue;
             public const uint get_LightGray = Raw.UIColors.Methods.get_LightGray;
             public const uint get_Red = Raw.UIColors.Methods.get_Red;
             public const uint get_White25 = Raw.UIColors.Methods.get_White25;
-            public const uint Get_CFFD = Raw.UIColors.Methods.CFFDPKGHCBF;
-            public const uint Get_BMJN = Raw.UIColors.Methods.BMJNIALIKAF;
             public const uint get_Orange = Raw.UIColors.Methods.get_Orange;
             public const uint get_Green = Raw.UIColors.Methods.get_Green;
-            public const uint Get_GBKH = Raw.UIColors.Methods.GBKHOFCNGIH;
             public const uint get_Black15 = Raw.UIColors.Methods.get_Black15;
+            public const uint get_Gray = Raw.UIColors.Methods.get_Gray;
+            public const uint get_Yellow15 = Raw.UIColors.Methods.get_Yellow15;
+            public const uint get_Gray1 = Raw.UIColors.Methods.get_Gray1;
+            public const uint Get_NHIK = Raw.UIColors.Methods.NHIKHLEAAEC;
+            public const uint Get_CKOH = Raw.UIColors.Methods.CKOHKMCNIHB;
+            public const uint Get_PLPN = Raw.UIColors.Methods.PLPNDNMNBOO;
+            public const uint Get_PNHL = Raw.UIColors.Methods.PNHLCOOCIEE;
+            public const uint Get_MMMA = Raw.UIColors.Methods.MMMAFJELPHI;
+            public const uint Get_LPAN = Raw.UIColors.Methods.LPANNACFIMO;
+            public const uint Get_CPLK = Raw.UIColors.Methods.CPLKOGGCFJA;
+            public const uint Get_LBAD = Raw.UIColors.Methods.LBADCDDAMKP;
+            public const uint Get_CFFD = Raw.UIColors.Methods.CFFDPKGHCBF;
+            public const uint Get_BMJN = Raw.UIColors.Methods.BMJNIALIKAF;
+            public const uint Get_GBKH = Raw.UIColors.Methods.GBKHOFCNGIH;
             public const uint Get_NDDL = Raw.UIColors.Methods.NDDLMFDDFNE;
             public const uint Get_LPNF = Raw.UIColors.Methods.LPNFDFCGNGG;
-            public const uint get_Gray = Raw.UIColors.Methods.get_Gray;
             public const uint Get_LLAH = Raw.UIColors.Methods.LLAHHIJODGG;
             public const uint Get_APCN = Raw.UIColors.Methods.APCNADBELJO;
             public const uint Get_BDKI = Raw.UIColors.Methods.BDKICCBIIOH;
-            public const uint get_Yellow15 = Raw.UIColors.Methods.get_Yellow15;
-            public const uint get_Gray1 = Raw.UIColors.Methods.get_Gray1;
             public const string Prop_FKCG = Raw.UIColors.Properties.FKCGGIJJLNB;
             public const string Prop_CIGP = Raw.UIColors.Properties.CIGPMEGMNIC;
             public const string Prop_LLOI = Raw.UIColors.Properties.LLOIGNKELOO;
@@ -6989,6 +7285,16 @@ namespace BlockpostTrainer.Sdk
             public const int Head_1 = Raw.UIManager.Offsets.JMCKLBJOGDG;
             public const int goCanvasMenu = Raw.UIManager.Offsets.goCanvasMenu;
             public const int OnGUI_Imitation = Raw.UIManager.Offsets.OnGUI_Imitation;
+            public const uint SelectMenu = Raw.UIManager.Methods.SelectMenu;
+            public const uint RemoveInstance = Raw.UIManager.Methods.RemoveInstance;
+            public const uint get_CanvasMenuTr = Raw.UIManager.Methods.get_CanvasMenuTr;
+            public const uint get_CanvasMenu = Raw.UIManager.Methods.get_CanvasMenu;
+            public const uint HideMenu = Raw.UIManager.Methods.HideMenu;
+            public const uint SetEventSystem = Raw.UIManager.Methods.SetEventSystem;
+            public const uint Start = Raw.UIManager.Methods.Start;
+            public const uint Update = Raw.UIManager.Methods.Update;
+            public const uint ClearMenu = Raw.UIManager.Methods.ClearMenu;
+            public const uint Awake = Raw.UIManager.Methods.Awake;
             public const uint Get_CEDM = Raw.UIManager.Methods.CEDMBKEGCLH;
             public const uint Action_JGOE = Raw.UIManager.Methods.JGOEEMABABI;
             public const uint Action_LMJN = Raw.UIManager.Methods.LMJNJLKNALD;
@@ -7000,13 +7306,9 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_KJGH = Raw.UIManager.Methods.KJGHDGIKDLJ;
             public const uint Action_FFKH = Raw.UIManager.Methods.FFKHCAGGKLL;
             public const uint Action_NPOF = Raw.UIManager.Methods.NPOFNFAFHOA;
-            public const uint SelectMenu = Raw.UIManager.Methods.SelectMenu;
-            public const uint RemoveInstance = Raw.UIManager.Methods.RemoveInstance;
             public const uint Action_HGCK = Raw.UIManager.Methods.HGCKIADDDPL;
             public const uint Action_PMKO = Raw.UIManager.Methods.PMKOLCHKHBL;
             public const uint Action_KOBH = Raw.UIManager.Methods.KOBHIIDLALL;
-            public const uint get_CanvasMenuTr = Raw.UIManager.Methods.get_CanvasMenuTr;
-            public const uint get_CanvasMenu = Raw.UIManager.Methods.get_CanvasMenu;
             public const uint Action_FPIB = Raw.UIManager.Methods.FPIBCPIMPLM;
             public const uint Action_EKPA = Raw.UIManager.Methods.EKPAKPODLKF;
             public const uint Action_ELPI = Raw.UIManager.Methods.ELPILMOMEPM;
@@ -7015,9 +7317,7 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_NEND = Raw.UIManager.Methods.NENDNLPIJOE;
             public const uint Action_DBLA = Raw.UIManager.Methods.DBLAGKNEAKN;
             public const uint Action_PBJB = Raw.UIManager.Methods.PBJBLDLMDCJ;
-            public const uint HideMenu = Raw.UIManager.Methods.HideMenu;
             public const uint Action_BNCD = Raw.UIManager.Methods.BNCDPFDEMHE;
-            public const uint SetEventSystem = Raw.UIManager.Methods.SetEventSystem;
             public const uint Action_HAIH = Raw.UIManager.Methods.HAIHAOMMFLK;
             public const uint Action_NPEJ = Raw.UIManager.Methods.NPEJMIMGMKB;
             public const uint Get_EJNA = Raw.UIManager.Methods.EJNAGGCBGEF;
@@ -7032,7 +7332,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_PBII = Raw.UIManager.Methods.PBIIKHEMFLK;
             public const uint Action_CJFC = Raw.UIManager.Methods.CJFCHBBMJKL;
             public const uint Action_ANEE = Raw.UIManager.Methods.ANEEAENFDPF;
-            public const uint Start = Raw.UIManager.Methods.Start;
             public const uint Action_JCEO = Raw.UIManager.Methods.JCEONHFJACM;
             public const uint Action_LIJA = Raw.UIManager.Methods.LIJABNPLPHH;
             public const uint Action_CLKB = Raw.UIManager.Methods.CLKBMGCPHCB;
@@ -7040,17 +7339,14 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_GFOC = Raw.UIManager.Methods.GFOCBFFFFJE;
             public const uint Action_KGKN = Raw.UIManager.Methods.KGKNFEHBCBL;
             public const uint Action_IJAF = Raw.UIManager.Methods.IJAFIEIAGCC;
-            public const uint Update = Raw.UIManager.Methods.Update;
             public const uint Action_GAKA = Raw.UIManager.Methods.GAKAFINEMFP;
             public const uint Action_EJNJ = Raw.UIManager.Methods.EJNJLOKALJO;
             public const uint Action_PLDN = Raw.UIManager.Methods.PLDNOBKDOCP;
             public const uint Action_JEDC = Raw.UIManager.Methods.JEDCGHMIBMI;
             public const uint Action_GAJN = Raw.UIManager.Methods.GAJNDLAHGFP;
-            public const uint ClearMenu = Raw.UIManager.Methods.ClearMenu;
             public const uint Action_AFDJ = Raw.UIManager.Methods.AFDJONOGJCC;
             public const uint Action_HCAC = Raw.UIManager.Methods.HCACHALGEMP;
             public const uint Action_MODG = Raw.UIManager.Methods.MODGFOBBBMO;
-            public const uint Awake = Raw.UIManager.Methods.Awake;
             public const uint Get_FMIH = Raw.UIManager.Methods.FMIHGPBDKLE;
             public const uint Action_NEGO = Raw.UIManager.Methods.NEGOHIILNHO;
             public const uint Action_PFBA = Raw.UIManager.Methods.PFBAIMNOHFO;
@@ -7064,10 +7360,12 @@ namespace BlockpostTrainer.Sdk
 
         public static class Util
         {
+            public const uint GetBrowserPath = Raw.Util.Methods.GetBrowserPath;
+            public const uint DrawPlane = Raw.Util.Methods.DrawPlane;
+            public const uint CalculateFrustumPlanes = Raw.Util.Methods.CalculateFrustumPlanes;
             public const uint Action_PDDJ = Raw.Util.Methods.PDDJMFHLGKJ;
             public const uint Action_LIJG = Raw.Util.Methods.LIJGNPIOHDK;
             public const uint Action_DJLO = Raw.Util.Methods.DJLOCLMFFLH;
-            public const uint GetBrowserPath = Raw.Util.Methods.GetBrowserPath;
             public const uint GetString_BCLG = Raw.Util.Methods.BCLGAMAGOGI;
             public const uint GetString_NHFL = Raw.Util.Methods.NHFLFBIGNLM;
             public const uint GetString_EOEE = Raw.Util.Methods.EOEEMEDILDD;
@@ -7079,17 +7377,16 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_NFMP = Raw.Util.Methods.NFMPMDLLIFK;
             public const uint Action_JGGF = Raw.Util.Methods.JGGFNMAMEOI;
             public const uint Action_NFDH = Raw.Util.Methods.NFDHHELFDNG;
-            public const uint DrawPlane = Raw.Util.Methods.DrawPlane;
             public const uint Action_PJBF = Raw.Util.Methods.PJBFBJIPNOG;
             public const uint Action_JBAI = Raw.Util.Methods.JBAIGNHKLAH;
             public const uint Action_FEEM = Raw.Util.Methods.FEEMPJNCFLE;
-            public const uint CalculateFrustumPlanes = Raw.Util.Methods.CalculateFrustumPlanes;
             public const uint Action_FADM = Raw.Util.Methods.FADMMCGNPAI;
         }
 
         public static class Util2
         {
             public const int value = Raw.Util2.Offsets.value;
+            public const uint CollectModules = Raw.Util2.Methods.CollectModules;
             public const uint Get_JFBA = Raw.Util2.Methods.JFBABGAFGIJ;
             public const uint Get_FAHA = Raw.Util2.Methods.FAHACHJHIBC;
             public const uint Get_KFMK = Raw.Util2.Methods.KFMKAJALDEC;
@@ -7105,7 +7402,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Get_OJNK = Raw.Util2.Methods.OJNKADMCBIK;
             public const uint Get_BFBB = Raw.Util2.Methods.BFBBCKIMNDE;
             public const uint Get_CLKB = Raw.Util2.Methods.CLKBOGEFFMN;
-            public const uint CollectModules = Raw.Util2.Methods.CollectModules;
             public const uint Get_NABM = Raw.Util2.Methods.NABMIBPHFAC;
             public const uint Get_JILI = Raw.Util2.Methods.JILIPHCNDEF;
             public const uint Get_HABL = Raw.Util2.Methods.HABLDPEPFEP;
@@ -7197,6 +7493,8 @@ namespace BlockpostTrainer.Sdk
             public const int blockcount = Raw.VDestr.Offsets.blockcount;
             public const int Timer = Raw.VDestr.Offsets.FDKHLNHCMIN;
             public const int Flag = Raw.VDestr.Offsets.NBELOJIFLMD;
+            public const uint OnTriggerEnter = Raw.VDestr.Methods.OnTriggerEnter;
+            public const uint Awake = Raw.VDestr.Methods.Awake;
             public const uint Action_JKFN = Raw.VDestr.Methods.JKFNHOIALOF;
             public const uint Action_DLLC = Raw.VDestr.Methods.DLLCMBJIBAI;
             public const uint Action_GAHE = Raw.VDestr.Methods.GAHEOEDEIMA;
@@ -7204,7 +7502,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_HNNC = Raw.VDestr.Methods.HNNCNJNCLIO;
             public const uint Action_KHLA = Raw.VDestr.Methods.KHLAKJKJAAP;
             public const uint Action_JHMA = Raw.VDestr.Methods.JHMAIBMOGOK;
-            public const uint OnTriggerEnter = Raw.VDestr.Methods.OnTriggerEnter;
             public const uint Action_FGPK = Raw.VDestr.Methods.FGPKCFBEKCM;
             public const uint Action_BJPH = Raw.VDestr.Methods.BJPHCAPBFIF;
             public const uint Action_BDII = Raw.VDestr.Methods.BDIIFDINOKD;
@@ -7250,7 +7547,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_JGDJ = Raw.VDestr.Methods.JGDJDJNKMEE;
             public const uint Action_JFDG = Raw.VDestr.Methods.JFDGDFBIADC;
             public const uint Action_OABD = Raw.VDestr.Methods.OABDLKCNION;
-            public const uint Awake = Raw.VDestr.Methods.Awake;
             public const uint Action_CMJD = Raw.VDestr.Methods.CMJDBJFGEDI;
             public const uint Action_ANBJ = Raw.VDestr.Methods.ANBJPLCEMOI;
             public const uint Action_EGDF = Raw.VDestr.Methods.EGDFAMICFIO;
@@ -7606,6 +7902,7 @@ namespace BlockpostTrainer.Sdk
             public const int Vector2 = Raw.VWIK.Offsets.MECEEPFIJDF;
             public const int ReloadTime_20 = Raw.VWIK.Offsets.PEHAAFHOGGE;
             public const int ReloadTime_21 = Raw.VWIK.Offsets.DPLBANOAKEH;
+            public const uint Update = Raw.VWIK.Methods.Update;
             public const uint Action_CNMG = Raw.VWIK.Methods.CNMGLBGDGOM;
             public const uint Action_PGBE = Raw.VWIK.Methods.PGBEHBKLKAF;
             public const uint Action_HNND = Raw.VWIK.Methods.HNNDDOLKAAO;
@@ -7647,7 +7944,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_ADDF = Raw.VWIK.Methods.ADDFBHKIKEK;
             public const uint Action_GHBK = Raw.VWIK.Methods.GHBKJJGLMPM;
             public const uint Action_AKAG = Raw.VWIK.Methods.AKAGPBIDOFB;
-            public const uint Update = Raw.VWIK.Methods.Update;
             public const uint Action_KLHK = Raw.VWIK.Methods.KLHKCHEMPOO;
             public const uint Action_GMIF = Raw.VWIK.Methods.GMIFOJAIHGC;
             public const uint Action_MIEC = Raw.VWIK.Methods.MIECFJBNLGK;
@@ -7972,6 +8268,12 @@ namespace BlockpostTrainer.Sdk
             public const int FlagGlassDynamic = Raw.VoxelAtlas.Offsets.FlagGlassDynamic;
             public const int FlagGlassStatic = Raw.VoxelAtlas.Offsets.FlagGlassStatic;
             public const uint GetUV = Raw.VoxelAtlas.Methods.GetUV;
+            public const uint SetFilter = Raw.VoxelAtlas.Methods.SetFilter;
+            public const uint AddCustomUV = Raw.VoxelAtlas.Methods.AddCustomUV;
+            public const uint Resize = Raw.VoxelAtlas.Methods.Resize;
+            public const uint GetUV_NewVoxel = Raw.VoxelAtlas.Methods.GetUV_NewVoxel;
+            public const uint SetBlocksCategories = Raw.VoxelAtlas.Methods.SetBlocksCategories;
+            public const uint Init = Raw.VoxelAtlas.Methods.Init;
             public const uint Get_JFGJ = Raw.VoxelAtlas.Methods.JFGJHHILAMF;
             public const uint Action_KMAG = Raw.VoxelAtlas.Methods.KMAGKICFHFD;
             public const uint Get_LCFP = Raw.VoxelAtlas.Methods.LCFPEBIPAKL;
@@ -7985,7 +8287,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_PPMB = Raw.VoxelAtlas.Methods.PPMBFOIOMIL;
             public const uint Action_NHDD = Raw.VoxelAtlas.Methods.NHDDFOGMNHH;
             public const uint Action_PCNK = Raw.VoxelAtlas.Methods.PCNKEKGCHML;
-            public const uint SetFilter = Raw.VoxelAtlas.Methods.SetFilter;
             public const uint Action_LJBF = Raw.VoxelAtlas.Methods.LJBFAFHHHKC;
             public const uint Get_LCON = Raw.VoxelAtlas.Methods.LCONNMOAMME;
             public const uint Action_GLNC = Raw.VoxelAtlas.Methods.GLNCAKGAGDC;
@@ -7997,11 +8298,9 @@ namespace BlockpostTrainer.Sdk
             public const uint Get_BALD = Raw.VoxelAtlas.Methods.BALDMMOGDFP;
             public const uint Action_AGHE = Raw.VoxelAtlas.Methods.AGHEIOGLADB;
             public const uint Get_LJJA = Raw.VoxelAtlas.Methods.LJJADJBONDI;
-            public const uint AddCustomUV = Raw.VoxelAtlas.Methods.AddCustomUV;
             public const uint Action_LOPO = Raw.VoxelAtlas.Methods.LOPOMBOCMJI;
             public const uint Action_MBOE = Raw.VoxelAtlas.Methods.MBOEAHIAMMP;
             public const uint Get_GMFK = Raw.VoxelAtlas.Methods.GMFKEMONFPJ;
-            public const uint Resize = Raw.VoxelAtlas.Methods.Resize;
             public const uint Get_HHBA = Raw.VoxelAtlas.Methods.HHBAKFLINMG;
             public const uint Get_PKEN = Raw.VoxelAtlas.Methods.PKENEACIJJP;
             public const uint Get_LFEG = Raw.VoxelAtlas.Methods.LFEGCIPHLEK;
@@ -8009,7 +8308,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_LHPN = Raw.VoxelAtlas.Methods.LHPNCPENFJM;
             public const uint Get_BICA = Raw.VoxelAtlas.Methods.BICALOCGDHG;
             public const uint Get_BMHO = Raw.VoxelAtlas.Methods.BMHOJKBDMOJ;
-            public const uint GetUV_NewVoxel = Raw.VoxelAtlas.Methods.GetUV_NewVoxel;
             public const uint Get_LMNB = Raw.VoxelAtlas.Methods.LMNBIPCPMEM;
             public const uint Get_OEGH = Raw.VoxelAtlas.Methods.OEGHPOMNLHG;
             public const uint Get_JAOD = Raw.VoxelAtlas.Methods.JAODGHEJKHO;
@@ -8024,11 +8322,9 @@ namespace BlockpostTrainer.Sdk
             public const uint Get_LHPF = Raw.VoxelAtlas.Methods.LHPFOLBGJAB;
             public const uint Get_LJOO = Raw.VoxelAtlas.Methods.LJOOOCHNMKE;
             public const uint Action_DAGN = Raw.VoxelAtlas.Methods.DAGNPPBBHML;
-            public const uint SetBlocksCategories = Raw.VoxelAtlas.Methods.SetBlocksCategories;
             public const uint Get_IJCA = Raw.VoxelAtlas.Methods.IJCAAIPGIBL;
             public const uint Action_NOHI = Raw.VoxelAtlas.Methods.NOHIGJEMONF;
             public const uint Action_JOIF = Raw.VoxelAtlas.Methods.JOIFIKPHLJG;
-            public const uint Init = Raw.VoxelAtlas.Methods.Init;
             public const uint Action_POAD = Raw.VoxelAtlas.Methods.POADNOMNFNN;
             public const uint Action_CMOG = Raw.VoxelAtlas.Methods.CMOGBJIBGCF;
             public const uint Get_LJDH = Raw.VoxelAtlas.Methods.LJDHIFICEFF;
@@ -8042,11 +8338,17 @@ namespace BlockpostTrainer.Sdk
         public static class VoxelBattleMapData
         {
             public const int VoxelMaps = Raw.VoxelBattleMapData.Offsets.VoxelMaps;
+            public const uint set_MapName = Raw.VoxelBattleMapData.Methods.set_MapName;
+            public const uint get_SizeX = Raw.VoxelBattleMapData.Methods.get_SizeX;
+            public const uint get_SizeY = Raw.VoxelBattleMapData.Methods.get_SizeY;
+            public const uint get_Version = Raw.VoxelBattleMapData.Methods.get_Version;
+            public const uint set_Version = Raw.VoxelBattleMapData.Methods.set_Version;
+            public const uint get_MapName = Raw.VoxelBattleMapData.Methods.get_MapName;
+            public const uint get_SizeZ = Raw.VoxelBattleMapData.Methods.get_SizeZ;
             public const uint Action_MKGO = Raw.VoxelBattleMapData.Methods.MKGOAPDHELM;
             public const uint Action_MCJG = Raw.VoxelBattleMapData.Methods.MCJGBPBIGOG;
             public const uint GetInt_NJFP = Raw.VoxelBattleMapData.Methods.NJFPCAJKOIL;
             public const uint GetInt_PILE = Raw.VoxelBattleMapData.Methods.PILELGDHMBG;
-            public const uint set_MapName = Raw.VoxelBattleMapData.Methods.set_MapName;
             public const uint GetInt_BIJP = Raw.VoxelBattleMapData.Methods.BIJPBGBEKOL;
             public const uint Action_CCCN = Raw.VoxelBattleMapData.Methods.CCCNHLNAJPC;
             public const uint Action_JHMN = Raw.VoxelBattleMapData.Methods.JHMNENCJKKA;
@@ -8055,10 +8357,8 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_ELBI = Raw.VoxelBattleMapData.Methods.ELBIEHAGDEN;
             public const uint Action_NOMB = Raw.VoxelBattleMapData.Methods.NOMBKFJFLMG;
             public const uint Action_JLGE = Raw.VoxelBattleMapData.Methods.JLGEEDIGPJB;
-            public const uint get_SizeX = Raw.VoxelBattleMapData.Methods.get_SizeX;
             public const uint GetInt_GFPI = Raw.VoxelBattleMapData.Methods.GFPINMACCLD;
             public const uint GetString_CKBG = Raw.VoxelBattleMapData.Methods.CKBGDMEKEMA;
-            public const uint get_SizeY = Raw.VoxelBattleMapData.Methods.get_SizeY;
             public const uint Action_MOOG = Raw.VoxelBattleMapData.Methods.MOOGCEPMNNK;
             public const uint GetInt_KGGC = Raw.VoxelBattleMapData.Methods.KGGCHPIILDE;
             public const uint GetInt_CJAI = Raw.VoxelBattleMapData.Methods.CJAIAGAMHGL;
@@ -8066,14 +8366,10 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_IGGL = Raw.VoxelBattleMapData.Methods.IGGLNJPMKGK;
             public const uint GetInt_KPHK = Raw.VoxelBattleMapData.Methods.KPHKAINHGMD;
             public const uint GetInt_HOMJ = Raw.VoxelBattleMapData.Methods.HOMJOADCIEF;
-            public const uint get_Version = Raw.VoxelBattleMapData.Methods.get_Version;
             public const uint Action_EPNM = Raw.VoxelBattleMapData.Methods.EPNMCLGLGDL;
-            public const uint set_Version = Raw.VoxelBattleMapData.Methods.set_Version;
             public const uint Action_HLLD = Raw.VoxelBattleMapData.Methods.HLLDIEOPMMI;
             public const uint Action_HDOJ = Raw.VoxelBattleMapData.Methods.HDOJGMEFBOJ;
             public const uint GetInt_GFJC = Raw.VoxelBattleMapData.Methods.GFJCGJFCHCK;
-            public const uint get_MapName = Raw.VoxelBattleMapData.Methods.get_MapName;
-            public const uint get_SizeZ = Raw.VoxelBattleMapData.Methods.get_SizeZ;
             public const string Version = Raw.VoxelBattleMapData.Properties.Version;
             public const string MapName = Raw.VoxelBattleMapData.Properties.MapName;
             public const string SizeX = Raw.VoxelBattleMapData.Properties.SizeX;
@@ -8101,6 +8397,8 @@ namespace BlockpostTrainer.Sdk
             public const int Ammo_4 = Raw.VoxelGreedy.Offsets.HBKPGICACAF;
             public const int Ammo_5 = Raw.VoxelGreedy.Offsets.DNLHJKGFLCF;
             public const int IsActive_1 = Raw.VoxelGreedy.Offsets.HNCLHKDNIKJ;
+            public const uint Start = Raw.VoxelGreedy.Methods.Start;
+            public const uint Build = Raw.VoxelGreedy.Methods.Build;
             public const uint Get_IJDL = Raw.VoxelGreedy.Methods.IJDLCFGLCGD;
             public const uint GetBool_PADJ = Raw.VoxelGreedy.Methods.PADJPEKGDNH;
             public const uint GetBool_IIPC = Raw.VoxelGreedy.Methods.IIPCOJPCBFB;
@@ -8108,7 +8406,6 @@ namespace BlockpostTrainer.Sdk
             public const uint GetBool_OLMM = Raw.VoxelGreedy.Methods.OLMMJAADAHG;
             public const uint GetBool_KGKK = Raw.VoxelGreedy.Methods.KGKKLCNHPLJ;
             public const uint Get_IDAP = Raw.VoxelGreedy.Methods.IDAPFHBFDMA;
-            public const uint Start = Raw.VoxelGreedy.Methods.Start;
             public const uint Get_JHJK = Raw.VoxelGreedy.Methods.JHJKHCMAFHC;
             public const uint Action_MCOC = Raw.VoxelGreedy.Methods.MCOCDHOOGAO;
             public const uint GetBool_LEEF = Raw.VoxelGreedy.Methods.LEEFELEPHLG;
@@ -8125,14 +8422,12 @@ namespace BlockpostTrainer.Sdk
             public const uint Get_CFPM = Raw.VoxelGreedy.Methods.CFPMCEEGAOD;
             public const uint Action_GPAE = Raw.VoxelGreedy.Methods.GPAECMFNBKF;
             public const uint Get_LAML = Raw.VoxelGreedy.Methods.LAMLNJKFNJL;
-            public const uint Build = Raw.VoxelGreedy.Methods.Build;
             public const uint Action_GKDE = Raw.VoxelGreedy.Methods.GKDEFIJJJFD;
             public const uint Get_KCJP = Raw.VoxelGreedy.Methods.KCJPFFDALGI;
             public const uint GetBool_KKGB = Raw.VoxelGreedy.Methods.KKGBDDOOKDG;
             public const uint Get_BMAO = Raw.VoxelGreedy.Methods.BMAOFHAJCLA;
             public const uint GetBool_KKEM = Raw.VoxelGreedy.Methods.KKEMJJBKBFJ;
             public const uint Get_GNHL = Raw.VoxelGreedy.Methods.GNHLDNAJFAD;
-            public const uint GetBool_COEG = Raw.VoxelGreedy.Methods.COEGDOAPEDD;
             public const uint GetBool_ACAH = Raw.VoxelGreedy.Methods.ACAHBFPELCN;
             public const uint GetBool_GIDN = Raw.VoxelGreedy.Methods.GIDNEFLPENO;
             public const uint Get_KCGH = Raw.VoxelGreedy.Methods.KCGHDGIECJH;
@@ -8145,6 +8440,7 @@ namespace BlockpostTrainer.Sdk
             public const uint Get_PHMO = Raw.VoxelGreedy.Methods.PHMOFNDONIN;
             public const uint Action_ALGD = Raw.VoxelGreedy.Methods.ALGDDAHOFLN;
             public const uint Get_EKAK = Raw.VoxelGreedy.Methods.EKAKICKOLEG;
+            public const uint GetBool_COEG = Raw.VoxelGreedy.Methods.COEGDOAPEDD;
         }
 
         public static class VoxelMap
@@ -8215,6 +8511,55 @@ namespace BlockpostTrainer.Sdk
             public const int Head = Raw.VoxelMap.Offsets.BLJADPICBEK;
             public const int Head_1 = Raw.VoxelMap.Offsets.DKDMCHIOFHI;
             public const int trMapPlatform = Raw.VoxelMap.Offsets.trMapPlatform;
+            public const uint SetDirty = Raw.VoxelMap.Methods.SetDirty;
+            public const uint LoadBinComplete = Raw.VoxelMap.Methods.LoadBinComplete;
+            public const uint RenderBlockNear = Raw.VoxelMap.Methods.RenderBlockNear;
+            public const uint Render = Raw.VoxelMap.Methods.Render;
+            public const uint RenderMeshGreedy = Raw.VoxelMap.Methods.RenderMeshGreedy;
+            public const uint LoadBinAdditional = Raw.VoxelMap.Methods.LoadBinAdditional;
+            public const uint GetBlock = Raw.VoxelMap.Methods.GetBlock;
+            public const uint ClearChunksMeshes = Raw.VoxelMap.Methods.ClearChunksMeshes;
+            public const uint GetLastColor = Raw.VoxelMap.Methods.GetLastColor;
+            public const uint RenderDirty = Raw.VoxelMap.Methods.RenderDirty;
+            public const uint GetBlock_Ref = Raw.VoxelMap.Methods.GetBlock_Ref;
+            public const uint GenerateEntPrefab = Raw.VoxelMap.Methods.GenerateEntPrefab;
+            public const uint LoadBackground = Raw.VoxelMap.Methods.LoadBackground;
+            public const uint SetBlock = Raw.VoxelMap.Methods.SetBlock;
+            public const uint UncompressAndSetBlockCustom = Raw.VoxelMap.Methods.UncompressAndSetBlockCustom;
+            public const uint Create = Raw.VoxelMap.Methods.Create;
+            public const uint SetEnt = Raw.VoxelMap.Methods.SetEnt;
+            public const uint SetBlockNearDirtyUpdate = Raw.VoxelMap.Methods.SetBlockNearDirtyUpdate;
+            public const uint SaveBin = Raw.VoxelMap.Methods.SaveBin;
+            public const uint RenderStaticGlassMesh = Raw.VoxelMap.Methods.RenderStaticGlassMesh;
+            public const uint RenderBlock = Raw.VoxelMap.Methods.RenderBlock;
+            public const uint RenderEnt = Raw.VoxelMap.Methods.RenderEnt;
+            public const uint GetBlock_NewVoxel = Raw.VoxelMap.Methods.GetBlock_NewVoxel;
+            public const uint BuildEntData = Raw.VoxelMap.Methods.BuildEntData;
+            public const uint Clear = Raw.VoxelMap.Methods.Clear;
+            public const uint DelEnt = Raw.VoxelMap.Methods.DelEnt;
+            public const uint RenderDynamicGlassMesh = Raw.VoxelMap.Methods.RenderDynamicGlassMesh;
+            public const uint BuildHeader = Raw.VoxelMap.Methods.BuildHeader;
+            public const uint GetEnt = Raw.VoxelMap.Methods.GetEnt;
+            public const uint GetChunkByBlock = Raw.VoxelMap.Methods.GetChunkByBlock;
+            public const uint RenderCollider = Raw.VoxelMap.Methods.RenderCollider;
+            public const uint PackChunk = Raw.VoxelMap.Methods.PackChunk;
+            public const uint BuildChunks = Raw.VoxelMap.Methods.BuildChunks;
+            public const uint LoadBinPrepare = Raw.VoxelMap.Methods.LoadBinPrepare;
+            public const uint GetLastColorFixed = Raw.VoxelMap.Methods.GetLastColorFixed;
+            public const uint TryRenderGlass = Raw.VoxelMap.Methods.TryRenderGlass;
+            public const uint LoadBin = Raw.VoxelMap.Methods.LoadBin;
+            public const uint RenderAll = Raw.VoxelMap.Methods.RenderAll;
+            public const uint SetActiveChunks = Raw.VoxelMap.Methods.SetActiveChunks;
+            public const uint GenerateFlatQuad = Raw.VoxelMap.Methods.GenerateFlatQuad;
+            public const uint RenderGlass = Raw.VoxelMap.Methods.RenderGlass;
+            public const uint UncompressAndSetBlock = Raw.VoxelMap.Methods.UncompressAndSetBlock;
+            public const uint LoadEnd = Raw.VoxelMap.Methods.LoadEnd;
+            public const uint RenderMesh = Raw.VoxelMap.Methods.RenderMesh;
+            public const uint CreateGlass = Raw.VoxelMap.Methods.CreateGlass;
+            public const uint CopyData = Raw.VoxelMap.Methods.CopyData;
+            public const uint GenerateBackground = Raw.VoxelMap.Methods.GenerateBackground;
+            public const uint SaveText = Raw.VoxelMap.Methods.SaveText;
+            public const uint UnlinkChunk = Raw.VoxelMap.Methods.UnlinkChunk;
             public const uint Action_CKKA = Raw.VoxelMap.Methods.CKKAEOHHNNP;
             public const uint Action_ABMD = Raw.VoxelMap.Methods.ABMDBHHPBDN;
             public const uint Action_LHCJ = Raw.VoxelMap.Methods.LHCJFMALPNN;
@@ -8222,35 +8567,24 @@ namespace BlockpostTrainer.Sdk
             public const uint GetInt_EPBF = Raw.VoxelMap.Methods.EPBFHMCAPDE;
             public const uint Action_KBCM = Raw.VoxelMap.Methods.KBCMBDGLAME;
             public const uint Action_ADCA = Raw.VoxelMap.Methods.ADCALHCOHOH;
-            public const uint SetDirty = Raw.VoxelMap.Methods.SetDirty;
             public const uint GetInt_EDIE = Raw.VoxelMap.Methods.EDIEMAOCFOM;
-            public const uint LoadBinComplete = Raw.VoxelMap.Methods.LoadBinComplete;
             public const uint Action_HFAH = Raw.VoxelMap.Methods.HFAHCPNKOKL;
             public const uint Action_OEMP = Raw.VoxelMap.Methods.OEMPGBFEEMK;
             public const uint GetBool_IMDE = Raw.VoxelMap.Methods.IMDEABLGPGM;
-            public const uint RenderBlockNear = Raw.VoxelMap.Methods.RenderBlockNear;
-            public const uint Render = Raw.VoxelMap.Methods.Render;
-            public const uint RenderMeshGreedy = Raw.VoxelMap.Methods.RenderMeshGreedy;
             public const uint Action_ONDP = Raw.VoxelMap.Methods.ONDPDDGNAJE;
             public const uint GetInt_MNMF = Raw.VoxelMap.Methods.MNMFICNANKF;
             public const uint Action_EMDH = Raw.VoxelMap.Methods.EMDHBCEPFCG;
             public const uint GetInt_MFGH = Raw.VoxelMap.Methods.MFGHNCDGHDI;
             public const uint GetInt_IPAG = Raw.VoxelMap.Methods.IPAGLFFFDJI;
-            public const uint LoadBinAdditional = Raw.VoxelMap.Methods.LoadBinAdditional;
             public const uint Action_MCFI = Raw.VoxelMap.Methods.MCFIMAHAJNJ;
-            public const uint GetBlock = Raw.VoxelMap.Methods.GetBlock;
             public const uint Action_GFNF = Raw.VoxelMap.Methods.GFNFLBJGBJL;
             public const uint GetInt_NLMJ = Raw.VoxelMap.Methods.NLMJPADEKOB;
             public const uint Action_CANH = Raw.VoxelMap.Methods.CANHHNBKPMG;
-            public const uint ClearChunksMeshes = Raw.VoxelMap.Methods.ClearChunksMeshes;
             public const uint Action_KMFA = Raw.VoxelMap.Methods.KMFAOJAAPDC;
-            public const uint GetLastColor = Raw.VoxelMap.Methods.GetLastColor;
             public const uint Action_BDGC = Raw.VoxelMap.Methods.BDGCNNDEEGL;
             public const uint GetInt_NKJD = Raw.VoxelMap.Methods.NKJDACLCLIE;
-            public const uint RenderDirty = Raw.VoxelMap.Methods.RenderDirty;
             public const uint GetInt_AOFL = Raw.VoxelMap.Methods.AOFLHFFAFEP;
             public const uint Action_KHOH = Raw.VoxelMap.Methods.KHOHNJEPGNC;
-            public const uint GetBlock_Ref = Raw.VoxelMap.Methods.GetBlock_Ref;
             public const uint Action_FAPN = Raw.VoxelMap.Methods.FAPNGGNOEDF;
             public const uint Action_FJOI = Raw.VoxelMap.Methods.FJOIPGHGJNO;
             public const uint Get_ADLP = Raw.VoxelMap.Methods.ADLPCFJLCOE;
@@ -8258,103 +8592,71 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_ALEL = Raw.VoxelMap.Methods.ALELGJBPPPB;
             public const uint Action_OLEN = Raw.VoxelMap.Methods.OLENIIIKOCI;
             public const uint Action_GMIK = Raw.VoxelMap.Methods.GMIKPMIBAIL;
-            public const uint GenerateEntPrefab = Raw.VoxelMap.Methods.GenerateEntPrefab;
             public const uint GetInt_FIIH = Raw.VoxelMap.Methods.FIIHHEKJPNH;
-            public const uint LoadBackground = Raw.VoxelMap.Methods.LoadBackground;
-            public const uint SetBlock = Raw.VoxelMap.Methods.SetBlock;
             public const uint Action_LKHJ = Raw.VoxelMap.Methods.LKHJODAKOFD;
             public const uint Action_PFMG = Raw.VoxelMap.Methods.PFMGBNAEPFK;
             public const uint GetInt_CHBL = Raw.VoxelMap.Methods.CHBLLKLAJIP;
-            public const uint UncompressAndSetBlockCustom = Raw.VoxelMap.Methods.UncompressAndSetBlockCustom;
             public const uint Action_LLOA = Raw.VoxelMap.Methods.LLOABHHIFHK;
             public const uint GetInt_NKLI = Raw.VoxelMap.Methods.NKLIKBNJEPA;
             public const uint Get_PKIL = Raw.VoxelMap.Methods.PKILDJIIJEH;
-            public const uint Create = Raw.VoxelMap.Methods.Create;
             public const uint Action_CJAB = Raw.VoxelMap.Methods.CJABKAJKPJB;
             public const uint Get_LFNM = Raw.VoxelMap.Methods.LFNMJHNPHJC;
-            public const uint SetEnt = Raw.VoxelMap.Methods.SetEnt;
-            public const uint SetBlockNearDirtyUpdate = Raw.VoxelMap.Methods.SetBlockNearDirtyUpdate;
             public const uint Action_JFKM = Raw.VoxelMap.Methods.JFKMMEHEMCK;
             public const uint GetInt_MLEA = Raw.VoxelMap.Methods.MLEAKNKGDJD;
             public const uint Action_LAPD = Raw.VoxelMap.Methods.LAPDPHOAOMP;
             public const uint Action_CLDF = Raw.VoxelMap.Methods.CLDFNPHEAOA;
-            public const uint SaveBin = Raw.VoxelMap.Methods.SaveBin;
-            public const uint RenderStaticGlassMesh = Raw.VoxelMap.Methods.RenderStaticGlassMesh;
             public const uint Action_MIDD = Raw.VoxelMap.Methods.MIDDLMENJIA;
             public const uint Action_FKLO = Raw.VoxelMap.Methods.FKLOEPFJGNG;
             public const uint Action_IDNE = Raw.VoxelMap.Methods.IDNENMCOHKF;
             public const uint GetInt_APLG = Raw.VoxelMap.Methods.APLGAPMHCDJ;
             public const uint Action_NGBD = Raw.VoxelMap.Methods.NGBDPHGPPOJ;
-            public const uint RenderBlock = Raw.VoxelMap.Methods.RenderBlock;
             public const uint Action_HAEO = Raw.VoxelMap.Methods.HAEODFHBFCN;
-            public const uint RenderEnt = Raw.VoxelMap.Methods.RenderEnt;
             public const uint Action_HLHC = Raw.VoxelMap.Methods.HLHCENDMBEG;
             public const uint Action_LLAB = Raw.VoxelMap.Methods.LLABAFAFEKK;
-            public const uint GetBlock_NewVoxel = Raw.VoxelMap.Methods.GetBlock_NewVoxel;
             public const uint Action_PPHM = Raw.VoxelMap.Methods.PPHMDHGAJME;
             public const uint GetInt_DACM = Raw.VoxelMap.Methods.DACMKLNJHMF;
             public const uint GetInt_MPJA = Raw.VoxelMap.Methods.MPJALLBFGJB;
-            public const uint BuildEntData = Raw.VoxelMap.Methods.BuildEntData;
-            public const uint Clear = Raw.VoxelMap.Methods.Clear;
-            public const uint DelEnt = Raw.VoxelMap.Methods.DelEnt;
             public const uint Action_FKLI = Raw.VoxelMap.Methods.FKLIHPLILFD;
             public const uint Action_PCMK = Raw.VoxelMap.Methods.PCMKBGIGGCO;
-            public const uint RenderDynamicGlassMesh = Raw.VoxelMap.Methods.RenderDynamicGlassMesh;
             public const uint GetBool_FNEM = Raw.VoxelMap.Methods.FNEMHKFKFHJ;
-            public const uint BuildHeader = Raw.VoxelMap.Methods.BuildHeader;
             public const uint Action_CMCG = Raw.VoxelMap.Methods.CMCGJAOOIGJ;
             public const uint Action_FELH = Raw.VoxelMap.Methods.FELHAEGCGAA;
             public const uint Action_CMFJ = Raw.VoxelMap.Methods.CMFJBGAHPEL;
             public const uint Action_NCFD = Raw.VoxelMap.Methods.NCFDJADBDDC;
             public const uint Get_LOAG = Raw.VoxelMap.Methods.LOAGPFLLEAN;
-            public const uint GetEnt = Raw.VoxelMap.Methods.GetEnt;
             public const uint Get_JINF = Raw.VoxelMap.Methods.JINFJFHGCHA;
-            public const uint GetChunkByBlock = Raw.VoxelMap.Methods.GetChunkByBlock;
             public const uint Action_PLDJ = Raw.VoxelMap.Methods.PLDJDBOEMAC;
             public const uint Action_FLAD = Raw.VoxelMap.Methods.FLADDPCAFJA;
             public const uint Get_KIHA = Raw.VoxelMap.Methods.KIHAPLJGKII;
-            public const uint RenderCollider = Raw.VoxelMap.Methods.RenderCollider;
-            public const uint PackChunk = Raw.VoxelMap.Methods.PackChunk;
             public const uint GetInt_PJOD = Raw.VoxelMap.Methods.PJODLHEBKDE;
-            public const uint BuildChunks = Raw.VoxelMap.Methods.BuildChunks;
-            public const uint LoadBinPrepare = Raw.VoxelMap.Methods.LoadBinPrepare;
             public const uint Action_KGHD = Raw.VoxelMap.Methods.KGHDCKCBAFA;
             public const uint Action_PHMB = Raw.VoxelMap.Methods.PHMBMODMKFP;
             public const uint Action_ODKJ = Raw.VoxelMap.Methods.ODKJPBGIPDJ;
-            public const uint GetLastColorFixed = Raw.VoxelMap.Methods.GetLastColorFixed;
-            public const uint TryRenderGlass = Raw.VoxelMap.Methods.TryRenderGlass;
-            public const uint LoadBin = Raw.VoxelMap.Methods.LoadBin;
-            public const uint RenderAll = Raw.VoxelMap.Methods.RenderAll;
             public const uint Action_ALLJ = Raw.VoxelMap.Methods.ALLJHAECGCJ;
             public const uint Action_OMFK = Raw.VoxelMap.Methods.OMFKPGMECKA;
             public const uint GetInt_IAJD = Raw.VoxelMap.Methods.IAJDOJNFDNB;
-            public const uint SetActiveChunks = Raw.VoxelMap.Methods.SetActiveChunks;
-            public const uint GenerateFlatQuad = Raw.VoxelMap.Methods.GenerateFlatQuad;
-            public const uint RenderGlass = Raw.VoxelMap.Methods.RenderGlass;
             public const uint Action_CMLP = Raw.VoxelMap.Methods.CMLPDLOGIMH;
             public const uint Action_FFPB = Raw.VoxelMap.Methods.FFPBHIHNAMK;
             public const uint Action_HDGN = Raw.VoxelMap.Methods.HDGNBKHNHLC;
-            public const uint UncompressAndSetBlock = Raw.VoxelMap.Methods.UncompressAndSetBlock;
             public const uint Action_IFMD = Raw.VoxelMap.Methods.IFMDJCMFNDA;
-            public const uint LoadEnd = Raw.VoxelMap.Methods.LoadEnd;
             public const uint Action_KKDP = Raw.VoxelMap.Methods.KKDPMGBBFHG;
             public const uint Action_CNAN = Raw.VoxelMap.Methods.CNANHPLBENA;
             public const uint Action_LKKM = Raw.VoxelMap.Methods.LKKMNNMIAKC;
             public const uint Action_EGJG = Raw.VoxelMap.Methods.EGJGINBBIPP;
             public const uint Get_FMCP = Raw.VoxelMap.Methods.FMCPJOEJBNH;
-            public const uint RenderMesh = Raw.VoxelMap.Methods.RenderMesh;
-            public const uint CreateGlass = Raw.VoxelMap.Methods.CreateGlass;
-            public const uint CopyData = Raw.VoxelMap.Methods.CopyData;
-            public const uint GenerateBackground = Raw.VoxelMap.Methods.GenerateBackground;
-            public const uint SaveText = Raw.VoxelMap.Methods.SaveText;
             public const uint Action_MILF = Raw.VoxelMap.Methods.MILFJODLPNK;
             public const uint Action_MCMD = Raw.VoxelMap.Methods.MCMDCOMHPAJ;
             public const uint Action_JENO = Raw.VoxelMap.Methods.JENOCAGCNCD;
-            public const uint UnlinkChunk = Raw.VoxelMap.Methods.UnlinkChunk;
         }
 
         public static class VoxelMapSceneItem
         {
+            public const uint get_RotationY = Raw.VoxelMapSceneItem.Methods.get_RotationY;
+            public const uint get_Layer = Raw.VoxelMapSceneItem.Methods.get_Layer;
+            public const uint get_MapName = Raw.VoxelMapSceneItem.Methods.get_MapName;
+            public const uint set_MapName = Raw.VoxelMapSceneItem.Methods.set_MapName;
+            public const uint GlobalToCellPosition = Raw.VoxelMapSceneItem.Methods.GlobalToCellPosition;
+            public const uint get_CellPosition = Raw.VoxelMapSceneItem.Methods.get_CellPosition;
             public const uint Get_ADPJ = Raw.VoxelMapSceneItem.Methods.ADPJPBINKKG;
             public const uint GetInt_EKAK = Raw.VoxelMapSceneItem.Methods.EKAKDFNELFA;
             public const uint Get_PFPJ = Raw.VoxelMapSceneItem.Methods.PFPJCCICAEN;
@@ -8378,10 +8680,8 @@ namespace BlockpostTrainer.Sdk
             public const uint Get_JMGA = Raw.VoxelMapSceneItem.Methods.JMGAGGJFBDN;
             public const uint GetInt_FFDM = Raw.VoxelMapSceneItem.Methods.FFDMOHDGHDK;
             public const uint GetInt_ECGJ = Raw.VoxelMapSceneItem.Methods.ECGJOLLLAOI;
-            public const uint get_RotationY = Raw.VoxelMapSceneItem.Methods.get_RotationY;
             public const uint GetInt_DFMN = Raw.VoxelMapSceneItem.Methods.DFMNIGMJGLK;
             public const uint Get_APCM = Raw.VoxelMapSceneItem.Methods.APCMBBJHIAE;
-            public const uint get_Layer = Raw.VoxelMapSceneItem.Methods.get_Layer;
             public const uint GetInt_MHAB = Raw.VoxelMapSceneItem.Methods.MHABGHFJELA;
             public const uint GetString_ILNK = Raw.VoxelMapSceneItem.Methods.ILNKLJFMEPH;
             public const uint Action_NEHB = Raw.VoxelMapSceneItem.Methods.NEHBOJNLKHD;
@@ -8391,9 +8691,7 @@ namespace BlockpostTrainer.Sdk
             public const uint GetString_JNCB = Raw.VoxelMapSceneItem.Methods.JNCBKNNDKCO;
             public const uint GetInt_DLAG = Raw.VoxelMapSceneItem.Methods.DLAGFBLNBPC;
             public const uint Get_HALG = Raw.VoxelMapSceneItem.Methods.HALGDACENAI;
-            public const uint get_MapName = Raw.VoxelMapSceneItem.Methods.get_MapName;
             public const uint Get_IEOP = Raw.VoxelMapSceneItem.Methods.IEOPCOLHDDG;
-            public const uint set_MapName = Raw.VoxelMapSceneItem.Methods.set_MapName;
             public const uint Get_BDNO = Raw.VoxelMapSceneItem.Methods.BDNOMNFNGDD;
             public const uint Get_KGEL = Raw.VoxelMapSceneItem.Methods.KGELLEAGAMF;
             public const uint GetInt_MJAE = Raw.VoxelMapSceneItem.Methods.MJAEPFGILIE;
@@ -8401,8 +8699,6 @@ namespace BlockpostTrainer.Sdk
             public const uint GetInt_KNGF = Raw.VoxelMapSceneItem.Methods.KNGFHJOOLAO;
             public const uint GetInt_PIFB = Raw.VoxelMapSceneItem.Methods.PIFBLBNGPAD;
             public const uint GetInt_MFCK = Raw.VoxelMapSceneItem.Methods.MFCKKPHNFKE;
-            public const uint GlobalToCellPosition = Raw.VoxelMapSceneItem.Methods.GlobalToCellPosition;
-            public const uint get_CellPosition = Raw.VoxelMapSceneItem.Methods.get_CellPosition;
             public const uint Get_NMDH = Raw.VoxelMapSceneItem.Methods.NMDHFNAIOFK;
             public const uint Get_CAPA = Raw.VoxelMapSceneItem.Methods.CAPAKHKOGOP;
             public const uint GetString_AIIH = Raw.VoxelMapSceneItem.Methods.AIIHHBAFONI;
@@ -8429,6 +8725,9 @@ namespace BlockpostTrainer.Sdk
         public static class VoxelMultList
         {
             public const int List_VoxelMultList_MBDHOLCMABP_LAOA = Raw.VoxelMultList.Offsets.LAOAOJMEHKI;
+            public const uint Begin = Raw.VoxelMultList.Methods.Begin;
+            public const uint End = Raw.VoxelMultList.Methods.End;
+            public const uint Add = Raw.VoxelMultList.Methods.Add;
             public const uint Action_JLED = Raw.VoxelMultList.Methods.JLEDGIDENMN;
             public const uint Action_MIDH = Raw.VoxelMultList.Methods.MIDHBCHJPGM;
             public const uint Action_FOFF = Raw.VoxelMultList.Methods.FOFFFCLNMDM;
@@ -8439,7 +8738,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_BGAB = Raw.VoxelMultList.Methods.BGABCPJFNCG;
             public const uint Action_JBCP = Raw.VoxelMultList.Methods.JBCPKDELBPG;
             public const uint Action_EMDL = Raw.VoxelMultList.Methods.EMDLHLNECEP;
-            public const uint Begin = Raw.VoxelMultList.Methods.Begin;
             public const uint Action_JNFH = Raw.VoxelMultList.Methods.JNFHGKANDKP;
             public const uint Action_HOCF = Raw.VoxelMultList.Methods.HOCFGCFGGMJ;
             public const uint Action_IOPI = Raw.VoxelMultList.Methods.IOPIECBCGLM;
@@ -8463,7 +8761,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_KAEN = Raw.VoxelMultList.Methods.KAENOFIADDH;
             public const uint Action_AOCG = Raw.VoxelMultList.Methods.AOCGCMFPJKP;
             public const uint Action_OFFB = Raw.VoxelMultList.Methods.OFFBGBOAIND;
-            public const uint End = Raw.VoxelMultList.Methods.End;
             public const uint Action_PIDG = Raw.VoxelMultList.Methods.PIDGOCGDPGD;
             public const uint Action_GIIE = Raw.VoxelMultList.Methods.GIIEJKJBFAB;
             public const uint Action_HLMK = Raw.VoxelMultList.Methods.HLMKPENODJJ;
@@ -8494,7 +8791,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_AFEJ = Raw.VoxelMultList.Methods.AFEJPPMFJHK;
             public const uint Action_EGAI = Raw.VoxelMultList.Methods.EGAIPOGPJPF;
             public const uint Action_AGLK = Raw.VoxelMultList.Methods.AGLKAHADEEH;
-            public const uint Add = Raw.VoxelMultList.Methods.Add;
             public const uint Action_IPFE = Raw.VoxelMultList.Methods.IPFENPKEFCC;
             public const uint Action_DLCO = Raw.VoxelMultList.Methods.DLCOKJNCHGO;
             public const uint Action_MKPC = Raw.VoxelMultList.Methods.MKPCGDIOKCH;
@@ -8564,29 +8860,34 @@ namespace BlockpostTrainer.Sdk
             public const int currp = Raw.VoxelPalette.Offsets.currp;
             public const int selectint = Raw.VoxelPalette.Offsets.selectint;
             public const uint SetColor = Raw.VoxelPalette.Methods.SetColor;
+            public const uint get_Loaded = Raw.VoxelPalette.Methods.get_Loaded;
+            public const uint RGBToInt = Raw.VoxelPalette.Methods.RGBToInt;
+            public const uint GetColor = Raw.VoxelPalette.Methods.GetColor;
+            public const uint LoadEnd = Raw.VoxelPalette.Methods.LoadEnd;
+            public const uint Init = Raw.VoxelPalette.Methods.Init;
+            public const uint GetColor3D = Raw.VoxelPalette.Methods.GetColor3D;
+            public const uint get_Palettes3DDirectory = Raw.VoxelPalette.Methods.get_Palettes3DDirectory;
+            public const uint get_palette = Raw.VoxelPalette.Methods.get_palette;
+            public const uint GetPalettes3DPath = Raw.VoxelPalette.Methods.GetPalettes3DPath;
+            public const uint get_p = Raw.VoxelPalette.Methods.get_p;
             public const uint Action_KFKA = Raw.VoxelPalette.Methods.KFKAIHDMGLD;
             public const uint GetString_COFO = Raw.VoxelPalette.Methods.COFOIGHFPLC;
             public const uint Action_HPMA = Raw.VoxelPalette.Methods.HPMAJDLMFMA;
             public const uint Action_HHPL = Raw.VoxelPalette.Methods.HHPLCCBOEEG;
             public const uint Get_LFJH = Raw.VoxelPalette.Methods.LFJHCJKPPFJ;
             public const uint Action_KPNA = Raw.VoxelPalette.Methods.KPNAMOEJACA;
-            public const uint get_Loaded = Raw.VoxelPalette.Methods.get_Loaded;
-            public const uint RGBToInt = Raw.VoxelPalette.Methods.RGBToInt;
             public const uint Action_KPEK = Raw.VoxelPalette.Methods.KPEKLDJAPCK;
             public const uint Action_BMFD = Raw.VoxelPalette.Methods.BMFDFMKDMHB;
             public const uint GetBool_GJNF = Raw.VoxelPalette.Methods.GJNFMKGABEC;
             public const uint GetString_BCHE = Raw.VoxelPalette.Methods.BCHEHPKPJLE;
-            public const uint GetColor = Raw.VoxelPalette.Methods.GetColor;
             public const uint Get_GAFD = Raw.VoxelPalette.Methods.GAFDBIDBCCG;
             public const uint GetBool_OPPG = Raw.VoxelPalette.Methods.OPPGJILPADG;
             public const uint Action_KLOF = Raw.VoxelPalette.Methods.KLOFNMKMMKF;
             public const uint Action_OLEC = Raw.VoxelPalette.Methods.OLECLLCJAAL;
             public const uint GetBool_KNJK = Raw.VoxelPalette.Methods.KNJKENNJCAJ;
-            public const uint LoadEnd = Raw.VoxelPalette.Methods.LoadEnd;
             public const uint Action_JDNI = Raw.VoxelPalette.Methods.JDNIPICNGLB;
             public const uint Action_GFAJ = Raw.VoxelPalette.Methods.GFAJLOKBAIG;
             public const uint Action_GBKM = Raw.VoxelPalette.Methods.GBKMHOHIIIC;
-            public const uint Init = Raw.VoxelPalette.Methods.Init;
             public const uint Action_IPKF = Raw.VoxelPalette.Methods.IPKFOHKGDDJ;
             public const uint GetInt_EGIP = Raw.VoxelPalette.Methods.EGIPNNPOHEL;
             public const uint GetBool_MKGO = Raw.VoxelPalette.Methods.MKGOGGNPKAD;
@@ -8594,15 +8895,12 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_LNNE = Raw.VoxelPalette.Methods.LNNEJODKJBN;
             public const uint GetBool_DBDM = Raw.VoxelPalette.Methods.DBDMBJCPIDK;
             public const uint Action_MCBP = Raw.VoxelPalette.Methods.MCBPDKJJFKM;
-            public const uint GetColor3D = Raw.VoxelPalette.Methods.GetColor3D;
             public const uint GetInt_DJAF = Raw.VoxelPalette.Methods.DJAFEBEJIME;
             public const uint GetInt_DKCH = Raw.VoxelPalette.Methods.DKCHIMPBNGE;
             public const uint Get_LABG = Raw.VoxelPalette.Methods.LABGIEJCADA;
             public const uint Action_FIIO = Raw.VoxelPalette.Methods.FIIOGDMDLEP;
             public const uint Action_CKAK = Raw.VoxelPalette.Methods.CKAKECBKIJF;
-            public const uint get_Palettes3DDirectory = Raw.VoxelPalette.Methods.get_Palettes3DDirectory;
             public const uint GetTexture_BGOI = Raw.VoxelPalette.Methods.BGOIFGMKGDD;
-            public const uint get_palette = Raw.VoxelPalette.Methods.get_palette;
             public const uint Action_ANEC = Raw.VoxelPalette.Methods.ANECHCDDBAI;
             public const uint Action_HKHD = Raw.VoxelPalette.Methods.HKHDNFJEFFP;
             public const uint Get_PDHM = Raw.VoxelPalette.Methods.PDHMIADDKMH;
@@ -8614,10 +8912,8 @@ namespace BlockpostTrainer.Sdk
             public const uint GetTexture_EKMC = Raw.VoxelPalette.Methods.EKMCFLIDLFO;
             public const uint Get_MKNF = Raw.VoxelPalette.Methods.MKNFGJABIMC;
             public const uint Action_LBAL = Raw.VoxelPalette.Methods.LBALGHJPLGB;
-            public const uint GetPalettes3DPath = Raw.VoxelPalette.Methods.GetPalettes3DPath;
             public const uint Action_IJCI = Raw.VoxelPalette.Methods.IJCINEFHDFD;
             public const uint Action_NIHI = Raw.VoxelPalette.Methods.NIHIJPEEMHJ;
-            public const uint get_p = Raw.VoxelPalette.Methods.get_p;
             public const uint Action_HBGB = Raw.VoxelPalette.Methods.HBGBPOPMDBN;
             public const string Prop_BPIE = Raw.VoxelPalette.Properties.BPIELOHGBNG;
             public const string Prop_CIBF = Raw.VoxelPalette.Properties.CIBFIOICEJE;
@@ -8639,6 +8935,10 @@ namespace BlockpostTrainer.Sdk
             public const int Vector2Int_HJJK = Raw.VoxelRadiusUpdate.Offsets.HJJKLECKNIM;
             public const int Vector2Int_AHLH = Raw.VoxelRadiusUpdate.Offsets.AHLHIDGLAPC;
             public const int Flag = Raw.VoxelRadiusUpdate.Offsets.FAJHCBCOJOG;
+            public const uint Update = Raw.VoxelRadiusUpdate.Methods.Update;
+            public const uint OnViewerSpawn = Raw.VoxelRadiusUpdate.Methods.OnViewerSpawn;
+            public const uint Start = Raw.VoxelRadiusUpdate.Methods.Start;
+            public const uint OnViewerSpawnInit = Raw.VoxelRadiusUpdate.Methods.OnViewerSpawnInit;
             public const uint Action_EEDN = Raw.VoxelRadiusUpdate.Methods.EEDNDMBNIIM;
             public const uint Action_ALNB = Raw.VoxelRadiusUpdate.Methods.ALNBHPCGNLM;
             public const uint GetBool_HBFO = Raw.VoxelRadiusUpdate.Methods.HBFOPIFHCPG;
@@ -8686,7 +8986,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_LKJO = Raw.VoxelRadiusUpdate.Methods.LKJOCLIADKA;
             public const uint Action_GBNA = Raw.VoxelRadiusUpdate.Methods.GBNAPLLNAPH;
             public const uint Action_MNAE = Raw.VoxelRadiusUpdate.Methods.MNAEOKFEBBK;
-            public const uint Update = Raw.VoxelRadiusUpdate.Methods.Update;
             public const uint Action_GHAD = Raw.VoxelRadiusUpdate.Methods.GHADOAGKONJ;
             public const uint Action_DEAH = Raw.VoxelRadiusUpdate.Methods.DEAHMNPJFIG;
             public const uint Action_PPCM = Raw.VoxelRadiusUpdate.Methods.PPCMDAMIPGP;
@@ -8701,13 +9000,10 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_INPH = Raw.VoxelRadiusUpdate.Methods.INPHKNLNLHO;
             public const uint Action_DGAJ = Raw.VoxelRadiusUpdate.Methods.DGAJGPFEFLA;
             public const uint GetBool_MCAO = Raw.VoxelRadiusUpdate.Methods.MCAOCHGDFFL;
-            public const uint OnViewerSpawn = Raw.VoxelRadiusUpdate.Methods.OnViewerSpawn;
             public const uint GetBool_JFOJ = Raw.VoxelRadiusUpdate.Methods.JFOJNFJLICG;
             public const uint Action_APLL = Raw.VoxelRadiusUpdate.Methods.APLLMNLEHNK;
             public const uint Action_PAIP = Raw.VoxelRadiusUpdate.Methods.PAIPONIBMPP;
             public const uint Action_LIBD = Raw.VoxelRadiusUpdate.Methods.LIBDPOJDECM;
-            public const uint Start = Raw.VoxelRadiusUpdate.Methods.Start;
-            public const uint OnViewerSpawnInit = Raw.VoxelRadiusUpdate.Methods.OnViewerSpawnInit;
             public const uint GetBool_CAMJ = Raw.VoxelRadiusUpdate.Methods.CAMJEEKGIOA;
             public const uint Action_CFPN = Raw.VoxelRadiusUpdate.Methods.CFPNCJLOIKO;
             public const uint Action_MECB = Raw.VoxelRadiusUpdate.Methods.MECBCJJNBEC;
@@ -8828,8 +9124,13 @@ namespace BlockpostTrainer.Sdk
             public const int KillCount_5 = Raw.Client.Offsets.JMGOFIGJMAC;
             public const int KillCount_6 = Raw.Client.Offsets.COHFJNMDLBM;
             public const int KillCount_7 = Raw.Client.Offsets.EEMMJCHAMBB;
+            public const uint OnApplicationQuit = Raw.Client.Methods.OnApplicationQuit;
+            public const uint Update = Raw.Client.Methods.Update;
+            /// <summary>internal void AHLDAPJEJNC(Vector3 origin, uint seq, List<Hit> hits) - send hit report</summary>
             public const uint SendHitReport = Raw.Client.Methods.AHLDAPJEJNC;
+            /// <summary>internal void FPIDGCHIEMJ(byte[] receiveBuffer, int receiveLength) - process received packet</summary>
             public const uint ProcessPacket = Raw.Client.Methods.FPIDGCHIEMJ;
+            /// <summary>internal void HKOFHOANEJD() - flush/send packet</summary>
             public const uint Flush = Raw.Client.Methods.HKOFHOANEJD;
             public const uint Action_GOBB = Raw.Client.Methods.GOBBEICBHNA;
             public const uint Action_ELOB = Raw.Client.Methods.ELOBEFEKBJH;
@@ -8878,7 +9179,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_KNBM = Raw.Client.Methods.KNBMPAGJBMO;
             public const uint Action_AGMC = Raw.Client.Methods.AGMCDJGEGGB;
             public const uint Action_IHEO = Raw.Client.Methods.IHEOKDGHMIK;
-            public const uint Action_FPID = Raw.Client.Methods.FPIDGCHIEMJ;
             public const uint Action_GOJN = Raw.Client.Methods.GOJNLCFHFMJ;
             public const uint Action_IGBE = Raw.Client.Methods.IGBENOGKFHK;
             public const uint Action_HFEM = Raw.Client.Methods.HFEMIFBAAJA;
@@ -8887,7 +9187,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_LDJK = Raw.Client.Methods.LDJKCEHKOMI;
             public const uint Action_HGCK = Raw.Client.Methods.HGCKLOEJJAH;
             public const uint Action_LGFG = Raw.Client.Methods.LGFGPAJMOLA;
-            public const uint OnApplicationQuit = Raw.Client.Methods.OnApplicationQuit;
             public const uint Action_MLIM = Raw.Client.Methods.MLIMAJJPIGM;
             public const uint Action_FHGJ = Raw.Client.Methods.FHGJHFBHALL;
             public const uint Action_PBLK = Raw.Client.Methods.PBLKOPBGNCE;
@@ -8913,7 +9212,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_IIAL = Raw.Client.Methods.IIALAFINNFE;
             public const uint Action_BOAC = Raw.Client.Methods.BOACAFDCFJE;
             public const uint Action_ALGG = Raw.Client.Methods.ALGGKJMOOAK;
-            public const uint Update = Raw.Client.Methods.Update;
             public const uint Action_OACJ = Raw.Client.Methods.OACJDICPDOG;
             public const uint Action_KPBP = Raw.Client.Methods.KPBPDBDDOFG;
             public const uint Action_OPJO = Raw.Client.Methods.OPJOKAKMHBI;
@@ -9393,7 +9691,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_POOC = Raw.Controll.Methods.POOCPIDGALH;
             public const uint Action_BCAA = Raw.Controll.Methods.BCAABIMLKJN;
             public const uint GetPosition_LFOL = Raw.Controll.Methods.LFOLIBBKBNC;
-            public const uint Action_ENPN = Raw.Controll.Methods.ENPNNPMEGNG;
             public const uint Action_EFJH = Raw.Controll.Methods.EFJHDEOEFAE;
             public const uint GetBool_PAHK = Raw.Controll.Methods.PAHKOOJCFKK;
             public const uint GetPosition_GODK = Raw.Controll.Methods.GODKKNHOJPD;
@@ -9547,6 +9844,7 @@ namespace BlockpostTrainer.Sdk
             public const uint Get_JCOA = Raw.Controll.Methods.JCOABHIBMAB;
             public const uint Action_EEOL = Raw.Controll.Methods.EEOLENHADBI;
             public const uint Action_LBOH = Raw.Controll.Methods.LBOHLLKPFCL;
+            public const uint Action_ENPN = Raw.Controll.Methods.ENPNNPMEGNG;
             public const string ReloadMinigameResult = Raw.Controll.Properties.JBKBOPCCIBM;
         }
 
@@ -9605,30 +9903,34 @@ namespace BlockpostTrainer.Sdk
             public const int SkinAlt_2 = Raw.ControllTouch.Offsets.EAJDBBCIIPB;
             public const int SkinAlt_3 = Raw.ControllTouch.Offsets.HPDDCALMKLP;
             public const int SkinAlt_4 = Raw.ControllTouch.Offsets.FGEKOPHAPEO;
+            public const uint Awake = Raw.ControllTouch.Methods.Awake;
+            public const uint CollectTouch = Raw.ControllTouch.Methods.CollectTouch;
+            public const uint OnGUI = Raw.ControllTouch.Methods.OnGUI;
+            public const uint SelectButton = Raw.ControllTouch.Methods.SelectButton;
+            public const uint UpdateMoveKey = Raw.ControllTouch.Methods.UpdateMoveKey;
+            public const uint OnResize = Raw.ControllTouch.Methods.OnResize;
+            public const uint LoadEnd = Raw.ControllTouch.Methods.LoadEnd;
+            public const uint DrawButtons = Raw.ControllTouch.Methods.DrawButtons;
+            public const uint DrawButtonsOptions = Raw.ControllTouch.Methods.DrawButtonsOptions;
+            public const uint UpdateTouch = Raw.ControllTouch.Methods.UpdateTouch;
+            public const uint DrawCell = Raw.ControllTouch.Methods.DrawCell;
             public const uint Action_HNOJ = Raw.ControllTouch.Methods.HNOJMJBGGNC;
             public const uint Action_JBAP = Raw.ControllTouch.Methods.JBAPBHFAKGG;
-            public const uint Awake = Raw.ControllTouch.Methods.Awake;
             public const uint Action_BJDI = Raw.ControllTouch.Methods.BJDIJJCCEGI;
             public const uint Action_KEEO = Raw.ControllTouch.Methods.KEEOCFAINMC;
             public const uint Action_FMEI = Raw.ControllTouch.Methods.FMEIECHPHNL;
             public const uint Action_NEGD = Raw.ControllTouch.Methods.NEGDJLFGJGE;
-            public const uint CollectTouch = Raw.ControllTouch.Methods.CollectTouch;
             public const uint Action_HPOF = Raw.ControllTouch.Methods.HPOFOCPOKCK;
             public const uint Action_EOLJ = Raw.ControllTouch.Methods.EOLJILIBOCG;
             public const uint Action_DJNA = Raw.ControllTouch.Methods.DJNADOPMHFK;
-            public const uint OnGUI = Raw.ControllTouch.Methods.OnGUI;
             public const uint Action_LFPJ = Raw.ControllTouch.Methods.LFPJDHAKIJH;
             public const uint Action_HMGK = Raw.ControllTouch.Methods.HMGKEFKPCEE;
-            public const uint SelectButton = Raw.ControllTouch.Methods.SelectButton;
             public const uint Action_NLAO = Raw.ControllTouch.Methods.NLAOLFFCDFO;
-            public const uint UpdateMoveKey = Raw.ControllTouch.Methods.UpdateMoveKey;
             public const uint Action_GHEP = Raw.ControllTouch.Methods.GHEPAECBHMG;
             public const uint Action_IJID = Raw.ControllTouch.Methods.IJIDKIPBGFO;
-            public const uint OnResize = Raw.ControllTouch.Methods.OnResize;
             public const uint Action_PPMD = Raw.ControllTouch.Methods.PPMDHIMIDJG;
             public const uint Action_KEPA = Raw.ControllTouch.Methods.KEPAGLCBCLF;
             public const uint Action_OCLJ = Raw.ControllTouch.Methods.OCLJPHPEBFI;
-            public const uint LoadEnd = Raw.ControllTouch.Methods.LoadEnd;
             public const uint Action_MNBA = Raw.ControllTouch.Methods.MNBAKILIBHL;
             public const uint Action_LKOK = Raw.ControllTouch.Methods.LKOKKGEHMID;
             public const uint Action_EBCJ = Raw.ControllTouch.Methods.EBCJFNNGBEM;
@@ -9638,16 +9940,12 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_GEIK = Raw.ControllTouch.Methods.GEIKNAMPEJF;
             public const uint Action_OOOG = Raw.ControllTouch.Methods.OOOGLEBIEJL;
             public const uint Action_JGDJ = Raw.ControllTouch.Methods.JGDJDJNKMEE;
-            public const uint DrawButtons = Raw.ControllTouch.Methods.DrawButtons;
             public const uint Action_DMME = Raw.ControllTouch.Methods.DMMEEBCONCB;
-            public const uint DrawButtonsOptions = Raw.ControllTouch.Methods.DrawButtonsOptions;
             public const uint Action_KOGI = Raw.ControllTouch.Methods.KOGIIGKCIIG;
             public const uint Action_EGML = Raw.ControllTouch.Methods.EGMLEODFELK;
             public const uint Action_NILJ = Raw.ControllTouch.Methods.NILJPOPPGGM;
             public const uint Action_IDGL = Raw.ControllTouch.Methods.IDGLMDCGDDA;
-            public const uint UpdateTouch = Raw.ControllTouch.Methods.UpdateTouch;
             public const uint Action_LHBJ = Raw.ControllTouch.Methods.LHBJJILCADG;
-            public const uint DrawCell = Raw.ControllTouch.Methods.DrawCell;
             public const uint Action_BKJJ = Raw.ControllTouch.Methods.BKJJIGDGLGH;
             public const uint Action_BENK = Raw.ControllTouch.Methods.BENKLGIOFHI;
             public const uint Action_AEKF = Raw.ControllTouch.Methods.AEKFJEDHOEP;
@@ -9682,6 +9980,8 @@ namespace BlockpostTrainer.Sdk
             public const int BodyPart = Raw.DMHBMAAFCFJ.Offsets.KMCHFGKKICG;
             /// <summary>Vector3 (0x10). Hit point in world space.</summary>
             public const int Point = Raw.DMHBMAAFCFJ.Offsets.HDAFLOCABNG;
+            /// <summary>.ctor(int targetId, int bodyPart, Vector3 point)</summary>
+            public const uint Constructor = Raw.DMHBMAAFCFJ.Methods.ctor;
         }
 
         public static class DemoRecorder
@@ -9762,6 +10062,8 @@ namespace BlockpostTrainer.Sdk
         {
             public const int MaterialPropertyBlock_IODD = Raw.DevDraw.Offsets.IODDKDHBMFF;
             public const int Material = Raw.DevDraw.Offsets.FNBOPBHIMPM;
+            public const uint Start = Raw.DevDraw.Methods.Start;
+            public const uint Update = Raw.DevDraw.Methods.Update;
             public const uint Action_LKOK = Raw.DevDraw.Methods.LKOKCHHJJCK;
             public const uint Action_LOKH = Raw.DevDraw.Methods.LOKHFPNOOOL;
             public const uint Action_GIHN = Raw.DevDraw.Methods.GIHNLFGLBOD;
@@ -9772,7 +10074,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_LMIN = Raw.DevDraw.Methods.LMINFJJBKFL;
             public const uint Action_JEFI = Raw.DevDraw.Methods.JEFIFLIFOIB;
             public const uint Action_AHFC = Raw.DevDraw.Methods.AHFCKILODOP;
-            public const uint Start = Raw.DevDraw.Methods.Start;
             public const uint Action_BALM = Raw.DevDraw.Methods.BALMKADALCP;
             public const uint Action_EAIM = Raw.DevDraw.Methods.EAIMKIEACIF;
             public const uint Action_GBHG = Raw.DevDraw.Methods.GBHGEPHIGNO;
@@ -9781,7 +10082,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_GOKF = Raw.DevDraw.Methods.GOKFKOLCHLN;
             public const uint Action_COHD = Raw.DevDraw.Methods.COHDPGJCBME;
             public const uint Action_PIPD = Raw.DevDraw.Methods.PIPDKAEFPDG;
-            public const uint Update = Raw.DevDraw.Methods.Update;
             public const uint Action_ACIF = Raw.DevDraw.Methods.ACIFIFLNKAO;
             public const uint Action_MJGC = Raw.DevDraw.Methods.MJGCIDIGKCL;
             public const uint Action_FANM = Raw.DevDraw.Methods.FANMMMGPFFH;
@@ -9874,6 +10174,8 @@ namespace BlockpostTrainer.Sdk
         public static class BloodSplat
         {
             public const int Transform = Raw.FXBloodSplat.Offsets.IJLPLONACIA;
+            public const uint Awake = Raw.FXBloodSplat.Methods.Awake;
+            public const uint Update = Raw.FXBloodSplat.Methods.Update;
             public const uint Action_BKHL = Raw.FXBloodSplat.Methods.BKHLIPCEKOJ;
             public const uint Action_PGLJ = Raw.FXBloodSplat.Methods.PGLJOKGPEJE;
             public const uint Action_FPBA = Raw.FXBloodSplat.Methods.FPBAODINJML;
@@ -9899,7 +10201,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_NGPH = Raw.FXBloodSplat.Methods.NGPHHJCAHOA;
             public const uint Action_DDIP = Raw.FXBloodSplat.Methods.DDIPFLEPNFL;
             public const uint Action_IHJE = Raw.FXBloodSplat.Methods.IHJEAOMLMOE;
-            public const uint Awake = Raw.FXBloodSplat.Methods.Awake;
             public const uint Action_HCAC = Raw.FXBloodSplat.Methods.HCACHALGEMP;
             public const uint Action_GEAJ = Raw.FXBloodSplat.Methods.GEAJLHMMKJL;
             public const uint Action_ACNB = Raw.FXBloodSplat.Methods.ACNBHCHPOAI;
@@ -9930,7 +10231,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_COHD = Raw.FXBloodSplat.Methods.COHDPGJCBME;
             public const uint Action_EGDF = Raw.FXBloodSplat.Methods.EGDFAMICFIO;
             public const uint Action_MDNI = Raw.FXBloodSplat.Methods.MDNIMPDBBMM;
-            public const uint Update = Raw.FXBloodSplat.Methods.Update;
             public const uint Action_OBAM = Raw.FXBloodSplat.Methods.OBAMGHGNEAO;
             public const uint Action_HGJC = Raw.FXBloodSplat.Methods.HGJCGGBCAII;
             public const uint Action_PFJF = Raw.FXBloodSplat.Methods.PFJFNFDJOEJ;
@@ -9946,6 +10246,8 @@ namespace BlockpostTrainer.Sdk
             public const int Speed = Raw.FXTracer.Offsets.LCMOBPPHLLM;
             public const int maxdist = Raw.FXTracer.Offsets.maxdist;
             public const int Position = Raw.FXTracer.Offsets.OKNAGNLDHPB;
+            public const uint Awake = Raw.FXTracer.Methods.Awake;
+            public const uint Update = Raw.FXTracer.Methods.Update;
             public const uint Action_KILB = Raw.FXTracer.Methods.KILBCIAAEBJ;
             public const uint Action_BINK = Raw.FXTracer.Methods.BINKKAHALBA;
             public const uint Action_PFJF = Raw.FXTracer.Methods.PFJFNFDJOEJ;
@@ -10008,7 +10310,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_ADHL = Raw.FXTracer.Methods.ADHLEFPEFDB;
             public const uint Action_OHBB = Raw.FXTracer.Methods.OHBBILAOKFN;
             public const uint Action_PCJJ = Raw.FXTracer.Methods.PCJJKJOBGJL;
-            public const uint Awake = Raw.FXTracer.Methods.Awake;
             public const uint Action_DLLC = Raw.FXTracer.Methods.DLLCMBJIBAI;
             public const uint Action_MEPI = Raw.FXTracer.Methods.MEPIIBCIDBG;
             public const uint Action_GEAJ = Raw.FXTracer.Methods.GEAJLHMMKJL;
@@ -10019,7 +10320,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_PIFP = Raw.FXTracer.Methods.PIFPIJDCNNF;
             public const uint Action_NLFM = Raw.FXTracer.Methods.NLFMNHNABGF;
             public const uint Action_IJOO = Raw.FXTracer.Methods.IJOOOMGGJML;
-            public const uint Update = Raw.FXTracer.Methods.Update;
             public const uint Action_AGCD = Raw.FXTracer.Methods.AGCDDCNPELO;
             public const uint Action_NLCF = Raw.FXTracer.Methods.NLCFCCAGIIA;
             public const uint Action_MJGC = Raw.FXTracer.Methods.MJGCIDIGKCL;
@@ -10065,6 +10365,8 @@ namespace BlockpostTrainer.Sdk
             public const int CameraForward_2 = Raw.Following.Offsets.GIIPDLHBPOK;
             public const int IndicatorColor_1 = Raw.Following.Offsets.BOJBMOKGMAG;
             public const int IndicatorColor_2 = Raw.Following.Offsets.KJNDGBMMFJB;
+            public const uint Start = Raw.Following.Methods.Start;
+            public const uint Update = Raw.Following.Methods.Update;
             public const uint Action_GKDE = Raw.Following.Methods.GKDEFIJJJFD;
             public const uint Action_CGFH = Raw.Following.Methods.CGFHNBIBAMA;
             public const uint Action_BFDI = Raw.Following.Methods.BFDILJFFHJL;
@@ -10079,7 +10381,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_PONE = Raw.Following.Methods.PONECJLBLLO;
             public const uint Action_ELPI = Raw.Following.Methods.ELPILMOMEPM;
             public const uint Action_BKOC = Raw.Following.Methods.BKOCKHDPCNC;
-            public const uint Start = Raw.Following.Methods.Start;
             public const uint Action_GEIE = Raw.Following.Methods.GEIEPHAEODN;
             public const uint Action_IPJP = Raw.Following.Methods.IPJPJFGLDGM;
             public const uint Action_MCOC = Raw.Following.Methods.MCOCDHOOGAO;
@@ -10101,7 +10402,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_JLOK = Raw.Following.Methods.JLOKOAPLLEJ;
             public const uint Action_NIPN = Raw.Following.Methods.NIPNEOHNJEG;
             public const uint Action_EKGO = Raw.Following.Methods.EKGOKIDDNNC;
-            public const uint Update = Raw.Following.Methods.Update;
             public const uint Action_LCAK = Raw.Following.Methods.LCAKKGOLMPO;
             public const uint Action_PIPD = Raw.Following.Methods.PIPDKAEFPDG;
         }
@@ -10164,6 +10464,16 @@ namespace BlockpostTrainer.Sdk
             public const int PlayerName_3 = Raw.GUIAdmin.Offsets.KICGBLCPALC;
             public const int PlayerName_4 = Raw.GUIAdmin.Offsets.FNLOACGCALB;
             public const int PlayerName_5 = Raw.GUIAdmin.Offsets.HENMKDCDKHO;
+            public const uint OnDestroy = Raw.GUIAdmin.Methods.OnDestroy;
+            public const uint Awake = Raw.GUIAdmin.Methods.Awake;
+            public const uint Start = Raw.GUIAdmin.Methods.Start;
+            public const uint OnGUI = Raw.GUIAdmin.Methods.OnGUI;
+            public const uint LoadLang = Raw.GUIAdmin.Methods.LoadLang;
+            public const uint Log = Raw.GUIAdmin.Methods.Log;
+            public const uint SetActive = Raw.GUIAdmin.Methods.SetActive;
+            public const uint ClearCustomServerAdminState = Raw.GUIAdmin.Methods.ClearCustomServerAdminState;
+            public const uint OnResize = Raw.GUIAdmin.Methods.OnResize;
+            public const uint Update = Raw.GUIAdmin.Methods.Update;
             public const uint Action_MIBG = Raw.GUIAdmin.Methods.MIBGEMFANBP;
             public const uint Action_PKNH = Raw.GUIAdmin.Methods.PKNHLEMKCGP;
             public const uint Action_IFHI = Raw.GUIAdmin.Methods.IFHIOCKGOAF;
@@ -10181,7 +10491,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_BPNA = Raw.GUIAdmin.Methods.BPNABHALFDC;
             public const uint Action_IDGF = Raw.GUIAdmin.Methods.IDGFIIBJNAB;
             public const uint Action_FKNO = Raw.GUIAdmin.Methods.FKNOEGJHPCL;
-            public const uint OnDestroy = Raw.GUIAdmin.Methods.OnDestroy;
             public const uint Action_JEIE = Raw.GUIAdmin.Methods.JEIEKFLOODC;
             public const uint Action_MNBA = Raw.GUIAdmin.Methods.MNBAKILIBHL;
             public const uint Action_IDAP = Raw.GUIAdmin.Methods.IDAPHBHIBJP;
@@ -10189,27 +10498,19 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_JBAG = Raw.GUIAdmin.Methods.JBAGBIAEKPO;
             public const uint Action_DILK = Raw.GUIAdmin.Methods.DILKHCIGCFC;
             public const uint Action_ECKL = Raw.GUIAdmin.Methods.ECKLGNIOCGG;
-            public const uint Awake = Raw.GUIAdmin.Methods.Awake;
             public const uint Action_NNKA = Raw.GUIAdmin.Methods.NNKAOOCEBOI;
-            public const uint Start = Raw.GUIAdmin.Methods.Start;
             public const uint Action_KJBC = Raw.GUIAdmin.Methods.KJBCDHONIKN;
             public const uint Action_OKMP = Raw.GUIAdmin.Methods.OKMPBABKHPA;
             public const uint Action_GLFJ = Raw.GUIAdmin.Methods.GLFJGFNJGIF;
             public const uint Action_LDGL = Raw.GUIAdmin.Methods.LDGLMINEHAL;
-            public const uint OnGUI = Raw.GUIAdmin.Methods.OnGUI;
             public const uint Action_EALJ = Raw.GUIAdmin.Methods.EALJEHBBLJN;
-            public const uint LoadLang = Raw.GUIAdmin.Methods.LoadLang;
             public const uint Action_PHCH = Raw.GUIAdmin.Methods.PHCHCHGFKFJ;
             public const uint Action_BPNL = Raw.GUIAdmin.Methods.BPNLGDJNAKA;
-            public const uint Log = Raw.GUIAdmin.Methods.Log;
-            public const uint SetActive = Raw.GUIAdmin.Methods.SetActive;
             public const uint Action_GIAD = Raw.GUIAdmin.Methods.GIADDHOFFOD;
             public const uint Action_HHOO = Raw.GUIAdmin.Methods.HHOOPAOLDMG;
-            public const uint ClearCustomServerAdminState = Raw.GUIAdmin.Methods.ClearCustomServerAdminState;
             public const uint Action_MBIM = Raw.GUIAdmin.Methods.MBIMPLDGDOM;
             public const uint Action_DNOP = Raw.GUIAdmin.Methods.DNOPOJEOKPG;
             public const uint Action_GNIE = Raw.GUIAdmin.Methods.GNIEBKNCLFE;
-            public const uint OnResize = Raw.GUIAdmin.Methods.OnResize;
             public const uint Action_DPIN = Raw.GUIAdmin.Methods.DPINEPHEBBH;
             public const uint Action_FLJC = Raw.GUIAdmin.Methods.FLJCJKDJBAH;
             public const uint Action_MNMB = Raw.GUIAdmin.Methods.MNMBMIABFLM;
@@ -10220,7 +10521,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_JFEA = Raw.GUIAdmin.Methods.JFEAKAKJILM;
             public const uint Action_FJMA = Raw.GUIAdmin.Methods.FJMAOAALKDE;
             public const uint Action_ELNG = Raw.GUIAdmin.Methods.ELNGDNJFDAN;
-            public const uint Update = Raw.GUIAdmin.Methods.Update;
             public const uint Action_DAPD = Raw.GUIAdmin.Methods.DAPDODCLAMO;
             public const uint Action_FPIE = Raw.GUIAdmin.Methods.FPIEELAFKEI;
             public const uint Action_FAEA = Raw.GUIAdmin.Methods.FAEANLOGNCD;
@@ -10267,10 +10567,14 @@ namespace BlockpostTrainer.Sdk
             public const int PlayerName_5 = Raw.GUIAdminMaplist.Offsets.EAMEBPJPECH;
             public const int PlayerName_6 = Raw.GUIAdminMaplist.Offsets.HNMMMHODDNL;
             public const int PlayerName_7 = Raw.GUIAdminMaplist.Offsets.HDGHPIHOOGH;
+            public const uint OnResize = Raw.GUIAdminMaplist.Methods.OnResize;
+            public const uint Start = Raw.GUIAdminMaplist.Methods.Start;
+            public const uint Awake = Raw.GUIAdminMaplist.Methods.Awake;
+            public const uint OnGUI = Raw.GUIAdminMaplist.Methods.OnGUI;
+            public const uint LoadLang = Raw.GUIAdminMaplist.Methods.LoadLang;
             public const uint Action_JFEA = Raw.GUIAdminMaplist.Methods.JFEAKAKJILM;
             public const uint Action_CAMC = Raw.GUIAdminMaplist.Methods.CAMCCMGBGDM;
             public const uint Action_BBLJ = Raw.GUIAdminMaplist.Methods.BBLJBGPDOFK;
-            public const uint OnResize = Raw.GUIAdminMaplist.Methods.OnResize;
             public const uint Action_OKLE = Raw.GUIAdminMaplist.Methods.OKLEDNKOLNG;
             public const uint Action_KNJF = Raw.GUIAdminMaplist.Methods.KNJFEMNMAJM;
             public const uint Action_MBIM = Raw.GUIAdminMaplist.Methods.MBIMPLDGDOM;
@@ -10278,7 +10582,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_NHDE = Raw.GUIAdminMaplist.Methods.NHDEBDNNHOL;
             public const uint Action_OBAM = Raw.GUIAdminMaplist.Methods.OBAMGHGNEAO;
             public const uint Action_KOOH = Raw.GUIAdminMaplist.Methods.KOOHIPEKFLM;
-            public const uint Start = Raw.GUIAdminMaplist.Methods.Start;
             public const uint Action_DJBK = Raw.GUIAdminMaplist.Methods.DJBKDHIHGMA;
             public const uint Action_BCNF = Raw.GUIAdminMaplist.Methods.BCNFFHBOAKH;
             public const uint Action_EADM = Raw.GUIAdminMaplist.Methods.EADMKGCDGNI;
@@ -10287,11 +10590,9 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_AMIO = Raw.GUIAdminMaplist.Methods.AMIOJCPKHCE;
             public const uint Action_LFDF = Raw.GUIAdminMaplist.Methods.LFDFHJBENLH;
             public const uint Action_BKPI = Raw.GUIAdminMaplist.Methods.BKPIMEADBHP;
-            public const uint Awake = Raw.GUIAdminMaplist.Methods.Awake;
             public const uint Action_DNBI = Raw.GUIAdminMaplist.Methods.DNBIGLMLHGB;
             public const uint Action_JGCO = Raw.GUIAdminMaplist.Methods.JGCOEBPNCOI;
             public const uint Action_NHOD = Raw.GUIAdminMaplist.Methods.NHODEIPJLPC;
-            public const uint OnGUI = Raw.GUIAdminMaplist.Methods.OnGUI;
             public const uint Action_EJJE = Raw.GUIAdminMaplist.Methods.EJJEBCNNPFK;
             public const uint Action_AEKJ = Raw.GUIAdminMaplist.Methods.AEKJBAHOCKF;
             public const uint Action_KKEP = Raw.GUIAdminMaplist.Methods.KKEPIDLFLFL;
@@ -10310,7 +10611,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_CKOJ = Raw.GUIAdminMaplist.Methods.CKOJDAIJGKI;
             public const uint Action_PONE = Raw.GUIAdminMaplist.Methods.PONECJLBLLO;
             public const uint Action_OBFA = Raw.GUIAdminMaplist.Methods.OBFAMNNCOID;
-            public const uint LoadLang = Raw.GUIAdminMaplist.Methods.LoadLang;
             public const uint Action_FEPE = Raw.GUIAdminMaplist.Methods.FEPEFHEIPDL;
             public const uint Action_HMLL = Raw.GUIAdminMaplist.Methods.HMLLPGKGNMD;
             public const uint Action_GCOF = Raw.GUIAdminMaplist.Methods.GCOFAJJKGHM;
@@ -10346,6 +10646,11 @@ namespace BlockpostTrainer.Sdk
             public const int PlayerName_4 = Raw.GUIAdminPlayers.Offsets.FHFJFMHEKLG;
             public const int PlayerName_5 = Raw.GUIAdminPlayers.Offsets.DJLFCGMDLLD;
             public const int PlayerName_6 = Raw.GUIAdminPlayers.Offsets.MIBJALLLEDK;
+            public const uint Start = Raw.GUIAdminPlayers.Methods.Start;
+            public const uint OnResize = Raw.GUIAdminPlayers.Methods.OnResize;
+            public const uint LoadLang = Raw.GUIAdminPlayers.Methods.LoadLang;
+            public const uint Awake = Raw.GUIAdminPlayers.Methods.Awake;
+            public const uint OnGUI = Raw.GUIAdminPlayers.Methods.OnGUI;
             public const uint Action_INAK = Raw.GUIAdminPlayers.Methods.INAKCJAPMHB;
             public const uint Action_AEAK = Raw.GUIAdminPlayers.Methods.AEAKMOJDJEL;
             public const uint Action_MGHF = Raw.GUIAdminPlayers.Methods.MGHFADELFIK;
@@ -10354,7 +10659,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_HOPD = Raw.GUIAdminPlayers.Methods.HOPDAOAHNLN;
             public const uint Action_LAAO = Raw.GUIAdminPlayers.Methods.LAAOJCJGFKL;
             public const uint Action_HJAG = Raw.GUIAdminPlayers.Methods.HJAGJEHDACJ;
-            public const uint Start = Raw.GUIAdminPlayers.Methods.Start;
             public const uint Action_CHLN = Raw.GUIAdminPlayers.Methods.CHLNNDDCJFM;
             public const uint Action_ECMM = Raw.GUIAdminPlayers.Methods.ECMMLJIPCGF;
             public const uint Action_CIHO = Raw.GUIAdminPlayers.Methods.CIHOFLFGHKP;
@@ -10363,17 +10667,14 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_LKPO = Raw.GUIAdminPlayers.Methods.LKPOCBOKNBH;
             public const uint Action_GGLJ = Raw.GUIAdminPlayers.Methods.GGLJJGOLMKJ;
             public const uint Action_GCAF = Raw.GUIAdminPlayers.Methods.GCAFAKFGIIC;
-            public const uint OnResize = Raw.GUIAdminPlayers.Methods.OnResize;
             public const uint Action_OEHJ = Raw.GUIAdminPlayers.Methods.OEHJEPLAPLE;
             public const uint Action_AMOB = Raw.GUIAdminPlayers.Methods.AMOBDHIOGFM;
-            public const uint LoadLang = Raw.GUIAdminPlayers.Methods.LoadLang;
             public const uint Action_EADM = Raw.GUIAdminPlayers.Methods.EADMKGCDGNI;
             public const uint Action_DELH = Raw.GUIAdminPlayers.Methods.DELHMJAAOKF;
             public const uint Action_OIJM = Raw.GUIAdminPlayers.Methods.OIJMABJDNCN;
             public const uint Action_LKOK = Raw.GUIAdminPlayers.Methods.LKOKCHHJJCK;
             public const uint Action_OBFA = Raw.GUIAdminPlayers.Methods.OBFAMNNCOID;
             public const uint Action_PBPC = Raw.GUIAdminPlayers.Methods.PBPCHEOBCJN;
-            public const uint Awake = Raw.GUIAdminPlayers.Methods.Awake;
             public const uint Action_AHOL = Raw.GUIAdminPlayers.Methods.AHOLENIIHGK;
             public const uint Action_LHGB = Raw.GUIAdminPlayers.Methods.LHGBIHEIMCO;
             public const uint Action_EKGO = Raw.GUIAdminPlayers.Methods.EKGOKIDDNNC;
@@ -10383,7 +10684,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_IILH = Raw.GUIAdminPlayers.Methods.IILHFFNPAOO;
             public const uint Action_EFPD = Raw.GUIAdminPlayers.Methods.EFPDEPCBGOB;
             public const uint Action_AMFN = Raw.GUIAdminPlayers.Methods.AMFNNDOPFAO;
-            public const uint OnGUI = Raw.GUIAdminPlayers.Methods.OnGUI;
             public const uint Action_MDLJ = Raw.GUIAdminPlayers.Methods.MDLJFCANNDI;
             public const uint Action_EKED = Raw.GUIAdminPlayers.Methods.EKEDIJPFMAO;
             public const uint Action_NMGM = Raw.GUIAdminPlayers.Methods.NMGMMNLMEJP;
@@ -10426,13 +10726,16 @@ namespace BlockpostTrainer.Sdk
             public const int PlayerName_8 = Raw.GUIAdminSettings.Offsets.PCDENJHNDMB;
             public const int PlayerName_9 = Raw.GUIAdminSettings.Offsets.MEKOKJOABPJ;
             public const int PlayerName_10 = Raw.GUIAdminSettings.Offsets.FCILGJHILHD;
-            public const uint Action_NKIM = Raw.GUIAdminSettings.Methods.NKIMECPFACC;
             public const uint OnResize = Raw.GUIAdminSettings.Methods.OnResize;
+            public const uint LoadLang = Raw.GUIAdminSettings.Methods.LoadLang;
+            public const uint Awake = Raw.GUIAdminSettings.Methods.Awake;
+            public const uint Start = Raw.GUIAdminSettings.Methods.Start;
+            public const uint OnGUI = Raw.GUIAdminSettings.Methods.OnGUI;
+            public const uint Action_NKIM = Raw.GUIAdminSettings.Methods.NKIMECPFACC;
             public const uint Action_GELL = Raw.GUIAdminSettings.Methods.GELLDJNEMAE;
             public const uint Action_MKMM = Raw.GUIAdminSettings.Methods.MKMMCLDPALI;
             public const uint Action_PBEF = Raw.GUIAdminSettings.Methods.PBEFGJOPEIO;
             public const uint Action_ILOF = Raw.GUIAdminSettings.Methods.ILOFIEMPHEO;
-            public const uint LoadLang = Raw.GUIAdminSettings.Methods.LoadLang;
             public const uint Action_GOLA = Raw.GUIAdminSettings.Methods.GOLAKBGKBLE;
             public const uint Action_KJDC = Raw.GUIAdminSettings.Methods.KJDCNMNJOJL;
             public const uint Action_ELNG = Raw.GUIAdminSettings.Methods.ELNGDNJFDAN;
@@ -10460,15 +10763,12 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_EOKP = Raw.GUIAdminSettings.Methods.EOKPGJDJCIK;
             public const uint Action_FEPE = Raw.GUIAdminSettings.Methods.FEPEFHEIPDL;
             public const uint Action_KGHI = Raw.GUIAdminSettings.Methods.KGHIIJGJHMO;
-            public const uint Awake = Raw.GUIAdminSettings.Methods.Awake;
             public const uint Action_GCFE = Raw.GUIAdminSettings.Methods.GCFELJHLHNC;
-            public const uint Start = Raw.GUIAdminSettings.Methods.Start;
             public const uint Action_LPKP = Raw.GUIAdminSettings.Methods.LPKPKOEPHLD;
             public const uint Action_DKML = Raw.GUIAdminSettings.Methods.DKMLGFEMGIE;
             public const uint Action_LABG = Raw.GUIAdminSettings.Methods.LABGPALMFGI;
             public const uint Action_HAIH = Raw.GUIAdminSettings.Methods.HAIHAOMMFLK;
             public const uint Action_EGGA = Raw.GUIAdminSettings.Methods.EGGAGAJGHJE;
-            public const uint OnGUI = Raw.GUIAdminSettings.Methods.OnGUI;
             public const uint Action_BBCO = Raw.GUIAdminSettings.Methods.BBCOAFGGBPF;
             public const uint Action_EGDF = Raw.GUIAdminSettings.Methods.EGDFAMICFIO;
             public const uint Action_IEJO = Raw.GUIAdminSettings.Methods.IEJONEJIKKK;
@@ -10520,6 +10820,11 @@ namespace BlockpostTrainer.Sdk
             public const int AuthKey_2 = Raw.GUIAdminUpload.Offsets.HNMMMHODDNL;
             public const int AuthKey_3 = Raw.GUIAdminUpload.Offsets.EGGPAKMCAAG;
             public const int AuthKey_4 = Raw.GUIAdminUpload.Offsets.FKICGKCCOKA;
+            public const uint Awake = Raw.GUIAdminUpload.Methods.Awake;
+            public const uint OnGUI = Raw.GUIAdminUpload.Methods.OnGUI;
+            public const uint LoadLang = Raw.GUIAdminUpload.Methods.LoadLang;
+            public const uint OnResize = Raw.GUIAdminUpload.Methods.OnResize;
+            public const uint Start = Raw.GUIAdminUpload.Methods.Start;
             public const uint Action_BBMO = Raw.GUIAdminUpload.Methods.BBMOIMCLKDC;
             public const uint Action_GKDE = Raw.GUIAdminUpload.Methods.GKDEFIJJJFD;
             public const uint Action_CEII = Raw.GUIAdminUpload.Methods.CEIIFLKLJNL;
@@ -10542,7 +10847,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_GFHB = Raw.GUIAdminUpload.Methods.GFHBDJOAFMB;
             public const uint Action_LOIF = Raw.GUIAdminUpload.Methods.LOIFBPKKLDB;
             public const uint Action_FEIG = Raw.GUIAdminUpload.Methods.FEIGNLIFKHA;
-            public const uint Awake = Raw.GUIAdminUpload.Methods.Awake;
             public const uint Action_GCDL = Raw.GUIAdminUpload.Methods.GCDLJFCCLMA;
             public const uint Action_OJFC = Raw.GUIAdminUpload.Methods.OJFCOHMNPKE;
             public const uint Action_ACAJ = Raw.GUIAdminUpload.Methods.ACAJDDDBOLC;
@@ -10568,7 +10872,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_KJFL = Raw.GUIAdminUpload.Methods.KJFLBFOBGMN;
             public const uint Action_FHJL = Raw.GUIAdminUpload.Methods.FHJLPCOGBOM;
             public const uint Action_CNNA = Raw.GUIAdminUpload.Methods.CNNAAEDACLF;
-            public const uint OnGUI = Raw.GUIAdminUpload.Methods.OnGUI;
             public const uint Action_JOPO = Raw.GUIAdminUpload.Methods.JOPOCBKKEBK;
             public const uint Action_LNAB = Raw.GUIAdminUpload.Methods.LNABHOJOBFF;
             public const uint Action_HNHA = Raw.GUIAdminUpload.Methods.HNHABEKKCFB;
@@ -10646,7 +10949,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_JNAD = Raw.GUIAdminUpload.Methods.JNADGFGDGKC;
             public const uint Action_DKFH = Raw.GUIAdminUpload.Methods.DKFHEAPBKPN;
             public const uint Action_NKJF = Raw.GUIAdminUpload.Methods.NKJFFCHFPFJ;
-            public const uint LoadLang = Raw.GUIAdminUpload.Methods.LoadLang;
             public const uint Action_HHGE = Raw.GUIAdminUpload.Methods.HHGEAIMALKO;
             public const uint Action_GKOD = Raw.GUIAdminUpload.Methods.GKODNOOCDKO;
             public const uint Action_FKFF = Raw.GUIAdminUpload.Methods.FKFFFNDNHBP;
@@ -10664,13 +10966,11 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_KCEA = Raw.GUIAdminUpload.Methods.KCEAOIIMOOO;
             public const uint Action_CLIN = Raw.GUIAdminUpload.Methods.CLINJHJGKHG;
             public const uint Action_ADEP = Raw.GUIAdminUpload.Methods.ADEPJJDJMAM;
-            public const uint OnResize = Raw.GUIAdminUpload.Methods.OnResize;
             public const uint Action_ODMN = Raw.GUIAdminUpload.Methods.ODMNGBLJCFL;
             public const uint Action_DMHI = Raw.GUIAdminUpload.Methods.DMHIHANDJKK;
             public const uint Action_NIJE = Raw.GUIAdminUpload.Methods.NIJEELACMIF;
             public const uint Action_CMJD = Raw.GUIAdminUpload.Methods.CMJDBJFGEDI;
             public const uint Action_EIMA = Raw.GUIAdminUpload.Methods.EIMACKBNIGL;
-            public const uint Start = Raw.GUIAdminUpload.Methods.Start;
         }
 
         public static class BonusMenu
@@ -10696,6 +10996,13 @@ namespace BlockpostTrainer.Sdk
             public const int Id_2 = Raw.GUIBonus.Offsets.PBCODLDLHKL;
             public const int PlayerName_5 = Raw.GUIBonus.Offsets.GLEEPNJIBJA;
             public const int shownext = Raw.GUIBonus.Offsets.shownext;
+            public const uint LoadEnd = Raw.GUIBonus.Methods.LoadEnd;
+            public const uint Awake = Raw.GUIBonus.Methods.Awake;
+            public const uint OnGUI = Raw.GUIBonus.Methods.OnGUI;
+            public const uint LoadLang = Raw.GUIBonus.Methods.LoadLang;
+            public const uint OnResize = Raw.GUIBonus.Methods.OnResize;
+            public const uint Set = Raw.GUIBonus.Methods.Set;
+            public const uint SetActive = Raw.GUIBonus.Methods.SetActive;
             public const uint Action_AANH = Raw.GUIBonus.Methods.AANHLOGAMLF;
             public const uint Action_KLEJ = Raw.GUIBonus.Methods.KLEJMOBMCAM;
             public const uint Action_NFDD = Raw.GUIBonus.Methods.NFDDECMGIDD;
@@ -10710,7 +11017,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_DIKN = Raw.GUIBonus.Methods.DIKNFGKGBGD;
             public const uint Action_DKCB = Raw.GUIBonus.Methods.DKCBNBINCFF;
             public const uint Action_GIOD = Raw.GUIBonus.Methods.GIODDKLDMEK;
-            public const uint LoadEnd = Raw.GUIBonus.Methods.LoadEnd;
             public const uint Action_BOPE = Raw.GUIBonus.Methods.BOPEOMGGKFE;
             public const uint Action_HABO = Raw.GUIBonus.Methods.HABOHHJBHJD;
             public const uint Action_DNBL = Raw.GUIBonus.Methods.DNBLBDNHELP;
@@ -10725,15 +11031,12 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_MBIM = Raw.GUIBonus.Methods.MBIMPLDGDOM;
             public const uint Action_CGEO = Raw.GUIBonus.Methods.CGEOBDMOPFP;
             public const uint Action_AKHN = Raw.GUIBonus.Methods.AKHNKGLOPIF;
-            public const uint Awake = Raw.GUIBonus.Methods.Awake;
             public const uint Action_MNFI = Raw.GUIBonus.Methods.MNFIFPNHDHC;
             public const uint Action_AEKF = Raw.GUIBonus.Methods.AEKFJEDHOEP;
             public const uint Action_PKHA = Raw.GUIBonus.Methods.PKHAKGEPOIF;
             public const uint Action_KGLE = Raw.GUIBonus.Methods.KGLELOCJPEC;
-            public const uint OnGUI = Raw.GUIBonus.Methods.OnGUI;
             public const uint Action_DPAI = Raw.GUIBonus.Methods.DPAILPBNAJN;
             public const uint Action_IHOK = Raw.GUIBonus.Methods.IHOKMCACMBM;
-            public const uint LoadLang = Raw.GUIBonus.Methods.LoadLang;
             public const uint Action_BJJP = Raw.GUIBonus.Methods.BJJPKKJBGJO;
             public const uint Action_PPAG = Raw.GUIBonus.Methods.PPAGNBENOEO;
             public const uint Action_OGJE = Raw.GUIBonus.Methods.OGJEINEBANN;
@@ -10743,16 +11046,13 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_DCJF = Raw.GUIBonus.Methods.DCJFFLHHALC;
             public const uint Action_OEAA = Raw.GUIBonus.Methods.OEAAPJHIBLD;
             public const uint Action_DPMO = Raw.GUIBonus.Methods.DPMOCBACOPB;
-            public const uint OnResize = Raw.GUIBonus.Methods.OnResize;
             public const uint Action_BOLD = Raw.GUIBonus.Methods.BOLDIOJMPDN;
             public const uint Action_OGDF = Raw.GUIBonus.Methods.OGDFINOOBEC;
             public const uint Action_LLGP = Raw.GUIBonus.Methods.LLGPIEEKJNN;
             public const uint Action_GGDH = Raw.GUIBonus.Methods.GGDHFEDFIBG;
             public const uint Action_CCDJ = Raw.GUIBonus.Methods.CCDJHKMAMCK;
             public const uint Action_BBOP = Raw.GUIBonus.Methods.BBOPHKGFGCP;
-            public const uint Set = Raw.GUIBonus.Methods.Set;
             public const uint Action_BPPC = Raw.GUIBonus.Methods.BPPCOGKHMCJ;
-            public const uint SetActive = Raw.GUIBonus.Methods.SetActive;
             public const uint Action_GDAF = Raw.GUIBonus.Methods.GDAFMCLEPOC;
             public const uint Action_CBNM = Raw.GUIBonus.Methods.CBNMPDLJCAF;
             public const uint Action_FJAE = Raw.GUIBonus.Methods.FJAEKAGHDJL;
@@ -10822,13 +11122,16 @@ namespace BlockpostTrainer.Sdk
             public const int IsFiring_4 = Raw.GUICase.Offsets.DKEKHIEAPFN;
             public const int WeaponData = Raw.GUICase.Offsets.PCBNBBIMCPP;
             public const int Distance_5 = Raw.GUICase.Offsets.HJFKOLFOEPF;
+            public const uint LoadLang = Raw.GUICase.Methods.LoadLang;
+            public const uint LoadEnd = Raw.GUICase.Methods.LoadEnd;
+            public const uint Awake = Raw.GUICase.Methods.Awake;
+            public const uint OnResize = Raw.GUICase.Methods.OnResize;
             public const uint Action_BMBK = Raw.GUICase.Methods.BMBKIPKLOMA;
             public const uint Action_BMAF = Raw.GUICase.Methods.BMAFGAKEAPM;
             public const uint Action_NPNO = Raw.GUICase.Methods.NPNOOLBBCIM;
             public const uint Action_LEBM = Raw.GUICase.Methods.LEBMKOCOKPF;
             public const uint Action_HAAA = Raw.GUICase.Methods.HAAAMKONHNN;
             public const uint Action_BNNI = Raw.GUICase.Methods.BNNIFGHNCLO;
-            public const uint LoadLang = Raw.GUICase.Methods.LoadLang;
             public const uint Action_GIKL = Raw.GUICase.Methods.GIKLOKCANAK;
             public const uint Action_ONNJ = Raw.GUICase.Methods.ONNJBNCGAAC;
             public const uint Action_DALC = Raw.GUICase.Methods.DALCOAMNCEN;
@@ -10838,7 +11141,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_CNHA = Raw.GUICase.Methods.CNHABIMEBKM;
             public const uint Action_IIEE = Raw.GUICase.Methods.IIEELBCFAPF;
             public const uint Action_IJLM = Raw.GUICase.Methods.IJLMNDLNLLP;
-            public const uint LoadEnd = Raw.GUICase.Methods.LoadEnd;
             public const uint Action_JPIF = Raw.GUICase.Methods.JPIFDIHDMEG;
             public const uint Action_LIPJ = Raw.GUICase.Methods.LIPJJOOCMLA;
             public const uint Action_FJAE = Raw.GUICase.Methods.FJAEKAGHDJL;
@@ -10861,9 +11163,7 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_EPLI = Raw.GUICase.Methods.EPLIJIMPDBK;
             public const uint Action_DHDE = Raw.GUICase.Methods.DHDEMIEIMJB;
             public const uint Action_KHFF = Raw.GUICase.Methods.KHFFJEDKJEP;
-            public const uint Awake = Raw.GUICase.Methods.Awake;
             public const uint Action_NAFA = Raw.GUICase.Methods.NAFAJBJFOMD;
-            public const uint OnResize = Raw.GUICase.Methods.OnResize;
             public const uint Action_JELG = Raw.GUICase.Methods.JELGDCKEFFK;
             public const uint Action_LPAL = Raw.GUICase.Methods.LPALCEFFIDJ;
             public const uint Action_HDDK = Raw.GUICase.Methods.HDDKKIBGCCC;
@@ -10879,13 +11179,15 @@ namespace BlockpostTrainer.Sdk
             public const int Count = Raw.GUIChar.Offsets.HIDMDLLHEKO;
             public const int Count_1 = Raw.GUIChar.Offsets.PFGNALDDNDB;
             public const int Timer = Raw.GUIChar.Offsets.NKCIOJGAABI;
+            public const uint Update = Raw.GUIChar.Methods.Update;
+            public const uint OnGUI = Raw.GUIChar.Methods.OnGUI;
+            public const uint SetActive = Raw.GUIChar.Methods.SetActive;
             public const uint Action_PHDJ = Raw.GUIChar.Methods.PHDJHBFNBDL;
             public const uint Action_OPHN = Raw.GUIChar.Methods.OPHNBMBANNA;
             public const uint Action_BBMM = Raw.GUIChar.Methods.BBMMOBFFDKO;
             public const uint Action_CHKI = Raw.GUIChar.Methods.CHKILAIGDJK;
             public const uint Action_NIPN = Raw.GUIChar.Methods.NIPNEOHNJEG;
             public const uint Action_NBPO = Raw.GUIChar.Methods.NBPOPINBGOJ;
-            public const uint Update = Raw.GUIChar.Methods.Update;
             public const uint Action_PJPI = Raw.GUIChar.Methods.PJPIDBCLLEK;
             public const uint Action_JNCB = Raw.GUIChar.Methods.JNCBEGOHKFB;
             public const uint Action_BPNL = Raw.GUIChar.Methods.BPNLGDJNAKA;
@@ -10924,7 +11226,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_CLJL = Raw.GUIChar.Methods.CLJLJJMKKOC;
             public const uint Action_MKOE = Raw.GUIChar.Methods.MKOENMJBAFH;
             public const uint Action_IBDN = Raw.GUIChar.Methods.IBDNHADEJEH;
-            public const uint OnGUI = Raw.GUIChar.Methods.OnGUI;
             public const uint Action_OHBB = Raw.GUIChar.Methods.OHBBILAOKFN;
             public const uint Action_KGDH = Raw.GUIChar.Methods.KGDHPNLFFEF;
             public const uint Action_PELM = Raw.GUIChar.Methods.PELMGLDGHLF;
@@ -10946,7 +11247,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_AIBM = Raw.GUIChar.Methods.AIBMGONDJGH;
             public const uint Action_EAIM = Raw.GUIChar.Methods.EAIMKIEACIF;
             public const uint Action_EFPD = Raw.GUIChar.Methods.EFPDEPCBGOB;
-            public const uint SetActive = Raw.GUIChar.Methods.SetActive;
             public const uint Action_OPAJ = Raw.GUIChar.Methods.OPAJCPBKBCA;
             public const uint Action_KOHI = Raw.GUIChar.Methods.KOHICEFPKIK;
             public const uint Action_GDDJ = Raw.GUIChar.Methods.GDDJFLJFMCB;
@@ -11048,6 +11348,10 @@ namespace BlockpostTrainer.Sdk
             public const int DisplayName = Raw.GUICharEditor.Offsets.AFBGEODGJHG;
             public const int UIRect_18 = Raw.GUICharEditor.Offsets.CIEPGEGLLFC;
             public const int DisplayName_1 = Raw.GUICharEditor.Offsets.NHJPKGCILMH;
+            public const uint OnGUI = Raw.GUICharEditor.Methods.OnGUI;
+            public const uint Awake = Raw.GUICharEditor.Methods.Awake;
+            public const uint OnResize = Raw.GUICharEditor.Methods.OnResize;
+            public const uint Update = Raw.GUICharEditor.Methods.Update;
             public const uint Action_DGGH = Raw.GUICharEditor.Methods.DGGHPCKACDI;
             public const uint Action_PPLK = Raw.GUICharEditor.Methods.PPLKHDDJIGN;
             public const uint GetPosition_LJEH = Raw.GUICharEditor.Methods.LJEHNGGEJFC;
@@ -11067,7 +11371,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_OMPG = Raw.GUICharEditor.Methods.OMPGBMAFOIG;
             public const uint Action_IGOB = Raw.GUICharEditor.Methods.IGOBPJALGPJ;
             public const uint Action_LMIO = Raw.GUICharEditor.Methods.LMIOMFBCIMI;
-            public const uint OnGUI = Raw.GUICharEditor.Methods.OnGUI;
             public const uint Action_PHKO = Raw.GUICharEditor.Methods.PHKOGLHFJGE;
             public const uint Get_PLNE = Raw.GUICharEditor.Methods.PLNEGHLOFDC;
             public const uint Action_FFLO = Raw.GUICharEditor.Methods.FFLONDBHKOL;
@@ -11080,11 +11383,9 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_MAGL = Raw.GUICharEditor.Methods.MAGLNLLJDNM;
             public const uint Action_IBDI = Raw.GUICharEditor.Methods.IBDIMNKHECD;
             public const uint Action_JOCP = Raw.GUICharEditor.Methods.JOCPLOIDFAO;
-            public const uint Awake = Raw.GUICharEditor.Methods.Awake;
             public const uint Action_JJBI = Raw.GUICharEditor.Methods.JJBIBJFDOEO;
             public const uint Action_JPKD = Raw.GUICharEditor.Methods.JPKDPGMDABO;
             public const uint GetBool_PPND = Raw.GUICharEditor.Methods.PPNDGLDFAAB;
-            public const uint OnResize = Raw.GUICharEditor.Methods.OnResize;
             public const uint Action_FJNF = Raw.GUICharEditor.Methods.FJNFKBDOCFL;
             public const uint Get_EMHP = Raw.GUICharEditor.Methods.EMHPGGFAMPA;
             public const uint Action_LMBL = Raw.GUICharEditor.Methods.LMBLLBDBLHJ;
@@ -11092,7 +11393,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_HDAP = Raw.GUICharEditor.Methods.HDAPLNJOPON;
             public const uint GetPosition_KFMM = Raw.GUICharEditor.Methods.KFMMIEPKNFB;
             public const uint Get_LGNI = Raw.GUICharEditor.Methods.LGNIICFPNDI;
-            public const uint Update = Raw.GUICharEditor.Methods.Update;
         }
 
         public static class ClanMenu
@@ -11240,11 +11540,15 @@ namespace BlockpostTrainer.Sdk
             public const int PlayerName_70 = Raw.GUIClan.Offsets.EBNKFIMKLNM;
             public const int UVOffset_2 = Raw.GUIClan.Offsets.KJDENFOPJOB;
             public const int Rate_3 = Raw.GUIClan.Offsets.IFCGMCHAFNI;
+            public const uint LoadLang = Raw.GUIClan.Methods.LoadLang;
+            public const uint OnChangeSubMenu = Raw.GUIClan.Methods.OnChangeSubMenu;
+            public const uint LoadEnd = Raw.GUIClan.Methods.LoadEnd;
+            public const uint OnGUI = Raw.GUIClan.Methods.OnGUI;
+            public const uint OnResize = Raw.GUIClan.Methods.OnResize;
             public const uint Action_EMPC = Raw.GUIClan.Methods.EMPCLPJPEDC;
             public const uint Action_PNNM = Raw.GUIClan.Methods.PNNMKKPOMML;
             public const uint Action_BDNG = Raw.GUIClan.Methods.BDNGFLPLKAH;
             public const uint Action_FMCP = Raw.GUIClan.Methods.FMCPBFHNLDF;
-            public const uint LoadLang = Raw.GUIClan.Methods.LoadLang;
             public const uint Action_PKNB = Raw.GUIClan.Methods.PKNBMHFOALE;
             public const uint Action_HAAA = Raw.GUIClan.Methods.HAAAMKONHNN;
             public const uint Action_NCCF = Raw.GUIClan.Methods.NCCFFMIBCLL;
@@ -11255,7 +11559,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_FJGH = Raw.GUIClan.Methods.FJGHBKGECMN;
             public const uint Action_MBCM = Raw.GUIClan.Methods.MBCMKPGGCCN;
             public const uint Action_BAGP = Raw.GUIClan.Methods.BAGPOELHGPE;
-            public const uint OnChangeSubMenu = Raw.GUIClan.Methods.OnChangeSubMenu;
             public const uint Action_LAMA = Raw.GUIClan.Methods.LAMAGIHADJI;
             public const uint Action_NAAN = Raw.GUIClan.Methods.NAANCOJIGBN;
             public const uint Action_BNMF = Raw.GUIClan.Methods.BNMFGCBCBPC;
@@ -11270,7 +11573,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_NNBG = Raw.GUIClan.Methods.NNBGHAIFJLM;
             public const uint Action_IKKB = Raw.GUIClan.Methods.IKKBIAAHEEO;
             public const uint Action_MGEP = Raw.GUIClan.Methods.MGEPNFLMGNO;
-            public const uint LoadEnd = Raw.GUIClan.Methods.LoadEnd;
             public const uint Action_OFIL = Raw.GUIClan.Methods.OFILEBHBJCN;
             public const uint Action_PIAJ = Raw.GUIClan.Methods.PIAJKPGNDKM;
             public const uint Action_ECMM = Raw.GUIClan.Methods.ECMMFAGBOEK;
@@ -11280,11 +11582,9 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_JIHN = Raw.GUIClan.Methods.JIHNGFINBNM;
             public const uint Action_MFKB = Raw.GUIClan.Methods.MFKBAHDHHCN;
             public const uint Action_FOHL = Raw.GUIClan.Methods.FOHLDMANLOK;
-            public const uint OnGUI = Raw.GUIClan.Methods.OnGUI;
             public const uint Action_JEKN = Raw.GUIClan.Methods.JEKNHEGIGKG;
             public const uint Action_GIHO = Raw.GUIClan.Methods.GIHOKKMLCIJ;
             public const uint Action_GJOC = Raw.GUIClan.Methods.GJOCCLPFJBM;
-            public const uint OnResize = Raw.GUIClan.Methods.OnResize;
             public const uint Action_PLGN = Raw.GUIClan.Methods.PLGNFCDGAPO;
             public const uint Action_FEFK = Raw.GUIClan.Methods.FEFKDODJJIA;
             public const uint Action_DIMD = Raw.GUIClan.Methods.DIMDKEIAHNB;
@@ -11337,6 +11637,12 @@ namespace BlockpostTrainer.Sdk
             public const int LoadoutEntry = Raw.GUICraft.Offsets.BGKGEHGFBLC;
             public const int IsDead_3 = Raw.GUICraft.Offsets.KHLHEBDBIMG;
             public const int EEEBDHNOPDI_FIMN = Raw.GUICraft.Offsets.FIMNKHBKMCK;
+            public const uint OnGUI = Raw.GUICraft.Methods.OnGUI;
+            public const uint LoadLang = Raw.GUICraft.Methods.LoadLang;
+            public const uint OnResize = Raw.GUICraft.Methods.OnResize;
+            public const uint OnChangeSubMenu = Raw.GUICraft.Methods.OnChangeSubMenu;
+            public const uint Reset = Raw.GUICraft.Methods.Reset;
+            public const uint LoadEnd = Raw.GUICraft.Methods.LoadEnd;
             public const uint Action_GHBJ = Raw.GUICraft.Methods.GHBJHNFIDIN;
             public const uint GetBool_ODAB = Raw.GUICraft.Methods.ODABINJBFFL;
             public const uint Action_JDBG = Raw.GUICraft.Methods.JDBGOCMEAPF;
@@ -11347,7 +11653,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_BNLC = Raw.GUICraft.Methods.BNLCNIIEPPA;
             public const uint Action_EECG = Raw.GUICraft.Methods.EECGHMJCNCO;
             public const uint Action_ECMM = Raw.GUICraft.Methods.ECMMFAGBOEK;
-            public const uint OnGUI = Raw.GUICraft.Methods.OnGUI;
             public const uint Action_PHBO = Raw.GUICraft.Methods.PHBOLLJNDND;
             public const uint Action_IDAC = Raw.GUICraft.Methods.IDACPIFPJLN;
             public const uint Action_HHGJ = Raw.GUICraft.Methods.HHGJIPPPIOC;
@@ -11401,7 +11706,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_PNAB = Raw.GUICraft.Methods.PNABIMHDBEI;
             public const uint Action_LJDF = Raw.GUICraft.Methods.LJDFKCDIOBG;
             public const uint Action_GOJK = Raw.GUICraft.Methods.GOJKEBKAMIP;
-            public const uint LoadLang = Raw.GUICraft.Methods.LoadLang;
             public const uint Action_KKPA = Raw.GUICraft.Methods.KKPAOJJLHKD;
             public const uint GetBool_JDAH = Raw.GUICraft.Methods.JDAHDJAENIH;
             public const uint Action_HHOO = Raw.GUICraft.Methods.HHOOPAOLDMG;
@@ -11421,17 +11725,13 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_HMED = Raw.GUICraft.Methods.HMEDMGMIHHP;
             public const uint Action_GAOM = Raw.GUICraft.Methods.GAOMKELLCII;
             public const uint Action_CPMI = Raw.GUICraft.Methods.CPMIBLGCDGG;
-            public const uint OnResize = Raw.GUICraft.Methods.OnResize;
             public const uint Action_JBBA = Raw.GUICraft.Methods.JBBAGKELIJB;
             public const uint Action_BBLJ = Raw.GUICraft.Methods.BBLJBGPDOFK;
             public const uint GetBool_NAHL = Raw.GUICraft.Methods.NAHLGPJFKPC;
             public const uint GetBool_DEJG = Raw.GUICraft.Methods.DEJGMAEAOPF;
             public const uint Action_ACIO = Raw.GUICraft.Methods.ACIOLCNBGMN;
             public const uint Action_KNLA = Raw.GUICraft.Methods.KNLACIPHOAC;
-            public const uint OnChangeSubMenu = Raw.GUICraft.Methods.OnChangeSubMenu;
             public const uint Action_OIND = Raw.GUICraft.Methods.OINDIBKOHLB;
-            public const uint Action_GINK = Raw.GUICraft.Methods.GINKPNJPJJI;
-            public const uint Reset = Raw.GUICraft.Methods.Reset;
             public const uint Action_NLON = Raw.GUICraft.Methods.NLONAFGFEEL;
             public const uint Action_KNMO = Raw.GUICraft.Methods.KNMOOLFILCO;
             public const uint Action_OOPM = Raw.GUICraft.Methods.OOPMHCFBOKH;
@@ -11462,7 +11762,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_AFJA = Raw.GUICraft.Methods.AFJADEHCOON;
             public const uint Action_JAHM = Raw.GUICraft.Methods.JAHMMLFDJBO;
             public const uint Action_MFFA = Raw.GUICraft.Methods.MFFAPMDFBBC;
-            public const uint LoadEnd = Raw.GUICraft.Methods.LoadEnd;
             public const uint Action_JIDM = Raw.GUICraft.Methods.JIDMDHEMLME;
             public const uint Action_PGEO = Raw.GUICraft.Methods.PGEOHHJCNME;
             public const uint Action_IMMB = Raw.GUICraft.Methods.IMMBIAKKDEC;
@@ -11481,6 +11780,7 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_NEOL = Raw.GUICraft.Methods.NEOLAJHIIDE;
             public const uint Action_HFEM = Raw.GUICraft.Methods.HFEMAPJHHID;
             public const uint Action_LJEC = Raw.GUICraft.Methods.LJECIACMIAE;
+            public const uint Action_GINK = Raw.GUICraft.Methods.GINKPNJPJJI;
         }
 
         public static class EffectsMenu
@@ -11489,6 +11789,9 @@ namespace BlockpostTrainer.Sdk
             public const int Timer = Raw.GUIFX.Offsets.JCJHJKAACPA;
             public const int Forward = Raw.GUIFX.Offsets.EIEACHKMDJF;
             public const int Forward_1 = Raw.GUIFX.Offsets.JFEFANLFFFG;
+            public const uint End = Raw.GUIFX.Methods.End;
+            public const uint Set = Raw.GUIFX.Methods.Set;
+            public const uint Begin = Raw.GUIFX.Methods.Begin;
             public const uint Action_AMDN = Raw.GUIFX.Methods.AMDNDFDHPAC;
             public const uint Action_LKMI = Raw.GUIFX.Methods.LKMIGDLEMGJ;
             public const uint Action_NNOE = Raw.GUIFX.Methods.NNOEBDMOFEF;
@@ -11498,7 +11801,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_GEIE = Raw.GUIFX.Methods.GEIENMOGGJN;
             public const uint Action_BBAA = Raw.GUIFX.Methods.BBAANKKKONP;
             public const uint Action_EOEH = Raw.GUIFX.Methods.EOEHPIEKFLL;
-            public const uint End = Raw.GUIFX.Methods.End;
             public const uint Action_MIII = Raw.GUIFX.Methods.MIIIHDJBCFC;
             public const uint Action_CFHD = Raw.GUIFX.Methods.CFHDMOKGNPJ;
             public const uint Action_CCDJ = Raw.GUIFX.Methods.CCDJHKMAMCK;
@@ -11507,7 +11809,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_DIAH = Raw.GUIFX.Methods.DIAHDBHHNHP;
             public const uint Action_HLKI = Raw.GUIFX.Methods.HLKIFDHCOBB;
             public const uint Action_DIHO = Raw.GUIFX.Methods.DIHOKCBAAPA;
-            public const uint Set = Raw.GUIFX.Methods.Set;
             public const uint Action_BCGE = Raw.GUIFX.Methods.BCGELLBJNLP;
             public const uint Action_LAAP = Raw.GUIFX.Methods.LAAPCDNMGPH;
             public const uint Action_IPFE = Raw.GUIFX.Methods.IPFENPKEFCC;
@@ -11522,7 +11823,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_DMKP = Raw.GUIFX.Methods.DMKPFGJAIBF;
             public const uint Action_JNFH = Raw.GUIFX.Methods.JNFHGKANDKP;
             public const uint Action_ENKA = Raw.GUIFX.Methods.ENKAPNFHGBB;
-            public const uint Begin = Raw.GUIFX.Methods.Begin;
             public const uint Action_AFHB = Raw.GUIFX.Methods.AFHBFCIHGAO;
             public const uint Action_MNKD = Raw.GUIFX.Methods.MNKDDEDPIHJ;
             public const uint Action_INLO = Raw.GUIFX.Methods.INLOFEMJNCO;
@@ -11599,9 +11899,13 @@ namespace BlockpostTrainer.Sdk
             public const int UIRect_3 = Raw.GUIGameMenu.Offsets.FNJFKMEHELG;
             public const int UIRect_4 = Raw.GUIGameMenu.Offsets.HNKEEICPPLH;
             public const int UIRect_5 = Raw.GUIGameMenu.Offsets.HPKAHDLEHGE;
+            public const uint OnGUI = Raw.GUIGameMenu.Methods.OnGUI;
+            public const uint SetActive = Raw.GUIGameMenu.Methods.SetActive;
+            public const uint LoadEnd = Raw.GUIGameMenu.Methods.LoadEnd;
+            public const uint OnResize = Raw.GUIGameMenu.Methods.OnResize;
+            public const uint Toggle = Raw.GUIGameMenu.Methods.Toggle;
             public const uint Action_OGLN = Raw.GUIGameMenu.Methods.OGLNAEIEFLP;
             public const uint Action_CODN = Raw.GUIGameMenu.Methods.CODNLJEGHLA;
-            public const uint OnGUI = Raw.GUIGameMenu.Methods.OnGUI;
             public const uint Action_OJNL = Raw.GUIGameMenu.Methods.OJNLGEFOBII;
             public const uint Action_BMEH = Raw.GUIGameMenu.Methods.BMEHJGBMKBH;
             public const uint Action_NNCM = Raw.GUIGameMenu.Methods.NNCMJFINFKK;
@@ -11616,7 +11920,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_GJOC = Raw.GUIGameMenu.Methods.GJOCCLPFJBM;
             public const uint Action_AIBM = Raw.GUIGameMenu.Methods.AIBMGONDJGH;
             public const uint Action_DBPE = Raw.GUIGameMenu.Methods.DBPEHIECENI;
-            public const uint SetActive = Raw.GUIGameMenu.Methods.SetActive;
             public const uint Action_BLJH = Raw.GUIGameMenu.Methods.BLJHJFCGKGB;
             public const uint Action_LCPB = Raw.GUIGameMenu.Methods.LCPBIDBEIIM;
             public const uint Action_NDGN = Raw.GUIGameMenu.Methods.NDGNGNFEFDO;
@@ -11647,7 +11950,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_IFHI = Raw.GUIGameMenu.Methods.IFHIOCKGOAF;
             public const uint Action_GBIL = Raw.GUIGameMenu.Methods.GBILMDIEGJC;
             public const uint Action_BEDL = Raw.GUIGameMenu.Methods.BEDLPKGGLPM;
-            public const uint LoadEnd = Raw.GUIGameMenu.Methods.LoadEnd;
             public const uint Action_PDIA = Raw.GUIGameMenu.Methods.PDIAEHJJDKC;
             public const uint Action_PLID = Raw.GUIGameMenu.Methods.PLIDIDECIGI;
             public const uint Action_EFPL = Raw.GUIGameMenu.Methods.EFPLPFIGGPC;
@@ -11659,7 +11961,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_HAGJ = Raw.GUIGameMenu.Methods.HAGJHFOEJIA;
             public const uint Action_MKOE = Raw.GUIGameMenu.Methods.MKOENMJBAFH;
             public const uint Action_KAPG = Raw.GUIGameMenu.Methods.KAPGCEKGHHB;
-            public const uint OnResize = Raw.GUIGameMenu.Methods.OnResize;
             public const uint Action_BPBM = Raw.GUIGameMenu.Methods.BPBMPBPHCOP;
             public const uint Action_COJG = Raw.GUIGameMenu.Methods.COJGELOOFCO;
             public const uint Action_JAIB = Raw.GUIGameMenu.Methods.JAIBICGGCIF;
@@ -11683,7 +11984,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_HIJN = Raw.GUIGameMenu.Methods.HIJNFACBEJA;
             public const uint Action_JPLB = Raw.GUIGameMenu.Methods.JPLBKFBPCDL;
             public const uint Action_CHJA = Raw.GUIGameMenu.Methods.CHJAOIBPNJM;
-            public const uint Toggle = Raw.GUIGameMenu.Methods.Toggle;
             public const uint Action_EFPD = Raw.GUIGameMenu.Methods.EFPDEPCBGOB;
             public const uint Action_HFKA = Raw.GUIGameMenu.Methods.HFKAPLEDBBM;
             public const uint Action_PFIG = Raw.GUIGameMenu.Methods.PFIGNKGLAOE;
@@ -11724,6 +12024,9 @@ namespace BlockpostTrainer.Sdk
             public const int AuthKey_3 = Raw.GUIGameSet.Offsets.LBEANKNFOCK;
             public const int AuthKey_4 = Raw.GUIGameSet.Offsets.EMFONOJOGPC;
             public const uint LoadEnd = Raw.GUIGameSet.Methods.LoadEnd;
+            public const uint LoadLang = Raw.GUIGameSet.Methods.LoadLang;
+            public const uint OnResize = Raw.GUIGameSet.Methods.OnResize;
+            public const uint OnGUI = Raw.GUIGameSet.Methods.OnGUI;
             public const uint Action_CMCF = Raw.GUIGameSet.Methods.CMCFCFJIGNP;
             public const uint Action_OKCM = Raw.GUIGameSet.Methods.OKCMEAEFOMH;
             public const uint Action_ECMM = Raw.GUIGameSet.Methods.ECMMFAGBOEK;
@@ -11739,7 +12042,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_PLCD = Raw.GUIGameSet.Methods.PLCDBMPHECG;
             public const uint Action_HOHK = Raw.GUIGameSet.Methods.HOHKEEILBDO;
             public const uint Action_AJEN = Raw.GUIGameSet.Methods.AJENHHDGJDN;
-            public const uint LoadLang = Raw.GUIGameSet.Methods.LoadLang;
             public const uint Action_PFIG = Raw.GUIGameSet.Methods.PFIGNKGLAOE;
             public const uint Action_BEKL = Raw.GUIGameSet.Methods.BEKLKANHOPB;
             public const uint Action_PBEN = Raw.GUIGameSet.Methods.PBENGKIKEIJ;
@@ -11758,10 +12060,8 @@ namespace BlockpostTrainer.Sdk
             public const uint Get_JIBH = Raw.GUIGameSet.Methods.JIBHCCEPAMG;
             public const uint Action_BNHN = Raw.GUIGameSet.Methods.BNHNECMHNAA;
             public const uint Action_ALOI = Raw.GUIGameSet.Methods.ALOIGJEPJKB;
-            public const uint OnResize = Raw.GUIGameSet.Methods.OnResize;
             public const uint Action_PLDB = Raw.GUIGameSet.Methods.PLDBJGFIKDH;
             public const uint Get_MNDC = Raw.GUIGameSet.Methods.MNDCHIJMOKP;
-            public const uint OnGUI = Raw.GUIGameSet.Methods.OnGUI;
             public const uint Action_AOMJ = Raw.GUIGameSet.Methods.AOMJCPLMHLI;
             public const uint Action_CJDD = Raw.GUIGameSet.Methods.CJDDOLJINKJ;
             public const uint Action_BHNM = Raw.GUIGameSet.Methods.BHNMBNCJHDP;
@@ -11783,14 +12083,14 @@ namespace BlockpostTrainer.Sdk
 
         public static class SquadMenu
         {
+            public const uint Update = Raw.GUIGameSquad.Methods.Update;
+            public const uint Start = Raw.GUIGameSquad.Methods.Start;
             public const uint Action_IOCF = Raw.GUIGameSquad.Methods.IOCFKNGCFDC;
             public const uint Action_FDDF = Raw.GUIGameSquad.Methods.FDDFHFEECEC;
             public const uint Action_OKMP = Raw.GUIGameSquad.Methods.OKMPBABKHPA;
             public const uint Action_ELPI = Raw.GUIGameSquad.Methods.ELPILMOMEPM;
-            public const uint Update = Raw.GUIGameSquad.Methods.Update;
             public const uint Action_HAIH = Raw.GUIGameSquad.Methods.HAIHAOMMFLK;
             public const uint Action_JBAG = Raw.GUIGameSquad.Methods.JBAGBIAEKPO;
-            public const uint Start = Raw.GUIGameSquad.Methods.Start;
             public const uint Action_DEAH = Raw.GUIGameSquad.Methods.DEAHMNPJFIG;
             public const uint Action_BKOC = Raw.GUIGameSquad.Methods.BKOCKHDPCNC;
             public const uint Action_MCOC = Raw.GUIGameSquad.Methods.MCOCDHOOGAO;
@@ -11827,6 +12127,15 @@ namespace BlockpostTrainer.Sdk
             public const int PlayerName_4 = Raw.GUIGold.Offsets.MLMFJNPPOEJ;
             public const int PlayerName_5 = Raw.GUIGold.Offsets.CAACOLGHFLE;
             public const int discount = Raw.GUIGold.Offsets.discount;
+            public const uint UpdateTextures = Raw.GUIGold.Methods.UpdateTextures;
+            public const uint LoadEnd = Raw.GUIGold.Methods.LoadEnd;
+            public const uint SetActive = Raw.GUIGold.Methods.SetActive;
+            public const uint OpenUrl = Raw.GUIGold.Methods.OpenUrl;
+            public const uint UpdatePrice = Raw.GUIGold.Methods.UpdatePrice;
+            public const uint Awake = Raw.GUIGold.Methods.Awake;
+            public const uint OnGUI = Raw.GUIGold.Methods.OnGUI;
+            public const uint OnResize = Raw.GUIGold.Methods.OnResize;
+            public const uint LoadLang = Raw.GUIGold.Methods.LoadLang;
             public const uint Action_MKKI = Raw.GUIGold.Methods.MKKIKJDFMCG;
             public const uint Action_MGEK = Raw.GUIGold.Methods.MGEKOAPBJNJ;
             public const uint Action_HKKO = Raw.GUIGold.Methods.HKKOLMHIAKB;
@@ -11849,10 +12158,8 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_NMAN = Raw.GUIGold.Methods.NMANBJIANAA;
             public const uint Action_FEOM = Raw.GUIGold.Methods.FEOMOPCPKAL;
             public const uint Action_KPLI = Raw.GUIGold.Methods.KPLIMALHHFA;
-            public const uint UpdateTextures = Raw.GUIGold.Methods.UpdateTextures;
             public const uint Action_FBGE = Raw.GUIGold.Methods.FBGEEMEPCBK;
             public const uint Action_EKBO = Raw.GUIGold.Methods.EKBONDFCFEP;
-            public const uint LoadEnd = Raw.GUIGold.Methods.LoadEnd;
             public const uint Action_LLKJ = Raw.GUIGold.Methods.LLKJOPMEPBG;
             public const uint Action_CCGJ = Raw.GUIGold.Methods.CCGJMKEJAOF;
             public const uint Action_FGPK = Raw.GUIGold.Methods.FGPKCFBEKCM;
@@ -11863,23 +12170,18 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_INID = Raw.GUIGold.Methods.INIDMOEKLPJ;
             public const uint Action_CNCB = Raw.GUIGold.Methods.CNCBENLHPND;
             public const uint Action_KHBO = Raw.GUIGold.Methods.KHBOFDONLBI;
-            public const uint SetActive = Raw.GUIGold.Methods.SetActive;
             public const uint Action_OJAO = Raw.GUIGold.Methods.OJAODAMMODO;
-            public const uint OpenUrl = Raw.GUIGold.Methods.OpenUrl;
             public const uint Action_BAEG = Raw.GUIGold.Methods.BAEGHJLIPCF;
             public const uint Action_DIOD = Raw.GUIGold.Methods.DIODOCFOCGB;
             public const uint Action_GJOC = Raw.GUIGold.Methods.GJOCCLPFJBM;
             public const uint Action_KHGI = Raw.GUIGold.Methods.KHGIABMGMBD;
             public const uint Action_NOFL = Raw.GUIGold.Methods.NOFLCFCOOJK;
             public const uint Action_ALMA = Raw.GUIGold.Methods.ALMANONBFAP;
-            public const uint UpdatePrice = Raw.GUIGold.Methods.UpdatePrice;
             public const uint Action_EOHG = Raw.GUIGold.Methods.EOHGKLEHINO;
             public const uint Action_BBBI = Raw.GUIGold.Methods.BBBIIDEPNJF;
             public const uint Action_MFJL = Raw.GUIGold.Methods.MFJLPANNJBN;
-            public const uint Awake = Raw.GUIGold.Methods.Awake;
             public const uint Action_CDPN = Raw.GUIGold.Methods.CDPNHFECDDP;
             public const uint Action_HDIN = Raw.GUIGold.Methods.HDINJCKENLI;
-            public const uint OnGUI = Raw.GUIGold.Methods.OnGUI;
             public const uint Action_IHDN = Raw.GUIGold.Methods.IHDNCJMCBAK;
             public const uint Action_PDGD = Raw.GUIGold.Methods.PDGDNILKKFK;
             public const uint Action_JDEK = Raw.GUIGold.Methods.JDEKJDJDHDL;
@@ -11928,7 +12230,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_PMPC = Raw.GUIGold.Methods.PMPCIEKKEPM;
             public const uint Action_BBMF = Raw.GUIGold.Methods.BBMFPJDCOKE;
             public const uint Action_DCGG = Raw.GUIGold.Methods.DCGGMOPAGPB;
-            public const uint OnResize = Raw.GUIGold.Methods.OnResize;
             public const uint Action_MKLA = Raw.GUIGold.Methods.MKLAKHJFDBL;
             public const uint Action_MDNI = Raw.GUIGold.Methods.MDNIMPDBBMM;
             public const uint Action_MJHG = Raw.GUIGold.Methods.MJHGCMCJGCE;
@@ -11943,7 +12244,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_OOJI = Raw.GUIGold.Methods.OOJIKNLCOCI;
             public const uint Action_KNFA = Raw.GUIGold.Methods.KNFANEJKBEL;
             public const uint Action_EPOP = Raw.GUIGold.Methods.EPOPJKBLMKG;
-            public const uint LoadLang = Raw.GUIGold.Methods.LoadLang;
             public const uint GetBool_GHME = Raw.GUIGold.Methods.GHMEOOOFIJM;
             public const uint Action_CFGJ = Raw.GUIGold.Methods.CFGJNEEOPEA;
             public const uint Action_FIBP = Raw.GUIGold.Methods.FIBPDOGEBMK;
@@ -12214,9 +12514,15 @@ namespace BlockpostTrainer.Sdk
             public const int UIRect_12 = Raw.GUIInv.Offsets.GKAMIDEIALB;
             public const int UIRect_13 = Raw.GUIInv.Offsets.KFAJDEBOMPJ;
             public const int UIRect_14 = Raw.GUIInv.Offsets.BBAHPEMNIGE;
+            public const uint OnResize = Raw.GUIInv.Methods.OnResize;
+            public const uint OnChangeSubMenu = Raw.GUIInv.Methods.OnChangeSubMenu;
+            public const uint LoadLang = Raw.GUIInv.Methods.LoadLang;
+            public const uint Reset = Raw.GUIInv.Methods.Reset;
+            public const uint LoadEnd = Raw.GUIInv.Methods.LoadEnd;
+            public const uint OnGUI = Raw.GUIInv.Methods.OnGUI;
+            public const uint Update = Raw.GUIInv.Methods.Update;
             public const uint Action_NFFH = Raw.GUIInv.Methods.NFFHAEMBCEI;
             public const uint Action_AFIG = Raw.GUIInv.Methods.AFIGBDKCANM;
-            public const uint OnResize = Raw.GUIInv.Methods.OnResize;
             public const uint GetBool_OPMG = Raw.GUIInv.Methods.OPMGLEMEHDL;
             public const uint GetLoadout_PNNE = Raw.GUIInv.Methods.PNNEFOPFCHF;
             public const uint Action_LBLM = Raw.GUIInv.Methods.LBLMCKIJFGL;
@@ -12232,7 +12538,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_NKIH = Raw.GUIInv.Methods.NKIHDHHDPGC;
             public const uint Action_PBND = Raw.GUIInv.Methods.PBNDHAJICEH;
             public const uint Action_EPKF = Raw.GUIInv.Methods.EPKFOLMMIKF;
-            public const uint Get_FPIJ = Raw.GUIInv.Methods.FPIJPCOKIEC;
             public const uint Action_ELIE = Raw.GUIInv.Methods.ELIEKJELMEO;
             public const uint Action_MEJL = Raw.GUIInv.Methods.MEJLMAHCAHG;
             public const uint Action_NIHK = Raw.GUIInv.Methods.NIHKMMIGFPB;
@@ -12240,7 +12545,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_EAIF = Raw.GUIInv.Methods.EAIFFADAHIO;
             public const uint Action_BLMH = Raw.GUIInv.Methods.BLMHMLOFAFE;
             public const uint Action_BNAF = Raw.GUIInv.Methods.BNAFIDHFHGF;
-            public const uint OnChangeSubMenu = Raw.GUIInv.Methods.OnChangeSubMenu;
             public const uint Action_FKBP = Raw.GUIInv.Methods.FKBPKKPKOEK;
             public const uint Action_JCKG = Raw.GUIInv.Methods.JCKGOEMKEAO;
             public const uint GetLoadout_KHAB = Raw.GUIInv.Methods.KHABBLDBFKK;
@@ -12248,17 +12552,14 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_LEHH = Raw.GUIInv.Methods.LEHHHIOJMCL;
             public const uint GetBool_FAAJ = Raw.GUIInv.Methods.FAAJKFCFBKN;
             public const uint Action_MNAJ = Raw.GUIInv.Methods.MNAJANCKGMC;
-            public const uint LoadLang = Raw.GUIInv.Methods.LoadLang;
             public const uint Get_CAMM = Raw.GUIInv.Methods.CAMMBHLEFOG;
             public const uint Action_PFEA = Raw.GUIInv.Methods.PFEAAMODIHA;
             public const uint Action_OJGG = Raw.GUIInv.Methods.OJGGGBLOMMJ;
             public const uint Action_ENEL = Raw.GUIInv.Methods.ENELIAEECMK;
             public const uint Action_BCEH = Raw.GUIInv.Methods.BCEHFNKHHDC;
-            public const uint Reset = Raw.GUIInv.Methods.Reset;
             public const uint Action_MDNG = Raw.GUIInv.Methods.MDNGEEFBJDG;
             public const uint GetBool_JJAA = Raw.GUIInv.Methods.JJAAIIGMKJI;
             public const uint Action_OIFF = Raw.GUIInv.Methods.OIFFDNLJKLK;
-            public const uint LoadEnd = Raw.GUIInv.Methods.LoadEnd;
             public const uint Action_GJEH = Raw.GUIInv.Methods.GJEHAEOBAFI;
             public const uint Action_DCJK = Raw.GUIInv.Methods.DCJKMLEOEKO;
             public const uint Action_PDGD = Raw.GUIInv.Methods.PDGDNILKKFK;
@@ -12269,17 +12570,16 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_NDJO = Raw.GUIInv.Methods.NDJOCKJBLOI;
             public const uint Action_ELCA = Raw.GUIInv.Methods.ELCAEFBLIMG;
             public const uint Action_IION = Raw.GUIInv.Methods.IIONKEDMHAE;
-            public const uint OnGUI = Raw.GUIInv.Methods.OnGUI;
             public const uint Action_PGFA = Raw.GUIInv.Methods.PGFAPLACLHF;
             public const uint Action_GCNJ = Raw.GUIInv.Methods.GCNJFHCHLBJ;
             public const uint Action_HPNN = Raw.GUIInv.Methods.HPNNAGMLOEE;
             public const uint Action_CJOL = Raw.GUIInv.Methods.CJOLDKMCDAI;
             public const uint Action_MJIA = Raw.GUIInv.Methods.MJIALGJFMOF;
             public const uint Action_ECMM = Raw.GUIInv.Methods.ECMMFAGBOEK;
-            public const uint Update = Raw.GUIInv.Methods.Update;
             public const uint Get_NJDN = Raw.GUIInv.Methods.NJDNGJNPHNE;
             public const uint GetLoadout_IKFB = Raw.GUIInv.Methods.IKFBJEFBBLH;
             public const uint Action_JLAG = Raw.GUIInv.Methods.JLAGLDPAKFB;
+            public const uint Get_FPIJ = Raw.GUIInv.Methods.FPIJPCOKIEC;
         }
 
         public static class GUIManager
@@ -12309,47 +12609,62 @@ namespace BlockpostTrainer.Sdk
             public const int Index_2 = Raw.GUIM.Offsets.GPMLJIAMOJN;
             public const int Index_3 = Raw.GUIM.Offsets.OCMGDBEPPHC;
             public const int GameObject = Raw.GUIM.Offsets.DKKLNPELHGD;
+            public const uint DrawEdit = Raw.GUIM.Methods.DrawEdit;
+            public const uint Contains = Raw.GUIM.Methods.Contains;
+            public const uint DrawBox = Raw.GUIM.Methods.DrawBox;
+            public const uint CalcSize = Raw.GUIM.Methods.CalcSize;
+            public const uint AutoSetName = Raw.GUIM.Methods.AutoSetName;
+            public const uint HideButtonDown = Raw.GUIM.Methods.HideButtonDown;
+            public const uint DrawBar = Raw.GUIM.Methods.DrawBar;
+            public const uint DrawTextShadow = Raw.GUIM.Methods.DrawTextShadow;
+            public const uint DrawBoxBorder = Raw.GUIM.Methods.DrawBoxBorder;
+            public const uint ButtonPic = Raw.GUIM.Methods.ButtonPic;
+            public const uint SetFocus = Raw.GUIM.Methods.SetFocus;
+            public const uint ResetGUI = Raw.GUIM.Methods.ResetGUI;
+            public const uint DrawTextColor = Raw.GUIM.Methods.DrawTextColor;
+            public const uint EndScrollViewORG = Raw.GUIM.Methods.EndScrollViewORG;
+            public const uint DrawSlider = Raw.GUIM.Methods.DrawSlider;
+            public const uint DrawText = Raw.GUIM.Methods.DrawText;
+            public const uint Update = Raw.GUIM.Methods.Update;
+            public const uint HideButton = Raw.GUIM.Methods.HideButton;
+            public const uint Button = Raw.GUIM.Methods.Button;
+            public const uint LoadEnd = Raw.GUIM.Methods.LoadEnd;
+            public const uint BeginScrollViewORG = Raw.GUIM.Methods.BeginScrollViewORG;
+            public const uint LoadFont = Raw.GUIM.Methods.LoadFont;
+            public const uint SetFocusHack = Raw.GUIM.Methods.SetFocusHack;
+            public const uint BeginScrollView = Raw.GUIM.Methods.BeginScrollView;
+            public const uint Init = Raw.GUIM.Methods.Init;
+            public const uint EndScrollView = Raw.GUIM.Methods.EndScrollView;
             public const uint GetBool_BGDJ = Raw.GUIM.Methods.BGDJNEPBFJI;
             public const uint GetBool_ADKI = Raw.GUIM.Methods.ADKIGCFFBCF;
             public const uint Action_GHPF = Raw.GUIM.Methods.GHPFAMHMPPP;
-            public const uint DrawEdit = Raw.GUIM.Methods.DrawEdit;
-            public const uint Contains = Raw.GUIM.Methods.Contains;
             public const uint GetBool_DLDB = Raw.GUIM.Methods.DLDBIBLJOCG;
-            public const uint DrawBox = Raw.GUIM.Methods.DrawBox;
             public const uint GetFloat_IOHA = Raw.GUIM.Methods.IOHAOIDIDCN;
             public const uint GetBool_FDGL = Raw.GUIM.Methods.FDGLDOKMIJH;
-            public const uint CalcSize = Raw.GUIM.Methods.CalcSize;
             public const uint Action_CJFF = Raw.GUIM.Methods.CJFFCKBLDEG;
             public const uint GetFloat_JKIE = Raw.GUIM.Methods.JKIEFIBAPLO;
             public const uint GetBool_PMMH = Raw.GUIM.Methods.PMMHIACNPNA;
             public const uint Get_PKBE = Raw.GUIM.Methods.PKBEDLIIFLH;
-            public const uint AutoSetName = Raw.GUIM.Methods.AutoSetName;
             public const uint GetBool_JOGO = Raw.GUIM.Methods.JOGOHPAOEMI;
             public const uint Action_CHJP = Raw.GUIM.Methods.CHJPBNKKMMC;
-            public const uint HideButtonDown = Raw.GUIM.Methods.HideButtonDown;
-            public const uint DrawBar = Raw.GUIM.Methods.DrawBar;
             public const uint GetBool_NDGI = Raw.GUIM.Methods.NDGIPNPDLNP;
             public const uint Action_NPDK = Raw.GUIM.Methods.NPDKLBMPAPA;
             public const uint Action_CPKG = Raw.GUIM.Methods.CPKGPHHHCMN;
             public const uint Action_HCOO = Raw.GUIM.Methods.HCOOEMOHBDL;
             public const uint Get_GAMK = Raw.GUIM.Methods.GAMKFAELDOM;
             public const uint GetFloat_YRES = Raw.GUIM.Methods.YRES;
-            public const uint DrawTextShadow = Raw.GUIM.Methods.DrawTextShadow;
             public const uint Action_BLJH = Raw.GUIM.Methods.BLJHJFCGKGB;
             public const uint GetFloat_ELCP = Raw.GUIM.Methods.ELCPCNHMBCC;
             public const uint GetFloat_NATI = Raw.GUIM.Methods.NATIVERES;
             public const uint Action_HBED = Raw.GUIM.Methods.HBEDMAJOEND;
             public const uint Action_COMJ = Raw.GUIM.Methods.COMJMEIKJBI;
             public const uint Action_FNHI = Raw.GUIM.Methods.FNHIIMFAILB;
-            public const uint DrawBoxBorder = Raw.GUIM.Methods.DrawBoxBorder;
             public const uint Action_COAC = Raw.GUIM.Methods.COACDFENBBK;
             public const uint GetFloat_JLNB = Raw.GUIM.Methods.JLNBCFHIGJL;
             public const uint GetFloat_LIFC = Raw.GUIM.Methods.LIFCPAJNJEF;
             public const uint Action_JMFN = Raw.GUIM.Methods.JMFNBCEHKEA;
             public const uint Action_HHBB = Raw.GUIM.Methods.HHBBEMONBJI;
-            public const uint ButtonPic = Raw.GUIM.Methods.ButtonPic;
             public const uint Action_IGJK = Raw.GUIM.Methods.IGJKOKAGIDI;
-            public const uint SetFocus = Raw.GUIM.Methods.SetFocus;
             public const uint Action_IKCD = Raw.GUIM.Methods.IKCDIFPDLOL;
             public const uint Action_NKBK = Raw.GUIM.Methods.NKBKIDPNJJC;
             public const uint GetFloat_LCHF = Raw.GUIM.Methods.LCHFCFIFGMH;
@@ -12357,42 +12672,27 @@ namespace BlockpostTrainer.Sdk
             public const uint GetFloat_MHOD = Raw.GUIM.Methods.MHODJDGLJJA;
             public const uint GetFloat_KPEC = Raw.GUIM.Methods.KPECEEKKJKM;
             public const uint GetFloat_KACD = Raw.GUIM.Methods.KACDNHDCEFH;
-            public const uint ResetGUI = Raw.GUIM.Methods.ResetGUI;
-            public const uint DrawTextColor = Raw.GUIM.Methods.DrawTextColor;
             public const uint GetBool_EFBP = Raw.GUIM.Methods.EFBPNADJNMP;
-            public const uint EndScrollViewORG = Raw.GUIM.Methods.EndScrollViewORG;
             public const uint Action_JMAA = Raw.GUIM.Methods.JMAADHJKDIM;
             public const uint Action_EDGL = Raw.GUIM.Methods.EDGLKBNEJBC;
             public const uint Action_PAFF = Raw.GUIM.Methods.PAFFPLJNGEI;
             public const uint Action_DKGC = Raw.GUIM.Methods.DKGCNAEGMCP;
-            public const uint DrawSlider = Raw.GUIM.Methods.DrawSlider;
             public const uint GetBool_IFCC = Raw.GUIM.Methods.IFCCDFLNBII;
             public const uint Action_ECHK = Raw.GUIM.Methods.ECHKKLBFAEH;
             public const uint GetBool_MNOA = Raw.GUIM.Methods.MNOAJGCHJCN;
-            public const uint DrawText = Raw.GUIM.Methods.DrawText;
             public const uint GetBool_KNEB = Raw.GUIM.Methods.KNEBDHKLCGL;
             public const uint Action_MNLG = Raw.GUIM.Methods.MNLGIOJFAJP;
-            public const uint Update = Raw.GUIM.Methods.Update;
             public const uint GetBool_PKHO = Raw.GUIM.Methods.PKHOHNGPHKG;
             public const uint Action_NCFD = Raw.GUIM.Methods.NCFDJMILBPJ;
             public const uint Action_OGIH = Raw.GUIM.Methods.OGIHLCMHIGP;
             public const uint Action_CDKE = Raw.GUIM.Methods.CDKENLNAKLM;
             public const uint Action_BCNJ = Raw.GUIM.Methods.BCNJJCHIDHK;
-            public const uint HideButton = Raw.GUIM.Methods.HideButton;
-            public const uint Button = Raw.GUIM.Methods.Button;
             public const uint Action_PLOB = Raw.GUIM.Methods.PLOBMHDJMNO;
-            public const uint LoadEnd = Raw.GUIM.Methods.LoadEnd;
             public const uint GetBool_JPCP = Raw.GUIM.Methods.JPCPAIEIKCK;
-            public const uint BeginScrollViewORG = Raw.GUIM.Methods.BeginScrollViewORG;
-            public const uint LoadFont = Raw.GUIM.Methods.LoadFont;
-            public const uint SetFocusHack = Raw.GUIM.Methods.SetFocusHack;
             public const uint Action_MLNL = Raw.GUIM.Methods.MLNLHDKNMOC;
-            public const uint BeginScrollView = Raw.GUIM.Methods.BeginScrollView;
             public const uint Action_MLGO = Raw.GUIM.Methods.MLGOHLKOOAJ;
-            public const uint Init = Raw.GUIM.Methods.Init;
             public const uint GetFloat_PFHN = Raw.GUIM.Methods.PFHNIDBGICE;
             public const uint Action_CGDN = Raw.GUIM.Methods.CGDNNKCGMHA;
-            public const uint EndScrollView = Raw.GUIM.Methods.EndScrollView;
             public const uint Action_MJCI = Raw.GUIM.Methods.MJCILJIJAIH;
             public const uint GetBool_EJGA = Raw.GUIM.Methods.EJGADFJLBHI;
             public const uint Action_IKOD = Raw.GUIM.Methods.IKODLGIOOEB;
@@ -12436,6 +12736,9 @@ namespace BlockpostTrainer.Sdk
             public const int LANMKMLNGOP_NOLI = Raw.GUIMap.Offsets.NOLIGAOIMIJ;
             public const int Vector2 = Raw.GUIMap.Offsets.OCLJBCIPENA;
             public const int Timer = Raw.GUIMap.Offsets.EJIKCBPEDBF;
+            public const uint LoadLang = Raw.GUIMap.Methods.LoadLang;
+            public const uint LoadEnd = Raw.GUIMap.Methods.LoadEnd;
+            public const uint Awake = Raw.GUIMap.Methods.Awake;
             public const uint Action_ICNJ = Raw.GUIMap.Methods.ICNJAFFKLAG;
             public const uint Action_AOGG = Raw.GUIMap.Methods.AOGGIIOJPLE;
             public const uint Action_CGLO = Raw.GUIMap.Methods.CGLOMJJHEAJ;
@@ -12497,11 +12800,9 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_ODCC = Raw.GUIMap.Methods.ODCCJKNBKKG;
             public const uint Action_CEBC = Raw.GUIMap.Methods.CEBCJJCBJJH;
             public const uint Action_GOGA = Raw.GUIMap.Methods.GOGACJJIEIB;
-            public const uint LoadLang = Raw.GUIMap.Methods.LoadLang;
             public const uint Action_DKKO = Raw.GUIMap.Methods.DKKOCAINLNE;
             public const uint Action_BOBM = Raw.GUIMap.Methods.BOBMHKNDDNG;
             public const uint Action_MDDO = Raw.GUIMap.Methods.MDDOLFCIKKG;
-            public const uint LoadEnd = Raw.GUIMap.Methods.LoadEnd;
             public const uint Action_ONDK = Raw.GUIMap.Methods.ONDKEAFLMLI;
             public const uint Action_LBII = Raw.GUIMap.Methods.LBIIHJBFHCH;
             public const uint Action_FNGM = Raw.GUIMap.Methods.FNGMIAEMJNF;
@@ -12546,7 +12847,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_JDFE = Raw.GUIMap.Methods.JDFEOHHOIKH;
             public const uint Action_IKIE = Raw.GUIMap.Methods.IKIEIIIMKBG;
             public const uint Action_DFAH = Raw.GUIMap.Methods.DFAHOKDGKLD;
-            public const uint Awake = Raw.GUIMap.Methods.Awake;
             public const uint Action_GDGO = Raw.GUIMap.Methods.GDGOMIHPLIG;
             public const uint Action_HHLN = Raw.GUIMap.Methods.HHLNFIKIJDN;
             public const uint Action_HOAE = Raw.GUIMap.Methods.HOAEMIMJFNE;
@@ -12608,6 +12908,11 @@ namespace BlockpostTrainer.Sdk
             public const int PlayerName_2 = Raw.GUIName.Offsets.ICGKLLAPNDH;
             public const int PlayerName_3 = Raw.GUIName.Offsets.AEMLBOMKAMN;
             public const int PlayerName_4 = Raw.GUIName.Offsets.ACONMOLCELI;
+            public const uint OnResize = Raw.GUIName.Methods.OnResize;
+            public const uint SetActive = Raw.GUIName.Methods.SetActive;
+            public const uint LoadLang = Raw.GUIName.Methods.LoadLang;
+            public const uint LoadEnd = Raw.GUIName.Methods.LoadEnd;
+            public const uint OnGUI = Raw.GUIName.Methods.OnGUI;
             public const uint Action_KAMB = Raw.GUIName.Methods.KAMBIENBPKB;
             public const uint Action_LKNB = Raw.GUIName.Methods.LKNBKOBCAEK;
             public const uint Action_KFHM = Raw.GUIName.Methods.KFHMAIFJNEB;
@@ -12650,8 +12955,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_MACB = Raw.GUIName.Methods.MACBBLKGJGJ;
             public const uint Action_BOLG = Raw.GUIName.Methods.BOLGDEMMFOB;
             public const uint Action_OFBH = Raw.GUIName.Methods.OFBHAAOMAIB;
-            public const uint OnResize = Raw.GUIName.Methods.OnResize;
-            public const uint SetActive = Raw.GUIName.Methods.SetActive;
             public const uint Action_KJAK = Raw.GUIName.Methods.KJAKFNNMEEL;
             public const uint Action_ELNL = Raw.GUIName.Methods.ELNLEDOGPII;
             public const uint Action_KDEI = Raw.GUIName.Methods.KDEIAHIEEEN;
@@ -12682,7 +12985,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_NEKB = Raw.GUIName.Methods.NEKBECJPFPO;
             public const uint Action_NBPO = Raw.GUIName.Methods.NBPOPINBGOJ;
             public const uint Action_OMAA = Raw.GUIName.Methods.OMAAAJEFDCO;
-            public const uint LoadLang = Raw.GUIName.Methods.LoadLang;
             public const uint Action_IJBG = Raw.GUIName.Methods.IJBGJAGKBPP;
             public const uint Action_JKIC = Raw.GUIName.Methods.JKICHEAGKMA;
             public const uint Action_EPOP = Raw.GUIName.Methods.EPOPJKBLMKG;
@@ -12711,7 +13013,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_MHCP = Raw.GUIName.Methods.MHCPPBACFFL;
             public const uint Action_FILD = Raw.GUIName.Methods.FILDOKOGMAF;
             public const uint Action_LMCO = Raw.GUIName.Methods.LMCOMBLIPIB;
-            public const uint LoadEnd = Raw.GUIName.Methods.LoadEnd;
             public const uint Action_DFOH = Raw.GUIName.Methods.DFOHCOPMNJJ;
             public const uint Action_IMHC = Raw.GUIName.Methods.IMHCJCKPHHK;
             public const uint Action_HJAI = Raw.GUIName.Methods.HJAILCOLHOH;
@@ -12731,7 +13032,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_PBPL = Raw.GUIName.Methods.PBPLFLLBGGN;
             public const uint Action_FHNP = Raw.GUIName.Methods.FHNPFFNGIMH;
             public const uint Action_GIAB = Raw.GUIName.Methods.GIABKKDJJHB;
-            public const uint OnGUI = Raw.GUIName.Methods.OnGUI;
             public const uint Action_DJHI = Raw.GUIName.Methods.DJHIEIAMJII;
             public const uint Action_MJAG = Raw.GUIName.Methods.MJAGPOKKLOD;
             public const uint Action_ADJD = Raw.GUIName.Methods.ADJDODNNDJM;
@@ -12800,6 +13100,11 @@ namespace BlockpostTrainer.Sdk
             public const int PlayerName_27 = Raw.GUIObj.Offsets.LDLNLHFCHIK;
             public const int Vector2 = Raw.GUIObj.Offsets.FAMIJACEFOO;
             public const int Timer = Raw.GUIObj.Offsets.FFJMAPNMNAA;
+            public const uint OnResize = Raw.GUIObj.Methods.OnResize;
+            public const uint OnChangeSubMenu = Raw.GUIObj.Methods.OnChangeSubMenu;
+            public const uint OnGUI = Raw.GUIObj.Methods.OnGUI;
+            public const uint LoadEnd = Raw.GUIObj.Methods.LoadEnd;
+            public const uint LoadLang = Raw.GUIObj.Methods.LoadLang;
             public const uint Action_ICCK = Raw.GUIObj.Methods.ICCKPACCBME;
             public const uint Action_JJDE = Raw.GUIObj.Methods.JJDEPDDBCAG;
             public const uint Action_AMFN = Raw.GUIObj.Methods.AMFNNDOPFAO;
@@ -12807,7 +13112,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_FLNF = Raw.GUIObj.Methods.FLNFHGCDHJM;
             public const uint Action_DJFH = Raw.GUIObj.Methods.DJFHJHBMBFJ;
             public const uint GetFloat_PJKE = Raw.GUIObj.Methods.PJKEBHLMJPJ;
-            public const uint OnResize = Raw.GUIObj.Methods.OnResize;
             public const uint Action_OPBJ = Raw.GUIObj.Methods.OPBJPDEGCGO;
             public const uint Action_NOJC = Raw.GUIObj.Methods.NOJCOHKLOIG;
             public const uint GetFloat_GBPL = Raw.GUIObj.Methods.GBPLDCFGFGD;
@@ -12818,14 +13122,12 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_HFMI = Raw.GUIObj.Methods.HFMIHMBPHCB;
             public const uint Action_KCIO = Raw.GUIObj.Methods.KCIOKMNHJPL;
             public const uint Action_BPPC = Raw.GUIObj.Methods.BPPCOGKHMCJ;
-            public const uint OnChangeSubMenu = Raw.GUIObj.Methods.OnChangeSubMenu;
             public const uint Action_FJGP = Raw.GUIObj.Methods.FJGPAHHBIJG;
             public const uint Action_EKED = Raw.GUIObj.Methods.EKEDIJPFMAO;
             public const uint Action_FIBP = Raw.GUIObj.Methods.FIBPDOGEBMK;
             public const uint Action_OOJL = Raw.GUIObj.Methods.OOJLEILFMKJ;
             public const uint Action_GAHL = Raw.GUIObj.Methods.GAHLFJOLGKB;
             public const uint Action_GIAD = Raw.GUIObj.Methods.GIADDHOFFOD;
-            public const uint OnGUI = Raw.GUIObj.Methods.OnGUI;
             public const uint Action_GEBM = Raw.GUIObj.Methods.GEBMMIADBOI;
             public const uint Action_JDBH = Raw.GUIObj.Methods.JDBHMLKNLIJ;
             public const uint Action_PPAG = Raw.GUIObj.Methods.PPAGNBENOEO;
@@ -12833,9 +13135,7 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_OJAO = Raw.GUIObj.Methods.OJAODAMMODO;
             public const uint GetFloat_CDBF = Raw.GUIObj.Methods.CDBFPMDECLF;
             public const uint Action_PBFP = Raw.GUIObj.Methods.PBFPBAPAPOD;
-            public const uint LoadEnd = Raw.GUIObj.Methods.LoadEnd;
             public const uint Action_CGBG = Raw.GUIObj.Methods.CGBGEOLOBHD;
-            public const uint LoadLang = Raw.GUIObj.Methods.LoadLang;
             public const uint Action_AMHG = Raw.GUIObj.Methods.AMHGOJPGADD;
             public const uint Action_IDAK = Raw.GUIObj.Methods.IDAKAOHKBFI;
             public const uint Action_JAEG = Raw.GUIObj.Methods.JAEGJPIEFDN;
@@ -12988,36 +13288,42 @@ namespace BlockpostTrainer.Sdk
             public const int Distance_2 = Raw.GUIOptions.Offsets.FOICJJEMOBN;
             public const int IsSprinting_3 = Raw.GUIOptions.Offsets.PLMHBLACGLM;
             public const int Distance_3 = Raw.GUIOptions.Offsets.ELJNMFMNEKO;
+            public const uint LoadConfigTouch = Raw.GUIOptions.Methods.LoadConfigTouch;
+            public const uint OnGUI = Raw.GUIOptions.Methods.OnGUI;
+            public const uint LoadEnd = Raw.GUIOptions.Methods.LoadEnd;
+            public const uint LoadLang = Raw.GUIOptions.Methods.LoadLang;
+            public const uint DrawHint = Raw.GUIOptions.Methods.DrawHint;
+            public const uint DrawVarStatic = Raw.GUIOptions.Methods.DrawVarStatic;
+            public const uint UpdateButtonTouch = Raw.GUIOptions.Methods.UpdateButtonTouch;
+            public const uint OnChangeSubMenu = Raw.GUIOptions.Methods.OnChangeSubMenu;
+            public const uint Load = Raw.GUIOptions.Methods.Load;
+            public const uint OnResize = Raw.GUIOptions.Methods.OnResize;
+            public const uint DrawVar = Raw.GUIOptions.Methods.DrawVar;
+            public const uint Apply = Raw.GUIOptions.Methods.Apply;
+            public const uint SetActive = Raw.GUIOptions.Methods.SetActive;
             public const uint Action_BEKA = Raw.GUIOptions.Methods.BEKADPNKIDO;
             public const uint Action_DJHG = Raw.GUIOptions.Methods.DJHGKHGIEJF;
             public const uint Action_IAFE = Raw.GUIOptions.Methods.IAFEPJEJPJH;
-            public const uint LoadConfigTouch = Raw.GUIOptions.Methods.LoadConfigTouch;
             public const uint Action_ALND = Raw.GUIOptions.Methods.ALNDJDCCPNI;
             public const uint Action_KCJJ = Raw.GUIOptions.Methods.KCJJCHPAMPL;
-            public const uint OnGUI = Raw.GUIOptions.Methods.OnGUI;
             public const uint Action_EIIK = Raw.GUIOptions.Methods.EIIKKBIMDJA;
             public const uint GetBool_DIHL = Raw.GUIOptions.Methods.DIHLAPJNGHL;
-            public const uint LoadEnd = Raw.GUIOptions.Methods.LoadEnd;
             public const uint Action_NKPC = Raw.GUIOptions.Methods.NKPCGJPBKOA;
             public const uint Action_NLKH = Raw.GUIOptions.Methods.NLKHJINCAMF;
             public const uint Action_CHJP = Raw.GUIOptions.Methods.CHJPLDFINEB;
             public const uint Action_EPIJ = Raw.GUIOptions.Methods.EPIJBDAIGIP;
             public const uint Action_CAFB = Raw.GUIOptions.Methods.CAFBOKMNHMK;
-            public const uint LoadLang = Raw.GUIOptions.Methods.LoadLang;
             public const uint Action_BEKE = Raw.GUIOptions.Methods.BEKEBDANHML;
             public const uint Action_AENE = Raw.GUIOptions.Methods.AENEEJMIJDD;
             public const uint Action_OBCM = Raw.GUIOptions.Methods.OBCMNOEGLMN;
             public const uint Action_GHCC = Raw.GUIOptions.Methods.GHCCJCDDJIO;
             public const uint Action_NFBF = Raw.GUIOptions.Methods.NFBFMJKHCMG;
             public const uint Action_BLAC = Raw.GUIOptions.Methods.BLACJIMOEIC;
-            public const uint DrawHint = Raw.GUIOptions.Methods.DrawHint;
             public const uint Action_HDAL = Raw.GUIOptions.Methods.HDALOGOJELB;
             public const uint Action_BNNI = Raw.GUIOptions.Methods.BNNIFGHNCLO;
             public const uint Action_ODGA = Raw.GUIOptions.Methods.ODGANLNJNGE;
             public const uint Action_IFIB = Raw.GUIOptions.Methods.IFIBEKOFEPA;
             public const uint Action_BIGH = Raw.GUIOptions.Methods.BIGHKEOAAPB;
-            public const uint DrawVarStatic = Raw.GUIOptions.Methods.DrawVarStatic;
-            public const uint UpdateButtonTouch = Raw.GUIOptions.Methods.UpdateButtonTouch;
             public const uint Action_GOCH = Raw.GUIOptions.Methods.GOCHFJFPOIN;
             public const uint Action_EOLK = Raw.GUIOptions.Methods.EOLKPCEEIMD;
             public const uint Action_EAMA = Raw.GUIOptions.Methods.EAMAIJJOBJA;
@@ -13027,7 +13333,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_EPDG = Raw.GUIOptions.Methods.EPDGIAFABOC;
             public const uint Action_JKNG = Raw.GUIOptions.Methods.JKNGPKLELBI;
             public const uint GetBool_NOKP = Raw.GUIOptions.Methods.NOKPBKEIIFO;
-            public const uint OnChangeSubMenu = Raw.GUIOptions.Methods.OnChangeSubMenu;
             public const uint Action_PEPD = Raw.GUIOptions.Methods.PEPDLHOHDKP;
             public const uint Action_BFKL = Raw.GUIOptions.Methods.BFKLBCGGIKH;
             public const uint Action_CPNL = Raw.GUIOptions.Methods.CPNLIHHPHPF;
@@ -13042,7 +13347,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_IOMM = Raw.GUIOptions.Methods.IOMMLEIHDJD;
             public const uint Action_ONJO = Raw.GUIOptions.Methods.ONJOBBKJMBL;
             public const uint Action_LMLA = Raw.GUIOptions.Methods.LMLAGOFBGGM;
-            public const uint Load = Raw.GUIOptions.Methods.Load;
             public const uint Action_HNOD = Raw.GUIOptions.Methods.HNODNLNLALP;
             public const uint GetBool_GNMO = Raw.GUIOptions.Methods.GNMOGOHIGBJ;
             public const uint Action_PPOA = Raw.GUIOptions.Methods.PPOAHDOBGPJ;
@@ -13054,22 +13358,18 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_AIAM = Raw.GUIOptions.Methods.AIAMJEHDPAF;
             public const uint Action_AANH = Raw.GUIOptions.Methods.AANHLOGAMLF;
             public const uint Action_LILN = Raw.GUIOptions.Methods.LILNOGMPFEE;
-            public const uint OnResize = Raw.GUIOptions.Methods.OnResize;
             public const uint Action_HJAI = Raw.GUIOptions.Methods.HJAILCOLHOH;
             public const uint GetBool_GEKA = Raw.GUIOptions.Methods.GEKACMBBJEM;
             public const uint Action_ECCO = Raw.GUIOptions.Methods.ECCOIGOMABO;
             public const uint Action_DILI = Raw.GUIOptions.Methods.DILIFJPOEPE;
             public const uint Action_MJHM = Raw.GUIOptions.Methods.MJHMDHODNNF;
             public const uint Action_CEEG = Raw.GUIOptions.Methods.CEEGJCHCKIJ;
-            public const uint DrawVar = Raw.GUIOptions.Methods.DrawVar;
             public const uint Action_GNOP = Raw.GUIOptions.Methods.GNOPECEGBBO;
             public const uint Action_BLOD = Raw.GUIOptions.Methods.BLODEIMPOJN;
             public const uint Action_BJLC = Raw.GUIOptions.Methods.BJLCNNDBCMC;
             public const uint GetBool_CGGN = Raw.GUIOptions.Methods.CGGNOAPNCLM;
             public const uint Action_JMAJ = Raw.GUIOptions.Methods.JMAJAMHIHMA;
             public const uint Action_BMDP = Raw.GUIOptions.Methods.BMDPCGAMOEI;
-            public const uint Apply = Raw.GUIOptions.Methods.Apply;
-            public const uint SetActive = Raw.GUIOptions.Methods.SetActive;
             public const uint Action_DIKN = Raw.GUIOptions.Methods.DIKNFGKGBGD;
             public const uint Action_CAFB_1 = Raw.GUIOptions.Methods.CAFBAIIHHPH;
             public const uint Action_DKJH = Raw.GUIOptions.Methods.DKJHLJJFENN;
@@ -13196,12 +13496,15 @@ namespace BlockpostTrainer.Sdk
             public const int List_KJDJGJJLOBC_GCFK = Raw.GUIPlay.Offsets.GCFKPMDHKCG;
             public const int DevClient_IKJI = Raw.GUIPlay.Offsets.IKJIJECFPKI;
             public const int UIRect_17 = Raw.GUIPlay.Offsets.DGDMOJDKAOP;
+            public const uint LoadEnd = Raw.GUIPlay.Methods.LoadEnd;
+            public const uint LoadLang = Raw.GUIPlay.Methods.LoadLang;
+            public const uint OnResize = Raw.GUIPlay.Methods.OnResize;
+            public const uint OnGUI = Raw.GUIPlay.Methods.OnGUI;
+            public const uint Awake = Raw.GUIPlay.Methods.Awake;
             public const uint Action_OCDD = Raw.GUIPlay.Methods.OCDDOBFMIEN;
             public const uint Action_GEEL = Raw.GUIPlay.Methods.GEELCDNFMOH;
-            public const uint LoadEnd = Raw.GUIPlay.Methods.LoadEnd;
             public const uint Action_ABDE = Raw.GUIPlay.Methods.ABDEDFNMGHJ;
             public const uint Action_DEOL = Raw.GUIPlay.Methods.DEOLIJFMBIH;
-            public const uint LoadLang = Raw.GUIPlay.Methods.LoadLang;
             public const uint Action_OHDA = Raw.GUIPlay.Methods.OHDAHJAFOAO;
             public const uint GetBool_FAJB = Raw.GUIPlay.Methods.FAJBEIMEAGP;
             public const uint Action_OLIG = Raw.GUIPlay.Methods.OLIGCIIJFIF;
@@ -13210,7 +13513,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_JFEI = Raw.GUIPlay.Methods.JFEIMOIJGIO;
             public const uint Action_CKFI = Raw.GUIPlay.Methods.CKFICLBPCGG;
             public const uint Action_IDGL = Raw.GUIPlay.Methods.IDGLMDCGDDA;
-            public const uint OnResize = Raw.GUIPlay.Methods.OnResize;
             public const uint Action_GCPL = Raw.GUIPlay.Methods.GCPLCPNNBDN;
             public const uint Action_DOLK = Raw.GUIPlay.Methods.DOLKAOCILPG;
             public const uint Action_POME = Raw.GUIPlay.Methods.POMEICLPABF;
@@ -13233,7 +13535,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_LFGI = Raw.GUIPlay.Methods.LFGINFPNBLB;
             public const uint Action_CKCC = Raw.GUIPlay.Methods.CKCCFGFEEOP;
             public const uint Action_OEHO = Raw.GUIPlay.Methods.OEHOFAFIGHG;
-            public const uint OnGUI = Raw.GUIPlay.Methods.OnGUI;
             public const uint Action_IIHK = Raw.GUIPlay.Methods.IIHKBMMMBBN;
             public const uint Action_OAHF = Raw.GUIPlay.Methods.OAHFMCJALJI;
             public const uint Action_LGGF = Raw.GUIPlay.Methods.LGGFGDOOKMA;
@@ -13323,7 +13624,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_EGIG = Raw.GUIPlay.Methods.EGIGNCCLBBL;
             public const uint Action_FKPP = Raw.GUIPlay.Methods.FKPPOBOJBOC;
             public const uint Action_FHFJ = Raw.GUIPlay.Methods.FHFJGEJKAEL;
-            public const uint Awake = Raw.GUIPlay.Methods.Awake;
             public const uint Action_HHMM = Raw.GUIPlay.Methods.HHMMHLDDHPL;
             public const uint Action_OGGH = Raw.GUIPlay.Methods.OGGHDNFNPOG;
             public const uint Action_KCPH = Raw.GUIPlay.Methods.KCPHDPHMKNI;
@@ -13368,11 +13668,15 @@ namespace BlockpostTrainer.Sdk
             public const int PlayerName_5 = Raw.GUIProfile.Offsets.BJHDIOCBDNP;
             public const int PlayerName_6 = Raw.GUIProfile.Offsets.ADJGLJJGGJG;
             public const int sLeveltext = Raw.GUIProfile.Offsets.sLeveltext;
+            public const uint OnGUI = Raw.GUIProfile.Methods.OnGUI;
+            public const uint LoadEnd = Raw.GUIProfile.Methods.LoadEnd;
+            public const uint SetActive = Raw.GUIProfile.Methods.SetActive;
+            public const uint LoadLang = Raw.GUIProfile.Methods.LoadLang;
+            public const uint Load = Raw.GUIProfile.Methods.Load;
             public const uint Action_LEHM = Raw.GUIProfile.Methods.LEHMAMABCIM;
             public const uint Action_PMPA = Raw.GUIProfile.Methods.PMPANLBPINC;
             public const uint Action_CGEO = Raw.GUIProfile.Methods.CGEOBDMOPFP;
             public const uint Action_OJAO = Raw.GUIProfile.Methods.OJAODAMMODO;
-            public const uint OnGUI = Raw.GUIProfile.Methods.OnGUI;
             public const uint Action_FHKL = Raw.GUIProfile.Methods.FHKLBGKKLIL;
             public const uint Action_NGFH = Raw.GUIProfile.Methods.NGFHIPHJMNH;
             public const uint Action_HLDG = Raw.GUIProfile.Methods.HLDGDACLABG;
@@ -13382,7 +13686,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_OLIC = Raw.GUIProfile.Methods.OLICFKLPGCG;
             public const uint Action_PJOB = Raw.GUIProfile.Methods.PJOBGAFPNKO;
             public const uint Action_POMJ = Raw.GUIProfile.Methods.POMJLJCMOFB;
-            public const uint LoadEnd = Raw.GUIProfile.Methods.LoadEnd;
             public const uint Action_MELB = Raw.GUIProfile.Methods.MELBJAMLIOC;
             public const uint Action_PBHP = Raw.GUIProfile.Methods.PBHPAPGHOAG;
             public const uint Action_CEEA = Raw.GUIProfile.Methods.CEEANAFKKAC;
@@ -13401,10 +13704,8 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_KAAD = Raw.GUIProfile.Methods.KAADBGEEHNB;
             public const uint Action_JAKJ = Raw.GUIProfile.Methods.JAKJOGBADEF;
             public const uint Action_GEBM = Raw.GUIProfile.Methods.GEBMMIADBOI;
-            public const uint SetActive = Raw.GUIProfile.Methods.SetActive;
             public const uint Action_BHNL = Raw.GUIProfile.Methods.BHNLINOFHGA;
             public const uint Action_ONMD = Raw.GUIProfile.Methods.ONMDABKPIPE;
-            public const uint LoadLang = Raw.GUIProfile.Methods.LoadLang;
             public const uint Action_KOOH = Raw.GUIProfile.Methods.KOOHIPEKFLM;
             public const uint Action_MIPM = Raw.GUIProfile.Methods.MIPMOHEBCOD;
             public const uint Action_LFCH = Raw.GUIProfile.Methods.LFCHADMNMJE;
@@ -13416,7 +13717,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_MJAG = Raw.GUIProfile.Methods.MJAGPOKKLOD;
             public const uint Action_DPGC = Raw.GUIProfile.Methods.DPGCNIMBOFH;
             public const uint Action_ELNL = Raw.GUIProfile.Methods.ELNLEDOGPII;
-            public const uint Load = Raw.GUIProfile.Methods.Load;
             public const uint Action_EFKC = Raw.GUIProfile.Methods.EFKCEBNFGIO;
             public const uint Action_FECC = Raw.GUIProfile.Methods.FECCIFGKHCK;
             public const uint Action_HDDK = Raw.GUIProfile.Methods.HDDKKIBGCCC;
@@ -13453,6 +13753,11 @@ namespace BlockpostTrainer.Sdk
             public const int PlayerName_5 = Raw.GUIRank.Offsets.FPCBFFCOMLN;
             public const int PlayerName_6 = Raw.GUIRank.Offsets.GKGCHPFNHFG;
             public const int Vector2 = Raw.GUIRank.Offsets.FAMIJACEFOO;
+            public const uint LoadLang = Raw.GUIRank.Methods.LoadLang;
+            public const uint OnResize = Raw.GUIRank.Methods.OnResize;
+            public const uint OnChangeSubMenu = Raw.GUIRank.Methods.OnChangeSubMenu;
+            public const uint OnGUI = Raw.GUIRank.Methods.OnGUI;
+            public const uint LoadEnd = Raw.GUIRank.Methods.LoadEnd;
             public const uint Action_MACB = Raw.GUIRank.Methods.MACBBLKGJGJ;
             public const uint Action_MLJO = Raw.GUIRank.Methods.MLJOPOFBANC;
             public const uint Action_INCD = Raw.GUIRank.Methods.INCDKJAAODJ;
@@ -13501,7 +13806,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_NHOD = Raw.GUIRank.Methods.NHODEIPJLPC;
             public const uint Action_HKMI = Raw.GUIRank.Methods.HKMIOFEJMHO;
             public const uint Action_MNBA = Raw.GUIRank.Methods.MNBAKILIBHL;
-            public const uint Action_FOHL = Raw.GUIRank.Methods.FOHLDMANLOK;
             public const uint Action_AGMA = Raw.GUIRank.Methods.AGMABHLMCDL;
             public const uint Action_JIJH = Raw.GUIRank.Methods.JIJHEBNACMF;
             public const uint Action_GJOL = Raw.GUIRank.Methods.GJOLMMDDANI;
@@ -13509,7 +13813,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_JHPE = Raw.GUIRank.Methods.JHPEDMOFFOF;
             public const uint Action_ANHK = Raw.GUIRank.Methods.ANHKHAIFGLL;
             public const uint Action_LDNB = Raw.GUIRank.Methods.LDNBBCMNAFK;
-            public const uint LoadLang = Raw.GUIRank.Methods.LoadLang;
             public const uint Action_ABHL = Raw.GUIRank.Methods.ABHLBIKGMHO;
             public const uint Action_ECMM = Raw.GUIRank.Methods.ECMMFAGBOEK;
             public const uint Action_FNEG = Raw.GUIRank.Methods.FNEGKEJGNAJ;
@@ -13521,10 +13824,8 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_BLOM = Raw.GUIRank.Methods.BLOMEGKGEMN;
             public const uint Action_KHJG = Raw.GUIRank.Methods.KHJGHHMMLMN;
             public const uint Action_HGKF = Raw.GUIRank.Methods.HGKFHIOPGOD;
-            public const uint OnResize = Raw.GUIRank.Methods.OnResize;
             public const uint Action_LFNI = Raw.GUIRank.Methods.LFNIPLDIMJL;
             public const uint Action_GEGO = Raw.GUIRank.Methods.GEGOEIJFELM;
-            public const uint OnChangeSubMenu = Raw.GUIRank.Methods.OnChangeSubMenu;
             public const uint Action_GAHO = Raw.GUIRank.Methods.GAHOMPLDPJJ;
             public const uint Action_HPKK = Raw.GUIRank.Methods.HPKKGFLJMFA;
             public const uint Action_AMNN = Raw.GUIRank.Methods.AMNNGCHFBJB;
@@ -13559,7 +13860,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_GIFF = Raw.GUIRank.Methods.GIFFEFBPBIF;
             public const uint Action_HCIB = Raw.GUIRank.Methods.HCIBJOGNBFN;
             public const uint Action_ALAF = Raw.GUIRank.Methods.ALAFJKKMMJM;
-            public const uint OnGUI = Raw.GUIRank.Methods.OnGUI;
             public const uint Action_BLJH = Raw.GUIRank.Methods.BLJHJFCGKGB;
             public const uint Action_CPPJ = Raw.GUIRank.Methods.CPPJHJCOEHI;
             public const uint Action_BOPE = Raw.GUIRank.Methods.BOPEOMGGKFE;
@@ -13578,7 +13878,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_ABHB = Raw.GUIRank.Methods.ABHBBNLPNOB;
             public const uint Action_EAOI = Raw.GUIRank.Methods.EAOIHHAMPHG;
             public const uint Action_BPED = Raw.GUIRank.Methods.BPEDIPEDKNM;
-            public const uint LoadEnd = Raw.GUIRank.Methods.LoadEnd;
             public const uint Action_BHKL = Raw.GUIRank.Methods.BHKLKMOKHAE;
             public const uint Action_IJBG = Raw.GUIRank.Methods.IJBGJAGKBPP;
             public const uint Action_KDEI = Raw.GUIRank.Methods.KDEIAHIEEEN;
@@ -13592,6 +13891,7 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_OCOM = Raw.GUIRank.Methods.OCOMKBGAGFN;
             public const uint Action_MFMB = Raw.GUIRank.Methods.MFMBJLMOJGJ;
             public const uint Action_IGJM = Raw.GUIRank.Methods.IGJMIHAOPLC;
+            public const uint Action_FOHL = Raw.GUIRank.Methods.FOHLDMANLOK;
         }
 
         public static class ShopMenu
@@ -13644,8 +13944,11 @@ namespace BlockpostTrainer.Sdk
             public const int UVOffset_2 = Raw.GUIShop.Offsets.OOLLEKIPLOE;
             public const int TeamColor_1 = Raw.GUIShop.Offsets.MMPOHCEJDGO;
             public const uint OnResize = Raw.GUIShop.Methods.OnResize;
-            public const uint Action_DADJ = Raw.GUIShop.Methods.DADJOKNPGLI;
             public const uint LoadLang = Raw.GUIShop.Methods.LoadLang;
+            public const uint LoadEnd = Raw.GUIShop.Methods.LoadEnd;
+            public const uint OnChangeSubMenu = Raw.GUIShop.Methods.OnChangeSubMenu;
+            public const uint OnGUI = Raw.GUIShop.Methods.OnGUI;
+            public const uint Action_DADJ = Raw.GUIShop.Methods.DADJOKNPGLI;
             public const uint Action_ECMM = Raw.GUIShop.Methods.ECMMFAGBOEK;
             public const uint Action_DIHF = Raw.GUIShop.Methods.DIHFNOEMLBH;
             public const uint Action_CHEN = Raw.GUIShop.Methods.CHENAOCDPBK;
@@ -13653,20 +13956,17 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_MFMD = Raw.GUIShop.Methods.MFMDIBGGPIK;
             public const uint Action_HAGJ = Raw.GUIShop.Methods.HAGJHFOEJIA;
             public const uint Action_JEBL = Raw.GUIShop.Methods.JEBLNFEELFL;
-            public const uint LoadEnd = Raw.GUIShop.Methods.LoadEnd;
             public const uint Action_PDJD = Raw.GUIShop.Methods.PDJDHJHFGEP;
             public const uint Action_PAOK = Raw.GUIShop.Methods.PAOKMDBEFKC;
             public const uint Action_BLJH = Raw.GUIShop.Methods.BLJHJFCGKGB;
             public const uint Action_LNLF = Raw.GUIShop.Methods.LNLFIEDPGHF;
             public const uint Action_EADM = Raw.GUIShop.Methods.EADMKGCDGNI;
-            public const uint OnChangeSubMenu = Raw.GUIShop.Methods.OnChangeSubMenu;
             public const uint Action_GPNM = Raw.GUIShop.Methods.GPNMBAMMCKF;
             public const uint Action_MHGL = Raw.GUIShop.Methods.MHGLCLHPINE;
             public const uint Action_DMFD = Raw.GUIShop.Methods.DMFDKLDGMLO;
             public const uint Action_GIOP = Raw.GUIShop.Methods.GIOPOFPOLLP;
             public const uint Action_NIPK = Raw.GUIShop.Methods.NIPKEMBLADH;
             public const uint GetBool_MFJA = Raw.GUIShop.Methods.MFJAIEIPPNL;
-            public const uint OnGUI = Raw.GUIShop.Methods.OnGUI;
             public const uint Action_PEEN = Raw.GUIShop.Methods.PEENDHLEIEC;
             public const uint GetBool_POKO = Raw.GUIShop.Methods.POKOMHIKKPA;
             public const uint Action_HMJM = Raw.GUIShop.Methods.HMJMFJKKGKJ;
@@ -13706,13 +14006,16 @@ namespace BlockpostTrainer.Sdk
             public const int Count_1 = Raw.GUISkinEditor.Offsets.KDEMDIAEIIK;
             public const int Pitch_6 = Raw.GUISkinEditor.Offsets.CHENIGDMKFG;
             public const int Pitch_7 = Raw.GUISkinEditor.Offsets.EHMPOJIHOGE;
+            public const uint OnResize = Raw.GUISkinEditor.Methods.OnResize;
+            public const uint Update = Raw.GUISkinEditor.Methods.Update;
+            public const uint Awake = Raw.GUISkinEditor.Methods.Awake;
+            public const uint OnGUI = Raw.GUISkinEditor.Methods.OnGUI;
             public const uint GetString_CLCB = Raw.GUISkinEditor.Methods.CLCBBKOBOBE;
             public const uint GetString_JGAB = Raw.GUISkinEditor.Methods.JGABDJAIOGL;
             public const uint Action_NIPK = Raw.GUISkinEditor.Methods.NIPKEMBLADH;
             public const uint Action_BLLH = Raw.GUISkinEditor.Methods.BLLHEFIOCKC;
             public const uint Action_PDEJ = Raw.GUISkinEditor.Methods.PDEJMBFAFCJ;
             public const uint Action_JONA = Raw.GUISkinEditor.Methods.JONAFHGHAGH;
-            public const uint OnResize = Raw.GUISkinEditor.Methods.OnResize;
             public const uint Action_IGKD = Raw.GUISkinEditor.Methods.IGKDEOECOEI;
             public const uint Action_OMGK = Raw.GUISkinEditor.Methods.OMGKPDHJDOM;
             public const uint Action_JCHM = Raw.GUISkinEditor.Methods.JCHMLLBPFKA;
@@ -13772,7 +14075,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_IMOO = Raw.GUISkinEditor.Methods.IMOOLJDFBKE;
             public const uint Action_EJJE = Raw.GUISkinEditor.Methods.EJJELNMMOOI;
             public const uint Action_AMHG = Raw.GUISkinEditor.Methods.AMHGOJPGADD;
-            public const uint Update = Raw.GUISkinEditor.Methods.Update;
             public const uint Action_BDGA = Raw.GUISkinEditor.Methods.BDGAGFFHHIC;
             public const uint Action_EDNK = Raw.GUISkinEditor.Methods.EDNKMLANPHN;
             public const uint Action_MCCK = Raw.GUISkinEditor.Methods.MCCKLCOKMND;
@@ -13783,7 +14085,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_PCJJ = Raw.GUISkinEditor.Methods.PCJJKJOBGJL;
             public const uint Action_BDGO = Raw.GUISkinEditor.Methods.BDGOIFMIDCP;
             public const uint Action_FILD = Raw.GUISkinEditor.Methods.FILDOKOGMAF;
-            public const uint Awake = Raw.GUISkinEditor.Methods.Awake;
             public const uint Action_HCGL = Raw.GUISkinEditor.Methods.HCGLHDOPHJI;
             public const uint Action_FANM = Raw.GUISkinEditor.Methods.FANMMMGPFFH;
             public const uint Action_CALB = Raw.GUISkinEditor.Methods.CALBLDOIIIA;
@@ -13794,7 +14095,6 @@ namespace BlockpostTrainer.Sdk
             public const uint GetString_FOBD = Raw.GUISkinEditor.Methods.FOBDMLDDAFI;
             public const uint GetString_JJPK = Raw.GUISkinEditor.Methods.JJPKIFELMMD;
             public const uint GetString_MCNJ = Raw.GUISkinEditor.Methods.MCNJGCCLNFI;
-            public const uint OnGUI = Raw.GUISkinEditor.Methods.OnGUI;
             public const uint GetString_ECMC = Raw.GUISkinEditor.Methods.ECMCIMIAEIF;
             public const uint Action_DAPD = Raw.GUISkinEditor.Methods.DAPDODCLAMO;
             public const uint Action_NOFL = Raw.GUISkinEditor.Methods.NOFLCFCOOJK;
@@ -13841,6 +14141,7 @@ namespace BlockpostTrainer.Sdk
             public const int GameObject = Raw.GeneralCameraShake.Offsets.EODKOHMEFOF;
             public const int Timer = Raw.GeneralCameraShake.Offsets.JOEEMKCHJCB;
             public const int AudioClip = Raw.GeneralCameraShake.Offsets.ILPDJPLDGPM;
+            public const uint Start = Raw.GeneralCameraShake.Methods.Start;
             public const uint Action_AOHF = Raw.GeneralCameraShake.Methods.AOHFBHBIFIC;
             public const uint Action_GOLA = Raw.GeneralCameraShake.Methods.GOLAKBGKBLE;
             public const uint Action_ECID = Raw.GeneralCameraShake.Methods.ECIDCGGBIBO;
@@ -13866,7 +14167,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_NIJE = Raw.GeneralCameraShake.Methods.NIJEELACMIF;
             public const uint Action_HPFH = Raw.GeneralCameraShake.Methods.HPFHIBANGFM;
             public const uint Action_DMPM = Raw.GeneralCameraShake.Methods.DMPMDGACGIN;
-            public const uint Start = Raw.GeneralCameraShake.Methods.Start;
             public const uint Action_KHJP = Raw.GeneralCameraShake.Methods.KHJPBLLJCFB;
             public const uint Action_NMEL = Raw.GeneralCameraShake.Methods.NMELMOCANPH;
             public const uint Action_MDGL = Raw.GeneralCameraShake.Methods.MDGLOJFHIIL;
@@ -13960,13 +14260,16 @@ namespace BlockpostTrainer.Sdk
             public const int StringArray = Raw.HUDBuild.Offsets.CNLOPBICAGM;
             public const int Rect_CLDA = Raw.HUDBuild.Offsets.CLDAPAHNHBH;
             public const int Vector2 = Raw.HUDBuild.Offsets.OCLJBCIPENA;
+            public const uint LoadEnd = Raw.HUDBuild.Methods.LoadEnd;
+            public const uint OnResize = Raw.HUDBuild.Methods.OnResize;
+            public const uint OnGUI = Raw.HUDBuild.Methods.OnGUI;
+            public const uint SetActive = Raw.HUDBuild.Methods.SetActive;
             public const uint Action_PEBM = Raw.HUDBuild.Methods.PEBMPCCEMME;
             public const uint Action_OEAA = Raw.HUDBuild.Methods.OEAAPJHIBLD;
             public const uint Action_MACB = Raw.HUDBuild.Methods.MACBBLKGJGJ;
             public const uint Action_DIPK = Raw.HUDBuild.Methods.DIPKDBEJMFE;
             public const uint Action_CAKL = Raw.HUDBuild.Methods.CAKLFMKIOKE;
             public const uint Action_ILMO = Raw.HUDBuild.Methods.ILMOJINGEBL;
-            public const uint LoadEnd = Raw.HUDBuild.Methods.LoadEnd;
             public const uint Action_MGEK = Raw.HUDBuild.Methods.MGEKOAPBJNJ;
             public const uint Action_GIAA = Raw.HUDBuild.Methods.GIAAGIPFFAB;
             public const uint Action_FHNP = Raw.HUDBuild.Methods.FHNPFFNGIMH;
@@ -13997,7 +14300,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_JHLA = Raw.HUDBuild.Methods.JHLAEPBOJOF;
             public const uint Action_ECKL = Raw.HUDBuild.Methods.ECKLGNIOCGG;
             public const uint Action_KPND = Raw.HUDBuild.Methods.KPNDFICIDOO;
-            public const uint OnResize = Raw.HUDBuild.Methods.OnResize;
             public const uint Action_HBEM = Raw.HUDBuild.Methods.HBEMIOLFJEL;
             public const uint Action_BMNA = Raw.HUDBuild.Methods.BMNAJJBIAAL;
             public const uint Action_BBJM = Raw.HUDBuild.Methods.BBJMKPPBADA;
@@ -14006,7 +14308,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_GIOD = Raw.HUDBuild.Methods.GIODDKLDMEK;
             public const uint Action_DGPB = Raw.HUDBuild.Methods.DGPBEHOHFCB;
             public const uint Action_EJJE = Raw.HUDBuild.Methods.EJJELNMMOOI;
-            public const uint OnGUI = Raw.HUDBuild.Methods.OnGUI;
             public const uint Action_HOIO = Raw.HUDBuild.Methods.HOIOHBIJCBL;
             public const uint Action_ABOL = Raw.HUDBuild.Methods.ABOLPCJIGOG;
             public const uint Action_NGND = Raw.HUDBuild.Methods.NGNDFDHIDGB;
@@ -14076,7 +14377,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_BJPJ = Raw.HUDBuild.Methods.BJPJOKAOFJD;
             public const uint Action_MPLN = Raw.HUDBuild.Methods.MPLNCIKGKBK;
             public const uint Action_KMDA = Raw.HUDBuild.Methods.KMDACEOHHII;
-            public const uint SetActive = Raw.HUDBuild.Methods.SetActive;
             public const uint Action_ONOD = Raw.HUDBuild.Methods.ONODGCIEBBD;
             public const uint Action_CHLN = Raw.HUDBuild.Methods.CHLNNDDCJFM;
             public const uint Action_PBFJ = Raw.HUDBuild.Methods.PBFJAJNHCMP;
@@ -14119,12 +14419,15 @@ namespace BlockpostTrainer.Sdk
             public const int PlayerName_4 = Raw.HUDGameEnd.Offsets.BMONKCJBAAO;
             public const int PlayerName_5 = Raw.HUDGameEnd.Offsets.GKFOGICMNEO;
             public const int PlayerName_6 = Raw.HUDGameEnd.Offsets.DDBFLJADKHO;
+            public const uint SetActive = Raw.HUDGameEnd.Methods.SetActive;
+            public const uint LoadLang = Raw.HUDGameEnd.Methods.LoadLang;
+            public const uint OnResize = Raw.HUDGameEnd.Methods.OnResize;
+            public const uint OnGUI = Raw.HUDGameEnd.Methods.OnGUI;
             public const uint Action_GLAP = Raw.HUDGameEnd.Methods.GLAPDIKMDFN;
             public const uint Action_JLJM = Raw.HUDGameEnd.Methods.JLJMCNOCMHJ;
             public const uint Action_GPHE = Raw.HUDGameEnd.Methods.GPHEKMNHDCA;
             public const uint Action_BCHF = Raw.HUDGameEnd.Methods.BCHFPMOIKHI;
             public const uint Action_OFIE = Raw.HUDGameEnd.Methods.OFIEIOECCMD;
-            public const uint SetActive = Raw.HUDGameEnd.Methods.SetActive;
             public const uint Action_EFPD = Raw.HUDGameEnd.Methods.EFPDEPCBGOB;
             public const uint Action_OLBC = Raw.HUDGameEnd.Methods.OLBCCCGLDKE;
             public const uint Action_NPNG = Raw.HUDGameEnd.Methods.NPNGGBHJMKF;
@@ -14133,7 +14436,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_CMKA = Raw.HUDGameEnd.Methods.CMKAEGHKOJH;
             public const uint Action_HABO = Raw.HUDGameEnd.Methods.HABOHHJBHJD;
             public const uint Action_HAEG = Raw.HUDGameEnd.Methods.HAEGPEOBFNJ;
-            public const uint LoadLang = Raw.HUDGameEnd.Methods.LoadLang;
             public const uint Action_BNMB = Raw.HUDGameEnd.Methods.BNMBLNCALHG;
             public const uint Action_DFEC = Raw.HUDGameEnd.Methods.DFECFLKMHIE;
             public const uint Action_IGOE = Raw.HUDGameEnd.Methods.IGOEODPIEJG;
@@ -14165,12 +14467,10 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_HKAD = Raw.HUDGameEnd.Methods.HKADGMNCOIK;
             public const uint Action_KAPG = Raw.HUDGameEnd.Methods.KAPGCEKGHHB;
             public const uint Action_GAGI = Raw.HUDGameEnd.Methods.GAGIFMLDCFG;
-            public const uint OnResize = Raw.HUDGameEnd.Methods.OnResize;
             public const uint Action_PPKA = Raw.HUDGameEnd.Methods.PPKANOLNHGN;
             public const uint Action_DNBE = Raw.HUDGameEnd.Methods.DNBEIKLKDFC;
             public const uint Action_HMIN = Raw.HUDGameEnd.Methods.HMINCHEDOJE;
             public const uint Action_LEHM = Raw.HUDGameEnd.Methods.LEHMAMABCIM;
-            public const uint OnGUI = Raw.HUDGameEnd.Methods.OnGUI;
             public const uint Action_EBKG = Raw.HUDGameEnd.Methods.EBKGDCBAOAN;
             public const uint Action_BJHO = Raw.HUDGameEnd.Methods.BJHOANKBIHK;
             public const uint Action_GPKF = Raw.HUDGameEnd.Methods.GPKFHCNGOGN;
@@ -14209,6 +14509,13 @@ namespace BlockpostTrainer.Sdk
             public const int PlayerName_9 = Raw.HUDKiller.Offsets.EOGJKMHDJKJ;
             public const int PlayerName_10 = Raw.HUDKiller.Offsets.CBFLJPICMIP;
             public const int tautoclose = Raw.HUDKiller.Offsets.tautoclose;
+            public const uint Awake = Raw.HUDKiller.Methods.Awake;
+            public const uint LoadEnd = Raw.HUDKiller.Methods.LoadEnd;
+            public const uint LoadLang = Raw.HUDKiller.Methods.LoadLang;
+            public const uint OnGUI = Raw.HUDKiller.Methods.OnGUI;
+            public const uint OnResize = Raw.HUDKiller.Methods.OnResize;
+            public const uint Set = Raw.HUDKiller.Methods.Set;
+            public const uint SetActive = Raw.HUDKiller.Methods.SetActive;
             public const uint Action_IPGC = Raw.HUDKiller.Methods.IPGCPDGHJFD;
             public const uint Action_CPJI = Raw.HUDKiller.Methods.CPJIFABNKDD;
             public const uint Action_FDFB = Raw.HUDKiller.Methods.FDFBHNEIJEA;
@@ -14227,7 +14534,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_MKOE = Raw.HUDKiller.Methods.MKOENMJBAFH;
             public const uint Action_BJBD = Raw.HUDKiller.Methods.BJBDGHJHALE;
             public const uint Action_GGAN = Raw.HUDKiller.Methods.GGANHKEBCEA;
-            public const uint Awake = Raw.HUDKiller.Methods.Awake;
             public const uint Action_CFFG = Raw.HUDKiller.Methods.CFFGAGMPBJN;
             public const uint Action_CFFI = Raw.HUDKiller.Methods.CFFIIAILLEJ;
             public const uint Action_ILHJ = Raw.HUDKiller.Methods.ILHJLOGDGDO;
@@ -14242,11 +14548,9 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_BJKH = Raw.HUDKiller.Methods.BJKHMJPFHMA;
             public const uint Action_CIDN = Raw.HUDKiller.Methods.CIDNIKPGFAH;
             public const uint Action_AJHP = Raw.HUDKiller.Methods.AJHPIPBFGLJ;
-            public const uint LoadEnd = Raw.HUDKiller.Methods.LoadEnd;
             public const uint Action_BEKL = Raw.HUDKiller.Methods.BEKLKANHOPB;
             public const uint Action_JCAH = Raw.HUDKiller.Methods.JCAHLPKEJLM;
             public const uint Action_OKMN = Raw.HUDKiller.Methods.OKMNBHBONGJ;
-            public const uint LoadLang = Raw.HUDKiller.Methods.LoadLang;
             public const uint Action_FJPA = Raw.HUDKiller.Methods.FJPAFAIPGJM;
             public const uint Action_HLLL = Raw.HUDKiller.Methods.HLLLBLNFEOF;
             public const uint Action_JEBG = Raw.HUDKiller.Methods.JEBGKGPICLL;
@@ -14287,7 +14591,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_BLJH = Raw.HUDKiller.Methods.BLJHJFCGKGB;
             public const uint Action_JGHL = Raw.HUDKiller.Methods.JGHLCKJJMEF;
             public const uint Action_OLPM = Raw.HUDKiller.Methods.OLPMEBANCGF;
-            public const uint OnGUI = Raw.HUDKiller.Methods.OnGUI;
             public const uint Action_ICPG = Raw.HUDKiller.Methods.ICPGDJCMAFG;
             public const uint Action_DAPD = Raw.HUDKiller.Methods.DAPDODCLAMO;
             public const uint Action_FJAE = Raw.HUDKiller.Methods.FJAEKAGHDJL;
@@ -14311,10 +14614,7 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_FGJC = Raw.HUDKiller.Methods.FGJCFIAILLO;
             public const uint Action_DFOH = Raw.HUDKiller.Methods.DFOHCOPMNJJ;
             public const uint Action_JIHE = Raw.HUDKiller.Methods.JIHEAAKPOPD;
-            public const uint OnResize = Raw.HUDKiller.Methods.OnResize;
-            public const uint Set = Raw.HUDKiller.Methods.Set;
             public const uint Action_DPMI = Raw.HUDKiller.Methods.DPMIGODGCLE;
-            public const uint SetActive = Raw.HUDKiller.Methods.SetActive;
             public const uint Action_LIFK = Raw.HUDKiller.Methods.LIFKAKGPLGD;
             public const uint Action_OIPG = Raw.HUDKiller.Methods.OIPGPFIKPHI;
             public const uint Action_FACB = Raw.HUDKiller.Methods.FACBEFCPFDP;
@@ -14342,9 +14642,11 @@ namespace BlockpostTrainer.Sdk
             public const int Rect_HDJB = Raw.HUDNames.Offsets.HDJBDIJCIMG;
             public const int Rect_NMDK = Raw.HUDNames.Offsets.NMDKEHDFOCI;
             public const int Color = Raw.HUDNames.Offsets.LGIHFDDIPGA;
+            public const uint LoadEnd = Raw.HUDNames.Methods.LoadEnd;
+            public const uint OnGUI = Raw.HUDNames.Methods.OnGUI;
+            public const uint SetActive = Raw.HUDNames.Methods.SetActive;
             public const uint Action_ELLH = Raw.HUDNames.Methods.ELLHHLBAEGP;
             public const uint Action_CJDD = Raw.HUDNames.Methods.CJDDOLJINKJ;
-            public const uint LoadEnd = Raw.HUDNames.Methods.LoadEnd;
             public const uint Action_KOIK = Raw.HUDNames.Methods.KOIKPKPLCMP;
             public const uint Action_HLDG = Raw.HUDNames.Methods.HLDGDACLABG;
             public const uint Action_KHIJ = Raw.HUDNames.Methods.KHIJJMGDMFE;
@@ -14411,7 +14713,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_BNBG = Raw.HUDNames.Methods.BNBGBOOMOII;
             public const uint Action_PFEC = Raw.HUDNames.Methods.PFECDOLMIGB;
             public const uint Action_BNCD = Raw.HUDNames.Methods.BNCDOEFLAMA;
-            public const uint OnGUI = Raw.HUDNames.Methods.OnGUI;
             public const uint Action_KHMJ = Raw.HUDNames.Methods.KHMJKPCDMLG;
             public const uint Action_PIHF = Raw.HUDNames.Methods.PIHFHKODJKC;
             public const uint Action_CLNE = Raw.HUDNames.Methods.CLNEFJIIJIB;
@@ -14433,7 +14734,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_MGPG = Raw.HUDNames.Methods.MGPGAFKNGJO;
             public const uint Action_AEAC = Raw.HUDNames.Methods.AEACEJKGEEK;
             public const uint Action_FCIE = Raw.HUDNames.Methods.FCIEJLJPNOO;
-            public const uint SetActive = Raw.HUDNames.Methods.SetActive;
             public const uint Action_IPLI = Raw.HUDNames.Methods.IPLIOHJNOEO;
         }
 
@@ -14462,6 +14762,13 @@ namespace BlockpostTrainer.Sdk
             public const int Count = Raw.HUDTab.Offsets.NPHGPNPOANC;
             public const int sorted = Raw.HUDTab.Offsets.sorted;
             public const uint SortPlayers = Raw.HUDTab.Methods.SortPlayers;
+            public const uint LoadLang = Raw.HUDTab.Methods.LoadLang;
+            public const uint LoadEnd = Raw.HUDTab.Methods.LoadEnd;
+            public const uint OnResize = Raw.HUDTab.Methods.OnResize;
+            public const uint SetScoreBar = Raw.HUDTab.Methods.SetScoreBar;
+            public const uint SetActive = Raw.HUDTab.Methods.SetActive;
+            public const uint Awake = Raw.HUDTab.Methods.Awake;
+            public const uint OnGUI = Raw.HUDTab.Methods.OnGUI;
             public const uint Action_KMIG = Raw.HUDTab.Methods.KMIGGCNGJGI;
             public const uint Action_HJJC = Raw.HUDTab.Methods.HJJCPKLOJJJ;
             public const uint Action_OGLN = Raw.HUDTab.Methods.OGLNAEIEFLP;
@@ -14474,10 +14781,8 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_KHNC = Raw.HUDTab.Methods.KHNCOJLLDLG;
             public const uint Action_CHHI = Raw.HUDTab.Methods.CHHIKCDBANH;
             public const uint Action_BMAI = Raw.HUDTab.Methods.BMAIBDKMBGE;
-            public const uint LoadLang = Raw.HUDTab.Methods.LoadLang;
             public const uint Action_COEN = Raw.HUDTab.Methods.COENJNMEANC;
             public const uint Action_ICON = Raw.HUDTab.Methods.ICONEPBODNM;
-            public const uint LoadEnd = Raw.HUDTab.Methods.LoadEnd;
             public const uint Action_PFJN = Raw.HUDTab.Methods.PFJNGGMLGKG;
             public const uint Action_MGEP = Raw.HUDTab.Methods.MGEPNFLMGNO;
             public const uint Action_EOCO = Raw.HUDTab.Methods.EOCOELJPANK;
@@ -14491,10 +14796,7 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_GGIA = Raw.HUDTab.Methods.GGIAKNIBCHN;
             public const uint Action_HMPF = Raw.HUDTab.Methods.HMPFBAGNKPK;
             public const uint Action_MJLC = Raw.HUDTab.Methods.MJLCIFHNDCP;
-            public const uint OnResize = Raw.HUDTab.Methods.OnResize;
             public const uint Action_ELGB = Raw.HUDTab.Methods.ELGBEALBIJG;
-            public const uint SetScoreBar = Raw.HUDTab.Methods.SetScoreBar;
-            public const uint SetActive = Raw.HUDTab.Methods.SetActive;
             public const uint Action_BBAA = Raw.HUDTab.Methods.BBAAANIIMBD;
             public const uint Action_JBKD = Raw.HUDTab.Methods.JBKDKLOIFKH;
             public const uint Action_OBAM = Raw.HUDTab.Methods.OBAMGHGNEAO;
@@ -14504,7 +14806,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_INCD = Raw.HUDTab.Methods.INCDKJAAODJ;
             public const uint Action_LAFK = Raw.HUDTab.Methods.LAFKEKGIKNA;
             public const uint Action_KLJK = Raw.HUDTab.Methods.KLJKMIPCOHH;
-            public const uint Awake = Raw.HUDTab.Methods.Awake;
             public const uint Action_BAPF = Raw.HUDTab.Methods.BAPFCAKGLJM;
             public const uint Action_GFAO = Raw.HUDTab.Methods.GFAOIEGNKPA;
             public const uint Action_OBHO = Raw.HUDTab.Methods.OBHOPBPBDGO;
@@ -14514,7 +14815,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_IMOC = Raw.HUDTab.Methods.IMOCDKBNNFG;
             public const uint Action_JGDB = Raw.HUDTab.Methods.JGDBECEJHHA;
             public const uint Action_GHCC = Raw.HUDTab.Methods.GHCCJCDDJIO;
-            public const uint OnGUI = Raw.HUDTab.Methods.OnGUI;
             public const uint Action_KMIK = Raw.HUDTab.Methods.KMIKIACPNCA;
             public const uint Action_FBNP = Raw.HUDTab.Methods.FBNPNMNIOHA;
             public const uint Action_GKBO = Raw.HUDTab.Methods.GKBOCHNHOAN;
@@ -14915,13 +15215,19 @@ namespace BlockpostTrainer.Sdk
             public const int langtranslation = Raw.Lang.Offsets.langtranslation;
             public const int Lang_HMOHOIDLEPL_POBJ = Raw.Lang.Offsets.POBJIFOFCIJ;
             public const int OnUpdateLang = Raw.Lang.Offsets.OnUpdateLang;
+            public const uint GetStringNull = Raw.Lang.Methods.GetStringNull;
+            public const uint LoadExternal = Raw.Lang.Methods.LoadExternal;
+            public const uint Load = Raw.Lang.Methods.Load;
+            public const uint SetDefaultLocale = Raw.Lang.Methods.SetDefaultLocale;
+            public const uint UpdateLang = Raw.Lang.Methods.UpdateLang;
+            public const uint Init = Raw.Lang.Methods.Init;
+            public const uint GetString = Raw.Lang.Methods.GetString;
             public const uint GetString_PKKB = Raw.Lang.Methods.PKKBIGOJMJM;
             public const uint Action_DAGN = Raw.Lang.Methods.DAGNPPBBHML;
             public const uint GetBool_MLCJ = Raw.Lang.Methods.MLCJKNLMPNN;
             public const uint Action_DHAO = Raw.Lang.Methods.DHAOCOELJAF;
             public const uint Action_MHGA = Raw.Lang.Methods.MHGAHLDGODN;
             public const uint Action_EKKP = Raw.Lang.Methods.EKKPGBHEHGF;
-            public const uint GetStringNull = Raw.Lang.Methods.GetStringNull;
             public const uint Action_HPGM = Raw.Lang.Methods.HPGMLKIOEDN;
             public const uint Action_OMAN = Raw.Lang.Methods.OMANMBFHIAL;
             public const uint Action_CNFO = Raw.Lang.Methods.CNFOIDMPLKP;
@@ -14931,10 +15237,8 @@ namespace BlockpostTrainer.Sdk
             public const uint GetString_KFGL = Raw.Lang.Methods.KFGLIKFOPBD;
             public const uint Action_AJDL = Raw.Lang.Methods.AJDLNMOLLHN;
             public const uint Action_GLDJ = Raw.Lang.Methods.GLDJOBEGKOF;
-            public const uint LoadExternal = Raw.Lang.Methods.LoadExternal;
             public const uint GetBool_IHEM = Raw.Lang.Methods.IHEMJHPCKPE;
             public const uint GetString_BBOG = Raw.Lang.Methods.BBOGEHHFGMN;
-            public const uint Load = Raw.Lang.Methods.Load;
             public const uint Action_HDKN = Raw.Lang.Methods.HDKNGAPLCFO;
             public const uint Action_GNDH = Raw.Lang.Methods.GNDHGLEJJFM;
             public const uint Action_OBPO = Raw.Lang.Methods.OBPOFMOOHMF;
@@ -14961,22 +15265,18 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_EGBK = Raw.Lang.Methods.EGBKOPPNDEM;
             public const uint Action_CLNF = Raw.Lang.Methods.CLNFLAGGOIB;
             public const uint GetBool_GLKJ = Raw.Lang.Methods.GLKJNCIBIFF;
-            public const uint SetDefaultLocale = Raw.Lang.Methods.SetDefaultLocale;
             public const uint Action_JGMK = Raw.Lang.Methods.JGMKABAIKGI;
             public const uint Action_LPOG = Raw.Lang.Methods.LPOGNDOPINN;
             public const uint Action_MIGP = Raw.Lang.Methods.MIGPANKOEFO;
             public const uint Action_JBFC = Raw.Lang.Methods.JBFCNDBAGCJ;
             public const uint Action_PPMB = Raw.Lang.Methods.PPMBFOIOMIL;
-            public const uint UpdateLang = Raw.Lang.Methods.UpdateLang;
             public const uint GetString_CLMH = Raw.Lang.Methods.CLMHCEFOMMH;
             public const uint Action_EOOE = Raw.Lang.Methods.EOOEIFALEMA;
             public const uint Action_DNCC = Raw.Lang.Methods.DNCCPHNAEGI;
             public const uint Action_DGPO = Raw.Lang.Methods.DGPOFPAOGND;
-            public const uint Init = Raw.Lang.Methods.Init;
             public const uint Action_BILK = Raw.Lang.Methods.BILKBIMKBAN;
             public const uint Action_BEIG = Raw.Lang.Methods.BEIGBHMFGBL;
             public const uint Action_OOMA = Raw.Lang.Methods.OOMAEPGDNLC;
-            public const uint GetString = Raw.Lang.Methods.GetString;
             public const uint Action_MNEJ = Raw.Lang.Methods.MNEJOPEFCDE;
             public const uint GetString_HGHK = Raw.Lang.Methods.HGHKADPBGBH;
             public const uint GetString_JHKM = Raw.Lang.Methods.JHKMNDCPDOM;
@@ -14997,6 +15297,11 @@ namespace BlockpostTrainer.Sdk
             public const int List_KJDJGJJLOBC_GCFK = Raw.Log.Offsets.GCFKPMDHKCG;
             public const int Rect = Raw.Log.Offsets.HDJBDIJCIMG;
             public const int List_KJDJGJJLOBC_PLEA = Raw.Log.Offsets.PLEAEMIBFGM;
+            public const uint Add = Raw.Log.Methods.Add;
+            public const uint AddMainLog = Raw.Log.Methods.AddMainLog;
+            public const uint Start = Raw.Log.Methods.Start;
+            public const uint OnGUI = Raw.Log.Methods.OnGUI;
+            public const uint DrawLog = Raw.Log.Methods.DrawLog;
             public const uint Action_LGML = Raw.Log.Methods.LGMLPEDKFOB;
             public const uint Action_KNED = Raw.Log.Methods.KNEDOOKGNOH;
             public const uint Action_BPBM = Raw.Log.Methods.BPBMPBPHCOP;
@@ -15004,7 +15309,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_AJHI = Raw.Log.Methods.AJHIIFGJDNH;
             public const uint Action_AMLH = Raw.Log.Methods.AMLHCCKBEKP;
             public const uint Action_CFFE = Raw.Log.Methods.CFFECLLNLPM;
-            public const uint Add = Raw.Log.Methods.Add;
             public const uint Action_LPHD = Raw.Log.Methods.LPHDCLMIKCC;
             public const uint Action_BEAH = Raw.Log.Methods.BEAHLPLODKB;
             public const uint Action_OAAH = Raw.Log.Methods.OAAHOANCNMH;
@@ -15027,7 +15331,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_PBPL = Raw.Log.Methods.PBPLFLLBGGN;
             public const uint Action_HLKH = Raw.Log.Methods.HLKHMFNMGIJ;
             public const uint Action_PJON = Raw.Log.Methods.PJONPGENECB;
-            public const uint AddMainLog = Raw.Log.Methods.AddMainLog;
             public const uint Action_HAGJ = Raw.Log.Methods.HAGJHFOEJIA;
             public const uint Action_FDDF = Raw.Log.Methods.FDDFHFEECEC;
             public const uint Action_JCJJ = Raw.Log.Methods.JCJJPBMBMGL;
@@ -15104,14 +15407,11 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_AMIL = Raw.Log.Methods.AMILJMKCFDJ;
             public const uint Action_BNBG = Raw.Log.Methods.BNBGBOOMOII;
             public const uint Action_PKAA = Raw.Log.Methods.PKAAHLPDOAD;
-            public const uint Start = Raw.Log.Methods.Start;
             public const uint Action_PIAO = Raw.Log.Methods.PIAOAEECFID;
             public const uint Action_GGPN = Raw.Log.Methods.GGPNNDLAOLP;
             public const uint Action_KIDG = Raw.Log.Methods.KIDGGHMCAAH;
             public const uint Action_JEGA = Raw.Log.Methods.JEGAIAOCOIO;
             public const uint Action_MNJA = Raw.Log.Methods.MNJACINACLM;
-            public const uint OnGUI = Raw.Log.Methods.OnGUI;
-            public const uint DrawLog = Raw.Log.Methods.DrawLog;
             public const uint Action_EPLK = Raw.Log.Methods.EPLKDLFKLEH;
             public const uint Action_NDFE = Raw.Log.Methods.NDFEGGCKNLG;
             public const uint Action_KMAM = Raw.Log.Methods.KMAMOEHDGFO;
@@ -15155,6 +15455,14 @@ namespace BlockpostTrainer.Sdk
             public const int RootObject = Raw.MChar.Offsets.MFNFGODECFM;
             public const int RootObject_1 = Raw.MChar.Offsets.KLFCBGMIDPA;
             public const int MainCamera_1 = Raw.MChar.Offsets.IBKJPCNHABH;
+            public const uint DestroyChar = Raw.MChar.Methods.DestroyChar;
+            public const uint SetChar = Raw.MChar.Methods.SetChar;
+            public const uint CreateCamera = Raw.MChar.Methods.CreateCamera;
+            public const uint SetCamera = Raw.MChar.Methods.SetCamera;
+            public const uint SetCameraPE = Raw.MChar.Methods.SetCameraPE;
+            public const uint GetCamera = Raw.MChar.Methods.GetCamera;
+            public const uint DestroyCamera = Raw.MChar.Methods.DestroyCamera;
+            public const uint CreateChar = Raw.MChar.Methods.CreateChar;
             public const uint Action_AAPE = Raw.MChar.Methods.AAPEJBKJMNJ;
             public const uint Action_FKCE = Raw.MChar.Methods.FKCENDILLHK;
             public const uint Action_GFKN = Raw.MChar.Methods.GFKNPFAAEAO;
@@ -15188,13 +15496,11 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_GGNE = Raw.MChar.Methods.GGNEKFFJDJA;
             public const uint GetBool_KGLG = Raw.MChar.Methods.KGLGIFNILPL;
             public const uint Action_ENGD = Raw.MChar.Methods.ENGDFBOCNNL;
-            public const uint DestroyChar = Raw.MChar.Methods.DestroyChar;
             public const uint GetBool_KGMD = Raw.MChar.Methods.KGMDBDFDGJD;
             public const uint Action_GGNK = Raw.MChar.Methods.GGNKKBLALJI;
             public const uint Action_KIOG = Raw.MChar.Methods.KIOGBKKLJKL;
             public const uint Get_LNNM = Raw.MChar.Methods.LNNMLHFLPPD;
             public const uint Action_ECBP = Raw.MChar.Methods.ECBPNKFNHKL;
-            public const uint SetChar = Raw.MChar.Methods.SetChar;
             public const uint Action_LPGI = Raw.MChar.Methods.LPGIFFDLMIB;
             public const uint Action_CJON = Raw.MChar.Methods.CJONDLAMBDI;
             public const uint Action_IMPL = Raw.MChar.Methods.IMPLKDCCJCB;
@@ -15207,8 +15513,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_LLAL = Raw.MChar.Methods.LLALNMBBBHJ;
             public const uint GetBool_OEEN = Raw.MChar.Methods.OEENCKEMGGB;
             public const uint Action_KJHE = Raw.MChar.Methods.KJHEHDKMDMO;
-            public const uint CreateCamera = Raw.MChar.Methods.CreateCamera;
-            public const uint SetCamera = Raw.MChar.Methods.SetCamera;
             public const uint Action_NNMG = Raw.MChar.Methods.NNMGKPEKIJL;
             public const uint Action_ENKM = Raw.MChar.Methods.ENKMDCGAODI;
             public const uint Action_OBHD = Raw.MChar.Methods.OBHDIHHELBB;
@@ -15217,7 +15521,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Get_CMKD = Raw.MChar.Methods.CMKDIOGIHAF;
             public const uint Action_CBIN = Raw.MChar.Methods.CBINILFFBDO;
             public const uint Action_FFGO = Raw.MChar.Methods.FFGONJONHCM;
-            public const uint SetCameraPE = Raw.MChar.Methods.SetCameraPE;
             public const uint Action_HIAD = Raw.MChar.Methods.HIADBHDJAAM;
             public const uint GetBool_KHAD = Raw.MChar.Methods.KHADLCBMGGB;
             public const uint Action_KDPJ = Raw.MChar.Methods.KDPJCFLDELD;
@@ -15234,7 +15537,6 @@ namespace BlockpostTrainer.Sdk
             public const uint GetBool_NOMD = Raw.MChar.Methods.NOMDCMDEACL;
             public const uint Action_COFD = Raw.MChar.Methods.COFDAOKLCDC;
             public const uint Action_MBNM = Raw.MChar.Methods.MBNMAMKDIPD;
-            public const uint GetCamera = Raw.MChar.Methods.GetCamera;
             public const uint Action_MJIK = Raw.MChar.Methods.MJIKAOLDKLL;
             public const uint Action_CDFC = Raw.MChar.Methods.CDFCAANAJDB;
             public const uint Action_IJJK = Raw.MChar.Methods.IJJKJJCOFNL;
@@ -15245,7 +15547,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_AFBM = Raw.MChar.Methods.AFBMNAFOMAG;
             public const uint Action_DPJG = Raw.MChar.Methods.DPJGGEMJHOE;
             public const uint Action_ALBL = Raw.MChar.Methods.ALBLBFMFIAN;
-            public const uint DestroyCamera = Raw.MChar.Methods.DestroyCamera;
             public const uint Action_GGCM = Raw.MChar.Methods.GGCMOEDDKFK;
             public const uint Action_HFDI = Raw.MChar.Methods.HFDICBDJJEL;
             public const uint Action_MPHD = Raw.MChar.Methods.MPHDGGKNKPK;
@@ -15264,7 +15565,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_NNOM = Raw.MChar.Methods.NNOMMJBOFMC;
             public const uint Action_KBCM = Raw.MChar.Methods.KBCMPINCAPG;
             public const uint Action_JJGL = Raw.MChar.Methods.JJGLJIFHLNC;
-            public const uint CreateChar = Raw.MChar.Methods.CreateChar;
             public const uint Action_IFNP = Raw.MChar.Methods.IFNPHGHFLMD;
             public const uint Action_MBNA = Raw.MChar.Methods.MBNADIIGFBG;
             public const uint Action_DMOF = Raw.MChar.Methods.DMOFMEAHIGJ;
@@ -15293,6 +15593,8 @@ namespace BlockpostTrainer.Sdk
             public const int Sensitivity_2 = Raw.MCharAnimator.Offsets.CBJPOOIAEBE;
             public const int Id_2 = Raw.MCharAnimator.Offsets.FLAIGCLALKE;
             public const int SpreadPattern_2 = Raw.MCharAnimator.Offsets.EDOGGDNIGPI;
+            public const uint Start = Raw.MCharAnimator.Methods.Start;
+            public const uint Update = Raw.MCharAnimator.Methods.Update;
             public const uint Action_DLJJ = Raw.MCharAnimator.Methods.DLJJBHNHCFH;
             public const uint Action_PKNH = Raw.MCharAnimator.Methods.PKNHLEMKCGP;
             public const uint Action_KILB = Raw.MCharAnimator.Methods.KILBCIAAEBJ;
@@ -15305,7 +15607,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_FOPO = Raw.MCharAnimator.Methods.FOPOKGKFLIG;
             public const uint Action_NEKL = Raw.MCharAnimator.Methods.NEKLBPPPMCI;
             public const uint Action_MLEE = Raw.MCharAnimator.Methods.MLEECKFDCFM;
-            public const uint Start = Raw.MCharAnimator.Methods.Start;
             public const uint Action_JFNA = Raw.MCharAnimator.Methods.JFNAKGNLFDN;
             public const uint Action_ACNB = Raw.MCharAnimator.Methods.ACNBHCHPOAI;
             public const uint Action_PCEM = Raw.MCharAnimator.Methods.PCEMHHADMFM;
@@ -15377,7 +15678,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_EEOK = Raw.MCharAnimator.Methods.EEOKPOCOGII;
             public const uint Action_JOHL = Raw.MCharAnimator.Methods.JOHLAKDJOLC;
             public const uint Action_PJPI = Raw.MCharAnimator.Methods.PJPIDBCLLEK;
-            public const uint Update = Raw.MCharAnimator.Methods.Update;
             public const uint Action_ELPI = Raw.MCharAnimator.Methods.ELPILMOMEPM;
             public const uint Action_KNKB = Raw.MCharAnimator.Methods.KNKBDLKJDGD;
             public const uint Action_HCAC = Raw.MCharAnimator.Methods.HCACHALGEMP;
@@ -15406,6 +15706,11 @@ namespace BlockpostTrainer.Sdk
             public const int Sprite_BFMB = Raw.MainBack.Offsets.BFMBFDDHHED;
             public const int Material = Raw.MainBack.Offsets.HLFFBGICACL;
             public const int Flag = Raw.MainBack.Offsets.NAOEIPAIILI;
+            public const uint Create = Raw.MainBack.Methods.Create;
+            public const uint Update = Raw.MainBack.Methods.Update;
+            public const uint SetTransparent = Raw.MainBack.Methods.SetTransparent;
+            public const uint Clear = Raw.MainBack.Methods.Clear;
+            public const uint ClampSpeed = Raw.MainBack.Methods.ClampSpeed;
             public const uint Action_MBFA = Raw.MainBack.Methods.MBFAIMAHJKB;
             public const uint Action_ALNB = Raw.MainBack.Methods.ALNBHPCGNLM;
             public const uint Action_IGPD = Raw.MainBack.Methods.IGPDINGFHHO;
@@ -15421,9 +15726,7 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_GMPP = Raw.MainBack.Methods.GMPPOJJLDJG;
             public const uint Action_AIFF = Raw.MainBack.Methods.AIFFKNHNCHD;
             public const uint Action_CJFJ = Raw.MainBack.Methods.CJFJENCEOFB;
-            public const uint Create = Raw.MainBack.Methods.Create;
             public const uint Action_ENKM = Raw.MainBack.Methods.ENKMKODBJMG;
-            public const uint Update = Raw.MainBack.Methods.Update;
             public const uint Action_NAFJ = Raw.MainBack.Methods.NAFJFHJKIBJ;
             public const uint Action_CANN = Raw.MainBack.Methods.CANNPPBHKLF;
             public const uint Action_JDGG = Raw.MainBack.Methods.JDGGCCGHMGG;
@@ -15446,7 +15749,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_NGIP = Raw.MainBack.Methods.NGIPGOGHGJC;
             public const uint Action_FKLP = Raw.MainBack.Methods.FKLPFCNMFIJ;
             public const uint Action_ADDB = Raw.MainBack.Methods.ADDBPFCFFPJ;
-            public const uint SetTransparent = Raw.MainBack.Methods.SetTransparent;
             public const uint Action_FLLK = Raw.MainBack.Methods.FLLKNAPPDCK;
             public const uint Action_CHKI = Raw.MainBack.Methods.CHKILAIGDJK;
             public const uint Action_KNED = Raw.MainBack.Methods.KNEDMFIMFBD;
@@ -15474,7 +15776,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_EFNN = Raw.MainBack.Methods.EFNNGEJPOCN;
             public const uint Action_BLKC = Raw.MainBack.Methods.BLKCOHDFOLN;
             public const uint Action_LMFO = Raw.MainBack.Methods.LMFONMKIOIG;
-            public const uint Clear = Raw.MainBack.Methods.Clear;
             public const uint Action_OBJH = Raw.MainBack.Methods.OBJHKKLIFCJ;
             public const uint Action_CADO = Raw.MainBack.Methods.CADOCLNNLHE;
             public const uint Action_LBDA = Raw.MainBack.Methods.LBDANLBCEAP;
@@ -15510,7 +15811,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_EJGG = Raw.MainBack.Methods.EJGGNMCJKOI;
             public const uint Action_NEII = Raw.MainBack.Methods.NEIIHPMOKDK;
             public const uint Action_PIDL = Raw.MainBack.Methods.PIDLDHJGKBL;
-            public const uint ClampSpeed = Raw.MainBack.Methods.ClampSpeed;
             public const uint Action_EOKG = Raw.MainBack.Methods.EOKGNPAKLOJ;
             public const uint Action_JAND = Raw.MainBack.Methods.JANDLKIIPJK;
             public const uint Action_HFGL = Raw.MainBack.Methods.HFGLIGCHEMH;
@@ -15599,6 +15899,8 @@ namespace BlockpostTrainer.Sdk
             public const int PlayerName_11 = Raw.MasterClient.Offsets.HJMAPJIOIHD;
             public const int PlayerName_12 = Raw.MasterClient.Offsets.EEMDBCOIHOC;
             public const int PlayerName_13 = Raw.MasterClient.Offsets.EDIAPJPAIAH;
+            public const uint OnApplicationQuit = Raw.MasterClient.Methods.OnApplicationQuit;
+            public const uint Update = Raw.MasterClient.Methods.Update;
             public const uint Action_LFKD = Raw.MasterClient.Methods.LFKDFBBPDNL;
             public const uint Action_AMEF = Raw.MasterClient.Methods.AMEFEJOLCBI;
             public const uint Action_DLLJ = Raw.MasterClient.Methods.DLLJGOECIID;
@@ -15615,7 +15917,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_LBNI = Raw.MasterClient.Methods.LBNIBAFMBPI;
             public const uint Action_NDMF = Raw.MasterClient.Methods.NDMFEDHHEOI;
             public const uint Action_DENP = Raw.MasterClient.Methods.DENPOGKPHDD;
-            public const uint OnApplicationQuit = Raw.MasterClient.Methods.OnApplicationQuit;
             public const uint Action_KOKH = Raw.MasterClient.Methods.KOKHLJCBELI;
             public const uint Action_GGND = Raw.MasterClient.Methods.GGNDINCMDCP;
             public const uint Action_ECGF = Raw.MasterClient.Methods.ECGFKPANHNO;
@@ -15624,7 +15925,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_EAID = Raw.MasterClient.Methods.EAIDMNNKEJF;
             public const uint Action_DGII = Raw.MasterClient.Methods.DGIIHMHOLJD;
             public const uint Action_OAFJ = Raw.MasterClient.Methods.OAFJLEMBBDI;
-            public const uint Update = Raw.MasterClient.Methods.Update;
             public const uint Action_JHJI = Raw.MasterClient.Methods.JHJIMCJOKBD;
             public const uint Action_IBAH = Raw.MasterClient.Methods.IBAHOIGGKKD;
             public const uint Action_ABGF = Raw.MasterClient.Methods.ABGFKABJCBD;
@@ -15865,158 +16165,6 @@ namespace BlockpostTrainer.Sdk
             public const int Any = Raw.NDANMCKCENA.Offsets.Any;
         }
 
-        public static class DevClient_2
-        {
-            public const int Slot = Raw.NEGGNDFJMAK.Offsets.EDHABHFLGBM;
-            public const int IsCrouching = Raw.NEGGNDFJMAK.Offsets.HCDCCCHOCJB;
-            public const int Slot_1 = Raw.NEGGNDFJMAK.Offsets.KGIDCFCCKMD;
-            public const int DisplayName = Raw.NEGGNDFJMAK.Offsets.IOCKAKPFGGG;
-            public const int Slot_2 = Raw.NEGGNDFJMAK.Offsets.KLFDILCDEAH;
-            public const int Slot_3 = Raw.NEGGNDFJMAK.Offsets.IFGBDAHDJLA;
-            public const int Slot_4 = Raw.NEGGNDFJMAK.Offsets.KGPOMFBAOFO;
-            public const int ushort_PDFN = Raw.NEGGNDFJMAK.Offsets.PDFNPELPOCG;
-            public const int IsCrouching_1 = Raw.NEGGNDFJMAK.Offsets.JCGBABGKMOA;
-            public const int Slot_5 = Raw.NEGGNDFJMAK.Offsets.JPJAKMICGHA;
-            public const int TcpClient = Raw.NEGGNDFJMAK.Offsets.HPDGDLFMEKI;
-            public const int IsCrouching_2 = Raw.NEGGNDFJMAK.Offsets.NGBODNKNGLB;
-            public const int IsCrouching_3 = Raw.NEGGNDFJMAK.Offsets.OOGFNLOELIG;
-            public const int List_NEGGNDFJMAK_GBPCAKEGOIJ_GGKH = Raw.NEGGNDFJMAK.Offsets.GGKHKKIJDML;
-            public const int List_NEGGNDFJMAK_GBPCAKEGOIJ_EHMO = Raw.NEGGNDFJMAK.Offsets.EHMOABJOMCL;
-            public const int ReceiveBuffer = Raw.NEGGNDFJMAK.Offsets.PEGEIKDNHLL;
-            public const int Slot_6 = Raw.NEGGNDFJMAK.Offsets.FKEHEHGFNBD;
-            public const int NEGGNDFJMAK_JLCFPHCMFOB_KGIN = Raw.NEGGNDFJMAK.Offsets.KGINABKLOIG;
-            public const int NEGGNDFJMAK_JLCFPHCMFOB_HJKK = Raw.NEGGNDFJMAK.Offsets.HJKKNJIFKLJ;
-            public const int NEGGNDFJMAK_JLCFPHCMFOB_BGOM = Raw.NEGGNDFJMAK.Offsets.BGOMNMLBMLF;
-            public const int NEGGNDFJMAK_JLCFPHCMFOB_KALD = Raw.NEGGNDFJMAK.Offsets.KALDGKAGAPG;
-            public const int NEGGNDFJMAK_JLCFPHCMFOB_ANPD = Raw.NEGGNDFJMAK.Offsets.ANPDCFAKLPH;
-            public const int Slot_7 = Raw.NEGGNDFJMAK.Offsets.MPOLJOFDIKK;
-            public const int DisplayName_1 = Raw.NEGGNDFJMAK.Offsets.HCKCBIEOMCI;
-            public const int IsCrouching_4 = Raw.NEGGNDFJMAK.Offsets.MKNFMHNPAAG;
-            public const int Slot_8 = Raw.NEGGNDFJMAK.Offsets.EMNBCCBIBPH;
-            public const int Slot_9 = Raw.NEGGNDFJMAK.Offsets.GLBLFMACOMG;
-            public const int Slot_10 = Raw.NEGGNDFJMAK.Offsets.ONMBEADPENC;
-            public const int Slot_11 = Raw.NEGGNDFJMAK.Offsets.EJAJFGOOPLL;
-            public const int Slot_12 = Raw.NEGGNDFJMAK.Offsets.HNHOAMJBHDG;
-            public const int ReceiveBuffer_1 = Raw.NEGGNDFJMAK.Offsets.MPEBMGMMOEI;
-            public const int Slot_13 = Raw.NEGGNDFJMAK.Offsets.ALCNBPBEAGG;
-            public const int Slot_14 = Raw.NEGGNDFJMAK.Offsets.JMGOFIGJMAC;
-            public const int Rate = Raw.NEGGNDFJMAK.Offsets.PNAEFNBJIPD;
-            public const int Rate_1 = Raw.NEGGNDFJMAK.Offsets.OAAKLAEODPJ;
-            public const int IsCrouching_5 = Raw.NEGGNDFJMAK.Offsets.BPPFPCAGDMO;
-            public const int IsCrouching_6 = Raw.NEGGNDFJMAK.Offsets.FNKNJHEDIPL;
-            public const int NEGGNDFJMAK_FPEDLONKNMC_JOKM = Raw.NEGGNDFJMAK.Offsets.JOKMPPIKENG;
-            public const int List_NEGGNDFJMAK_GBPCAKEGOIJ_OONK = Raw.NEGGNDFJMAK.Offsets.OONKIFFFCPG;
-            public const int List_NEGGNDFJMAK_GBPCAKEGOIJ_IBKF = Raw.NEGGNDFJMAK.Offsets.IBKFPIKIOMK;
-            public const int IsCrouching_7 = Raw.NEGGNDFJMAK.Offsets.PHONNFLOCPC;
-            public const int IsCrouching_8 = Raw.NEGGNDFJMAK.Offsets.FNFIJCILJCL;
-            public const int Slot_15 = Raw.NEGGNDFJMAK.Offsets.MEGABNLIKGD;
-            public const int Slot_16 = Raw.NEGGNDFJMAK.Offsets.KBDDBMHFAAJ;
-            public const int Rate_2 = Raw.NEGGNDFJMAK.Offsets.FOABGMAAKAH;
-            public const int Rate_3 = Raw.NEGGNDFJMAK.Offsets.MDPCDEPLBKO;
-            public const int Slot_17 = Raw.NEGGNDFJMAK.Offsets.IPLOEKHEHCG;
-            public const uint GetInt_OJGI = Raw.NEGGNDFJMAK.Methods.OJGIPNMNGFD;
-            public const uint Action_LBPE = Raw.NEGGNDFJMAK.Methods.LBPEEFAMNJO;
-            public const uint Action_HCAC = Raw.NEGGNDFJMAK.Methods.HCACHALGEMP;
-            public const uint Action_JCFN = Raw.NEGGNDFJMAK.Methods.JCFNHIKJBMJ;
-            public const uint Action_FPKE = Raw.NEGGNDFJMAK.Methods.FPKEAECEOPE;
-            public const uint Action_NGGP = Raw.NEGGNDFJMAK.Methods.NGGPBFPBKHF;
-            public const uint Action_HKAJ = Raw.NEGGNDFJMAK.Methods.HKAJLJNLGEG;
-            public const uint Action_GAMK = Raw.NEGGNDFJMAK.Methods.GAMKMKBJMHK;
-            public const uint Action_NHCD = Raw.NEGGNDFJMAK.Methods.NHCDCMDOJHG;
-            public const uint Action_GEHO = Raw.NEGGNDFJMAK.Methods.GEHOFKHCNFB;
-            public const uint Action_BLIA = Raw.NEGGNDFJMAK.Methods.BLIANAGDPKG;
-            public const uint Action_GOIC = Raw.NEGGNDFJMAK.Methods.GOICKCLEAKH;
-            public const uint Action_PLDD = Raw.NEGGNDFJMAK.Methods.PLDDCABDPIH;
-            public const uint Action_FEBJ = Raw.NEGGNDFJMAK.Methods.FEBJJNPABDK;
-            public const uint GetInt_MANC = Raw.NEGGNDFJMAK.Methods.MANCIBHDNJD;
-            public const uint Action_HGJC = Raw.NEGGNDFJMAK.Methods.HGJCKJJACLM;
-            public const uint Action_LFHK = Raw.NEGGNDFJMAK.Methods.LFHKAOLALCG;
-            public const uint Action_HANB = Raw.NEGGNDFJMAK.Methods.HANBBPIHIJG;
-            public const uint Action_CDLJ = Raw.NEGGNDFJMAK.Methods.CDLJJJPECED;
-            public const uint Action_PDCC = Raw.NEGGNDFJMAK.Methods.PDCCOFFNFHM;
-            public const uint Action_LMLF = Raw.NEGGNDFJMAK.Methods.LMLFOLHCDGG;
-            public const uint Action_MNNA = Raw.NEGGNDFJMAK.Methods.MNNAHBDAFJF;
-            public const uint Action_FAFI = Raw.NEGGNDFJMAK.Methods.FAFIAPBBBGJ;
-            public const uint Action_JBAN = Raw.NEGGNDFJMAK.Methods.JBANHMKIPBJ;
-            public const uint GetString_EENL = Raw.NEGGNDFJMAK.Methods.EENLECPIILO;
-            public const uint Action_DNAG = Raw.NEGGNDFJMAK.Methods.DNAGAOHDMLC;
-            public const uint Action_KLNH = Raw.NEGGNDFJMAK.Methods.KLNHOABLADK;
-            public const uint Action_BMJJ = Raw.NEGGNDFJMAK.Methods.BMJJCBAPAHP;
-            public const uint Action_MAMJ = Raw.NEGGNDFJMAK.Methods.MAMJFAEAPHG;
-            public const uint Action_BLPC = Raw.NEGGNDFJMAK.Methods.BLPCNHBKJAJ;
-            public const uint Action_AMLE = Raw.NEGGNDFJMAK.Methods.AMLECMHLJFE;
-            public const uint Action_KPBP = Raw.NEGGNDFJMAK.Methods.KPBPDBDDOFG;
-            public const uint Action_HMHB = Raw.NEGGNDFJMAK.Methods.HMHBJDIJPJN;
-            public const uint Action_JOII = Raw.NEGGNDFJMAK.Methods.JOIIOCBHLKM;
-            public const uint GetInt_EJFK = Raw.NEGGNDFJMAK.Methods.EJFKHKLJCHI;
-            public const uint Action_FLLD = Raw.NEGGNDFJMAK.Methods.FLLDBGPJPJH;
-            public const uint Action_HGEE = Raw.NEGGNDFJMAK.Methods.HGEENDFMMCP;
-            public const uint Action_NPHN = Raw.NEGGNDFJMAK.Methods.NPHNMODFDHE;
-            public const uint Action_OMKG = Raw.NEGGNDFJMAK.Methods.OMKGIJEJKPE;
-            public const uint Action_EIAJ = Raw.NEGGNDFJMAK.Methods.EIAJIHCOOID;
-            public const uint Action_BKHD = Raw.NEGGNDFJMAK.Methods.BKHDADBGLKO;
-            public const uint Action_BPGF = Raw.NEGGNDFJMAK.Methods.BPGFKMPDLEH;
-            public const uint GetInt_BBNH = Raw.NEGGNDFJMAK.Methods.BBNHCHNMKHA;
-            public const uint GetInt_GBPC = Raw.NEGGNDFJMAK.Methods.GBPCOEAJKIA;
-            public const uint Action_JGGJ = Raw.NEGGNDFJMAK.Methods.JGGJNEBCDPH;
-            public const uint Action_COHC = Raw.NEGGNDFJMAK.Methods.COHCMLAJMEK;
-            public const uint Action_MFFG = Raw.NEGGNDFJMAK.Methods.MFFGJGHOJJO;
-            public const uint Action_IGHA = Raw.NEGGNDFJMAK.Methods.IGHAMBPFLPA;
-            public const uint Action_KIHM = Raw.NEGGNDFJMAK.Methods.KIHMFDMHOOF;
-            public const uint Action_LAHH = Raw.NEGGNDFJMAK.Methods.LAHHMLBEMNK;
-            public const uint Action_DPDP = Raw.NEGGNDFJMAK.Methods.DPDPHAAGLIP;
-            public const uint Action_LKCM = Raw.NEGGNDFJMAK.Methods.LKCMAEFEDHA;
-            public const uint GetBool_GBNH = Raw.NEGGNDFJMAK.Methods.GBNHPLJOMAJ;
-            public const uint Action_BMKP = Raw.NEGGNDFJMAK.Methods.BMKPJHOBHGK;
-            public const uint Action_BIPD = Raw.NEGGNDFJMAK.Methods.BIPDCGNBGMO;
-            public const uint Action_ELJA = Raw.NEGGNDFJMAK.Methods.ELJADLANGJM;
-            public const uint GetInt_JNIP = Raw.NEGGNDFJMAK.Methods.JNIPKNHIHAM;
-            public const uint Action_OPAC = Raw.NEGGNDFJMAK.Methods.OPACGECFDEC;
-            public const uint GetInt_FENG = Raw.NEGGNDFJMAK.Methods.FENGAINNJGA;
-            public const uint Action_HMAD = Raw.NEGGNDFJMAK.Methods.HMADHLNFIJI;
-            public const uint GetInt_FKEN = Raw.NEGGNDFJMAK.Methods.FKENANPMOKK;
-            public const uint Action_LOPJ = Raw.NEGGNDFJMAK.Methods.LOPJFECKMJM;
-            public const uint Action_EPMP = Raw.NEGGNDFJMAK.Methods.EPMPPGKEMLJ;
-            public const uint GetInt_OEEO = Raw.NEGGNDFJMAK.Methods.OEEOELIJCJF;
-            public const uint GetInt_LKFF = Raw.NEGGNDFJMAK.Methods.LKFFPBKKABF;
-            public const uint Action_EDHP = Raw.NEGGNDFJMAK.Methods.EDHPODDNCNH;
-            public const uint Action_LLGA = Raw.NEGGNDFJMAK.Methods.LLGAHALHOIL;
-            public const uint Action_GCJF = Raw.NEGGNDFJMAK.Methods.GCJFIMNGHAC;
-            public const uint Action_ECPB = Raw.NEGGNDFJMAK.Methods.ECPBHCOCMAP;
-            public const uint GetBool_EJDG = Raw.NEGGNDFJMAK.Methods.EJDGGHFOAKM;
-            public const uint Action_LFJB = Raw.NEGGNDFJMAK.Methods.LFJBIKGOHEA;
-            public const uint GetInt_HFEM = Raw.NEGGNDFJMAK.Methods.HFEMBOCMAKG;
-            public const uint Action_FDJL = Raw.NEGGNDFJMAK.Methods.FDJLMNBMJJH;
-            public const uint Action_BPEO = Raw.NEGGNDFJMAK.Methods.BPEOMKMMODL;
-            public const uint GetInt_JELA = Raw.NEGGNDFJMAK.Methods.JELAOCNMOGJ;
-            public const uint Action_AIEN = Raw.NEGGNDFJMAK.Methods.AIENIFIKOLD;
-            public const uint Action_ACHI = Raw.NEGGNDFJMAK.Methods.ACHIDMFLOMD;
-            public const uint Action_IAKN = Raw.NEGGNDFJMAK.Methods.IAKNHLPALCA;
-            public const uint Action_LDPP = Raw.NEGGNDFJMAK.Methods.LDPPLANHGPD;
-            public const uint Action_KPMH = Raw.NEGGNDFJMAK.Methods.KPMHKBLMNAD;
-            public const uint Action_OEDJ = Raw.NEGGNDFJMAK.Methods.OEDJIFKELEL;
-            public const uint Action_OLAI = Raw.NEGGNDFJMAK.Methods.OLAIENFHJHM;
-            public const uint GetInt_PCNI = Raw.NEGGNDFJMAK.Methods.PCNIINAKBJH;
-            public const uint Action_HJDB = Raw.NEGGNDFJMAK.Methods.HJDBIKJDEPL;
-            public const uint Action_DFFI = Raw.NEGGNDFJMAK.Methods.DFFIFPOKOPJ;
-            public const uint Action_FBMM = Raw.NEGGNDFJMAK.Methods.FBMMECELJHH;
-            public const uint GetInt_JHMN = Raw.NEGGNDFJMAK.Methods.JHMNIOALMKP;
-            public const uint Action_MPJK = Raw.NEGGNDFJMAK.Methods.MPJKKIABBGB;
-            public const uint Action_NNLJ = Raw.NEGGNDFJMAK.Methods.NNLJJLENDLH;
-            public const uint Action_KCNA = Raw.NEGGNDFJMAK.Methods.KCNAMAKGDEG;
-            public const uint GetInt_BCAE = Raw.NEGGNDFJMAK.Methods.BCAECDKIPLJ;
-            public const uint Action_HKOF = Raw.NEGGNDFJMAK.Methods.HKOFHOANEJD;
-            public const uint Action_FMKM = Raw.NEGGNDFJMAK.Methods.FMKMNGAOHNM;
-            public const uint Action_BJGL = Raw.NEGGNDFJMAK.Methods.BJGLNDJBJAG;
-            public const uint Action_EOJO = Raw.NEGGNDFJMAK.Methods.EOJODLMLBIA;
-            public const uint GetBool_GBCO = Raw.NEGGNDFJMAK.Methods.GBCOGJLOPDO;
-            public const uint Action_FALD = Raw.NEGGNDFJMAK.Methods.FALDHMMMHKD;
-            public const uint Action_NMEI = Raw.NEGGNDFJMAK.Methods.NMEIGAAKADN;
-            public const uint GetInt_NJHJ = Raw.NEGGNDFJMAK.Methods.NJHJLMPIKMI;
-            public const uint Action_HMDD = Raw.NEGGNDFJMAK.Methods.HMDDJGFMIBP;
-            public const uint Action_BCCB = Raw.NEGGNDFJMAK.Methods.BCCBFHJOIKJ;
-        }
-
         public static class Net
         {
             public const int Factor = Raw.NET.Offsets.KBBOMJEOEPK;
@@ -16033,7 +16181,6 @@ namespace BlockpostTrainer.Sdk
             public const int Factor_3 = Raw.NET.Offsets.LPDEFAFCLNC;
             public const int Health_4 = Raw.NET.Offsets.KEHFECFHDHD;
             public const int Factor_4 = Raw.NET.Offsets.PMNIDNIJKCN;
-            public const uint Begin = Raw.NET.Methods.LPAPGKDAENI;
             public const uint End = Raw.NET.Methods.EMJOGONJKIO;
             public const uint F32 = Raw.NET.Methods.JBIICNJNHCI;
             public const uint I32 = Raw.NET.Methods.FPELFNLEPGG;
@@ -16095,6 +16242,7 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_PIMO = Raw.NET.Methods.PIMOAOKDDCC;
             public const uint Action_PJFM = Raw.NET.Methods.PJFMOLFBKHM;
             public const uint Action_GDDM = Raw.NET.Methods.GDDMJBCNMPK;
+            public const uint Begin = Raw.NET.Methods.LPAPGKDAENI;
         }
 
         public static class ParticleEffect
@@ -16334,10 +16482,6 @@ namespace BlockpostTrainer.Sdk
             public const int MuzzleForward_2 = Raw.PLH.Offsets.OKBMJNNOKHI;
             public const int MuzzleForward_3 = Raw.PLH.Offsets.BMMGJBOIKJJ;
             public const int IsReady = Raw.PLH.Offsets.PPDNFPDKLBC;
-            public const uint Fire = Raw.PLH.Methods.CDEGJOBLOFO;
-            public const uint FireAlt = Raw.PLH.Methods.MFHJFPPOHLC;
-            public const uint SelectWeapon = Raw.PLH.Methods.DIFGDFHJDGO;
-            public const uint LoadWeaponSkin = Raw.PLH.Methods.JLAALPNBABH;
             public const uint KGFIMJNLNBK = Raw.PLH.Methods.KGFIMJNLNBK;
             public const uint JBJFFJLJNAF = Raw.PLH.Methods.JBJFFJLJNAF;
             public const uint FPIJPCOKIEC = Raw.PLH.Methods.FPIJPCOKIEC;
@@ -16368,6 +16512,14 @@ namespace BlockpostTrainer.Sdk
             public const uint GNODNLNCHCG = Raw.PLH.Methods.GNODNLNCHCG;
             public const uint CKGLCABDLJF = Raw.PLH.Methods.CKGLCABDLJF;
             public const uint NNAOHNAPCKP = Raw.PLH.Methods.NNAOHNAPCKP;
+            public const uint Update = Raw.PLH.Methods.Update;
+            /// <summary>CDEGJOBLOFO(KBBBHJDINCB player, float fireRate, bool a, bool b). Fires visual shot (sound/muzzle flash). Does NOT send network hit packet — that's done by Client.AHLDAPJEJNC after Controll.Update processes the hit list.</summary>
+            public const uint Fire = Raw.PLH.Methods.CDEGJOBLOFO;
+            /// <summary>MFHJFPPOHLC(KBBBHJDINCB, float, bool, bool). Same signature as Fire — alternate fire mode.</summary>
+            public const uint FireAlt = Raw.PLH.Methods.MFHJFPPOHLC;
+            public const uint SelectWeapon = Raw.PLH.Methods.DIFGDFHJDGO;
+            /// <summary>PLH.JLAALPNBABH. Loads the weapon model/skin -- PlayerPrefs lookup, TEX.CALGHDNPMLO, Material.SetTexture, VWGen. Previously mis-aliased as Reload; it is NOT the reload entry point and does not touch ammo. See PROTOCOL.md 19.</summary>
+            public const uint LoadWeaponSkin = Raw.PLH.Methods.JLAALPNBABH;
             public const uint Action_EHEH = Raw.PLH.Methods.EHEHLPAJJDF;
             public const uint Action_LCGM = Raw.PLH.Methods.LCGMLFLALBH;
             public const uint Action_JDIH = Raw.PLH.Methods.JDIHFMNDGBJ;
@@ -16465,13 +16617,16 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_KGCG = Raw.PLH.Methods.KGCGLGKIFPN;
             public const uint Action_HEEP = Raw.PLH.Methods.HEEPCPPHMOK;
             public const uint Action_GINK = Raw.PLH.Methods.GINKPNJPJJI;
-            public const uint Update = Raw.PLH.Methods.Update;
             public const uint Action_DHJM = Raw.PLH.Methods.DHJMHPBINME;
         }
 
         public static class ChatMessage
         {
             public const int Speed = Raw.UIChatMessage.Offsets.EHCKMBKAAJI;
+            public const uint Hide = Raw.UIChatMessage.Methods.Hide;
+            public const uint get_AllowedShowTime = Raw.UIChatMessage.Methods.get_AllowedShowTime;
+            public const uint Show = Raw.UIChatMessage.Methods.Show;
+            public const uint get_IsActive = Raw.UIChatMessage.Methods.get_IsActive;
             public const uint Action_CHPJ = Raw.UIChatMessage.Methods.CHPJEDNGAJE;
             public const uint GetFloat_CBCO = Raw.UIChatMessage.Methods.CBCOEOBHMDL;
             public const uint Action_CLBL = Raw.UIChatMessage.Methods.CLBLAALOECM;
@@ -16482,7 +16637,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_JNDD = Raw.UIChatMessage.Methods.JNDDHPBHPPJ;
             public const uint Action_KHOI = Raw.UIChatMessage.Methods.KHOIKCMANLD;
             public const uint Action_DLFI = Raw.UIChatMessage.Methods.DLFIFJDGGHP;
-            public const uint Hide = Raw.UIChatMessage.Methods.Hide;
             public const uint Action_BCJG = Raw.UIChatMessage.Methods.BCJGNOJHKOH;
             public const uint GetBool_EAJE = Raw.UIChatMessage.Methods.EAJEOODLDJK;
             public const uint Action_MIPK = Raw.UIChatMessage.Methods.MIPKLFIADDB;
@@ -16497,15 +16651,12 @@ namespace BlockpostTrainer.Sdk
             public const uint GetFloat_IDGA = Raw.UIChatMessage.Methods.IDGAPLEEEBG;
             public const uint GetFloat_LGHF = Raw.UIChatMessage.Methods.LGHFLPJHEKE;
             public const uint Action_PEPB = Raw.UIChatMessage.Methods.PEPBGLFELJD;
-            public const uint get_AllowedShowTime = Raw.UIChatMessage.Methods.get_AllowedShowTime;
             public const uint Action_FBCD = Raw.UIChatMessage.Methods.FBCDCFFDJFJ;
             public const uint GetBool_LFHI = Raw.UIChatMessage.Methods.LFHIOINJCJF;
             public const uint Action_MLPJ = Raw.UIChatMessage.Methods.MLPJGKAPKJI;
             public const uint GetFloat_CNMI = Raw.UIChatMessage.Methods.CNMIEIJMKLH;
-            public const uint Show = Raw.UIChatMessage.Methods.Show;
             public const uint Action_OAKI = Raw.UIChatMessage.Methods.OAKIHECPBGF;
             public const uint GetFloat_OAIH = Raw.UIChatMessage.Methods.OAIHLMAFFDF;
-            public const uint get_IsActive = Raw.UIChatMessage.Methods.get_IsActive;
             public const uint GetBool_OMIE = Raw.UIChatMessage.Methods.OMIEJLPJOAA;
             public const uint Action_HJHG = Raw.UIChatMessage.Methods.HJHGMOFAMPI;
             public const string Prop_FMGG = Raw.UIChatMessage.Properties.FMGGGBJIFLI;
@@ -16610,10 +16761,11 @@ namespace BlockpostTrainer.Sdk
         public static class DropUI
         {
             public const int goError = Raw.UIDrop.Offsets.goError;
+            public const uint ShowError = Raw.UIDrop.Methods.ShowError;
+            public const uint Awake = Raw.UIDrop.Methods.Awake;
             public const uint Action_KHCM = Raw.UIDrop.Methods.KHCMDLFIOEI;
             public const uint Action_DIGJ = Raw.UIDrop.Methods.DIGJPIIEFDG;
             public const uint Action_EILJ = Raw.UIDrop.Methods.EILJIIKFDMP;
-            public const uint ShowError = Raw.UIDrop.Methods.ShowError;
             public const uint Action_IBDC = Raw.UIDrop.Methods.IBDCLAHHPLF;
             public const uint Action_DLLC = Raw.UIDrop.Methods.DLLCMBJIBAI;
             public const uint Action_AEAK = Raw.UIDrop.Methods.AEAKMOJDJEL;
@@ -16635,7 +16787,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_DILK = Raw.UIDrop.Methods.DILKHCIGCFC;
             public const uint Action_FFCP = Raw.UIDrop.Methods.FFCPDOLDPGL;
             public const uint Action_OOIM = Raw.UIDrop.Methods.OOIMDHENDEO;
-            public const uint Awake = Raw.UIDrop.Methods.Awake;
             public const uint Action_JHFE = Raw.UIDrop.Methods.JHFEFFKAPOB;
             public const uint Action_NFFG = Raw.UIDrop.Methods.NFFGNOIBJMI;
             public const uint Action_DAPD = Raw.UIDrop.Methods.DAPDODCLAMO;
@@ -16652,6 +16803,7 @@ namespace BlockpostTrainer.Sdk
         public static class DropButton
         {
             public const int GameObject = Raw.UIDropButton.Offsets.LGJCAMINFDO;
+            public const uint OnClick = Raw.UIDropButton.Methods.OnClick;
             public const uint Action_GIMP = Raw.UIDropButton.Methods.GIMPODDJHIE;
             public const uint Action_MBBP = Raw.UIDropButton.Methods.MBBPGDNDAFL;
             public const uint Action_PIND = Raw.UIDropButton.Methods.PINDHANKFIL;
@@ -16671,7 +16823,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_PBEF = Raw.UIDropButton.Methods.PBEFKPAJMMD;
             public const uint Action_NKJN = Raw.UIDropButton.Methods.NKJNGDBIOON;
             public const uint Action_AFCE = Raw.UIDropButton.Methods.AFCEPAIGBLJ;
-            public const uint OnClick = Raw.UIDropButton.Methods.OnClick;
             public const uint Action_HOHK = Raw.UIDropButton.Methods.HOHKGGAMMPP;
             public const uint Action_HJIO = Raw.UIDropButton.Methods.HJIOIHCMPEJ;
             public const uint Action_BNAF = Raw.UIDropButton.Methods.BNAFKNFOGAH;
@@ -16688,6 +16839,7 @@ namespace BlockpostTrainer.Sdk
         public static class DropExitButton
         {
             public const int goMenu = Raw.UIDropButtonExit.Offsets.goMenu;
+            public const uint OnClick = Raw.UIDropButtonExit.Methods.OnClick;
             public const uint Action_NIJD = Raw.UIDropButtonExit.Methods.NIJDLJMCLIF;
             public const uint Action_LNME = Raw.UIDropButtonExit.Methods.LNMEOFLLNOF;
             public const uint Action_HJIO = Raw.UIDropButtonExit.Methods.HJIOIHCMPEJ;
@@ -16738,13 +16890,12 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_MODP = Raw.UIDropButtonExit.Methods.MODPOFJAOCE;
             public const uint Action_MPHI = Raw.UIDropButtonExit.Methods.MPHINGEMHEA;
             public const uint Action_AFCE = Raw.UIDropButtonExit.Methods.AFCEPAIGBLJ;
-            public const uint OnClick = Raw.UIDropButtonExit.Methods.OnClick;
         }
 
         public static class UIElement
         {
-            public const uint GetBool_DBCB = Raw.UIElementBase.Methods.DBCBEMKJLFO;
             public const uint get_IsShowed = Raw.UIElementBase.Methods.get_IsShowed;
+            public const uint GetBool_DBCB = Raw.UIElementBase.Methods.DBCBEMKJLFO;
             public const uint GetBool_MJEJ = Raw.UIElementBase.Methods.MJEJFNBOPNN;
             public const uint GetBool_CGNI = Raw.UIElementBase.Methods.CGNIKGEACNE;
             public const uint GetBool_HDAD = Raw.UIElementBase.Methods.HDADODFLMFG;
@@ -16776,6 +16927,10 @@ namespace BlockpostTrainer.Sdk
 
         public static class HUDManager
         {
+            public const uint CreateInstance = Raw.UIHUD.Methods.CreateInstance;
+            public const uint SetActive = Raw.UIHUD.Methods.SetActive;
+            public const uint get_IsShowed = Raw.UIHUD.Methods.get_IsShowed;
+            public const uint OnGUI_Imitation = Raw.UIHUD.Methods.OnGUI_Imitation;
             public const uint Action_NMGC = Raw.UIHUD.Methods.NMGCBHBLNGP;
             public const uint Action_LCEJ = Raw.UIHUD.Methods.LCEJHOMIAKP;
             public const uint GetBool_KDMC = Raw.UIHUD.Methods.KDMCLDBPNPH;
@@ -16793,7 +16948,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_EOLK = Raw.UIHUD.Methods.EOLKPCEEIMD;
             public const uint Action_EKOM = Raw.UIHUD.Methods.EKOMPBMEJIB;
             public const uint Action_CJFG = Raw.UIHUD.Methods.CJFGNLHDFCF;
-            public const uint CreateInstance = Raw.UIHUD.Methods.CreateInstance;
             public const uint GetBool_ODNF = Raw.UIHUD.Methods.ODNFNEACOJF;
             public const uint GetBool_HIAI = Raw.UIHUD.Methods.HIAIKLDHJFB;
             public const uint Action_ECJH = Raw.UIHUD.Methods.ECJHBKGGJJF;
@@ -16805,7 +16959,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_KDEI = Raw.UIHUD.Methods.KDEIAHIEEEN;
             public const uint Action_BDOH = Raw.UIHUD.Methods.BDOHAPKLPNG;
             public const uint Action_CDFO = Raw.UIHUD.Methods.CDFODENOBEG;
-            public const uint SetActive = Raw.UIHUD.Methods.SetActive;
             public const uint Action_LFOE = Raw.UIHUD.Methods.LFOEEHDNHNI;
             public const uint Action_FEJP = Raw.UIHUD.Methods.FEJPBFHIEEM;
             public const uint Action_HBOA = Raw.UIHUD.Methods.HBOAANAIPHE;
@@ -16819,11 +16972,9 @@ namespace BlockpostTrainer.Sdk
             public const uint GetBool_MLFD = Raw.UIHUD.Methods.MLFDFBMALPE;
             public const uint GetBool_HMEP = Raw.UIHUD.Methods.HMEPHJDBLML;
             public const uint GetBool_FNMB = Raw.UIHUD.Methods.FNMBPFHCDHF;
-            public const uint get_IsShowed = Raw.UIHUD.Methods.get_IsShowed;
             public const uint Action_OJNO = Raw.UIHUD.Methods.OJNOKCJKDNB;
             public const uint GetBool_NHMH = Raw.UIHUD.Methods.NHMHEDNHJHH;
             public const uint Action_INBA = Raw.UIHUD.Methods.INBAKAMFONJ;
-            public const uint OnGUI_Imitation = Raw.UIHUD.Methods.OnGUI_Imitation;
             public const uint Action_NEKD = Raw.UIHUD.Methods.NEKDBPDPJEE;
             public const uint Action_LLFG = Raw.UIHUD.Methods.LLFGMOEEIKO;
             public const uint Action_FPPG = Raw.UIHUD.Methods.FPPGOJCPIBE;
@@ -16934,6 +17085,11 @@ namespace BlockpostTrainer.Sdk
         {
             public const int cs = Raw.UIMInventory.Offsets.cs;
             public const int Flag = Raw.UIMInventory.Offsets.EKBBCADNAOO;
+            public const uint ForceDestroy = Raw.UIMInventory.Methods.ForceDestroy;
+            public const uint OnDestroy = Raw.UIMInventory.Methods.OnDestroy;
+            public const uint Update = Raw.UIMInventory.Methods.Update;
+            public const uint OnEnable = Raw.UIMInventory.Methods.OnEnable;
+            public const uint Awake = Raw.UIMInventory.Methods.Awake;
             public const uint Action_ANEE = Raw.UIMInventory.Methods.ANEEGFHPMCO;
             public const uint Action_DLJJ = Raw.UIMInventory.Methods.DLJJBHNHCFH;
             public const uint Action_HJGO = Raw.UIMInventory.Methods.HJGOHKFPGJC;
@@ -16954,9 +17110,7 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_BNAG = Raw.UIMInventory.Methods.BNAGABJEDDH;
             public const uint Action_KDBN = Raw.UIMInventory.Methods.KDBNIEGHFNM;
             public const uint Action_KIBE = Raw.UIMInventory.Methods.KIBENCMMOCJ;
-            public const uint ForceDestroy = Raw.UIMInventory.Methods.ForceDestroy;
             public const uint Action_DEAH = Raw.UIMInventory.Methods.DEAHMNPJFIG;
-            public const uint OnDestroy = Raw.UIMInventory.Methods.OnDestroy;
             public const uint Action_BPOG = Raw.UIMInventory.Methods.BPOGDNCGOKG;
             public const uint Action_IIIN = Raw.UIMInventory.Methods.IIINPAHMJAA;
             public const uint Action_ANGC = Raw.UIMInventory.Methods.ANGCPEIJIOO;
@@ -16966,11 +17120,9 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_GMPG = Raw.UIMInventory.Methods.GMPGOKFBCBL;
             public const uint Action_PKHA = Raw.UIMInventory.Methods.PKHAKGEPOIF;
             public const uint Action_BKPI = Raw.UIMInventory.Methods.BKPIMEADBHP;
-            public const uint Update = Raw.UIMInventory.Methods.Update;
             public const uint Action_LAGD = Raw.UIMInventory.Methods.LAGDBJCJBMK;
             public const uint Action_IJLK = Raw.UIMInventory.Methods.IJLKKJMLLOB;
             public const uint Action_ICIN = Raw.UIMInventory.Methods.ICINGLOILNN;
-            public const uint OnEnable = Raw.UIMInventory.Methods.OnEnable;
             public const uint Action_LIEN = Raw.UIMInventory.Methods.LIENFOCDBMM;
             public const uint Action_FION = Raw.UIMInventory.Methods.FIONONIPJOD;
             public const uint Action_HILD = Raw.UIMInventory.Methods.HILDGEILAKK;
@@ -16986,7 +17138,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_PLEB = Raw.UIMInventory.Methods.PLEBBLINKLI;
             public const uint Action_PIFP = Raw.UIMInventory.Methods.PIFPIJDCNNF;
             public const uint Action_MOJL = Raw.UIMInventory.Methods.MOJLONDGLOE;
-            public const uint Awake = Raw.UIMInventory.Methods.Awake;
             public const uint Action_LMOH = Raw.UIMInventory.Methods.LMOHOALMMGB;
             public const uint Action_NABM = Raw.UIMInventory.Methods.NABMCBLGHPK;
             public const uint Action_MIHH = Raw.UIMInventory.Methods.MIHHKMMFBDI;
@@ -17044,6 +17195,9 @@ namespace BlockpostTrainer.Sdk
             public const int IndicatorColor_1 = Raw.UIMMainmenu.Offsets.JBFGBKPADAF;
             public const int IndicatorColor_2 = Raw.UIMMainmenu.Offsets.DCOELJMJEEH;
             public const int Flag = Raw.UIMMainmenu.Offsets.LNNLGDBIEJL;
+            public const uint OnClickForce = Raw.UIMMainmenu.Methods.OnClickForce;
+            public const uint LoadLang = Raw.UIMMainmenu.Methods.LoadLang;
+            public const uint OnClick = Raw.UIMMainmenu.Methods.OnClick;
             public const uint Action_IJBG = Raw.UIMMainmenu.Methods.IJBGJAGKBPP;
             public const uint Action_EDPH = Raw.UIMMainmenu.Methods.EDPHBPAHIDC;
             public const uint Action_BCMA = Raw.UIMMainmenu.Methods.BCMALMELPOL;
@@ -17061,18 +17215,15 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_BANI = Raw.UIMMainmenu.Methods.BANIGPJDKPB;
             public const uint Get_MBIB = Raw.UIMMainmenu.Methods.MBIBDNLGLON;
             public const uint Action_HNDL = Raw.UIMMainmenu.Methods.HNDLDNJKEEL;
-            public const uint OnClickForce = Raw.UIMMainmenu.Methods.OnClickForce;
             public const uint Action_IJDH = Raw.UIMMainmenu.Methods.IJDHKPMPBNC;
             public const uint Action_CANK = Raw.UIMMainmenu.Methods.CANKFLODBDH;
             public const uint Action_KCGE = Raw.UIMMainmenu.Methods.KCGEMGCGPPF;
             public const uint Get_JFIA = Raw.UIMMainmenu.Methods.JFIAABJPCHO;
             public const uint Action_LLIL = Raw.UIMMainmenu.Methods.LLILOKLFHLF;
-            public const uint LoadLang = Raw.UIMMainmenu.Methods.LoadLang;
             public const uint Action_MNMB = Raw.UIMMainmenu.Methods.MNMBMIABFLM;
             public const uint Action_LBII = Raw.UIMMainmenu.Methods.LBIIHJBFHCH;
             public const uint Action_HKCC = Raw.UIMMainmenu.Methods.HKCCJCFNCFM;
             public const uint Action_ANJA = Raw.UIMMainmenu.Methods.ANJAJKBHHNL;
-            public const uint OnClick = Raw.UIMMainmenu.Methods.OnClick;
             public const uint Action_DJMC = Raw.UIMMainmenu.Methods.DJMCIBADFDK;
             public const uint Action_LBLM = Raw.UIMMainmenu.Methods.LBLMOLJKCFF;
             public const uint Action_NPNN = Raw.UIMMainmenu.Methods.NPNNEADLDBC;
@@ -17104,23 +17255,28 @@ namespace BlockpostTrainer.Sdk
             public const int RightArm_7 = Raw.UIMPlay.Offsets.OPLJDPLKJHF;
             public const int GameObject_INDN = Raw.UIMPlay.Offsets.INDNFHOHAKP;
             public const int Button_FMOJ = Raw.UIMPlay.Offsets.FMOJLHKOLCP;
+            public const uint onBack = Raw.UIMPlay.Methods.onBack;
+            public const uint ForceDestroy = Raw.UIMPlay.Methods.ForceDestroy;
+            public const uint Awake = Raw.UIMPlay.Methods.Awake;
+            public const uint OnEnable = Raw.UIMPlay.Methods.OnEnable;
+            public const uint QuickGame = Raw.UIMPlay.Methods.QuickGame;
+            public const uint onLegacy = Raw.UIMPlay.Methods.onLegacy;
+            public const uint OnDestroy = Raw.UIMPlay.Methods.OnDestroy;
+            public const uint OnCharLoaded = Raw.UIMPlay.Methods.OnCharLoaded;
+            public const uint onServerLoaded = Raw.UIMPlay.Methods.onServerLoaded;
             public const uint Action_PMIB = Raw.UIMPlay.Methods.PMIBACBMEKC;
             public const uint Action_HJGO = Raw.UIMPlay.Methods.HJGOHKFPGJC;
-            public const uint onBack = Raw.UIMPlay.Methods.onBack;
             public const uint Action_MFHI = Raw.UIMPlay.Methods.MFHIIFGEJGP;
             public const uint Action_GMJK = Raw.UIMPlay.Methods.GMJKCNJPACF;
             public const uint Action_BMBL = Raw.UIMPlay.Methods.BMBLPHJEHEA;
-            public const uint ForceDestroy = Raw.UIMPlay.Methods.ForceDestroy;
             public const uint Action_KPNM = Raw.UIMPlay.Methods.KPNMOGGBBAF;
             public const uint Action_GPMF = Raw.UIMPlay.Methods.GPMFCAPJCOG;
             public const uint Action_BJIM = Raw.UIMPlay.Methods.BJIMIIIPNND;
             public const uint Action_GMOI = Raw.UIMPlay.Methods.GMOIHNPLPIH;
             public const uint Action_ACBL = Raw.UIMPlay.Methods.ACBLJMGMIIN;
             public const uint Get_OIGB = Raw.UIMPlay.Methods.OIGBKKHMIAC;
-            public const uint Awake = Raw.UIMPlay.Methods.Awake;
             public const uint Get_KPEB = Raw.UIMPlay.Methods.KPEBNJKBLHC;
             public const uint Action_CPFF = Raw.UIMPlay.Methods.CPFFGGLDKEP;
-            public const uint OnEnable = Raw.UIMPlay.Methods.OnEnable;
             public const uint Action_FEEE = Raw.UIMPlay.Methods.FEEEFGKFCJO;
             public const uint Action_LAEB = Raw.UIMPlay.Methods.LAEBNAIGLEG;
             public const uint Action_HPJP = Raw.UIMPlay.Methods.HPJPEKCNAEJ;
@@ -17139,12 +17295,9 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_PHCG = Raw.UIMPlay.Methods.PHCGAFAJHBH;
             public const uint Action_DIGJ = Raw.UIMPlay.Methods.DIGJPIIEFDG;
             public const uint Action_OOOC = Raw.UIMPlay.Methods.OOOCINPKEJE;
-            public const uint QuickGame = Raw.UIMPlay.Methods.QuickGame;
             public const uint Action_MPNC = Raw.UIMPlay.Methods.MPNCMBOGGKC;
             public const uint Action_BBBJ = Raw.UIMPlay.Methods.BBBJGHGFNGB;
             public const uint Action_AMBG = Raw.UIMPlay.Methods.AMBGDKKOKEF;
-            public const uint onLegacy = Raw.UIMPlay.Methods.onLegacy;
-            public const uint OnDestroy = Raw.UIMPlay.Methods.OnDestroy;
             public const uint Get_AGNO = Raw.UIMPlay.Methods.AGNOOHJAMJK;
             public const uint Action_EAIC = Raw.UIMPlay.Methods.EAICHGOFBIM;
             public const uint Action_LLJG = Raw.UIMPlay.Methods.LLJGAOAKHHC;
@@ -17158,10 +17311,8 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_KMHD = Raw.UIMPlay.Methods.KMHDHPANIHJ;
             public const uint Action_GIBA = Raw.UIMPlay.Methods.GIBACNDBCLK;
             public const uint Action_NKCP = Raw.UIMPlay.Methods.NKCPKAOKDDE;
-            public const uint OnCharLoaded = Raw.UIMPlay.Methods.OnCharLoaded;
             public const uint Action_JDJK = Raw.UIMPlay.Methods.JDJKFEHJMHB;
             public const uint Action_CEON = Raw.UIMPlay.Methods.CEONBKOHFOO;
-            public const uint onServerLoaded = Raw.UIMPlay.Methods.onServerLoaded;
             public const uint Action_LMPF = Raw.UIMPlay.Methods.LMPFHGCJMBC;
             public const uint Action_KLOL = Raw.UIMPlay.Methods.KLOLNNMHCGJ;
             public const uint Action_LIGB = Raw.UIMPlay.Methods.LIGBOKPDLJF;
@@ -17176,6 +17327,8 @@ namespace BlockpostTrainer.Sdk
             public const int button = Raw.UIMPlaymode.Offsets.button;
             public const int igamemode = Raw.UIMPlaymode.Offsets.igamemode;
             public const int stored_igamemode = Raw.UIMPlaymode.Offsets.stored_igamemode;
+            public const uint Start = Raw.UIMPlaymode.Methods.Start;
+            public const uint ModeConnect = Raw.UIMPlaymode.Methods.ModeConnect;
             public const uint Action_GOKF = Raw.UIMPlaymode.Methods.GOKFKOLCHLN;
             public const uint Action_MMGE = Raw.UIMPlaymode.Methods.MMGEDALAIGJ;
             public const uint Action_LKAC = Raw.UIMPlaymode.Methods.LKACJFKOKFI;
@@ -17200,7 +17353,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_EPAI = Raw.UIMPlaymode.Methods.EPAICMBGDEM;
             public const uint Action_JOCM = Raw.UIMPlaymode.Methods.JOCMAPFMOHN;
             public const uint Action_NAMP = Raw.UIMPlaymode.Methods.NAMPDDCKNDF;
-            public const uint Start = Raw.UIMPlaymode.Methods.Start;
             public const uint Action_GMAD = Raw.UIMPlaymode.Methods.GMADIIOAKFG;
             public const uint Action_ADFA = Raw.UIMPlaymode.Methods.ADFAHNLMJNE;
             public const uint Action_BGBI = Raw.UIMPlaymode.Methods.BGBICMBABAF;
@@ -17247,7 +17399,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_BBIG = Raw.UIMPlaymode.Methods.BBIGALFDNJN;
             public const uint Action_JOHL = Raw.UIMPlaymode.Methods.JOHLAKDJOLC;
             public const uint Action_DPHF = Raw.UIMPlaymode.Methods.DPHFLLLGDJL;
-            public const uint ModeConnect = Raw.UIMPlaymode.Methods.ModeConnect;
             public const uint Action_ADAP = Raw.UIMPlaymode.Methods.ADAPOABFENA;
             public const uint Action_LHCO = Raw.UIMPlaymode.Methods.LHCONMILJAO;
             public const uint Action_DFDJ = Raw.UIMPlaymode.Methods.DFDJKHEOCMG;
@@ -17329,6 +17480,8 @@ namespace BlockpostTrainer.Sdk
             public const int Value = Raw.UIMReward.Offsets.NGHMMDEBJNB;
             public const int Flag = Raw.UIMReward.Offsets.IKDNGCHECJE;
             public const int Speed_1 = Raw.UIMReward.Offsets.GMFPNBJGMBN;
+            public const uint Update = Raw.UIMReward.Methods.Update;
+            public const uint Awake = Raw.UIMReward.Methods.Awake;
             public const uint Action_HJOK = Raw.UIMReward.Methods.HJOKMBGCMNI;
             public const uint Action_PELM = Raw.UIMReward.Methods.PELMGLDGHLF;
             public const uint Action_GAHE = Raw.UIMReward.Methods.GAHEOEDEIMA;
@@ -17342,7 +17495,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_BKPI = Raw.UIMReward.Methods.BKPIMEADBHP;
             public const uint Action_GJHD = Raw.UIMReward.Methods.GJHDLLDKKBB;
             public const uint Action_MDNI = Raw.UIMReward.Methods.MDNIMPDBBMM;
-            public const uint Update = Raw.UIMReward.Methods.Update;
             public const uint Action_ONDJ = Raw.UIMReward.Methods.ONDJJNEOJMF;
             public const uint Action_NLAB = Raw.UIMReward.Methods.NLABHGPGLDJ;
             public const uint Action_PECJ = Raw.UIMReward.Methods.PECJCAOMDMC;
@@ -17351,7 +17503,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_HPHO = Raw.UIMReward.Methods.HPHONCKLEDA;
             public const uint Action_NCJK = Raw.UIMReward.Methods.NCJKOOMANAO;
             public const uint Action_EDGO = Raw.UIMReward.Methods.EDGOOGCIDJB;
-            public const uint Awake = Raw.UIMReward.Methods.Awake;
             public const uint Action_HGJC = Raw.UIMReward.Methods.HGJCGGBCAII;
             public const uint Action_OLCK = Raw.UIMReward.Methods.OLCKNABBDPJ;
             public const uint Action_LBIL = Raw.UIMReward.Methods.LBILKLFLAMA;
@@ -17387,13 +17538,13 @@ namespace BlockpostTrainer.Sdk
             public const int cs = Raw.UIMShop.Offsets.cs;
             public const int Flag = Raw.UIMShop.Offsets.EKBBCADNAOO;
             public const uint ForceDestroy = Raw.UIMShop.Methods.ForceDestroy;
-            public const uint Action_JLAI = Raw.UIMShop.Methods.JLAIHDNCMEH;
             public const uint Awake = Raw.UIMShop.Methods.Awake;
-            public const uint Action_DDED = Raw.UIMShop.Methods.DDEDNMDJDDI;
             public const uint Update = Raw.UIMShop.Methods.Update;
-            public const uint Action_BJIH = Raw.UIMShop.Methods.BJIHMIEGGNG;
             public const uint OnEnable = Raw.UIMShop.Methods.OnEnable;
             public const uint OnDestroy = Raw.UIMShop.Methods.OnDestroy;
+            public const uint Action_JLAI = Raw.UIMShop.Methods.JLAIHDNCMEH;
+            public const uint Action_DDED = Raw.UIMShop.Methods.DDEDNMDJDDI;
+            public const uint Action_BJIH = Raw.UIMShop.Methods.BJIHMIEGGNG;
             public const uint Action_NGGP = Raw.UIMShop.Methods.NGGPKKLBBLA;
             public const uint Action_JJAP = Raw.UIMShop.Methods.JJAPIHGDKCI;
             public const uint Action_NBPH = Raw.UIMShop.Methods.NBPHEHNACIC;
@@ -17413,6 +17564,11 @@ namespace BlockpostTrainer.Sdk
         {
             public const int cs = Raw.UIMTasks.Offsets.cs;
             public const int Flag = Raw.UIMTasks.Offsets.EKBBCADNAOO;
+            public const uint Awake = Raw.UIMTasks.Methods.Awake;
+            public const uint ForceDestroy = Raw.UIMTasks.Methods.ForceDestroy;
+            public const uint OnEnable = Raw.UIMTasks.Methods.OnEnable;
+            public const uint OnDestroy = Raw.UIMTasks.Methods.OnDestroy;
+            public const uint Update = Raw.UIMTasks.Methods.Update;
             public const uint Action_IJLK = Raw.UIMTasks.Methods.IJLKKJMLLOB;
             public const uint Action_GEPH = Raw.UIMTasks.Methods.GEPHCIEHNDF;
             public const uint Action_OMIB = Raw.UIMTasks.Methods.OMIBIILEAEJ;
@@ -17427,12 +17583,10 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_NLIJ = Raw.UIMTasks.Methods.NLIJHKKDFPA;
             public const uint Action_ACBL = Raw.UIMTasks.Methods.ACBLJMGMIIN;
             public const uint Action_NBII = Raw.UIMTasks.Methods.NBIIJADIEKJ;
-            public const uint Awake = Raw.UIMTasks.Methods.Awake;
             public const uint Action_AIMJ = Raw.UIMTasks.Methods.AIMJCMNLNKL;
             public const uint Action_HBPC = Raw.UIMTasks.Methods.HBPCGIPLIPG;
             public const uint Action_GBFK = Raw.UIMTasks.Methods.GBFKEPCHEIJ;
             public const uint Action_NIMB = Raw.UIMTasks.Methods.NIMBIJJGAEJ;
-            public const uint ForceDestroy = Raw.UIMTasks.Methods.ForceDestroy;
             public const uint Action_MPDB = Raw.UIMTasks.Methods.MPDBIDCEKJG;
             public const uint Action_FDGJ = Raw.UIMTasks.Methods.FDGJJJKKDNC;
             public const uint Action_IMJD = Raw.UIMTasks.Methods.IMJDFHEHAIK;
@@ -17448,14 +17602,12 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_JCCI = Raw.UIMTasks.Methods.JCCIEADEOCC;
             public const uint Action_MMGD = Raw.UIMTasks.Methods.MMGDMNJEPCP;
             public const uint Action_CAHL = Raw.UIMTasks.Methods.CAHLABCDODH;
-            public const uint OnEnable = Raw.UIMTasks.Methods.OnEnable;
             public const uint Action_NOBA = Raw.UIMTasks.Methods.NOBACFBGCPL;
             public const uint Action_HKDL = Raw.UIMTasks.Methods.HKDLGOMIMEO;
             public const uint Action_LJFI = Raw.UIMTasks.Methods.LJFIAHAIAGH;
             public const uint Action_EILJ = Raw.UIMTasks.Methods.EILJIIKFDMP;
             public const uint Action_BKPI = Raw.UIMTasks.Methods.BKPIMEADBHP;
             public const uint Action_LLNH = Raw.UIMTasks.Methods.LLNHECKAILD;
-            public const uint OnDestroy = Raw.UIMTasks.Methods.OnDestroy;
             public const uint Action_HNHA = Raw.UIMTasks.Methods.HNHAGLEHOJP;
             public const uint Action_MKCF = Raw.UIMTasks.Methods.MKCFHBLKINK;
             public const uint Action_CDHA = Raw.UIMTasks.Methods.CDHAPLPPNGI;
@@ -17525,7 +17677,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_FNGD = Raw.UIMTasks.Methods.FNGDBKMAEKP;
             public const uint Action_MIDK = Raw.UIMTasks.Methods.MIDKILFDDIL;
             public const uint Action_KNJM = Raw.UIMTasks.Methods.KNJMGLKPJGJ;
-            public const uint Update = Raw.UIMTasks.Methods.Update;
             public const uint Action_IJIE = Raw.UIMTasks.Methods.IJIEJMHCIKF;
             public const uint Action_PLEB = Raw.UIMTasks.Methods.PLEBBLINKLI;
             public const uint Action_GAMF = Raw.UIMTasks.Methods.GAMFMJCFNOC;
@@ -17541,6 +17692,12 @@ namespace BlockpostTrainer.Sdk
             public const int Count_1 = Raw.UIPalette.Offsets.MMNMDJBJCEE;
             public const int Speed = Raw.UIPalette.Offsets.HPFBMBLNDKG;
             public const int Speed_1 = Raw.UIPalette.Offsets.PKKCKAHIILK;
+            public const uint CreateInstance = Raw.UIPalette.Methods.CreateInstance;
+            public const uint Update = Raw.UIPalette.Methods.Update;
+            public const uint SetActive = Raw.UIPalette.Methods.SetActive;
+            public const uint get_IsShowed = Raw.UIPalette.Methods.get_IsShowed;
+            public const uint OnGUI_Imitation = Raw.UIPalette.Methods.OnGUI_Imitation;
+            public const uint SetActiveGameObject = Raw.UIPalette.Methods.SetActiveGameObject;
             public const uint GetBool_GOEA = Raw.UIPalette.Methods.GOEAAAMOLCJ;
             public const uint GetBool_FKDD = Raw.UIPalette.Methods.FKDDMKLKCEC;
             public const uint Action_FNGI = Raw.UIPalette.Methods.FNGINHKNLKI;
@@ -17564,13 +17721,9 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_HLPF = Raw.UIPalette.Methods.HLPFOMAALDD;
             public const uint Action_EEJD = Raw.UIPalette.Methods.EEJDPGFHHKO;
             public const uint Action_MBAH = Raw.UIPalette.Methods.MBAHJKAOMFK;
-            public const uint CreateInstance = Raw.UIPalette.Methods.CreateInstance;
             public const uint Action_OHIM = Raw.UIPalette.Methods.OHIMOKALKIO;
             public const uint Action_BELD = Raw.UIPalette.Methods.BELDNKMNJFC;
-            public const uint Update = Raw.UIPalette.Methods.Update;
-            public const uint SetActive = Raw.UIPalette.Methods.SetActive;
             public const uint Action_LDLK = Raw.UIPalette.Methods.LDLKDOJEOGN;
-            public const uint get_IsShowed = Raw.UIPalette.Methods.get_IsShowed;
             public const uint GetBool_LJBJ = Raw.UIPalette.Methods.LJBJENOAIBG;
             public const uint Action_PGKN = Raw.UIPalette.Methods.PGKNALCFNPA;
             public const uint Action_GBJN = Raw.UIPalette.Methods.GBJNMLFAAFK;
@@ -17632,7 +17785,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_EPOD = Raw.UIPalette.Methods.EPODLFBABMG;
             public const uint Action_GDFH = Raw.UIPalette.Methods.GDFHHCDAEFF;
             public const uint GetBool_KGCK = Raw.UIPalette.Methods.KGCKECKKKEG;
-            public const uint OnGUI_Imitation = Raw.UIPalette.Methods.OnGUI_Imitation;
             public const uint Action_AFIF = Raw.UIPalette.Methods.AFIFGKFHAFA;
             public const uint Action_AJJK = Raw.UIPalette.Methods.AJJKLMFCKEJ;
             public const uint Action_HPEO = Raw.UIPalette.Methods.HPEOIBOELMD;
@@ -17674,7 +17826,6 @@ namespace BlockpostTrainer.Sdk
             public const uint GetBool_IGEF = Raw.UIPalette.Methods.IGEFNJHFCJD;
             public const uint Action_FJFO = Raw.UIPalette.Methods.FJFOPJAGGEB;
             public const uint GetBool_NHBN = Raw.UIPalette.Methods.NHBNLEFOJAB;
-            public const uint SetActiveGameObject = Raw.UIPalette.Methods.SetActiveGameObject;
             public const uint Action_OGBG = Raw.UIPalette.Methods.OGBGNPDJAKB;
             public const uint Action_BHBO = Raw.UIPalette.Methods.BHBONLLHDBG;
             public const uint Action_IJLM = Raw.UIPalette.Methods.IJLMEIAIKNL;
@@ -17694,6 +17845,8 @@ namespace BlockpostTrainer.Sdk
             public const int colorImage = Raw.UIPaletteColorPreview.Offsets.colorImage;
             public const int selectionImage = Raw.UIPaletteColorPreview.Offsets.selectionImage;
             public const int selectionColorImage = Raw.UIPaletteColorPreview.Offsets.selectionColorImage;
+            public const uint SetColor = Raw.UIPaletteColorPreview.Methods.SetColor;
+            public const uint SetSelected = Raw.UIPaletteColorPreview.Methods.SetSelected;
             public const uint Action_IACI = Raw.UIPaletteColorPreview.Methods.IACIHCMDGHI;
             public const uint Action_NAJF = Raw.UIPaletteColorPreview.Methods.NAJFKCEIGGC;
             public const uint Action_AIKL = Raw.UIPaletteColorPreview.Methods.AIKLHPOCBAD;
@@ -17723,7 +17876,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_JPOM = Raw.UIPaletteColorPreview.Methods.JPOMBPDCFMO;
             public const uint Action_OFGM = Raw.UIPaletteColorPreview.Methods.OFGMINILJIA;
             public const uint Action_HCGP = Raw.UIPaletteColorPreview.Methods.HCGPMADANPP;
-            public const uint SetColor = Raw.UIPaletteColorPreview.Methods.SetColor;
             public const uint Action_KDFC = Raw.UIPaletteColorPreview.Methods.KDFCBAMPLPA;
             public const uint Action_HDJB = Raw.UIPaletteColorPreview.Methods.HDJBPDONGEG;
             public const uint Action_EBAP = Raw.UIPaletteColorPreview.Methods.EBAPLJCECHL;
@@ -17731,7 +17883,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_HGJC = Raw.UIPaletteColorPreview.Methods.HGJCKDJHNPB;
             public const uint Action_PAFG = Raw.UIPaletteColorPreview.Methods.PAFGFCJMDOM;
             public const uint Action_FAAB = Raw.UIPaletteColorPreview.Methods.FAABMDFGPKG;
-            public const uint SetSelected = Raw.UIPaletteColorPreview.Methods.SetSelected;
             public const uint Action_KPNA = Raw.UIPaletteColorPreview.Methods.KPNAMOEJACA;
             public const uint Action_AJMK = Raw.UIPaletteColorPreview.Methods.AJMKNPHMEPE;
             public const uint Action_LIPH = Raw.UIPaletteColorPreview.Methods.LIPHEKLNPHI;
@@ -17773,6 +17924,7 @@ namespace BlockpostTrainer.Sdk
 
         public static class HashUtil
         {
+            public const uint Calc = Raw.UtilHash.Methods.Calc;
             public const uint GetString_BLHN = Raw.UtilHash.Methods.BLHNBKCMLPJ;
             public const uint GetString_BKPK = Raw.UtilHash.Methods.BKPKALPCFCP;
             public const uint GetString_JIFC = Raw.UtilHash.Methods.JIFCNBNDIPE;
@@ -17781,7 +17933,6 @@ namespace BlockpostTrainer.Sdk
             public const uint GetString_EKAN = Raw.UtilHash.Methods.EKANDFMBMPC;
             public const uint GetString_BCOK = Raw.UtilHash.Methods.BCOKKBDPENM;
             public const uint GetString_MKJA = Raw.UtilHash.Methods.MKJAGKMLHJK;
-            public const uint Calc = Raw.UtilHash.Methods.Calc;
             public const uint GetString_JGMK = Raw.UtilHash.Methods.JGMKANPNBPM;
             public const uint GetString_PEIC = Raw.UtilHash.Methods.PEICMDCHNIB;
             public const uint GetString_CHNA = Raw.UtilHash.Methods.CHNAOIOCDDP;
@@ -17792,6 +17943,7 @@ namespace BlockpostTrainer.Sdk
             public const int h = Raw.VInput.Offsets.h;
             public const int v = Raw.VInput.Offsets.v;
             public const int go = Raw.VInput.Offsets.go;
+            public const uint Update = Raw.VInput.Methods.Update;
             public const uint Action_JDNK = Raw.VInput.Methods.JDNKHNPGPNM;
             public const uint Action_HFAP = Raw.VInput.Methods.HFAPEPBIEEP;
             public const uint Action_BMAA = Raw.VInput.Methods.BMAAKMCPKOK;
@@ -17806,7 +17958,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_DEAH = Raw.VInput.Methods.DEAHMNPJFIG;
             public const uint Action_COHD = Raw.VInput.Methods.COHDPGJCBME;
             public const uint Action_EJEK = Raw.VInput.Methods.EJEKLABNLEC;
-            public const uint Update = Raw.VInput.Methods.Update;
             public const uint Action_GCPE = Raw.VInput.Methods.GCPEPANDFNB;
             public const uint Action_GIHF = Raw.VInput.Methods.GIHFCKKONHG;
             public const uint Action_DDCG = Raw.VInput.Methods.DDCGNOJIKDI;
@@ -17852,8 +18003,16 @@ namespace BlockpostTrainer.Sdk
         public static class BattleMap
         {
             public const int m_Debug = Raw.VoxelBattleMap.Offsets.m_Debug;
-            public const uint GetString_JIBP = Raw.VoxelBattleMap.Methods.JIBPPDMGPFJ;
             public const uint NewEmpty = Raw.VoxelBattleMap.Methods.NewEmpty;
+            public const uint Load = Raw.VoxelBattleMap.Methods.Load;
+            public const uint Awake = Raw.VoxelBattleMap.Methods.Awake;
+            public const uint Save = Raw.VoxelBattleMap.Methods.Save;
+            public const uint get_Loaded = Raw.VoxelBattleMap.Methods.get_Loaded;
+            public const uint get_MapData = Raw.VoxelBattleMap.Methods.get_MapData;
+            public const uint get_Instance = Raw.VoxelBattleMap.Methods.get_Instance;
+            public const uint get_MapsDirectory = Raw.VoxelBattleMap.Methods.get_MapsDirectory;
+            public const uint GetMapPath = Raw.VoxelBattleMap.Methods.GetMapPath;
+            public const uint GetString_JIBP = Raw.VoxelBattleMap.Methods.JIBPPDMGPFJ;
             public const uint Action_ANEE = Raw.VoxelBattleMap.Methods.ANEEGFHPMCO;
             public const uint GetInt_GBIP = Raw.VoxelBattleMap.Methods.GBIPABPJLLK;
             public const uint GetString_CGDE = Raw.VoxelBattleMap.Methods.CGDEKHAOOGG;
@@ -17863,7 +18022,6 @@ namespace BlockpostTrainer.Sdk
             public const uint GetString_MILL = Raw.VoxelBattleMap.Methods.MILLPCJMDOE;
             public const uint Get_HAIK = Raw.VoxelBattleMap.Methods.HAIKMECODBG;
             public const uint GetBool_HFDI = Raw.VoxelBattleMap.Methods.HFDIGEEPDLK;
-            public const uint Load = Raw.VoxelBattleMap.Methods.Load;
             public const uint GetBool_MPKO = Raw.VoxelBattleMap.Methods.MPKOOFKNOCJ;
             public const uint GetString_NPKH = Raw.VoxelBattleMap.Methods.NPKHJKAOLKP;
             public const uint GetBool_FAHD = Raw.VoxelBattleMap.Methods.FAHDCMBOKBO;
@@ -17892,18 +18050,15 @@ namespace BlockpostTrainer.Sdk
             public const uint GetInt_OLCM = Raw.VoxelBattleMap.Methods.OLCMMDPHBJP;
             public const uint Action_DIAJ = Raw.VoxelBattleMap.Methods.DIAJPAGLNNI;
             public const uint Action_AGPA = Raw.VoxelBattleMap.Methods.AGPAAAMIJCN;
-            public const uint Awake = Raw.VoxelBattleMap.Methods.Awake;
             public const uint GetString_BPIJ = Raw.VoxelBattleMap.Methods.BPIJADCBNIK;
             public const uint GetBool_KFCN = Raw.VoxelBattleMap.Methods.KFCNAJBPHEK;
             public const uint Action_PKJE = Raw.VoxelBattleMap.Methods.PKJEAGNHGBM;
             public const uint Get_HNBO = Raw.VoxelBattleMap.Methods.HNBOKBJPLKC;
             public const uint Action_OMFD = Raw.VoxelBattleMap.Methods.OMFDIBAPIIA;
-            public const uint Save = Raw.VoxelBattleMap.Methods.Save;
             public const uint Action_MNAO = Raw.VoxelBattleMap.Methods.MNAOBAEIHKE;
             public const uint Get_JGIM = Raw.VoxelBattleMap.Methods.JGIMOKDCKGD;
             public const uint GetString_AAKA = Raw.VoxelBattleMap.Methods.AAKAHANLFCK;
             public const uint Get_OLLM = Raw.VoxelBattleMap.Methods.OLLMGKLDEMH;
-            public const uint get_Loaded = Raw.VoxelBattleMap.Methods.get_Loaded;
             public const uint GetString_OPJK = Raw.VoxelBattleMap.Methods.OPJKJKGEBME;
             public const uint GetBool_CEFH = Raw.VoxelBattleMap.Methods.CEFHMBFCCBC;
             public const uint Action_MEPI = Raw.VoxelBattleMap.Methods.MEPIIBCIDBG;
@@ -17917,7 +18072,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_GFAO = Raw.VoxelBattleMap.Methods.GFAOIEGNKPA;
             public const uint Action_DIPF = Raw.VoxelBattleMap.Methods.DIPFFHPHLHP;
             public const uint Get_OLGC = Raw.VoxelBattleMap.Methods.OLGCPJNDEPF;
-            public const uint get_MapData = Raw.VoxelBattleMap.Methods.get_MapData;
             public const uint Get_IDHC = Raw.VoxelBattleMap.Methods.IDHCJBIOAKH;
             public const uint Get_DAAL = Raw.VoxelBattleMap.Methods.DAALNPAHDEC;
             public const uint GetString_APLO = Raw.VoxelBattleMap.Methods.APLOAPHLLNF;
@@ -17947,14 +18101,11 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_IJCI = Raw.VoxelBattleMap.Methods.IJCINEFHDFD;
             public const uint Action_CGNO = Raw.VoxelBattleMap.Methods.CGNOPOEBNDE;
             public const uint Get_DEFJ = Raw.VoxelBattleMap.Methods.DEFJGCBJHMA;
-            public const uint get_Instance = Raw.VoxelBattleMap.Methods.get_Instance;
             public const uint Action_ALGB = Raw.VoxelBattleMap.Methods.ALGBIPDGLHL;
             public const uint GetBool_PFLP = Raw.VoxelBattleMap.Methods.PFLPLANMJPP;
-            public const uint get_MapsDirectory = Raw.VoxelBattleMap.Methods.get_MapsDirectory;
             public const uint Action_KACP = Raw.VoxelBattleMap.Methods.KACPLKJODAA;
             public const uint Action_IIEE = Raw.VoxelBattleMap.Methods.IIEELBCFAPF;
             public const uint GetBool_LGIK = Raw.VoxelBattleMap.Methods.LGIKENBLHDI;
-            public const uint GetMapPath = Raw.VoxelBattleMap.Methods.GetMapPath;
             public const uint GetString_BBGA = Raw.VoxelBattleMap.Methods.BBGABAIBHBA;
             public const uint Action_OCJF = Raw.VoxelBattleMap.Methods.OCJFKNNPECN;
             public const uint GetString_AIMF = Raw.VoxelBattleMap.Methods.AIMFKLBNCPA;
@@ -17989,6 +18140,9 @@ namespace BlockpostTrainer.Sdk
         {
             public const int data = Raw.VoxelMapLight.Offsets.data;
             public const int Texture = Raw.VoxelMapLight.Offsets.BDOHAEHAHCH;
+            public const uint GenerateLight = Raw.VoxelMapLight.Methods.GenerateLight;
+            public const uint ClearData = Raw.VoxelMapLight.Methods.ClearData;
+            public const uint GetData = Raw.VoxelMapLight.Methods.GetData;
             public const uint GetInt_LIPJ = Raw.VoxelMapLight.Methods.LIPJAPIPINF;
             public const uint Action_CJPA = Raw.VoxelMapLight.Methods.CJPAMKLGNNF;
             public const uint GetInt_IPPJ = Raw.VoxelMapLight.Methods.IPPJKBGCIMC;
@@ -18029,8 +18183,6 @@ namespace BlockpostTrainer.Sdk
             public const uint Action_JIGG = Raw.VoxelMapLight.Methods.JIGGJEPIAAB;
             public const uint GetInt_EAJM = Raw.VoxelMapLight.Methods.EAJMLKIHCLE;
             public const uint GetInt_NFCG = Raw.VoxelMapLight.Methods.NFCGGNAJKMK;
-            public const uint GenerateLight = Raw.VoxelMapLight.Methods.GenerateLight;
-            public const uint ClearData = Raw.VoxelMapLight.Methods.ClearData;
             public const uint Action_AHJN = Raw.VoxelMapLight.Methods.AHJNFDCMAGE;
             public const uint GetInt_OIKH = Raw.VoxelMapLight.Methods.OIKHIEGAHMJ;
             public const uint Action_CLHC = Raw.VoxelMapLight.Methods.CLHCEHGFPFH;
@@ -18051,7 +18203,6 @@ namespace BlockpostTrainer.Sdk
             public const uint GetInt_ABMK = Raw.VoxelMapLight.Methods.ABMKMLMOKMK;
             public const uint Action_HLOG = Raw.VoxelMapLight.Methods.HLOGKKDHMHE;
             public const uint Action_MFDJ = Raw.VoxelMapLight.Methods.MFDJIDGHJII;
-            public const uint GetData = Raw.VoxelMapLight.Methods.GetData;
             public const uint GetInt_NDFE = Raw.VoxelMapLight.Methods.NDFEJNBDNHG;
             public const uint GetInt_KHJN = Raw.VoxelMapLight.Methods.KHJNCGGIDIH;
             public const uint Action_IJDG = Raw.VoxelMapLight.Methods.IJDGLAKGLJP;
@@ -18082,25 +18233,25 @@ namespace BlockpostTrainer.Sdk
             public const int Id = Raw.dbgNet.Offsets.BCFNLGFPOJG;
             public const int Id_1 = Raw.dbgNet.Offsets.CEFPOPJOIPC;
             public const int Id_2 = Raw.dbgNet.Offsets.GCGEBEGKKBJ;
+            public const uint AddFrame = Raw.dbgNet.Methods.AddFrame;
+            public const uint Start = Raw.dbgNet.Methods.Start;
+            public const uint Awake = Raw.dbgNet.Methods.Awake;
+            public const uint OnGUI = Raw.dbgNet.Methods.OnGUI;
+            public const uint OnResize = Raw.dbgNet.Methods.OnResize;
             public const uint Action_FGPK = Raw.dbgNet.Methods.FGPKCFBEKCM;
             public const uint Action_LAAO = Raw.dbgNet.Methods.LAAOJCJGFKL;
             public const uint Action_HAAA = Raw.dbgNet.Methods.HAAAMKONHNN;
             public const uint Action_MGHF = Raw.dbgNet.Methods.MGHFADELFIK;
-            public const uint AddFrame = Raw.dbgNet.Methods.AddFrame;
             public const uint Action_OKNK = Raw.dbgNet.Methods.OKNKJGGKEJO;
             public const uint Action_MEPI = Raw.dbgNet.Methods.MEPIIBCIDBG;
             public const uint Action_EBAK = Raw.dbgNet.Methods.EBAKJBEOFOJ;
             public const uint Action_DCLI = Raw.dbgNet.Methods.DCLIHIMBPAK;
-            public const uint Start = Raw.dbgNet.Methods.Start;
             public const uint Action_DAPD = Raw.dbgNet.Methods.DAPDODCLAMO;
             public const uint Action_DAHJ = Raw.dbgNet.Methods.DAHJPGMJNAO;
             public const uint Action_KBGE = Raw.dbgNet.Methods.KBGEILKEHJO;
-            public const uint Awake = Raw.dbgNet.Methods.Awake;
             public const uint Action_OBFA = Raw.dbgNet.Methods.OBFAMNNCOID;
             public const uint Action_EKED = Raw.dbgNet.Methods.EKEDIJPFMAO;
-            public const uint OnGUI = Raw.dbgNet.Methods.OnGUI;
             public const uint Action_JNIH = Raw.dbgNet.Methods.JNIHNMBHNKI;
-            public const uint OnResize = Raw.dbgNet.Methods.OnResize;
             public const uint Action_EIBA = Raw.dbgNet.Methods.EIBACMJMPKH;
             public const uint Action_HOEN = Raw.dbgNet.Methods.HOENGBIEHCO;
             public const uint Action_IOCF = Raw.dbgNet.Methods.IOCFKNGCFDC;

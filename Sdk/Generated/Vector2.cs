@@ -101,11 +101,11 @@ namespace BlockpostTrainer.Sdk.Raw
             /// <summary>op_UnaryNegation(Vector2 a) -> Vector2</summary>
             public const uint op_UnaryNegation = 0x112e8cf0; // public static Vector2 op_UnaryNegation(Vector2 a)
             /// <summary>op_Multiply(Vector2 a, float d) -> Vector2</summary>
-            public const uint op_Multiply_2 = 0x112e8c60; // public static Vector2 op_Multiply(Vector2 a, float d)
+            public const uint op_Multiply_1 = 0x112e8c60; // public static Vector2 op_Multiply(Vector2 a, float d)
             /// <summary>op_Multiply(float d, Vector2 a) -> Vector2</summary>
-            public const uint op_Multiply_3 = 0x112e8c90; // public static Vector2 op_Multiply(float d, Vector2 a)
+            public const uint op_Multiply_2 = 0x112e8c90; // public static Vector2 op_Multiply(float d, Vector2 a)
             /// <summary>op_Division(Vector2 a, float d) -> Vector2</summary>
-            public const uint op_Division_2 = 0x112e8b50; // public static Vector2 op_Division(Vector2 a, float d)
+            public const uint op_Division_1 = 0x112e8b50; // public static Vector2 op_Division(Vector2 a, float d)
             /// <summary>op_Equality(Vector2 lhs, Vector2 rhs) -> bool</summary>
             public const uint op_Equality = 0x112e8bb0; // public static bool op_Equality(Vector2 lhs, Vector2 rhs)
             /// <summary>op_Inequality(Vector2 lhs, Vector2 rhs) -> bool</summary>
@@ -113,7 +113,7 @@ namespace BlockpostTrainer.Sdk.Raw
             /// <summary>op_Implicit(Vector3 v) -> Vector2</summary>
             public const uint op_Implicit = 0x112e8bf0; // public static Vector2 op_Implicit(Vector3 v)
             /// <summary>op_Implicit(Vector2 v) -> Vector3</summary>
-            public const uint op_Implicit_2 = 0x1041b5a0; // public static Vector3 op_Implicit(Vector2 v)
+            public const uint op_Implicit_1 = 0x1041b5a0; // public static Vector3 op_Implicit(Vector2 v)
             /// <summary>get_zero() -> Vector2</summary>
             public const uint get_zero = 0x112e8ad0; // public static Vector2 get_zero()
             /// <summary>get_one() -> Vector2</summary>

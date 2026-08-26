@@ -35,15 +35,15 @@ namespace BlockpostTrainer.Sdk.Raw
             /// <summary>Play() -> bool</summary>
             public const uint Play = 0x112b6cc0; // public bool Play()
             /// <summary>Play(PlayMode mode) -> bool</summary>
-            public const uint Play_2 = 0x112b6c90; // public bool Play(PlayMode mode)
+            public const uint Play_1 = 0x112b6c90; // public bool Play(PlayMode mode)
             /// <summary>PlayDefaultAnimation(PlayMode mode) -> bool</summary>
             public const uint PlayDefaultAnimation = 0x112b6c90; // private bool PlayDefaultAnimation(PlayMode mode)
             /// <summary>AddClip(AnimationClip clip, string newName)</summary>
             public const uint AddClip = 0x112b6aa0; // public void AddClip(AnimationClip clip, string newName)
             /// <summary>AddClip(AnimationClip clip, string newName, int firstFrame, int lastFrame)</summary>
-            public const uint AddClip_2 = 0x112b6a70; // public void AddClip(AnimationClip clip, string newName, int firstFrame, int lastFrame)
+            public const uint AddClip_1 = 0x112b6a70; // public void AddClip(AnimationClip clip, string newName, int firstFrame, int lastFrame)
             /// <summary>AddClip(AnimationClip clip, string newName, int firstFrame, int lastFrame, bool addLoopFrame)</summary>
-            public const uint AddClip_3 = 0x112b6ae0; // public void AddClip(AnimationClip clip, string newName, int firstFrame, int lastFrame, bool addLoopFrame)
+            public const uint AddClip_2 = 0x112b6ae0; // public void AddClip(AnimationClip clip, string newName, int firstFrame, int lastFrame, bool addLoopFrame)
             /// <summary>GetState(string name) -> AnimationState</summary>
             public const uint GetState = 0x112b6c60; // internal AnimationState GetState(string name)
             /// <summary>GetStateAtIndex(int index) -> AnimationState</summary>

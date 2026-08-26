@@ -47,15 +47,15 @@ namespace BlockpostTrainer.Sdk.Raw
             /// <summary>.ctor(float r, float g, float b, float a)</summary>
             public const uint ctor = 0x1019e000; // public void .ctor(float r, float g, float b, float a)
             /// <summary>.ctor(float r, float g, float b)</summary>
-            public const uint ctor_2 = 0x112bc8c0; // public void .ctor(float r, float g, float b)
+            public const uint ctor_1 = 0x112bc8c0; // public void .ctor(float r, float g, float b)
             /// <summary>op_Addition(Color a, Color b) -> Color</summary>
             public const uint op_Addition = 0x112bca90; // public static Color op_Addition(Color a, Color b)
             /// <summary>op_Multiply(Color a, Color b) -> Color</summary>
             public const uint op_Multiply = 0x112bcc40; // public static Color op_Multiply(Color a, Color b)
             /// <summary>op_Multiply(Color a, float b) -> Color</summary>
-            public const uint op_Multiply_2 = 0x112bcbe0; // public static Color op_Multiply(Color a, float b)
+            public const uint op_Multiply_1 = 0x112bcbe0; // public static Color op_Multiply(Color a, float b)
             /// <summary>op_Multiply(float b, Color a) -> Color</summary>
-            public const uint op_Multiply_3 = 0x112bcc10; // public static Color op_Multiply(float b, Color a)
+            public const uint op_Multiply_2 = 0x112bcc10; // public static Color op_Multiply(float b, Color a)
             /// <summary>op_Division(Color a, float b) -> Color</summary>
             public const uint op_Division = 0x112bcae0; // public static Color op_Division(Color a, float b)
             /// <summary>op_Equality(Color lhs, Color rhs) -> bool</summary>
@@ -97,7 +97,7 @@ namespace BlockpostTrainer.Sdk.Raw
             /// <summary>op_Implicit(Color c) -> Vector4</summary>
             public const uint op_Implicit = 0x112bcb70; // public static Vector4 op_Implicit(Color c)
             /// <summary>op_Implicit(Vector4 v) -> Color</summary>
-            public const uint op_Implicit_2 = 0x112bcb70; // public static Color op_Implicit(Vector4 v)
+            public const uint op_Implicit_1 = 0x112bcb70; // public static Color op_Implicit(Vector4 v)
         }
     }
 }

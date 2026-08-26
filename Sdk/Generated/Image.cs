@@ -77,7 +77,7 @@ namespace BlockpostTrainer.Sdk.Raw
             /// <summary>GetTextureDisplaySize(Texture texture) -> Vector2</summary>
             public const uint GetTextureDisplaySize = 0x113e9cf0; // private Vector2 GetTextureDisplaySize(Texture texture)
             /// <summary>GetTextureDisplaySize(Sprite sprite) -> Vector2</summary>
-            public const uint GetTextureDisplaySize_2 = 0x113e9de0; // private Vector2 GetTextureDisplaySize(Sprite sprite)
+            public const uint GetTextureDisplaySize_1 = 0x113e9de0; // private Vector2 GetTextureDisplaySize(Sprite sprite)
             /// <summary>OnGenerateVisualContent(MeshGenerationContext mgc)</summary>
             public const uint OnGenerateVisualContent = 0x113ea440; // private void OnGenerateVisualContent(MeshGenerationContext mgc)
             /// <summary>OnCustomStyleResolved(CustomStyleResolvedEvent e)</summary>

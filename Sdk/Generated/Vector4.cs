@@ -62,7 +62,7 @@ namespace BlockpostTrainer.Sdk.Raw
             /// <summary>op_Multiply(Vector4 a, float d) -> Vector4</summary>
             public const uint op_Multiply = 0x112bcbe0; // public static Vector4 op_Multiply(Vector4 a, float d)
             /// <summary>op_Multiply(float d, Vector4 a) -> Vector4</summary>
-            public const uint op_Multiply_2 = 0x112bcc10; // public static Vector4 op_Multiply(float d, Vector4 a)
+            public const uint op_Multiply_1 = 0x112bcc10; // public static Vector4 op_Multiply(float d, Vector4 a)
             /// <summary>op_Division(Vector4 a, float d) -> Vector4</summary>
             public const uint op_Division = 0x112bcae0; // public static Vector4 op_Division(Vector4 a, float d)
             /// <summary>op_Equality(Vector4 lhs, Vector4 rhs) -> bool</summary>
@@ -72,7 +72,7 @@ namespace BlockpostTrainer.Sdk.Raw
             /// <summary>op_Implicit(Vector3 v) -> Vector4</summary>
             public const uint op_Implicit = 0x112e9790; // public static Vector4 op_Implicit(Vector3 v)
             /// <summary>op_Implicit(Vector2 v) -> Vector4</summary>
-            public const uint op_Implicit_2 = 0x112e97d0; // public static Vector4 op_Implicit(Vector2 v)
+            public const uint op_Implicit_1 = 0x112e97d0; // public static Vector4 op_Implicit(Vector2 v)
             /// <summary>SqrMagnitude(Vector4 a) -> float</summary>
             public const uint SqrMagnitude = 0x112e9350; // public static float SqrMagnitude(Vector4 a)
             public const uint cctor = 0x112e95e0; // private static void .cctor()

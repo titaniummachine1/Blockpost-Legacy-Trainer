@@ -122,7 +122,7 @@ namespace BlockpostTrainer.Sdk.Raw
             public const uint MAMJFAEAPHG = 0x10aa83a0; // internal void MAMJFAEAPHG()
             /// <summary>BLPCNHBKJAJ(byte[] PEGEIKDNHLL, int FKEHEHGFNBD)</summary>
             public const uint BLPCNHBKJAJ = 0x10aa4be0; // internal void BLPCNHBKJAJ(byte[] PEGEIKDNHLL, int FKEHEHGFNBD)
-            public const uint LMLFOLHCDGG_2 = 0x10aa7fb0; // internal void LMLFOLHCDGG()
+            public const uint LMLFOLHCDGG_1 = 0x10aa7fb0; // internal void LMLFOLHCDGG()
             public const uint AMLECMHLJFE = 0x10aa4890; // internal void AMLECMHLJFE()
             /// <summary>KPBPDBDDOFG(byte[] PEGEIKDNHLL, int FKEHEHGFNBD)</summary>
             public const uint KPBPDBDDOFG = 0x10aa76c0; // internal void KPBPDBDDOFG(byte[] PEGEIKDNHLL, int FKEHEHGFNBD)

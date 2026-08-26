@@ -86,7 +86,7 @@ namespace BlockpostTrainer.Sdk.Raw
             /// <summary>Build(int[,,] IODDKDHBMFF, Color[,,] JFFLHBFAGOM) -> Mesh</summary>
             public const uint Build = 0x1059acb0; // public static Mesh Build(int[,,] IODDKDHBMFF, Color[,,] JFFLHBFAGOM)
             /// <summary>Build() -> Mesh</summary>
-            public const uint Build_2 = 0x1059ad30; // public static Mesh Build()
+            public const uint Build_1 = 0x1059ad30; // public static Mesh Build()
             public const uint GKDEFIJJJFD = 0x1059fa80; // private void GKDEFIJJJFD()
             /// <summary>KCJPFFDALGI(int BCJADOIPFHE, int IAIHGIDAJEK, int LICHKMCHMMF) -> Color</summary>
             public const uint KCJPFFDALGI = 0x105a07e0; // private static Color KCJPFFDALGI(int BCJADOIPFHE, int IAIHGIDAJEK, int LICHKMCHMMF)
@@ -113,7 +113,7 @@ namespace BlockpostTrainer.Sdk.Raw
             /// <summary>EBDJEJBBOAA(int BCJADOIPFHE, int IAIHGIDAJEK, int LICHKMCHMMF) -> Color</summary>
             public const uint EBDJEJBBOAA = 0x1059e540; // private static Color EBDJEJBBOAA(int BCJADOIPFHE, int IAIHGIDAJEK, int LICHKMCHMMF)
             /// <summary>COEGDOAPEDD(int BCJADOIPFHE, int IAIHGIDAJEK, int LICHKMCHMMF) -> bool</summary>
-            public const uint COEGDOAPEDD_2 = 0x1059cd20; // private static bool COEGDOAPEDD(int BCJADOIPFHE, int IAIHGIDAJEK, int LICHKMCHMMF)
+            public const uint COEGDOAPEDD_1 = 0x1059cd20; // private static bool COEGDOAPEDD(int BCJADOIPFHE, int IAIHGIDAJEK, int LICHKMCHMMF)
             /// <summary>IPJDBJLGCBM() -> Mesh</summary>
             public const uint IPJDBJLGCBM = 0x105a02b0; // public static Mesh IPJDBJLGCBM()
             /// <summary>KNPBAGFKJGE(int BCJADOIPFHE, int IAIHGIDAJEK, int LICHKMCHMMF) -> Color</summary>
@@ -126,7 +126,7 @@ namespace BlockpostTrainer.Sdk.Raw
             public const uint EKAKICKOLEG = 0x1059e770; // public static Mesh EKAKICKOLEG()
             public const uint ctor = 0x101a6520; // public void .ctor()
             /// <summary>Build(LOMEPCOKKCB NPHGPNPOANC) -> Mesh</summary>
-            public const uint Build_3 = 0x1059caa0; // public static Mesh Build(LOMEPCOKKCB NPHGPNPOANC)
+            public const uint Build_2 = 0x1059caa0; // public static Mesh Build(LOMEPCOKKCB NPHGPNPOANC)
         }
     }
 }

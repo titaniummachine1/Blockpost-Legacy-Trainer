@@ -101,7 +101,7 @@ namespace BlockpostTrainer.Sdk.Raw
             /// <summary>.ctor(float x, float y, float z)</summary>
             public const uint ctor = 0x1019e490; // public void .ctor(float x, float y, float z)
             /// <summary>.ctor(float x, float y)</summary>
-            public const uint ctor_2 = 0x112d2920; // public void .ctor(float x, float y)
+            public const uint ctor_1 = 0x112d2920; // public void .ctor(float x, float y)
             /// <summary>Set(float newX, float newY, float newZ)</summary>
             public const uint Set = 0x1019e490; // public void Set(float newX, float newY, float newZ)
             /// <summary>Cross(Vector3 lhs, Vector3 rhs) -> Vector3</summary>
@@ -110,7 +110,7 @@ namespace BlockpostTrainer.Sdk.Raw
             public const uint Reflect = 0x112d2480; // public static Vector3 Reflect(Vector3 inDirection, Vector3 inNormal)
             /// <summary>Normalize(Vector3 value) -> Vector3</summary>
             public const uint Normalize = 0x1041b5d0; // public static Vector3 Normalize(Vector3 value)
-            public const uint Normalize_2 = 0x1019e370; // public void Normalize()
+            public const uint Normalize_1 = 0x1019e370; // public void Normalize()
             /// <summary>get_normalized() -> Vector3</summary>
             public const uint get_normalized = 0x112d2b10; // public Vector3 get_normalized()
             /// <summary>Dot(Vector3 lhs, Vector3 rhs) -> float</summary>
@@ -160,7 +160,7 @@ namespace BlockpostTrainer.Sdk.Raw
             /// <summary>op_Multiply(Vector3 a, float d) -> Vector3</summary>
             public const uint op_Multiply = 0x112d2d90; // public static Vector3 op_Multiply(Vector3 a, float d)
             /// <summary>op_Multiply(float d, Vector3 a) -> Vector3</summary>
-            public const uint op_Multiply_2 = 0x112d2d50; // public static Vector3 op_Multiply(float d, Vector3 a)
+            public const uint op_Multiply_1 = 0x112d2d50; // public static Vector3 op_Multiply(float d, Vector3 a)
             /// <summary>op_Division(Vector3 a, float d) -> Vector3</summary>
             public const uint op_Division = 0x1019e6c0; // public static Vector3 op_Division(Vector3 a, float d)
             /// <summary>op_Equality(Vector3 lhs, Vector3 rhs) -> bool</summary>

@@ -147,19 +147,19 @@ namespace BlockpostTrainer.Sdk.Raw
             /// <summary>ScreenToWorldPoint(Vector3 position, Camera.MonoOrStereoscopicEye eye) -> Vector3</summary>
             public const uint ScreenToWorldPoint = 0x112bb590; // public Vector3 ScreenToWorldPoint(Vector3 position, Camera.MonoOrStereoscopicEye eye)
             /// <summary>WorldToScreenPoint(Vector3 position) -> Vector3</summary>
-            public const uint WorldToScreenPoint_2 = 0x112bb700; // public Vector3 WorldToScreenPoint(Vector3 position)
+            public const uint WorldToScreenPoint_1 = 0x112bb700; // public Vector3 WorldToScreenPoint(Vector3 position)
             /// <summary>WorldToViewportPoint(Vector3 position) -> Vector3</summary>
-            public const uint WorldToViewportPoint_2 = 0x112bb810; // public Vector3 WorldToViewportPoint(Vector3 position)
+            public const uint WorldToViewportPoint_1 = 0x112bb810; // public Vector3 WorldToViewportPoint(Vector3 position)
             /// <summary>ScreenToWorldPoint(Vector3 position) -> Vector3</summary>
-            public const uint ScreenToWorldPoint_2 = 0x112bb5e0; // public Vector3 ScreenToWorldPoint(Vector3 position)
+            public const uint ScreenToWorldPoint_1 = 0x112bb5e0; // public Vector3 ScreenToWorldPoint(Vector3 position)
             /// <summary>ScreenToViewportPoint(Vector3 position) -> Vector3</summary>
             public const uint ScreenToViewportPoint = 0x112bb500; // public Vector3 ScreenToViewportPoint(Vector3 position)
             /// <summary>ScreenPointToRay(Vector2 pos, Camera.MonoOrStereoscopicEye eye) -> Ray</summary>
             public const uint ScreenPointToRay = 0x112bb480; // private Ray ScreenPointToRay(Vector2 pos, Camera.MonoOrStereoscopicEye eye)
             /// <summary>ScreenPointToRay(Vector3 pos, Camera.MonoOrStereoscopicEye eye) -> Ray</summary>
-            public const uint ScreenPointToRay_2 = 0x112bb400; // public Ray ScreenPointToRay(Vector3 pos, Camera.MonoOrStereoscopicEye eye)
+            public const uint ScreenPointToRay_1 = 0x112bb400; // public Ray ScreenPointToRay(Vector3 pos, Camera.MonoOrStereoscopicEye eye)
             /// <summary>ScreenPointToRay(Vector3 pos) -> Ray</summary>
-            public const uint ScreenPointToRay_3 = 0x112bb380; // public Ray ScreenPointToRay(Vector3 pos)
+            public const uint ScreenPointToRay_2 = 0x112bb380; // public Ray ScreenPointToRay(Vector3 pos)
             /// <summary>get_main() -> Camera</summary>
             public const uint get_main = 0x112bbb50; // public static Camera get_main()
             /// <summary>get_current() -> Camera</summary>

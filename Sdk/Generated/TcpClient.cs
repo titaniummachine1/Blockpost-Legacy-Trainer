@@ -38,9 +38,9 @@ namespace BlockpostTrainer.Sdk.Raw
         {
             public const uint ctor = 0x112a4d80; // public void .ctor()
             /// <summary>.ctor(AddressFamily family)</summary>
-            public const uint ctor_2 = 0x112a4e10; // public void .ctor(AddressFamily family)
+            public const uint ctor_1 = 0x112a4e10; // public void .ctor(AddressFamily family)
             /// <summary>.ctor(string hostname, int port)</summary>
-            public const uint ctor_3 = 0x112a4b40; // public void .ctor(string hostname, int port)
+            public const uint ctor_2 = 0x112a4b40; // public void .ctor(string hostname, int port)
             /// <summary>get_Client() -> Socket</summary>
             public const uint get_Client = 0x1025d870; // public Socket get_Client()
             /// <summary>set_Client(Socket value)</summary>
@@ -50,7 +50,7 @@ namespace BlockpostTrainer.Sdk.Raw
             /// <summary>Connect(string hostname, int port)</summary>
             public const uint Connect = 0x112a4280; // public void Connect(string hostname, int port)
             /// <summary>Connect(IPEndPoint remoteEP)</summary>
-            public const uint Connect_2 = 0x112a41b0; // public void Connect(IPEndPoint remoteEP)
+            public const uint Connect_1 = 0x112a41b0; // public void Connect(IPEndPoint remoteEP)
             /// <summary>BeginConnect(string host, int port, AsyncCallback requestCallback, object state) -> IAsyncResult</summary>
             public const uint BeginConnect = 0x112a4010; // public IAsyncResult BeginConnect(string host, int port, AsyncCallback requestCallback, object state)
             /// <summary>EndConnect(IAsyncResult asyncResult)</summary>

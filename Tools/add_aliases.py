@@ -43,6 +43,10 @@ KNOWN_OVERRIDES = {
     "MouseLook.NLJBDGBDDLP": {
         "HumanClass": "MouseLookAxis",
     },
+    # NEGGNDFJMAK is not the same class as DevClient; keep human names unique.
+    "NEGGNDFJMAK": {
+        "HumanClass": "NEGGNDFJMAK",
+    },
 }
 
 # Optional user-editable file for extra curated aliases.
@@ -71,13 +75,14 @@ def main() -> int:
     updated = 0
     added = 0
     for class_name, mapping in all_overrides.items():
-        if class_name not in data:
+        is_new = class_name not in data
+        if is_new:
             data[class_name] = {}
             added += 1
         else:
             updated += 1
         data[class_name] = deep_update(data[class_name], mapping)
-        print(f"  {'+' if class_name not in data else '='} {class_name}")
+        print(f"  {'+' if is_new else '='} {class_name}")
 
     ALIASES_FILE.write_text(
         json.dumps(data, indent=2, ensure_ascii=False) + "\n",

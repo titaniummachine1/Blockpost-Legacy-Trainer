@@ -127,7 +127,7 @@ namespace BlockpostTrainer.Sdk.Raw
             /// <summary>FDIFGFJBOGO(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD) -> Color</summary>
             public const uint FDIFGFJBOGO = 0x10b0ac50; // public static Color FDIFGFJBOGO(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD)
             /// <summary>.ctor(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD)</summary>
-            public const uint ctor_2 = 0x10b0fed0; // public void .ctor(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD)
+            public const uint ctor_1 = 0x10b0fed0; // public void .ctor(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD)
             /// <summary>KKDOEGJDJFD(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD) -> Color</summary>
             public const uint KKDOEGJDJFD = 0x10b0e5d0; // public static Color KKDOEGJDJFD(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD)
             /// <summary>NEJPCNPPABH() -> Color</summary>
@@ -165,7 +165,7 @@ namespace BlockpostTrainer.Sdk.Raw
             /// <summary>FHLLIDFACNA(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD) -> Color</summary>
             public const uint FHLLIDFACNA = 0x10b0b030; // public static Color FHLLIDFACNA(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD)
             /// <summary>.ctor(Color JFFLHBFAGOM)</summary>
-            public const uint ctor_3 = 0x10b0fcb0; // public void .ctor(Color JFFLHBFAGOM)
+            public const uint ctor_2 = 0x10b0fcb0; // public void .ctor(Color JFFLHBFAGOM)
             /// <summary>JHDHHOPJCMP(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD) -> Color</summary>
             public const uint JHDHHOPJCMP = 0x10b0d9d0; // public static Color JHDHHOPJCMP(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD)
             /// <summary>GNNKAHKDNBJ(float EEGPOLDOEOE, float CAOLBIAGKFK, float NIPBHAMMACD) -> Color</summary>

@@ -10,6 +10,7 @@ deletes entries whose target does not exist. Classes that are no longer in
 the dump are also removed.
 """
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -18,7 +19,7 @@ ALIASES = ROOT / "Tools" / "sdk_aliases.json"
 SDK_DIR = ROOT / "Sdk" / "Generated"
 
 sys.path.insert(0, str(ROOT / "Tools"))
-from generate_sdk import csharp_identifier
+from generate_sdk import csharp_identifier, RESERVED_CSHARP_NAMES
 
 
 def load_json(path: Path) -> dict:
@@ -35,18 +36,40 @@ def exists_in_database(class_info: dict, name: str, kind: str) -> bool:
     return False
 
 
-def exists_in_sdk(safe_class: str, name: str, kind: str) -> bool:
-    """Check against the generated SDK file for this class."""
+def sdk_members(safe_class: str) -> dict[str, set[str]]:
+    """Extract all public const member names from a generated .cs file."""
     file = SDK_DIR / f"{safe_class}.cs"
     if not file.exists():
-        return False
+        return {}
     text = file.read_text(encoding="utf-8")
+    members = {
+        "field": set(re.findall(r"public const int (\w+)", text)),
+        "method": set(re.findall(r"public const uint (\w+)", text)),
+        "property": set(re.findall(r"public const string (\w+)", text)),
+    }
+    return members
+
+
+def exists_in_sdk(safe_class: str, name: str, kind: str) -> bool:
+    """Check whether a target member exists in the generated SDK, accounting for reserved-name suffixes."""
+    members = sdk_members(safe_class)
     c = csharp_identifier(name)
-    if kind == "field":
-        return f"public const int {c}" in text
-    if kind == "method":
-        return f"public const uint {c}" in text
-    return f"public const string {c}" in text
+    if c in members.get(kind, set()):
+        return True
+    if c in RESERVED_CSHARP_NAMES and f"{c}_" in members.get(kind, set()):
+        return True
+    return False
+
+
+def _overload_index(safe_h: str, safe_o: str) -> int | None:
+    """If the alias name encodes an overload index, return it; otherwise None."""
+    if safe_h == safe_o:
+        return 0
+    if safe_h.startswith(f"{safe_o}_"):
+        suffix = safe_h[len(safe_o) + 1 :]
+        if suffix.isdigit():
+            return int(suffix)
+    return None
 
 
 def main() -> int:
@@ -85,12 +108,62 @@ def main() -> int:
             else:
                 pruned_targets += 1
 
+        # Methods can be overloaded. For non-overloaded methods any matching alias
+        # is fine. For overloaded methods we keep aliases whose human name encodes
+        # a valid overload index (Foo -> 0, Foo_1 -> 1, ...) and then fill any
+        # remaining overload slots with the other aliases in JSON order.
+        method_overloads = {}
+        method_plan = []  # (human, orig, safe_h, safe_o, overload_count)
         for h, o in methods.items():
+            safe_h = csharp_identifier(h)
+            safe_o = csharp_identifier(o)
             if (SDK_DIR / f"{safe}.cs").exists():
                 ok = exists_in_sdk(safe, o, "method")
             else:
                 ok = exists_in_database(info, o, "method")
-            if ok:
+            if not ok:
+                pruned_targets += 1
+                continue
+            # Count overloads for this original method.
+            overload_count = method_overloads.get(safe_o)
+            if overload_count is None:
+                overload_count = sum(
+                    1 for m in info.get("methods", []) if csharp_identifier(m["name"]) == safe_o
+                )
+                method_overloads[safe_o] = overload_count
+
+            idx = _overload_index(safe_h, safe_o) if overload_count > 1 else None
+            method_plan.append((h, o, safe_h, safe_o, overload_count, idx))
+
+        # Decide which aliases to keep per method target.
+        kept: set[tuple[str, str]] = set()  # (human, safe_o)
+        by_target: dict[str, list[tuple[str, str, str, int, int | None]]] = {}
+        for h, o, safe_h, safe_o, overload_count, idx in method_plan:
+            by_target.setdefault(safe_o, []).append((h, safe_h, overload_count, idx))
+
+        for safe_o, items in by_target.items():
+            overload_count = items[0][2]
+            if overload_count == 1:
+                for h, _, _, _ in items:
+                    kept.add((h, safe_o))
+                continue
+
+            used_indices: set[int] = set()
+            # First, claim slots for aliases that explicitly name a valid overload.
+            for h, safe_h, _, idx in items:
+                if idx is not None and idx < overload_count and idx not in used_indices:
+                    kept.add((h, safe_o))
+                    used_indices.add(idx)
+
+            # Then fill any remaining overload slots with the remaining aliases.
+            remaining = overload_count - len(used_indices)
+            for h, safe_h, _, idx in items:
+                if idx is None and remaining > 0 and (h, safe_o) not in kept:
+                    kept.add((h, safe_o))
+                    remaining -= 1
+
+        for h, o, _, safe_o, _, _ in method_plan:
+            if (h, safe_o) in kept:
                 new_methods[h] = o
             else:
                 pruned_targets += 1

@@ -32,7 +32,7 @@ namespace BlockpostTrainer.Sdk.Raw
             /// <summary>op_Implicit(LayerMask mask) -> int</summary>
             public const uint op_Implicit = 0x10280760; // public static int op_Implicit(LayerMask mask)
             /// <summary>op_Implicit(int intVal) -> LayerMask</summary>
-            public const uint op_Implicit_2 = 0x10280760; // public static LayerMask op_Implicit(int intVal)
+            public const uint op_Implicit_1 = 0x10280760; // public static LayerMask op_Implicit(int intVal)
             /// <summary>get_value() -> int</summary>
             public const uint get_value = 0x10282780; // public int get_value()
             /// <summary>NameToLayer(string layerName) -> int</summary>

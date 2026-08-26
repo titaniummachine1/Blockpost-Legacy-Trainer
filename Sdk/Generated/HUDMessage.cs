@@ -183,7 +183,7 @@ namespace BlockpostTrainer.Sdk.Raw
             /// <summary>IDAPIDJJOHN(string DHJBGJHALAL, string INIINBLHNPB)</summary>
             public const uint IDAPIDJJOHN = 0x1073f870; // internal static void IDAPIDJJOHN(string DHJBGJHALAL, string INIINBLHNPB)
             /// <summary>LOJKHKLKONJ(string DHJBGJHALAL, string INIINBLHNPB)</summary>
-            public const uint LOJKHKLKONJ_2 = 0x107424e0; // internal static void LOJKHKLKONJ(string DHJBGJHALAL, string INIINBLHNPB)
+            public const uint LOJKHKLKONJ_1 = 0x107424e0; // internal static void LOJKHKLKONJ(string DHJBGJHALAL, string INIINBLHNPB)
             public const uint CDIKDJEPKGA = 0x1073a4f0; // private static void CDIKDJEPKGA()
             /// <summary>IDAKICACMHP(int HAFMINBJCGN, string INIINBLHNPB, int KDOOCBDDGND)</summary>
             public const uint IDAKICACMHP = 0x1073f1d0; // internal static void IDAKICACMHP(int HAFMINBJCGN, string INIINBLHNPB, int KDOOCBDDGND)

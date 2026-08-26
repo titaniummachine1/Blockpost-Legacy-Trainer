@@ -35,7 +35,7 @@ namespace BlockpostTrainer.Sdk.Raw
             public const uint DestroyImpl = 0x112c33e0; // private static void DestroyImpl(IntPtr mpb)
             /// <summary>Clear(bool keepMemory)</summary>
             public const uint Clear = 0x112c3360; // private void Clear(bool keepMemory)
-            public const uint Clear_2 = 0x112c3390; // public void Clear()
+            public const uint Clear_1 = 0x112c3390; // public void Clear()
             /// <summary>SetVectorArray(int name, Vector4[] values, int count)</summary>
             public const uint SetVectorArray = 0x112c37e0; // private void SetVectorArray(int name, Vector4[] values, int count)
             public const uint ctor = 0x112c39a0; // public void .ctor()
@@ -43,15 +43,15 @@ namespace BlockpostTrainer.Sdk.Raw
             /// <summary>SetFloat(string name, float value)</summary>
             public const uint SetFloat = 0x112c3620; // public void SetFloat(string name, float value)
             /// <summary>SetFloat(int nameID, float value)</summary>
-            public const uint SetFloat_2 = 0x112c35e0; // public void SetFloat(int nameID, float value)
+            public const uint SetFloat_1 = 0x112c35e0; // public void SetFloat(int nameID, float value)
             /// <summary>SetVector(int nameID, Vector4 value)</summary>
             public const uint SetVector = 0x112c3960; // public void SetVector(int nameID, Vector4 value)
             /// <summary>SetTexture(string name, Texture value)</summary>
             public const uint SetTexture = 0x112c36b0; // public void SetTexture(string name, Texture value)
             /// <summary>SetTexture(int nameID, Texture value)</summary>
-            public const uint SetTexture_2 = 0x112c3680; // public void SetTexture(int nameID, Texture value)
+            public const uint SetTexture_1 = 0x112c3680; // public void SetTexture(int nameID, Texture value)
             /// <summary>SetVectorArray(int nameID, Vector4[] values)</summary>
-            public const uint SetVectorArray_2 = 0x112c3750; // public void SetVectorArray(int nameID, Vector4[] values)
+            public const uint SetVectorArray_1 = 0x112c3750; // public void SetVectorArray(int nameID, Vector4[] values)
             /// <summary>SetVectorImpl_Injected(int name, ref Vector4 value)</summary>
             public const uint SetVectorImpl_Injected = 0x112c3900; // private void SetVectorImpl_Injected(int name, ref Vector4 value)
         }

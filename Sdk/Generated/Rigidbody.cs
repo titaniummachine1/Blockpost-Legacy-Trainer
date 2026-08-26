@@ -69,21 +69,21 @@ namespace BlockpostTrainer.Sdk.Raw
             /// <summary>AddForce(Vector3 force, ForceMode mode)</summary>
             public const uint AddForce = 0x1131fc30; // public void AddForce(Vector3 force, ForceMode mode)
             /// <summary>AddForce(Vector3 force)</summary>
-            public const uint AddForce_2 = 0x1131fbe0; // public void AddForce(Vector3 force)
+            public const uint AddForce_1 = 0x1131fbe0; // public void AddForce(Vector3 force)
             /// <summary>AddRelativeForce(Vector3 force, ForceMode mode)</summary>
             public const uint AddRelativeForce = 0x1131fce0; // public void AddRelativeForce(Vector3 force, ForceMode mode)
             /// <summary>AddRelativeForce(Vector3 force)</summary>
-            public const uint AddRelativeForce_2 = 0x1131fc90; // public void AddRelativeForce(Vector3 force)
+            public const uint AddRelativeForce_1 = 0x1131fc90; // public void AddRelativeForce(Vector3 force)
             /// <summary>AddTorque(Vector3 torque, ForceMode mode)</summary>
             public const uint AddTorque = 0x1131fea0; // public void AddTorque(Vector3 torque, ForceMode mode)
             /// <summary>AddTorque(Vector3 torque)</summary>
-            public const uint AddTorque_2 = 0x1131fe50; // public void AddTorque(Vector3 torque)
+            public const uint AddTorque_1 = 0x1131fe50; // public void AddTorque(Vector3 torque)
             /// <summary>AddRelativeTorque(Vector3 torque, ForceMode mode)</summary>
             public const uint AddRelativeTorque = 0x1131fdf0; // public void AddRelativeTorque(Vector3 torque, ForceMode mode)
             /// <summary>AddRelativeTorque(Vector3 torque)</summary>
-            public const uint AddRelativeTorque_2 = 0x1131fda0; // public void AddRelativeTorque(Vector3 torque)
+            public const uint AddRelativeTorque_1 = 0x1131fda0; // public void AddRelativeTorque(Vector3 torque)
             /// <summary>AddRelativeTorque(float x, float y, float z, ForceMode mode)</summary>
-            public const uint AddRelativeTorque_3 = 0x1131fd40; // public void AddRelativeTorque(float x, float y, float z, ForceMode mode)
+            public const uint AddRelativeTorque_2 = 0x1131fd40; // public void AddRelativeTorque(float x, float y, float z, ForceMode mode)
             public const uint ctor = 0x101a6520; // public void .ctor()
             /// <summary>set_velocity_Injected(ref Vector3 value)</summary>
             public const uint set_velocity_Injected = 0x113202d0; // private void set_velocity_Injected(ref Vector3 value)

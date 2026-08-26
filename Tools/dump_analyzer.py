@@ -28,7 +28,7 @@ TYPE_DEF_RE = re.compile(
     r"(?P<mods>(?:internal|public|private|protected|sealed|abstract|static|partial)\s+)*"
     r"(?P<kind>class|enum|struct|interface)\s+"
     r"(?P<name>[\w.<>]+)"
-    r"(?:\s*:\s*(?P<bases>[\w\.,\s<>]+?))?"
+    r"(?P<basepart>\s*:\s*[^/]+?)?"
     r"\s*(?://.*)?$",
     re.MULTILINE,
 )
@@ -49,14 +49,6 @@ PROP_RE = re.compile(
     r"(?P<name>[\w<>.]+)\s*\{\s*"
     r"(?P<getter>get)?\s*;?\s*(?P<setter>set)?\s*;?\s*"
     r"\}\s*$",
-    re.MULTILINE,
-)
-
-METHOD_RE = re.compile(
-    r"^\s*(?P<attrs>(?:\[[^\]]+\]\s*)*)"
-    r"(?P<modifiers>(?:internal|private|public|protected|static|sealed|virtual|override|abstract|extern|new|async)\s+)*"
-    r"(?P<ret>[\w\[\]<>.,\s]+?)\s+"
-    r"(?P<name>[\w<>.]+)\s*\((?P<args>[^)]*)\)\s*\{\s*\}\s*$",
     re.MULTILINE,
 )
 
@@ -104,15 +96,29 @@ def brace_count(text: str) -> tuple[str | None, int]:
 
 
 def find_all_type_defs(text: str) -> list[dict]:
-    """Find all top-level type definitions (class/enum/struct/interface)."""
+    """Find all top-level type definitions (class/enum/struct/interface).
+
+    If the same simple type name appears multiple times (e.g. the game's
+    `Console` vs `System.Console`), keep the first occurrence to stay
+    consistent with generate_sdk.py's find_class_block.
+    """
     results = []
+    seen = set()
     for m in TYPE_DEF_RE.finditer(text):
         kind = m.group("kind")
         name = m.group("name").strip()
-        bases = m.group("bases")
+        if name in seen:
+            continue
+        seen.add(name)
+        basepart = m.group("basepart")
         base_list = []
-        if bases:
-            base_list = [b.strip() for b in bases.split(",") if b.strip()]
+        if basepart:
+            # Strip the leading ':' and any trailing generic where-clause.
+            basepart = basepart.strip().lstrip(":").strip()
+            where_idx = basepart.find(" where ")
+            if where_idx != -1:
+                basepart = basepart[:where_idx]
+            base_list = [b.strip() for b in basepart.split(",") if b.strip()]
 
         after = text[m.end():]
         brace_match = re.search(r"^\s*\{\s*$", after, re.MULTILINE)
@@ -383,7 +389,7 @@ def extract_type_refs(type_str: str) -> list[str]:
                     "PlayerPrefs", "Cursor", "QualitySettings", "RenderSettings",
                     "Shader", "ShaderUtil", "Graphics", "GL", "AsyncOperation",
                     "WaitForSeconds", "WaitForEndOfFrame", "Coroutine",
-                    "UnityWebRequest", "WWW", "Network", "Socket", "TcpClient",
+                    "UnityWebRequest", "WWW", "Socket", "TcpClient",
                     "IPEndPoint", "IPAddress", "Thread", "Mutex", "Monitor",
                     "Exception", "Debug", "Mathf", "Random", "Path", "File",
                     "Directory", "Stream", "BinaryReader", "BinaryWriter",

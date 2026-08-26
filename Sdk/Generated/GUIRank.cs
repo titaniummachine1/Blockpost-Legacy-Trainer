@@ -127,7 +127,7 @@ namespace BlockpostTrainer.Sdk.Raw
             public const uint LDNBBCMNAFK = 0x1049d8d0; // private void LDNBBCMNAFK()
             public const uint LoadLang = 0x1049f150; // internal void LoadLang()
             /// <summary>FOHLDMANLOK(int NFACEFKLCIO, HOONFDNBMIM COEGDOAPEDD)</summary>
-            public const uint FOHLDMANLOK_2 = 0x10490170; // private void FOHLDMANLOK(int NFACEFKLCIO, HOONFDNBMIM COEGDOAPEDD)
+            public const uint FOHLDMANLOK_1 = 0x10490170; // private void FOHLDMANLOK(int NFACEFKLCIO, HOONFDNBMIM COEGDOAPEDD)
             public const uint ABHLBIKGMHO = 0x10488990; // private void ABHLBIKGMHO()
             /// <summary>ECMMFAGBOEK(bool BNJGJOOJCHF)</summary>
             public const uint ECMMFAGBOEK = 0x1048eab0; // internal static void ECMMFAGBOEK(bool BNJGJOOJCHF)

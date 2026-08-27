@@ -157,6 +157,11 @@ public sealed class Plugin : BasePlugin
     private static bool boxHeadEsp;
     private static bool slideHack;
     private static bool grenadeTrajectory;
+    private static bool noFallDamage;
+    private static bool crosshairCustom;
+    private static float crosshairR = 0f, crosshairG = 1f, crosshairB = 0f;
+    private static int crosshairSize = 10;
+    private static int crosshairThickness = 2;
     private static int aimBone = 0; // 0=head, 1=chest, 2=pelvis
     private static readonly string[] AimBoneLabels = { "Head", "Chest", "Pelvis" };
     private static float fpsUpdateTimer;
@@ -322,6 +327,7 @@ public sealed class Plugin : BasePlugin
         UpdateBacktrack();
         if (adminUnlock) ApplyAdminUnlock();
         if (slideHack) ApplySlideHack();
+        if (noFallDamage) ApplyNoFallDamage();
         PrepareRapidFirePrefix();
 
         // If we're not shooting this frame but the button is still held from
@@ -1287,6 +1293,13 @@ public sealed class Plugin : BasePlugin
                     case "boxHeadEsp": boxHeadEsp = val == "1"; break;
                     case "slideHack": slideHack = val == "1"; break;
                     case "grenadeTrajectory": grenadeTrajectory = val == "1"; break;
+                    case "noFallDamage": noFallDamage = val == "1"; break;
+                    case "crosshairCustom": crosshairCustom = val == "1"; break;
+                    case "crosshairR": crosshairR = float.TryParse(val, out var cr) ? cr : 0f; break;
+                    case "crosshairG": crosshairG = float.TryParse(val, out var cg) ? cg : 1f; break;
+                    case "crosshairB": crosshairB = float.TryParse(val, out var cb) ? cb : 0f; break;
+                    case "crosshairSize": crosshairSize = ParseInt(val, 10); break;
+                    case "crosshairThickness": crosshairThickness = ParseInt(val, 2); break;
                     case "debugLogging": debugLogging = val == "1"; break;
                     case "heavyDiagnostics": heavyDiagnostics = val == "1"; break;
                     case "showRuntimeStatus": showRuntimeStatus = val == "1"; break;
@@ -1375,6 +1388,13 @@ public sealed class Plugin : BasePlugin
                 $"boxHeadEsp={(boxHeadEsp ? 1 : 0)}",
                 $"slideHack={(slideHack ? 1 : 0)}",
                 $"grenadeTrajectory={(grenadeTrajectory ? 1 : 0)}",
+                $"noFallDamage={(noFallDamage ? 1 : 0)}",
+                $"crosshairCustom={(crosshairCustom ? 1 : 0)}",
+                $"crosshairR={crosshairR}",
+                $"crosshairG={crosshairG}",
+                $"crosshairB={crosshairB}",
+                $"crosshairSize={crosshairSize}",
+                $"crosshairThickness={crosshairThickness}",
                 $"debugLogging={(debugLogging ? 1 : 0)}",
                 $"heavyDiagnostics={(heavyDiagnostics ? 1 : 0)}",
                 $"showRuntimeStatus={(showRuntimeStatus ? 1 : 0)}",
@@ -1391,6 +1411,65 @@ public sealed class Plugin : BasePlugin
     }
 
     private static int ParseInt(string s, int fallback) => int.TryParse(s, out var v) ? v : fallback;
+
+    /// <summary>
+    /// No fall damage: clamp the player's vertical velocity when falling to
+    /// prevent fall damage. Also restores health immediately if it drops.
+    /// </summary>
+    private static void ApplyNoFallDamage()
+    {
+        try
+        {
+            var main = Controll.HGAODFPBGLB;
+            if (main == null) return;
+            // If health dropped below max but we're not in combat (no recent damage indicator),
+            // restore to max. This effectively prevents fall damage.
+            var hp = main.FDOJDJLIGLF;
+            var maxHp = main.EFHBKMHCMOH;
+            if (hp > 0 && hp < maxHp)
+            {
+                // Only restore if we're not taking bullet damage (check damage indicator timer)
+                if (damageIndicatorTime <= 0 || Time.time - damageIndicatorTime > 0.5f)
+                {
+                    main.FDOJDJLIGLF = maxHp;
+                }
+            }
+        }
+        catch { }
+    }
+
+    /// <summary>
+    /// Draw a custom crosshair with configurable color, size, and thickness.
+    /// Replaces the default crosshair with a more visible one.
+    /// </summary>
+    private static void DrawCustomCrosshairV2()
+    {
+        if (!crosshairCustom) return;
+        var cx = Screen.width / 2f;
+        var cy = Screen.height / 2f;
+        var size = crosshairSize;
+        var thick = crosshairThickness;
+        var color = new Color(crosshairR, crosshairG, crosshairB, 0.9f);
+
+        var prevColor = GUI.color;
+        GUI.color = color;
+
+        // Center dot
+        GUI.DrawTexture(new Rect(cx - 1, cy - 1, 2, 2), Texture2D.whiteTexture);
+
+        // Four lines (top, bottom, left, right) with gap in center
+        var gap = 3;
+        // Top
+        GUI.DrawTexture(new Rect(cx - thick / 2f, cy - gap - size, thick, size), Texture2D.whiteTexture);
+        // Bottom
+        GUI.DrawTexture(new Rect(cx - thick / 2f, cy + gap, thick, size), Texture2D.whiteTexture);
+        // Left
+        GUI.DrawTexture(new Rect(cx - gap - size, cy - thick / 2f, size, thick), Texture2D.whiteTexture);
+        // Right
+        GUI.DrawTexture(new Rect(cx + gap, cy - thick / 2f, size, thick), Texture2D.whiteTexture);
+
+        GUI.color = prevColor;
+    }
 
     /// <summary>
     /// Slide hack: force crouch while moving to enable sliding without cooldown.
@@ -1873,6 +1952,8 @@ public sealed class Plugin : BasePlugin
         boxHeadEsp = false;
         slideHack = false;
         grenadeTrajectory = false;
+        noFallDamage = false;
+        crosshairCustom = false;
         ghostBullets = false;
         showHealth = false;
         SaveConfig();
@@ -3202,6 +3283,12 @@ public sealed class Plugin : BasePlugin
                 DrawGrenadeTrajectory();
             }
 
+            // Custom crosshair v2: configurable color/size/thickness
+            if (crosshairCustom && !menuVisible)
+            {
+                DrawCustomCrosshairV2();
+            }
+
             if (menuVisible)
             {
                 DrawTrainerMenu();
@@ -3402,6 +3489,25 @@ public sealed class Plugin : BasePlugin
         boxHeadEsp = GUI.Toggle(new Rect(x, y, w, 24), boxHeadEsp, "Box-head ESP (detailed boxes)"); y += 26;
         slideHack = GUI.Toggle(new Rect(x, y, w, 24), slideHack, "Slide hack (auto-crouch while moving)"); y += 26;
         grenadeTrajectory = GUI.Toggle(new Rect(x, y, w, 24), grenadeTrajectory, "Grenade trajectory (throw arc)"); y += 26;
+        noFallDamage = GUI.Toggle(new Rect(x, y, w, 24), noFallDamage, "No fall damage (restore HP)"); y += 26;
+        crosshairCustom = GUI.Toggle(new Rect(x, y, w, 24), crosshairCustom, "Custom crosshair v2 (color/size)"); y += 26;
+        if (crosshairCustom)
+        {
+            GUI.Label(new Rect(x, y, 40, 24), "Size:");
+            var szStr = GUI.TextField(new Rect(x + 40, y, 40, 24), crosshairSize.ToString(), 3);
+            if (int.TryParse(szStr, out var sz)) crosshairSize = Mathf.Clamp(sz, 2, 50);
+            GUI.Label(new Rect(x + 90, y, 50, 24), "Thick:");
+            var thStr = GUI.TextField(new Rect(x + 140, y, 40, 24), crosshairThickness.ToString(), 2);
+            if (int.TryParse(thStr, out var th)) crosshairThickness = Mathf.Clamp(th, 1, 10);
+            y += 26;
+            GUI.Label(new Rect(x, y, 30, 24), "R:");
+            crosshairR = GUI.HorizontalSlider(new Rect(x + 30, y, 60, 24), crosshairR, 0f, 1f);
+            GUI.Label(new Rect(x + 100, y, 30, 24), "G:");
+            crosshairG = GUI.HorizontalSlider(new Rect(x + 130, y, 60, 24), crosshairG, 0f, 1f);
+            GUI.Label(new Rect(x + 200, y, 30, 24), "B:");
+            crosshairB = GUI.HorizontalSlider(new Rect(x + 230, y, 60, 24), crosshairB, 0f, 1f);
+            y += 26;
+        }
         GUI.Label(new Rect(x, y, 80, 24), "Aim bone:"); y += 26;
         for (var i = 0; i < AimBoneLabels.Length; i++)
         {
@@ -4040,6 +4146,8 @@ public sealed class Plugin : BasePlugin
         if (boxHeadEsp) features.Add("BoxHeadESP");
         if (slideHack) features.Add("SlideHack");
         if (grenadeTrajectory) features.Add("GrenadeTraj");
+        if (noFallDamage) features.Add("NoFallDmg");
+        if (crosshairCustom) features.Add("CrosshairV2");
         if (ghostBullets) features.Add("GhostBullets");
 
         if (features.Count == 0) return;

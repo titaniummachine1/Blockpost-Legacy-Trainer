@@ -309,12 +309,27 @@ Key method: PFBJDHPMIJP(int ammo, int reserve) — Update both ammo displays
 | Auto-reload | Working | Trigger reload when FGGKANNFBDH=0 and KJOMABGHAIJ>0 |
 | Aimbot FOV circle | Working | Draw orange circle showing aimbot targeting range |
 | Field probe | Working | F10 toggle continuous, F11 snapshot — logs all Controll/Player/Movement/PLH fields |
-| Network decoders | Working | 0x03 snapshot, 0x04 hit event, 0x06 shot reply, 0x0F slot switch |
+| Network decoders | Working | 14 opcodes: 0x01/0x03/0x04/0x06/0x07/0x08/0x09/0x0A/0x0B/0x0C/0x0D/0x0E/0x0F/0x13/0x14/0x15/0x2D/0x34 |
+| Spinbot | Working | Constantly rotate Controll.NAKNALFCOIF (yaw) by 30°/frame |
+| Name ESP | Working | Display Player.NHHBNNBDDIA above ESP boxes |
+| Feature watermark | Working | Top-left overlay showing all active features with count |
+| Skeleton ESP | Working | Recursive transform hierarchy tracing, bone connections |
+| Radar hack | Working | 150px mini-radar, 100m range, rotated by player yaw |
+| Anti-aim pitch | Working | Alternate Controll.IGLCENGMMMJ between -89° and +89° |
+| Auto-strafe | Working | Alternate left/right movement flags every 0.3s |
+| Kill feed | Working | Monitor DEBGAILDKPC (kill count), log + display kills |
+| Edge jump | Working | Auto-jump when grounded + moving forward |
+| Fake lag | Working | Freeze movement input every 3rd 100ms window |
+| Spectator warning | Working | Alert when Spectator GameObject is active |
+| Damage indicator | Working | Red vignette + damage amount when health drops |
+| Hit marker | Working | White X at crosshair when hit counter increments |
+| Auto-pickup | Working | Move toward nearby pickup/drop/loot GameObjects |
+| Aim bone selector | Working | Head/Chest/Pelvis target selection for aimbot |
 
 ## TODO Features (Prioritized)
-1. **More network protocol decoders** — See BACKLOG.md for remaining inbound packet decoders
-2. **Skeleton ESP** — Draw bone connections on player models
-3. **Ghost bullets** — Complete NetProbe.TryFakeHit for through-wall kills
+1. **Ghost bullets** — Complete NetProbe.TryFakeHit for through-wall kills
+2. **Config presets** — Save/load named feature presets
+3. **Local bot spawn** — Spawn dummy players for offline testing
 
 ## Weapon Unlock Architecture (Server-Dead Workaround)
 

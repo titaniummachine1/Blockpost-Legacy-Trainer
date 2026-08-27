@@ -123,6 +123,8 @@ public sealed class Plugin : BasePlugin
     private static bool noSpread;
     private static bool fastFire;
     private static bool autoReload;
+    private static bool nameEsp;
+    private static bool spinbot;
     private static int instantReloads;
     private static float nextAutoShootTime;
 
@@ -142,7 +144,7 @@ public sealed class Plugin : BasePlugin
 
     private readonly struct EspBox
     {
-        public EspBox(Rect bounds, Color color, int health, Vector2 screenPos, float dist, bool isEnemy)
+        public EspBox(Rect bounds, Color color, int health, Vector2 screenPos, float dist, bool isEnemy, string name)
         {
             Bounds = bounds;
             Color = color;
@@ -150,6 +152,7 @@ public sealed class Plugin : BasePlugin
             ScreenPos = screenPos;
             Distance = dist;
             IsEnemy = isEnemy;
+            Name = name;
         }
 
         public Rect Bounds { get; }
@@ -158,6 +161,7 @@ public sealed class Plugin : BasePlugin
         public Vector2 ScreenPos { get; }
         public float Distance { get; }
         public bool IsEnemy { get; }
+        public string Name { get; }
     }
 
     public override void Load()
@@ -776,7 +780,7 @@ public sealed class Plugin : BasePlugin
 
     private static void ApplyCheatFeatures()
     {
-        if (!infiniteHealth && !infiniteAmmo && !bunnyHop && !fovChanger && !speedHack && !flyHack && !noClip && !thirdPerson && !fullbright && !antiFlash && !noSpread && !fastFire && !autoReload)
+        if (!infiniteHealth && !infiniteAmmo && !bunnyHop && !fovChanger && !speedHack && !flyHack && !noClip && !thirdPerson && !fullbright && !antiFlash && !noSpread && !fastFire && !autoReload && !spinbot)
         {
             return;
         }
@@ -916,6 +920,12 @@ public sealed class Plugin : BasePlugin
                     // Set reload timer to start
                     Controll.FBINCNDDPAO = Time.time;
                 }
+            }
+
+            if (spinbot)
+            {
+                // Constantly spin yaw to make hitboxes harder to hit
+                Controll.NAKNALFCOIF = (Controll.NAKNALFCOIF + 30f) % 360f;
             }
         }
         catch (Exception exception)
@@ -1132,6 +1142,8 @@ public sealed class Plugin : BasePlugin
                     case "noSpread": noSpread = val == "1"; break;
                     case "fastFire": fastFire = val == "1"; break;
                     case "autoReload": autoReload = val == "1"; break;
+                    case "nameEsp": nameEsp = val == "1"; break;
+                    case "spinbot": spinbot = val == "1"; break;
                     case "debugLogging": debugLogging = val == "1"; break;
                     case "heavyDiagnostics": heavyDiagnostics = val == "1"; break;
                     case "showRuntimeStatus": showRuntimeStatus = val == "1"; break;
@@ -1189,6 +1201,8 @@ public sealed class Plugin : BasePlugin
                 $"noSpread={(noSpread ? 1 : 0)}",
                 $"fastFire={(fastFire ? 1 : 0)}",
                 $"autoReload={(autoReload ? 1 : 0)}",
+                $"nameEsp={(nameEsp ? 1 : 0)}",
+                $"spinbot={(spinbot ? 1 : 0)}",
                 $"debugLogging={(debugLogging ? 1 : 0)}",
                 $"heavyDiagnostics={(heavyDiagnostics ? 1 : 0)}",
                 $"showRuntimeStatus={(showRuntimeStatus ? 1 : 0)}",
@@ -2052,7 +2066,8 @@ public sealed class Plugin : BasePlugin
         var color = isEnemy ? Color.red : Color.green;
         var dist = Vector3.Distance(mainPlayer.OOMJGHCFODI, position);
         var screenPos = new Vector2(top.x, screenHeight - top.y);
-        box = new EspBox(new Rect(top.x - width / 2, Mathf.Min(topY, bottomY), width, height), color, player.FDOJDJLIGLF, screenPos, dist, isEnemy);
+        var playerName = player.NHHBNNBDDIA ?? "?";
+        box = new EspBox(new Rect(top.x - width / 2, Mathf.Min(topY, bottomY), width, height), color, player.FDOJDJLIGLF, screenPos, dist, isEnemy, playerName);
         return true;
     }
 
@@ -2577,6 +2592,8 @@ public sealed class Plugin : BasePlugin
         noSpread = GUI.Toggle(new Rect(x, y, w, 24), noSpread, "No spread (zero recoil accumulator)"); y += 26;
         fastFire = GUI.Toggle(new Rect(x, y, w, 24), fastFire, "Fast fire rate (zero fire timer)"); y += 26;
         autoReload = GUI.Toggle(new Rect(x, y, w, 24), autoReload, "Auto-reload (reload when empty)"); y += 26;
+        nameEsp = GUI.Toggle(new Rect(x, y, w, 24), nameEsp, "Name ESP (show player names)"); y += 26;
+        spinbot = GUI.Toggle(new Rect(x, y, w, 24), spinbot, "Spinbot (anti-aim yaw spin)"); y += 26;
         debugLogging = GUI.Toggle(new Rect(x, y, w, 24), debugLogging, $"Verbose diagnostics (summary only, 1/{DiagnosticInterval:0}s)"); y += 26;
         if (debugLogging)
         {
@@ -2651,6 +2668,13 @@ public sealed class Plugin : BasePlugin
             {
                 DrawTracerLine(screenCenter, box.ScreenPos, box.Color);
                 GUI.Label(new Rect(box.Bounds.xMax + 4, box.Bounds.y + 24, 80, 20), $"{box.Distance:F0}m");
+            }
+
+            // Name ESP: show player name above the box
+            if (nameEsp)
+            {
+                var nameRect = new Rect(box.Bounds.x - 20, box.Bounds.y - 20, box.Bounds.width + 40, 20);
+                GUI.Label(nameRect, box.Name);
             }
         }
 

@@ -120,6 +120,8 @@ public sealed class Plugin : BasePlugin
     private static bool antiFlash;
     private static float flashBlockUntil;
     private static bool wallhack;
+    private static bool noSpread;
+    private static bool fastFire;
     private static int instantReloads;
     private static float nextAutoShootTime;
 
@@ -773,7 +775,7 @@ public sealed class Plugin : BasePlugin
 
     private static void ApplyCheatFeatures()
     {
-        if (!infiniteHealth && !infiniteAmmo && !bunnyHop && !fovChanger && !speedHack && !flyHack && !noClip && !thirdPerson && !fullbright && !antiFlash)
+        if (!infiniteHealth && !infiniteAmmo && !bunnyHop && !fovChanger && !speedHack && !flyHack && !noClip && !thirdPerson && !fullbright && !antiFlash && !noSpread && !fastFire)
         {
             return;
         }
@@ -881,6 +883,22 @@ public sealed class Plugin : BasePlugin
             if (antiFlash)
             {
                 ApplyAntiFlash(main);
+            }
+
+            if (noSpread)
+            {
+                // FGFKPMPLNKO = spread/recoil accumulator on Player
+                main.FGFKPMPLNKO = 0f;
+                // Also zero the Controll-side fire timer/spread
+                Controll.LCMOBPPHLLM = 0f;
+            }
+
+            if (fastFire)
+            {
+                // Zero the fire timer so the "has enough time passed" check
+                // always passes, allowing firing every frame.
+                Controll.LCMOBPPHLLM = 0f;
+                main.LCMOBPPHLLM = 0f;
             }
         }
         catch (Exception exception)
@@ -1094,6 +1112,8 @@ public sealed class Plugin : BasePlugin
                     case "fullbright": fullbright = val == "1"; break;
                     case "antiFlash": antiFlash = val == "1"; break;
                     case "wallhack": wallhack = val == "1"; break;
+                    case "noSpread": noSpread = val == "1"; break;
+                    case "fastFire": fastFire = val == "1"; break;
                     case "debugLogging": debugLogging = val == "1"; break;
                     case "heavyDiagnostics": heavyDiagnostics = val == "1"; break;
                     case "showRuntimeStatus": showRuntimeStatus = val == "1"; break;
@@ -1148,6 +1168,8 @@ public sealed class Plugin : BasePlugin
                 $"fullbright={(fullbright ? 1 : 0)}",
                 $"antiFlash={(antiFlash ? 1 : 0)}",
                 $"wallhack={(wallhack ? 1 : 0)}",
+                $"noSpread={(noSpread ? 1 : 0)}",
+                $"fastFire={(fastFire ? 1 : 0)}",
                 $"debugLogging={(debugLogging ? 1 : 0)}",
                 $"heavyDiagnostics={(heavyDiagnostics ? 1 : 0)}",
                 $"showRuntimeStatus={(showRuntimeStatus ? 1 : 0)}",
@@ -2528,6 +2550,8 @@ public sealed class Plugin : BasePlugin
         fullbright = GUI.Toggle(new Rect(x, y, w, 24), fullbright, "Fullbright (no fog, max light)"); y += 26;
         antiFlash = GUI.Toggle(new Rect(x, y, w, 24), antiFlash, "Anti-flashbang (block screen flash)"); y += 26;
         wallhack = GUI.Toggle(new Rect(x, y, w, 24), wallhack, "Wallhack (tracer lines + distance)"); y += 26;
+        noSpread = GUI.Toggle(new Rect(x, y, w, 24), noSpread, "No spread (zero recoil accumulator)"); y += 26;
+        fastFire = GUI.Toggle(new Rect(x, y, w, 24), fastFire, "Fast fire rate (zero fire timer)"); y += 26;
         debugLogging = GUI.Toggle(new Rect(x, y, w, 24), debugLogging, $"Verbose diagnostics (summary only, 1/{DiagnosticInterval:0}s)"); y += 26;
         if (debugLogging)
         {

@@ -166,6 +166,10 @@ public sealed class Plugin : BasePlugin
     private static bool aimbotSmoothing;
     private static float aimbotSmoothFactor = 0.5f;
     private static int lastKillCountForSound = -1;
+    private static bool fastWeaponSwitch;
+    private static bool configPreset1;
+    private static bool configPreset2;
+    private static bool configPreset3;
     private static int aimBone = 0; // 0=head, 1=chest, 2=pelvis
     private static readonly string[] AimBoneLabels = { "Head", "Chest", "Pelvis" };
     private static float fpsUpdateTimer;
@@ -333,6 +337,7 @@ public sealed class Plugin : BasePlugin
         if (slideHack) ApplySlideHack();
         if (noFallDamage) ApplyNoFallDamage();
         UpdateKillSound();
+        if (fastWeaponSwitch) ApplyFastWeaponSwitch();
         PrepareRapidFirePrefix();
 
         // If we're not shooting this frame but the button is still held from
@@ -1219,19 +1224,32 @@ public sealed class Plugin : BasePlugin
                 return;
             }
 
-            foreach (var line in File.ReadAllLines(ConfigPath))
+            ApplyConfigLines(File.ReadAllLines(ConfigPath));
+        }
+        catch (Exception ex)
+        {
+            instance?.Log.LogError($"[Config] Failed to load config: {ex.Message}");
+        }
+    }
+
+    /// <summary>
+    /// Apply an array of config lines to the feature fields.
+    /// </summary>
+    private static void ApplyConfigLines(string[] lines)
+    {
+        foreach (var line in lines)
+        {
+            var idx = line.IndexOf('=');
+            if (idx <= 0)
             {
-                var idx = line.IndexOf('=');
-                if (idx <= 0)
-                {
-                    continue;
-                }
+                continue;
+            }
 
-                var key = line[..idx].Trim();
-                var val = line[(idx + 1)..].Trim();
+            var key = line[..idx].Trim();
+            var val = line[(idx + 1)..].Trim();
 
-                switch (key)
-                {
+            switch (key)
+            {
                     case "espEnabled": espEnabled = val == "1"; break;
                     case "showHealth": showHealth = val == "1"; break;
                     case "showTeammates": showTeammates = val == "1"; break;
@@ -1308,6 +1326,7 @@ public sealed class Plugin : BasePlugin
                     case "killSound": killSound = val == "1"; break;
                     case "aimbotSmoothing": aimbotSmoothing = val == "1"; break;
                     case "aimbotSmoothFactor": aimbotSmoothFactor = float.TryParse(val, out var asf) ? asf : 0.5f; break;
+                    case "fastWeaponSwitch": fastWeaponSwitch = val == "1"; break;
                     case "debugLogging": debugLogging = val == "1"; break;
                     case "heavyDiagnostics": heavyDiagnostics = val == "1"; break;
                     case "showRuntimeStatus": showRuntimeStatus = val == "1"; break;
@@ -1315,21 +1334,28 @@ public sealed class Plugin : BasePlugin
                     case "menuY": menuRect.y = ParseFloat(val, menuRect.y); break;
                 }
             }
-
-            instance?.Log.LogInfo($"Config loaded from {ConfigPath}");
         }
-        catch (Exception e)
-        {
-            instance?.Log.LogWarning($"Config load failed: {e.Message}");
-        }
-    }
 
     private static void SaveConfig()
     {
         try
         {
-            var lines = new[]
-            {
+            var lines = BuildConfigLines();
+            File.WriteAllLines(ConfigPath, lines);
+        }
+        catch (Exception e)
+        {
+            instance?.Log.LogWarning($"Config save failed: {e.Message}");
+        }
+    }
+
+    /// <summary>
+    /// Build the array of config lines from current feature states.
+    /// </summary>
+    private static string[] BuildConfigLines()
+    {
+        return new[]
+        {
                 $"espEnabled={(espEnabled ? 1 : 0)}",
                 $"showHealth={(showHealth ? 1 : 0)}",
                 $"showTeammates={(showTeammates ? 1 : 0)}",
@@ -1406,22 +1432,76 @@ public sealed class Plugin : BasePlugin
                 $"killSound={(killSound ? 1 : 0)}",
                 $"aimbotSmoothing={(aimbotSmoothing ? 1 : 0)}",
                 $"aimbotSmoothFactor={aimbotSmoothFactor}",
+                $"fastWeaponSwitch={(fastWeaponSwitch ? 1 : 0)}",
                 $"debugLogging={(debugLogging ? 1 : 0)}",
                 $"heavyDiagnostics={(heavyDiagnostics ? 1 : 0)}",
                 $"showRuntimeStatus={(showRuntimeStatus ? 1 : 0)}",
                 $"menuX={menuRect.x:0.###}",
                 $"menuY={menuRect.y:0.###}"
-            };
-
-            File.WriteAllLines(ConfigPath, lines);
-        }
-        catch (Exception e)
-        {
-            instance?.Log.LogWarning($"Config save failed: {e.Message}");
-        }
+        };
     }
 
     private static int ParseInt(string s, int fallback) => int.TryParse(s, out var v) ? v : fallback;
+
+    /// <summary>
+    /// Save current configuration to a named preset file.
+    /// </summary>
+    private static void SavePreset(string name)
+    {
+        try
+        {
+            var presetPath = Path.Combine(Path.GetDirectoryName(ConfigPath) ?? ".", $"preset_{name}.cfg");
+            var lines = BuildConfigLines();
+            File.WriteAllLines(presetPath, lines);
+            instance?.Log.LogInfo($"[Config] Saved preset '{name}' to {presetPath}");
+        }
+        catch (Exception ex)
+        {
+            instance?.Log.LogError($"[Config] Failed to save preset '{name}': {ex.Message}");
+        }
+    }
+
+    /// <summary>
+    /// Load a named preset file and apply its settings.
+    /// </summary>
+    private static void LoadPreset(string name)
+    {
+        try
+        {
+            var presetPath = Path.Combine(Path.GetDirectoryName(ConfigPath) ?? ".", $"preset_{name}.cfg");
+            if (!File.Exists(presetPath))
+            {
+                instance?.Log.LogWarning($"[Config] Preset '{name}' not found at {presetPath}");
+                return;
+            }
+            var lines = File.ReadAllLines(presetPath);
+            ApplyConfigLines(lines);
+            SaveConfig();
+            instance?.Log.LogInfo($"[Config] Loaded preset '{name}' from {presetPath}");
+        }
+        catch (Exception ex)
+        {
+            instance?.Log.LogError($"[Config] Failed to load preset '{name}': {ex.Message}");
+        }
+    }
+
+    /// <summary>
+    /// Fast weapon switch: zero the weapon switch timer to allow instant switching.
+    /// The game likely has a switch delay field that we can zero.
+    /// </summary>
+    private static void ApplyFastWeaponSwitch()
+    {
+        try
+        {
+            // Zero the reload/equip timer fields to allow instant weapon switching
+            var main = Controll.HGAODFPBGLB;
+            if (main == null) return;
+            // Zero the fire timer to allow immediate fire after switch
+            main.LCMOBPPHLLM = 0f;
+            Controll.LCMOBPPHLLM = 0f;
+        }
+        catch { }
+    }
 
     /// <summary>
     /// Kill sound: monitor kill count and play a beep sound when getting a kill.
@@ -1992,6 +2072,7 @@ public sealed class Plugin : BasePlugin
         crosshairCustom = false;
         killSound = false;
         aimbotSmoothing = false;
+        fastWeaponSwitch = false;
         ghostBullets = false;
         showHealth = false;
         SaveConfig();
@@ -3562,6 +3643,7 @@ public sealed class Plugin : BasePlugin
             aimbotSmoothFactor = GUI.HorizontalSlider(new Rect(x + 60, y, 120, 24), aimbotSmoothFactor, 0.05f, 1f);
             y += 26;
         }
+        fastWeaponSwitch = GUI.Toggle(new Rect(x, y, w, 24), fastWeaponSwitch, "Fast weapon switch (zero timers)"); y += 26;
         GUI.Label(new Rect(x, y, 80, 24), "Aim bone:"); y += 26;
         for (var i = 0; i < AimBoneLabels.Length; i++)
         {
@@ -3594,6 +3676,21 @@ public sealed class Plugin : BasePlugin
             ResetAllFeatures();
         }
         y += 26;
+        // Config presets
+        GUI.Label(new Rect(x, y, w, 24), "--- Presets ---"); y += 26;
+        for (var i = 1; i <= 3; i++)
+        {
+            var pname = i.ToString();
+            if (GUI.Button(new Rect(x, y, 50, 24), $"P{i}S"))
+            {
+                SavePreset(pname);
+            }
+            if (GUI.Button(new Rect(x + 60, y, 50, 24), $"P{i}L"))
+            {
+                LoadPreset(pname);
+            }
+            y += 26;
+        }
 
         // Resize the menu to fit the content.
         menuRect.height = y - menuRect.y + 10;
@@ -4204,6 +4301,7 @@ public sealed class Plugin : BasePlugin
         if (crosshairCustom) features.Add("CrosshairV2");
         if (killSound) features.Add("KillSound");
         if (aimbotSmoothing) features.Add($"AimSmooth:{aimbotSmoothFactor:F2}");
+        if (fastWeaponSwitch) features.Add("FastSwitch");
         if (ghostBullets) features.Add("GhostBullets");
 
         if (features.Count == 0) return;

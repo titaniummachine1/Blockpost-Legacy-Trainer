@@ -301,9 +301,20 @@ Key method: PFBJDHPMIJP(int ammo, int reserve) — Update both ammo displays
 | Third person | Working | Camera positioned behind player using yaw angle, looks at head |
 | Chams | Working | Override Renderer.material with transparent colored material on enemy players |
 | Triggerbot | Working | Raycast from camera center, auto-fire when crosshair hits enemy player |
+| Fullbright | Working | Disable RenderSettings.fog, boost ambient light + all Light components |
+| Anti-flashbang | Working | Disable GameObjects named "flash"/"blind" |
+| Wallhack | Working | Tracer lines from screen center to enemies + distance display |
+| No spread | Working | Zero Player.FGFKPMPLNKO and Controll.LCMOBPPHLLM every frame |
+| Fast fire rate | Working | Zero Controll.LCMOBPPHLLM and Player.LCMOBPPHLLM every frame |
+| Auto-reload | Working | Trigger reload when FGGKANNFBDH=0 and KJOMABGHAIJ>0 |
+| Aimbot FOV circle | Working | Draw orange circle showing aimbot targeting range |
+| Field probe | Working | F10 toggle continuous, F11 snapshot — logs all Controll/Player/Movement/PLH fields |
+| Network decoders | Working | 0x03 snapshot, 0x04 hit event, 0x06 shot reply, 0x0F slot switch |
 
 ## TODO Features (Prioritized)
-1. **More network protocol decoders** — See BACKLOG.md for inbound packet decoders
+1. **More network protocol decoders** — See BACKLOG.md for remaining inbound packet decoders
+2. **Skeleton ESP** — Draw bone connections on player models
+3. **Ghost bullets** — Complete NetProbe.TryFakeHit for through-wall kills
 
 ## Weapon Unlock Architecture (Server-Dead Workaround)
 

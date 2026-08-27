@@ -42,7 +42,7 @@
 - Generated SDK files: 369 (367 classes + Aliases.cs + SdkIndex.cs)
 - Build: 0 errors, 2 warnings (pre-existing NuGet dependency resolution)
 - Duplicate-target conflicts: 0 (all resolved)
-- Semantic coverage: 46% (9,874 semantic names, 11,559 Action_ generic remaining)
+- Semantic coverage: 81% (17,378 semantic names, 4,055 Action_ generic remaining)
 
 ## Key Classes (Obfuscated → Human)
 | Obfuscated | Human | TypeDefIndex | Purpose |

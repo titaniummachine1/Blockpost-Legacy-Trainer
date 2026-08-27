@@ -152,7 +152,9 @@ public sealed class Plugin : BasePlugin
     private static float lastFootstepScan;
     private static bool backtrack;
     private static readonly Dictionary<int, Queue<(float time, Vector3 pos)>> enemyPositionHistory = new();
-    private const float BacktrackDuration = 2f; // Store 2 seconds of history
+    private const float BacktrackDuration = 2f;
+    private static bool adminUnlock;
+    private static bool boxHeadEsp;
     private static int aimBone = 0; // 0=head, 1=chest, 2=pelvis
     private static readonly string[] AimBoneLabels = { "Head", "Chest", "Pelvis" };
     private static float fpsUpdateTimer;
@@ -316,6 +318,7 @@ public sealed class Plugin : BasePlugin
         UpdateFootstepEsp();
         if (preFire) ApplyPreFire();
         UpdateBacktrack();
+        if (adminUnlock) ApplyAdminUnlock();
         PrepareRapidFirePrefix();
 
         // If we're not shooting this frame but the button is still held from
@@ -1277,6 +1280,8 @@ public sealed class Plugin : BasePlugin
                     case "footstepEsp": footstepEsp = val == "1"; break;
                     case "preFire": preFire = val == "1"; break;
                     case "backtrack": backtrack = val == "1"; break;
+                    case "adminUnlock": adminUnlock = val == "1"; break;
+                    case "boxHeadEsp": boxHeadEsp = val == "1"; break;
                     case "debugLogging": debugLogging = val == "1"; break;
                     case "heavyDiagnostics": heavyDiagnostics = val == "1"; break;
                     case "showRuntimeStatus": showRuntimeStatus = val == "1"; break;
@@ -1361,6 +1366,8 @@ public sealed class Plugin : BasePlugin
                 $"footstepEsp={(footstepEsp ? 1 : 0)}",
                 $"preFire={(preFire ? 1 : 0)}",
                 $"backtrack={(backtrack ? 1 : 0)}",
+                $"adminUnlock={(adminUnlock ? 1 : 0)}",
+                $"boxHeadEsp={(boxHeadEsp ? 1 : 0)}",
                 $"debugLogging={(debugLogging ? 1 : 0)}",
                 $"heavyDiagnostics={(heavyDiagnostics ? 1 : 0)}",
                 $"showRuntimeStatus={(showRuntimeStatus ? 1 : 0)}",
@@ -1377,6 +1384,85 @@ public sealed class Plugin : BasePlugin
     }
 
     private static int ParseInt(string s, int fallback) => int.TryParse(s, out var v) ? v : fallback;
+
+    /// <summary>
+    /// Admin unlock: set GUIAdmin.show=true to force open the admin panel.
+    /// Also sets admin-related flags on GUIOptions if available.
+    /// </summary>
+    private static void ApplyAdminUnlock()
+    {
+        try
+        {
+            var guiAdminType = AccessTools.TypeByName("GUIAdmin");
+            if (guiAdminType == null) return;
+            var showField = guiAdminType.GetField("show");
+            if (showField != null)
+            {
+                showField.SetValue(null, true);
+            }
+        }
+        catch { }
+    }
+
+    /// <summary>
+    /// Draw box-head ESP: a more detailed ESP that draws a box around the
+    /// player body and a separate smaller box around the head, with a line
+    /// connecting them. Shows health, name, and distance.
+    /// </summary>
+    private static void DrawBoxHeadEsp()
+    {
+        if (!espEnabled) return;
+        var camera = ResolveCamera();
+        if (camera == null) return;
+        var players = PLH.BAKLNPIEHMI;
+        var mainPlayer = Controll.HGAODFPBGLB;
+        if (players == null || mainPlayer == null) return;
+
+        var prevColor = GUI.color;
+
+        for (var i = 0; i < players.Length; i++)
+        {
+            var player = players[i];
+            if (!IsVisibleTarget(player, mainPlayer, true, true)) continue;
+            var head = player.ACEHIBLPHCA;
+            if (head == null || head.transform == null) continue;
+
+            var headPos = head.transform.position;
+            var headScreen = camera.WorldToScreenPoint(headPos);
+            if (headScreen.z <= 0) continue;
+
+            var bodyScreen = camera.WorldToScreenPoint(headPos - Vector3.up * 1.5f);
+            if (bodyScreen.z <= 0) continue;
+
+            var isEnemy = player.MMMGPDBMOLM != mainPlayer.MMMGPDBMOLM;
+            var color = isEnemy ? Color.red : Color.green;
+            GUI.color = new Color(color.r, color.g, color.b, 0.7f);
+
+            // Head box (small)
+            var headY = Screen.height - headScreen.y;
+            var headSize = 8f;
+            DrawBoxOutline(new Rect(headScreen.x - headSize, headY - headSize, headSize * 2, headSize * 2));
+
+            // Body box (larger)
+            var bodyY = Screen.height - bodyScreen.y;
+            var bodyHeight = Mathf.Abs(headY - bodyY);
+            var bodyWidth = bodyHeight * 0.6f;
+            DrawBoxOutline(new Rect(headScreen.x - bodyWidth / 2, bodyY, bodyWidth, bodyHeight));
+
+            // Line connecting head to body
+            DrawLine2D(new Vector2(headScreen.x, headY), new Vector2(headScreen.x, bodyY));
+
+            // Info text
+            if (isEnemy)
+            {
+                var dist = Vector3.Distance(mainPlayer.OOMJGHCFODI, headPos);
+                GUI.Label(new Rect(headScreen.x + headSize + 2, headY - headSize, 100, 20),
+                    $"{player.NHHBNNBDDIA} {dist:F0}m");
+            }
+        }
+
+        GUI.color = prevColor;
+    }
 
     /// <summary>
     /// Track enemy position history for backtrack feature.
@@ -1716,6 +1802,8 @@ public sealed class Plugin : BasePlugin
         footstepEsp = false;
         preFire = false;
         backtrack = false;
+        adminUnlock = false;
+        boxHeadEsp = false;
         ghostBullets = false;
         showHealth = false;
         SaveConfig();
@@ -3033,6 +3121,12 @@ public sealed class Plugin : BasePlugin
                 DrawBacktrack();
             }
 
+            // Box-head ESP: detailed box around head + body
+            if (boxHeadEsp && !menuVisible)
+            {
+                DrawBoxHeadEsp();
+            }
+
             if (menuVisible)
             {
                 DrawTrainerMenu();
@@ -3229,6 +3323,8 @@ public sealed class Plugin : BasePlugin
         footstepEsp = GUI.Toggle(new Rect(x, y, w, 24), footstepEsp, "Footstep ESP (recent enemy positions)"); y += 26;
         preFire = GUI.Toggle(new Rect(x, y, w, 24), preFire, "Pre-fire (auto-fire at close range)"); y += 26;
         backtrack = GUI.Toggle(new Rect(x, y, w, 24), backtrack, "Backtrack (past enemy positions)"); y += 26;
+        adminUnlock = GUI.Toggle(new Rect(x, y, w, 24), adminUnlock, "Admin panel unlock"); y += 26;
+        boxHeadEsp = GUI.Toggle(new Rect(x, y, w, 24), boxHeadEsp, "Box-head ESP (detailed boxes)"); y += 26;
         GUI.Label(new Rect(x, y, 80, 24), "Aim bone:"); y += 26;
         for (var i = 0; i < AimBoneLabels.Length; i++)
         {
@@ -3863,6 +3959,8 @@ public sealed class Plugin : BasePlugin
         if (footstepEsp) features.Add("FootstepESP");
         if (preFire) features.Add("PreFire");
         if (backtrack) features.Add("Backtrack");
+        if (adminUnlock) features.Add("AdminUnlock");
+        if (boxHeadEsp) features.Add("BoxHeadESP");
         if (ghostBullets) features.Add("GhostBullets");
 
         if (features.Count == 0) return;

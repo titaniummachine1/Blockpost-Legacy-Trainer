@@ -170,6 +170,8 @@ public sealed class Plugin : BasePlugin
     private static bool configPreset1;
     private static bool configPreset2;
     private static bool configPreset3;
+    private static bool antiAimJitter;
+    private static float sessionStartTime = -1f;
     private static int aimBone = 0; // 0=head, 1=chest, 2=pelvis
     private static readonly string[] AimBoneLabels = { "Head", "Chest", "Pelvis" };
     private static float fpsUpdateTimer;
@@ -338,6 +340,7 @@ public sealed class Plugin : BasePlugin
         if (noFallDamage) ApplyNoFallDamage();
         UpdateKillSound();
         if (fastWeaponSwitch) ApplyFastWeaponSwitch();
+        if (antiAimJitter) ApplyAntiAimJitter();
         PrepareRapidFirePrefix();
 
         // If we're not shooting this frame but the button is still held from
@@ -1327,6 +1330,7 @@ public sealed class Plugin : BasePlugin
                     case "aimbotSmoothing": aimbotSmoothing = val == "1"; break;
                     case "aimbotSmoothFactor": aimbotSmoothFactor = float.TryParse(val, out var asf) ? asf : 0.5f; break;
                     case "fastWeaponSwitch": fastWeaponSwitch = val == "1"; break;
+                    case "antiAimJitter": antiAimJitter = val == "1"; break;
                     case "debugLogging": debugLogging = val == "1"; break;
                     case "heavyDiagnostics": heavyDiagnostics = val == "1"; break;
                     case "showRuntimeStatus": showRuntimeStatus = val == "1"; break;
@@ -1433,6 +1437,7 @@ public sealed class Plugin : BasePlugin
                 $"aimbotSmoothing={(aimbotSmoothing ? 1 : 0)}",
                 $"aimbotSmoothFactor={aimbotSmoothFactor}",
                 $"fastWeaponSwitch={(fastWeaponSwitch ? 1 : 0)}",
+                $"antiAimJitter={(antiAimJitter ? 1 : 0)}",
                 $"debugLogging={(debugLogging ? 1 : 0)}",
                 $"heavyDiagnostics={(heavyDiagnostics ? 1 : 0)}",
                 $"showRuntimeStatus={(showRuntimeStatus ? 1 : 0)}",
@@ -1483,6 +1488,23 @@ public sealed class Plugin : BasePlugin
         {
             instance?.Log.LogError($"[Config] Failed to load preset '{name}': {ex.Message}");
         }
+    }
+
+    /// <summary>
+    /// Anti-aim jitter: randomly jitter the yaw angle by small amounts each frame
+    /// to make it harder for enemy aimbots to track the player.
+    /// </summary>
+    private static void ApplyAntiAimJitter()
+    {
+        try
+        {
+            // Only jitter when not aiming (don't interfere with own aim)
+            if (Controll.BFEOOOMMGLK) return;
+            // Add random jitter between -15 and +15 degrees
+            var jitter = UnityEngine.Random.Range(-15f, 15f);
+            Controll.NAKNALFCOIF += jitter;
+        }
+        catch { }
     }
 
     /// <summary>
@@ -2073,6 +2095,7 @@ public sealed class Plugin : BasePlugin
         killSound = false;
         aimbotSmoothing = false;
         fastWeaponSwitch = false;
+        antiAimJitter = false;
         ghostBullets = false;
         showHealth = false;
         SaveConfig();
@@ -3644,6 +3667,7 @@ public sealed class Plugin : BasePlugin
             y += 26;
         }
         fastWeaponSwitch = GUI.Toggle(new Rect(x, y, w, 24), fastWeaponSwitch, "Fast weapon switch (zero timers)"); y += 26;
+        antiAimJitter = GUI.Toggle(new Rect(x, y, w, 24), antiAimJitter, "Anti-aim jitter (random yaw)"); y += 26;
         GUI.Label(new Rect(x, y, 80, 24), "Aim bone:"); y += 26;
         for (var i = 0; i < AimBoneLabels.Length; i++)
         {
@@ -4302,6 +4326,7 @@ public sealed class Plugin : BasePlugin
         if (killSound) features.Add("KillSound");
         if (aimbotSmoothing) features.Add($"AimSmooth:{aimbotSmoothFactor:F2}");
         if (fastWeaponSwitch) features.Add("FastSwitch");
+        if (antiAimJitter) features.Add("AntiAimJitter");
         if (ghostBullets) features.Add("GhostBullets");
 
         if (features.Count == 0) return;
@@ -4310,6 +4335,11 @@ public sealed class Plugin : BasePlugin
         GUI.color = new Color(0f, 1f, 0f, 0.7f);
         var y = 5f;
         GUI.Label(new Rect(5, y, 300, 20), $"Blockpost Trainer [{features.Count} active] FPS:{currentFps:0} {DateTime.Now:HH:mm:ss}");
+        y += 20;
+        if (sessionStartTime < 0) sessionStartTime = Time.time;
+        var sessionTime = Time.time - sessionStartTime;
+        var ts = TimeSpan.FromSeconds(sessionTime);
+        GUI.Label(new Rect(5, y, 300, 20), $"Session: {ts.Hours:00}:{ts.Minutes:00}:{ts.Seconds:00}");
         y += 20;
         GUI.color = new Color(1f, 1f, 0f, 0.6f);
         // Show features in rows of 5

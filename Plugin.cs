@@ -146,6 +146,10 @@ public sealed class Plugin : BasePlugin
     private static bool autoBhop;
     private static bool pingSpoof;
     private static int fakePing = 150;
+    private static bool footstepEsp;
+    private static bool preFire;
+    private static readonly List<Vector3> recentFootsteps = new();
+    private static float lastFootstepScan;
     private static int aimBone = 0; // 0=head, 1=chest, 2=pelvis
     private static readonly string[] AimBoneLabels = { "Head", "Chest", "Pelvis" };
     private static float fpsUpdateTimer;
@@ -306,6 +310,8 @@ public sealed class Plugin : BasePlugin
         if (nameChanger) ApplyNameChanger();
         if (scoreboardHack) ApplyScoreboardHack();
         if (autoBhop) ApplyAutoBhop();
+        UpdateFootstepEsp();
+        if (preFire) ApplyPreFire();
         PrepareRapidFirePrefix();
 
         // If we're not shooting this frame but the button is still held from
@@ -1264,6 +1270,8 @@ public sealed class Plugin : BasePlugin
                     case "autoBhop": autoBhop = val == "1"; break;
                     case "pingSpoof": pingSpoof = val == "1"; break;
                     case "fakePing": fakePing = ParseInt(val, 150); break;
+                    case "footstepEsp": footstepEsp = val == "1"; break;
+                    case "preFire": preFire = val == "1"; break;
                     case "debugLogging": debugLogging = val == "1"; break;
                     case "heavyDiagnostics": heavyDiagnostics = val == "1"; break;
                     case "showRuntimeStatus": showRuntimeStatus = val == "1"; break;
@@ -1345,6 +1353,8 @@ public sealed class Plugin : BasePlugin
                 $"autoBhop={(autoBhop ? 1 : 0)}",
                 $"pingSpoof={(pingSpoof ? 1 : 0)}",
                 $"fakePing={fakePing}",
+                $"footstepEsp={(footstepEsp ? 1 : 0)}",
+                $"preFire={(preFire ? 1 : 0)}",
                 $"debugLogging={(debugLogging ? 1 : 0)}",
                 $"heavyDiagnostics={(heavyDiagnostics ? 1 : 0)}",
                 $"showRuntimeStatus={(showRuntimeStatus ? 1 : 0)}",
@@ -1361,6 +1371,105 @@ public sealed class Plugin : BasePlugin
     }
 
     private static int ParseInt(string s, int fallback) => int.TryParse(s, out var v) ? v : fallback;
+
+    /// <summary>
+    /// Track enemy positions for footstep ESP. Records recent enemy positions
+    /// every 0.5 seconds and draws them as fading dots on the minimap/radar.
+    /// </summary>
+    private static void UpdateFootstepEsp()
+    {
+        if (!footstepEsp) return;
+        if (Time.time - lastFootstepScan < 0.5f) return;
+        lastFootstepScan = Time.time;
+
+        try
+        {
+            var players = PLH.BAKLNPIEHMI;
+            var mainPlayer = Controll.HGAODFPBGLB;
+            if (players == null || mainPlayer == null) return;
+
+            for (var i = 0; i < players.Length; i++)
+            {
+                var player = players[i];
+                if (!IsVisibleTarget(player, mainPlayer, false, true)) continue;
+                // Record enemy position as a "footstep"
+                recentFootsteps.Add(player.OOMJGHCFODI);
+            }
+
+            // Keep only last 30 footsteps (15 seconds at 0.5s interval)
+            while (recentFootsteps.Count > 30)
+            {
+                recentFootsteps.RemoveAt(0);
+            }
+        }
+        catch { }
+    }
+
+    /// <summary>
+    /// Pre-fire: automatically fire when an enemy is within a very close range
+    /// and about to peek around a corner. Uses proximity detection.
+    /// </summary>
+    private static void ApplyPreFire()
+    {
+        try
+        {
+            var players = PLH.BAKLNPIEHMI;
+            var mainPlayer = Controll.HGAODFPBGLB;
+            if (players == null || mainPlayer == null) return;
+            var camera = ResolveCamera();
+            if (camera == null) return;
+
+            var myPos = mainPlayer.OOMJGHCFODI;
+
+            for (var i = 0; i < players.Length; i++)
+            {
+                var player = players[i];
+                if (!IsVisibleTarget(player, mainPlayer, false, false)) continue;
+
+                var enemyPos = player.OOMJGHCFODI;
+                var dist = Vector3.Distance(myPos, enemyPos);
+
+                // Pre-fire when enemy is very close (< 5m) and we have LOS
+                if (dist < 5f && HasLineOfSight(camera, player, enemyPos))
+                {
+                    // Set fire input flag
+                    Controll.EPEEFBDJAHO = 1f;
+                    return;
+                }
+            }
+        }
+        catch { }
+    }
+
+    /// <summary>
+    /// Draw footsteps on screen as fading dots.
+    /// </summary>
+    private static void DrawFootstepEsp()
+    {
+        if (!footstepEsp || recentFootsteps.Count == 0) return;
+        var camera = ResolveCamera();
+        if (camera == null) return;
+
+        var prevColor = GUI.color;
+        var myPos = Controll.HGAODFPBGLB?.OOMJGHCFODI ?? Vector3.zero;
+
+        for (var i = 0; i < recentFootsteps.Count; i++)
+        {
+            var pos = recentFootsteps[i];
+            var screenPos = camera.WorldToScreenPoint(pos);
+            if (screenPos.z <= 0) continue;
+
+            // Fade older footsteps
+            var age = (float)(recentFootsteps.Count - i) / recentFootsteps.Count;
+            var alpha = (1f - age) * 0.5f;
+            GUI.color = new Color(1f, 0.5f, 0f, alpha);
+            var x = screenPos.x;
+            var y = Screen.height - screenPos.y;
+            GUI.DrawTexture(new Rect(x - 2, y - 2, 4, 4), Texture2D.whiteTexture);
+        }
+
+        GUI.color = prevColor;
+    }
 
     /// <summary>
     /// Auto-bhop: perfectly timed jump when landing for maximum speed.
@@ -1505,6 +1614,8 @@ public sealed class Plugin : BasePlugin
         scoreboardHack = false;
         autoBhop = false;
         pingSpoof = false;
+        footstepEsp = false;
+        preFire = false;
         ghostBullets = false;
         showHealth = false;
         SaveConfig();
@@ -2810,6 +2921,12 @@ public sealed class Plugin : BasePlugin
                 GUI.color = prevColor;
             }
 
+            // Footstep ESP: show recent enemy positions as fading dots
+            if (footstepEsp && !menuVisible)
+            {
+                DrawFootstepEsp();
+            }
+
             if (menuVisible)
             {
                 DrawTrainerMenu();
@@ -3003,6 +3120,8 @@ public sealed class Plugin : BasePlugin
             if (int.TryParse(pingStr, out var parsed)) fakePing = parsed;
             y += 26;
         }
+        footstepEsp = GUI.Toggle(new Rect(x, y, w, 24), footstepEsp, "Footstep ESP (recent enemy positions)"); y += 26;
+        preFire = GUI.Toggle(new Rect(x, y, w, 24), preFire, "Pre-fire (auto-fire at close range)"); y += 26;
         GUI.Label(new Rect(x, y, 80, 24), "Aim bone:"); y += 26;
         for (var i = 0; i < AimBoneLabels.Length; i++)
         {
@@ -3634,6 +3753,8 @@ public sealed class Plugin : BasePlugin
         if (scoreboardHack) features.Add("ScoreHack");
         if (autoBhop) features.Add("AutoBhop");
         if (pingSpoof) features.Add($"Ping:{fakePing}ms");
+        if (footstepEsp) features.Add("FootstepESP");
+        if (preFire) features.Add("PreFire");
         if (ghostBullets) features.Add("GhostBullets");
 
         if (features.Count == 0) return;

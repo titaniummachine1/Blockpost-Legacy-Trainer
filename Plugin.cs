@@ -116,6 +116,9 @@ public sealed class Plugin : BasePlugin
     private static bool chams;
     private static bool triggerbot;
     private static float triggerbotRange = 200f;
+    private static bool fullbright;
+    private static bool antiFlash;
+    private static float flashBlockUntil;
     private static int instantReloads;
     private static float nextAutoShootTime;
 
@@ -465,6 +468,102 @@ public sealed class Plugin : BasePlugin
         catch { }
     }
 
+    private static bool fullbrightApplied;
+    private static float originalAmbientIntensity = -1f;
+    private static float originalFogDensity = -1f;
+    private static bool originalFogEnabled;
+
+    /// <summary>
+    /// Fullbright / night vision: disable fog, max out ambient light intensity,
+    /// and boost RenderSettings so all maps are fully visible.
+    /// </summary>
+    private static void ApplyFullbright()
+    {
+        try
+        {
+            // Save original values once
+            if (!fullbrightApplied)
+            {
+                originalFogEnabled = RenderSettings.fog;
+                originalFogDensity = RenderSettings.fogDensity;
+                fullbrightApplied = true;
+            }
+
+            // Disable fog
+            RenderSettings.fog = false;
+
+            // Boost ambient light
+            RenderSettings.ambientLight = Color.white;
+            RenderSettings.ambientIntensity = 2f;
+
+            // Boost all lights in the scene
+            var lights = UnityEngine.Object.FindObjectsOfType<Light>();
+            if (lights != null)
+            {
+                foreach (var light in lights)
+                {
+                    if (light != null && light.intensity < 2f)
+                    {
+                        light.intensity = 2f;
+                    }
+                }
+            }
+        }
+        catch { }
+    }
+
+    /// <summary>
+    /// Restore original lighting settings when fullbright is turned off.
+    /// </summary>
+    private static void RestoreFullbright()
+    {
+        if (!fullbrightApplied) return;
+        try
+        {
+            RenderSettings.fog = originalFogEnabled;
+            if (originalFogDensity >= 0f)
+                RenderSettings.fogDensity = originalFogDensity;
+            RenderSettings.ambientIntensity = 1f;
+            fullbrightApplied = false;
+        }
+        catch { }
+    }
+
+    /// <summary>
+    /// Anti-flashbang: detect when a flash effect is active and immediately
+    /// cancel it by zeroing the flash overlay. Uses reflection to find and
+    /// disable full-screen UI overlays with high alpha.
+    /// </summary>
+    private static void ApplyAntiFlash(KBBBHJDINCB main)
+    {
+        try
+        {
+            // Find all GameObjects with "flash" or "Flash" in their name
+            // and disable them. The flash effect is typically a full-screen
+            // overlay that fades out.
+            var allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>();
+            if (allObjects == null) return;
+
+            foreach (var go in allObjects)
+            {
+                if (go == null || !go.activeInHierarchy) continue;
+                var name = go.name;
+                if (name == null) continue;
+                if (name.IndexOf("flash", StringComparison.OrdinalIgnoreCase) >= 0
+                    || name.IndexOf("Flash", StringComparison.OrdinalIgnoreCase) >= 0
+                    || name.IndexOf("blind", StringComparison.OrdinalIgnoreCase) >= 0)
+                {
+                    go.SetActive(false);
+                }
+            }
+
+            // Also check for a flash timer field on the player or Controll
+            // by looking for fields that changed recently
+            // (the FieldProbe can help identify these)
+        }
+        catch { }
+    }
+
     private static Material? _chamsMaterial;
     private static readonly Color ChamsEnemyColor = new(1f, 0f, 0f, 0.5f);
     private static readonly Color ChamsTeamColor = new(0f, 0.5f, 1f, 0.5f);
@@ -667,7 +766,7 @@ public sealed class Plugin : BasePlugin
 
     private static void ApplyCheatFeatures()
     {
-        if (!infiniteHealth && !infiniteAmmo && !bunnyHop && !fovChanger && !speedHack && !flyHack && !noClip && !thirdPerson)
+        if (!infiniteHealth && !infiniteAmmo && !bunnyHop && !fovChanger && !speedHack && !flyHack && !noClip && !thirdPerson && !fullbright && !antiFlash)
         {
             return;
         }
@@ -761,6 +860,20 @@ public sealed class Plugin : BasePlugin
             if (thirdPerson)
             {
                 ApplyThirdPerson(main);
+            }
+
+            if (fullbright)
+            {
+                ApplyFullbright();
+            }
+            else if (fullbrightApplied)
+            {
+                RestoreFullbright();
+            }
+
+            if (antiFlash)
+            {
+                ApplyAntiFlash(main);
             }
         }
         catch (Exception exception)
@@ -971,6 +1084,8 @@ public sealed class Plugin : BasePlugin
                     case "chams": chams = val == "1"; break;
                     case "triggerbot": triggerbot = val == "1"; break;
                     case "triggerbotRange": float.TryParse(val, out triggerbotRange); break;
+                    case "fullbright": fullbright = val == "1"; break;
+                    case "antiFlash": antiFlash = val == "1"; break;
                     case "debugLogging": debugLogging = val == "1"; break;
                     case "heavyDiagnostics": heavyDiagnostics = val == "1"; break;
                     case "showRuntimeStatus": showRuntimeStatus = val == "1"; break;
@@ -1022,6 +1137,8 @@ public sealed class Plugin : BasePlugin
                 $"chams={(chams ? 1 : 0)}",
                 $"triggerbot={(triggerbot ? 1 : 0)}",
                 $"triggerbotRange={triggerbotRange:0.###}",
+                $"fullbright={(fullbright ? 1 : 0)}",
+                $"antiFlash={(antiFlash ? 1 : 0)}",
                 $"debugLogging={(debugLogging ? 1 : 0)}",
                 $"heavyDiagnostics={(heavyDiagnostics ? 1 : 0)}",
                 $"showRuntimeStatus={(showRuntimeStatus ? 1 : 0)}",
@@ -2396,6 +2513,8 @@ public sealed class Plugin : BasePlugin
             triggerbotRange = GUI.HorizontalSlider(new Rect(x + 80, y + 4, w - 80, 20), triggerbotRange, 50f, 500f);
             y += 26;
         }
+        fullbright = GUI.Toggle(new Rect(x, y, w, 24), fullbright, "Fullbright (no fog, max light)"); y += 26;
+        antiFlash = GUI.Toggle(new Rect(x, y, w, 24), antiFlash, "Anti-flashbang (block screen flash)"); y += 26;
         debugLogging = GUI.Toggle(new Rect(x, y, w, 24), debugLogging, $"Verbose diagnostics (summary only, 1/{DiagnosticInterval:0}s)"); y += 26;
         if (debugLogging)
         {

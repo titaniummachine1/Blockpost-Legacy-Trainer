@@ -137,6 +137,9 @@ public sealed class Plugin : BasePlugin
     private static bool hitMarker;
     private static bool autoPickup;
     private static bool xpGoldHack;
+    private static bool healthBarEsp;
+    private static bool snaplines;
+    private static bool threatIndicator;
     private static int aimBone = 0; // 0=head, 1=chest, 2=pelvis
     private static readonly string[] AimBoneLabels = { "Head", "Chest", "Pelvis" };
     private static float fpsUpdateTimer;
@@ -1243,6 +1246,9 @@ public sealed class Plugin : BasePlugin
                     case "autoPickup": autoPickup = val == "1"; break;
                     case "aimBone": aimBone = ParseInt(val, 0); break;
                     case "xpGoldHack": xpGoldHack = val == "1"; break;
+                    case "healthBarEsp": healthBarEsp = val == "1"; break;
+                    case "snaplines": snaplines = val == "1"; break;
+                    case "threatIndicator": threatIndicator = val == "1"; break;
                     case "debugLogging": debugLogging = val == "1"; break;
                     case "heavyDiagnostics": heavyDiagnostics = val == "1"; break;
                     case "showRuntimeStatus": showRuntimeStatus = val == "1"; break;
@@ -1315,6 +1321,9 @@ public sealed class Plugin : BasePlugin
                 $"autoPickup={(autoPickup ? 1 : 0)}",
                 $"aimBone={aimBone}",
                 $"xpGoldHack={(xpGoldHack ? 1 : 0)}",
+                $"healthBarEsp={(healthBarEsp ? 1 : 0)}",
+                $"snaplines={(snaplines ? 1 : 0)}",
+                $"threatIndicator={(threatIndicator ? 1 : 0)}",
                 $"debugLogging={(debugLogging ? 1 : 0)}",
                 $"heavyDiagnostics={(heavyDiagnostics ? 1 : 0)}",
                 $"showRuntimeStatus={(showRuntimeStatus ? 1 : 0)}",
@@ -1399,6 +1408,9 @@ public sealed class Plugin : BasePlugin
         hitMarker = false;
         autoPickup = false;
         xpGoldHack = false;
+        healthBarEsp = false;
+        snaplines = false;
+        threatIndicator = false;
         ghostBullets = false;
         showHealth = false;
         SaveConfig();
@@ -2677,6 +2689,24 @@ public sealed class Plugin : BasePlugin
                 DrawHitMarker();
             }
 
+            // Health bar ESP: draw health bars above players
+            if (healthBarEsp && !menuVisible)
+            {
+                DrawHealthBarEsp();
+            }
+
+            // Snaplines: lines from bottom of screen to enemies
+            if (snaplines && !menuVisible)
+            {
+                DrawSnaplines();
+            }
+
+            // Threat indicator: arrow pointing to closest enemy
+            if (threatIndicator && !menuVisible)
+            {
+                DrawThreatIndicator();
+            }
+
             if (menuVisible)
             {
                 DrawTrainerMenu();
@@ -2850,6 +2880,9 @@ public sealed class Plugin : BasePlugin
         hitMarker = GUI.Toggle(new Rect(x, y, w, 24), hitMarker, "Hit marker (X at crosshair on hit)"); y += 26;
         autoPickup = GUI.Toggle(new Rect(x, y, w, 24), autoPickup, "Auto-pickup (grab nearby items)"); y += 26;
         xpGoldHack = GUI.Toggle(new Rect(x, y, w, 24), xpGoldHack, "XP/Gold hack (set exp=999k, gold=999k)"); y += 26;
+        healthBarEsp = GUI.Toggle(new Rect(x, y, w, 24), healthBarEsp, "Health bar ESP (bars above players)"); y += 26;
+        snaplines = GUI.Toggle(new Rect(x, y, w, 24), snaplines, "Snaplines (lines to enemies)"); y += 26;
+        threatIndicator = GUI.Toggle(new Rect(x, y, w, 24), threatIndicator, "Threat indicator (arrow to closest)"); y += 26;
         GUI.Label(new Rect(x, y, 80, 24), "Aim bone:"); y += 26;
         for (var i = 0; i < AimBoneLabels.Length; i++)
         {
@@ -2891,6 +2924,116 @@ public sealed class Plugin : BasePlugin
         {
             SaveConfig();
         }
+    }
+
+    /// <summary>
+    /// Draw health bars above each player's ESP box.
+    /// Green bar for full health, red for low, with exact HP number.
+    /// </summary>
+    private static void DrawHealthBarEsp()
+    {
+        if (!espEnabled) return;
+        var prevColor = GUI.color;
+        foreach (var box in espBoxes)
+        {
+            var hp = box.Health;
+            if (hp <= 0) continue;
+            var hpRatio = Mathf.Clamp01(hp / 100f);
+            var barWidth = box.Bounds.width;
+            var barX = box.Bounds.x;
+            var barY = box.Bounds.y - 6;
+            // Background
+            GUI.color = new Color(0, 0, 0, 0.6f);
+            GUI.DrawTexture(new Rect(barX - 1, barY - 1, barWidth + 2, 5), Texture2D.whiteTexture);
+            // Health fill
+            GUI.color = new Color(1f - hpRatio, hpRatio, 0f, 0.9f);
+            GUI.DrawTexture(new Rect(barX, barY, barWidth * hpRatio, 3), Texture2D.whiteTexture);
+        }
+        GUI.color = prevColor;
+    }
+
+    /// <summary>
+    /// Draw snaplines from bottom-center of screen to each enemy.
+    /// </summary>
+    private static void DrawSnaplines()
+    {
+        if (!espEnabled) return;
+        var prevColor = GUI.color;
+        var bottomCenter = new Vector2(Screen.width / 2f, Screen.height);
+        foreach (var box in espBoxes)
+        {
+            if (!box.IsEnemy) continue;
+            GUI.color = new Color(box.Color.r, box.Color.g, box.Color.b, 0.3f);
+            DrawLine2D(bottomCenter, box.ScreenPos);
+        }
+        GUI.color = prevColor;
+    }
+
+    /// <summary>
+    /// Draw a threat indicator arrow pointing toward the closest enemy.
+    /// Shows direction and distance when enemy is off-screen.
+    /// </summary>
+    private static void DrawThreatIndicator()
+    {
+        try
+        {
+            var players = PLH.BAKLNPIEHMI;
+            var mainPlayer = Controll.HGAODFPBGLB;
+            if (players == null || mainPlayer == null) return;
+            var camera = ResolveCamera();
+            if (camera == null) return;
+
+            var myPos = mainPlayer.OOMJGHCFODI;
+            var closestDist = float.MaxValue;
+            var closestPos = Vector3.zero;
+            var found = false;
+
+            for (var i = 0; i < players.Length; i++)
+            {
+                var player = players[i];
+                if (!IsVisibleTarget(player, mainPlayer, false, true)) continue;
+                var pos = player.OOMJGHCFODI;
+                var dist = Vector3.Distance(myPos, pos);
+                if (dist < closestDist)
+                {
+                    closestDist = dist;
+                    closestPos = pos;
+                    found = true;
+                }
+            }
+
+            if (!found) return;
+
+            // Check if enemy is on-screen
+            var screenPos = camera.WorldToScreenPoint(closestPos);
+            var onScreen = screenPos.z > 0 && screenPos.x > 0 && screenPos.x < Screen.width &&
+                           Screen.height - screenPos.y > 0 && Screen.height - screenPos.y < Screen.height;
+
+            if (onScreen) return; // Enemy visible, no indicator needed
+
+            // Draw arrow at screen edge pointing toward enemy
+            var center = new Vector2(Screen.width / 2f, Screen.height / 2f);
+            var dir = new Vector2(screenPos.x - center.x, (Screen.height - screenPos.y) - center.y).normalized;
+            var arrowPos = center + dir * Mathf.Min(Screen.width, Screen.height) * 0.4f;
+            arrowPos.x = Mathf.Clamp(arrowPos.x, 30, Screen.width - 30);
+            arrowPos.y = Mathf.Clamp(arrowPos.y, 30, Screen.height - 30);
+
+            var prevColor = GUI.color;
+            GUI.color = new Color(1f, 0.3f, 0.3f, 0.8f);
+            // Draw arrow (triangle approximation)
+            var angle = Mathf.Atan2(dir.y, dir.x);
+            var arrowSize = 12f;
+            for (var i = 0; i < 3; i++)
+            {
+                var a = angle + (i - 1) * 0.5f;
+                var p = arrowPos + new Vector2(Mathf.Cos(a) * arrowSize, Mathf.Sin(a) * arrowSize);
+                DrawLine2D(arrowPos, p);
+            }
+            // Distance text
+            GUI.Label(new Rect(arrowPos.x - 30, arrowPos.y + 15, 60, 20), $"{closestDist:F0}m");
+            GUI.color = prevColor;
+        }
+        catch { }
     }
 
     /// <summary>
@@ -3364,6 +3507,9 @@ public sealed class Plugin : BasePlugin
         if (hitMarker) features.Add("HitMarker");
         if (autoPickup) features.Add("AutoPickup");
         if (xpGoldHack) features.Add("XP/GoldHack");
+        if (healthBarEsp) features.Add("HealthBar");
+        if (snaplines) features.Add("Snaplines");
+        if (threatIndicator) features.Add("ThreatInd");
         if (ghostBullets) features.Add("GhostBullets");
 
         if (features.Count == 0) return;

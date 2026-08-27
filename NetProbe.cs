@@ -104,6 +104,29 @@ internal static class NetProbe
         [0x57] = "int/87"
     };
 
+    // Inbound (rx) message ids — observed from captured traffic and Client method analysis.
+    private static readonly Dictionary<int, string> RxNames = new()
+    {
+        [0x01] = "join/spawn",
+        [0x03] = "SNAPSHOT(id,x,y,z,yaw,state)",
+        [0x04] = "HIT_EVENT(target,value,u16)",
+        [0x06] = "SHOT_REPLY(s3)",
+        [0x07] = "state/7",
+        [0x08] = "weapondata/8",
+        [0x09] = "loadout/9",
+        [0x0A] = "state/10",
+        [0x0B] = "state/11",
+        [0x0C] = "state/12",
+        [0x0D] = "chat/13",
+        [0x0E] = "weapon_replication/14",
+        [0x0F] = "slot_switch/15",
+        [0x13] = "state/19",
+        [0x14] = "state/20",
+        [0x15] = "state/21",
+        [0x2D] = "MOVE_REPLY",
+        [0x34] = "replication/52",
+    };
+
     private static readonly ConcurrentQueue<Rec> Queue = new();
     private static readonly Stopwatch Clock = Stopwatch.StartNew();
     private static ManualLogSource? log;
@@ -765,11 +788,19 @@ internal static class NetProbe
                         line.Clear();
                         line.Append(ms.ToString("F1")).Append(" rx src=").Append(rec.Text ?? "?")
                             .Append(" len=").Append((int)rec.Value).Append(' ');
-                        if (rec.Blob != null)
+                        if (rec.Blob != null && rec.Blob.Length > 0)
                         {
-                            for (var i = 0; i < rec.Blob.Length; i++)
+                            var decoded = DecodeRx(rec.Blob);
+                            if (decoded != null)
                             {
-                                line.Append(rec.Blob[i].ToString("X2")).Append(' ');
+                                line.Append(decoded);
+                            }
+                            else
+                            {
+                                for (var i = 0; i < rec.Blob.Length; i++)
+                                {
+                                    line.Append(rec.Blob[i].ToString("X2")).Append(' ');
+                                }
                             }
                         }
 
@@ -821,6 +852,119 @@ internal static class NetProbe
                 // nothing useful to do while tearing down
             }
         }
+    }
+
+    /// <summary>
+    /// Decode an inbound packet blob into a human-readable string.
+    /// Format: F5 <op> <len> <payload>. Returns null if the blob is too short
+    /// or the opcode is unknown (caller falls back to raw hex).
+    /// </summary>
+    private static string? DecodeRx(byte[] blob)
+    {
+        if (blob == null || blob.Length < 3)
+        {
+            return null;
+        }
+
+        // The wire format is: 0xF5 <op> <len_lo> [<len_hi>] <payload...>
+        // But the captured blob may start at different offsets depending on which
+        // method was hooked. Try to find the 0xF5 marker.
+        var start = 0;
+        if (blob[0] != 0xF5)
+        {
+            // Search for 0xF5 in the first few bytes
+            for (var i = 0; i < Math.Min(4, blob.Length); i++)
+            {
+                if (blob[i] == 0xF5)
+                {
+                    start = i;
+                    break;
+                }
+            }
+
+            if (start == 0 && blob[0] != 0xF5)
+            {
+                return null;
+            }
+        }
+
+        if (start + 2 >= blob.Length)
+        {
+            return null;
+        }
+
+        var op = blob[start + 1];
+        var len = blob[start + 2];
+        var payloadStart = start + 3;
+
+        // If len is 0xFF, it's a 2-byte length (little-endian u16)
+        if (len == 0xFF && payloadStart + 1 < blob.Length)
+        {
+            len = (byte)(blob[payloadStart] | (blob[payloadStart + 1] << 8));
+            payloadStart += 2;
+        }
+
+        if (!RxNames.TryGetValue(op, out var name))
+        {
+            return $"op=0x{op:X2} len={len} (unknown)";
+        }
+
+        var payload = blob.AsSpan(payloadStart, Math.Min(len, blob.Length - payloadStart));
+
+        return op switch
+        {
+            // 0x03 SNAPSHOT: u8 count, N * (u8 id, s16 x, s16 y, s16 z, s16 yaw, u8 state)
+            0x03 => DecodeSnapshot(payload, name),
+            // 0x04 HIT_EVENT: u8 target, u8 value, u16 extra
+            0x04 => payload.Length >= 4
+                ? $"{name} target={payload[0]} value={payload[1]} u16={BitConverter.ToInt16(payload.Slice(2, 2))}"
+                : $"{name} len={len}",
+            // 0x0F SLOT_SWITCH: u8 slot
+            0x0F => payload.Length >= 1
+                ? $"{name} slot={payload[0]}"
+                : $"{name} len={len}",
+            // 0x06 SHOT_REPLY: 3 shorts
+            0x06 => payload.Length >= 6
+                ? $"{name} s1={BitConverter.ToInt16(payload.Slice(0, 2))} s2={BitConverter.ToInt16(payload.Slice(2, 2))} s3={BitConverter.ToInt16(payload.Slice(4, 2))}"
+                : $"{name} len={len}",
+            // Default: just show the name and length
+            _ => $"{name} len={len}",
+        };
+    }
+
+    /// <summary>
+    /// Decode a 0x03 snapshot packet: u8 count, then N entries of
+    /// (u8 id, s16 x, s16 y, s16 z, s16 yaw, u8 state) with x/y/z scaled by 1/64.
+    /// </summary>
+    private static string DecodeSnapshot(ReadOnlySpan<byte> payload, string name)
+    {
+        if (payload.Length < 1)
+        {
+            return $"{name} len=0";
+        }
+
+        var count = payload[0];
+        var entrySize = 10; // 1 + 2 + 2 + 2 + 2 + 1
+        var sb = new StringBuilder();
+        sb.Append(name).Append(" count=").Append(count);
+
+        var offset = 1;
+        var maxEntries = Math.Min(count, (payload.Length - 1) / entrySize);
+        for (var i = 0; i < maxEntries && offset + entrySize <= payload.Length; i++)
+        {
+            var id = payload[offset];
+            var x = BitConverter.ToInt16(payload.Slice(offset + 1, 2)) / 64f;
+            var y = BitConverter.ToInt16(payload.Slice(offset + 3, 2)) / 64f;
+            var z = BitConverter.ToInt16(payload.Slice(offset + 5, 2)) / 64f;
+            var yaw = (ushort)BitConverter.ToInt16(payload.Slice(offset + 7, 2));
+            var state = payload[offset + 9];
+            var yawDeg = yaw * 360f / 65536f;
+
+            sb.Append($" [{id}]({x:F1},{y:F1},{z:F1}) yaw={yawDeg:F0}° st={state}");
+            offset += entrySize;
+        }
+
+        return sb.ToString();
     }
 
     // ---- known weapons catalog ----

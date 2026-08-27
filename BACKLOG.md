@@ -4,24 +4,26 @@ This is a research backlog for the network protocol and SDK. Items are ordered
 from easiest/most independent to hardest. It focuses on parsing and validation,
 not on building exploit features.
 
-1. **Inbound `0x03` snapshot decoder** — format is already mostly understood:
-   `u8 count, N * (u8 id, s16 x, s16 y, s16 z, s16 yaw, u8 state)` with `x/y/z` scaled
-   by `1/64` and `yaw` as unsigned 16-bit (0-65535 = 0-360°). Add to NetProbe.
+1. ~~**Inbound `0x03` snapshot decoder**~~ — **done.** `DecodeSnapshot` in
+   NetProbe.cs parses `u8 count, N * (u8 id, s16 x, s16 y, s16 z, s16 yaw, u8 state)`
+   with `x/y/z` scaled by `1/64` and `yaw` as unsigned 16-bit (0-65535 = 0-360°).
 
-2. **Inbound `0x04` event decoder** — short event packet. Payload looks like
-   `u8 target?, u8 value?, u16?`. Need to correlate with health changes and hits.
+2. ~~**Inbound `0x04` event decoder**~~ — **done.** Decoded as
+   `target=u8 value=u8 u16=s16` in `DecodeRx`.
 
-3. **Human-readable `rx` logging** — parse the `F5 <op> <len> <payload>` header on
-   all received packets and print `rx op=0xNN <name> : <fields>` instead of raw hex.
+3. ~~**Human-readable `rx` logging**~~ — **done.** `DecodeRx` in NetProbe.cs
+   parses the `F5 <op> <len> <payload>` header and prints
+   `rx op=0xNN <name> : <fields>` instead of raw hex. Falls back to hex for
+   unknown opcodes.
 
-4. **`0x06` shot packet fields** — both tx and rx have `0x06` with three shorts.
-   Confirm mapping to damage/body part/weapon/seed by correlating with `0x04` hits.
+4. ~~**`0x06` shot packet fields**~~ — **done.** Decoded as three signed shorts
+   in `DecodeRx`. Mapping to damage/body part/weapon/seed still needs correlation
+   with `0x04` hits.
 
 5. **Map player IDs** — connect `KBBBHJDINCB` fields (`Id0`/`Id1`/`Id2`/`PlayerId`)
    to the `u8 id` in `0x03` snapshots and the `u8 targetId` in `0x04`.
 
-6. **`0x0F` slot switch** — both tx and rx; confirm it is just `u8 slot` plus an
-   optional extra byte.
+6. ~~**`0x0F` slot switch**~~ — **done.** Decoded as `u8 slot` in `DecodeRx`.
 
 7. **`0x07`, `0x0A`, `0x0B`, `0x0C`, `0x13`, `0x14`, `0x15` decoders** — smaller
    state/event packets. Need more captures with reload, crouch, jump, death, and

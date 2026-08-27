@@ -138,6 +138,9 @@ public sealed class Plugin : BasePlugin
     private static bool autoPickup;
     private static int aimBone = 0; // 0=head, 1=chest, 2=pelvis
     private static readonly string[] AimBoneLabels = { "Head", "Chest", "Pelvis" };
+    private static float fpsUpdateTimer;
+    private static int fpsFrameCount;
+    private static float currentFps;
     private static readonly List<string> killFeedEntries = new();
     private static float lastKillFeedCheck;
     private static int lastKillCount = -1;
@@ -1324,6 +1327,54 @@ public sealed class Plugin : BasePlugin
     }
 
     private static int ParseInt(string s, int fallback) => int.TryParse(s, out var v) ? v : fallback;
+
+    /// <summary>
+    /// Reset all cheat features to disabled state.
+    /// </summary>
+    private static void ResetAllFeatures()
+    {
+        espEnabled = false;
+        aimbotEnabled = false;
+        autoShoot = false;
+        noRecoil = false;
+        infiniteHealth = false;
+        infiniteAmmo = false;
+        instantReload = false;
+        rapidFire = false;
+        bunnyHop = false;
+        fovChanger = false;
+        customCrosshair = false;
+        speedHack = false;
+        flyHack = false;
+        noClip = false;
+        weaponUnlock = false;
+        thirdPerson = false;
+        chams = false;
+        triggerbot = false;
+        fullbright = false;
+        antiFlash = false;
+        wallhack = false;
+        noSpread = false;
+        fastFire = false;
+        autoReload = false;
+        nameEsp = false;
+        spinbot = false;
+        skeletonEsp = false;
+        radarHack = false;
+        antiAimPitch = false;
+        autoStrafe = false;
+        killFeed = false;
+        edgeJump = false;
+        fakeLag = false;
+        spectatorWarning = false;
+        damageIndicator = false;
+        hitMarker = false;
+        autoPickup = false;
+        ghostBullets = false;
+        showHealth = false;
+        SaveConfig();
+        instance?.Log.LogInfo("[Config] All features reset.");
+    }
     private static float ParseFloat(string s, float fallback) => float.TryParse(s, out var v) ? v : fallback;
 
     private static bool IsUsableCamera(Camera? camera)
@@ -2790,6 +2841,18 @@ public sealed class Plugin : BasePlugin
             GUI.Label(new Rect(x, y, w, 24), $"Aimbot: {aimStatus}"); y += 24;
         }
 
+        // Config presets section
+        GUI.Label(new Rect(x, y, w, 24), "--- Config ---"); y += 26;
+        if (GUI.Button(new Rect(x, y, 80, 24), "Save"))
+        {
+            SaveConfig();
+        }
+        if (GUI.Button(new Rect(x + 90, y, 80, 24), "Reset All"))
+        {
+            ResetAllFeatures();
+        }
+        y += 26;
+
         // Resize the menu to fit the content.
         menuRect.height = y - menuRect.y + 10;
 
@@ -3223,6 +3286,15 @@ public sealed class Plugin : BasePlugin
     /// </summary>
     private static void DrawFeatureWatermark()
     {
+        // Update FPS counter
+        fpsFrameCount++;
+        if (Time.time - fpsUpdateTimer >= 1f)
+        {
+            currentFps = fpsFrameCount / (Time.time - fpsUpdateTimer);
+            fpsUpdateTimer = Time.time;
+            fpsFrameCount = 0;
+        }
+
         var features = new List<string>();
         if (espEnabled) features.Add("ESP");
         if (aimbotEnabled) features.Add("Aimbot");
@@ -3268,7 +3340,7 @@ public sealed class Plugin : BasePlugin
         var prevColor = GUI.color;
         GUI.color = new Color(0f, 1f, 0f, 0.7f);
         var y = 5f;
-        GUI.Label(new Rect(5, y, 300, 20), $"Blockpost Trainer [{features.Count} active]");
+        GUI.Label(new Rect(5, y, 300, 20), $"Blockpost Trainer [{features.Count} active] FPS:{currentFps:0}");
         y += 20;
         GUI.color = new Color(1f, 1f, 0f, 0.6f);
         // Show features in rows of 5

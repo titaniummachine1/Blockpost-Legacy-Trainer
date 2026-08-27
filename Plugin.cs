@@ -127,6 +127,8 @@ public sealed class Plugin : BasePlugin
     private static bool spinbot;
     private static bool skeletonEsp;
     private static bool radarHack;
+    private static bool antiAimPitch;
+    private static bool autoStrafe;
     private static int instantReloads;
     private static float nextAutoShootTime;
 
@@ -782,7 +784,7 @@ public sealed class Plugin : BasePlugin
 
     private static void ApplyCheatFeatures()
     {
-        if (!infiniteHealth && !infiniteAmmo && !bunnyHop && !fovChanger && !speedHack && !flyHack && !noClip && !thirdPerson && !fullbright && !antiFlash && !noSpread && !fastFire && !autoReload && !spinbot)
+        if (!infiniteHealth && !infiniteAmmo && !bunnyHop && !fovChanger && !speedHack && !flyHack && !noClip && !thirdPerson && !fullbright && !antiFlash && !noSpread && !fastFire && !autoReload && !spinbot && !antiAimPitch && !autoStrafe)
         {
             return;
         }
@@ -928,6 +930,31 @@ public sealed class Plugin : BasePlugin
             {
                 // Constantly spin yaw to make hitboxes harder to hit
                 Controll.NAKNALFCOIF = (Controll.NAKNALFCOIF + 30f) % 360f;
+            }
+
+            if (antiAimPitch)
+            {
+                // Set pitch to extreme up/down to make head hitbox harder to hit
+                // Alternate between looking straight up and down each frame
+                var pitchTarget = ((int)Time.time % 2 == 0) ? -89f : 89f;
+                Controll.IGLCENGMMMJ = pitchTarget;
+            }
+
+            if (autoStrafe)
+            {
+                // Auto-strafe: alternate left/right movement to dodge incoming fire
+                // Toggle the movement input flags every 0.3 seconds
+                var strafePhase = (int)(Time.time / 0.3f) % 2;
+                if (strafePhase == 0)
+                {
+                    // Move right (plus_x=1, clear minus_x=2)
+                    Controll.MNHBPCOOMLE = (Controll.MNHBPCOOMLE & ~0x2u) | 0x1u;
+                }
+                else
+                {
+                    // Move left (minus_x=2, clear plus_x=1)
+                    Controll.MNHBPCOOMLE = (Controll.MNHBPCOOMLE & ~0x1u) | 0x2u;
+                }
             }
         }
         catch (Exception exception)
@@ -1148,6 +1175,8 @@ public sealed class Plugin : BasePlugin
                     case "spinbot": spinbot = val == "1"; break;
                     case "skeletonEsp": skeletonEsp = val == "1"; break;
                     case "radarHack": radarHack = val == "1"; break;
+                    case "antiAimPitch": antiAimPitch = val == "1"; break;
+                    case "autoStrafe": autoStrafe = val == "1"; break;
                     case "debugLogging": debugLogging = val == "1"; break;
                     case "heavyDiagnostics": heavyDiagnostics = val == "1"; break;
                     case "showRuntimeStatus": showRuntimeStatus = val == "1"; break;
@@ -1209,6 +1238,8 @@ public sealed class Plugin : BasePlugin
                 $"spinbot={(spinbot ? 1 : 0)}",
                 $"skeletonEsp={(skeletonEsp ? 1 : 0)}",
                 $"radarHack={(radarHack ? 1 : 0)}",
+                $"antiAimPitch={(antiAimPitch ? 1 : 0)}",
+                $"autoStrafe={(autoStrafe ? 1 : 0)}",
                 $"debugLogging={(debugLogging ? 1 : 0)}",
                 $"heavyDiagnostics={(heavyDiagnostics ? 1 : 0)}",
                 $"showRuntimeStatus={(showRuntimeStatus ? 1 : 0)}",
@@ -2620,6 +2651,8 @@ public sealed class Plugin : BasePlugin
         spinbot = GUI.Toggle(new Rect(x, y, w, 24), spinbot, "Spinbot (anti-aim yaw spin)"); y += 26;
         skeletonEsp = GUI.Toggle(new Rect(x, y, w, 24), skeletonEsp, "Skeleton ESP (bone tracing)"); y += 26;
         radarHack = GUI.Toggle(new Rect(x, y, w, 24), radarHack, "Radar hack (mini-map all players)"); y += 26;
+        antiAimPitch = GUI.Toggle(new Rect(x, y, w, 24), antiAimPitch, "Anti-aim pitch (fake look up/down)"); y += 26;
+        autoStrafe = GUI.Toggle(new Rect(x, y, w, 24), autoStrafe, "Auto-strafe (dodge pattern)"); y += 26;
         debugLogging = GUI.Toggle(new Rect(x, y, w, 24), debugLogging, $"Verbose diagnostics (summary only, 1/{DiagnosticInterval:0}s)"); y += 26;
         if (debugLogging)
         {
@@ -2852,6 +2885,8 @@ public sealed class Plugin : BasePlugin
         if (spinbot) features.Add("Spinbot");
         if (skeletonEsp) features.Add("SkeletonESP");
         if (radarHack) features.Add("RadarHack");
+        if (antiAimPitch) features.Add("AntiAimPitch");
+        if (autoStrafe) features.Add("AutoStrafe");
         if (ghostBullets) features.Add("GhostBullets");
 
         if (features.Count == 0) return;

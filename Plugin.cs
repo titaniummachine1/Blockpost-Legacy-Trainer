@@ -140,6 +140,9 @@ public sealed class Plugin : BasePlugin
     private static bool healthBarEsp;
     private static bool snaplines;
     private static bool threatIndicator;
+    private static bool nameChanger;
+    private static string customName = "Player";
+    private static bool scoreboardHack;
     private static int aimBone = 0; // 0=head, 1=chest, 2=pelvis
     private static readonly string[] AimBoneLabels = { "Head", "Chest", "Pelvis" };
     private static float fpsUpdateTimer;
@@ -297,6 +300,8 @@ public sealed class Plugin : BasePlugin
         UpdateHitMarker();
         UpdateAutoPickup();
         if (xpGoldHack) ApplyXpGoldHack();
+        if (nameChanger) ApplyNameChanger();
+        if (scoreboardHack) ApplyScoreboardHack();
         PrepareRapidFirePrefix();
 
         // If we're not shooting this frame but the button is still held from
@@ -1249,6 +1254,9 @@ public sealed class Plugin : BasePlugin
                     case "healthBarEsp": healthBarEsp = val == "1"; break;
                     case "snaplines": snaplines = val == "1"; break;
                     case "threatIndicator": threatIndicator = val == "1"; break;
+                    case "nameChanger": nameChanger = val == "1"; break;
+                    case "customName": customName = val; break;
+                    case "scoreboardHack": scoreboardHack = val == "1"; break;
                     case "debugLogging": debugLogging = val == "1"; break;
                     case "heavyDiagnostics": heavyDiagnostics = val == "1"; break;
                     case "showRuntimeStatus": showRuntimeStatus = val == "1"; break;
@@ -1324,6 +1332,9 @@ public sealed class Plugin : BasePlugin
                 $"healthBarEsp={(healthBarEsp ? 1 : 0)}",
                 $"snaplines={(snaplines ? 1 : 0)}",
                 $"threatIndicator={(threatIndicator ? 1 : 0)}",
+                $"nameChanger={(nameChanger ? 1 : 0)}",
+                $"customName={customName}",
+                $"scoreboardHack={(scoreboardHack ? 1 : 0)}",
                 $"debugLogging={(debugLogging ? 1 : 0)}",
                 $"heavyDiagnostics={(heavyDiagnostics ? 1 : 0)}",
                 $"showRuntimeStatus={(showRuntimeStatus ? 1 : 0)}",
@@ -1340,6 +1351,52 @@ public sealed class Plugin : BasePlugin
     }
 
     private static int ParseInt(string s, int fallback) => int.TryParse(s, out var v) ? v : fallback;
+
+    /// <summary>
+    /// Apply name changer: set GUIOptions.playername to custom name.
+    /// </summary>
+    private static void ApplyNameChanger()
+    {
+        try
+        {
+            var guiOptionsType = AccessTools.TypeByName("GUIOptions");
+            if (guiOptionsType == null) return;
+            var nameField = guiOptionsType.GetField("playername");
+            if (nameField != null)
+            {
+                nameField.SetValue(null, customName);
+            }
+        }
+        catch { }
+    }
+
+    /// <summary>
+    /// Apply scoreboard hack: modify UIScores to show custom team scores.
+    /// Sets both team scores to 999 to always show winning team.
+    /// </summary>
+    private static void ApplyScoreboardHack()
+    {
+        try
+        {
+            // Access UIScores via reflection
+            var uiScoresType = AccessTools.TypeByName("UIScores");
+            if (uiScoresType == null) return;
+
+            // UIScores has a static instance field IOEOEOEJJOH at offset 0x0
+            var instanceField = uiScoresType.GetField("IOEOEOEJJOH");
+            if (instanceField == null) return;
+
+            var instance = instanceField.GetValue(null);
+            if (instance == null) return;
+
+            // Set score fields
+            var rdScoreField = uiScoresType.GetField("GNFNBOHPJKG");
+            var blScoreField = uiScoresType.GetField("OIIKKGPPPLO");
+            if (rdScoreField != null) rdScoreField.SetValue(instance, 999);
+            if (blScoreField != null) blScoreField.SetValue(instance, 0);
+        }
+        catch { }
+    }
 
     /// <summary>
     /// Apply XP/Gold hack: set GUIOptions.exp and GUIOptions.Gold to high values.
@@ -1411,6 +1468,8 @@ public sealed class Plugin : BasePlugin
         healthBarEsp = false;
         snaplines = false;
         threatIndicator = false;
+        nameChanger = false;
+        scoreboardHack = false;
         ghostBullets = false;
         showHealth = false;
         SaveConfig();
@@ -2883,6 +2942,14 @@ public sealed class Plugin : BasePlugin
         healthBarEsp = GUI.Toggle(new Rect(x, y, w, 24), healthBarEsp, "Health bar ESP (bars above players)"); y += 26;
         snaplines = GUI.Toggle(new Rect(x, y, w, 24), snaplines, "Snaplines (lines to enemies)"); y += 26;
         threatIndicator = GUI.Toggle(new Rect(x, y, w, 24), threatIndicator, "Threat indicator (arrow to closest)"); y += 26;
+        nameChanger = GUI.Toggle(new Rect(x, y, w, 24), nameChanger, "Name changer"); y += 26;
+        if (nameChanger)
+        {
+            GUI.Label(new Rect(x, y, 60, 24), "Name:");
+            customName = GUI.TextField(new Rect(x + 60, y, w - 60, 24), customName, 20);
+            y += 26;
+        }
+        scoreboardHack = GUI.Toggle(new Rect(x, y, w, 24), scoreboardHack, "Scoreboard hack (team scores=999)"); y += 26;
         GUI.Label(new Rect(x, y, 80, 24), "Aim bone:"); y += 26;
         for (var i = 0; i < AimBoneLabels.Length; i++)
         {
@@ -3510,6 +3577,8 @@ public sealed class Plugin : BasePlugin
         if (healthBarEsp) features.Add("HealthBar");
         if (snaplines) features.Add("Snaplines");
         if (threatIndicator) features.Add("ThreatInd");
+        if (nameChanger) features.Add($"Name:{customName}");
+        if (scoreboardHack) features.Add("ScoreHack");
         if (ghostBullets) features.Add("GhostBullets");
 
         if (features.Count == 0) return;

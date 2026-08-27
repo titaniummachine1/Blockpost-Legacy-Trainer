@@ -119,6 +119,7 @@ public sealed class Plugin : BasePlugin
     private static bool fullbright;
     private static bool antiFlash;
     private static float flashBlockUntil;
+    private static bool wallhack;
     private static int instantReloads;
     private static float nextAutoShootTime;
 
@@ -138,16 +139,22 @@ public sealed class Plugin : BasePlugin
 
     private readonly struct EspBox
     {
-        public EspBox(Rect bounds, Color color, int health)
+        public EspBox(Rect bounds, Color color, int health, Vector2 screenPos, float dist, bool isEnemy)
         {
             Bounds = bounds;
             Color = color;
             Health = health;
+            ScreenPos = screenPos;
+            Distance = dist;
+            IsEnemy = isEnemy;
         }
 
         public Rect Bounds { get; }
         public Color Color { get; }
         public int Health { get; }
+        public Vector2 ScreenPos { get; }
+        public float Distance { get; }
+        public bool IsEnemy { get; }
     }
 
     public override void Load()
@@ -1086,6 +1093,7 @@ public sealed class Plugin : BasePlugin
                     case "triggerbotRange": float.TryParse(val, out triggerbotRange); break;
                     case "fullbright": fullbright = val == "1"; break;
                     case "antiFlash": antiFlash = val == "1"; break;
+                    case "wallhack": wallhack = val == "1"; break;
                     case "debugLogging": debugLogging = val == "1"; break;
                     case "heavyDiagnostics": heavyDiagnostics = val == "1"; break;
                     case "showRuntimeStatus": showRuntimeStatus = val == "1"; break;
@@ -1139,6 +1147,7 @@ public sealed class Plugin : BasePlugin
                 $"triggerbotRange={triggerbotRange:0.###}",
                 $"fullbright={(fullbright ? 1 : 0)}",
                 $"antiFlash={(antiFlash ? 1 : 0)}",
+                $"wallhack={(wallhack ? 1 : 0)}",
                 $"debugLogging={(debugLogging ? 1 : 0)}",
                 $"heavyDiagnostics={(heavyDiagnostics ? 1 : 0)}",
                 $"showRuntimeStatus={(showRuntimeStatus ? 1 : 0)}",
@@ -1998,8 +2007,11 @@ public sealed class Plugin : BasePlugin
         }
 
         var width = height * 0.45f;
-        var color = player.MMMGPDBMOLM == mainPlayer.MMMGPDBMOLM ? Color.green : Color.red;
-        box = new EspBox(new Rect(top.x - width / 2, Mathf.Min(topY, bottomY), width, height), color, player.FDOJDJLIGLF);
+        var isEnemy = player.MMMGPDBMOLM != mainPlayer.MMMGPDBMOLM;
+        var color = isEnemy ? Color.red : Color.green;
+        var dist = Vector3.Distance(mainPlayer.OOMJGHCFODI, position);
+        var screenPos = new Vector2(top.x, screenHeight - top.y);
+        box = new EspBox(new Rect(top.x - width / 2, Mathf.Min(topY, bottomY), width, height), color, player.FDOJDJLIGLF, screenPos, dist, isEnemy);
         return true;
     }
 
@@ -2515,6 +2527,7 @@ public sealed class Plugin : BasePlugin
         }
         fullbright = GUI.Toggle(new Rect(x, y, w, 24), fullbright, "Fullbright (no fog, max light)"); y += 26;
         antiFlash = GUI.Toggle(new Rect(x, y, w, 24), antiFlash, "Anti-flashbang (block screen flash)"); y += 26;
+        wallhack = GUI.Toggle(new Rect(x, y, w, 24), wallhack, "Wallhack (tracer lines + distance)"); y += 26;
         debugLogging = GUI.Toggle(new Rect(x, y, w, 24), debugLogging, $"Verbose diagnostics (summary only, 1/{DiagnosticInterval:0}s)"); y += 26;
         if (debugLogging)
         {
@@ -2545,6 +2558,8 @@ public sealed class Plugin : BasePlugin
         }
 
         var previousColor = GUI.color;
+        var screenCenter = new Vector2(Screen.width / 2f, Screen.height / 2f);
+
         foreach (var box in espBoxes)
         {
             GUI.color = box.Color;
@@ -2553,8 +2568,42 @@ public sealed class Plugin : BasePlugin
             {
                 GUI.Label(new Rect(box.Bounds.xMax + 4, box.Bounds.y, 80, 24), $"HP {box.Health}");
             }
+
+            // Wallhack: draw tracer line from screen center to enemy + distance
+            if (wallhack && box.IsEnemy)
+            {
+                DrawTracerLine(screenCenter, box.ScreenPos, box.Color);
+                GUI.Label(new Rect(box.Bounds.xMax + 4, box.Bounds.y + 24, 80, 20), $"{box.Distance:F0}m");
+            }
         }
 
         GUI.color = previousColor;
+    }
+
+    /// <summary>
+    /// Draw a line from start to end using GL immediate mode (works through walls).
+    /// </summary>
+    private static void DrawTracerLine(Vector2 start, Vector2 end, Color color)
+    {
+        // Use GL.LINES to draw through walls (GUI lines are occluded by geometry)
+        // GL.Begin(GL.LINES) requires a material, so we use a simple fallback:
+        // Draw a thin rectangle as a line approximation using GUI.DrawTexture
+        var dx = end.x - start.x;
+        var dy = end.y - start.y;
+        var len = Mathf.Sqrt(dx * dx + dy * dy);
+        if (len < 1f) return;
+
+        // Draw multiple small boxes along the line to simulate a line
+        var steps = Mathf.Max(2, (int)(len / 4f));
+        var prevColor = GUI.color;
+        GUI.color = new Color(color.r, color.g, color.b, 0.6f);
+        for (var i = 0; i <= steps; i++)
+        {
+            var t = (float)i / steps;
+            var px = start.x + dx * t;
+            var py = start.y + dy * t;
+            GUI.DrawTexture(new Rect(px - 1, py - 1, 2, 2), Texture2D.whiteTexture);
+        }
+        GUI.color = prevColor;
     }
 }

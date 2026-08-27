@@ -1470,7 +1470,7 @@ namespace BlockpostTrainer.Sdk
         public static class EnvColorMenuUI_HLGHJCBMENJ
         {
             public const int local = Raw.EnvColorMenuUI_HLGHJCBMENJ.Offsets.local;
-            public const uint Action_NELI = Raw.EnvColorMenuUI_HLGHJCBMENJ.Methods.NELIKGFNGFA;
+            public const uint EnvColorMenu_Action1 = Raw.EnvColorMenuUI_HLGHJCBMENJ.Methods.NELIKGFNGFA;
         }
 
         public static class FXScale
@@ -3606,49 +3606,25 @@ namespace BlockpostTrainer.Sdk
             public const int Count_1 = Raw.JKJNIFDBKNF_PCILFOKOPCD.Offsets.HACDKFPKGNI;
             public const uint GetInt_EHOK = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.EHOKAMFHKMC;
             public const uint GetInt_AMIC = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.AMICOIOJDMH;
-            public const uint Action_BFNB = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.BFNBFOEACIF;
-            public const uint Action_COMA = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.COMALOIIFFM;
             public const uint GetInt_JMBN = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.JMBNEJHHOCO;
-            public const uint Action_NHEC = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.NHECGFFNAKI;
-            public const uint Action_IJKE = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.IJKEEAFOCFN;
-            public const uint Action_FFDB = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.FFDBJFAHGKF;
-            public const uint Action_POMB = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.POMBKGOJJAD;
-            public const uint Action_JIFH = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.JIFHNNGJEOC;
             public const uint GetInt_MION = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.MIONFDFLBPL;
             public const uint GetInt_DBJA = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.DBJAELCMKAC;
-            public const uint Action_MINO = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.MINOHJGMINF;
             public const uint GetInt_CEEK = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.CEEKMDACICD;
-            public const uint Action_MAPJ = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.MAPJOGBKMNP;
             public const uint GetInt_DECM = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.DECMMEJKNCB;
             public const uint GetInt_CGPF = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.CGPFEJNDBOJ;
             public const uint GetInt_CICP = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.CICPOLEIFKF;
-            public const uint Action_MNED = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.MNEDBIGHJDI;
-            public const uint Action_CMFO = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.CMFOHFNMOHB;
             public const uint GetInt_MBBJ = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.MBBJCMNPEPE;
-            public const uint Action_LCJJ = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.LCJJPMGFIAJ;
-            public const uint Action_OMDE = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.OMDECHLDOMM;
-            public const uint Action_DAAL = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.DAALGCKGNJG;
-            public const uint Action_ABCI = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.ABCIDKEGCBI;
             public const uint GetInt_KMEO = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.KMEOKCNKGDD;
-            public const uint Action_ONBD = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.ONBDMEGKKDP;
             public const uint GetInt_OOBO = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.OOBOJJALMED;
             public const uint GetInt_ONKD = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.ONKDPKCEKJF;
-            public const uint Action_JAMA = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.JAMAOFLAHGF;
             public const uint GetInt_ABAC = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.ABACEHEMIDL;
             public const uint GetInt_ADEG = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.ADEGMBIFJIG;
-            public const uint Action_EHNC = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.EHNCGHHLLME;
-            public const uint Action_GINK = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.GINKPNJPJJI;
             public const uint GetInt_CCPL = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.CCPLDONLNBB;
             public const uint GetInt_HMPG = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.HMPGCLOBKCL;
             public const uint GetInt_MEPB = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.MEPBAIBKDPF;
-            public const uint Action_AJPG = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.AJPGIMGIDNA;
-            public const uint Action_KOBM = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.KOBMMLONGGB;
             public const uint GetInt_NJHG = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.NJHGEMEBPFD;
-            public const uint Action_DAOL = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.DAOLKFCEFLF;
-            public const uint Action_DFJO = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.DFJOAAIHMDL;
             public const uint GetInt_GCCL = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.GCCLKFNCPBD;
             public const uint GetInt_ICBO = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.ICBOACHMANA;
-            public const uint Action_EGBL = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.EGBLPJCNBDJ;
             public const uint GetInt_KGCC = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.KGCCONECJDN;
             public const uint GetInt_CFFA = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.CFFAPICHDEC;
             public const uint GetInt_BNIP = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.BNIPHPAMKNO;
@@ -3656,8 +3632,32 @@ namespace BlockpostTrainer.Sdk
             public const uint GetInt_JKKA = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.JKKAHNJNFHK;
             public const uint GetInt_PNHE = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.PNHEGEGJJLM;
             public const uint GetInt_MEOC = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.MEOCGJDEDFJ;
-            public const uint Action_LDGD = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.LDGDENAAPAK;
             public const uint GetInt_BMMB = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.BMMBFFBIPMH;
+            public const uint PacketStruct_Action1 = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.BFNBFOEACIF;
+            public const uint PacketStruct_Action2 = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.COMALOIIFFM;
+            public const uint PacketStruct_Action3 = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.NHECGFFNAKI;
+            public const uint PacketStruct_Action4 = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.IJKEEAFOCFN;
+            public const uint PacketStruct_Action5 = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.FFDBJFAHGKF;
+            public const uint PacketStruct_Action6 = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.POMBKGOJJAD;
+            public const uint PacketStruct_Action7 = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.JIFHNNGJEOC;
+            public const uint PacketStruct_Action8 = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.MINOHJGMINF;
+            public const uint PacketStruct_Action9 = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.MAPJOGBKMNP;
+            public const uint PacketStruct_Action10 = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.MNEDBIGHJDI;
+            public const uint PacketStruct_Action11 = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.CMFOHFNMOHB;
+            public const uint PacketStruct_Action12 = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.LCJJPMGFIAJ;
+            public const uint PacketStruct_Action13 = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.OMDECHLDOMM;
+            public const uint PacketStruct_Action14 = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.DAALGCKGNJG;
+            public const uint PacketStruct_Action15 = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.ABCIDKEGCBI;
+            public const uint PacketStruct_Action16 = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.ONBDMEGKKDP;
+            public const uint PacketStruct_Action17 = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.JAMAOFLAHGF;
+            public const uint PacketStruct_Action18 = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.EHNCGHHLLME;
+            public const uint PacketStruct_Action19 = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.GINKPNJPJJI;
+            public const uint PacketStruct_Action20 = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.AJPGIMGIDNA;
+            public const uint PacketStruct_Action21 = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.KOBMMLONGGB;
+            public const uint PacketStruct_Action22 = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.DAOLKFCEFLF;
+            public const uint PacketStruct_Action23 = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.DFJOAAIHMDL;
+            public const uint PacketStruct_Action24 = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.EGBLPJCNBDJ;
+            public const uint PacketStruct_Action25 = Raw.JKJNIFDBKNF_PCILFOKOPCD.Methods.LDGDENAAPAK;
             public const string Prop_IEEK = Raw.JKJNIFDBKNF_PCILFOKOPCD.Properties.IEEKAGOJAMH;
         }
 
@@ -5753,13 +5753,13 @@ namespace BlockpostTrainer.Sdk
             public const uint get_Error = Raw.MotionState.Methods.get_Error;
             public const uint get_Owner = Raw.MotionState.Methods.get_Owner;
             public const uint get_Initialized = Raw.MotionState.Methods.get_Initialized;
-            public const uint Action_NIHC = Raw.MotionState.Methods.NIHCKFHOEBC;
             public const uint GetBool_JCOP = Raw.MotionState.Methods.JCOPICONJIB;
             public const uint Get_MBLB = Raw.MotionState.Methods.MBLBMHHFGLE;
-            public const uint Action_DAJN = Raw.MotionState.Methods.DAJNEMIMJJG;
             public const uint GetBool_PNHE = Raw.MotionState.Methods.PNHEBBBOLLI;
-            public const uint Action_KHEK = Raw.MotionState.Methods.KHEKKBKPCIL;
-            public const uint Action_FIFB = Raw.MotionState.Methods.FIFBLNKDGJB;
+            public const uint MotionState_Action1 = Raw.MotionState.Methods.NIHCKFHOEBC;
+            public const uint MotionState_Action2 = Raw.MotionState.Methods.DAJNEMIMJJG;
+            public const uint MotionState_Action3 = Raw.MotionState.Methods.KHEKKBKPCIL;
+            public const uint MotionState_Action4 = Raw.MotionState.Methods.FIFBLNKDGJB;
             public const string Owner = Raw.MotionState.Properties.Owner;
             public const string Initialized = Raw.MotionState.Properties.Initialized;
             public const string Error = Raw.MotionState.Properties.Error;
@@ -6106,7 +6106,7 @@ namespace BlockpostTrainer.Sdk
         public static class OBJ_BFPHDJAMJOB
         {
             public const int path = Raw.OBJ_BFPHDJAMJOB.Offsets.path;
-            public const uint Action_ACPN = Raw.OBJ_BFPHDJAMJOB.Methods.ACPNKGDJEJC;
+            public const uint ObjMaterial_Action1 = Raw.OBJ_BFPHDJAMJOB.Methods.ACPNKGDJEJC;
             public const string System_Collections_Generic_IEnumerator_System_Object_Current = Raw.OBJ_BFPHDJAMJOB.Properties.System_Collections_Generic_IEnumerator_System_Object_Current;
             public const string System_Collections_IEnumerator_Current = Raw.OBJ_BFPHDJAMJOB.Properties.System_Collections_IEnumerator_Current;
         }

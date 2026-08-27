@@ -19516,16 +19516,16 @@
       "m_materialWarnings": "m_materialWarnings"
     },
     "Methods": {
-      "Action_NIHC": "NIHCKFHOEBC",
       "GetBool_JCOP": "JCOPICONJIB",
       "get_Error": "get_Error",
       "Get_MBLB": "MBLBMHHFGLE",
-      "Action_DAJN": "DAJNEMIMJJG",
       "GetBool_PNHE": "PNHEBBBOLLI",
-      "Action_KHEK": "KHEKKBKPCIL",
-      "Action_FIFB": "FIFBLNKDGJB",
       "get_Owner": "get_Owner",
-      "get_Initialized": "get_Initialized"
+      "get_Initialized": "get_Initialized",
+      "MotionState_Action1": "NIHCKFHOEBC",
+      "MotionState_Action2": "DAJNEMIMJJG",
+      "MotionState_Action3": "KHEKKBKPCIL",
+      "MotionState_Action4": "FIFBLNKDGJB"
     },
     "Properties": {
       "Owner": "Owner",
@@ -22532,7 +22532,7 @@
       "local": "local"
     },
     "Methods": {
-      "Action_NELI": "NELIKGFNGFA"
+      "EnvColorMenu_Action1": "NELIKGFNGFA"
     },
     "Properties": {},
     "Notes": {}
@@ -22543,7 +22543,7 @@
       "path": "path"
     },
     "Methods": {
-      "Action_ACPN": "ACPNKGDJEJC"
+      "ObjMaterial_Action1": "ACPNKGDJEJC"
     },
     "Properties": {
       "System.Collections.Generic.IEnumerator<System.Object>.Current": "System.Collections.Generic.IEnumerator<System.Object>.Current",
@@ -24167,49 +24167,25 @@
     "Methods": {
       "GetInt_EHOK": "EHOKAMFHKMC",
       "GetInt_AMIC": "AMICOIOJDMH",
-      "Action_BFNB": "BFNBFOEACIF",
-      "Action_COMA": "COMALOIIFFM",
       "GetInt_JMBN": "JMBNEJHHOCO",
-      "Action_NHEC": "NHECGFFNAKI",
-      "Action_IJKE": "IJKEEAFOCFN",
-      "Action_FFDB": "FFDBJFAHGKF",
-      "Action_POMB": "POMBKGOJJAD",
-      "Action_JIFH": "JIFHNNGJEOC",
       "GetInt_MION": "MIONFDFLBPL",
       "GetInt_DBJA": "DBJAELCMKAC",
-      "Action_MINO": "MINOHJGMINF",
       "GetInt_CEEK": "CEEKMDACICD",
-      "Action_MAPJ": "MAPJOGBKMNP",
       "GetInt_DECM": "DECMMEJKNCB",
       "GetInt_CGPF": "CGPFEJNDBOJ",
       "GetInt_CICP": "CICPOLEIFKF",
-      "Action_MNED": "MNEDBIGHJDI",
-      "Action_CMFO": "CMFOHFNMOHB",
       "GetInt_MBBJ": "MBBJCMNPEPE",
-      "Action_LCJJ": "LCJJPMGFIAJ",
-      "Action_OMDE": "OMDECHLDOMM",
-      "Action_DAAL": "DAALGCKGNJG",
-      "Action_ABCI": "ABCIDKEGCBI",
       "GetInt_KMEO": "KMEOKCNKGDD",
-      "Action_ONBD": "ONBDMEGKKDP",
       "GetInt_OOBO": "OOBOJJALMED",
       "GetInt_ONKD": "ONKDPKCEKJF",
-      "Action_JAMA": "JAMAOFLAHGF",
       "GetInt_ABAC": "ABACEHEMIDL",
       "GetInt_ADEG": "ADEGMBIFJIG",
-      "Action_EHNC": "EHNCGHHLLME",
-      "Action_GINK": "GINKPNJPJJI",
       "GetInt_CCPL": "CCPLDONLNBB",
       "GetInt_HMPG": "HMPGCLOBKCL",
       "GetInt_MEPB": "MEPBAIBKDPF",
-      "Action_AJPG": "AJPGIMGIDNA",
-      "Action_KOBM": "KOBMMLONGGB",
       "GetInt_NJHG": "NJHGEMEBPFD",
-      "Action_DAOL": "DAOLKFCEFLF",
-      "Action_DFJO": "DFJOAAIHMDL",
       "GetInt_GCCL": "GCCLKFNCPBD",
       "GetInt_ICBO": "ICBOACHMANA",
-      "Action_EGBL": "EGBLPJCNBDJ",
       "GetInt_KGCC": "KGCCONECJDN",
       "GetInt_CFFA": "CFFAPICHDEC",
       "GetInt_BNIP": "BNIPHPAMKNO",
@@ -24217,8 +24193,32 @@
       "GetInt_JKKA": "JKKAHNJNFHK",
       "GetInt_PNHE": "PNHEGEGJJLM",
       "GetInt_MEOC": "MEOCGJDEDFJ",
-      "Action_LDGD": "LDGDENAAPAK",
-      "GetInt_BMMB": "BMMBFFBIPMH"
+      "GetInt_BMMB": "BMMBFFBIPMH",
+      "PacketStruct_Action1": "BFNBFOEACIF",
+      "PacketStruct_Action2": "COMALOIIFFM",
+      "PacketStruct_Action3": "NHECGFFNAKI",
+      "PacketStruct_Action4": "IJKEEAFOCFN",
+      "PacketStruct_Action5": "FFDBJFAHGKF",
+      "PacketStruct_Action6": "POMBKGOJJAD",
+      "PacketStruct_Action7": "JIFHNNGJEOC",
+      "PacketStruct_Action8": "MINOHJGMINF",
+      "PacketStruct_Action9": "MAPJOGBKMNP",
+      "PacketStruct_Action10": "MNEDBIGHJDI",
+      "PacketStruct_Action11": "CMFOHFNMOHB",
+      "PacketStruct_Action12": "LCJJPMGFIAJ",
+      "PacketStruct_Action13": "OMDECHLDOMM",
+      "PacketStruct_Action14": "DAALGCKGNJG",
+      "PacketStruct_Action15": "ABCIDKEGCBI",
+      "PacketStruct_Action16": "ONBDMEGKKDP",
+      "PacketStruct_Action17": "JAMAOFLAHGF",
+      "PacketStruct_Action18": "EHNCGHHLLME",
+      "PacketStruct_Action19": "GINKPNJPJJI",
+      "PacketStruct_Action20": "AJPGIMGIDNA",
+      "PacketStruct_Action21": "KOBMMLONGGB",
+      "PacketStruct_Action22": "DAOLKFCEFLF",
+      "PacketStruct_Action23": "DFJOAAIHMDL",
+      "PacketStruct_Action24": "EGBLPJCNBDJ",
+      "PacketStruct_Action25": "LDGDENAAPAK"
     },
     "Properties": {
       "Prop_IEEK": "IEEKAGOJAMH"

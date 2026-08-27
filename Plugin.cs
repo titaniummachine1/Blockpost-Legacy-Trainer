@@ -223,6 +223,7 @@ public sealed class Plugin : BasePlugin
 
         NetProbe.Install(harmony, Log);
         AsyncLog.Start(Log);
+        FieldProbe.Initialize(Log);
         LoadConfig();
     }
 
@@ -302,6 +303,7 @@ public sealed class Plugin : BasePlugin
         LogRuntimeDiagnostics();
         LogInventoryDump();
         DumpAllPlayerWeapons();
+        FieldProbe.Tick();
     }
 
     private static void ReleaseLeftMouseIfNeeded()
@@ -1292,6 +1294,18 @@ public sealed class Plugin : BasePlugin
         if (Input.GetKeyDown(KeyCode.F9))
         {
             DumpInventoryNow();
+        }
+
+        // F10: Toggle continuous field probe (logs field changes every 2s)
+        if (Input.GetKeyDown(KeyCode.F10))
+        {
+            FieldProbe.Toggle();
+        }
+
+        // F11: One-shot field probe snapshot
+        if (Input.GetKeyDown(KeyCode.F11))
+        {
+            FieldProbe.ProbeAll();
         }
     }
 

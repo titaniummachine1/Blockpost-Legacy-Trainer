@@ -1,0 +1,701 @@
+{
+  "classes_with_strings": {
+    "OBJ": {
+      "const_strings": [
+        {
+          "obf_field": "FGFMELKLDKC",
+          "value": "vt"
+        },
+        {
+          "obf_field": "JPILDDDLGAE",
+          "value": "vn"
+        },
+        {
+          "obf_field": "IIONEPODKED",
+          "value": "mtllib"
+        },
+        {
+          "obf_field": "EAIPOHCADLF",
+          "value": "usemtl"
+        },
+        {
+          "obf_field": "PIDKEPMDICD",
+          "value": "newmtl"
+        },
+        {
+          "obf_field": "OKCACNENMIJ",
+          "value": "Ns"
+        },
+        {
+          "obf_field": "FCGLIFAEKEK",
+          "value": "Ka"
+        },
+        {
+          "obf_field": "MDEAMACAGNL",
+          "value": "Kd"
+        },
+        {
+          "obf_field": "CBPGBJDLLOF",
+          "value": "Ks"
+        },
+        {
+          "obf_field": "AFALAGINMDL",
+          "value": "Tr"
+        },
+        {
+          "obf_field": "AKGFJHGOMDC",
+          "value": "illum"
+        },
+        {
+          "obf_field": "BJDPPOEFKHK",
+          "value": "map_Ka"
+        },
+        {
+          "obf_field": "PJOLIOGENHB",
+          "value": "map_Kd"
+        },
+        {
+          "obf_field": "PADCFAADKBE",
+          "value": "map_Ks"
+        },
+        {
+          "obf_field": "DNDCFLKJDGM",
+          "value": "map_Ke"
+        },
+        {
+          "obf_field": "MGJCHNGEKMC",
+          "value": "map_bump"
+        },
+        {
+          "obf_field": "GHMLMMMJFBP",
+          "value": "bump"
+        },
+        {
+          "obf_field": "BMNLNHHPINA",
+          "value": "Diffuse"
+        },
+        {
+          "obf_field": "IIKGIKEOBFF",
+          "value": "Specular"
+        },
+        {
+          "obf_field": "MEOJMJEENAN",
+          "value": "Bumped Diffuse"
+        },
+        {
+          "obf_field": "NHIFIHEEHOH",
+          "value": "Bumped Specular"
+        },
+        {
+          "obf_field": "KIOHEIHDIAF",
+          "value": "Diffuse"
+        },
+        {
+          "obf_field": "KGBDNNCLNDN",
+          "value": "Specular"
+        },
+        {
+          "obf_field": "OAGHHCOLLGA",
+          "value": "Bumped Diffuse"
+        },
+        {
+          "obf_field": "EFMBNLHKKJP",
+          "value": "Bumped Specular"
+        }
+      ],
+      "methods_with_string_params": []
+    },
+    "GPGSIds": {
+      "const_strings": [
+        {
+          "obf_field": "achievement_first_battle",
+          "value": "CgkInIGZtpAeEAIQAQ"
+        }
+      ],
+      "methods_with_string_params": []
+    },
+    "Boolean": {
+      "const_strings": [
+        {
+          "obf_field": "TrueLiteral",
+          "value": "True"
+        },
+        {
+          "obf_field": "FalseLiteral",
+          "value": "False"
+        }
+      ],
+      "methods_with_string_params": []
+    },
+    "DateTime": {
+      "const_strings": [
+        {
+          "obf_field": "TicksField",
+          "value": "ticks"
+        },
+        {
+          "obf_field": "DateDataField",
+          "value": "dateData"
+        }
+      ],
+      "methods_with_string_params": []
+    },
+    "Type": {
+      "const_strings": [
+        {
+          "obf_field": "DefaultTypeNameWhenMissingMetadata",
+          "value": "UnknownType"
+        }
+      ],
+      "methods_with_string_params": []
+    },
+    "Enum": {
+      "const_strings": [
+        {
+          "obf_field": "enumSeperator",
+          "value": ", "
+        }
+      ],
+      "methods_with_string_params": []
+    },
+    "Environment": {
+      "const_strings": [
+        {
+          "obf_field": "mono_corlib_version",
+          "value": "1A5E0066-58DC-428A-B21C-0AD6CDAE2789"
+        }
+      ],
+      "methods_with_string_params": []
+    },
+    "LogicalCallContext": {
+      "const_strings": [
+        {
+          "obf_field": "s_CorrelationMgrSlotName",
+          "value": "System.Diagnostics.Trace.CorrelationManagerSlot"
+        }
+      ],
+      "methods_with_string_params": []
+    },
+    "SafeSerializationManager": {
+      "const_strings": [
+        {
+          "obf_field": "RealTypeSerializationName",
+          "value": "CLR_SafeSerializationManager_RealType"
+        }
+      ],
+      "methods_with_string_params": []
+    },
+    "SerializationInfo": {
+      "const_strings": [
+        {
+          "obf_field": "s_mscorlibAssemblySimpleName",
+          "value": "mscorlib"
+        },
+        {
+          "obf_field": "s_mscorlibFileName",
+          "value": "mscorlib.dll"
+        }
+      ],
+      "methods_with_string_params": []
+    },
+    "DateTimeFormatInfo": {
+      "const_strings": [
+        {
+          "obf_field": "rfc1123Pattern",
+          "value": "ddd, dd MMM yyyy HH\\':\\'mm\\':\\'ss \\'GMT\\'"
+        },
+        {
+          "obf_field": "sortableDateTimePattern",
+          "value": "yyyy\\'-\\'MM\\'-\\'dd\\'T\\'HH\\':\\'mm\\':\\'ss"
+        },
+        {
+          "obf_field": "universalSortableDateTimePattern",
+          "value": "yyyy\\'-\\'MM\\'-\\'dd HH\\':\\'mm\\':\\'ss\\'Z\\'"
+        },
+        {
+          "obf_field": "RoundtripFormat",
+          "value": "yyyy\\'-\\'MM\\'-\\'dd\\'T\\'HH\\':\\'mm\\':\\'ss.fffffffK"
+        },
+        {
+          "obf_field": "RoundtripDateTimeUnfixed",
+          "value": "yyyy\\'-\\'MM\\'-\\'ddTHH\\':\\'mm\\':\\'ss zzz"
+        },
+        {
+          "obf_field": "GMTName",
+          "value": "GMT"
+        },
+        {
+          "obf_field": "KoreanLangName",
+          "value": "ko"
+        },
+        {
+          "obf_field": "JapaneseLangName",
+          "value": "ja"
+        },
+        {
+          "obf_field": "EnglishLangName",
+          "value": "en"
+        }
+      ],
+      "methods_with_string_params": []
+    },
+    "CultureInfo": {
+      "const_strings": [
+        {
+          "obf_field": "MSG_READONLY",
+          "value": "This instance is read only"
+        }
+      ],
+      "methods_with_string_params": []
+    },
+    "StackTrace": {
+      "const_strings": [
+        {
+          "obf_field": "prefix",
+          "value": "  at "
+        }
+      ],
+      "methods_with_string_params": []
+    },
+    "Hashtable": {
+      "const_strings": [
+        {
+          "obf_field": "LoadFactorName",
+          "value": "LoadFactor"
+        },
+        {
+          "obf_field": "VersionName",
+          "value": "Version"
+        },
+        {
+          "obf_field": "ComparerName",
+          "value": "Comparer"
+        },
+        {
+          "obf_field": "HashCodeProviderName",
+          "value": "HashCodeProvider"
+        },
+        {
+          "obf_field": "HashSizeName",
+          "value": "HashSize"
+        },
+        {
+          "obf_field": "KeysName",
+          "value": "Keys"
+        },
+        {
+          "obf_field": "ValuesName",
+          "value": "Values"
+        },
+        {
+          "obf_field": "KeyComparerName",
+          "value": "KeyComparer"
+        }
+      ],
+      "methods_with_string_params": []
+    },
+    "VisualElement.Hierarchy": {
+      "const_strings": [
+        {
+          "obf_field": "k_InvalidHierarchyChangeMsg",
+          "value": "Cannot modify VisualElement hierarchy during layout calculation"
+        }
+      ],
+      "methods_with_string_params": []
+    },
+    "VisualElement": {
+      "const_strings": [
+        {
+          "obf_field": "k_RootVisualContainerName",
+          "value": "rootVisualContainer"
+        }
+      ],
+      "methods_with_string_params": []
+    },
+    "PanelSettings": {
+      "const_strings": [
+        {
+          "obf_field": "k_DefaultStyleSheetPath",
+          "value": "Packages/com.unity.ui/PackageResources/StyleSheets/Generated/Default.tss.asset"
+        }
+      ],
+      "methods_with_string_params": []
+    },
+    "UIDocument": {
+      "const_strings": [
+        {
+          "obf_field": "k_RootStyleClassName",
+          "value": "unity-ui-document__root"
+        },
+        {
+          "obf_field": "k_VisualElementNameSuffix",
+          "value": "-container"
+        }
+      ],
+      "methods_with_string_params": []
+    },
+    "NativeMethods": {
+      "const_strings": [
+        {
+          "obf_field": "NativeLibraryName",
+          "value": "steam_api"
+        },
+        {
+          "obf_field": "NativeLibrary_SDKEncryptedAppTicket",
+          "value": "sdkencryptedappticket"
+        }
+      ],
+      "methods_with_string_params": []
+    },
+    "Constants": {
+      "const_strings": [
+        {
+          "obf_field": "STEAMAPPLIST_INTERFACE_VERSION",
+          "value": "STEAMAPPLIST_INTERFACE_VERSION001"
+        },
+        {
+          "obf_field": "STEAMAPPS_INTERFACE_VERSION",
+          "value": "STEAMAPPS_INTERFACE_VERSION008"
+        },
+        {
+          "obf_field": "STEAMAPPTICKET_INTERFACE_VERSION",
+          "value": "STEAMAPPTICKET_INTERFACE_VERSION001"
+        },
+        {
+          "obf_field": "STEAMCLIENT_INTERFACE_VERSION",
+          "value": "SteamClient017"
+        },
+        {
+          "obf_field": "STEAMCONTROLLER_INTERFACE_VERSION",
+          "value": "SteamController006"
+        },
+        {
+          "obf_field": "STEAMFRIENDS_INTERFACE_VERSION",
+          "value": "SteamFriends015"
+        },
+        {
+          "obf_field": "STEAMGAMECOORDINATOR_INTERFACE_VERSION",
+          "value": "SteamGameCoordinator001"
+        },
+        {
+          "obf_field": "STEAMGAMESERVER_INTERFACE_VERSION",
+          "value": "SteamGameServer012"
+        },
+        {
+          "obf_field": "STEAMGAMESERVERSTATS_INTERFACE_VERSION",
+          "value": "SteamGameServerStats001"
+        },
+        {
+          "obf_field": "STEAMHTMLSURFACE_INTERFACE_VERSION",
+          "value": "STEAMHTMLSURFACE_INTERFACE_VERSION_004"
+        },
+        {
+          "obf_field": "STEAMHTTP_INTERFACE_VERSION",
+          "value": "STEAMHTTP_INTERFACE_VERSION002"
+        },
+        {
+          "obf_field": "STEAMINVENTORY_INTERFACE_VERSION",
+          "value": "STEAMINVENTORY_INTERFACE_V002"
+        },
+        {
+          "obf_field": "STEAMMATCHMAKING_INTERFACE_VERSION",
+          "value": "SteamMatchMaking009"
+        },
+        {
+          "obf_field": "STEAMMATCHMAKINGSERVERS_INTERFACE_VERSION",
+          "value": "SteamMatchMakingServers002"
+        },
+        {
+          "obf_field": "STEAMMUSIC_INTERFACE_VERSION",
+          "value": "STEAMMUSIC_INTERFACE_VERSION001"
+        },
+        {
+          "obf_field": "STEAMMUSICREMOTE_INTERFACE_VERSION",
+          "value": "STEAMMUSICREMOTE_INTERFACE_VERSION001"
+        },
+        {
+          "obf_field": "STEAMNETWORKING_INTERFACE_VERSION",
+          "value": "SteamNetworking005"
+        },
+        {
+          "obf_field": "STEAMPARENTALSETTINGS_INTERFACE_VERSION",
+          "value": "STEAMPARENTALSETTINGS_INTERFACE_VERSION001"
+        },
+        {
+          "obf_field": "STEAMREMOTESTORAGE_INTERFACE_VERSION",
+          "value": "STEAMREMOTESTORAGE_INTERFACE_VERSION014"
+        },
+        {
+          "obf_field": "STEAMSCREENSHOTS_INTERFACE_VERSION",
+          "value": "STEAMSCREENSHOTS_INTERFACE_VERSION003"
+        },
+        {
+          "obf_field": "STEAMUGC_INTERFACE_VERSION",
+          "value": "STEAMUGC_INTERFACE_VERSION010"
+        },
+        {
+          "obf_field": "STEAMUSER_INTERFACE_VERSION",
+          "value": "SteamUser019"
+        },
+        {
+          "obf_field": "STEAMUSERSTATS_INTERFACE_VERSION",
+          "value": "STEAMUSERSTATS_INTERFACE_VERSION011"
+        },
+        {
+          "obf_field": "STEAMUTILS_INTERFACE_VERSION",
+          "value": "SteamUtils009"
+        },
+        {
+          "obf_field": "STEAMVIDEO_INTERFACE_VERSION",
+          "value": "STEAMVIDEO_INTERFACE_V002"
+        },
+        {
+          "obf_field": "CALLBACK_ID_KEY",
+          "value": "callback_id"
+        },
+        {
+          "obf_field": "ACCESS_TOKEN_KEY",
+          "value": "access_token"
+        },
+        {
+          "obf_field": "RESPONSE_KEY",
+          "value": "response"
+        }
+      ],
+      "methods_with_string_params": []
+    },
+    "Version": {
+      "const_strings": [
+        {
+          "obf_field": "SteamworksNETVersion",
+          "value": "11.0.0"
+        },
+        {
+          "obf_field": "SteamworksSDKVersion",
+          "value": "1.42"
+        },
+        {
+          "obf_field": "SteamAPIDLLVersion",
+          "value": "04.28.51.07"
+        }
+      ],
+      "methods_with_string_params": []
+    },
+    "Regex": {
+      "const_strings": [
+        {
+          "obf_field": "DefaultMatchTimeout_ConfigKeyName",
+          "value": "REGEX_DEFAULT_MATCH_TIMEOUT"
+        }
+      ],
+      "methods_with_string_params": []
+    },
+    "X509BasicConstraintsExtension": {
+      "const_strings": [
+        {
+          "obf_field": "oid",
+          "value": "2.5.29.19"
+        },
+        {
+          "obf_field": "friendlyName",
+          "value": "Basic Constraints"
+        }
+      ],
+      "methods_with_string_params": []
+    },
+    "X509KeyUsageExtension": {
+      "const_strings": [
+        {
+          "obf_field": "oid",
+          "value": "2.5.29.15"
+        },
+        {
+          "obf_field": "friendlyName",
+          "value": "Key Usage"
+        }
+      ],
+      "methods_with_string_params": []
+    },
+    "X509SubjectKeyIdentifierExtension": {
+      "const_strings": [
+        {
+          "obf_field": "oid",
+          "value": "2.5.29.14"
+        },
+        {
+          "obf_field": "friendlyName",
+          "value": "Subject Key Identifier"
+        }
+      ],
+      "methods_with_string_params": []
+    },
+    "TypeConverter": {
+      "const_strings": [
+        {
+          "obf_field": "s_UseCompatibleTypeConverterBehavior",
+          "value": "UseCompatibleTypeConverterBehavior"
+        }
+      ],
+      "methods_with_string_params": []
+    },
+    "Socket": {
+      "const_strings": [
+        {
+          "obf_field": "TIMEOUT_EXCEPTION_MSG",
+          "value": "A connection attempt failed because the connected party did not properly respondafter a period of time, or established connection failed because connected host has failed to respond"
+        }
+      ],
+      "methods_with_string_params": []
+    },
+    "Object": {
+      "const_strings": [
+        {
+          "obf_field": "objectIsNullMessage",
+          "value": "The Object you want to instantiate is null."
+        },
+        {
+          "obf_field": "cloneDestroyedMessage",
+          "value": "Instantiate failed because the clone was destroyed during creation. This can happen if DestroyImmediate is called in MonoBehaviour.Awake."
+        }
+      ],
+      "methods_with_string_params": []
+    },
+    "AnimationTriggers": {
+      "const_strings": [
+        {
+          "obf_field": "kDefaultNormalAnimName",
+          "value": "Normal"
+        },
+        {
+          "obf_field": "kDefaultHighlightedAnimName",
+          "value": "Highlighted"
+        },
+        {
+          "obf_field": "kDefaultPressedAnimName",
+          "value": "Pressed"
+        },
+        {
+          "obf_field": "kDefaultSelectedAnimName",
+          "value": "Selected"
+        },
+        {
+          "obf_field": "kDefaultDisabledAnimName",
+          "value": "Disabled"
+        }
+      ],
+      "methods_with_string_params": []
+    },
+    "CanvasUpdateRegistry": {
+      "const_strings": [
+        {
+          "obf_field": "m_CullingUpdateProfilerString",
+          "value": "ClipperRegistry.Cull"
+        }
+      ],
+      "methods_with_string_params": []
+    },
+    "InputField": {
+      "const_strings": [
+        {
+          "obf_field": "kEmailSpecialCharacters",
+          "value": "!#$%&\\'*+-/=?^_`{|}~"
+        },
+        {
+          "obf_field": "kOculusQuestDeviceModel",
+          "value": "Oculus Quest"
+        }
+      ],
+      "methods_with_string_params": []
+    },
+    "HashSet<T>": {
+      "const_strings": [
+        {
+          "obf_field": "CapacityName",
+          "value": "Capacity"
+        },
+        {
+          "obf_field": "ElementsName",
+          "value": "Elements"
+        },
+        {
+          "obf_field": "ComparerName",
+          "value": "Comparer"
+        },
+        {
+          "obf_field": "VersionName",
+          "value": "Version"
+        }
+      ],
+      "methods_with_string_params": []
+    },
+    "ComponentFactory": {
+      "const_strings": [
+        {
+          "obf_field": "GAME_OBJECT_NAME",
+          "value": "VKUnityPlugin"
+        }
+      ],
+      "methods_with_string_params": []
+    },
+    "VKContants": {
+      "const_strings": [
+        {
+          "obf_field": "API_VERSION",
+          "value": "5.60"
+        },
+        {
+          "obf_field": "REQUEST_URL_FORMAT",
+          "value": "https://api.vk.com/method/{0}"
+        },
+        {
+          "obf_field": "LOGIN_URI",
+          "value": "https://api.vk.com/oauth/token"
+        },
+        {
+          "obf_field": "AUTH_DEFAULT_REDIRECT_URI",
+          "value": "https://oauth.vk.com/blank.html"
+        }
+      ],
+      "methods_with_string_params": []
+    },
+    "VKRequestKeys": {
+      "const_strings": [
+        {
+          "obf_field": "ACCESS_TOKEN_KEY",
+          "value": "access_token"
+        }
+      ],
+      "methods_with_string_params": []
+    },
+    "VKSettings": {
+      "const_strings": [
+        {
+          "obf_field": "ASSET_NAME",
+          "value": "VKSettings"
+        },
+        {
+          "obf_field": "ASSET_EXTENSION",
+          "value": ".asset"
+        },
+        {
+          "obf_field": "PATH",
+          "value": "VKSDK/SDK/Resources"
+        }
+      ],
+      "methods_with_string_params": []
+    }
+  },
+  "playerprefs_keys": [
+    ")]\n\t// RVA: 0x12DCBE0 Offset: 0x12DBFE0 VA: 0x112DCBE0\n\tprivate static void DisconnectAll() { }\n\n\t// RVA: 0x1ACE80 Offset: 0x1AC280 VA: 0x101ACE80\n\tpublic void .ctor() { }\n}\n\n// Namespace: UnityEngine\npublic class PlayerPrefsException : Exception // TypeDefIndex: 4289\n{\n\t// Methods\n\n\t// RVA: 0x12DCFA0 Offset: 0x12DC3A0 VA: 0x112DCFA0\n\tpublic void .ctor(string error) { }\n}\n\n// Namespace: UnityEngine\n[NativeHeader(",
+    ")]\npublic class PlayerPrefs // TypeDefIndex: 4290\n{\n\t// Methods\n\n\t[NativeMethod("
+  ],
+  "urls": [
+    "https://api.vk.com/method/{0}",
+    "https://api.vk.com/oauth/token",
+    "https://docs.unity3d.com/2021.3/Documentation/Manual/UIE-sprite.html",
+    "https://docs.unity3d.com/Manual/Tilemap-TileAsset.html",
+    "https://oauth.vk.com/blank.html"
+  ],
+  "total_classes_with_strings": 36,
+  "total_const_strings": 126
+}

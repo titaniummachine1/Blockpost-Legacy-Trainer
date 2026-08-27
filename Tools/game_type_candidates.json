@@ -1,0 +1,1082 @@
+[
+  {
+    "class": "Constants",
+    "tdi": 3376,
+    "fields": 0,
+    "methods": 0,
+    "game_refs": 3,
+    "base": ""
+  },
+  {
+    "class": "NativeMethods",
+    "tdi": 3015,
+    "fields": 0,
+    "methods": 727,
+    "game_refs": 2,
+    "base": ""
+  },
+  {
+    "class": "ScrollRect",
+    "tdi": 4823,
+    "fields": 33,
+    "methods": 91,
+    "game_refs": 2,
+    "base": "UIBehaviour, IInitializePotentialDragHandler, IEventSystemHa"
+  },
+  {
+    "class": "CSteamAPIContext",
+    "tdi": 3520,
+    "fields": 21,
+    "methods": 23,
+    "game_refs": 2,
+    "base": ""
+  },
+  {
+    "class": "SteamClient",
+    "tdi": 2987,
+    "fields": 0,
+    "methods": 32,
+    "game_refs": 2,
+    "base": ""
+  },
+  {
+    "class": "SteamGameServerClient",
+    "tdi": 2992,
+    "fields": 0,
+    "methods": 32,
+    "game_refs": 2,
+    "base": ""
+  },
+  {
+    "class": "VisualElement",
+    "tdi": 2253,
+    "fields": 44,
+    "methods": 290,
+    "game_refs": 1,
+    "base": "Focusable, IStylePropertyAnimations, ITransform, ITransition"
+  },
+  {
+    "class": "LeanTween",
+    "tdi": 118,
+    "fields": 31,
+    "methods": 177,
+    "game_refs": 1,
+    "base": "MonoBehaviour"
+  },
+  {
+    "class": "Array",
+    "tdi": 868,
+    "fields": 0,
+    "methods": 155,
+    "game_refs": 1,
+    "base": "ICollection, IEnumerable, IList, IStructuralComparable, IStr"
+  },
+  {
+    "class": "BaseVerticalCollectionView",
+    "tdi": 2377,
+    "fields": 42,
+    "methods": 95,
+    "game_refs": 1,
+    "base": "BindableElement, ISerializationCallbackReceiver"
+  },
+  {
+    "class": "ThreadPoolTest",
+    "tdi": 243,
+    "fields": 5,
+    "methods": 107,
+    "game_refs": 1,
+    "base": "MonoBehaviour"
+  },
+  {
+    "class": "WebSocket",
+    "tdi": 5139,
+    "fields": 47,
+    "methods": 63,
+    "game_refs": 1,
+    "base": "IDisposable"
+  },
+  {
+    "class": "BaseVisualElementPanel",
+    "tdi": 2206,
+    "fields": 11,
+    "methods": 74,
+    "game_refs": 1,
+    "base": "IPanel, IDisposable, IGroupBox"
+  },
+  {
+    "class": "SteamUserTest",
+    "tdi": 379,
+    "fields": 17,
+    "methods": 67,
+    "game_refs": 1,
+    "base": "MonoBehaviour"
+  },
+  {
+    "class": "EventBase",
+    "tdi": 2532,
+    "fields": 6,
+    "methods": 69,
+    "game_refs": 1,
+    "base": "IDisposable"
+  },
+  {
+    "class": "Panel",
+    "tdi": 2211,
+    "fields": 18,
+    "methods": 51,
+    "game_refs": 1,
+    "base": "BaseVisualElementPanel"
+  },
+  {
+    "class": "LineInBoxCastTest",
+    "tdi": 141,
+    "fields": 9,
+    "methods": 58,
+    "game_refs": 1,
+    "base": "MonoBehaviour"
+  },
+  {
+    "class": "ListView",
+    "tdi": 2419,
+    "fields": 35,
+    "methods": 30,
+    "game_refs": 1,
+    "base": "BaseVerticalCollectionView"
+  },
+  {
+    "class": "DynamicHeightVirtualizationController<T>",
+    "tdi": 2359,
+    "fields": 17,
+    "methods": 45,
+    "game_refs": 1,
+    "base": "VerticalVirtualizationController<T>"
+  },
+  {
+    "class": "List<T>",
+    "tdi": 1940,
+    "fields": 5,
+    "methods": 54,
+    "game_refs": 1,
+    "base": "IList<T>, ICollection<T>, IEnumerable<T>, IEnumerable, IList"
+  },
+  {
+    "class": "MobileAuthenticatedStream",
+    "tdi": 3658,
+    "fields": 13,
+    "methods": 42,
+    "game_refs": 1,
+    "base": "AuthenticatedStream, IDisposable"
+  },
+  {
+    "class": "Context",
+    "tdi": 1343,
+    "fields": 15,
+    "methods": 36,
+    "game_refs": 1,
+    "base": ""
+  },
+  {
+    "class": "RemotingServices",
+    "tdi": 1316,
+    "fields": 8,
+    "methods": 42,
+    "game_refs": 1,
+    "base": ""
+  },
+  {
+    "class": "ThrowHelper",
+    "tdi": 855,
+    "fields": 0,
+    "methods": 48,
+    "game_refs": 1,
+    "base": ""
+  },
+  {
+    "class": "LayoutGroup",
+    "tdi": 4798,
+    "fields": 8,
+    "methods": 37,
+    "game_refs": 1,
+    "base": "UIBehaviour, ILayoutElement, ILayoutGroup, ILayoutController"
+  },
+  {
+    "class": "SteamGameServer",
+    "tdi": 2990,
+    "fields": 0,
+    "methods": 44,
+    "game_refs": 1,
+    "base": ""
+  },
+  {
+    "class": "MonoBtlsContext",
+    "tdi": 3679,
+    "fields": 12,
+    "methods": 29,
+    "game_refs": 1,
+    "base": "MobileTlsContext, IMonoBtlsBioMono"
+  },
+  {
+    "class": "HttpWebRequest",
+    "tdi": 3993,
+    "fields": 26,
+    "methods": 15,
+    "game_refs": 1,
+    "base": "WebRequest, ISerializable"
+  },
+  {
+    "class": "MonoTlsSettings",
+    "tdi": 5086,
+    "fields": 8,
+    "methods": 32,
+    "game_refs": 1,
+    "base": ""
+  },
+  {
+    "class": "LineDebug",
+    "tdi": 338,
+    "fields": 0,
+    "methods": 39,
+    "game_refs": 1,
+    "base": "MonoBehaviour"
+  },
+  {
+    "class": "MonoBtlsSslCtx",
+    "tdi": 3699,
+    "fields": 9,
+    "methods": 29,
+    "game_refs": 1,
+    "base": "MonoBtlsObject"
+  },
+  {
+    "class": "SliderHandler",
+    "tdi": 5021,
+    "fields": 10,
+    "methods": 28,
+    "game_refs": 1,
+    "base": ""
+  },
+  {
+    "class": "SslStream",
+    "tdi": 4068,
+    "fields": 6,
+    "methods": 27,
+    "game_refs": 1,
+    "base": "AuthenticatedStream"
+  },
+  {
+    "class": "RemotingConfiguration",
+    "tdi": 1309,
+    "fields": 13,
+    "methods": 19,
+    "game_refs": 1,
+    "base": ""
+  },
+  {
+    "class": "ConfigHandler",
+    "tdi": 1310,
+    "fields": 8,
+    "methods": 24,
+    "game_refs": 1,
+    "base": "SmallXmlParser.IContentHandler"
+  },
+  {
+    "class": "VerticalVirtualizationController<T>",
+    "tdi": 2364,
+    "fields": 9,
+    "methods": 23,
+    "game_refs": 1,
+    "base": "CollectionVirtualizationController"
+  },
+  {
+    "class": "UnityTlsContext",
+    "tdi": 3632,
+    "fields": 10,
+    "methods": 22,
+    "game_refs": 1,
+    "base": "MobileTlsContext"
+  },
+  {
+    "class": "SteamController",
+    "tdi": 2988,
+    "fields": 0,
+    "methods": 31,
+    "game_refs": 1,
+    "base": ""
+  },
+  {
+    "class": "MobileTlsContext",
+    "tdi": 3659,
+    "fields": 1,
+    "methods": 30,
+    "game_refs": 1,
+    "base": "IDisposable"
+  },
+  {
+    "class": "FocusController",
+    "tdi": 2172,
+    "fields": 3,
+    "methods": 25,
+    "game_refs": 1,
+    "base": ""
+  },
+  {
+    "class": "CollectionViewController",
+    "tdi": 2352,
+    "fields": 4,
+    "methods": 24,
+    "game_refs": 1,
+    "base": ""
+  },
+  {
+    "class": "TreeViewController",
+    "tdi": 2354,
+    "fields": 7,
+    "methods": 21,
+    "game_refs": 1,
+    "base": "CollectionViewController"
+  },
+  {
+    "class": "ListViewDragger",
+    "tdi": 2508,
+    "fields": 5,
+    "methods": 23,
+    "game_refs": 1,
+    "base": "DragEventsProcessor"
+  },
+  {
+    "class": "ListViewController",
+    "tdi": 2353,
+    "fields": 3,
+    "methods": 24,
+    "game_refs": 1,
+    "base": "CollectionViewController"
+  },
+  {
+    "class": "RealProxy",
+    "tdi": 1333,
+    "fields": 8,
+    "methods": 17,
+    "game_refs": 1,
+    "base": ""
+  },
+  {
+    "class": "VKSDK",
+    "tdi": 5289,
+    "fields": 4,
+    "methods": 20,
+    "game_refs": 1,
+    "base": "ScriptableObject"
+  },
+  {
+    "class": "LayoutRebuilder",
+    "tdi": 4800,
+    "fields": 3,
+    "methods": 20,
+    "game_refs": 1,
+    "base": "ICanvasElement"
+  },
+  {
+    "class": "Focusable",
+    "tdi": 2168,
+    "fields": 3,
+    "methods": 19,
+    "game_refs": 1,
+    "base": "CallbackEventHandler"
+  },
+  {
+    "class": "Identity",
+    "tdi": 1305,
+    "fields": 7,
+    "methods": 14,
+    "game_refs": 1,
+    "base": ""
+  },
+  {
+    "class": "Callback<T>",
+    "tdi": 3469,
+    "fields": 7,
+    "methods": 14,
+    "game_refs": 1,
+    "base": "IDisposable"
+  },
+  {
+    "class": "CSteamGameServerAPIContext",
+    "tdi": 3521,
+    "fields": 9,
+    "methods": 11,
+    "game_refs": 1,
+    "base": ""
+  },
+  {
+    "class": "ChannelServices",
+    "tdi": 1359,
+    "fields": 5,
+    "methods": 13,
+    "game_refs": 1,
+    "base": ""
+  },
+  {
+    "class": "CollectionVirtualizationController",
+    "tdi": 2355,
+    "fields": 1,
+    "methods": 17,
+    "game_refs": 1,
+    "base": ""
+  },
+  {
+    "class": "Unsafe",
+    "tdi": 1652,
+    "fields": 0,
+    "methods": 17,
+    "game_refs": 1,
+    "base": ""
+  },
+  {
+    "class": "ChainValidationHelper",
+    "tdi": 3650,
+    "fields": 7,
+    "methods": 10,
+    "game_refs": 1,
+    "base": "ICertificateValidator"
+  },
+  {
+    "class": "ArraySortHelper<T>",
+    "tdi": 1959,
+    "fields": 1,
+    "methods": 15,
+    "game_refs": 1,
+    "base": ""
+  },
+  {
+    "class": "VisualElementFocusRing",
+    "tdi": 2327,
+    "fields": 1,
+    "methods": 15,
+    "game_refs": 1,
+    "base": "IFocusRing"
+  },
+  {
+    "class": "SteamCallbacks.GSClientApprove_t",
+    "tdi": 3229,
+    "fields": 6,
+    "methods": 10,
+    "game_refs": 1,
+    "base": ""
+  },
+  {
+    "class": "SteamCallbacks.GSClientDeny_t",
+    "tdi": 3230,
+    "fields": 6,
+    "methods": 10,
+    "game_refs": 1,
+    "base": ""
+  },
+  {
+    "class": "SteamCallbacks.GSClientKick_t",
+    "tdi": 3231,
+    "fields": 6,
+    "methods": 10,
+    "game_refs": 1,
+    "base": ""
+  },
+  {
+    "class": "SteamCallbacks.GSClientAchievementStatus_t",
+    "tdi": 3232,
+    "fields": 6,
+    "methods": 10,
+    "game_refs": 1,
+    "base": ""
+  },
+  {
+    "class": "SteamCallbacks.GSClientGroupStatus_t",
+    "tdi": 3235,
+    "fields": 6,
+    "methods": 10,
+    "game_refs": 1,
+    "base": ""
+  },
+  {
+    "class": "SteamCallbacks.RemoteStorageAppSyncedClient_t",
+    "tdi": 3301,
+    "fields": 6,
+    "methods": 10,
+    "game_refs": 1,
+    "base": ""
+  },
+  {
+    "class": "SteamCallbacks.ClientGameServerDeny_t",
+    "tdi": 3345,
+    "fields": 6,
+    "methods": 10,
+    "game_refs": 1,
+    "base": ""
+  },
+  {
+    "class": "MonoBtlsX509VerifyParam",
+    "tdi": 3729,
+    "fields": 0,
+    "methods": 16,
+    "game_refs": 1,
+    "base": "MonoBtlsObject"
+  },
+  {
+    "class": "PlayableHandle",
+    "tdi": 4684,
+    "fields": 3,
+    "methods": 12,
+    "game_refs": 1,
+    "base": "IEquatable<PlayableHandle>"
+  },
+  {
+    "class": "ContentSizeFitter",
+    "tdi": 4784,
+    "fields": 2,
+    "methods": 13,
+    "game_refs": 1,
+    "base": "UIBehaviour, ILayoutSelfController, ILayoutController"
+  },
+  {
+    "class": "StateMachineBehaviour",
+    "tdi": 5379,
+    "fields": 0,
+    "methods": 15,
+    "game_refs": 1,
+    "base": "ScriptableObject"
+  },
+  {
+    "class": "RemotingProxy",
+    "tdi": 1334,
+    "fields": 5,
+    "methods": 9,
+    "game_refs": 1,
+    "base": "RealProxy, IRemotingTypeInfo"
+  },
+  {
+    "class": "MonoSslAuthenticationOptions",
+    "tdi": 3661,
+    "fields": 0,
+    "methods": 14,
+    "game_refs": 1,
+    "base": ""
+  },
+  {
+    "class": "MonoSslClientAuthenticationOptions",
+    "tdi": 3662,
+    "fields": 0,
+    "methods": 14,
+    "game_refs": 1,
+    "base": "MonoSslAuthenticationOptions"
+  },
+  {
+    "class": "SslClientAuthenticationOptions",
+    "tdi": 4058,
+    "fields": 4,
+    "methods": 10,
+    "game_refs": 1,
+    "base": ""
+  },
+  {
+    "class": "DefaultDragAndDropClient",
+    "tdi": 2493,
+    "fields": 4,
+    "methods": 9,
+    "game_refs": 1,
+    "base": "DragAndDropData, IDragAndDrop"
+  },
+  {
+    "class": "VKClientBase",
+    "tdi": 5281,
+    "fields": 3,
+    "methods": 10,
+    "game_refs": 1,
+    "base": "IVKClientWithResultHandler, IVKClient, IVKClientResponseHand"
+  },
+  {
+    "class": "ChannelData",
+    "tdi": 1311,
+    "fields": 7,
+    "methods": 5,
+    "game_refs": 1,
+    "base": ""
+  },
+  {
+    "class": "BaseReorderableDragAndDropController",
+    "tdi": 2491,
+    "fields": 2,
+    "methods": 10,
+    "game_refs": 1,
+    "base": "ICollectionDragAndDropController, IDragAndDropController<ILi"
+  },
+  {
+    "class": "FocusEventBase<T>",
+    "tdi": 2545,
+    "fields": 0,
+    "methods": 12,
+    "game_refs": 1,
+    "base": "EventBase<T>"
+  },
+  {
+    "class": "TreeView",
+    "tdi": 2909,
+    "fields": 7,
+    "methods": 5,
+    "game_refs": 1,
+    "base": "BaseVerticalCollectionView"
+  },
+  {
+    "class": "List.Enumerator<T>",
+    "tdi": 1939,
+    "fields": 4,
+    "methods": 7,
+    "game_refs": 1,
+    "base": "IEnumerator<T>, IDisposable, IEnumerator"
+  },
+  {
+    "class": "FixedHeightVirtualizationController<T>",
+    "tdi": 2360,
+    "fields": 0,
+    "methods": 11,
+    "game_refs": 1,
+    "base": "VerticalVirtualizationController<T>"
+  },
+  {
+    "class": "ControllerActionSetHandle_t",
+    "tdi": 3532,
+    "fields": 1,
+    "methods": 10,
+    "game_refs": 1,
+    "base": "IEquatable<ControllerActionSetHandle_t>, IComparable<Control"
+  },
+  {
+    "class": "ControllerAnalogActionHandle_t",
+    "tdi": 3533,
+    "fields": 1,
+    "methods": 10,
+    "game_refs": 1,
+    "base": "IEquatable<ControllerAnalogActionHandle_t>, IComparable<Cont"
+  },
+  {
+    "class": "ControllerDigitalActionHandle_t",
+    "tdi": 3534,
+    "fields": 1,
+    "methods": 10,
+    "game_refs": 1,
+    "base": "IEquatable<ControllerDigitalActionHandle_t>, IComparable<Con"
+  },
+  {
+    "class": "ControllerHandle_t",
+    "tdi": 3535,
+    "fields": 1,
+    "methods": 10,
+    "game_refs": 1,
+    "base": "IEquatable<ControllerHandle_t>, IComparable<ControllerHandle"
+  },
+  {
+    "class": "EqualityComparer<T>",
+    "tdi": 1965,
+    "fields": 1,
+    "methods": 9,
+    "game_refs": 1,
+    "base": "IEqualityComparer, IEqualityComparer<T>"
+  },
+  {
+    "class": "FocusChangeDirection",
+    "tdi": 2169,
+    "fields": 1,
+    "methods": 9,
+    "game_refs": 1,
+    "base": "IDisposable"
+  },
+  {
+    "class": "NavigateFocusRing",
+    "tdi": 2633,
+    "fields": 2,
+    "methods": 8,
+    "game_refs": 1,
+    "base": "IFocusRing"
+  },
+  {
+    "class": "ControllerMotionData_t",
+    "tdi": 3457,
+    "fields": 10,
+    "methods": 0,
+    "game_refs": 1,
+    "base": ""
+  },
+  {
+    "class": "VKGameManager",
+    "tdi": 5282,
+    "fields": 0,
+    "methods": 9,
+    "game_refs": 1,
+    "base": "MonoBehaviour"
+  },
+  {
+    "class": "Array.InternalEnumerator<T>",
+    "tdi": 864,
+    "fields": 2,
+    "methods": 6,
+    "game_refs": 1,
+    "base": "IEnumerator<T>, IDisposable, IEnumerator"
+  },
+  {
+    "class": "WellKnownClientTypeEntry",
+    "tdi": 1326,
+    "fields": 3,
+    "methods": 5,
+    "game_refs": 1,
+    "base": "TypeEntry"
+  },
+  {
+    "class": "RuntimeHelpers",
+    "tdi": 1651,
+    "fields": 0,
+    "methods": 8,
+    "game_refs": 1,
+    "base": ""
+  },
+  {
+    "class": "VisualElementFocusChangeTarget",
+    "tdi": 2324,
+    "fields": 1,
+    "methods": 7,
+    "game_refs": 1,
+    "base": "FocusChangeDirection"
+  },
+  {
+    "class": "ClientSslConfiguration",
+    "tdi": 5184,
+    "fields": 2,
+    "methods": 6,
+    "game_refs": 1,
+    "base": "SslConfiguration"
+  },
+  {
+    "class": "Array.EmptyInternalEnumerator<T>",
+    "tdi": 865,
+    "fields": 0,
+    "methods": 7,
+    "game_refs": 1,
+    "base": "IEnumerator<T>, IDisposable, IEnumerator"
+  },
+  {
+    "class": "ActivatedClientTypeEntry",
+    "tdi": 1298,
+    "fields": 2,
+    "methods": 5,
+    "game_refs": 1,
+    "base": "TypeEntry"
+  },
+  {
+    "class": "ClientActivatedIdentity",
+    "tdi": 1318,
+    "fields": 1,
+    "methods": 6,
+    "game_refs": 1,
+    "base": "ServerIdentity"
+  },
+  {
+    "class": "ObjectEqualityComparer<T>",
+    "tdi": 1968,
+    "fields": 0,
+    "methods": 7,
+    "game_refs": 1,
+    "base": "EqualityComparer<T>"
+  },
+  {
+    "class": "TreeViewReorderableDragAndDropController",
+    "tdi": 2514,
+    "fields": 1,
+    "methods": 6,
+    "game_refs": 1,
+    "base": "BaseReorderableDragAndDropController"
+  },
+  {
+    "class": "ControllerColliderHit",
+    "tdi": 5359,
+    "fields": 7,
+    "methods": 0,
+    "game_refs": 1,
+    "base": ""
+  },
+  {
+    "class": "AnimatorControllerPlayable",
+    "tdi": 5411,
+    "fields": 2,
+    "methods": 5,
+    "game_refs": 1,
+    "base": "IEquatable<AnimatorControllerPlayable>"
+  },
+  {
+    "class": "ClientIdentity",
+    "tdi": 1306,
+    "fields": 1,
+    "methods": 5,
+    "game_refs": 1,
+    "base": "Identity"
+  },
+  {
+    "class": "Comparer<T>",
+    "tdi": 1961,
+    "fields": 1,
+    "methods": 5,
+    "game_refs": 1,
+    "base": "IComparer, IComparer<T>"
+  },
+  {
+    "class": "AndroidVKClient",
+    "tdi": 5324,
+    "fields": 0,
+    "methods": 6,
+    "game_refs": 1,
+    "base": "VKClientBase"
+  },
+  {
+    "class": "ClientContextReplySink",
+    "tdi": 1404,
+    "fields": 2,
+    "methods": 3,
+    "game_refs": 1,
+    "base": "IMessageSink"
+  },
+  {
+    "class": "ClientGameServerDeny_t",
+    "tdi": 3169,
+    "fields": 5,
+    "methods": 0,
+    "game_refs": 1,
+    "base": ""
+  },
+  {
+    "class": "InteropHelp",
+    "tdi": 3481,
+    "fields": 0,
+    "methods": 5,
+    "game_refs": 1,
+    "base": ""
+  },
+  {
+    "class": "Action<T>",
+    "tdi": 672,
+    "fields": 0,
+    "methods": 4,
+    "game_refs": 1,
+    "base": "MulticastDelegate"
+  },
+  {
+    "class": "ClientContextTerminatorSink",
+    "tdi": 1403,
+    "fields": 1,
+    "methods": 3,
+    "game_refs": 1,
+    "base": "IMessageSink"
+  },
+  {
+    "class": "ObjectComparer<T>",
+    "tdi": 1964,
+    "fields": 0,
+    "methods": 4,
+    "game_refs": 1,
+    "base": "Comparer<T>"
+  },
+  {
+    "class": "VerticalVirtualizationController.<>c<T>",
+    "tdi": 2363,
+    "fields": 0,
+    "methods": 4,
+    "game_refs": 1,
+    "base": ""
+  },
+  {
+    "class": "DragAndDropUtility",
+    "tdi": 2492,
+    "fields": 3,
+    "methods": 1,
+    "game_refs": 1,
+    "base": ""
+  },
+  {
+    "class": "ListViewReorderableDragAndDropController",
+    "tdi": 2511,
+    "fields": 1,
+    "methods": 3,
+    "game_refs": 1,
+    "base": "BaseReorderableDragAndDropController"
+  },
+  {
+    "class": "GSClientGroupStatus_t",
+    "tdi": 3049,
+    "fields": 4,
+    "methods": 0,
+    "game_refs": 1,
+    "base": ""
+  },
+  {
+    "class": "ControllerAnalogActionData_t",
+    "tdi": 3455,
+    "fields": 4,
+    "methods": 0,
+    "game_refs": 1,
+    "base": ""
+  },
+  {
+    "class": "Callback.DispatchDelegate<T>",
+    "tdi": 3468,
+    "fields": 0,
+    "methods": 4,
+    "game_refs": 1,
+    "base": "MulticastDelegate"
+  },
+  {
+    "class": "MouseCaptureController",
+    "tdi": 2195,
+    "fields": 0,
+    "methods": 3,
+    "game_refs": 1,
+    "base": ""
+  },
+  {
+    "class": "DynamicHeightVirtualizationController.ContentHeightCacheInfo<T>",
+    "tdi": 2356,
+    "fields": 2,
+    "methods": 1,
+    "game_refs": 1,
+    "base": ""
+  },
+  {
+    "class": "TreeViewReorderableDragAndDropController.TreeItemState",
+    "tdi": 2513,
+    "fields": 2,
+    "methods": 1,
+    "game_refs": 1,
+    "base": ""
+  },
+  {
+    "class": "GSClientDeny_t",
+    "tdi": 3044,
+    "fields": 3,
+    "methods": 0,
+    "game_refs": 1,
+    "base": ""
+  },
+  {
+    "class": "GSClientAchievementStatus_t",
+    "tdi": 3046,
+    "fields": 3,
+    "methods": 0,
+    "game_refs": 1,
+    "base": ""
+  },
+  {
+    "class": "RemoteStorageAppSyncedClient_t",
+    "tdi": 3119,
+    "fields": 3,
+    "methods": 0,
+    "game_refs": 1,
+    "base": ""
+  },
+  {
+    "class": "AndroidVKClient.<>c",
+    "tdi": 5323,
+    "fields": 0,
+    "methods": 3,
+    "game_refs": 1,
+    "base": ""
+  },
+  {
+    "class": "Comparison<T>",
+    "tdi": 681,
+    "fields": 0,
+    "methods": 2,
+    "game_refs": 1,
+    "base": "MulticastDelegate"
+  },
+  {
+    "class": "Predicate<T>",
+    "tdi": 683,
+    "fields": 0,
+    "methods": 2,
+    "game_refs": 1,
+    "base": "MulticastDelegate"
+  },
+  {
+    "class": "FocusController.FocusedElement",
+    "tdi": 2171,
+    "fields": 2,
+    "methods": 0,
+    "game_refs": 1,
+    "base": ""
+  },
+  {
+    "class": "TreeViewReorderableDragAndDropController.DropData",
+    "tdi": 2512,
+    "fields": 1,
+    "methods": 1,
+    "game_refs": 1,
+    "base": ""
+  },
+  {
+    "class": "GSClientApprove_t",
+    "tdi": 3043,
+    "fields": 2,
+    "methods": 0,
+    "game_refs": 1,
+    "base": ""
+  },
+  {
+    "class": "GSClientKick_t",
+    "tdi": 3045,
+    "fields": 2,
+    "methods": 0,
+    "game_refs": 1,
+    "base": ""
+  },
+  {
+    "class": "ControllerDigitalActionData_t",
+    "tdi": 3456,
+    "fields": 2,
+    "methods": 0,
+    "game_refs": 1,
+    "base": ""
+  },
+  {
+    "class": "CharacterController",
+    "tdi": 5368,
+    "fields": 0,
+    "methods": 2,
+    "game_refs": 1,
+    "base": "Collider"
+  },
+  {
+    "class": "AnimatorOverrideController.OnOverrideControllerDirtyCallback",
+    "tdi": 5391,
+    "fields": 0,
+    "methods": 2,
+    "game_refs": 1,
+    "base": "MulticastDelegate"
+  },
+  {
+    "class": "AnimatorOverrideController",
+    "tdi": 5392,
+    "fields": 0,
+    "methods": 1,
+    "game_refs": 1,
+    "base": "RuntimeAnimatorController"
+  },
+  {
+    "class": "Version",
+    "tdi": 3516,
+    "fields": 0,
+    "methods": 0,
+    "game_refs": 1,
+    "base": ""
+  },
+  {
+    "class": "RuntimeAnimatorController",
+    "tdi": 5397,
+    "fields": 0,
+    "methods": 0,
+    "game_refs": 1,
+    "base": "Object"
+  }
+]

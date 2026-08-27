@@ -136,6 +136,8 @@ public sealed class Plugin : BasePlugin
     private static bool damageIndicator;
     private static bool hitMarker;
     private static bool autoPickup;
+    private static int aimBone = 0; // 0=head, 1=chest, 2=pelvis
+    private static readonly string[] AimBoneLabels = { "Head", "Chest", "Pelvis" };
     private static readonly List<string> killFeedEntries = new();
     private static float lastKillFeedCheck;
     private static int lastKillCount = -1;
@@ -1234,6 +1236,7 @@ public sealed class Plugin : BasePlugin
                     case "damageIndicator": damageIndicator = val == "1"; break;
                     case "hitMarker": hitMarker = val == "1"; break;
                     case "autoPickup": autoPickup = val == "1"; break;
+                    case "aimBone": aimBone = ParseInt(val, 0); break;
                     case "debugLogging": debugLogging = val == "1"; break;
                     case "heavyDiagnostics": heavyDiagnostics = val == "1"; break;
                     case "showRuntimeStatus": showRuntimeStatus = val == "1"; break;
@@ -1304,6 +1307,7 @@ public sealed class Plugin : BasePlugin
                 $"damageIndicator={(damageIndicator ? 1 : 0)}",
                 $"hitMarker={(hitMarker ? 1 : 0)}",
                 $"autoPickup={(autoPickup ? 1 : 0)}",
+                $"aimBone={aimBone}",
                 $"debugLogging={(debugLogging ? 1 : 0)}",
                 $"heavyDiagnostics={(heavyDiagnostics ? 1 : 0)}",
                 $"showRuntimeStatus={(showRuntimeStatus ? 1 : 0)}",
@@ -2446,24 +2450,41 @@ public sealed class Plugin : BasePlugin
             return false;
         }
 
-        // Aiming at the raw head bone (neck pivot) misses when the target looks up/down
-        // because the visible head is offset from that pivot. Use the head collider or
-        // renderer bounds center to aim at the actual head hitbox.
+        // Aim bone selector: 0=head, 1=chest, 2=pelvis
+        // For chest/pelvis, offset from head position
+        var basePosition = head.transform.position;
+
+        // Try to get more accurate position from collider/renderer
         var collider = head.GetComponentInChildren<Collider>();
         if (collider != null)
         {
-            position = collider.bounds.center;
-            return true;
+            basePosition = collider.bounds.center;
         }
-
-        var renderer = head.GetComponentInChildren<Renderer>();
-        if (renderer != null)
+        else
         {
-            position = renderer.bounds.center;
-            return true;
+            var renderer = head.GetComponentInChildren<Renderer>();
+            if (renderer != null)
+            {
+                basePosition = renderer.bounds.center;
+            }
         }
 
-        position = head.transform.position;
+        // Apply bone offset
+        switch (aimBone)
+        {
+            case 0: // Head - use position as-is
+                position = basePosition;
+                break;
+            case 1: // Chest - offset down by ~0.5m
+                position = basePosition - Vector3.up * 0.5f;
+                break;
+            case 2: // Pelvis - offset down by ~1.0m
+                position = basePosition - Vector3.up * 1.0f;
+                break;
+            default:
+                position = basePosition;
+                break;
+        }
         return true;
     }
 
@@ -2748,6 +2769,15 @@ public sealed class Plugin : BasePlugin
         damageIndicator = GUI.Toggle(new Rect(x, y, w, 24), damageIndicator, "Damage indicator (red vignette)"); y += 26;
         hitMarker = GUI.Toggle(new Rect(x, y, w, 24), hitMarker, "Hit marker (X at crosshair on hit)"); y += 26;
         autoPickup = GUI.Toggle(new Rect(x, y, w, 24), autoPickup, "Auto-pickup (grab nearby items)"); y += 26;
+        GUI.Label(new Rect(x, y, 80, 24), "Aim bone:"); y += 26;
+        for (var i = 0; i < AimBoneLabels.Length; i++)
+        {
+            if (GUI.Toggle(new Rect(x + i * 90, y, 90, 24), aimBone == i, AimBoneLabels[i]))
+            {
+                aimBone = i;
+            }
+        }
+        y += 26;
         debugLogging = GUI.Toggle(new Rect(x, y, w, 24), debugLogging, $"Verbose diagnostics (summary only, 1/{DiagnosticInterval:0}s)"); y += 26;
         if (debugLogging)
         {

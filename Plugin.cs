@@ -136,6 +136,7 @@ public sealed class Plugin : BasePlugin
     private static bool damageIndicator;
     private static bool hitMarker;
     private static bool autoPickup;
+    private static bool xpGoldHack;
     private static int aimBone = 0; // 0=head, 1=chest, 2=pelvis
     private static readonly string[] AimBoneLabels = { "Head", "Chest", "Pelvis" };
     private static float fpsUpdateTimer;
@@ -292,6 +293,7 @@ public sealed class Plugin : BasePlugin
         UpdateDamageIndicator();
         UpdateHitMarker();
         UpdateAutoPickup();
+        if (xpGoldHack) ApplyXpGoldHack();
         PrepareRapidFirePrefix();
 
         // If we're not shooting this frame but the button is still held from
@@ -1240,6 +1242,7 @@ public sealed class Plugin : BasePlugin
                     case "hitMarker": hitMarker = val == "1"; break;
                     case "autoPickup": autoPickup = val == "1"; break;
                     case "aimBone": aimBone = ParseInt(val, 0); break;
+                    case "xpGoldHack": xpGoldHack = val == "1"; break;
                     case "debugLogging": debugLogging = val == "1"; break;
                     case "heavyDiagnostics": heavyDiagnostics = val == "1"; break;
                     case "showRuntimeStatus": showRuntimeStatus = val == "1"; break;
@@ -1311,6 +1314,7 @@ public sealed class Plugin : BasePlugin
                 $"hitMarker={(hitMarker ? 1 : 0)}",
                 $"autoPickup={(autoPickup ? 1 : 0)}",
                 $"aimBone={aimBone}",
+                $"xpGoldHack={(xpGoldHack ? 1 : 0)}",
                 $"debugLogging={(debugLogging ? 1 : 0)}",
                 $"heavyDiagnostics={(heavyDiagnostics ? 1 : 0)}",
                 $"showRuntimeStatus={(showRuntimeStatus ? 1 : 0)}",
@@ -1327,6 +1331,30 @@ public sealed class Plugin : BasePlugin
     }
 
     private static int ParseInt(string s, int fallback) => int.TryParse(s, out var v) ? v : fallback;
+
+    /// <summary>
+    /// Apply XP/Gold hack: set GUIOptions.exp and GUIOptions.Gold to high values.
+    /// These are static fields on the GUIOptions class.
+    /// </summary>
+    private static void ApplyXpGoldHack()
+    {
+        try
+        {
+            // Access static fields via reflection since GUIOptions may not be
+            // directly accessible as an interop type
+            var guiOptionsType = AccessTools.TypeByName("GUIOptions");
+            if (guiOptionsType == null) return;
+
+            var expField = guiOptionsType.GetField("exp");
+            var goldField = guiOptionsType.GetField("Gold");
+            var levelField = guiOptionsType.GetField("level");
+
+            if (expField != null) expField.SetValue(null, 999999);
+            if (goldField != null) goldField.SetValue(null, 999999);
+            if (levelField != null) levelField.SetValue(null, 100);
+        }
+        catch { }
+    }
 
     /// <summary>
     /// Reset all cheat features to disabled state.
@@ -1370,6 +1398,7 @@ public sealed class Plugin : BasePlugin
         damageIndicator = false;
         hitMarker = false;
         autoPickup = false;
+        xpGoldHack = false;
         ghostBullets = false;
         showHealth = false;
         SaveConfig();
@@ -2820,6 +2849,7 @@ public sealed class Plugin : BasePlugin
         damageIndicator = GUI.Toggle(new Rect(x, y, w, 24), damageIndicator, "Damage indicator (red vignette)"); y += 26;
         hitMarker = GUI.Toggle(new Rect(x, y, w, 24), hitMarker, "Hit marker (X at crosshair on hit)"); y += 26;
         autoPickup = GUI.Toggle(new Rect(x, y, w, 24), autoPickup, "Auto-pickup (grab nearby items)"); y += 26;
+        xpGoldHack = GUI.Toggle(new Rect(x, y, w, 24), xpGoldHack, "XP/Gold hack (set exp=999k, gold=999k)"); y += 26;
         GUI.Label(new Rect(x, y, 80, 24), "Aim bone:"); y += 26;
         for (var i = 0; i < AimBoneLabels.Length; i++)
         {
@@ -3333,6 +3363,7 @@ public sealed class Plugin : BasePlugin
         if (damageIndicator) features.Add("DmgIndicator");
         if (hitMarker) features.Add("HitMarker");
         if (autoPickup) features.Add("AutoPickup");
+        if (xpGoldHack) features.Add("XP/GoldHack");
         if (ghostBullets) features.Add("GhostBullets");
 
         if (features.Count == 0) return;

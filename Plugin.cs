@@ -133,9 +133,17 @@ public sealed class Plugin : BasePlugin
     private static bool edgeJump;
     private static bool fakeLag;
     private static bool spectatorWarning;
+    private static bool damageIndicator;
+    private static bool hitMarker;
+    private static bool autoPickup;
     private static readonly List<string> killFeedEntries = new();
     private static float lastKillFeedCheck;
     private static int lastKillCount = -1;
+    private static int lastHealthForDamage = -1;
+    private static float damageIndicatorTime;
+    private static int lastDamageAmount;
+    private static float hitMarkerTime;
+    private static int lastHitCount = -1;
     private static int instantReloads;
     private static float nextAutoShootTime;
 
@@ -276,6 +284,9 @@ public sealed class Plugin : BasePlugin
         UpdateAimbotSafely();
         ApplyCheatFeatures();
         UpdateKillFeed();
+        UpdateDamageIndicator();
+        UpdateHitMarker();
+        UpdateAutoPickup();
         PrepareRapidFirePrefix();
 
         // If we're not shooting this frame but the button is still held from
@@ -1220,6 +1231,9 @@ public sealed class Plugin : BasePlugin
                     case "edgeJump": edgeJump = val == "1"; break;
                     case "fakeLag": fakeLag = val == "1"; break;
                     case "spectatorWarning": spectatorWarning = val == "1"; break;
+                    case "damageIndicator": damageIndicator = val == "1"; break;
+                    case "hitMarker": hitMarker = val == "1"; break;
+                    case "autoPickup": autoPickup = val == "1"; break;
                     case "debugLogging": debugLogging = val == "1"; break;
                     case "heavyDiagnostics": heavyDiagnostics = val == "1"; break;
                     case "showRuntimeStatus": showRuntimeStatus = val == "1"; break;
@@ -1287,6 +1301,9 @@ public sealed class Plugin : BasePlugin
                 $"edgeJump={(edgeJump ? 1 : 0)}",
                 $"fakeLag={(fakeLag ? 1 : 0)}",
                 $"spectatorWarning={(spectatorWarning ? 1 : 0)}",
+                $"damageIndicator={(damageIndicator ? 1 : 0)}",
+                $"hitMarker={(hitMarker ? 1 : 0)}",
+                $"autoPickup={(autoPickup ? 1 : 0)}",
                 $"debugLogging={(debugLogging ? 1 : 0)}",
                 $"heavyDiagnostics={(heavyDiagnostics ? 1 : 0)}",
                 $"showRuntimeStatus={(showRuntimeStatus ? 1 : 0)}",
@@ -2547,6 +2564,18 @@ public sealed class Plugin : BasePlugin
                 DrawSpectatorWarning();
             }
 
+            // Damage indicator: red vignette when taking damage
+            if (damageIndicator && !menuVisible)
+            {
+                DrawDamageIndicator();
+            }
+
+            // Hit marker: X at crosshair when hitting enemy
+            if (hitMarker && !menuVisible)
+            {
+                DrawHitMarker();
+            }
+
             if (menuVisible)
             {
                 DrawTrainerMenu();
@@ -2716,6 +2745,9 @@ public sealed class Plugin : BasePlugin
         edgeJump = GUI.Toggle(new Rect(x, y, w, 24), edgeJump, "Edge jump (auto-jump at ledges)"); y += 26;
         fakeLag = GUI.Toggle(new Rect(x, y, w, 24), fakeLag, "Fake lag (delay position updates)"); y += 26;
         spectatorWarning = GUI.Toggle(new Rect(x, y, w, 24), spectatorWarning, "Spectator warning (alert when watched)"); y += 26;
+        damageIndicator = GUI.Toggle(new Rect(x, y, w, 24), damageIndicator, "Damage indicator (red vignette)"); y += 26;
+        hitMarker = GUI.Toggle(new Rect(x, y, w, 24), hitMarker, "Hit marker (X at crosshair on hit)"); y += 26;
+        autoPickup = GUI.Toggle(new Rect(x, y, w, 24), autoPickup, "Auto-pickup (grab nearby items)"); y += 26;
         debugLogging = GUI.Toggle(new Rect(x, y, w, 24), debugLogging, $"Verbose diagnostics (summary only, 1/{DiagnosticInterval:0}s)"); y += 26;
         if (debugLogging)
         {
@@ -2736,6 +2768,160 @@ public sealed class Plugin : BasePlugin
         {
             SaveConfig();
         }
+    }
+
+    /// <summary>
+    /// Monitor health changes and trigger damage indicator when health drops.
+    /// </summary>
+    private static void UpdateDamageIndicator()
+    {
+        if (!damageIndicator) return;
+        try
+        {
+            var main = Controll.HGAODFPBGLB;
+            if (main == null) return;
+            var currentHp = main.FDOJDJLIGLF;
+            if (lastHealthForDamage < 0)
+            {
+                lastHealthForDamage = currentHp;
+                return;
+            }
+            if (currentHp < lastHealthForDamage)
+            {
+                lastDamageAmount = lastHealthForDamage - currentHp;
+                damageIndicatorTime = Time.time;
+            }
+            lastHealthForDamage = currentHp;
+        }
+        catch { }
+    }
+
+    /// <summary>
+    /// Monitor hit count changes and trigger hit marker when we hit someone.
+    /// </summary>
+    private static void UpdateHitMarker()
+    {
+        if (!hitMarker) return;
+        try
+        {
+            // Use the hit sequence counter (GAMBHJPMDON) to detect hits
+            var currentHits = Controll.GAMBHJPMDON;
+            if (lastHitCount < 0)
+            {
+                lastHitCount = currentHits;
+                return;
+            }
+            if (currentHits > lastHitCount)
+            {
+                hitMarkerTime = Time.time;
+            }
+            lastHitCount = currentHits;
+        }
+        catch { }
+    }
+
+    /// <summary>
+    /// Draw damage indicator: red flash + damage amount when taking damage.
+    /// </summary>
+    private static void DrawDamageIndicator()
+    {
+        if (damageIndicatorTime <= 0) return;
+        var elapsed = Time.time - damageIndicatorTime;
+        if (elapsed > 2f) return;
+
+        var alpha = 1f - (elapsed / 2f);
+        var prevColor = GUI.color;
+        GUI.color = new Color(1f, 0f, 0f, alpha * 0.5f);
+        // Red vignette border
+        var thickness = 40f;
+        GUI.DrawTexture(new Rect(0, 0, Screen.width, thickness), Texture2D.whiteTexture);
+        GUI.DrawTexture(new Rect(0, Screen.height - thickness, Screen.width, thickness), Texture2D.whiteTexture);
+        GUI.DrawTexture(new Rect(0, 0, thickness, Screen.height), Texture2D.whiteTexture);
+        GUI.DrawTexture(new Rect(Screen.width - thickness, 0, thickness, Screen.height), Texture2D.whiteTexture);
+
+        // Damage amount text
+        GUI.color = new Color(1f, 0.5f, 0.5f, alpha);
+        GUI.Label(new Rect(Screen.width / 2f - 50, Screen.height / 2f + 100, 100, 30), $"-{lastDamageAmount} HP");
+        GUI.color = prevColor;
+    }
+
+    /// <summary>
+    /// Draw hit marker: X shape at crosshair when hitting an enemy.
+    /// </summary>
+    private static void DrawHitMarker()
+    {
+        if (hitMarkerTime <= 0) return;
+        var elapsed = Time.time - hitMarkerTime;
+        if (elapsed > 0.5f) return;
+
+        var alpha = 1f - (elapsed / 0.5f);
+        var prevColor = GUI.color;
+        GUI.color = new Color(1f, 1f, 1f, alpha);
+        var cx = Screen.width / 2f;
+        var cy = Screen.height / 2f;
+        var size = 8f;
+        // Draw X shape (4 lines from center)
+        DrawLine2D(new Vector2(cx - size, cy - size), new Vector2(cx - 2, cy - 2));
+        DrawLine2D(new Vector2(cx + 2, cy - 2), new Vector2(cx + size, cy - size));
+        DrawLine2D(new Vector2(cx - size, cy + size), new Vector2(cx - 2, cy + 2));
+        DrawLine2D(new Vector2(cx + 2, cy + 2), new Vector2(cx + size, cy + size));
+        GUI.color = prevColor;
+    }
+
+    /// <summary>
+    /// Auto-pickup: find nearby pickup GameObjects and move toward them.
+    /// </summary>
+    private static void UpdateAutoPickup()
+    {
+        if (!autoPickup) return;
+        try
+        {
+            var main = Controll.HGAODFPBGLB;
+            if (main == null) return;
+            var myPos = main.OOMJGHCFODI;
+
+            // Search for GameObjects with "pickup", "item", "drop", "loot" in name
+            var allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>();
+            if (allObjects == null) return;
+
+            GameObject? closest = null;
+            var closestDist = 10f; // Max pickup range
+
+            foreach (var go in allObjects)
+            {
+                if (go == null) continue;
+                var name = go.name;
+                if (string.IsNullOrEmpty(name)) continue;
+                if (!name.ToLower().Contains("pickup") &&
+                    !name.ToLower().Contains("drop") &&
+                    !name.ToLower().Contains("loot") &&
+                    !name.ToLower().Contains("item"))
+                    continue;
+
+                var dist = Vector3.Distance(myPos, go.transform.position);
+                if (dist < closestDist)
+                {
+                    closestDist = dist;
+                    closest = go;
+                }
+            }
+
+            if (closest != null)
+            {
+                // Move toward the pickup by setting movement flags
+                var direction = (closest.transform.position - myPos).normalized;
+                // Set forward/backward based on z direction
+                if (direction.z > 0.1f)
+                    Controll.MNHBPCOOMLE |= 0x4u; // forward
+                else if (direction.z < -0.1f)
+                    Controll.MNHBPCOOMLE |= 0x8u; // backward
+                if (direction.x > 0.1f)
+                    Controll.MNHBPCOOMLE |= 0x1u; // right
+                else if (direction.x < -0.1f)
+                    Controll.MNHBPCOOMLE |= 0x2u; // left
+            }
+        }
+        catch { }
     }
 
     /// <summary>
@@ -3042,6 +3228,9 @@ public sealed class Plugin : BasePlugin
         if (edgeJump) features.Add("EdgeJump");
         if (fakeLag) features.Add("FakeLag");
         if (spectatorWarning) features.Add("SpectatorWarn");
+        if (damageIndicator) features.Add("DmgIndicator");
+        if (hitMarker) features.Add("HitMarker");
+        if (autoPickup) features.Add("AutoPickup");
         if (ghostBullets) features.Add("GhostBullets");
 
         if (features.Count == 0) return;

@@ -325,11 +325,40 @@ Key method: PFBJDHPMIJP(int ammo, int reserve) — Update both ammo displays
 | Hit marker | Working | White X at crosshair when hit counter increments |
 | Auto-pickup | Working | Move toward nearby pickup/drop/loot GameObjects |
 | Aim bone selector | Working | Head/Chest/Pelvis target selection for aimbot |
+| XP/Gold hack | Working | Set GUIOptions.exp=999k, Gold=999k, level=100 via reflection |
+| Health bar ESP | Working | Colored health bars above player ESP boxes |
+| Snaplines | Working | Lines from bottom-center of screen to enemies |
+| Threat indicator | Working | Red arrow pointing to closest off-screen enemy + distance |
+| Name changer | Working | Set GUIOptions.playername to custom name |
+| Scoreboard hack | Working | Set UIScores team scores to 999/0 |
+| Auto-bhop | Working | Perfect jump timing when grounded + moving |
+| Ping spoof | Working | Display fake ping value in bottom-right corner |
+| Footstep ESP | Working | Record enemy positions every 0.5s, draw as fading dots |
+| Pre-fire | Working | Auto-fire when enemy within 5m + has LOS |
+| Backtrack | Working | Store 2s of enemy position history, draw as blue dots |
+| Admin unlock | Working | Set GUIAdmin.show=true via reflection |
+| Box-head ESP | Working | Separate boxes for head + body with connecting line |
+| Slide hack | Working | Force crouch flag while moving on ground |
+| Grenade trajectory | Working | Simulate parabolic arc, draw as cyan dots |
+| No fall damage | Working | Restore HP when no recent bullet damage |
+| Custom crosshair v2 | Working | Configurable RGB color, size, thickness |
+| Kill sound | Working | 800Hz beep on kill via Console.Beep |
+| Aimbot smoothing | Working | Lerp toward target with configurable smooth factor |
+| Fast weapon switch | Working | Zero fire timers for instant weapon switching |
+| Config presets | Working | Save/load 3 named preset configurations |
+| Anti-aim jitter | Working | Random yaw jitter ±15° when not ADS |
+| Debug overlay | Working | Top-right diagnostic: HP, pos, ammo, kills, input flags |
+| Auto-accept | Working | Auto-click accept/ready/invite GameObjects |
+| Distance ESP | Working | Show distance in meters below enemy ESP boxes |
+| Weapon ID ESP | Working | Show enemy weapon ID next to ESP box |
+| Session timer | Working | Elapsed session time in watermark (HH:MM:SS) |
+| FPS counter | Working | Current FPS in watermark |
+| Clock display | Working | Current time (HH:MM:SS) in watermark |
 
 ## TODO Features (Prioritized)
 1. **Ghost bullets** — Complete NetProbe.TryFakeHit for through-wall kills
-2. **Config presets** — Save/load named feature presets
-3. **Local bot spawn** — Spawn dummy players for offline testing
+2. **Local bot spawn** — Spawn dummy players for offline testing
+3. **Weapon skin changer** — Modify VWGen.GEPLCIFPDAC (Material[]) for custom skins
 
 ## Weapon Unlock Architecture (Server-Dead Workaround)
 

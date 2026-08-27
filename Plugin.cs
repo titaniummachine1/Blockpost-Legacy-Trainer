@@ -132,6 +132,7 @@ public sealed class Plugin : BasePlugin
     private static bool killFeed;
     private static bool edgeJump;
     private static bool fakeLag;
+    private static bool spectatorWarning;
     private static readonly List<string> killFeedEntries = new();
     private static float lastKillFeedCheck;
     private static int lastKillCount = -1;
@@ -1218,6 +1219,7 @@ public sealed class Plugin : BasePlugin
                     case "killFeed": killFeed = val == "1"; break;
                     case "edgeJump": edgeJump = val == "1"; break;
                     case "fakeLag": fakeLag = val == "1"; break;
+                    case "spectatorWarning": spectatorWarning = val == "1"; break;
                     case "debugLogging": debugLogging = val == "1"; break;
                     case "heavyDiagnostics": heavyDiagnostics = val == "1"; break;
                     case "showRuntimeStatus": showRuntimeStatus = val == "1"; break;
@@ -1284,6 +1286,7 @@ public sealed class Plugin : BasePlugin
                 $"killFeed={(killFeed ? 1 : 0)}",
                 $"edgeJump={(edgeJump ? 1 : 0)}",
                 $"fakeLag={(fakeLag ? 1 : 0)}",
+                $"spectatorWarning={(spectatorWarning ? 1 : 0)}",
                 $"debugLogging={(debugLogging ? 1 : 0)}",
                 $"heavyDiagnostics={(heavyDiagnostics ? 1 : 0)}",
                 $"showRuntimeStatus={(showRuntimeStatus ? 1 : 0)}",
@@ -2538,6 +2541,12 @@ public sealed class Plugin : BasePlugin
                 DrawKillFeed();
             }
 
+            // Spectator warning: alert when being spectated
+            if (spectatorWarning && !menuVisible)
+            {
+                DrawSpectatorWarning();
+            }
+
             if (menuVisible)
             {
                 DrawTrainerMenu();
@@ -2706,6 +2715,7 @@ public sealed class Plugin : BasePlugin
         killFeed = GUI.Toggle(new Rect(x, y, w, 24), killFeed, "Kill feed (log kills on screen)"); y += 26;
         edgeJump = GUI.Toggle(new Rect(x, y, w, 24), edgeJump, "Edge jump (auto-jump at ledges)"); y += 26;
         fakeLag = GUI.Toggle(new Rect(x, y, w, 24), fakeLag, "Fake lag (delay position updates)"); y += 26;
+        spectatorWarning = GUI.Toggle(new Rect(x, y, w, 24), spectatorWarning, "Spectator warning (alert when watched)"); y += 26;
         debugLogging = GUI.Toggle(new Rect(x, y, w, 24), debugLogging, $"Verbose diagnostics (summary only, 1/{DiagnosticInterval:0}s)"); y += 26;
         if (debugLogging)
         {
@@ -2726,6 +2736,31 @@ public sealed class Plugin : BasePlugin
         {
             SaveConfig();
         }
+    }
+
+    /// <summary>
+    /// Draw a warning if the local player is being spectated.
+    /// Searches for a GameObject named "Spectator" and checks if it's active.
+    /// </summary>
+    private static void DrawSpectatorWarning()
+    {
+        try
+        {
+            // Search for Spectator GameObject in scene
+            var spectator = GameObject.Find("Spectator");
+            if (spectator == null) return;
+
+            if (!spectator.activeInHierarchy) return;
+
+            // Draw warning in center-top of screen
+            var prevColor = GUI.color;
+            GUI.color = new Color(1f, 0.2f, 0.2f, 0.9f);
+            var warning = "! YOU ARE BEING SPECTATED !";
+            var rect = new Rect(Screen.width / 2f - 150f, 50f, 300f, 30f);
+            GUI.Label(rect, warning);
+            GUI.color = prevColor;
+        }
+        catch { }
     }
 
     /// <summary>
@@ -3006,6 +3041,7 @@ public sealed class Plugin : BasePlugin
         if (killFeed) features.Add("KillFeed");
         if (edgeJump) features.Add("EdgeJump");
         if (fakeLag) features.Add("FakeLag");
+        if (spectatorWarning) features.Add("SpectatorWarn");
         if (ghostBullets) features.Add("GhostBullets");
 
         if (features.Count == 0) return;

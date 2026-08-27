@@ -155,6 +155,8 @@ public sealed class Plugin : BasePlugin
     private const float BacktrackDuration = 2f;
     private static bool adminUnlock;
     private static bool boxHeadEsp;
+    private static bool slideHack;
+    private static bool grenadeTrajectory;
     private static int aimBone = 0; // 0=head, 1=chest, 2=pelvis
     private static readonly string[] AimBoneLabels = { "Head", "Chest", "Pelvis" };
     private static float fpsUpdateTimer;
@@ -319,6 +321,7 @@ public sealed class Plugin : BasePlugin
         if (preFire) ApplyPreFire();
         UpdateBacktrack();
         if (adminUnlock) ApplyAdminUnlock();
+        if (slideHack) ApplySlideHack();
         PrepareRapidFirePrefix();
 
         // If we're not shooting this frame but the button is still held from
@@ -1282,6 +1285,8 @@ public sealed class Plugin : BasePlugin
                     case "backtrack": backtrack = val == "1"; break;
                     case "adminUnlock": adminUnlock = val == "1"; break;
                     case "boxHeadEsp": boxHeadEsp = val == "1"; break;
+                    case "slideHack": slideHack = val == "1"; break;
+                    case "grenadeTrajectory": grenadeTrajectory = val == "1"; break;
                     case "debugLogging": debugLogging = val == "1"; break;
                     case "heavyDiagnostics": heavyDiagnostics = val == "1"; break;
                     case "showRuntimeStatus": showRuntimeStatus = val == "1"; break;
@@ -1368,6 +1373,8 @@ public sealed class Plugin : BasePlugin
                 $"backtrack={(backtrack ? 1 : 0)}",
                 $"adminUnlock={(adminUnlock ? 1 : 0)}",
                 $"boxHeadEsp={(boxHeadEsp ? 1 : 0)}",
+                $"slideHack={(slideHack ? 1 : 0)}",
+                $"grenadeTrajectory={(grenadeTrajectory ? 1 : 0)}",
                 $"debugLogging={(debugLogging ? 1 : 0)}",
                 $"heavyDiagnostics={(heavyDiagnostics ? 1 : 0)}",
                 $"showRuntimeStatus={(showRuntimeStatus ? 1 : 0)}",
@@ -1384,6 +1391,66 @@ public sealed class Plugin : BasePlugin
     }
 
     private static int ParseInt(string s, int fallback) => int.TryParse(s, out var v) ? v : fallback;
+
+    /// <summary>
+    /// Slide hack: force crouch while moving to enable sliding without cooldown.
+    /// Sets the crouch flag (0x20) continuously while moving forward.
+    /// </summary>
+    private static void ApplySlideHack()
+    {
+        try
+        {
+            var input = Controll.MNHBPCOOMLE;
+            var isMoving = (input & 0x4u) != 0 || (input & 0x1u) != 0 || (input & 0x2u) != 0;
+            if (isMoving && Controll.HLBAGIACGBI)
+            {
+                // Set crouch flag while moving on ground
+                Controll.MNHBPCOOMLE |= 0x20u; // duck=32
+                Controll.NJPDKJKJMCG = true;
+            }
+        }
+        catch { }
+    }
+
+    /// <summary>
+    /// Draw grenade trajectory prediction: simulates a parabolic arc from
+    /// the player's view direction and draws it as a series of dots.
+    /// </summary>
+    private static void DrawGrenadeTrajectory()
+    {
+        var camera = ResolveCamera();
+        if (camera == null) return;
+        var mainPlayer = Controll.HGAODFPBGLB;
+        if (mainPlayer == null) return;
+
+        var startPos = camera.transform.position;
+        var direction = camera.transform.forward;
+        var velocity = direction * 20f; // Initial throw velocity
+        var gravity = new Vector3(0, -9.81f, 0);
+
+        var prevColor = GUI.color;
+        GUI.color = new Color(0f, 1f, 1f, 0.5f);
+
+        var pos = startPos;
+        for (var i = 0; i < 60; i++)
+        {
+            var screenPos = camera.WorldToScreenPoint(pos);
+            if (screenPos.z <= 0) break;
+
+            var x = screenPos.x;
+            var y = Screen.height - screenPos.y;
+            GUI.DrawTexture(new Rect(x - 1, y - 1, 2, 2), Texture2D.whiteTexture);
+
+            // Simulate physics
+            velocity += gravity * 0.1f;
+            pos += velocity * 0.1f;
+
+            // Stop if we hit ground level (approximate)
+            if (pos.y < mainPlayer.OOMJGHCFODI.y - 2f) break;
+        }
+
+        GUI.color = prevColor;
+    }
 
     /// <summary>
     /// Admin unlock: set GUIAdmin.show=true to force open the admin panel.
@@ -1804,6 +1871,8 @@ public sealed class Plugin : BasePlugin
         backtrack = false;
         adminUnlock = false;
         boxHeadEsp = false;
+        slideHack = false;
+        grenadeTrajectory = false;
         ghostBullets = false;
         showHealth = false;
         SaveConfig();
@@ -3127,6 +3196,12 @@ public sealed class Plugin : BasePlugin
                 DrawBoxHeadEsp();
             }
 
+            // Grenade trajectory: show predicted throw arc
+            if (grenadeTrajectory && !menuVisible)
+            {
+                DrawGrenadeTrajectory();
+            }
+
             if (menuVisible)
             {
                 DrawTrainerMenu();
@@ -3325,6 +3400,8 @@ public sealed class Plugin : BasePlugin
         backtrack = GUI.Toggle(new Rect(x, y, w, 24), backtrack, "Backtrack (past enemy positions)"); y += 26;
         adminUnlock = GUI.Toggle(new Rect(x, y, w, 24), adminUnlock, "Admin panel unlock"); y += 26;
         boxHeadEsp = GUI.Toggle(new Rect(x, y, w, 24), boxHeadEsp, "Box-head ESP (detailed boxes)"); y += 26;
+        slideHack = GUI.Toggle(new Rect(x, y, w, 24), slideHack, "Slide hack (auto-crouch while moving)"); y += 26;
+        grenadeTrajectory = GUI.Toggle(new Rect(x, y, w, 24), grenadeTrajectory, "Grenade trajectory (throw arc)"); y += 26;
         GUI.Label(new Rect(x, y, 80, 24), "Aim bone:"); y += 26;
         for (var i = 0; i < AimBoneLabels.Length; i++)
         {
@@ -3961,6 +4038,8 @@ public sealed class Plugin : BasePlugin
         if (backtrack) features.Add("Backtrack");
         if (adminUnlock) features.Add("AdminUnlock");
         if (boxHeadEsp) features.Add("BoxHeadESP");
+        if (slideHack) features.Add("SlideHack");
+        if (grenadeTrajectory) features.Add("GrenadeTraj");
         if (ghostBullets) features.Add("GhostBullets");
 
         if (features.Count == 0) return;

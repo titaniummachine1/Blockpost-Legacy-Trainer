@@ -2433,6 +2433,12 @@ public sealed class Plugin : BasePlugin
                 DrawCustomCrosshair();
             }
 
+            // Feature watermark: show active features in top-left corner
+            if (!menuVisible)
+            {
+                DrawFeatureWatermark();
+            }
+
             if (menuVisible)
             {
                 DrawTrainerMenu();
@@ -2614,6 +2620,58 @@ public sealed class Plugin : BasePlugin
         {
             SaveConfig();
         }
+    }
+
+    /// <summary>
+    /// Draw a watermark in the top-left corner showing all active features.
+    /// </summary>
+    private static void DrawFeatureWatermark()
+    {
+        var features = new List<string>();
+        if (espEnabled) features.Add("ESP");
+        if (aimbotEnabled) features.Add("Aimbot");
+        if (autoShoot) features.Add("AutoShoot");
+        if (noRecoil) features.Add("NoRecoil");
+        if (infiniteHealth) features.Add("InfHealth");
+        if (infiniteAmmo) features.Add("InfAmmo");
+        if (instantReload) features.Add("InstReload");
+        if (rapidFire) features.Add("RapidFire");
+        if (bunnyHop) features.Add("BunnyHop");
+        if (fovChanger) features.Add($"FOV:{targetFov:0}");
+        if (customCrosshair) features.Add("Crosshair");
+        if (speedHack) features.Add($"Speed:{speedMultiplier:0.0}x");
+        if (flyHack) features.Add("Fly");
+        if (noClip) features.Add("NoClip");
+        if (weaponUnlock) features.Add("WeaponUnlock");
+        if (thirdPerson) features.Add("3rdPerson");
+        if (chams) features.Add("Chams");
+        if (triggerbot) features.Add("Triggerbot");
+        if (fullbright) features.Add("Fullbright");
+        if (antiFlash) features.Add("AntiFlash");
+        if (wallhack) features.Add("Wallhack");
+        if (noSpread) features.Add("NoSpread");
+        if (fastFire) features.Add("FastFire");
+        if (autoReload) features.Add("AutoReload");
+        if (nameEsp) features.Add("NameESP");
+        if (spinbot) features.Add("Spinbot");
+        if (ghostBullets) features.Add("GhostBullets");
+
+        if (features.Count == 0) return;
+
+        var prevColor = GUI.color;
+        GUI.color = new Color(0f, 1f, 0f, 0.7f);
+        var y = 5f;
+        GUI.Label(new Rect(5, y, 300, 20), $"Blockpost Trainer [{features.Count} active]");
+        y += 20;
+        GUI.color = new Color(1f, 1f, 0f, 0.6f);
+        // Show features in rows of 5
+        for (var i = 0; i < features.Count; i++)
+        {
+            var row = i / 5;
+            var col = i % 5;
+            GUI.Label(new Rect(5 + col * 120, y + row * 18, 120, 18), features[i]);
+        }
+        GUI.color = prevColor;
     }
 
     /// <summary>

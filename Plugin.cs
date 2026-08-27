@@ -150,6 +150,9 @@ public sealed class Plugin : BasePlugin
     private static bool preFire;
     private static readonly List<Vector3> recentFootsteps = new();
     private static float lastFootstepScan;
+    private static bool backtrack;
+    private static readonly Dictionary<int, Queue<(float time, Vector3 pos)>> enemyPositionHistory = new();
+    private const float BacktrackDuration = 2f; // Store 2 seconds of history
     private static int aimBone = 0; // 0=head, 1=chest, 2=pelvis
     private static readonly string[] AimBoneLabels = { "Head", "Chest", "Pelvis" };
     private static float fpsUpdateTimer;
@@ -312,6 +315,7 @@ public sealed class Plugin : BasePlugin
         if (autoBhop) ApplyAutoBhop();
         UpdateFootstepEsp();
         if (preFire) ApplyPreFire();
+        UpdateBacktrack();
         PrepareRapidFirePrefix();
 
         // If we're not shooting this frame but the button is still held from
@@ -1272,6 +1276,7 @@ public sealed class Plugin : BasePlugin
                     case "fakePing": fakePing = ParseInt(val, 150); break;
                     case "footstepEsp": footstepEsp = val == "1"; break;
                     case "preFire": preFire = val == "1"; break;
+                    case "backtrack": backtrack = val == "1"; break;
                     case "debugLogging": debugLogging = val == "1"; break;
                     case "heavyDiagnostics": heavyDiagnostics = val == "1"; break;
                     case "showRuntimeStatus": showRuntimeStatus = val == "1"; break;
@@ -1355,6 +1360,7 @@ public sealed class Plugin : BasePlugin
                 $"fakePing={fakePing}",
                 $"footstepEsp={(footstepEsp ? 1 : 0)}",
                 $"preFire={(preFire ? 1 : 0)}",
+                $"backtrack={(backtrack ? 1 : 0)}",
                 $"debugLogging={(debugLogging ? 1 : 0)}",
                 $"heavyDiagnostics={(heavyDiagnostics ? 1 : 0)}",
                 $"showRuntimeStatus={(showRuntimeStatus ? 1 : 0)}",
@@ -1371,6 +1377,99 @@ public sealed class Plugin : BasePlugin
     }
 
     private static int ParseInt(string s, int fallback) => int.TryParse(s, out var v) ? v : fallback;
+
+    /// <summary>
+    /// Track enemy position history for backtrack feature.
+    /// Stores last 2 seconds of each enemy's position, allowing the aimbot
+    /// to target past positions for easier hit registration.
+    /// </summary>
+    private static void UpdateBacktrack()
+    {
+        if (!backtrack) return;
+        try
+        {
+            var players = PLH.BAKLNPIEHMI;
+            var mainPlayer = Controll.HGAODFPBGLB;
+            if (players == null || mainPlayer == null) return;
+
+            var now = Time.time;
+
+            for (var i = 0; i < players.Length; i++)
+            {
+                var player = players[i];
+                if (!IsVisibleTarget(player, mainPlayer, false, true)) continue;
+
+                // Use player index as ID (stable within a match)
+                if (!enemyPositionHistory.ContainsKey(i))
+                {
+                    enemyPositionHistory[i] = new Queue<(float, Vector3)>();
+                }
+
+                var queue = enemyPositionHistory[i];
+                queue.Enqueue((now, player.OOMJGHCFODI));
+
+                // Remove entries older than BacktrackDuration
+                while (queue.Count > 0 && now - queue.Peek().Item1 > BacktrackDuration)
+                {
+                    queue.Dequeue();
+                }
+            }
+        }
+        catch { }
+    }
+
+    /// <summary>
+    /// Get the backtrack position for a given player ID.
+    /// Returns the position from ~200ms ago, or current position if no history.
+    /// </summary>
+    private static Vector3 GetBacktrackPosition(int playerId, float delay = 0.2f)
+    {
+        if (!enemyPositionHistory.TryGetValue(playerId, out var queue)) return Vector3.zero;
+        var targetTime = Time.time - delay;
+        var result = Vector3.zero;
+        foreach (var (time, pos) in queue)
+        {
+            if (time <= targetTime)
+            {
+                result = pos;
+            }
+            else
+            {
+                break;
+            }
+        }
+        return result == Vector3.zero ? queue.Peek().Item2 : result;
+    }
+
+    /// <summary>
+    /// Draw backtrack positions as blue dots on screen.
+    /// </summary>
+    private static void DrawBacktrack()
+    {
+        if (!backtrack || enemyPositionHistory.Count == 0) return;
+        var camera = ResolveCamera();
+        if (camera == null) return;
+
+        var prevColor = GUI.color;
+        GUI.color = new Color(0.3f, 0.5f, 1f, 0.5f);
+
+        foreach (var kvp in enemyPositionHistory)
+        {
+            var queue = kvp.Value;
+            if (queue.Count < 2) continue;
+
+            // Draw the oldest position in the history
+            var oldest = queue.Peek();
+            var screenPos = camera.WorldToScreenPoint(oldest.Item2);
+            if (screenPos.z <= 0) continue;
+
+            var x = screenPos.x;
+            var y = Screen.height - screenPos.y;
+            GUI.DrawTexture(new Rect(x - 3, y - 3, 6, 6), Texture2D.whiteTexture);
+        }
+
+        GUI.color = prevColor;
+    }
 
     /// <summary>
     /// Track enemy positions for footstep ESP. Records recent enemy positions
@@ -1616,6 +1715,7 @@ public sealed class Plugin : BasePlugin
         pingSpoof = false;
         footstepEsp = false;
         preFire = false;
+        backtrack = false;
         ghostBullets = false;
         showHealth = false;
         SaveConfig();
@@ -2927,6 +3027,12 @@ public sealed class Plugin : BasePlugin
                 DrawFootstepEsp();
             }
 
+            // Backtrack: show past enemy positions as blue dots
+            if (backtrack && !menuVisible)
+            {
+                DrawBacktrack();
+            }
+
             if (menuVisible)
             {
                 DrawTrainerMenu();
@@ -3122,6 +3228,7 @@ public sealed class Plugin : BasePlugin
         }
         footstepEsp = GUI.Toggle(new Rect(x, y, w, 24), footstepEsp, "Footstep ESP (recent enemy positions)"); y += 26;
         preFire = GUI.Toggle(new Rect(x, y, w, 24), preFire, "Pre-fire (auto-fire at close range)"); y += 26;
+        backtrack = GUI.Toggle(new Rect(x, y, w, 24), backtrack, "Backtrack (past enemy positions)"); y += 26;
         GUI.Label(new Rect(x, y, 80, 24), "Aim bone:"); y += 26;
         for (var i = 0; i < AimBoneLabels.Length; i++)
         {
@@ -3755,6 +3862,7 @@ public sealed class Plugin : BasePlugin
         if (pingSpoof) features.Add($"Ping:{fakePing}ms");
         if (footstepEsp) features.Add("FootstepESP");
         if (preFire) features.Add("PreFire");
+        if (backtrack) features.Add("Backtrack");
         if (ghostBullets) features.Add("GhostBullets");
 
         if (features.Count == 0) return;
@@ -3762,7 +3870,7 @@ public sealed class Plugin : BasePlugin
         var prevColor = GUI.color;
         GUI.color = new Color(0f, 1f, 0f, 0.7f);
         var y = 5f;
-        GUI.Label(new Rect(5, y, 300, 20), $"Blockpost Trainer [{features.Count} active] FPS:{currentFps:0}");
+        GUI.Label(new Rect(5, y, 300, 20), $"Blockpost Trainer [{features.Count} active] FPS:{currentFps:0} {DateTime.Now:HH:mm:ss}");
         y += 20;
         GUI.color = new Color(1f, 1f, 0f, 0.6f);
         // Show features in rows of 5

@@ -172,6 +172,8 @@ public sealed class Plugin : BasePlugin
     private static bool configPreset3;
     private static bool antiAimJitter;
     private static float sessionStartTime = -1f;
+    private static bool debugOverlay;
+    private static bool autoAccept;
     private static int aimBone = 0; // 0=head, 1=chest, 2=pelvis
     private static readonly string[] AimBoneLabels = { "Head", "Chest", "Pelvis" };
     private static float fpsUpdateTimer;
@@ -341,6 +343,7 @@ public sealed class Plugin : BasePlugin
         UpdateKillSound();
         if (fastWeaponSwitch) ApplyFastWeaponSwitch();
         if (antiAimJitter) ApplyAntiAimJitter();
+        if (autoAccept) ApplyAutoAccept();
         PrepareRapidFirePrefix();
 
         // If we're not shooting this frame but the button is still held from
@@ -1331,6 +1334,8 @@ public sealed class Plugin : BasePlugin
                     case "aimbotSmoothFactor": aimbotSmoothFactor = float.TryParse(val, out var asf) ? asf : 0.5f; break;
                     case "fastWeaponSwitch": fastWeaponSwitch = val == "1"; break;
                     case "antiAimJitter": antiAimJitter = val == "1"; break;
+                    case "debugOverlay": debugOverlay = val == "1"; break;
+                    case "autoAccept": autoAccept = val == "1"; break;
                     case "debugLogging": debugLogging = val == "1"; break;
                     case "heavyDiagnostics": heavyDiagnostics = val == "1"; break;
                     case "showRuntimeStatus": showRuntimeStatus = val == "1"; break;
@@ -1438,6 +1443,8 @@ public sealed class Plugin : BasePlugin
                 $"aimbotSmoothFactor={aimbotSmoothFactor}",
                 $"fastWeaponSwitch={(fastWeaponSwitch ? 1 : 0)}",
                 $"antiAimJitter={(antiAimJitter ? 1 : 0)}",
+                $"debugOverlay={(debugOverlay ? 1 : 0)}",
+                $"autoAccept={(autoAccept ? 1 : 0)}",
                 $"debugLogging={(debugLogging ? 1 : 0)}",
                 $"heavyDiagnostics={(heavyDiagnostics ? 1 : 0)}",
                 $"showRuntimeStatus={(showRuntimeStatus ? 1 : 0)}",
@@ -1488,6 +1495,79 @@ public sealed class Plugin : BasePlugin
         {
             instance?.Log.LogError($"[Config] Failed to load preset '{name}': {ex.Message}");
         }
+    }
+
+    /// <summary>
+    /// Auto-accept: automatically accept match invites and ready up.
+    /// Looks for GameObjects with "accept", "ready", "invite" in name and clicks them.
+    /// </summary>
+    private static void ApplyAutoAccept()
+    {
+        try
+        {
+            // Look for accept/ready buttons by searching for GameObjects
+            var allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>();
+            if (allObjects == null) return;
+            foreach (var go in allObjects)
+            {
+                if (go == null) continue;
+                var name = go.name;
+                if (string.IsNullOrEmpty(name)) continue;
+                var lower = name.ToLower();
+                if (lower.Contains("accept") || lower.Contains("ready") || lower.Contains("invite"))
+                {
+                    // Try to click the button by sending it a message
+                    go.SendMessage("OnClick", SendMessageOptions.DontRequireReceiver);
+                }
+            }
+        }
+        catch { }
+    }
+
+    /// <summary>
+    /// Draw debug overlay: shows player count, health, ammo, position, and
+    /// other diagnostic info in the top-right corner.
+    /// </summary>
+    private static void DrawDebugOverlay()
+    {
+        try
+        {
+            var main = Controll.HGAODFPBGLB;
+            var players = PLH.BAKLNPIEHMI;
+            var x = Screen.width - 250;
+            var y = 5f;
+            var prevColor = GUI.color;
+            GUI.color = new Color(0f, 1f, 0f, 0.8f);
+
+            GUI.Label(new Rect(x, y, 240, 20), $"--- Debug Overlay ---");
+            y += 20;
+            GUI.Label(new Rect(x, y, 240, 20), $"Players: {(players != null ? players.Length : 0)}");
+            y += 20;
+
+            if (main != null)
+            {
+                GUI.Label(new Rect(x, y, 240, 20), $"HP: {main.FDOJDJLIGLF}/{main.EFHBKMHCMOH} Armor: {main.INGHEHAALBJ}");
+                y += 20;
+                var pos = main.OOMJGHCFODI;
+                GUI.Label(new Rect(x, y, 240, 20), $"Pos: {pos.x:F1}, {pos.y:F1}, {pos.z:F1}");
+                y += 20;
+                GUI.Label(new Rect(x, y, 240, 20), $"Ammo: {Controll.FGGKANNFBDH}/{Controll.ILFOFIOFBAM} Reserve: {Controll.KJOMABGHAIJ}");
+                y += 20;
+                GUI.Label(new Rect(x, y, 240, 20), $"Kills: {Controll.DEBGAILDKPC} Deaths: {Controll.GKNJELHPMDE}");
+                y += 20;
+                GUI.Label(new Rect(x, y, 240, 20), $"Team: {Controll.POFKNJGAKPK} ID: {Controll.OGDPMIBJLDH}");
+                y += 20;
+                GUI.Label(new Rect(x, y, 240, 20), $"Grounded: {Controll.HLBAGIACGBI} Sprint: {Controll.PBICPLCFAGG}");
+                y += 20;
+                GUI.Label(new Rect(x, y, 240, 20), $"Crouch: {Controll.NJPDKJKJMCG} Jump: {Controll.GCHFDAPNBNB}");
+                y += 20;
+                GUI.Label(new Rect(x, y, 240, 20), $"Input: 0x{Controll.MNHBPCOOMLE:X8}");
+                y += 20;
+            }
+
+            GUI.color = prevColor;
+        }
+        catch { }
     }
 
     /// <summary>
@@ -2096,6 +2176,8 @@ public sealed class Plugin : BasePlugin
         aimbotSmoothing = false;
         fastWeaponSwitch = false;
         antiAimJitter = false;
+        debugOverlay = false;
+        autoAccept = false;
         ghostBullets = false;
         showHealth = false;
         SaveConfig();
@@ -3439,6 +3521,12 @@ public sealed class Plugin : BasePlugin
                 DrawCustomCrosshairV2();
             }
 
+            // Debug overlay: diagnostic info in top-right corner
+            if (debugOverlay && !menuVisible)
+            {
+                DrawDebugOverlay();
+            }
+
             if (menuVisible)
             {
                 DrawTrainerMenu();
@@ -3668,6 +3756,8 @@ public sealed class Plugin : BasePlugin
         }
         fastWeaponSwitch = GUI.Toggle(new Rect(x, y, w, 24), fastWeaponSwitch, "Fast weapon switch (zero timers)"); y += 26;
         antiAimJitter = GUI.Toggle(new Rect(x, y, w, 24), antiAimJitter, "Anti-aim jitter (random yaw)"); y += 26;
+        debugOverlay = GUI.Toggle(new Rect(x, y, w, 24), debugOverlay, "Debug overlay (diagnostic info)"); y += 26;
+        autoAccept = GUI.Toggle(new Rect(x, y, w, 24), autoAccept, "Auto-accept (auto ready up)"); y += 26;
         GUI.Label(new Rect(x, y, 80, 24), "Aim bone:"); y += 26;
         for (var i = 0; i < AimBoneLabels.Length; i++)
         {
@@ -4327,6 +4417,8 @@ public sealed class Plugin : BasePlugin
         if (aimbotSmoothing) features.Add($"AimSmooth:{aimbotSmoothFactor:F2}");
         if (fastWeaponSwitch) features.Add("FastSwitch");
         if (antiAimJitter) features.Add("AntiAimJitter");
+        if (debugOverlay) features.Add("DebugOverlay");
+        if (autoAccept) features.Add("AutoAccept");
         if (ghostBullets) features.Add("GhostBullets");
 
         if (features.Count == 0) return;

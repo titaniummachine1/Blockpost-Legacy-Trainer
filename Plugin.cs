@@ -122,6 +122,7 @@ public sealed class Plugin : BasePlugin
     private static bool wallhack;
     private static bool noSpread;
     private static bool fastFire;
+    private static bool autoReload;
     private static int instantReloads;
     private static float nextAutoShootTime;
 
@@ -775,7 +776,7 @@ public sealed class Plugin : BasePlugin
 
     private static void ApplyCheatFeatures()
     {
-        if (!infiniteHealth && !infiniteAmmo && !bunnyHop && !fovChanger && !speedHack && !flyHack && !noClip && !thirdPerson && !fullbright && !antiFlash && !noSpread && !fastFire)
+        if (!infiniteHealth && !infiniteAmmo && !bunnyHop && !fovChanger && !speedHack && !flyHack && !noClip && !thirdPerson && !fullbright && !antiFlash && !noSpread && !fastFire && !autoReload)
         {
             return;
         }
@@ -899,6 +900,22 @@ public sealed class Plugin : BasePlugin
                 // always passes, allowing firing every frame.
                 Controll.LCMOBPPHLLM = 0f;
                 main.LCMOBPPHLLM = 0f;
+            }
+
+            if (autoReload)
+            {
+                // Auto-reload when magazine is empty and we have reserve ammo
+                var currentAmmo = Controll.FGGKANNFBDH;
+                var maxAmmo = Controll.ILFOFIOFBAM;
+                var reserve = Controll.KJOMABGHAIJ;
+                if (currentAmmo == 0 && maxAmmo > 0 && reserve > 0 && !Controll.EKEAAHAKHIN)
+                {
+                    // Trigger reload by setting the reload flag
+                    Controll.EKEAAHAKHIN = true;
+                    Controll.DJACNOGOCKD = true;
+                    // Set reload timer to start
+                    Controll.FBINCNDDPAO = Time.time;
+                }
             }
         }
         catch (Exception exception)
@@ -1114,6 +1131,7 @@ public sealed class Plugin : BasePlugin
                     case "wallhack": wallhack = val == "1"; break;
                     case "noSpread": noSpread = val == "1"; break;
                     case "fastFire": fastFire = val == "1"; break;
+                    case "autoReload": autoReload = val == "1"; break;
                     case "debugLogging": debugLogging = val == "1"; break;
                     case "heavyDiagnostics": heavyDiagnostics = val == "1"; break;
                     case "showRuntimeStatus": showRuntimeStatus = val == "1"; break;
@@ -1170,6 +1188,7 @@ public sealed class Plugin : BasePlugin
                 $"wallhack={(wallhack ? 1 : 0)}",
                 $"noSpread={(noSpread ? 1 : 0)}",
                 $"fastFire={(fastFire ? 1 : 0)}",
+                $"autoReload={(autoReload ? 1 : 0)}",
                 $"debugLogging={(debugLogging ? 1 : 0)}",
                 $"heavyDiagnostics={(heavyDiagnostics ? 1 : 0)}",
                 $"showRuntimeStatus={(showRuntimeStatus ? 1 : 0)}",
@@ -2389,6 +2408,11 @@ public sealed class Plugin : BasePlugin
                 DrawEspBoxes();
             }
 
+            if (aimbotEnabled && !menuVisible)
+            {
+                DrawAimbotFovCircle();
+            }
+
             if (customCrosshair && !menuVisible)
             {
                 DrawCustomCrosshair();
@@ -2552,6 +2576,7 @@ public sealed class Plugin : BasePlugin
         wallhack = GUI.Toggle(new Rect(x, y, w, 24), wallhack, "Wallhack (tracer lines + distance)"); y += 26;
         noSpread = GUI.Toggle(new Rect(x, y, w, 24), noSpread, "No spread (zero recoil accumulator)"); y += 26;
         fastFire = GUI.Toggle(new Rect(x, y, w, 24), fastFire, "Fast fire rate (zero fire timer)"); y += 26;
+        autoReload = GUI.Toggle(new Rect(x, y, w, 24), autoReload, "Auto-reload (reload when empty)"); y += 26;
         debugLogging = GUI.Toggle(new Rect(x, y, w, 24), debugLogging, $"Verbose diagnostics (summary only, 1/{DiagnosticInterval:0}s)"); y += 26;
         if (debugLogging)
         {
@@ -2572,6 +2597,34 @@ public sealed class Plugin : BasePlugin
         {
             SaveConfig();
         }
+    }
+
+    /// <summary>
+    /// Draw a circle on screen showing the aimbot's FOV targeting range.
+    /// The circle radius is proportional to the aimbotFov setting.
+    /// </summary>
+    private static void DrawAimbotFovCircle()
+    {
+        var centerX = Screen.width / 2f;
+        var centerY = Screen.height / 2f;
+        // Convert FOV angle to screen pixels (approximate: 1 degree ~ 8 pixels at 90 FOV)
+        var radius = aimbotFov * 8f;
+        if (radius < 5f) return;
+
+        var prevColor = GUI.color;
+        GUI.color = new Color(1f, 0.5f, 0f, 0.4f); // Orange, semi-transparent
+
+        // Draw circle as series of small dots
+        var steps = 64;
+        for (var i = 0; i < steps; i++)
+        {
+            var angle = (float)i / steps * Mathf.PI * 2f;
+            var px = centerX + Mathf.Cos(angle) * radius;
+            var py = centerY + Mathf.Sin(angle) * radius;
+            GUI.DrawTexture(new Rect(px - 1, py - 1, 2, 2), Texture2D.whiteTexture);
+        }
+
+        GUI.color = prevColor;
     }
 
     private static void DrawEspBoxes()

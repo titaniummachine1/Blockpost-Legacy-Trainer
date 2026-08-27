@@ -174,6 +174,8 @@ public sealed class Plugin : BasePlugin
     private static float sessionStartTime = -1f;
     private static bool debugOverlay;
     private static bool autoAccept;
+    private static bool distanceEsp;
+    private static bool weaponIdEsp;
     private static int aimBone = 0; // 0=head, 1=chest, 2=pelvis
     private static readonly string[] AimBoneLabels = { "Head", "Chest", "Pelvis" };
     private static float fpsUpdateTimer;
@@ -1336,6 +1338,8 @@ public sealed class Plugin : BasePlugin
                     case "antiAimJitter": antiAimJitter = val == "1"; break;
                     case "debugOverlay": debugOverlay = val == "1"; break;
                     case "autoAccept": autoAccept = val == "1"; break;
+                    case "distanceEsp": distanceEsp = val == "1"; break;
+                    case "weaponIdEsp": weaponIdEsp = val == "1"; break;
                     case "debugLogging": debugLogging = val == "1"; break;
                     case "heavyDiagnostics": heavyDiagnostics = val == "1"; break;
                     case "showRuntimeStatus": showRuntimeStatus = val == "1"; break;
@@ -1445,6 +1449,8 @@ public sealed class Plugin : BasePlugin
                 $"antiAimJitter={(antiAimJitter ? 1 : 0)}",
                 $"debugOverlay={(debugOverlay ? 1 : 0)}",
                 $"autoAccept={(autoAccept ? 1 : 0)}",
+                $"distanceEsp={(distanceEsp ? 1 : 0)}",
+                $"weaponIdEsp={(weaponIdEsp ? 1 : 0)}",
                 $"debugLogging={(debugLogging ? 1 : 0)}",
                 $"heavyDiagnostics={(heavyDiagnostics ? 1 : 0)}",
                 $"showRuntimeStatus={(showRuntimeStatus ? 1 : 0)}",
@@ -2178,6 +2184,8 @@ public sealed class Plugin : BasePlugin
         antiAimJitter = false;
         debugOverlay = false;
         autoAccept = false;
+        distanceEsp = false;
+        weaponIdEsp = false;
         ghostBullets = false;
         showHealth = false;
         SaveConfig();
@@ -3527,6 +3535,18 @@ public sealed class Plugin : BasePlugin
                 DrawDebugOverlay();
             }
 
+            // Distance ESP: show distance below enemy boxes
+            if (distanceEsp && !menuVisible)
+            {
+                DrawDistanceEsp();
+            }
+
+            // Weapon ID ESP: show enemy weapon IDs
+            if (weaponIdEsp && !menuVisible)
+            {
+                DrawWeaponIdEsp();
+            }
+
             if (menuVisible)
             {
                 DrawTrainerMenu();
@@ -3758,6 +3778,8 @@ public sealed class Plugin : BasePlugin
         antiAimJitter = GUI.Toggle(new Rect(x, y, w, 24), antiAimJitter, "Anti-aim jitter (random yaw)"); y += 26;
         debugOverlay = GUI.Toggle(new Rect(x, y, w, 24), debugOverlay, "Debug overlay (diagnostic info)"); y += 26;
         autoAccept = GUI.Toggle(new Rect(x, y, w, 24), autoAccept, "Auto-accept (auto ready up)"); y += 26;
+        distanceEsp = GUI.Toggle(new Rect(x, y, w, 24), distanceEsp, "Distance ESP (show meters)"); y += 26;
+        weaponIdEsp = GUI.Toggle(new Rect(x, y, w, 24), weaponIdEsp, "Weapon ID ESP (show enemy weapon)"); y += 26;
         GUI.Label(new Rect(x, y, 80, 24), "Aim bone:"); y += 26;
         for (var i = 0; i < AimBoneLabels.Length; i++)
         {
@@ -3814,6 +3836,56 @@ public sealed class Plugin : BasePlugin
         {
             SaveConfig();
         }
+    }
+
+    /// <summary>
+    /// Draw distance ESP: shows distance to each enemy below their ESP box.
+    /// </summary>
+    private static void DrawDistanceEsp()
+    {
+        if (!espEnabled) return;
+        var mainPlayer = Controll.HGAODFPBGLB;
+        if (mainPlayer == null) return;
+        var prevColor = GUI.color;
+        foreach (var box in espBoxes)
+        {
+            if (!box.IsEnemy) continue;
+            GUI.color = new Color(box.Color.r, box.Color.g, box.Color.b, 0.8f);
+            GUI.Label(new Rect(box.Bounds.x, box.Bounds.y + box.Bounds.height + 2, 80, 20), $"{box.Distance:F0}m");
+        }
+        GUI.color = prevColor;
+    }
+
+    /// <summary>
+    /// Draw weapon ID ESP: shows the weapon ID of each enemy next to their ESP box.
+    /// </summary>
+    private static void DrawWeaponIdEsp()
+    {
+        if (!espEnabled) return;
+        var players = PLH.BAKLNPIEHMI;
+        var mainPlayer = Controll.HGAODFPBGLB;
+        if (players == null || mainPlayer == null) return;
+        var camera = ResolveCamera();
+        if (camera == null) return;
+
+        var prevColor = GUI.color;
+        for (var i = 0; i < players.Length; i++)
+        {
+            var player = players[i];
+            if (!IsVisibleTarget(player, mainPlayer, true, true)) continue;
+
+            var head = player.ACEHIBLPHCA;
+            if (head == null) continue;
+            var screenPos = camera.WorldToScreenPoint(head.transform.position);
+            if (screenPos.z <= 0) continue;
+
+            var weaponId = player.ECBCOHFLJCC;
+            var x = screenPos.x + 30;
+            var y = Screen.height - screenPos.y;
+            GUI.color = new Color(1f, 0.7f, 0f, 0.8f);
+            GUI.Label(new Rect(x, y, 80, 20), $"W:{weaponId}");
+        }
+        GUI.color = prevColor;
     }
 
     /// <summary>
@@ -4419,6 +4491,8 @@ public sealed class Plugin : BasePlugin
         if (antiAimJitter) features.Add("AntiAimJitter");
         if (debugOverlay) features.Add("DebugOverlay");
         if (autoAccept) features.Add("AutoAccept");
+        if (distanceEsp) features.Add("DistESP");
+        if (weaponIdEsp) features.Add("WeaponIdESP");
         if (ghostBullets) features.Add("GhostBullets");
 
         if (features.Count == 0) return;

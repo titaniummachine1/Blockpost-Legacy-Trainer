@@ -180,6 +180,7 @@ public sealed class Plugin : BasePlugin
     private static float lastChatSpam;
     private static string spamMessage = "GG";
     private static bool autoVoteYes;
+    private static bool autoRevive;
     private static int aimBone = 0; // 0=head, 1=chest, 2=pelvis
     private static readonly string[] AimBoneLabels = { "Head", "Chest", "Pelvis" };
     private static float fpsUpdateTimer;
@@ -352,6 +353,7 @@ public sealed class Plugin : BasePlugin
         if (autoAccept) ApplyAutoAccept();
         if (chatSpammer) ApplyChatSpammer();
         if (autoVoteYes) ApplyAutoVoteYes();
+        if (autoRevive) ApplyAutoRevive();
         PrepareRapidFirePrefix();
 
         // If we're not shooting this frame but the button is still held from
@@ -1349,6 +1351,7 @@ public sealed class Plugin : BasePlugin
                     case "chatSpammer": chatSpammer = val == "1"; break;
                     case "spamMessage": spamMessage = val; break;
                     case "autoVoteYes": autoVoteYes = val == "1"; break;
+                    case "autoRevive": autoRevive = val == "1"; break;
                     case "debugLogging": debugLogging = val == "1"; break;
                     case "heavyDiagnostics": heavyDiagnostics = val == "1"; break;
                     case "showRuntimeStatus": showRuntimeStatus = val == "1"; break;
@@ -1463,6 +1466,7 @@ public sealed class Plugin : BasePlugin
                 $"chatSpammer={(chatSpammer ? 1 : 0)}",
                 $"spamMessage={spamMessage}",
                 $"autoVoteYes={(autoVoteYes ? 1 : 0)}",
+                $"autoRevive={(autoRevive ? 1 : 0)}",
                 $"debugLogging={(debugLogging ? 1 : 0)}",
                 $"heavyDiagnostics={(heavyDiagnostics ? 1 : 0)}",
                 $"showRuntimeStatus={(showRuntimeStatus ? 1 : 0)}",
@@ -1513,6 +1517,39 @@ public sealed class Plugin : BasePlugin
         {
             instance?.Log.LogError($"[Config] Failed to load preset '{name}': {ex.Message}");
         }
+    }
+
+    /// <summary>
+    /// Auto-revive: when the player is dead, automatically trigger respawn.
+    /// Monitors the death flag and sends respawn input.
+    /// </summary>
+    private static void ApplyAutoRevive()
+    {
+        try
+        {
+            var main = Controll.HGAODFPBGLB;
+            if (main == null) return;
+            // Check if dead (CLOEJLAOIGI is the death/respawn flag)
+            if (main.CLOEJLAOIGI)
+            {
+                // Try to trigger respawn by looking for respawn button
+                var allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>();
+                if (allObjects == null) return;
+                foreach (var go in allObjects)
+                {
+                    if (go == null) continue;
+                    var name = go.name;
+                    if (string.IsNullOrEmpty(name)) continue;
+                    var lower = name.ToLower();
+                    if (lower.Contains("respawn") || lower.Contains("revive"))
+                    {
+                        go.SendMessage("OnClick", SendMessageOptions.DontRequireReceiver);
+                        return;
+                    }
+                }
+            }
+        }
+        catch { }
     }
 
     /// <summary>
@@ -2251,6 +2288,7 @@ public sealed class Plugin : BasePlugin
         weaponIdEsp = false;
         chatSpammer = false;
         autoVoteYes = false;
+        autoRevive = false;
         ghostBullets = false;
         showHealth = false;
         SaveConfig();
@@ -3853,6 +3891,7 @@ public sealed class Plugin : BasePlugin
             y += 26;
         }
         autoVoteYes = GUI.Toggle(new Rect(x, y, w, 24), autoVoteYes, "Auto vote yes (votekick auto-yes)"); y += 26;
+        autoRevive = GUI.Toggle(new Rect(x, y, w, 24), autoRevive, "Auto-revive (auto respawn when dead)"); y += 26;
         GUI.Label(new Rect(x, y, 80, 24), "Aim bone:"); y += 26;
         for (var i = 0; i < AimBoneLabels.Length; i++)
         {
@@ -4568,6 +4607,7 @@ public sealed class Plugin : BasePlugin
         if (weaponIdEsp) features.Add("WeaponIdESP");
         if (chatSpammer) features.Add("ChatSpam");
         if (autoVoteYes) features.Add("AutoVoteYes");
+        if (autoRevive) features.Add("AutoRevive");
         if (ghostBullets) features.Add("GhostBullets");
 
         if (features.Count == 0) return;

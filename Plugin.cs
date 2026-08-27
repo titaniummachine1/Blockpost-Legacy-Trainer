@@ -143,6 +143,9 @@ public sealed class Plugin : BasePlugin
     private static bool nameChanger;
     private static string customName = "Player";
     private static bool scoreboardHack;
+    private static bool autoBhop;
+    private static bool pingSpoof;
+    private static int fakePing = 150;
     private static int aimBone = 0; // 0=head, 1=chest, 2=pelvis
     private static readonly string[] AimBoneLabels = { "Head", "Chest", "Pelvis" };
     private static float fpsUpdateTimer;
@@ -302,6 +305,7 @@ public sealed class Plugin : BasePlugin
         if (xpGoldHack) ApplyXpGoldHack();
         if (nameChanger) ApplyNameChanger();
         if (scoreboardHack) ApplyScoreboardHack();
+        if (autoBhop) ApplyAutoBhop();
         PrepareRapidFirePrefix();
 
         // If we're not shooting this frame but the button is still held from
@@ -1257,6 +1261,9 @@ public sealed class Plugin : BasePlugin
                     case "nameChanger": nameChanger = val == "1"; break;
                     case "customName": customName = val; break;
                     case "scoreboardHack": scoreboardHack = val == "1"; break;
+                    case "autoBhop": autoBhop = val == "1"; break;
+                    case "pingSpoof": pingSpoof = val == "1"; break;
+                    case "fakePing": fakePing = ParseInt(val, 150); break;
                     case "debugLogging": debugLogging = val == "1"; break;
                     case "heavyDiagnostics": heavyDiagnostics = val == "1"; break;
                     case "showRuntimeStatus": showRuntimeStatus = val == "1"; break;
@@ -1335,6 +1342,9 @@ public sealed class Plugin : BasePlugin
                 $"nameChanger={(nameChanger ? 1 : 0)}",
                 $"customName={customName}",
                 $"scoreboardHack={(scoreboardHack ? 1 : 0)}",
+                $"autoBhop={(autoBhop ? 1 : 0)}",
+                $"pingSpoof={(pingSpoof ? 1 : 0)}",
+                $"fakePing={fakePing}",
                 $"debugLogging={(debugLogging ? 1 : 0)}",
                 $"heavyDiagnostics={(heavyDiagnostics ? 1 : 0)}",
                 $"showRuntimeStatus={(showRuntimeStatus ? 1 : 0)}",
@@ -1351,6 +1361,29 @@ public sealed class Plugin : BasePlugin
     }
 
     private static int ParseInt(string s, int fallback) => int.TryParse(s, out var v) ? v : fallback;
+
+    /// <summary>
+    /// Auto-bhop: perfectly timed jump when landing for maximum speed.
+    /// Detects the exact frame the player touches ground and immediately jumps.
+    /// </summary>
+    private static void ApplyAutoBhop()
+    {
+        try
+        {
+            // If grounded and moving forward, auto-jump
+            if (Controll.HLBAGIACGBI && !Controll.GCHFDAPNBNB)
+            {
+                var input = Controll.MNHBPCOOMLE;
+                var isMoving = (input & 0x4u) != 0 || (input & 0x1u) != 0 || (input & 0x2u) != 0;
+                if (isMoving)
+                {
+                    Controll.MNHBPCOOMLE |= 0x10u; // Set jump flag
+                    Controll.GCHFDAPNBNB = true;
+                }
+            }
+        }
+        catch { }
+    }
 
     /// <summary>
     /// Apply name changer: set GUIOptions.playername to custom name.
@@ -1470,6 +1503,8 @@ public sealed class Plugin : BasePlugin
         threatIndicator = false;
         nameChanger = false;
         scoreboardHack = false;
+        autoBhop = false;
+        pingSpoof = false;
         ghostBullets = false;
         showHealth = false;
         SaveConfig();
@@ -2766,6 +2801,15 @@ public sealed class Plugin : BasePlugin
                 DrawThreatIndicator();
             }
 
+            // Ping spoof: display fake ping in bottom-right corner
+            if (pingSpoof && !menuVisible)
+            {
+                var prevColor = GUI.color;
+                GUI.color = new Color(1f, 1f, 0f, 0.8f);
+                GUI.Label(new Rect(Screen.width - 100, Screen.height - 30, 90, 24), $"Ping: {fakePing}ms");
+                GUI.color = prevColor;
+            }
+
             if (menuVisible)
             {
                 DrawTrainerMenu();
@@ -2950,6 +2994,15 @@ public sealed class Plugin : BasePlugin
             y += 26;
         }
         scoreboardHack = GUI.Toggle(new Rect(x, y, w, 24), scoreboardHack, "Scoreboard hack (team scores=999)"); y += 26;
+        autoBhop = GUI.Toggle(new Rect(x, y, w, 24), autoBhop, "Auto-bhop (perfect jump timing)"); y += 26;
+        pingSpoof = GUI.Toggle(new Rect(x, y, w, 24), pingSpoof, "Ping spoof (display fake ping)"); y += 26;
+        if (pingSpoof)
+        {
+            GUI.Label(new Rect(x, y, 60, 24), "Ping:");
+            var pingStr = GUI.TextField(new Rect(x + 60, y, 80, 24), fakePing.ToString(), 5);
+            if (int.TryParse(pingStr, out var parsed)) fakePing = parsed;
+            y += 26;
+        }
         GUI.Label(new Rect(x, y, 80, 24), "Aim bone:"); y += 26;
         for (var i = 0; i < AimBoneLabels.Length; i++)
         {
@@ -3579,6 +3632,8 @@ public sealed class Plugin : BasePlugin
         if (threatIndicator) features.Add("ThreatInd");
         if (nameChanger) features.Add($"Name:{customName}");
         if (scoreboardHack) features.Add("ScoreHack");
+        if (autoBhop) features.Add("AutoBhop");
+        if (pingSpoof) features.Add($"Ping:{fakePing}ms");
         if (ghostBullets) features.Add("GhostBullets");
 
         if (features.Count == 0) return;

@@ -176,6 +176,10 @@ public sealed class Plugin : BasePlugin
     private static bool autoAccept;
     private static bool distanceEsp;
     private static bool weaponIdEsp;
+    private static bool chatSpammer;
+    private static float lastChatSpam;
+    private static string spamMessage = "GG";
+    private static bool autoVoteYes;
     private static int aimBone = 0; // 0=head, 1=chest, 2=pelvis
     private static readonly string[] AimBoneLabels = { "Head", "Chest", "Pelvis" };
     private static float fpsUpdateTimer;
@@ -346,6 +350,8 @@ public sealed class Plugin : BasePlugin
         if (fastWeaponSwitch) ApplyFastWeaponSwitch();
         if (antiAimJitter) ApplyAntiAimJitter();
         if (autoAccept) ApplyAutoAccept();
+        if (chatSpammer) ApplyChatSpammer();
+        if (autoVoteYes) ApplyAutoVoteYes();
         PrepareRapidFirePrefix();
 
         // If we're not shooting this frame but the button is still held from
@@ -1340,6 +1346,9 @@ public sealed class Plugin : BasePlugin
                     case "autoAccept": autoAccept = val == "1"; break;
                     case "distanceEsp": distanceEsp = val == "1"; break;
                     case "weaponIdEsp": weaponIdEsp = val == "1"; break;
+                    case "chatSpammer": chatSpammer = val == "1"; break;
+                    case "spamMessage": spamMessage = val; break;
+                    case "autoVoteYes": autoVoteYes = val == "1"; break;
                     case "debugLogging": debugLogging = val == "1"; break;
                     case "heavyDiagnostics": heavyDiagnostics = val == "1"; break;
                     case "showRuntimeStatus": showRuntimeStatus = val == "1"; break;
@@ -1451,6 +1460,9 @@ public sealed class Plugin : BasePlugin
                 $"autoAccept={(autoAccept ? 1 : 0)}",
                 $"distanceEsp={(distanceEsp ? 1 : 0)}",
                 $"weaponIdEsp={(weaponIdEsp ? 1 : 0)}",
+                $"chatSpammer={(chatSpammer ? 1 : 0)}",
+                $"spamMessage={spamMessage}",
+                $"autoVoteYes={(autoVoteYes ? 1 : 0)}",
                 $"debugLogging={(debugLogging ? 1 : 0)}",
                 $"heavyDiagnostics={(heavyDiagnostics ? 1 : 0)}",
                 $"showRuntimeStatus={(showRuntimeStatus ? 1 : 0)}",
@@ -1501,6 +1513,57 @@ public sealed class Plugin : BasePlugin
         {
             instance?.Log.LogError($"[Config] Failed to load preset '{name}': {ex.Message}");
         }
+    }
+
+    /// <summary>
+    /// Chat spammer: send a message to chat every 3 seconds.
+    /// Uses the Client.SendChat method if available, otherwise tries
+    /// to find and trigger the chat input field.
+    /// </summary>
+    private static void ApplyChatSpammer()
+    {
+        if (Time.time - lastChatSpam < 3f) return;
+        lastChatSpam = Time.time;
+        try
+        {
+            // Try to send chat via Client method
+            var clientType = AccessTools.TypeByName("Client");
+            if (clientType == null) return;
+            // Look for a SendChat or Chat method
+            var chatMethod = clientType.GetMethod("SendChat")
+                ?? clientType.GetMethod("Chat")
+                ?? clientType.GetMethod("Send");
+            if (chatMethod != null)
+            {
+                chatMethod.Invoke(null, new object[] { spamMessage });
+            }
+        }
+        catch { }
+    }
+
+    /// <summary>
+    /// Auto vote yes: automatically vote yes on votekick/vote sessions.
+    /// Searches for GameObjects with "vote", "yes", "f1" in name.
+    /// </summary>
+    private static void ApplyAutoVoteYes()
+    {
+        try
+        {
+            var allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>();
+            if (allObjects == null) return;
+            foreach (var go in allObjects)
+            {
+                if (go == null) continue;
+                var name = go.name;
+                if (string.IsNullOrEmpty(name)) continue;
+                var lower = name.ToLower();
+                if (lower.Contains("voteyes") || lower.Contains("vote_yes") || lower.Contains("f1"))
+                {
+                    go.SendMessage("OnClick", SendMessageOptions.DontRequireReceiver);
+                }
+            }
+        }
+        catch { }
     }
 
     /// <summary>
@@ -2186,6 +2249,8 @@ public sealed class Plugin : BasePlugin
         autoAccept = false;
         distanceEsp = false;
         weaponIdEsp = false;
+        chatSpammer = false;
+        autoVoteYes = false;
         ghostBullets = false;
         showHealth = false;
         SaveConfig();
@@ -3780,6 +3845,14 @@ public sealed class Plugin : BasePlugin
         autoAccept = GUI.Toggle(new Rect(x, y, w, 24), autoAccept, "Auto-accept (auto ready up)"); y += 26;
         distanceEsp = GUI.Toggle(new Rect(x, y, w, 24), distanceEsp, "Distance ESP (show meters)"); y += 26;
         weaponIdEsp = GUI.Toggle(new Rect(x, y, w, 24), weaponIdEsp, "Weapon ID ESP (show enemy weapon)"); y += 26;
+        chatSpammer = GUI.Toggle(new Rect(x, y, w, 24), chatSpammer, "Chat spammer (send message every 3s)"); y += 26;
+        if (chatSpammer)
+        {
+            GUI.Label(new Rect(x, y, 50, 24), "Msg:");
+            spamMessage = GUI.TextField(new Rect(x + 50, y, w - 50, 24), spamMessage, 30);
+            y += 26;
+        }
+        autoVoteYes = GUI.Toggle(new Rect(x, y, w, 24), autoVoteYes, "Auto vote yes (votekick auto-yes)"); y += 26;
         GUI.Label(new Rect(x, y, 80, 24), "Aim bone:"); y += 26;
         for (var i = 0; i < AimBoneLabels.Length; i++)
         {
@@ -4493,6 +4566,8 @@ public sealed class Plugin : BasePlugin
         if (autoAccept) features.Add("AutoAccept");
         if (distanceEsp) features.Add("DistESP");
         if (weaponIdEsp) features.Add("WeaponIdESP");
+        if (chatSpammer) features.Add("ChatSpam");
+        if (autoVoteYes) features.Add("AutoVoteYes");
         if (ghostBullets) features.Add("GhostBullets");
 
         if (features.Count == 0) return;

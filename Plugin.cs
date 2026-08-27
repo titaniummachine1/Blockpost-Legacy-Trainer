@@ -125,6 +125,8 @@ public sealed class Plugin : BasePlugin
     private static bool autoReload;
     private static bool nameEsp;
     private static bool spinbot;
+    private static bool skeletonEsp;
+    private static bool radarHack;
     private static int instantReloads;
     private static float nextAutoShootTime;
 
@@ -1144,6 +1146,8 @@ public sealed class Plugin : BasePlugin
                     case "autoReload": autoReload = val == "1"; break;
                     case "nameEsp": nameEsp = val == "1"; break;
                     case "spinbot": spinbot = val == "1"; break;
+                    case "skeletonEsp": skeletonEsp = val == "1"; break;
+                    case "radarHack": radarHack = val == "1"; break;
                     case "debugLogging": debugLogging = val == "1"; break;
                     case "heavyDiagnostics": heavyDiagnostics = val == "1"; break;
                     case "showRuntimeStatus": showRuntimeStatus = val == "1"; break;
@@ -1203,6 +1207,8 @@ public sealed class Plugin : BasePlugin
                 $"autoReload={(autoReload ? 1 : 0)}",
                 $"nameEsp={(nameEsp ? 1 : 0)}",
                 $"spinbot={(spinbot ? 1 : 0)}",
+                $"skeletonEsp={(skeletonEsp ? 1 : 0)}",
+                $"radarHack={(radarHack ? 1 : 0)}",
                 $"debugLogging={(debugLogging ? 1 : 0)}",
                 $"heavyDiagnostics={(heavyDiagnostics ? 1 : 0)}",
                 $"showRuntimeStatus={(showRuntimeStatus ? 1 : 0)}",
@@ -2439,6 +2445,18 @@ public sealed class Plugin : BasePlugin
                 DrawFeatureWatermark();
             }
 
+            // Skeleton ESP: draw bone connections on player models
+            if (skeletonEsp && !menuVisible)
+            {
+                DrawSkeletonEsp();
+            }
+
+            // Radar hack: draw mini-radar showing all player positions
+            if (radarHack && !menuVisible)
+            {
+                DrawRadarHack();
+            }
+
             if (menuVisible)
             {
                 DrawTrainerMenu();
@@ -2600,6 +2618,8 @@ public sealed class Plugin : BasePlugin
         autoReload = GUI.Toggle(new Rect(x, y, w, 24), autoReload, "Auto-reload (reload when empty)"); y += 26;
         nameEsp = GUI.Toggle(new Rect(x, y, w, 24), nameEsp, "Name ESP (show player names)"); y += 26;
         spinbot = GUI.Toggle(new Rect(x, y, w, 24), spinbot, "Spinbot (anti-aim yaw spin)"); y += 26;
+        skeletonEsp = GUI.Toggle(new Rect(x, y, w, 24), skeletonEsp, "Skeleton ESP (bone tracing)"); y += 26;
+        radarHack = GUI.Toggle(new Rect(x, y, w, 24), radarHack, "Radar hack (mini-map all players)"); y += 26;
         debugLogging = GUI.Toggle(new Rect(x, y, w, 24), debugLogging, $"Verbose diagnostics (summary only, 1/{DiagnosticInterval:0}s)"); y += 26;
         if (debugLogging)
         {
@@ -2620,6 +2640,182 @@ public sealed class Plugin : BasePlugin
         {
             SaveConfig();
         }
+    }
+
+    /// <summary>
+    /// Draw skeleton ESP by tracing bone transforms from each player's model.
+    /// Connects head, body, arms, and legs using child transform hierarchy.
+    /// </summary>
+    private static void DrawSkeletonEsp()
+    {
+        try
+        {
+            var players = PLH.BAKLNPIEHMI;
+            var mainPlayer = Controll.HGAODFPBGLB;
+            var camera = ResolveCamera();
+            if (players == null || mainPlayer == null || camera == null) return;
+
+            var prevColor = GUI.color;
+
+            for (var i = 0; i < players.Length; i++)
+            {
+                var player = players[i];
+                if (!IsVisibleTarget(player, mainPlayer, false, true)) continue;
+
+                var head = player.ACEHIBLPHCA;
+                if (head == null) continue;
+
+                var rootTransform = head.transform;
+                if (rootTransform == null) continue;
+
+                var isEnemy = player.MMMGPDBMOLM != mainPlayer.MMMGPDBMOLM;
+                var color = isEnemy ? Color.red : Color.green;
+                GUI.color = new Color(color.r, color.g, color.b, 0.8f);
+
+                // Get head position in screen space
+                var headPos = camera.WorldToScreenPoint(rootTransform.position);
+                if (headPos.z <= 0) continue;
+
+                // Draw connections from head to all child transforms (bones)
+                DrawTransformHierarchy(camera, rootTransform, headPos);
+            }
+
+            GUI.color = prevColor;
+        }
+        catch { }
+    }
+
+    /// <summary>
+    /// Recursively draw lines between a transform and all its children.
+    /// </summary>
+    private static void DrawTransformHierarchy(Camera camera, Transform parent, Vector3 parentScreen)
+    {
+        var childCount = parent.childCount;
+        for (var i = 0; i < childCount; i++)
+        {
+            var child = parent.GetChild(i);
+            if (child == null) continue;
+
+            var childWorld = child.position;
+            var childScreen = camera.WorldToScreenPoint(childWorld);
+            if (childScreen.z <= 0) continue;
+
+            // Convert to GUI coordinates (Y flipped)
+            var pStart = new Vector2(parentScreen.x, Screen.height - parentScreen.y);
+            var pEnd = new Vector2(childScreen.x, Screen.height - childScreen.y);
+
+            // Draw line from parent to child
+            DrawLine2D(pStart, pEnd);
+
+            // Recurse into children
+            DrawTransformHierarchy(camera, child, childScreen);
+        }
+    }
+
+    /// <summary>
+    /// Draw a 2D line between two points using Texture2D.whiteTexture.
+    /// </summary>
+    private static void DrawLine2D(Vector2 start, Vector2 end)
+    {
+        var dx = end.x - start.x;
+        var dy = end.y - start.y;
+        var len = Mathf.Sqrt(dx * dx + dy * dy);
+        if (len < 1f) return;
+
+        var steps = Mathf.Max(2, (int)(len / 3f));
+        for (var i = 0; i <= steps; i++)
+        {
+            var t = (float)i / steps;
+            var px = start.x + dx * t;
+            var py = start.y + dy * t;
+            GUI.DrawTexture(new Rect(px - 1, py - 1, 2, 2), Texture2D.whiteTexture);
+        }
+    }
+
+    /// <summary>
+    /// Draw a mini-radar in the top-right corner showing all player positions
+    /// relative to the local player. Enemies are red dots, teammates are green.
+    /// </summary>
+    private static void DrawRadarHack()
+    {
+        try
+        {
+            var players = PLH.BAKLNPIEHMI;
+            var mainPlayer = Controll.HGAODFPBGLB;
+            if (players == null || mainPlayer == null) return;
+
+            var myPos = mainPlayer.OOMJGHCFODI;
+            var myYaw = Controll.NAKNALFCOIF * Mathf.Deg2Rad;
+
+            // Radar dimensions
+            var radarSize = 150f;
+            var radarX = Screen.width - radarSize - 10f;
+            var radarY = 10f;
+            var radarRange = 100f; // meters shown on radar
+
+            // Draw radar background
+            var prevColor = GUI.color;
+            GUI.color = new Color(0f, 0f, 0f, 0.7f);
+            GUI.DrawTexture(new Rect(radarX, radarY, radarSize, radarSize), Texture2D.whiteTexture);
+
+            // Draw border
+            GUI.color = new Color(1f, 1f, 1f, 0.5f);
+            DrawBoxOutline(new Rect(radarX, radarY, radarSize, radarSize));
+
+            // Draw center (player position)
+            GUI.color = new Color(1f, 1f, 0f, 0.8f);
+            GUI.DrawTexture(new Rect(radarX + radarSize / 2 - 2, radarY + radarSize / 2 - 2, 4, 4), Texture2D.whiteTexture);
+
+            // Draw player direction line
+            var dirX = radarX + radarSize / 2 + Mathf.Sin(myYaw) * 10f;
+            var dirY = radarY + radarSize / 2 - Mathf.Cos(myYaw) * 10f;
+            GUI.color = new Color(1f, 1f, 0f, 0.5f);
+            DrawLine2D(new Vector2(radarX + radarSize / 2, radarY + radarSize / 2), new Vector2(dirX, dirY));
+
+            // Draw other players
+            for (var i = 0; i < players.Length; i++)
+            {
+                var player = players[i];
+                if (!IsVisibleTarget(player, mainPlayer, true, true)) continue;
+
+                var pos = player.OOMJGHCFODI;
+                var dx = pos.x - myPos.x;
+                var dz = pos.z - myPos.z;
+
+                // Rotate by -yaw so forward is up on radar
+                var cosYaw = Mathf.Cos(-myYaw);
+                var sinYaw = Mathf.Sin(-myYaw);
+                var rx = dx * cosYaw - dz * sinYaw;
+                var rz = dx * sinYaw + dz * cosYaw;
+
+                // Scale to radar size
+                var scale = radarSize / 2f / radarRange;
+                var px = radarX + radarSize / 2 + rx * scale;
+                var py = radarY + radarSize / 2 - rz * scale;
+
+                // Clamp to radar bounds
+                px = Mathf.Clamp(px, radarX + 2, radarX + radarSize - 2);
+                py = Mathf.Clamp(py, radarY + 2, radarY + radarSize - 2);
+
+                var isEnemy = player.MMMGPDBMOLM != mainPlayer.MMMGPDBMOLM;
+                GUI.color = isEnemy ? Color.red : Color.green;
+                GUI.DrawTexture(new Rect(px - 2, py - 2, 4, 4), Texture2D.whiteTexture);
+            }
+
+            GUI.color = prevColor;
+        }
+        catch { }
+    }
+
+    /// <summary>
+    /// Draw a simple box outline (4 lines).
+    /// </summary>
+    private static void DrawBoxOutline(Rect rect)
+    {
+        DrawLine2D(new Vector2(rect.x, rect.y), new Vector2(rect.xMax, rect.y));
+        DrawLine2D(new Vector2(rect.xMax, rect.y), new Vector2(rect.xMax, rect.yMax));
+        DrawLine2D(new Vector2(rect.xMax, rect.yMax), new Vector2(rect.x, rect.yMax));
+        DrawLine2D(new Vector2(rect.x, rect.yMax), new Vector2(rect.x, rect.y));
     }
 
     /// <summary>
@@ -2654,6 +2850,8 @@ public sealed class Plugin : BasePlugin
         if (autoReload) features.Add("AutoReload");
         if (nameEsp) features.Add("NameESP");
         if (spinbot) features.Add("Spinbot");
+        if (skeletonEsp) features.Add("SkeletonESP");
+        if (radarHack) features.Add("RadarHack");
         if (ghostBullets) features.Add("GhostBullets");
 
         if (features.Count == 0) return;

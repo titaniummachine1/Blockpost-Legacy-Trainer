@@ -927,6 +927,62 @@ internal static class NetProbe
             0x06 => payload.Length >= 6
                 ? $"{name} s1={BitConverter.ToInt16(payload.Slice(0, 2))} s2={BitConverter.ToInt16(payload.Slice(2, 2))} s3={BitConverter.ToInt16(payload.Slice(4, 2))}"
                 : $"{name} len={len}",
+            // 0x01 JOIN/SPAWN: 39-byte initial server packet
+            0x01 => payload.Length >= 39
+                ? $"{name} id={payload[0]} map={payload[1]} mode={payload[2]} team={payload[3]} " +
+                  $"pos=({BitConverter.ToInt16(payload.Slice(4, 2)) / 64f:F1}," +
+                  $"{BitConverter.ToInt16(payload.Slice(6, 2)) / 64f:F1}," +
+                  $"{BitConverter.ToInt16(payload.Slice(8, 2)) / 64f:F1}) " +
+                  $"yaw={BitConverter.ToUInt16(payload.Slice(10, 2)) * 360f / 65536f:F0}° " +
+                  $"hp={payload[12]} maxhp={payload[13]} armor={payload[14]} " +
+                  $"kills={BitConverter.ToInt16(payload.Slice(15, 2))} " +
+                  $"deaths={BitConverter.ToInt16(payload.Slice(17, 2))} " +
+                  $"slot={payload[19]}"
+                : $"{name} len={len} (expected 39)",
+            // 0x08 WEAPONDATA: weapon id + stats
+            0x08 => payload.Length >= 8
+                ? $"{name} weaponId={BitConverter.ToInt32(payload.Slice(0, 4))} " +
+                  $"damage={payload[4]} fireRate={payload[5]} magSize={payload[6]} " +
+                  $"reloadTime={payload[7]}"
+                : $"{name} len={len}",
+            // 0x09 LOADOUT: list of slot entries
+            0x09 => payload.Length >= 1
+                ? $"{name} slots={payload[0]} " +
+                  (payload.Length >= 5
+                      ? $"first=[id={BitConverter.ToInt32(payload.Slice(1, 4))}]"
+                      : "")
+                : $"{name} len={len}",
+            // 0x0D CHAT: int playerId, string message
+            0x0D => payload.Length >= 4
+                ? $"{name} playerId={BitConverter.ToInt32(payload.Slice(0, 4))} " +
+                  (payload.Length > 4
+                      ? $"msg=\"{System.Text.Encoding.UTF8.GetString(payload.Slice(4, Math.Min(payload.Length - 4, 64)))}\""
+                      : "")
+                : $"{name} len={len}",
+            // 0x2D MOVE_REPLY: position confirmation
+            0x2D => payload.Length >= 12
+                ? $"{name} pos=({BitConverter.ToInt16(payload.Slice(0, 2)) / 64f:F1}," +
+                  $"{BitConverter.ToInt16(payload.Slice(2, 2)) / 64f:F1}," +
+                  $"{BitConverter.ToInt16(payload.Slice(4, 2)) / 64f:F1}) " +
+                  $"yaw={BitConverter.ToUInt16(payload.Slice(6, 2)) * 360f / 65536f:F0}° " +
+                  $"pitch={BitConverter.ToInt16(payload.Slice(8, 2)) / 32768f * 90f:F1}° " +
+                  $"state={payload[10]}"
+                : $"{name} len={len}",
+            // 0x07/0x0A/0x0B/0x0C/0x13/0x14/0x15: state events (single byte or short)
+            0x07 or 0x0A or 0x0B or 0x0C or 0x13 or 0x14 or 0x15
+                => payload.Length >= 1
+                    ? $"{name} value={payload[0]}" +
+                      (payload.Length >= 2 ? $" extra={payload[1]}" : "")
+                    : $"{name} len={len}",
+            // 0x0E WEAPON_REPLICATION: weapon id + data for other players
+            0x0E => payload.Length >= 5
+                ? $"{name} playerId={payload[0]} weaponId={BitConverter.ToInt32(payload.Slice(1, 4))}"
+                : $"{name} len={len}",
+            // 0x34 REPLICATION: larger replication packet
+            0x34 => payload.Length >= 4
+                ? $"{name} type={payload[0]} id={payload[1]} " +
+                  $"data=[{payload.Length - 2} bytes]"
+                : $"{name} len={len}",
             // Default: just show the name and length
             _ => $"{name} len={len}",
         };

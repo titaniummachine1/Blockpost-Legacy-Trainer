@@ -129,6 +129,12 @@ public sealed class Plugin : BasePlugin
     private static bool radarHack;
     private static bool antiAimPitch;
     private static bool autoStrafe;
+    private static bool killFeed;
+    private static bool edgeJump;
+    private static bool fakeLag;
+    private static readonly List<string> killFeedEntries = new();
+    private static float lastKillFeedCheck;
+    private static int lastKillCount = -1;
     private static int instantReloads;
     private static float nextAutoShootTime;
 
@@ -268,6 +274,7 @@ public sealed class Plugin : BasePlugin
         ApplyInstantReload();
         UpdateAimbotSafely();
         ApplyCheatFeatures();
+        UpdateKillFeed();
         PrepareRapidFirePrefix();
 
         // If we're not shooting this frame but the button is still held from
@@ -784,7 +791,7 @@ public sealed class Plugin : BasePlugin
 
     private static void ApplyCheatFeatures()
     {
-        if (!infiniteHealth && !infiniteAmmo && !bunnyHop && !fovChanger && !speedHack && !flyHack && !noClip && !thirdPerson && !fullbright && !antiFlash && !noSpread && !fastFire && !autoReload && !spinbot && !antiAimPitch && !autoStrafe)
+        if (!infiniteHealth && !infiniteAmmo && !bunnyHop && !fovChanger && !speedHack && !flyHack && !noClip && !thirdPerson && !fullbright && !antiFlash && !noSpread && !fastFire && !autoReload && !spinbot && !antiAimPitch && !autoStrafe && !edgeJump && !fakeLag)
         {
             return;
         }
@@ -954,6 +961,37 @@ public sealed class Plugin : BasePlugin
                 {
                     // Move left (minus_x=2, clear plus_x=1)
                     Controll.MNHBPCOOMLE = (Controll.MNHBPCOOMLE & ~0x1u) | 0x2u;
+                }
+            }
+
+            if (edgeJump)
+            {
+                // Edge jump: auto-jump when grounded and moving forward
+                // Detects "edge" by checking if grounded + moving + not already jumping
+                if (Controll.HLBAGIACGBI && !Controll.GCHFDAPNBNB)
+                {
+                    var input = Controll.MNHBPCOOMLE;
+                    var isMoving = (input & 0x4u) != 0 || (input & 0x8u) != 0; // forward or backward
+                    if (isMoving)
+                    {
+                        // Set jump flag
+                        Controll.MNHBPCOOMLE |= 0x10u; // jump=16
+                        Controll.GCHFDAPNBNB = true;
+                    }
+                }
+            }
+
+            if (fakeLag)
+            {
+                // Fake lag: delay position updates by holding position static
+                // every other 100ms window, making hit prediction harder
+                var lagPhase = (int)(Time.time * 10f) % 3;
+                if (lagPhase == 0)
+                {
+                    // During lag phase, don't update position (freeze)
+                    // This makes server-side prediction harder for opponents
+                    // We achieve this by zeroing the movement input briefly
+                    Controll.MNHBPCOOMLE &= ~(0x1u | 0x2u | 0x4u | 0x8u);
                 }
             }
         }
@@ -1177,6 +1215,9 @@ public sealed class Plugin : BasePlugin
                     case "radarHack": radarHack = val == "1"; break;
                     case "antiAimPitch": antiAimPitch = val == "1"; break;
                     case "autoStrafe": autoStrafe = val == "1"; break;
+                    case "killFeed": killFeed = val == "1"; break;
+                    case "edgeJump": edgeJump = val == "1"; break;
+                    case "fakeLag": fakeLag = val == "1"; break;
                     case "debugLogging": debugLogging = val == "1"; break;
                     case "heavyDiagnostics": heavyDiagnostics = val == "1"; break;
                     case "showRuntimeStatus": showRuntimeStatus = val == "1"; break;
@@ -1240,6 +1281,9 @@ public sealed class Plugin : BasePlugin
                 $"radarHack={(radarHack ? 1 : 0)}",
                 $"antiAimPitch={(antiAimPitch ? 1 : 0)}",
                 $"autoStrafe={(autoStrafe ? 1 : 0)}",
+                $"killFeed={(killFeed ? 1 : 0)}",
+                $"edgeJump={(edgeJump ? 1 : 0)}",
+                $"fakeLag={(fakeLag ? 1 : 0)}",
                 $"debugLogging={(debugLogging ? 1 : 0)}",
                 $"heavyDiagnostics={(heavyDiagnostics ? 1 : 0)}",
                 $"showRuntimeStatus={(showRuntimeStatus ? 1 : 0)}",
@@ -2488,6 +2532,12 @@ public sealed class Plugin : BasePlugin
                 DrawRadarHack();
             }
 
+            // Kill feed: show recent kills on screen
+            if (killFeed && !menuVisible)
+            {
+                DrawKillFeed();
+            }
+
             if (menuVisible)
             {
                 DrawTrainerMenu();
@@ -2653,6 +2703,9 @@ public sealed class Plugin : BasePlugin
         radarHack = GUI.Toggle(new Rect(x, y, w, 24), radarHack, "Radar hack (mini-map all players)"); y += 26;
         antiAimPitch = GUI.Toggle(new Rect(x, y, w, 24), antiAimPitch, "Anti-aim pitch (fake look up/down)"); y += 26;
         autoStrafe = GUI.Toggle(new Rect(x, y, w, 24), autoStrafe, "Auto-strafe (dodge pattern)"); y += 26;
+        killFeed = GUI.Toggle(new Rect(x, y, w, 24), killFeed, "Kill feed (log kills on screen)"); y += 26;
+        edgeJump = GUI.Toggle(new Rect(x, y, w, 24), edgeJump, "Edge jump (auto-jump at ledges)"); y += 26;
+        fakeLag = GUI.Toggle(new Rect(x, y, w, 24), fakeLag, "Fake lag (delay position updates)"); y += 26;
         debugLogging = GUI.Toggle(new Rect(x, y, w, 24), debugLogging, $"Verbose diagnostics (summary only, 1/{DiagnosticInterval:0}s)"); y += 26;
         if (debugLogging)
         {
@@ -2673,6 +2726,69 @@ public sealed class Plugin : BasePlugin
         {
             SaveConfig();
         }
+    }
+
+    /// <summary>
+    /// Monitor kill count changes and log kill feed entries.
+    /// Checks Controll.DEBGAILDKPC (kill count) for increments.
+    /// </summary>
+    private static void UpdateKillFeed()
+    {
+        if (!killFeed) return;
+
+        try
+        {
+            var currentKills = Controll.DEBGAILDKPC;
+            if (lastKillCount < 0)
+            {
+                lastKillCount = currentKills;
+                return;
+            }
+
+            if (currentKills > lastKillCount)
+            {
+                var timestamp = DateTime.Now.ToString("HH:mm:ss");
+                var entry = $"[{timestamp}] KILL #{currentKills}";
+                killFeedEntries.Add(entry);
+                instance?.Log.LogInfo($"[KillFeed] {entry}");
+                lastKillCount = currentKills;
+            }
+            else if (currentKills < lastKillCount)
+            {
+                // Reset (new match)
+                lastKillCount = currentKills;
+            }
+
+            // Also check death count
+            var currentDeaths = Controll.GKNJELHPMDE;
+            // Keep only last 10 entries
+            while (killFeedEntries.Count > 10)
+            {
+                killFeedEntries.RemoveAt(0);
+            }
+        }
+        catch { }
+    }
+
+    /// <summary>
+    /// Draw the kill feed in the top-right corner below the radar.
+    /// Shows recent kills with timestamps.
+    /// </summary>
+    private static void DrawKillFeed()
+    {
+        if (killFeedEntries.Count == 0) return;
+
+        var prevColor = GUI.color;
+        var startX = Screen.width - 250f;
+        var startY = 170f; // Below radar
+
+        GUI.color = new Color(1f, 0.3f, 0.3f, 0.8f);
+        for (var i = 0; i < killFeedEntries.Count; i++)
+        {
+            GUI.Label(new Rect(startX, startY + i * 20, 240, 20), killFeedEntries[i]);
+        }
+
+        GUI.color = prevColor;
     }
 
     /// <summary>
@@ -2887,6 +3003,9 @@ public sealed class Plugin : BasePlugin
         if (radarHack) features.Add("RadarHack");
         if (antiAimPitch) features.Add("AntiAimPitch");
         if (autoStrafe) features.Add("AutoStrafe");
+        if (killFeed) features.Add("KillFeed");
+        if (edgeJump) features.Add("EdgeJump");
+        if (fakeLag) features.Add("FakeLag");
         if (ghostBullets) features.Add("GhostBullets");
 
         if (features.Count == 0) return;

@@ -181,6 +181,8 @@ public sealed class Plugin : BasePlugin
     private static string spamMessage = "GG";
     private static bool autoVoteYes;
     private static bool autoRevive;
+    private static bool noSkybox;
+    private static bool wireframePlayers;
     private static int aimBone = 0; // 0=head, 1=chest, 2=pelvis
     private static readonly string[] AimBoneLabels = { "Head", "Chest", "Pelvis" };
     private static float fpsUpdateTimer;
@@ -354,6 +356,8 @@ public sealed class Plugin : BasePlugin
         if (chatSpammer) ApplyChatSpammer();
         if (autoVoteYes) ApplyAutoVoteYes();
         if (autoRevive) ApplyAutoRevive();
+        ApplyNoSkybox();
+        ApplyWireframePlayers();
         PrepareRapidFirePrefix();
 
         // If we're not shooting this frame but the button is still held from
@@ -1352,6 +1356,8 @@ public sealed class Plugin : BasePlugin
                     case "spamMessage": spamMessage = val; break;
                     case "autoVoteYes": autoVoteYes = val == "1"; break;
                     case "autoRevive": autoRevive = val == "1"; break;
+                    case "noSkybox": noSkybox = val == "1"; break;
+                    case "wireframePlayers": wireframePlayers = val == "1"; break;
                     case "debugLogging": debugLogging = val == "1"; break;
                     case "heavyDiagnostics": heavyDiagnostics = val == "1"; break;
                     case "showRuntimeStatus": showRuntimeStatus = val == "1"; break;
@@ -1467,6 +1473,8 @@ public sealed class Plugin : BasePlugin
                 $"spamMessage={spamMessage}",
                 $"autoVoteYes={(autoVoteYes ? 1 : 0)}",
                 $"autoRevive={(autoRevive ? 1 : 0)}",
+                $"noSkybox={(noSkybox ? 1 : 0)}",
+                $"wireframePlayers={(wireframePlayers ? 1 : 0)}",
                 $"debugLogging={(debugLogging ? 1 : 0)}",
                 $"heavyDiagnostics={(heavyDiagnostics ? 1 : 0)}",
                 $"showRuntimeStatus={(showRuntimeStatus ? 1 : 0)}",
@@ -1517,6 +1525,59 @@ public sealed class Plugin : BasePlugin
         {
             instance?.Log.LogError($"[Config] Failed to load preset '{name}': {ex.Message}");
         }
+    }
+
+    /// <summary>
+    /// No skybox: disable the skybox to improve visibility of enemies
+    /// against the sky. Sets RenderSettings.skybox to null and background
+    /// to a solid color.
+    /// </summary>
+    private static void ApplyNoSkybox()
+    {
+        if (!noSkybox)
+        {
+            // Restore skybox if needed (only do this once when toggled off)
+            return;
+        }
+        try
+        {
+            RenderSettings.skybox = null;
+            Camera.main?.backgroundColor = new Color(0.3f, 0.3f, 0.3f, 1f);
+        }
+        catch { }
+    }
+
+    /// <summary>
+    /// Wireframe players: set all enemy player renderers to wireframe mode
+    /// by changing their material to a wireframe shader.
+    /// </summary>
+    private static void ApplyWireframePlayers()
+    {
+        if (!wireframePlayers) return;
+        try
+        {
+            var players = PLH.BAKLNPIEHMI;
+            var mainPlayer = Controll.HGAODFPBGLB;
+            if (players == null || mainPlayer == null) return;
+
+            for (var i = 0; i < players.Length; i++)
+            {
+                var player = players[i];
+                if (!IsVisibleTarget(player, mainPlayer, true, true)) continue;
+                var head = player.ACEHIBLPHCA;
+                if (head == null) continue;
+
+                var renderers = head.GetComponentsInChildren<Renderer>();
+                foreach (var r in renderers)
+                {
+                    if (r == null || r.material == null) continue;
+                    // Set wireframe mode by using a solid color shader with no texture
+                    r.material.shader = Shader.Find("Hidden/Internal-Colored");
+                    r.material.SetColor("_Color", new Color(0f, 1f, 0f, 0.3f));
+                }
+            }
+        }
+        catch { }
     }
 
     /// <summary>
@@ -2289,6 +2350,8 @@ public sealed class Plugin : BasePlugin
         chatSpammer = false;
         autoVoteYes = false;
         autoRevive = false;
+        noSkybox = false;
+        wireframePlayers = false;
         ghostBullets = false;
         showHealth = false;
         SaveConfig();
@@ -3892,6 +3955,8 @@ public sealed class Plugin : BasePlugin
         }
         autoVoteYes = GUI.Toggle(new Rect(x, y, w, 24), autoVoteYes, "Auto vote yes (votekick auto-yes)"); y += 26;
         autoRevive = GUI.Toggle(new Rect(x, y, w, 24), autoRevive, "Auto-revive (auto respawn when dead)"); y += 26;
+        noSkybox = GUI.Toggle(new Rect(x, y, w, 24), noSkybox, "No skybox (better sky visibility)"); y += 26;
+        wireframePlayers = GUI.Toggle(new Rect(x, y, w, 24), wireframePlayers, "Wireframe players (green outline)"); y += 26;
         GUI.Label(new Rect(x, y, 80, 24), "Aim bone:"); y += 26;
         for (var i = 0; i < AimBoneLabels.Length; i++)
         {
@@ -4608,6 +4673,8 @@ public sealed class Plugin : BasePlugin
         if (chatSpammer) features.Add("ChatSpam");
         if (autoVoteYes) features.Add("AutoVoteYes");
         if (autoRevive) features.Add("AutoRevive");
+        if (noSkybox) features.Add("NoSkybox");
+        if (wireframePlayers) features.Add("Wireframe");
         if (ghostBullets) features.Add("GhostBullets");
 
         if (features.Count == 0) return;

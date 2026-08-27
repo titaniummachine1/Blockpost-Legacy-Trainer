@@ -162,6 +162,10 @@ public sealed class Plugin : BasePlugin
     private static float crosshairR = 0f, crosshairG = 1f, crosshairB = 0f;
     private static int crosshairSize = 10;
     private static int crosshairThickness = 2;
+    private static bool killSound;
+    private static bool aimbotSmoothing;
+    private static float aimbotSmoothFactor = 0.5f;
+    private static int lastKillCountForSound = -1;
     private static int aimBone = 0; // 0=head, 1=chest, 2=pelvis
     private static readonly string[] AimBoneLabels = { "Head", "Chest", "Pelvis" };
     private static float fpsUpdateTimer;
@@ -328,6 +332,7 @@ public sealed class Plugin : BasePlugin
         if (adminUnlock) ApplyAdminUnlock();
         if (slideHack) ApplySlideHack();
         if (noFallDamage) ApplyNoFallDamage();
+        UpdateKillSound();
         PrepareRapidFirePrefix();
 
         // If we're not shooting this frame but the button is still held from
@@ -1300,6 +1305,9 @@ public sealed class Plugin : BasePlugin
                     case "crosshairB": crosshairB = float.TryParse(val, out var cb) ? cb : 0f; break;
                     case "crosshairSize": crosshairSize = ParseInt(val, 10); break;
                     case "crosshairThickness": crosshairThickness = ParseInt(val, 2); break;
+                    case "killSound": killSound = val == "1"; break;
+                    case "aimbotSmoothing": aimbotSmoothing = val == "1"; break;
+                    case "aimbotSmoothFactor": aimbotSmoothFactor = float.TryParse(val, out var asf) ? asf : 0.5f; break;
                     case "debugLogging": debugLogging = val == "1"; break;
                     case "heavyDiagnostics": heavyDiagnostics = val == "1"; break;
                     case "showRuntimeStatus": showRuntimeStatus = val == "1"; break;
@@ -1395,6 +1403,9 @@ public sealed class Plugin : BasePlugin
                 $"crosshairB={crosshairB}",
                 $"crosshairSize={crosshairSize}",
                 $"crosshairThickness={crosshairThickness}",
+                $"killSound={(killSound ? 1 : 0)}",
+                $"aimbotSmoothing={(aimbotSmoothing ? 1 : 0)}",
+                $"aimbotSmoothFactor={aimbotSmoothFactor}",
                 $"debugLogging={(debugLogging ? 1 : 0)}",
                 $"heavyDiagnostics={(heavyDiagnostics ? 1 : 0)}",
                 $"showRuntimeStatus={(showRuntimeStatus ? 1 : 0)}",
@@ -1411,6 +1422,31 @@ public sealed class Plugin : BasePlugin
     }
 
     private static int ParseInt(string s, int fallback) => int.TryParse(s, out var v) ? v : fallback;
+
+    /// <summary>
+    /// Kill sound: monitor kill count and play a beep sound when getting a kill.
+    /// Uses Console.Beep as a simple audio cue.
+    /// </summary>
+    private static void UpdateKillSound()
+    {
+        if (!killSound) return;
+        try
+        {
+            var currentKills = Controll.DEBGAILDKPC;
+            if (lastKillCountForSound < 0)
+            {
+                lastKillCountForSound = currentKills;
+                return;
+            }
+            if (currentKills > lastKillCountForSound)
+            {
+                // Play a short beep using System.Console.Beep (non-blocking)
+                System.Console.Beep(800, 100);
+            }
+            lastKillCountForSound = currentKills;
+        }
+        catch { }
+    }
 
     /// <summary>
     /// No fall damage: clamp the player's vertical velocity when falling to
@@ -1954,6 +1990,8 @@ public sealed class Plugin : BasePlugin
         grenadeTrajectory = false;
         noFallDamage = false;
         crosshairCustom = false;
+        killSound = false;
+        aimbotSmoothing = false;
         ghostBullets = false;
         showHealth = false;
         SaveConfig();
@@ -2919,6 +2957,14 @@ public sealed class Plugin : BasePlugin
         targetYaw = targetAngles.y;
         targetPitch = Mathf.Clamp(NormalizeAngle(targetAngles.x), -89f, 89f);
 
+        // Apply aimbot smoothing if enabled: interpolate toward target
+        if (aimbotSmoothing && aimbotSmoothFactor > 0f && aimbotSmoothFactor < 1f)
+        {
+            var smooth = aimbotSmoothFactor;
+            targetYaw = Mathf.LerpAngle(Controll.NAKNALFCOIF, targetYaw, smooth);
+            targetPitch = Mathf.Lerp(Controll.IGLCENGMMMJ, targetPitch, smooth);
+        }
+
         Controll.NAKNALFCOIF = targetYaw;
         Controll.IGLCENGMMMJ = targetPitch;
 
@@ -3506,6 +3552,14 @@ public sealed class Plugin : BasePlugin
             crosshairG = GUI.HorizontalSlider(new Rect(x + 130, y, 60, 24), crosshairG, 0f, 1f);
             GUI.Label(new Rect(x + 200, y, 30, 24), "B:");
             crosshairB = GUI.HorizontalSlider(new Rect(x + 230, y, 60, 24), crosshairB, 0f, 1f);
+            y += 26;
+        }
+        killSound = GUI.Toggle(new Rect(x, y, w, 24), killSound, "Kill sound (beep on kill)"); y += 26;
+        aimbotSmoothing = GUI.Toggle(new Rect(x, y, w, 24), aimbotSmoothing, "Aimbot smoothing (interpolate)"); y += 26;
+        if (aimbotSmoothing)
+        {
+            GUI.Label(new Rect(x, y, 60, 24), "Smooth:");
+            aimbotSmoothFactor = GUI.HorizontalSlider(new Rect(x + 60, y, 120, 24), aimbotSmoothFactor, 0.05f, 1f);
             y += 26;
         }
         GUI.Label(new Rect(x, y, 80, 24), "Aim bone:"); y += 26;
@@ -4148,6 +4202,8 @@ public sealed class Plugin : BasePlugin
         if (grenadeTrajectory) features.Add("GrenadeTraj");
         if (noFallDamage) features.Add("NoFallDmg");
         if (crosshairCustom) features.Add("CrosshairV2");
+        if (killSound) features.Add("KillSound");
+        if (aimbotSmoothing) features.Add($"AimSmooth:{aimbotSmoothFactor:F2}");
         if (ghostBullets) features.Add("GhostBullets");
 
         if (features.Count == 0) return;

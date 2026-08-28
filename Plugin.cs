@@ -1357,17 +1357,17 @@ public sealed class Plugin : BasePlugin
                     case "bunnyHop": bunnyHop = val == "1"; break;
                     case "customCrosshair": customCrosshair = val == "1"; break;
                     case "fovChanger": fovChanger = val == "1"; break;
-                    case "targetFov": float.TryParse(val, out targetFov); break;
+                    case "targetFov": float.TryParse(val, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out targetFov); break;
                     case "speedHack": speedHack = val == "1"; break;
-                    case "speedMultiplier": float.TryParse(val, out speedMultiplier); break;
+                    case "speedMultiplier": float.TryParse(val, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out speedMultiplier); break;
                     case "flyHack": flyHack = val == "1"; break;
                     case "noClip": noClip = val == "1"; break;
                     case "weaponUnlock": weaponUnlock = val == "1"; break;
                     case "thirdPerson": thirdPerson = val == "1"; break;
-                    case "thirdPersonDistance": float.TryParse(val, out thirdPersonDistance); break;
+                    case "thirdPersonDistance": float.TryParse(val, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out thirdPersonDistance); break;
                     case "chams": chams = val == "1"; break;
                     case "triggerbot": triggerbot = val == "1"; break;
-                    case "triggerbotRange": float.TryParse(val, out triggerbotRange); break;
+                    case "triggerbotRange": float.TryParse(val, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out triggerbotRange); break;
                     case "fullbright": fullbright = val == "1"; break;
                     case "antiFlash": antiFlash = val == "1"; break;
                     case "wallhack": wallhack = val == "1"; break;
@@ -1407,14 +1407,14 @@ public sealed class Plugin : BasePlugin
                     case "grenadeTrajectory": grenadeTrajectory = val == "1"; break;
                     case "noFallDamage": noFallDamage = val == "1"; break;
                     case "crosshairCustom": crosshairCustom = val == "1"; break;
-                    case "crosshairR": crosshairR = float.TryParse(val, out var cr) ? cr : 0f; break;
-                    case "crosshairG": crosshairG = float.TryParse(val, out var cg) ? cg : 1f; break;
-                    case "crosshairB": crosshairB = float.TryParse(val, out var cb) ? cb : 0f; break;
+                    case "crosshairR": crosshairR = float.TryParse(val, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out var cr) ? cr : 0f; break;
+                    case "crosshairG": crosshairG = float.TryParse(val, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out var cg) ? cg : 1f; break;
+                    case "crosshairB": crosshairB = float.TryParse(val, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out var cb) ? cb : 0f; break;
                     case "crosshairSize": crosshairSize = ParseInt(val, 10); break;
                     case "crosshairThickness": crosshairThickness = ParseInt(val, 2); break;
                     case "killSound": killSound = val == "1"; break;
                     case "aimbotSmoothing": aimbotSmoothing = val == "1"; break;
-                    case "aimbotSmoothFactor": aimbotSmoothFactor = float.TryParse(val, out var asf) ? asf : 0.5f; break;
+                    case "aimbotSmoothFactor": aimbotSmoothFactor = float.TryParse(val, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out var asf) ? asf : 0.5f; break;
                     case "fastWeaponSwitch": fastWeaponSwitch = val == "1"; break;
                     case "antiAimJitter": antiAimJitter = val == "1"; break;
                     case "debugOverlay": debugOverlay = val == "1"; break;
@@ -1428,14 +1428,14 @@ public sealed class Plugin : BasePlugin
                     case "noSkybox": noSkybox = val == "1"; break;
                     case "wireframePlayers": wireframePlayers = val == "1"; break;
                     case "zoomHack": zoomHack = val == "1"; break;
-                    case "zoomFov": zoomFov = float.TryParse(val, out var zf) ? zf : 30f; break;
+                    case "zoomFov": zoomFov = float.TryParse(val, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out var zf) ? zf : 30f; break;
                     case "noMuzzleFlash": noMuzzleFlash = val == "1"; break;
                     case "nightVision": nightVision = val == "1"; break;
                     case "noSmoke": noSmoke = val == "1"; break;
                     case "autoSprint": autoSprint = val == "1"; break;
                     case "noRain": noRain = val == "1"; break;
                     case "thirdPersonShoulder": thirdPersonShoulder = val == "1"; break;
-                    case "thirdPersonShoulderX": thirdPersonShoulderX = float.TryParse(val, out var tpsx) ? tpsx : 1.5f; break;
+                    case "thirdPersonShoulderX": thirdPersonShoulderX = float.TryParse(val, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out var tpsx) ? tpsx : 1.5f; break;
                     case "aimbotPrediction": aimbotPrediction = val == "1"; break;
                     case "autoCrouchIdle": autoCrouchIdle = val == "1"; break;
                     case "panicMode": panicMode = val == "1"; break;
@@ -1448,7 +1448,7 @@ public sealed class Plugin : BasePlugin
                     case "noGrass": noGrass = val == "1"; break;
                     case "crosshairHitIndicator": crosshairHitIndicator = val == "1"; break;
                     case "timeScaleHack": timeScaleHack = val == "1"; break;
-                    case "customTimeScale": customTimeScale = float.TryParse(val, out var cts) ? cts : 1f; break;
+                    case "customTimeScale": customTimeScale = float.TryParse(val, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out var cts) ? cts : 1f; break;
                     case "noFog": noFog = val == "1"; break;
                     case "aimEnemiesOnly": aimEnemiesOnly = val == "1"; break;
                     case "boneScan": boneScan = val == "1"; break;
@@ -1489,7 +1489,7 @@ public sealed class Plugin : BasePlugin
                 $"aimbotEnabled={(aimbotEnabled ? 1 : 0)}",
                 $"aimActivationMode={aimActivationMode}",
                 $"aimStyle={aimStyle}",
-                $"aimbotFov={aimbotFov:0.###}",
+                $"aimbotFov={aimbotFov.ToString("0.###", System.Globalization.CultureInfo.InvariantCulture)}",
                 $"autoShoot={(autoShoot ? 1 : 0)}",
                 $"rapidFire={(rapidFire ? 1 : 0)}",
                 $"ghostBullets={(ghostBullets ? 1 : 0)}",
@@ -1501,17 +1501,17 @@ public sealed class Plugin : BasePlugin
                 $"bunnyHop={(bunnyHop ? 1 : 0)}",
                 $"customCrosshair={(customCrosshair ? 1 : 0)}",
                 $"fovChanger={(fovChanger ? 1 : 0)}",
-                $"targetFov={targetFov:0.###}",
+                $"targetFov={targetFov.ToString("0.###", System.Globalization.CultureInfo.InvariantCulture)}",
                 $"speedHack={(speedHack ? 1 : 0)}",
-                $"speedMultiplier={speedMultiplier:0.###}",
+                $"speedMultiplier={speedMultiplier.ToString("0.###", System.Globalization.CultureInfo.InvariantCulture)}",
                 $"flyHack={(flyHack ? 1 : 0)}",
                 $"noClip={(noClip ? 1 : 0)}",
                 $"weaponUnlock={(weaponUnlock ? 1 : 0)}",
                 $"thirdPerson={(thirdPerson ? 1 : 0)}",
-                $"thirdPersonDistance={thirdPersonDistance:0.###}",
+                $"thirdPersonDistance={thirdPersonDistance.ToString("0.###", System.Globalization.CultureInfo.InvariantCulture)}",
                 $"chams={(chams ? 1 : 0)}",
                 $"triggerbot={(triggerbot ? 1 : 0)}",
-                $"triggerbotRange={triggerbotRange:0.###}",
+                $"triggerbotRange={triggerbotRange.ToString("0.###", System.Globalization.CultureInfo.InvariantCulture)}",
                 $"fullbright={(fullbright ? 1 : 0)}",
                 $"antiFlash={(antiFlash ? 1 : 0)}",
                 $"wallhack={(wallhack ? 1 : 0)}",
@@ -1551,14 +1551,14 @@ public sealed class Plugin : BasePlugin
                 $"grenadeTrajectory={(grenadeTrajectory ? 1 : 0)}",
                 $"noFallDamage={(noFallDamage ? 1 : 0)}",
                 $"crosshairCustom={(crosshairCustom ? 1 : 0)}",
-                $"crosshairR={crosshairR}",
-                $"crosshairG={crosshairG}",
-                $"crosshairB={crosshairB}",
+                $"crosshairR={crosshairR.ToString(System.Globalization.CultureInfo.InvariantCulture)}",
+                $"crosshairG={crosshairG.ToString(System.Globalization.CultureInfo.InvariantCulture)}",
+                $"crosshairB={crosshairB.ToString(System.Globalization.CultureInfo.InvariantCulture)}",
                 $"crosshairSize={crosshairSize}",
                 $"crosshairThickness={crosshairThickness}",
                 $"killSound={(killSound ? 1 : 0)}",
                 $"aimbotSmoothing={(aimbotSmoothing ? 1 : 0)}",
-                $"aimbotSmoothFactor={aimbotSmoothFactor}",
+                $"aimbotSmoothFactor={aimbotSmoothFactor.ToString(System.Globalization.CultureInfo.InvariantCulture)}",
                 $"fastWeaponSwitch={(fastWeaponSwitch ? 1 : 0)}",
                 $"antiAimJitter={(antiAimJitter ? 1 : 0)}",
                 $"debugOverlay={(debugOverlay ? 1 : 0)}",
@@ -1572,14 +1572,14 @@ public sealed class Plugin : BasePlugin
                 $"noSkybox={(noSkybox ? 1 : 0)}",
                 $"wireframePlayers={(wireframePlayers ? 1 : 0)}",
                 $"zoomHack={(zoomHack ? 1 : 0)}",
-                $"zoomFov={zoomFov}",
+                $"zoomFov={zoomFov.ToString(System.Globalization.CultureInfo.InvariantCulture)}",
                 $"noMuzzleFlash={(noMuzzleFlash ? 1 : 0)}",
                 $"nightVision={(nightVision ? 1 : 0)}",
                 $"noSmoke={(noSmoke ? 1 : 0)}",
                 $"autoSprint={(autoSprint ? 1 : 0)}",
                 $"noRain={(noRain ? 1 : 0)}",
                 $"thirdPersonShoulder={(thirdPersonShoulder ? 1 : 0)}",
-                $"thirdPersonShoulderX={thirdPersonShoulderX}",
+                $"thirdPersonShoulderX={thirdPersonShoulderX.ToString(System.Globalization.CultureInfo.InvariantCulture)}",
                 $"aimbotPrediction={(aimbotPrediction ? 1 : 0)}",
                 $"autoCrouchIdle={(autoCrouchIdle ? 1 : 0)}",
                 $"panicMode={(panicMode ? 1 : 0)}",
@@ -1592,7 +1592,7 @@ public sealed class Plugin : BasePlugin
                 $"noGrass={(noGrass ? 1 : 0)}",
                 $"crosshairHitIndicator={(crosshairHitIndicator ? 1 : 0)}",
                 $"timeScaleHack={(timeScaleHack ? 1 : 0)}",
-                $"customTimeScale={customTimeScale}",
+                $"customTimeScale={customTimeScale.ToString(System.Globalization.CultureInfo.InvariantCulture)}",
                 $"noFog={(noFog ? 1 : 0)}",
                 $"aimEnemiesOnly={(aimEnemiesOnly ? 1 : 0)}",
                 $"boneScan={(boneScan ? 1 : 0)}",
@@ -1601,8 +1601,8 @@ public sealed class Plugin : BasePlugin
                 $"debugLogging={(debugLogging ? 1 : 0)}",
                 $"heavyDiagnostics={(heavyDiagnostics ? 1 : 0)}",
                 $"showRuntimeStatus={(showRuntimeStatus ? 1 : 0)}",
-                $"menuX={menuRect.x:0.###}",
-                $"menuY={menuRect.y:0.###}"
+                $"menuX={menuRect.x.ToString("0.###", System.Globalization.CultureInfo.InvariantCulture)}",
+                $"menuY={menuRect.y.ToString("0.###", System.Globalization.CultureInfo.InvariantCulture)}"
         };
     }
 
@@ -2983,7 +2983,7 @@ public sealed class Plugin : BasePlugin
         SaveConfig();
         instance?.Log.LogInfo("[Config] All features reset.");
     }
-    private static float ParseFloat(string s, float fallback) => float.TryParse(s, out var v) ? v : fallback;
+    private static float ParseFloat(string s, float fallback) => float.TryParse(s, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out var v) ? v : fallback;
 
     private static bool IsUsableCamera(Camera? camera)
     {
@@ -3295,54 +3295,53 @@ public sealed class Plugin : BasePlugin
                         var active = go.activeSelf ? "ACTIVE" : "INACTIVE";
                         instance?.Log.LogInfo($"[TaskProbe] GO: {path} [{active}]");
 
-                        // Dump child GameObjects
-                        for (var ci = 0; ci < go.transform.childCount; ci++)
-                        {
-                            var child = go.transform.GetChild(ci);
-                            if (child != null)
-                            {
-                                instance?.Log.LogInfo($"[TaskProbe]   Child: {child.name} [{(child.gameObject.activeSelf ? "ACTIVE" : "INACTIVE")}]");
-                            }
-                        }
+                        // Dump full hierarchy recursively
+                        DumpTransformTree(go.transform, 1);
                         found++;
                     }
                 }
                 instance?.Log.LogInfo($"[TaskProbe] Found {found} task-related GameObjects (total {allObjects.Length} scanned)");
             }
 
-            // Also search for any GameObjects with reward/complete/progress in name
-            if (allObjects != null)
+            // Also dump all children of CanvasMenu to find task UI elements
+            var canvasMenu = GameObject.Find("CanvasMenu");
+            if (canvasMenu != null)
             {
-                var extraFound = 0;
-                foreach (var go in allObjects)
-                {
-                    if (go == null) continue;
-                    var name = go.name;
-                    if (string.IsNullOrEmpty(name)) continue;
-                    var lower = name.ToLower();
-                    if (lower.Contains("reward") || lower.Contains("complete") || lower.Contains("progress") ||
-                        lower.Contains("contract") || lower.Contains("goal") || lower.Contains("achievement"))
-                    {
-                        var path = go.name;
-                        var parent = go.transform.parent;
-                        while (parent != null)
-                        {
-                            path = parent.name + "/" + path;
-                            parent = parent.parent;
-                        }
-                        instance?.Log.LogInfo($"[TaskProbe] Extra GO: {path} [{(go.activeSelf ? "ACTIVE" : "INACTIVE")}]");
-                        extraFound++;
-                    }
-                }
-                if (extraFound > 0)
-                {
-                    instance?.Log.LogInfo($"[TaskProbe] Found {extraFound} extra task-related GameObjects");
-                }
+                instance?.Log.LogInfo("[TaskProbe] === CanvasMenu children ===");
+                DumpTransformTree(canvasMenu.transform, 0);
             }
         }
         catch (Exception e)
         {
             instance?.Log.LogError($"[TaskProbe] Error: {e.Message}");
+        }
+    }
+
+    /// <summary>
+    /// Recursively dump a Transform tree to the log with indentation.
+    /// </summary>
+    private static void DumpTransformTree(Transform t, int depth)
+    {
+        if (t == null) return;
+        var indent = new string(' ', depth * 2);
+        var active = t.gameObject.activeSelf ? "A" : "I";
+        var info = $"{indent}{t.name} [{active}]";
+        // Add component info
+        var comps = t.GetComponents<Component>();
+        if (comps != null)
+        {
+            var compNames = new System.Text.StringBuilder();
+            foreach (var c in comps)
+            {
+                if (c != null) compNames.Append(c.GetType().Name).Append(" ");
+            }
+            if (compNames.Length > 0) info += $" <{compNames.ToString().Trim()}>";
+        }
+        instance?.Log.LogInfo($"[TaskProbe] {info}");
+
+        for (var i = 0; i < t.childCount; i++)
+        {
+            DumpTransformTree(t.GetChild(i), depth + 1);
         }
     }
 

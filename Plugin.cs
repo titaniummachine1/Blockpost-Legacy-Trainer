@@ -214,6 +214,7 @@ public sealed class Plugin : BasePlugin
     private static bool aimEnemiesOnly = true;
     private static bool boneScan;
     private static bool radarMiniMap;
+    private static int autoReloadThreshold = 5;
     private static int aimBone = 0; // 0=head, 1=chest, 2=pelvis
     private static readonly string[] AimBoneLabels = { "Head", "Chest", "Pelvis" };
     private static float fpsUpdateTimer;
@@ -1050,11 +1051,11 @@ public sealed class Plugin : BasePlugin
 
             if (autoReload)
             {
-                // Auto-reload when magazine is empty and we have reserve ammo
+                // Auto-reload when magazine is at/below threshold and we have reserve ammo
                 var currentAmmo = Controll.FGGKANNFBDH;
                 var maxAmmo = Controll.ILFOFIOFBAM;
                 var reserve = Controll.KJOMABGHAIJ;
-                if (currentAmmo == 0 && maxAmmo > 0 && reserve > 0 && !Controll.EKEAAHAKHIN)
+                if (currentAmmo <= autoReloadThreshold && maxAmmo > 0 && reserve > 0 && !Controll.EKEAAHAKHIN)
                 {
                     // Trigger reload by setting the reload flag
                     Controll.EKEAAHAKHIN = true;
@@ -1449,6 +1450,7 @@ public sealed class Plugin : BasePlugin
                     case "aimEnemiesOnly": aimEnemiesOnly = val == "1"; break;
                     case "boneScan": boneScan = val == "1"; break;
                     case "radarMiniMap": radarMiniMap = val == "1"; break;
+                    case "autoReloadThreshold": autoReloadThreshold = int.TryParse(val, out var art) ? art : 5; break;
                     case "debugLogging": debugLogging = val == "1"; break;
                     case "heavyDiagnostics": heavyDiagnostics = val == "1"; break;
                     case "showRuntimeStatus": showRuntimeStatus = val == "1"; break;
@@ -1592,6 +1594,7 @@ public sealed class Plugin : BasePlugin
                 $"aimEnemiesOnly={(aimEnemiesOnly ? 1 : 0)}",
                 $"boneScan={(boneScan ? 1 : 0)}",
                 $"radarMiniMap={(radarMiniMap ? 1 : 0)}",
+                $"autoReloadThreshold={autoReloadThreshold}",
                 $"debugLogging={(debugLogging ? 1 : 0)}",
                 $"heavyDiagnostics={(heavyDiagnostics ? 1 : 0)}",
                 $"showRuntimeStatus={(showRuntimeStatus ? 1 : 0)}",
@@ -2971,6 +2974,7 @@ public sealed class Plugin : BasePlugin
         aimEnemiesOnly = true;
         boneScan = false;
         radarMiniMap = false;
+        autoReload = false;
         ghostBullets = false;
         showHealth = false;
         SaveConfig();
@@ -4554,7 +4558,6 @@ public sealed class Plugin : BasePlugin
         wallhack = GUI.Toggle(new Rect(x, y, w, 24), wallhack, "Wallhack (tracer lines + distance)"); y += 26;
         noSpread = GUI.Toggle(new Rect(x, y, w, 24), noSpread, "No spread (zero recoil accumulator)"); y += 26;
         fastFire = GUI.Toggle(new Rect(x, y, w, 24), fastFire, "Fast fire rate (zero fire timer)"); y += 26;
-        autoReload = GUI.Toggle(new Rect(x, y, w, 24), autoReload, "Auto-reload (reload when empty)"); y += 26;
         nameEsp = GUI.Toggle(new Rect(x, y, w, 24), nameEsp, "Name ESP (show player names)"); y += 26;
         spinbot = GUI.Toggle(new Rect(x, y, w, 24), spinbot, "Spinbot (anti-aim yaw spin)"); y += 26;
         skeletonEsp = GUI.Toggle(new Rect(x, y, w, 24), skeletonEsp, "Skeleton ESP (bone tracing)"); y += 26;
@@ -4681,6 +4684,13 @@ public sealed class Plugin : BasePlugin
         aimEnemiesOnly = GUI.Toggle(new Rect(x, y, w, 24), aimEnemiesOnly, "Aim enemies only (ignore allies)"); y += 26;
         boneScan = GUI.Toggle(new Rect(x, y, w, 24), boneScan, "Bone scan (try alt bones if blocked)"); y += 26;
         radarMiniMap = GUI.Toggle(new Rect(x, y, w, 24), radarMiniMap, "Radar mini-map (enemy positions)"); y += 26;
+        autoReload = GUI.Toggle(new Rect(x, y, w, 24), autoReload, "Auto-reload (reload when low)"); y += 26;
+        if (autoReload)
+        {
+            GUI.Label(new Rect(x, y, 60, 24), "Threshold:");
+            autoReloadThreshold = (int)GUI.HorizontalSlider(new Rect(x + 60, y, 100, 24), autoReloadThreshold, 1, 30);
+            y += 26;
+        }
         GUI.Label(new Rect(x, y, 80, 24), "Aim bone:"); y += 26;
         for (var i = 0; i < AimBoneLabels.Length; i++)
         {
@@ -5355,7 +5365,7 @@ public sealed class Plugin : BasePlugin
         if (wallhack) features.Add("Wallhack");
         if (noSpread) features.Add("NoSpread");
         if (fastFire) features.Add("FastFire");
-        if (autoReload) features.Add("AutoReload");
+        if (autoReload) features.Add($"AutoReload:{autoReloadThreshold}");
         if (nameEsp) features.Add("NameESP");
         if (spinbot) features.Add("Spinbot");
         if (skeletonEsp) features.Add("SkeletonESP");

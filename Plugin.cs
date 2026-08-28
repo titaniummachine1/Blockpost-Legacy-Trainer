@@ -211,6 +211,8 @@ public sealed class Plugin : BasePlugin
     private static bool timeScaleHack;
     private static float customTimeScale = 1f;
     private static bool noFog;
+    private static bool aimEnemiesOnly = true;
+    private static bool boneScan;
     private static int aimBone = 0; // 0=head, 1=chest, 2=pelvis
     private static readonly string[] AimBoneLabels = { "Head", "Chest", "Pelvis" };
     private static float fpsUpdateTimer;
@@ -1443,6 +1445,8 @@ public sealed class Plugin : BasePlugin
                     case "timeScaleHack": timeScaleHack = val == "1"; break;
                     case "customTimeScale": customTimeScale = float.TryParse(val, out var cts) ? cts : 1f; break;
                     case "noFog": noFog = val == "1"; break;
+                    case "aimEnemiesOnly": aimEnemiesOnly = val == "1"; break;
+                    case "boneScan": boneScan = val == "1"; break;
                     case "debugLogging": debugLogging = val == "1"; break;
                     case "heavyDiagnostics": heavyDiagnostics = val == "1"; break;
                     case "showRuntimeStatus": showRuntimeStatus = val == "1"; break;
@@ -1583,6 +1587,8 @@ public sealed class Plugin : BasePlugin
                 $"timeScaleHack={(timeScaleHack ? 1 : 0)}",
                 $"customTimeScale={customTimeScale}",
                 $"noFog={(noFog ? 1 : 0)}",
+                $"aimEnemiesOnly={(aimEnemiesOnly ? 1 : 0)}",
+                $"boneScan={(boneScan ? 1 : 0)}",
                 $"debugLogging={(debugLogging ? 1 : 0)}",
                 $"heavyDiagnostics={(heavyDiagnostics ? 1 : 0)}",
                 $"showRuntimeStatus={(showRuntimeStatus ? 1 : 0)}",
@@ -2891,6 +2897,8 @@ public sealed class Plugin : BasePlugin
         crosshairHitIndicator = false;
         timeScaleHack = false;
         noFog = false;
+        aimEnemiesOnly = true;
+        boneScan = false;
         ghostBullets = false;
         showHealth = false;
         SaveConfig();
@@ -3775,7 +3783,7 @@ public sealed class Plugin : BasePlugin
         for (var index = 0; index < players.Length; index++)
         {
             var player = players[index];
-            if (!IsVisibleTarget(player, mainPlayer, false, false) || !TryGetHeadPosition(player, out var headPosition))
+            if (!IsVisibleTarget(player, mainPlayer, !aimEnemiesOnly, false) || !TryGetHeadPosition(player, out var headPosition))
             {
                 continue;
             }
@@ -4088,6 +4096,29 @@ public sealed class Plugin : BasePlugin
                 position = basePosition;
                 break;
         }
+
+        // Bone scan: if enabled, try alternate bones when primary is blocked
+        if (boneScan)
+        {
+            var camera = ResolveCamera();
+            if (camera != null)
+            {
+                var bones = new[] { basePosition, basePosition - Vector3.up * 0.5f, basePosition - Vector3.up * 1.0f, basePosition - Vector3.up * 1.5f };
+                foreach (var bonePos in bones)
+                {
+                    var dir = bonePos - camera.transform.position;
+                    if (Physics.Raycast(camera.transform.position, dir.normalized, out _, dir.magnitude))
+                    {
+                        // Hit something - this bone is blocked, try next
+                        continue;
+                    }
+                    // This bone has LOS - use it
+                    position = bonePos;
+                    break;
+                }
+            }
+        }
+
         return true;
     }
 
@@ -4569,6 +4600,8 @@ public sealed class Plugin : BasePlugin
             y += 26;
         }
         noFog = GUI.Toggle(new Rect(x, y, w, 24), noFog, "No fog (disable fog rendering)"); y += 26;
+        aimEnemiesOnly = GUI.Toggle(new Rect(x, y, w, 24), aimEnemiesOnly, "Aim enemies only (ignore allies)"); y += 26;
+        boneScan = GUI.Toggle(new Rect(x, y, w, 24), boneScan, "Bone scan (try alt bones if blocked)"); y += 26;
         GUI.Label(new Rect(x, y, 80, 24), "Aim bone:"); y += 26;
         for (var i = 0; i < AimBoneLabels.Length; i++)
         {
@@ -5307,6 +5340,8 @@ public sealed class Plugin : BasePlugin
         if (crosshairHitIndicator) features.Add("HitIndicator");
         if (timeScaleHack) features.Add($"TimeScale:{customTimeScale:F1}x");
         if (noFog) features.Add("NoFog");
+        if (!aimEnemiesOnly) features.Add("AimAll");
+        if (boneScan) features.Add("BoneScan");
         if (ghostBullets) features.Add("GhostBullets");
 
         if (features.Count == 0) return;

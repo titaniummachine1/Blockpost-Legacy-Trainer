@@ -194,6 +194,10 @@ public sealed class Plugin : BasePlugin
     private static float thirdPersonShoulderX = 1.5f;
     private static bool aimbotPrediction;
     private static readonly Dictionary<int, Vector3> lastEnemyVelocities = new();
+    private static bool autoCrouchIdle;
+    private static int lastKillStreakCheck = -1;
+    private static int currentKillStreak;
+    private static float lastKillTime;
     private static int aimBone = 0; // 0=head, 1=chest, 2=pelvis
     private static readonly string[] AimBoneLabels = { "Head", "Chest", "Pelvis" };
     private static float fpsUpdateTimer;
@@ -376,6 +380,8 @@ public sealed class Plugin : BasePlugin
         if (autoSprint) ApplyAutoSprint();
         if (noRain) ApplyNoRain();
         if (thirdPersonShoulder) ApplyThirdPersonShoulder();
+        if (autoCrouchIdle) ApplyAutoCrouchIdle();
+        UpdateKillStreak();
         PrepareRapidFirePrefix();
 
         // If we're not shooting this frame but the button is still held from
@@ -1386,6 +1392,7 @@ public sealed class Plugin : BasePlugin
                     case "thirdPersonShoulder": thirdPersonShoulder = val == "1"; break;
                     case "thirdPersonShoulderX": thirdPersonShoulderX = float.TryParse(val, out var tpsx) ? tpsx : 1.5f; break;
                     case "aimbotPrediction": aimbotPrediction = val == "1"; break;
+                    case "autoCrouchIdle": autoCrouchIdle = val == "1"; break;
                     case "debugLogging": debugLogging = val == "1"; break;
                     case "heavyDiagnostics": heavyDiagnostics = val == "1"; break;
                     case "showRuntimeStatus": showRuntimeStatus = val == "1"; break;
@@ -1513,6 +1520,7 @@ public sealed class Plugin : BasePlugin
                 $"thirdPersonShoulder={(thirdPersonShoulder ? 1 : 0)}",
                 $"thirdPersonShoulderX={thirdPersonShoulderX}",
                 $"aimbotPrediction={(aimbotPrediction ? 1 : 0)}",
+                $"autoCrouchIdle={(autoCrouchIdle ? 1 : 0)}",
                 $"debugLogging={(debugLogging ? 1 : 0)}",
                 $"heavyDiagnostics={(heavyDiagnostics ? 1 : 0)}",
                 $"showRuntimeStatus={(showRuntimeStatus ? 1 : 0)}",
@@ -1563,6 +1571,57 @@ public sealed class Plugin : BasePlugin
         {
             instance?.Log.LogError($"[Config] Failed to load preset '{name}': {ex.Message}");
         }
+    }
+
+    /// <summary>
+    /// Auto-crouch when idle: crouch when the player is not moving to reduce
+    /// hitbox size. Automatically stands up when movement input is detected.
+    /// </summary>
+    private static void ApplyAutoCrouchIdle()
+    {
+        try
+        {
+            var input = Controll.MNHBPCOOMLE;
+            var isMoving = (input & 0x4u) != 0 || (input & 0x1u) != 0 || (input & 0x2u) != 0 || (input & 0x8u) != 0;
+            if (!isMoving && Controll.HLBAGIACGBI)
+            {
+                Controll.MNHBPCOOMLE |= 0x20u; // duck
+                Controll.NJPDKJKJMCG = true;
+            }
+        }
+        catch { }
+    }
+
+    /// <summary>
+    /// Track kill streaks: monitor kill count and display current streak.
+    /// Streak resets if no kill within 10 seconds.
+    /// </summary>
+    private static void UpdateKillStreak()
+    {
+        try
+        {
+            var currentKills = Controll.DEBGAILDKPC;
+            if (lastKillStreakCheck < 0)
+            {
+                lastKillStreakCheck = currentKills;
+                return;
+            }
+            if (currentKills > lastKillStreakCheck)
+            {
+                // New kill
+                if (Time.time - lastKillTime > 10f)
+                {
+                    currentKillStreak = 1;
+                }
+                else
+                {
+                    currentKillStreak++;
+                }
+                lastKillTime = Time.time;
+            }
+            lastKillStreakCheck = currentKills;
+        }
+        catch { }
     }
 
     /// <summary>
@@ -2549,6 +2608,7 @@ public sealed class Plugin : BasePlugin
         noRain = false;
         thirdPersonShoulder = false;
         aimbotPrediction = false;
+        autoCrouchIdle = false;
         ghostBullets = false;
         showHealth = false;
         SaveConfig();
@@ -4188,6 +4248,7 @@ public sealed class Plugin : BasePlugin
             y += 26;
         }
         aimbotPrediction = GUI.Toggle(new Rect(x, y, w, 24), aimbotPrediction, "Aimbot prediction (lead targets)"); y += 26;
+        autoCrouchIdle = GUI.Toggle(new Rect(x, y, w, 24), autoCrouchIdle, "Auto-crouch when idle (smaller hitbox)"); y += 26;
         GUI.Label(new Rect(x, y, 80, 24), "Aim bone:"); y += 26;
         for (var i = 0; i < AimBoneLabels.Length; i++)
         {
@@ -4914,6 +4975,7 @@ public sealed class Plugin : BasePlugin
         if (noRain) features.Add("NoRain");
         if (thirdPersonShoulder) features.Add("OTSCam");
         if (aimbotPrediction) features.Add("AimPredict");
+        if (autoCrouchIdle) features.Add("AutoCrouch");
         if (ghostBullets) features.Add("GhostBullets");
 
         if (features.Count == 0) return;
@@ -4928,6 +4990,11 @@ public sealed class Plugin : BasePlugin
         var ts = TimeSpan.FromSeconds(sessionTime);
         GUI.Label(new Rect(5, y, 300, 20), $"Session: {ts.Hours:00}:{ts.Minutes:00}:{ts.Seconds:00}");
         y += 20;
+        if (currentKillStreak > 0 && Time.time - lastKillTime < 10f)
+        {
+            GUI.Label(new Rect(5, y, 300, 20), $"Killstreak: {currentKillStreak}x");
+            y += 20;
+        }
         GUI.color = new Color(1f, 1f, 0f, 0.6f);
         // Show features in rows of 5
         for (var i = 0; i < features.Count; i++)

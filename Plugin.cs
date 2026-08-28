@@ -204,6 +204,8 @@ public sealed class Plugin : BasePlugin
     private static int lastHitLogCount = -1;
     private static bool autoWeaponSwap;
     private static bool screenCleaner;
+    private static bool noShadows;
+    private static bool playerList;
     private static int aimBone = 0; // 0=head, 1=chest, 2=pelvis
     private static readonly string[] AimBoneLabels = { "Head", "Chest", "Pelvis" };
     private static float fpsUpdateTimer;
@@ -391,6 +393,7 @@ public sealed class Plugin : BasePlugin
         UpdateHitLog();
         if (autoWeaponSwap) ApplyAutoWeaponSwap();
         if (screenCleaner) ApplyScreenCleaner();
+        if (noShadows) ApplyNoShadows();
         PrepareRapidFirePrefix();
 
         // If we're not shooting this frame but the button is still held from
@@ -1424,6 +1427,8 @@ public sealed class Plugin : BasePlugin
                     case "hitLog": hitLog = val == "1"; break;
                     case "autoWeaponSwap": autoWeaponSwap = val == "1"; break;
                     case "screenCleaner": screenCleaner = val == "1"; break;
+                    case "noShadows": noShadows = val == "1"; break;
+                    case "playerList": playerList = val == "1"; break;
                     case "debugLogging": debugLogging = val == "1"; break;
                     case "heavyDiagnostics": heavyDiagnostics = val == "1"; break;
                     case "showRuntimeStatus": showRuntimeStatus = val == "1"; break;
@@ -1557,6 +1562,8 @@ public sealed class Plugin : BasePlugin
                 $"hitLog={(hitLog ? 1 : 0)}",
                 $"autoWeaponSwap={(autoWeaponSwap ? 1 : 0)}",
                 $"screenCleaner={(screenCleaner ? 1 : 0)}",
+                $"noShadows={(noShadows ? 1 : 0)}",
+                $"playerList={(playerList ? 1 : 0)}",
                 $"debugLogging={(debugLogging ? 1 : 0)}",
                 $"heavyDiagnostics={(heavyDiagnostics ? 1 : 0)}",
                 $"showRuntimeStatus={(showRuntimeStatus ? 1 : 0)}",
@@ -1624,6 +1631,68 @@ public sealed class Plugin : BasePlugin
                 Controll.MNHBPCOOMLE |= 0x20u; // duck
                 Controll.NJPDKJKJMCG = true;
             }
+        }
+        catch { }
+    }
+
+    /// <summary>
+    /// No shadows: disable all shadow-casting lights and set shadow distance to 0.
+    /// Improves performance and visibility.
+    /// </summary>
+    private static void ApplyNoShadows()
+    {
+        try
+        {
+            var lights = UnityEngine.Object.FindObjectsOfType<Light>();
+            if (lights != null)
+            {
+                foreach (var light in lights)
+                {
+                    if (light != null) light.shadows = LightShadows.None;
+                }
+            }
+            // Disable shadow distance on quality settings
+            QualitySettings.shadowDistance = 0f;
+            QualitySettings.shadowCascades = 0;
+        }
+        catch { }
+    }
+
+    /// <summary>
+    /// Draw player list: shows all players with their names, HP, team, and distance.
+    /// Displayed in the top-left corner below the watermark.
+    /// </summary>
+    private static void DrawPlayerList()
+    {
+        try
+        {
+            var players = PLH.BAKLNPIEHMI;
+            var mainPlayer = Controll.HGAODFPBGLB;
+            if (players == null || mainPlayer == null) return;
+
+            var x = 5f;
+            var y = 100f;
+            var prevColor = GUI.color;
+            GUI.color = new Color(1f, 1f, 1f, 0.7f);
+            GUI.Label(new Rect(x, y, 200, 20), "--- Player List ---");
+            y += 20;
+
+            for (var i = 0; i < players.Length; i++)
+            {
+                var player = players[i];
+                if (player == null) continue;
+                var isEnemy = player.MMMGPDBMOLM != mainPlayer.MMMGPDBMOLM;
+                var hp = player.FDOJDJLIGLF;
+                var name = player.NHHBNNBDDIA ?? "Unknown";
+                var dist = Vector3.Distance(mainPlayer.OOMJGHCFODI, player.OOMJGHCFODI);
+
+                GUI.color = isEnemy ? new Color(1f, 0.3f, 0.3f, 0.7f) : new Color(0.3f, 1f, 0.3f, 0.7f);
+                GUI.Label(new Rect(x, y, 200, 20), $"{name} HP:{hp} {dist:F0}m {(isEnemy ? "ENEMY" : "ALLY")}");
+                y += 20;
+                if (y > Screen.height - 100) break; // Don't overflow
+            }
+
+            GUI.color = prevColor;
         }
         catch { }
     }
@@ -2722,6 +2791,8 @@ public sealed class Plugin : BasePlugin
         hitLog = false;
         autoWeaponSwap = false;
         screenCleaner = false;
+        noShadows = false;
+        playerList = false;
         ghostBullets = false;
         showHealth = false;
         SaveConfig();
@@ -4094,6 +4165,12 @@ public sealed class Plugin : BasePlugin
                 DrawDebugOverlay();
             }
 
+            // Player list: show all players with info
+            if (playerList && !menuVisible)
+            {
+                DrawPlayerList();
+            }
+
             // Distance ESP: show distance below enemy boxes
             if (distanceEsp && !menuVisible)
             {
@@ -4376,6 +4453,8 @@ public sealed class Plugin : BasePlugin
         hitLog = GUI.Toggle(new Rect(x, y, w, 24), hitLog, "Hit log (log hits to file)"); y += 26;
         autoWeaponSwap = GUI.Toggle(new Rect(x, y, w, 24), autoWeaponSwap, "Auto weapon swap (swap when empty)"); y += 26;
         screenCleaner = GUI.Toggle(new Rect(x, y, w, 24), screenCleaner, "Screen cleaner (remove ads/banners)"); y += 26;
+        noShadows = GUI.Toggle(new Rect(x, y, w, 24), noShadows, "No shadows (disable all shadows)"); y += 26;
+        playerList = GUI.Toggle(new Rect(x, y, w, 24), playerList, "Player list (show all players)"); y += 26;
         GUI.Label(new Rect(x, y, 80, 24), "Aim bone:"); y += 26;
         for (var i = 0; i < AimBoneLabels.Length; i++)
         {
@@ -5108,6 +5187,8 @@ public sealed class Plugin : BasePlugin
         if (hitLog) features.Add("HitLog");
         if (autoWeaponSwap) features.Add("AutoSwap");
         if (screenCleaner) features.Add("ScreenClean");
+        if (noShadows) features.Add("NoShadows");
+        if (playerList) features.Add("PlayerList");
         if (ghostBullets) features.Add("GhostBullets");
 
         if (features.Count == 0) return;

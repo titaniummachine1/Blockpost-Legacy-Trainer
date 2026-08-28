@@ -46,6 +46,13 @@ public sealed class Plugin : BasePlugin
         "Plain aim lock",
         "Silent aim"
     };
+    private static readonly string[] GokuTpModeLabels =
+    {
+        "Hold key",
+        "Toggle",
+        "On release",
+        "Always on"
+    };
     private static Plugin? instance;
     private static bool menuVisible;
     private static Rect menuRect = new(20, 20, 560, 700);
@@ -111,9 +118,12 @@ public sealed class Plugin : BasePlugin
     private static bool flyHack;
     private static bool noClip;
     private static bool gokuTp;
-    private static Vector3 gokuReturnPos;
-    private static bool gokuHasReturnPos;
     private static float gokuTpCooldown;
+    private static int gokuTpMode; // 0=hold, 1=toggle, 2=release, 3=always
+    private static bool gokuTpToggled;
+    private static bool gokuTpKeyWasDown;
+    private static KeyCode gokuTpKey = KeyCode.V;
+    private static bool gokuTpListeningForKey;
     private static bool weaponUnlock;
     private static bool weaponUnlockApplied;
     private static int weaponUnlockCount;
@@ -601,9 +611,9 @@ public sealed class Plugin : BasePlugin
     }
 
     /// <summary>
-    /// Goku TP: teleport behind the closest valid enemy for a kill.
-    /// When no valid enemy exists, teleport back to the stored return position.
-    /// Cooldown prevents rapid oscillation.
+    /// Goku TP: teleport behind the closest valid enemy.
+    /// Uses the enemy's CameraForward to determine which way they're facing,
+    /// then positions the player 2m behind them. No camera rotation.
     /// </summary>
     private static void ApplyGokuTp(KBBBHJDINCB main)
     {
@@ -625,6 +635,7 @@ public sealed class Plugin : BasePlugin
             KBBBHJDINCB? bestTarget = null;
             var bestDist = float.MaxValue;
             var bestPos = Vector3.zero;
+            var bestForward = Vector3.forward;
 
             for (var i = 0; i < players.Length; i++)
             {
@@ -642,77 +653,109 @@ public sealed class Plugin : BasePlugin
                     bestDist = dist;
                     bestTarget = player;
                     bestPos = enemyPos;
+                    // Get the enemy's view direction (CameraForward)
+                    var fwd = player.JIPNKAGPCGK;
+                    fwd.y = 0f;
+                    if (fwd.sqrMagnitude < 0.01f) fwd = Vector3.forward;
+                    bestForward = fwd.normalized;
                 }
             }
 
-            if (bestTarget != null)
+            if (bestTarget == null) return;
+
+            // Position 2m behind the enemy (opposite of their view direction)
+            var tpPos = bestPos - bestForward * 2f;
+            tpPos.y = bestPos.y; // same height
+
+            // Teleport via rigidbody position
+            var rb = main.MJPOJOOIPPN;
+            if (rb != null)
             {
-                // Save return position if we don't have one yet
-                if (!gokuHasReturnPos)
-                {
-                    gokuReturnPos = myPos;
-                    gokuHasReturnPos = true;
-                }
-
-                // Teleport behind the enemy (2m behind, same height)
-                var enemyForward = Vector3.forward;
-                try
-                {
-                    // Use enemy's rigidbody velocity direction as "forward" fallback
-                    var enemyRb = bestTarget.MJPOJOOIPPN;
-                    if (enemyRb != null && enemyRb.velocity.sqrMagnitude > 0.1f)
-                    {
-                        enemyForward = enemyRb.velocity.normalized;
-                        enemyForward.y = 0f;
-                        if (enemyForward.sqrMagnitude < 0.01f) enemyForward = Vector3.forward;
-                    }
-                }
-                catch { }
-
-                // Position 2m behind the enemy
-                var tpPos = bestPos - enemyForward * 2f;
-                tpPos.y = bestPos.y; // same height
-
-                // Teleport via rigidbody position
-                var rb = main.MJPOJOOIPPN;
-                if (rb != null)
-                {
-                    rb.position = tpPos;
-                    rb.velocity = Vector3.zero;
-                }
-
-                // Also set the player position field directly
-                main.OOMJGHCFODI = tpPos;
-
-                // Set yaw to face the enemy
-                var dir = bestPos - tpPos;
-                dir.y = 0f;
-                if (dir.sqrMagnitude > 0.01f)
-                {
-                    var yaw = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg;
-                    Controll.NAKNALFCOIF = yaw;
-                }
-
-                gokuTpCooldown = 0.15f; // 150ms cooldown between teleports
+                rb.position = tpPos;
+                rb.velocity = Vector3.zero;
             }
-            else
-            {
-                // No valid enemy — teleport back to return position
-                if (gokuHasReturnPos)
-                {
-                    var rb = main.MJPOJOOIPPN;
-                    if (rb != null)
-                    {
-                        rb.position = gokuReturnPos;
-                        rb.velocity = Vector3.zero;
-                    }
-                    main.OOMJGHCFODI = gokuReturnPos;
-                    gokuHasReturnPos = false;
-                    gokuTpCooldown = 0.3f;
-                }
-            }
+
+            // Also set the player position field directly
+            main.OOMJGHCFODI = tpPos;
+
+            gokuTpCooldown = 0.1f; // 100ms cooldown
         }
         catch { }
+    }
+
+    /// <summary>
+    /// Check if Goku TP should be active based on mode and key state.
+    /// </summary>
+    private static bool IsGokuTpActive()
+    {
+        if (!gokuTp) return false;
+        return gokuTpMode switch
+        {
+            0 => IsKeyDown(gokuTpKey),      // Hold
+            1 => gokuTpToggled,              // Toggle
+            2 => !IsKeyDown(gokuTpKey),      // On release (active when key NOT down)
+            3 => true,                       // Always on
+            _ => false
+        };
+    }
+
+    /// <summary>
+    /// Handle Goku TP toggle and release mode key transitions.
+    /// </summary>
+    private static void UpdateGokuTpKeyState()
+    {
+        if (!gokuTp) return;
+        var keyDown = IsKeyDown(gokuTpKey);
+
+        switch (gokuTpMode)
+        {
+            case 1: // Toggle - flip state on key press edge
+                if (keyDown && !gokuTpKeyWasDown)
+                {
+                    gokuTpToggled = !gokuTpToggled;
+                }
+                break;
+            // Hold and Always-on don't need state tracking
+        }
+        gokuTpKeyWasDown = keyDown;
+    }
+
+    /// <summary>
+    /// Check if a key or mouse button is currently down.
+    /// Supports mouse buttons (M1-M3) via KeyCode.Mouse0-Mouse2.
+    /// </summary>
+    private static bool IsKeyDown(KeyCode key)
+    {
+        if (key == KeyCode.Mouse0) return Input.GetMouseButton(0);
+        if (key == KeyCode.Mouse1) return Input.GetMouseButton(1);
+        if (key == KeyCode.Mouse2) return Input.GetMouseButton(2);
+        return Input.GetKey(key);
+    }
+
+    /// <summary>
+    /// Get a human-readable name for a KeyCode.
+    /// </summary>
+    private static string GetKeyDisplayName(KeyCode key)
+    {
+        return key switch
+        {
+            KeyCode.Mouse0 => "Mouse 1 (LMB)",
+            KeyCode.Mouse1 => "Mouse 2 (RMB)",
+            KeyCode.Mouse2 => "Mouse 3 (MMB)",
+            KeyCode.Mouse3 => "Mouse 4",
+            KeyCode.Mouse4 => "Mouse 5",
+            KeyCode.Space => "Space",
+            KeyCode.LeftShift => "L-Shift",
+            KeyCode.RightShift => "R-Shift",
+            KeyCode.LeftControl => "L-Ctrl",
+            KeyCode.RightControl => "R-Ctrl",
+            KeyCode.LeftAlt => "L-Alt",
+            KeyCode.RightAlt => "R-Alt",
+            KeyCode.Tab => "Tab",
+            KeyCode.Return => "Enter",
+            KeyCode.Backspace => "Backspace",
+            _ => key.ToString()
+        };
     }
 
     /// <summary>
@@ -1139,7 +1182,11 @@ public sealed class Plugin : BasePlugin
 
             if (gokuTp)
             {
-                ApplyGokuTp(main);
+                UpdateGokuTpKeyState();
+                if (IsGokuTpActive())
+                {
+                    ApplyGokuTp(main);
+                }
             }
 
             if (thirdPerson)
@@ -1487,6 +1534,8 @@ public sealed class Plugin : BasePlugin
                     case "speedMultiplier": float.TryParse(val, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out speedMultiplier); break;
                     case "flyHack": flyHack = val == "1"; break;
                     case "gokuTp": gokuTp = val == "1"; break;
+                    case "gokuTpMode": gokuTpMode = ParseInt(val, gokuTpMode); break;
+                    case "gokuTpKey": gokuTpKey = (KeyCode)ParseInt(val, (int)KeyCode.V); break;
                     case "noClip": noClip = val == "1"; break;
                     case "weaponUnlock": weaponUnlock = val == "1"; break;
                     case "thirdPerson": thirdPerson = val == "1"; break;
@@ -1632,6 +1681,8 @@ public sealed class Plugin : BasePlugin
                 $"speedMultiplier={speedMultiplier.ToString("0.###", System.Globalization.CultureInfo.InvariantCulture)}",
                 $"flyHack={(flyHack ? 1 : 0)}",
                 $"gokuTp={(gokuTp ? 1 : 0)}",
+                $"gokuTpMode={gokuTpMode}",
+                $"gokuTpKey={(int)gokuTpKey}",
                 $"noClip={(noClip ? 1 : 0)}",
                 $"weaponUnlock={(weaponUnlock ? 1 : 0)}",
                 $"thirdPerson={(thirdPerson ? 1 : 0)}",
@@ -3029,7 +3080,9 @@ public sealed class Plugin : BasePlugin
         speedHack = false;
         flyHack = false;
         gokuTp = false;
-        gokuHasReturnPos = false;
+        gokuTpMode = 0;
+        gokuTpToggled = false;
+        gokuTpListeningForKey = false;
         noClip = false;
         weaponUnlock = false;
         thirdPerson = false;
@@ -4761,7 +4814,7 @@ public sealed class Plugin : BasePlugin
         {
             0 => 1100f,  // Combat
             1 => 1400f,  // ESP/Visual
-            2 => 700f,   // Movement
+            2 => 800f,   // Movement
             3 => 700f,   // Weapons
             4 => 600f,   // Misc
             5 => 400f,   // Config
@@ -4971,7 +5024,49 @@ public sealed class Plugin : BasePlugin
         gokuTp = GUI.Toggle(new Rect(x, y, w, 24), gokuTp, "Goku TP (teleport behind enemy)"); y += 26;
         if (gokuTp)
         {
-            GUI.Label(new Rect(x + 20, y, w - 20, 24), "TP behind closest enemy, return when none"); y += 24;
+            // Mode selector
+            if (GUI.Button(new Rect(x, y, w, 28), $"Mode: {GokuTpModeLabels[gokuTpMode]}"))
+            {
+                gokuTpMode = (gokuTpMode + 1) % GokuTpModeLabels.Length;
+            }
+            y += 32;
+
+            // Keybind button with capture support
+            if (gokuTpListeningForKey)
+            {
+                GUI.Label(new Rect(x, y, w, 24), "Press any key... (ESC to cancel)");
+                y += 26;
+                // Capture any key press
+                if (Input.anyKeyDown)
+                {
+                    // Check ESC to cancel
+                    if (Input.GetKeyDown(KeyCode.Escape))
+                    {
+                        gokuTpListeningForKey = false;
+                    }
+                    else
+                    {
+                        // Find which key was pressed
+                        foreach (KeyCode k in Enum.GetValues(typeof(KeyCode)))
+                        {
+                            if (Input.GetKeyDown(k))
+                            {
+                                gokuTpKey = k;
+                                gokuTpListeningForKey = false;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                if (GUI.Button(new Rect(x, y, w, 28), $"Key: {GetKeyDisplayName(gokuTpKey)} (click to bind)"))
+                {
+                    gokuTpListeningForKey = true;
+                }
+                y += 32;
+            }
         }
 
         GUI.Label(new Rect(x, y, w, 24), "--- Stance/Slide ---"); y += 26;

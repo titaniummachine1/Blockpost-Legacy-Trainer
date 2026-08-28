@@ -38,7 +38,8 @@ public sealed class Plugin : BasePlugin
         "Left mouse (fire)",
         "Right mouse",
         "Left Alt",
-        "Mouse 4"
+        "Mouse 4",
+        "Always on"
     };
     private static readonly string[] AimStyleLabels =
     {
@@ -109,6 +110,10 @@ public sealed class Plugin : BasePlugin
     private static float speedMultiplier = 2f;
     private static bool flyHack;
     private static bool noClip;
+    private static bool gokuTp;
+    private static Vector3 gokuReturnPos;
+    private static bool gokuHasReturnPos;
+    private static float gokuTpCooldown;
     private static bool weaponUnlock;
     private static bool weaponUnlockApplied;
     private static int weaponUnlockCount;
@@ -596,6 +601,121 @@ public sealed class Plugin : BasePlugin
     }
 
     /// <summary>
+    /// Goku TP: teleport behind the closest valid enemy for a kill.
+    /// When no valid enemy exists, teleport back to the stored return position.
+    /// Cooldown prevents rapid oscillation.
+    /// </summary>
+    private static void ApplyGokuTp(KBBBHJDINCB main)
+    {
+        try
+        {
+            if (gokuTpCooldown > 0f)
+            {
+                gokuTpCooldown -= Time.unscaledDeltaTime;
+                return;
+            }
+
+            var players = PLH.BAKLNPIEHMI;
+            if (players == null) return;
+
+            var myPos = main.OOMJGHCFODI;
+            var myTeam = main.MMMGPDBMOLM;
+
+            // Find closest valid enemy (alive, not spawn-protected, different team)
+            KBBBHJDINCB? bestTarget = null;
+            var bestDist = float.MaxValue;
+            var bestPos = Vector3.zero;
+
+            for (var i = 0; i < players.Length; i++)
+            {
+                var player = players[i];
+                if (player == null || player == main) continue;
+                if (player.FDOJDJLIGLF <= 0) continue;           // dead
+                if (player.LBKINNIDKEC) continue;                 // spawn protected
+                if (player.MMMGPDBMOLM == myTeam) continue;       // same team
+                if (player._LCEIAGLFFJN_k__BackingField) continue; // invalid flag
+
+                var enemyPos = player.OOMJGHCFODI;
+                var dist = Vector3.Distance(myPos, enemyPos);
+                if (dist < bestDist)
+                {
+                    bestDist = dist;
+                    bestTarget = player;
+                    bestPos = enemyPos;
+                }
+            }
+
+            if (bestTarget != null)
+            {
+                // Save return position if we don't have one yet
+                if (!gokuHasReturnPos)
+                {
+                    gokuReturnPos = myPos;
+                    gokuHasReturnPos = true;
+                }
+
+                // Teleport behind the enemy (2m behind, same height)
+                var enemyForward = Vector3.forward;
+                try
+                {
+                    // Use enemy's rigidbody velocity direction as "forward" fallback
+                    var enemyRb = bestTarget.MJPOJOOIPPN;
+                    if (enemyRb != null && enemyRb.velocity.sqrMagnitude > 0.1f)
+                    {
+                        enemyForward = enemyRb.velocity.normalized;
+                        enemyForward.y = 0f;
+                        if (enemyForward.sqrMagnitude < 0.01f) enemyForward = Vector3.forward;
+                    }
+                }
+                catch { }
+
+                // Position 2m behind the enemy
+                var tpPos = bestPos - enemyForward * 2f;
+                tpPos.y = bestPos.y; // same height
+
+                // Teleport via rigidbody position
+                var rb = main.MJPOJOOIPPN;
+                if (rb != null)
+                {
+                    rb.position = tpPos;
+                    rb.velocity = Vector3.zero;
+                }
+
+                // Also set the player position field directly
+                main.OOMJGHCFODI = tpPos;
+
+                // Set yaw to face the enemy
+                var dir = bestPos - tpPos;
+                dir.y = 0f;
+                if (dir.sqrMagnitude > 0.01f)
+                {
+                    var yaw = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg;
+                    Controll.NAKNALFCOIF = yaw;
+                }
+
+                gokuTpCooldown = 0.15f; // 150ms cooldown between teleports
+            }
+            else
+            {
+                // No valid enemy — teleport back to return position
+                if (gokuHasReturnPos)
+                {
+                    var rb = main.MJPOJOOIPPN;
+                    if (rb != null)
+                    {
+                        rb.position = gokuReturnPos;
+                        rb.velocity = Vector3.zero;
+                    }
+                    main.OOMJGHCFODI = gokuReturnPos;
+                    gokuHasReturnPos = false;
+                    gokuTpCooldown = 0.3f;
+                }
+            }
+        }
+        catch { }
+    }
+
+    /// <summary>
     /// Moves the camera behind and above the player for a third-person view.
     /// Uses the player's position and yaw angle (Controll.NAKNALFCOIF) to compute
     /// the camera position, then makes the camera look at the player.
@@ -926,7 +1046,7 @@ public sealed class Plugin : BasePlugin
 
     private static void ApplyCheatFeatures()
     {
-        if (!infiniteHealth && !infiniteAmmo && !bunnyHop && !fovChanger && !speedHack && !flyHack && !noClip && !thirdPerson && !fullbright && !antiFlash && !noSpread && !fastFire && !autoReload && !spinbot && !antiAimPitch && !autoStrafe && !edgeJump && !fakeLag)
+        if (!infiniteHealth && !infiniteAmmo && !bunnyHop && !fovChanger && !speedHack && !flyHack && !noClip && !thirdPerson && !fullbright && !antiFlash && !noSpread && !fastFire && !autoReload && !spinbot && !antiAimPitch && !autoStrafe && !edgeJump && !fakeLag && !gokuTp)
         {
             return;
         }
@@ -1015,6 +1135,11 @@ public sealed class Plugin : BasePlugin
             if (flyHack || noClip)
             {
                 ApplyFlyNoClip(main);
+            }
+
+            if (gokuTp)
+            {
+                ApplyGokuTp(main);
             }
 
             if (thirdPerson)
@@ -1361,6 +1486,7 @@ public sealed class Plugin : BasePlugin
                     case "speedHack": speedHack = val == "1"; break;
                     case "speedMultiplier": float.TryParse(val, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out speedMultiplier); break;
                     case "flyHack": flyHack = val == "1"; break;
+                    case "gokuTp": gokuTp = val == "1"; break;
                     case "noClip": noClip = val == "1"; break;
                     case "weaponUnlock": weaponUnlock = val == "1"; break;
                     case "thirdPerson": thirdPerson = val == "1"; break;
@@ -1505,6 +1631,7 @@ public sealed class Plugin : BasePlugin
                 $"speedHack={(speedHack ? 1 : 0)}",
                 $"speedMultiplier={speedMultiplier.ToString("0.###", System.Globalization.CultureInfo.InvariantCulture)}",
                 $"flyHack={(flyHack ? 1 : 0)}",
+                $"gokuTp={(gokuTp ? 1 : 0)}",
                 $"noClip={(noClip ? 1 : 0)}",
                 $"weaponUnlock={(weaponUnlock ? 1 : 0)}",
                 $"thirdPerson={(thirdPerson ? 1 : 0)}",
@@ -2901,6 +3028,8 @@ public sealed class Plugin : BasePlugin
         customCrosshair = false;
         speedHack = false;
         flyHack = false;
+        gokuTp = false;
+        gokuHasReturnPos = false;
         noClip = false;
         weaponUnlock = false;
         thirdPerson = false;
@@ -3836,6 +3965,7 @@ public sealed class Plugin : BasePlugin
             1 => Input.GetMouseButton(1),
             2 => Input.GetKey(KeyCode.LeftAlt),
             3 => Input.GetKey(KeyCode.Mouse3),
+            4 => true, // Always on
             _ => false
         };
     }
@@ -4631,7 +4761,7 @@ public sealed class Plugin : BasePlugin
         {
             0 => 1100f,  // Combat
             1 => 1400f,  // ESP/Visual
-            2 => 600f,   // Movement
+            2 => 700f,   // Movement
             3 => 700f,   // Weapons
             4 => 600f,   // Misc
             5 => 400f,   // Config
@@ -4836,6 +4966,13 @@ public sealed class Plugin : BasePlugin
         flyHack = GUI.Toggle(new Rect(x, y, w, 24), flyHack, "Fly hack (Space=up, Shift=down)"); y += 26;
         noClip = GUI.Toggle(new Rect(x, y, w, 24), noClip, "No clip"); y += 26;
         autoSprint = GUI.Toggle(new Rect(x, y, w, 24), autoSprint, "Auto-sprint (always sprint when moving)"); y += 26;
+
+        GUI.Label(new Rect(x, y, w, 24), "--- Goku TP ---"); y += 26;
+        gokuTp = GUI.Toggle(new Rect(x, y, w, 24), gokuTp, "Goku TP (teleport behind enemy)"); y += 26;
+        if (gokuTp)
+        {
+            GUI.Label(new Rect(x + 20, y, w - 20, 24), "TP behind closest enemy, return when none"); y += 24;
+        }
 
         GUI.Label(new Rect(x, y, w, 24), "--- Stance/Slide ---"); y += 26;
         slideHack = GUI.Toggle(new Rect(x, y, w, 24), slideHack, "Slide hack (auto-crouch while moving)"); y += 26;
@@ -5575,6 +5712,7 @@ public sealed class Plugin : BasePlugin
         if (customCrosshair) features.Add("Crosshair");
         if (speedHack) features.Add($"Speed:{speedMultiplier:0.0}x");
         if (flyHack) features.Add("Fly");
+        if (gokuTp) features.Add("GokuTP");
         if (noClip) features.Add("NoClip");
         if (weaponUnlock) features.Add("WeaponUnlock");
         if (thirdPerson) features.Add("3rdPerson");

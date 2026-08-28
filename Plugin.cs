@@ -199,6 +199,7 @@ public sealed class Plugin : BasePlugin
     private static int currentKillStreak;
     private static float lastKillTime;
     private static bool panicMode;
+    private static bool fovFilterEsp;
     private static int aimBone = 0; // 0=head, 1=chest, 2=pelvis
     private static readonly string[] AimBoneLabels = { "Head", "Chest", "Pelvis" };
     private static float fpsUpdateTimer;
@@ -1412,6 +1413,7 @@ public sealed class Plugin : BasePlugin
                     case "aimbotPrediction": aimbotPrediction = val == "1"; break;
                     case "autoCrouchIdle": autoCrouchIdle = val == "1"; break;
                     case "panicMode": panicMode = val == "1"; break;
+                    case "fovFilterEsp": fovFilterEsp = val == "1"; break;
                     case "debugLogging": debugLogging = val == "1"; break;
                     case "heavyDiagnostics": heavyDiagnostics = val == "1"; break;
                     case "showRuntimeStatus": showRuntimeStatus = val == "1"; break;
@@ -1541,6 +1543,7 @@ public sealed class Plugin : BasePlugin
                 $"aimbotPrediction={(aimbotPrediction ? 1 : 0)}",
                 $"autoCrouchIdle={(autoCrouchIdle ? 1 : 0)}",
                 $"panicMode={(panicMode ? 1 : 0)}",
+                $"fovFilterEsp={(fovFilterEsp ? 1 : 0)}",
                 $"debugLogging={(debugLogging ? 1 : 0)}",
                 $"heavyDiagnostics={(heavyDiagnostics ? 1 : 0)}",
                 $"showRuntimeStatus={(showRuntimeStatus ? 1 : 0)}",
@@ -2629,6 +2632,7 @@ public sealed class Plugin : BasePlugin
         thirdPersonShoulder = false;
         aimbotPrediction = false;
         autoCrouchIdle = false;
+        fovFilterEsp = false;
         ghostBullets = false;
         showHealth = false;
         SaveConfig();
@@ -3430,6 +3434,15 @@ public sealed class Plugin : BasePlugin
 
             if (TryCreateEspBox(player, mainPlayer, camera, out var box))
             {
+                // FOV filter: only show enemies within the aimbot FOV
+                if (fovFilterEsp && box.IsEnemy)
+                {
+                    var screenCenter = new Vector2(Screen.width / 2f, Screen.height / 2f);
+                    var screenPos = new Vector2(box.ScreenPos.x, box.ScreenPos.y);
+                    var distFromCenter = Vector2.Distance(screenCenter, screenPos);
+                    var screenFovRadius = aimbotFov * Screen.height / 90f;
+                    if (distFromCenter > screenFovRadius) continue;
+                }
                 espBoxes.Add(box);
             }
         }
@@ -4270,6 +4283,7 @@ public sealed class Plugin : BasePlugin
         aimbotPrediction = GUI.Toggle(new Rect(x, y, w, 24), aimbotPrediction, "Aimbot prediction (lead targets)"); y += 26;
         autoCrouchIdle = GUI.Toggle(new Rect(x, y, w, 24), autoCrouchIdle, "Auto-crouch when idle (smaller hitbox)"); y += 26;
         GUI.Label(new Rect(x, y, w, 24), "Panic mode: press [End] to disable all"); y += 26;
+        fovFilterEsp = GUI.Toggle(new Rect(x, y, w, 24), fovFilterEsp, "FOV filter ESP (only show in FOV)"); y += 26;
         GUI.Label(new Rect(x, y, 80, 24), "Aim bone:"); y += 26;
         for (var i = 0; i < AimBoneLabels.Length; i++)
         {
@@ -4998,6 +5012,7 @@ public sealed class Plugin : BasePlugin
         if (aimbotPrediction) features.Add("AimPredict");
         if (autoCrouchIdle) features.Add("AutoCrouch");
         if (panicMode) features.Add("PANIC!");
+        if (fovFilterEsp) features.Add("FOVFilter");
         if (ghostBullets) features.Add("GhostBullets");
 
         if (features.Count == 0) return;

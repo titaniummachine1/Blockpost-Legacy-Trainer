@@ -200,6 +200,8 @@ public sealed class Plugin : BasePlugin
     private static float lastKillTime;
     private static bool panicMode;
     private static bool fovFilterEsp;
+    private static bool hitLog;
+    private static int lastHitLogCount = -1;
     private static int aimBone = 0; // 0=head, 1=chest, 2=pelvis
     private static readonly string[] AimBoneLabels = { "Head", "Chest", "Pelvis" };
     private static float fpsUpdateTimer;
@@ -384,6 +386,7 @@ public sealed class Plugin : BasePlugin
         if (thirdPersonShoulder) ApplyThirdPersonShoulder();
         if (autoCrouchIdle) ApplyAutoCrouchIdle();
         UpdateKillStreak();
+        UpdateHitLog();
         PrepareRapidFirePrefix();
 
         // If we're not shooting this frame but the button is still held from
@@ -1414,6 +1417,7 @@ public sealed class Plugin : BasePlugin
                     case "autoCrouchIdle": autoCrouchIdle = val == "1"; break;
                     case "panicMode": panicMode = val == "1"; break;
                     case "fovFilterEsp": fovFilterEsp = val == "1"; break;
+                    case "hitLog": hitLog = val == "1"; break;
                     case "debugLogging": debugLogging = val == "1"; break;
                     case "heavyDiagnostics": heavyDiagnostics = val == "1"; break;
                     case "showRuntimeStatus": showRuntimeStatus = val == "1"; break;
@@ -1544,6 +1548,7 @@ public sealed class Plugin : BasePlugin
                 $"autoCrouchIdle={(autoCrouchIdle ? 1 : 0)}",
                 $"panicMode={(panicMode ? 1 : 0)}",
                 $"fovFilterEsp={(fovFilterEsp ? 1 : 0)}",
+                $"hitLog={(hitLog ? 1 : 0)}",
                 $"debugLogging={(debugLogging ? 1 : 0)}",
                 $"heavyDiagnostics={(heavyDiagnostics ? 1 : 0)}",
                 $"showRuntimeStatus={(showRuntimeStatus ? 1 : 0)}",
@@ -1611,6 +1616,31 @@ public sealed class Plugin : BasePlugin
                 Controll.MNHBPCOOMLE |= 0x20u; // duck
                 Controll.NJPDKJKJMCG = true;
             }
+        }
+        catch { }
+    }
+
+    /// <summary>
+    /// Hit log: monitor hit counter and log each hit to a file with timestamp.
+    /// </summary>
+    private static void UpdateHitLog()
+    {
+        if (!hitLog) return;
+        try
+        {
+            var currentHits = Controll.GAMBHJPMDON;
+            if (lastHitLogCount < 0)
+            {
+                lastHitLogCount = currentHits;
+                return;
+            }
+            if (currentHits > lastHitLogCount)
+            {
+                var hitCount = currentHits - lastHitLogCount;
+                var logPath = Path.Combine(Paths.BepInExRootPath, "plugins", "hitlog.txt");
+                File.AppendAllText(logPath, $"[{DateTime.Now:HH:mm:ss}] Hit registered (count={hitCount}, total={currentHits}){Environment.NewLine}");
+            }
+            lastHitLogCount = currentHits;
         }
         catch { }
     }
@@ -2633,6 +2663,7 @@ public sealed class Plugin : BasePlugin
         aimbotPrediction = false;
         autoCrouchIdle = false;
         fovFilterEsp = false;
+        hitLog = false;
         ghostBullets = false;
         showHealth = false;
         SaveConfig();
@@ -4284,6 +4315,7 @@ public sealed class Plugin : BasePlugin
         autoCrouchIdle = GUI.Toggle(new Rect(x, y, w, 24), autoCrouchIdle, "Auto-crouch when idle (smaller hitbox)"); y += 26;
         GUI.Label(new Rect(x, y, w, 24), "Panic mode: press [End] to disable all"); y += 26;
         fovFilterEsp = GUI.Toggle(new Rect(x, y, w, 24), fovFilterEsp, "FOV filter ESP (only show in FOV)"); y += 26;
+        hitLog = GUI.Toggle(new Rect(x, y, w, 24), hitLog, "Hit log (log hits to file)"); y += 26;
         GUI.Label(new Rect(x, y, 80, 24), "Aim bone:"); y += 26;
         for (var i = 0; i < AimBoneLabels.Length; i++)
         {
@@ -5013,6 +5045,7 @@ public sealed class Plugin : BasePlugin
         if (autoCrouchIdle) features.Add("AutoCrouch");
         if (panicMode) features.Add("PANIC!");
         if (fovFilterEsp) features.Add("FOVFilter");
+        if (hitLog) features.Add("HitLog");
         if (ghostBullets) features.Add("GhostBullets");
 
         if (features.Count == 0) return;

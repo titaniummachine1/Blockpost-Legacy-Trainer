@@ -213,6 +213,7 @@ public sealed class Plugin : BasePlugin
     private static bool noFog;
     private static bool aimEnemiesOnly = true;
     private static bool boneScan;
+    private static bool radarMiniMap;
     private static int aimBone = 0; // 0=head, 1=chest, 2=pelvis
     private static readonly string[] AimBoneLabels = { "Head", "Chest", "Pelvis" };
     private static float fpsUpdateTimer;
@@ -1447,6 +1448,7 @@ public sealed class Plugin : BasePlugin
                     case "noFog": noFog = val == "1"; break;
                     case "aimEnemiesOnly": aimEnemiesOnly = val == "1"; break;
                     case "boneScan": boneScan = val == "1"; break;
+                    case "radarMiniMap": radarMiniMap = val == "1"; break;
                     case "debugLogging": debugLogging = val == "1"; break;
                     case "heavyDiagnostics": heavyDiagnostics = val == "1"; break;
                     case "showRuntimeStatus": showRuntimeStatus = val == "1"; break;
@@ -1589,6 +1591,7 @@ public sealed class Plugin : BasePlugin
                 $"noFog={(noFog ? 1 : 0)}",
                 $"aimEnemiesOnly={(aimEnemiesOnly ? 1 : 0)}",
                 $"boneScan={(boneScan ? 1 : 0)}",
+                $"radarMiniMap={(radarMiniMap ? 1 : 0)}",
                 $"debugLogging={(debugLogging ? 1 : 0)}",
                 $"heavyDiagnostics={(heavyDiagnostics ? 1 : 0)}",
                 $"showRuntimeStatus={(showRuntimeStatus ? 1 : 0)}",
@@ -1680,6 +1683,74 @@ public sealed class Plugin : BasePlugin
                     go.SetActive(false);
                 }
             }
+        }
+        catch { }
+    }
+
+    /// <summary>
+    /// Draw radar mini-map: shows enemy positions relative to player in a circular radar.
+    /// Displayed in top-right corner. Scale: 1m = 1px, max range 100m.
+    /// </summary>
+    private static void DrawRadarMiniMap()
+    {
+        try
+        {
+            var mainPlayer = Controll.HGAODFPBGLB;
+            if (mainPlayer == null) return;
+            var players = PLH.BAKLNPIEHMI;
+            if (players == null) return;
+
+            var radarSize = 150f;
+            var radarX = Screen.width - radarSize - 10;
+            var radarY = 10;
+            var radarCenter = new Vector2(radarX + radarSize / 2, radarY + radarSize / 2);
+            var radarRange = 100f; // meters
+            var radarScale = (radarSize / 2) / radarRange;
+
+            // Draw radar background
+            var prevColor = GUI.color;
+            GUI.color = new Color(0, 0, 0, 0.7f);
+            GUI.DrawTexture(new Rect(radarX, radarY, radarSize, radarSize), Texture2D.whiteTexture);
+            GUI.color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
+            // Border
+            GUI.DrawTexture(new Rect(radarX, radarY, radarSize, 1), Texture2D.whiteTexture);
+            GUI.DrawTexture(new Rect(radarX, radarY + radarSize - 1, radarSize, 1), Texture2D.whiteTexture);
+            GUI.DrawTexture(new Rect(radarX, radarY, 1, radarSize), Texture2D.whiteTexture);
+            GUI.DrawTexture(new Rect(radarX + radarSize - 1, radarY, 1, radarSize), Texture2D.whiteTexture);
+
+            // Draw player at center
+            GUI.color = new Color(1f, 1f, 1f, 0.9f);
+            GUI.DrawTexture(new Rect(radarCenter.x - 2, radarCenter.y - 2, 4, 4), Texture2D.whiteTexture);
+
+            // Draw enemies on radar
+            var myPos = mainPlayer.OOMJGHCFODI;
+            var myYaw = Controll.NAKNALFCOIF * Mathf.Deg2Rad;
+            var cosYaw = Mathf.Cos(myYaw);
+            var sinYaw = Mathf.Sin(myYaw);
+
+            for (var i = 0; i < players.Length; i++)
+            {
+                var player = players[i];
+                if (player == null || player.FDOJDJLIGLF <= 0) continue;
+                if (player == mainPlayer) continue;
+
+                var delta = player.OOMJGHCFODI - myPos;
+                var dist = delta.magnitude;
+                if (dist > radarRange) continue;
+
+                // Rotate relative to player yaw
+                var relX = delta.x * cosYaw + delta.z * sinYaw;
+                var relZ = -delta.x * sinYaw + delta.z * cosYaw;
+
+                var radarPx = radarCenter.x + relX * radarScale;
+                var radarPy = radarCenter.y - relZ * radarScale;
+
+                var isEnemy = player.MMMGPDBMOLM != mainPlayer.MMMGPDBMOLM;
+                GUI.color = isEnemy ? new Color(1f, 0.2f, 0.2f, 0.9f) : new Color(0.2f, 1f, 0.2f, 0.9f);
+                GUI.DrawTexture(new Rect(radarPx - 2, radarPy - 2, 4, 4), Texture2D.whiteTexture);
+            }
+
+            GUI.color = prevColor;
         }
         catch { }
     }
@@ -2899,6 +2970,7 @@ public sealed class Plugin : BasePlugin
         noFog = false;
         aimEnemiesOnly = true;
         boneScan = false;
+        radarMiniMap = false;
         ghostBullets = false;
         showHealth = false;
         SaveConfig();
@@ -4306,6 +4378,12 @@ public sealed class Plugin : BasePlugin
                 DrawCrosshairHitIndicator();
             }
 
+            // Radar mini-map: show enemy positions
+            if (radarMiniMap && !menuVisible)
+            {
+                DrawRadarMiniMap();
+            }
+
             // Distance ESP: show distance below enemy boxes
             if (distanceEsp && !menuVisible)
             {
@@ -4602,6 +4680,7 @@ public sealed class Plugin : BasePlugin
         noFog = GUI.Toggle(new Rect(x, y, w, 24), noFog, "No fog (disable fog rendering)"); y += 26;
         aimEnemiesOnly = GUI.Toggle(new Rect(x, y, w, 24), aimEnemiesOnly, "Aim enemies only (ignore allies)"); y += 26;
         boneScan = GUI.Toggle(new Rect(x, y, w, 24), boneScan, "Bone scan (try alt bones if blocked)"); y += 26;
+        radarMiniMap = GUI.Toggle(new Rect(x, y, w, 24), radarMiniMap, "Radar mini-map (enemy positions)"); y += 26;
         GUI.Label(new Rect(x, y, 80, 24), "Aim bone:"); y += 26;
         for (var i = 0; i < AimBoneLabels.Length; i++)
         {
@@ -5342,6 +5421,7 @@ public sealed class Plugin : BasePlugin
         if (noFog) features.Add("NoFog");
         if (!aimEnemiesOnly) features.Add("AimAll");
         if (boneScan) features.Add("BoneScan");
+        if (radarMiniMap) features.Add("Radar");
         if (ghostBullets) features.Add("GhostBullets");
 
         if (features.Count == 0) return;

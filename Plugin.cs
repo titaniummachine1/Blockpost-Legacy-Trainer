@@ -47,9 +47,12 @@ public sealed class Plugin : BasePlugin
     };
     private static Plugin? instance;
     private static bool menuVisible;
-    private static Rect menuRect = new(20, 20, 520, 660);
+    private static Rect menuRect = new(20, 20, 560, 700);
     private static bool menuDragging;
     private static Vector2 menuDragOffset;
+    private static int menuTab;
+    private static readonly string[] MenuTabLabels = { "Combat", "ESP/Visual", "Movement", "Weapons", "Misc", "Config" };
+    private static Vector2 menuScroll = Vector2.zero;
     private static bool bootstrapLogged;
     private static bool bindingsLogged;
     private static bool featureFailureLogged;
@@ -4450,11 +4453,12 @@ public sealed class Plugin : BasePlugin
 
     private static void DrawTrainerMenu()
     {
-        // Draggable title bar.
-        var headerRect = new Rect(menuRect.x, menuRect.y, menuRect.width, 24);
+        // Fixed-size window with header + tab bar + scrollable content.
         GUI.Box(menuRect, "Blockpost Legacy Trainer");
+        var headerRect = new Rect(menuRect.x, menuRect.y, menuRect.width, 24);
         GUI.Label(new Rect(menuRect.x + 8, menuRect.y + 2, menuRect.width - 16, 20), "Blockpost Legacy Trainer (drag)");
 
+        // Dragging
         var mousePos = Event.current.mousePosition;
         if (Event.current.type == EventType.MouseDown && headerRect.Contains(mousePos))
         {
@@ -4471,81 +4475,126 @@ public sealed class Plugin : BasePlugin
             menuRect.y = mousePos.y - menuDragOffset.y;
         }
 
-        var x = menuRect.x + 20;
-        var y = menuRect.y + 30;
-        var w = menuRect.width - 40;
-
-        GUI.Label(new Rect(x, y, w, 24), "Offline bot-game feature port"); y += 30;
-        espEnabled = GUI.Toggle(new Rect(x, y, w, 24), espEnabled, "ESP boxes"); y += 26;
-        if (espEnabled)
+        // Tab bar
+        var tabY = menuRect.y + 28;
+        var tabW = menuRect.width / MenuTabLabels.Length;
+        for (var i = 0; i < MenuTabLabels.Length; i++)
         {
-            showHealth = GUI.Toggle(new Rect(x + 20, y, w - 20, 24), showHealth, "Show health"); y += 26;
-            showTeammates = GUI.Toggle(new Rect(x + 20, y, w - 20, 24), showTeammates, "Show teammates"); y += 26;
+            var tabRect = new Rect(menuRect.x + i * tabW, tabY, tabW, 24);
+            var prev = GUI.color;
+            if (i == menuTab) GUI.color = new Color(0.6f, 0.8f, 1f, 1f);
+            if (GUI.Button(tabRect, MenuTabLabels[i]))
+            {
+                menuTab = i;
+                menuScroll = Vector2.zero;
+            }
+            GUI.color = prev;
         }
 
+        // Scrollable content area below the tab bar
+        var contentX = menuRect.x + 10;
+        var contentY = tabY + 28;
+        var contentW = menuRect.width - 20;
+        var contentH = menuRect.height - (contentY - menuRect.y) - 10;
+        var viewRect = new Rect(contentX, contentY, contentW, contentH);
+
+        // Estimate inner height per tab (will be set by each tab method)
+        var innerH = EstimateTabHeight(menuTab);
+        var innerRect = new Rect(0, 0, contentW - 20, innerH);
+
+        menuScroll = GUI.BeginScrollView(viewRect, menuScroll, innerRect);
+        var x = 4f;
+        var y = 4f;
+        var w = innerRect.width - 8;
+
+        switch (menuTab)
+        {
+            case 0: DrawCombatTab(x, ref y, w); break;
+            case 1: DrawEspTab(x, ref y, w); break;
+            case 2: DrawMovementTab(x, ref y, w); break;
+            case 3: DrawWeaponsTab(x, ref y, w); break;
+            case 4: DrawMiscTab(x, ref y, w); break;
+            case 5: DrawConfigTab(x, ref y, w); break;
+        }
+
+        GUI.EndScrollView();
+
+        // Auto-save config whenever any menu control was interacted with.
+        if (GUI.changed)
+        {
+            SaveConfig();
+        }
+    }
+
+    /// <summary>
+    /// Rough height estimate for each tab so the scroll view knows the content size.
+    /// Over-estimating is fine; under-estimating clips content.
+    /// </summary>
+    private static float EstimateTabHeight(int tab)
+    {
+        return tab switch
+        {
+            0 => 1100f,  // Combat
+            1 => 1400f,  // ESP/Visual
+            2 => 600f,   // Movement
+            3 => 700f,   // Weapons
+            4 => 600f,   // Misc
+            5 => 400f,   // Config
+            _ => 400f,
+        };
+    }
+
+    // ---- Tab: Combat ----
+    private static void DrawCombatTab(float x, ref float y, float w)
+    {
+        GUI.Label(new Rect(x, y, w, 24), "--- Aimbot ---"); y += 26;
         aimbotEnabled = GUI.Toggle(new Rect(x, y, w, 24), aimbotEnabled, "Aimbot"); y += 26;
         if (aimbotEnabled)
         {
-            GUI.Label(new Rect(x, y, w, 24), "Aimbot activation:"); y += 24;
             if (GUI.Button(new Rect(x, y, w, 28), $"Aim key: {AimActivationLabels[aimActivationMode]}"))
             {
                 aimActivationMode = (aimActivationMode + 1) % AimActivationLabels.Length;
             }
             y += 32;
-
             if (GUI.Button(new Rect(x, y, w, 28), $"Aim style: {AimStyleLabels[aimStyle]}"))
             {
                 aimStyle = (aimStyle + 1) % AimStyleLabels.Length;
             }
             y += 32;
-
-            GUI.Label(new Rect(x, y, w, 24), $"Aimbot FOV: {aimbotFov:0} degrees"); y += 24;
+            GUI.Label(new Rect(x, y, w, 24), $"Aimbot FOV: {aimbotFov:0} deg"); y += 24;
             aimbotFov = GUI.HorizontalSlider(new Rect(x, y, w, 24), aimbotFov, MinimumAimbotFov, MaximumAimbotFov); y += 28;
             autoShoot = GUI.Toggle(new Rect(x, y, w, 24), autoShoot, "Auto shoot (Win32 input)"); y += 26;
             if (autoShoot)
             {
                 rapidFire = GUI.Toggle(new Rect(x + 20, y, w - 20, 24), rapidFire, "Rapid fire (1 shot/tick)"); y += 26;
             }
-
-            ghostBullets = GUI.Toggle(new Rect(x + 20, y, w - 20, 24), ghostBullets, "Ghost bullets (hit through walls)"); y += 26;
-
+            ghostBullets = GUI.Toggle(new Rect(x + 20, y, w - 20, 24), ghostBullets, "Ghost bullets (through walls)"); y += 26;
             if (aimStyle == 0 && !ghostBullets)
             {
-                serverTrustTest = GUI.Toggle(new Rect(x + 20, y, w - 20, 24), serverTrustTest, "Server trust test — fake hit packets"); y += 26;
+                serverTrustTest = GUI.Toggle(new Rect(x + 20, y, w - 20, 24), serverTrustTest, "Server trust test"); y += 26;
             }
+            aimbotSmoothing = GUI.Toggle(new Rect(x, y, w, 24), aimbotSmoothing, "Aimbot smoothing"); y += 26;
+            if (aimbotSmoothing)
+            {
+                GUI.Label(new Rect(x, y, 60, 24), "Smooth:");
+                aimbotSmoothFactor = GUI.HorizontalSlider(new Rect(x + 60, y, 120, 24), aimbotSmoothFactor, 0.05f, 1f);
+                y += 26;
+            }
+            aimbotPrediction = GUI.Toggle(new Rect(x, y, w, 24), aimbotPrediction, "Aimbot prediction (lead targets)"); y += 26;
+            aimEnemiesOnly = GUI.Toggle(new Rect(x, y, w, 24), aimEnemiesOnly, "Aim enemies only (ignore allies)"); y += 26;
+            boneScan = GUI.Toggle(new Rect(x, y, w, 24), boneScan, "Bone scan (try alt bones if blocked)"); y += 26;
+            GUI.Label(new Rect(x, y, 80, 24), "Aim bone:"); y += 26;
+            for (var i = 0; i < AimBoneLabels.Length; i++)
+            {
+                if (GUI.Toggle(new Rect(x + i * 90, y, 90, 24), aimBone == i, AimBoneLabels[i]))
+                {
+                    aimBone = i;
+                }
+            }
+            y += 26;
         }
 
-        noRecoil = GUI.Toggle(new Rect(x, y, w, 24), noRecoil, "No recoil"); y += 26;
-        infiniteHealth = GUI.Toggle(new Rect(x, y, w, 24), infiniteHealth, "Infinite health"); y += 26;
-        infiniteAmmo = GUI.Toggle(new Rect(x, y, w, 24), infiniteAmmo, "Infinite ammo"); y += 26;
-        instantReload = GUI.Toggle(new Rect(x, y, w, 24), instantReload, $"Instant reload ({instantReloads})"); y += 26;
-        bunnyHop = GUI.Toggle(new Rect(x, y, w, 24), bunnyHop, "Bunny hop"); y += 26;
-        fovChanger = GUI.Toggle(new Rect(x, y, w, 24), fovChanger, "FOV changer"); y += 26;
-        if (fovChanger)
-        {
-            GUI.Label(new Rect(x, y, w, 20), $"FOV: {targetFov:0}");
-            targetFov = GUI.HorizontalSlider(new Rect(x + 60, y + 4, w - 60, 20), targetFov, 60f, 120f);
-            y += 26;
-        }
-        customCrosshair = GUI.Toggle(new Rect(x, y, w, 24), customCrosshair, "Custom crosshair"); y += 26;
-        speedHack = GUI.Toggle(new Rect(x, y, w, 24), speedHack, "Speed hack"); y += 26;
-        if (speedHack)
-        {
-            GUI.Label(new Rect(x, y, w, 20), $"Speed: {speedMultiplier:0.0}x");
-            speedMultiplier = GUI.HorizontalSlider(new Rect(x + 60, y + 4, w - 60, 20), speedMultiplier, 0.5f, 5f);
-            y += 26;
-        }
-        flyHack = GUI.Toggle(new Rect(x, y, w, 24), flyHack, "Fly hack (Space=up, Shift=down)"); y += 26;
-        noClip = GUI.Toggle(new Rect(x, y, w, 24), noClip, "No clip"); y += 26;
-        weaponUnlock = GUI.Toggle(new Rect(x, y, w, 24), weaponUnlock, $"Unlock all weapons ({(weaponUnlockApplied ? weaponUnlockCount.ToString() : "off")})"); y += 26;
-        thirdPerson = GUI.Toggle(new Rect(x, y, w, 24), thirdPerson, "Third person camera"); y += 26;
-        if (thirdPerson)
-        {
-            GUI.Label(new Rect(x, y, w, 20), $"Distance: {thirdPersonDistance:0.0}");
-            thirdPersonDistance = GUI.HorizontalSlider(new Rect(x + 80, y + 4, w - 80, 20), thirdPersonDistance, 2f, 10f);
-            y += 26;
-        }
-        chams = GUI.Toggle(new Rect(x, y, w, 24), chams, "Chams (see players through walls)"); y += 26;
+        GUI.Label(new Rect(x, y, w, 24), "--- Trigger/Fire ---"); y += 26;
         triggerbot = GUI.Toggle(new Rect(x, y, w, 24), triggerbot, "Triggerbot (auto-fire on crosshair)"); y += 26;
         if (triggerbot)
         {
@@ -4553,53 +4602,76 @@ public sealed class Plugin : BasePlugin
             triggerbotRange = GUI.HorizontalSlider(new Rect(x + 80, y + 4, w - 80, 20), triggerbotRange, 50f, 500f);
             y += 26;
         }
-        fullbright = GUI.Toggle(new Rect(x, y, w, 24), fullbright, "Fullbright (no fog, max light)"); y += 26;
-        antiFlash = GUI.Toggle(new Rect(x, y, w, 24), antiFlash, "Anti-flashbang (block screen flash)"); y += 26;
-        wallhack = GUI.Toggle(new Rect(x, y, w, 24), wallhack, "Wallhack (tracer lines + distance)"); y += 26;
+        preFire = GUI.Toggle(new Rect(x, y, w, 24), preFire, "Pre-fire (auto-fire at close range)"); y += 26;
+        noRecoil = GUI.Toggle(new Rect(x, y, w, 24), noRecoil, "No recoil"); y += 26;
         noSpread = GUI.Toggle(new Rect(x, y, w, 24), noSpread, "No spread (zero recoil accumulator)"); y += 26;
         fastFire = GUI.Toggle(new Rect(x, y, w, 24), fastFire, "Fast fire rate (zero fire timer)"); y += 26;
-        nameEsp = GUI.Toggle(new Rect(x, y, w, 24), nameEsp, "Name ESP (show player names)"); y += 26;
+
+        GUI.Label(new Rect(x, y, w, 24), "--- Anti-Aim ---"); y += 26;
         spinbot = GUI.Toggle(new Rect(x, y, w, 24), spinbot, "Spinbot (anti-aim yaw spin)"); y += 26;
-        skeletonEsp = GUI.Toggle(new Rect(x, y, w, 24), skeletonEsp, "Skeleton ESP (bone tracing)"); y += 26;
-        radarHack = GUI.Toggle(new Rect(x, y, w, 24), radarHack, "Radar hack (mini-map all players)"); y += 26;
         antiAimPitch = GUI.Toggle(new Rect(x, y, w, 24), antiAimPitch, "Anti-aim pitch (fake look up/down)"); y += 26;
+        antiAimJitter = GUI.Toggle(new Rect(x, y, w, 24), antiAimJitter, "Anti-aim jitter (random yaw)"); y += 26;
         autoStrafe = GUI.Toggle(new Rect(x, y, w, 24), autoStrafe, "Auto-strafe (dodge pattern)"); y += 26;
-        killFeed = GUI.Toggle(new Rect(x, y, w, 24), killFeed, "Kill feed (log kills on screen)"); y += 26;
-        edgeJump = GUI.Toggle(new Rect(x, y, w, 24), edgeJump, "Edge jump (auto-jump at ledges)"); y += 26;
         fakeLag = GUI.Toggle(new Rect(x, y, w, 24), fakeLag, "Fake lag (delay position updates)"); y += 26;
-        spectatorWarning = GUI.Toggle(new Rect(x, y, w, 24), spectatorWarning, "Spectator warning (alert when watched)"); y += 26;
-        damageIndicator = GUI.Toggle(new Rect(x, y, w, 24), damageIndicator, "Damage indicator (red vignette)"); y += 26;
+
+        GUI.Label(new Rect(x, y, w, 24), "--- Hit/Kill Feedback ---"); y += 26;
         hitMarker = GUI.Toggle(new Rect(x, y, w, 24), hitMarker, "Hit marker (X at crosshair on hit)"); y += 26;
-        autoPickup = GUI.Toggle(new Rect(x, y, w, 24), autoPickup, "Auto-pickup (grab nearby items)"); y += 26;
-        xpGoldHack = GUI.Toggle(new Rect(x, y, w, 24), xpGoldHack, "XP/Gold hack (set exp=999k, gold=999k)"); y += 26;
+        damageIndicator = GUI.Toggle(new Rect(x, y, w, 24), damageIndicator, "Damage indicator (red vignette)"); y += 26;
+        killFeed = GUI.Toggle(new Rect(x, y, w, 24), killFeed, "Kill feed (log kills on screen)"); y += 26;
+        killSound = GUI.Toggle(new Rect(x, y, w, 24), killSound, "Kill sound (beep on kill)"); y += 26;
+        hitLog = GUI.Toggle(new Rect(x, y, w, 24), hitLog, "Hit log (log hits to file)"); y += 26;
+    }
+
+    // ---- Tab: ESP / Visual ----
+    private static void DrawEspTab(float x, ref float y, float w)
+    {
+        GUI.Label(new Rect(x, y, w, 24), "--- ESP Boxes ---"); y += 26;
+        espEnabled = GUI.Toggle(new Rect(x, y, w, 24), espEnabled, "ESP boxes"); y += 26;
+        if (espEnabled)
+        {
+            showHealth = GUI.Toggle(new Rect(x + 20, y, w - 20, 24), showHealth, "Show health"); y += 26;
+            showTeammates = GUI.Toggle(new Rect(x + 20, y, w - 20, 24), showTeammates, "Show teammates"); y += 26;
+            fovFilterEsp = GUI.Toggle(new Rect(x + 20, y, w - 20, 24), fovFilterEsp, "FOV filter ESP (only in FOV)"); y += 26;
+        }
+
+        GUI.Label(new Rect(x, y, w, 24), "--- ESP Types ---"); y += 26;
+        nameEsp = GUI.Toggle(new Rect(x, y, w, 24), nameEsp, "Name ESP (show player names)"); y += 26;
         healthBarEsp = GUI.Toggle(new Rect(x, y, w, 24), healthBarEsp, "Health bar ESP (bars above players)"); y += 26;
+        boxHeadEsp = GUI.Toggle(new Rect(x, y, w, 24), boxHeadEsp, "Box-head ESP (detailed boxes)"); y += 26;
+        distanceEsp = GUI.Toggle(new Rect(x, y, w, 24), distanceEsp, "Distance ESP (show meters)"); y += 26;
+        weaponIdEsp = GUI.Toggle(new Rect(x, y, w, 24), weaponIdEsp, "Weapon ID ESP (show enemy weapon)"); y += 26;
+        skeletonEsp = GUI.Toggle(new Rect(x, y, w, 24), skeletonEsp, "Skeleton ESP (bone tracing)"); y += 26;
+        footstepEsp = GUI.Toggle(new Rect(x, y, w, 24), footstepEsp, "Footstep ESP (recent enemy positions)"); y += 26;
+        backtrack = GUI.Toggle(new Rect(x, y, w, 24), backtrack, "Backtrack (past enemy positions)"); y += 26;
         snaplines = GUI.Toggle(new Rect(x, y, w, 24), snaplines, "Snaplines (lines to enemies)"); y += 26;
         threatIndicator = GUI.Toggle(new Rect(x, y, w, 24), threatIndicator, "Threat indicator (arrow to closest)"); y += 26;
-        nameChanger = GUI.Toggle(new Rect(x, y, w, 24), nameChanger, "Name changer"); y += 26;
-        if (nameChanger)
-        {
-            GUI.Label(new Rect(x, y, 60, 24), "Name:");
-            customName = GUI.TextField(new Rect(x + 60, y, w - 60, 24), customName, 20);
-            y += 26;
-        }
-        scoreboardHack = GUI.Toggle(new Rect(x, y, w, 24), scoreboardHack, "Scoreboard hack (team scores=999)"); y += 26;
-        autoBhop = GUI.Toggle(new Rect(x, y, w, 24), autoBhop, "Auto-bhop (perfect jump timing)"); y += 26;
-        pingSpoof = GUI.Toggle(new Rect(x, y, w, 24), pingSpoof, "Ping spoof (display fake ping)"); y += 26;
-        if (pingSpoof)
-        {
-            GUI.Label(new Rect(x, y, 60, 24), "Ping:");
-            var pingStr = GUI.TextField(new Rect(x + 60, y, 80, 24), fakePing.ToString(), 5);
-            if (int.TryParse(pingStr, out var parsed)) fakePing = parsed;
-            y += 26;
-        }
-        footstepEsp = GUI.Toggle(new Rect(x, y, w, 24), footstepEsp, "Footstep ESP (recent enemy positions)"); y += 26;
-        preFire = GUI.Toggle(new Rect(x, y, w, 24), preFire, "Pre-fire (auto-fire at close range)"); y += 26;
-        backtrack = GUI.Toggle(new Rect(x, y, w, 24), backtrack, "Backtrack (past enemy positions)"); y += 26;
-        adminUnlock = GUI.Toggle(new Rect(x, y, w, 24), adminUnlock, "Admin panel unlock"); y += 26;
-        boxHeadEsp = GUI.Toggle(new Rect(x, y, w, 24), boxHeadEsp, "Box-head ESP (detailed boxes)"); y += 26;
-        slideHack = GUI.Toggle(new Rect(x, y, w, 24), slideHack, "Slide hack (auto-crouch while moving)"); y += 26;
+
+        GUI.Label(new Rect(x, y, w, 24), "--- Radar ---"); y += 26;
+        radarHack = GUI.Toggle(new Rect(x, y, w, 24), radarHack, "Radar hack (mini-map all players)"); y += 26;
+        radarMiniMap = GUI.Toggle(new Rect(x, y, w, 24), radarMiniMap, "Radar mini-map (enemy positions)"); y += 26;
+        playerList = GUI.Toggle(new Rect(x, y, w, 24), playerList, "Player list (show all players)"); y += 26;
+
+        GUI.Label(new Rect(x, y, w, 24), "--- Player Rendering ---"); y += 26;
+        chams = GUI.Toggle(new Rect(x, y, w, 24), chams, "Chams (see players through walls)"); y += 26;
+        wallhack = GUI.Toggle(new Rect(x, y, w, 24), wallhack, "Wallhack (tracer lines + distance)"); y += 26;
+        wireframePlayers = GUI.Toggle(new Rect(x, y, w, 24), wireframePlayers, "Wireframe players (green outline)"); y += 26;
+
+        GUI.Label(new Rect(x, y, w, 24), "--- World Visual ---"); y += 26;
+        fullbright = GUI.Toggle(new Rect(x, y, w, 24), fullbright, "Fullbright (no fog, max light)"); y += 26;
+        nightVision = GUI.Toggle(new Rect(x, y, w, 24), nightVision, "Night vision (green tint + boost light)"); y += 26;
+        noFog = GUI.Toggle(new Rect(x, y, w, 24), noFog, "No fog (disable fog rendering)"); y += 26;
+        noSkybox = GUI.Toggle(new Rect(x, y, w, 24), noSkybox, "No skybox (better sky visibility)"); y += 26;
+        noShadows = GUI.Toggle(new Rect(x, y, w, 24), noShadows, "No shadows (disable all shadows)"); y += 26;
+        noSmoke = GUI.Toggle(new Rect(x, y, w, 24), noSmoke, "No smoke (disable smoke GOs)"); y += 26;
+        noRain = GUI.Toggle(new Rect(x, y, w, 24), noRain, "No rain (disable weather GOs)"); y += 26;
+        noGrass = GUI.Toggle(new Rect(x, y, w, 24), noGrass, "No grass (disable foliage)"); y += 26;
+        noMuzzleFlash = GUI.Toggle(new Rect(x, y, w, 24), noMuzzleFlash, "No muzzle flash (disable flash GOs)"); y += 26;
+        antiFlash = GUI.Toggle(new Rect(x, y, w, 24), antiFlash, "Anti-flashbang (block screen flash)"); y += 26;
         grenadeTrajectory = GUI.Toggle(new Rect(x, y, w, 24), grenadeTrajectory, "Grenade trajectory (throw arc)"); y += 26;
-        noFallDamage = GUI.Toggle(new Rect(x, y, w, 24), noFallDamage, "No fall damage (restore HP)"); y += 26;
+        screenCleaner = GUI.Toggle(new Rect(x, y, w, 24), screenCleaner, "Screen cleaner (remove ads/banners)"); y += 26;
+
+        GUI.Label(new Rect(x, y, w, 24), "--- Crosshair/Camera ---"); y += 26;
+        customCrosshair = GUI.Toggle(new Rect(x, y, w, 24), customCrosshair, "Custom crosshair (v1)"); y += 26;
         crosshairCustom = GUI.Toggle(new Rect(x, y, w, 24), crosshairCustom, "Custom crosshair v2 (color/size)"); y += 26;
         if (crosshairCustom)
         {
@@ -4618,31 +4690,7 @@ public sealed class Plugin : BasePlugin
             crosshairB = GUI.HorizontalSlider(new Rect(x + 230, y, 60, 24), crosshairB, 0f, 1f);
             y += 26;
         }
-        killSound = GUI.Toggle(new Rect(x, y, w, 24), killSound, "Kill sound (beep on kill)"); y += 26;
-        aimbotSmoothing = GUI.Toggle(new Rect(x, y, w, 24), aimbotSmoothing, "Aimbot smoothing (interpolate)"); y += 26;
-        if (aimbotSmoothing)
-        {
-            GUI.Label(new Rect(x, y, 60, 24), "Smooth:");
-            aimbotSmoothFactor = GUI.HorizontalSlider(new Rect(x + 60, y, 120, 24), aimbotSmoothFactor, 0.05f, 1f);
-            y += 26;
-        }
-        fastWeaponSwitch = GUI.Toggle(new Rect(x, y, w, 24), fastWeaponSwitch, "Fast weapon switch (zero timers)"); y += 26;
-        antiAimJitter = GUI.Toggle(new Rect(x, y, w, 24), antiAimJitter, "Anti-aim jitter (random yaw)"); y += 26;
-        debugOverlay = GUI.Toggle(new Rect(x, y, w, 24), debugOverlay, "Debug overlay (diagnostic info)"); y += 26;
-        autoAccept = GUI.Toggle(new Rect(x, y, w, 24), autoAccept, "Auto-accept (auto ready up)"); y += 26;
-        distanceEsp = GUI.Toggle(new Rect(x, y, w, 24), distanceEsp, "Distance ESP (show meters)"); y += 26;
-        weaponIdEsp = GUI.Toggle(new Rect(x, y, w, 24), weaponIdEsp, "Weapon ID ESP (show enemy weapon)"); y += 26;
-        chatSpammer = GUI.Toggle(new Rect(x, y, w, 24), chatSpammer, "Chat spammer (send message every 3s)"); y += 26;
-        if (chatSpammer)
-        {
-            GUI.Label(new Rect(x, y, 50, 24), "Msg:");
-            spamMessage = GUI.TextField(new Rect(x + 50, y, w - 50, 24), spamMessage, 30);
-            y += 26;
-        }
-        autoVoteYes = GUI.Toggle(new Rect(x, y, w, 24), autoVoteYes, "Auto vote yes (votekick auto-yes)"); y += 26;
-        autoRevive = GUI.Toggle(new Rect(x, y, w, 24), autoRevive, "Auto-revive (auto respawn when dead)"); y += 26;
-        noSkybox = GUI.Toggle(new Rect(x, y, w, 24), noSkybox, "No skybox (better sky visibility)"); y += 26;
-        wireframePlayers = GUI.Toggle(new Rect(x, y, w, 24), wireframePlayers, "Wireframe players (green outline)"); y += 26;
+        crosshairHitIndicator = GUI.Toggle(new Rect(x, y, w, 24), crosshairHitIndicator, "Crosshair hit indicator (red on enemy)"); y += 26;
         zoomHack = GUI.Toggle(new Rect(x, y, w, 24), zoomHack, "Zoom hack (lower FOV)"); y += 26;
         if (zoomHack)
         {
@@ -4650,11 +4698,20 @@ public sealed class Plugin : BasePlugin
             zoomFov = GUI.HorizontalSlider(new Rect(x + 40, y, 120, 24), zoomFov, 10f, 90f);
             y += 26;
         }
-        noMuzzleFlash = GUI.Toggle(new Rect(x, y, w, 24), noMuzzleFlash, "No muzzle flash (disable flash GOs)"); y += 26;
-        nightVision = GUI.Toggle(new Rect(x, y, w, 24), nightVision, "Night vision (green tint + boost light)"); y += 26;
-        noSmoke = GUI.Toggle(new Rect(x, y, w, 24), noSmoke, "No smoke (disable smoke GOs)"); y += 26;
-        autoSprint = GUI.Toggle(new Rect(x, y, w, 24), autoSprint, "Auto-sprint (always sprint when moving)"); y += 26;
-        noRain = GUI.Toggle(new Rect(x, y, w, 24), noRain, "No rain (disable weather GOs)"); y += 26;
+        fovChanger = GUI.Toggle(new Rect(x, y, w, 24), fovChanger, "FOV changer (camera FOV)"); y += 26;
+        if (fovChanger)
+        {
+            GUI.Label(new Rect(x, y, w, 20), $"FOV: {targetFov:0}");
+            targetFov = GUI.HorizontalSlider(new Rect(x + 60, y + 4, w - 60, 20), targetFov, 60f, 120f);
+            y += 26;
+        }
+        thirdPerson = GUI.Toggle(new Rect(x, y, w, 24), thirdPerson, "Third person camera"); y += 26;
+        if (thirdPerson)
+        {
+            GUI.Label(new Rect(x, y, w, 20), $"Distance: {thirdPersonDistance:0.0}");
+            thirdPersonDistance = GUI.HorizontalSlider(new Rect(x + 80, y + 4, w - 80, 20), thirdPersonDistance, 2f, 10f);
+            y += 26;
+        }
         thirdPersonShoulder = GUI.Toggle(new Rect(x, y, w, 24), thirdPersonShoulder, "Third person shoulder (OTS cam)"); y += 26;
         if (thirdPersonShoulder)
         {
@@ -4662,17 +4719,35 @@ public sealed class Plugin : BasePlugin
             thirdPersonShoulderX = GUI.HorizontalSlider(new Rect(x + 40, y, 120, 24), thirdPersonShoulderX, 0.5f, 4f);
             y += 26;
         }
-        aimbotPrediction = GUI.Toggle(new Rect(x, y, w, 24), aimbotPrediction, "Aimbot prediction (lead targets)"); y += 26;
+        spectatorWarning = GUI.Toggle(new Rect(x, y, w, 24), spectatorWarning, "Spectator warning (alert when watched)"); y += 26;
+    }
+
+    // ---- Tab: Movement ----
+    private static void DrawMovementTab(float x, ref float y, float w)
+    {
+        GUI.Label(new Rect(x, y, w, 24), "--- Jump/Hop ---"); y += 26;
+        bunnyHop = GUI.Toggle(new Rect(x, y, w, 24), bunnyHop, "Bunny hop"); y += 26;
+        autoBhop = GUI.Toggle(new Rect(x, y, w, 24), autoBhop, "Auto-bhop (perfect jump timing)"); y += 26;
+        edgeJump = GUI.Toggle(new Rect(x, y, w, 24), edgeJump, "Edge jump (auto-jump at ledges)"); y += 26;
+
+        GUI.Label(new Rect(x, y, w, 24), "--- Speed/Fly ---"); y += 26;
+        speedHack = GUI.Toggle(new Rect(x, y, w, 24), speedHack, "Speed hack"); y += 26;
+        if (speedHack)
+        {
+            GUI.Label(new Rect(x, y, w, 20), $"Speed: {speedMultiplier:0.0}x");
+            speedMultiplier = GUI.HorizontalSlider(new Rect(x + 60, y + 4, w - 60, 20), speedMultiplier, 0.5f, 5f);
+            y += 26;
+        }
+        flyHack = GUI.Toggle(new Rect(x, y, w, 24), flyHack, "Fly hack (Space=up, Shift=down)"); y += 26;
+        noClip = GUI.Toggle(new Rect(x, y, w, 24), noClip, "No clip"); y += 26;
+        autoSprint = GUI.Toggle(new Rect(x, y, w, 24), autoSprint, "Auto-sprint (always sprint when moving)"); y += 26;
+
+        GUI.Label(new Rect(x, y, w, 24), "--- Stance/Slide ---"); y += 26;
+        slideHack = GUI.Toggle(new Rect(x, y, w, 24), slideHack, "Slide hack (auto-crouch while moving)"); y += 26;
         autoCrouchIdle = GUI.Toggle(new Rect(x, y, w, 24), autoCrouchIdle, "Auto-crouch when idle (smaller hitbox)"); y += 26;
-        GUI.Label(new Rect(x, y, w, 24), "Panic mode: press [End] to disable all"); y += 26;
-        fovFilterEsp = GUI.Toggle(new Rect(x, y, w, 24), fovFilterEsp, "FOV filter ESP (only show in FOV)"); y += 26;
-        hitLog = GUI.Toggle(new Rect(x, y, w, 24), hitLog, "Hit log (log hits to file)"); y += 26;
-        autoWeaponSwap = GUI.Toggle(new Rect(x, y, w, 24), autoWeaponSwap, "Auto weapon swap (swap when empty)"); y += 26;
-        screenCleaner = GUI.Toggle(new Rect(x, y, w, 24), screenCleaner, "Screen cleaner (remove ads/banners)"); y += 26;
-        noShadows = GUI.Toggle(new Rect(x, y, w, 24), noShadows, "No shadows (disable all shadows)"); y += 26;
-        playerList = GUI.Toggle(new Rect(x, y, w, 24), playerList, "Player list (show all players)"); y += 26;
-        noGrass = GUI.Toggle(new Rect(x, y, w, 24), noGrass, "No grass (disable foliage)"); y += 26;
-        crosshairHitIndicator = GUI.Toggle(new Rect(x, y, w, 24), crosshairHitIndicator, "Crosshair hit indicator (red on enemy)"); y += 26;
+        noFallDamage = GUI.Toggle(new Rect(x, y, w, 24), noFallDamage, "No fall damage (restore HP)"); y += 26;
+
+        GUI.Label(new Rect(x, y, w, 24), "--- Time ---"); y += 26;
         timeScaleHack = GUI.Toggle(new Rect(x, y, w, 24), timeScaleHack, "Time scale hack (slow-mo/speed)"); y += 26;
         if (timeScaleHack)
         {
@@ -4680,10 +4755,17 @@ public sealed class Plugin : BasePlugin
             customTimeScale = GUI.HorizontalSlider(new Rect(x + 40, y, 120, 24), customTimeScale, 0.1f, 3f);
             y += 26;
         }
-        noFog = GUI.Toggle(new Rect(x, y, w, 24), noFog, "No fog (disable fog rendering)"); y += 26;
-        aimEnemiesOnly = GUI.Toggle(new Rect(x, y, w, 24), aimEnemiesOnly, "Aim enemies only (ignore allies)"); y += 26;
-        boneScan = GUI.Toggle(new Rect(x, y, w, 24), boneScan, "Bone scan (try alt bones if blocked)"); y += 26;
-        radarMiniMap = GUI.Toggle(new Rect(x, y, w, 24), radarMiniMap, "Radar mini-map (enemy positions)"); y += 26;
+    }
+
+    // ---- Tab: Weapons / Player ----
+    private static void DrawWeaponsTab(float x, ref float y, float w)
+    {
+        GUI.Label(new Rect(x, y, w, 24), "--- Health/Ammo ---"); y += 26;
+        infiniteHealth = GUI.Toggle(new Rect(x, y, w, 24), infiniteHealth, "Infinite health"); y += 26;
+        infiniteAmmo = GUI.Toggle(new Rect(x, y, w, 24), infiniteAmmo, "Infinite ammo"); y += 26;
+
+        GUI.Label(new Rect(x, y, w, 24), "--- Reload ---"); y += 26;
+        instantReload = GUI.Toggle(new Rect(x, y, w, 24), instantReload, $"Instant reload ({instantReloads})"); y += 26;
         autoReload = GUI.Toggle(new Rect(x, y, w, 24), autoReload, "Auto-reload (reload when low)"); y += 26;
         if (autoReload)
         {
@@ -4691,19 +4773,55 @@ public sealed class Plugin : BasePlugin
             autoReloadThreshold = (int)GUI.HorizontalSlider(new Rect(x + 60, y, 100, 24), autoReloadThreshold, 1, 30);
             y += 26;
         }
-        GUI.Label(new Rect(x, y, 80, 24), "Aim bone:"); y += 26;
-        for (var i = 0; i < AimBoneLabels.Length; i++)
+
+        GUI.Label(new Rect(x, y, w, 24), "--- Weapons ---"); y += 26;
+        weaponUnlock = GUI.Toggle(new Rect(x, y, w, 24), weaponUnlock, $"Unlock all weapons ({(weaponUnlockApplied ? weaponUnlockCount.ToString() : "off")})"); y += 26;
+        fastWeaponSwitch = GUI.Toggle(new Rect(x, y, w, 24), fastWeaponSwitch, "Fast weapon switch (zero timers)"); y += 26;
+        autoWeaponSwap = GUI.Toggle(new Rect(x, y, w, 24), autoWeaponSwap, "Auto weapon swap (swap when empty)"); y += 26;
+        autoPickup = GUI.Toggle(new Rect(x, y, w, 24), autoPickup, "Auto-pickup (grab nearby items)"); y += 26;
+
+        GUI.Label(new Rect(x, y, w, 24), "--- Player/Stats ---"); y += 26;
+        xpGoldHack = GUI.Toggle(new Rect(x, y, w, 24), xpGoldHack, "XP/Gold hack (set exp=999k, gold=999k)"); y += 26;
+        nameChanger = GUI.Toggle(new Rect(x, y, w, 24), nameChanger, "Name changer"); y += 26;
+        if (nameChanger)
         {
-            if (GUI.Toggle(new Rect(x + i * 90, y, 90, 24), aimBone == i, AimBoneLabels[i]))
-            {
-                aimBone = i;
-            }
+            GUI.Label(new Rect(x, y, 60, 24), "Name:");
+            customName = GUI.TextField(new Rect(x + 60, y, w - 60, 24), customName, 20);
+            y += 26;
         }
-        y += 26;
-        debugLogging = GUI.Toggle(new Rect(x, y, w, 24), debugLogging, $"Verbose diagnostics (summary only, 1/{DiagnosticInterval:0}s)"); y += 26;
+        scoreboardHack = GUI.Toggle(new Rect(x, y, w, 24), scoreboardHack, "Scoreboard hack (team scores=999)"); y += 26;
+        pingSpoof = GUI.Toggle(new Rect(x, y, w, 24), pingSpoof, "Ping spoof (display fake ping)"); y += 26;
+        if (pingSpoof)
+        {
+            GUI.Label(new Rect(x, y, 60, 24), "Ping:");
+            var pingStr = GUI.TextField(new Rect(x + 60, y, 80, 24), fakePing.ToString(), 5);
+            if (int.TryParse(pingStr, out var parsed)) fakePing = parsed;
+            y += 26;
+        }
+        adminUnlock = GUI.Toggle(new Rect(x, y, w, 24), adminUnlock, "Admin panel unlock"); y += 26;
+    }
+
+    // ---- Tab: Misc ----
+    private static void DrawMiscTab(float x, ref float y, float w)
+    {
+        GUI.Label(new Rect(x, y, w, 24), "--- Auto Actions ---"); y += 26;
+        autoAccept = GUI.Toggle(new Rect(x, y, w, 24), autoAccept, "Auto-accept (auto ready up)"); y += 26;
+        autoRevive = GUI.Toggle(new Rect(x, y, w, 24), autoRevive, "Auto-revive (auto respawn when dead)"); y += 26;
+        autoVoteYes = GUI.Toggle(new Rect(x, y, w, 24), autoVoteYes, "Auto vote yes (votekick auto-yes)"); y += 26;
+        chatSpammer = GUI.Toggle(new Rect(x, y, w, 24), chatSpammer, "Chat spammer (send message every 3s)"); y += 26;
+        if (chatSpammer)
+        {
+            GUI.Label(new Rect(x, y, 50, 24), "Msg:");
+            spamMessage = GUI.TextField(new Rect(x + 50, y, w - 50, 24), spamMessage, 30);
+            y += 26;
+        }
+
+        GUI.Label(new Rect(x, y, w, 24), "--- Debug ---"); y += 26;
+        debugOverlay = GUI.Toggle(new Rect(x, y, w, 24), debugOverlay, "Debug overlay (diagnostic info)"); y += 26;
+        debugLogging = GUI.Toggle(new Rect(x, y, w, 24), debugLogging, $"Verbose diagnostics (1/{DiagnosticInterval:0}s)"); y += 26;
         if (debugLogging)
         {
-            heavyDiagnostics = GUI.Toggle(new Rect(x + 20, y, w - 20, 24), heavyDiagnostics, "+ full field sweep (COSTLY: budgeted, still slows the game)"); y += 26;
+            heavyDiagnostics = GUI.Toggle(new Rect(x + 20, y, w - 20, 24), heavyDiagnostics, "+ full field sweep (COSTLY)"); y += 26;
         }
         showRuntimeStatus = GUI.Toggle(new Rect(x, y, w, 24), showRuntimeStatus, "Show runtime status"); y += 26;
         if (showRuntimeStatus)
@@ -4712,7 +4830,14 @@ public sealed class Plugin : BasePlugin
             GUI.Label(new Rect(x, y, w, 24), $"Aimbot: {aimStatus}"); y += 24;
         }
 
-        // Config presets section
+        GUI.Label(new Rect(x, y, w, 24), "--- Panic ---"); y += 26;
+        GUI.Label(new Rect(x, y, w, 24), "Press [End] to disable all features instantly"); y += 26;
+        GUI.Label(new Rect(x, y, w, 24), "Press [Home] to toggle this menu"); y += 26;
+    }
+
+    // ---- Tab: Config ----
+    private static void DrawConfigTab(float x, ref float y, float w)
+    {
         GUI.Label(new Rect(x, y, w, 24), "--- Config ---"); y += 26;
         if (GUI.Button(new Rect(x, y, 80, 24), "Save"))
         {
@@ -4722,8 +4847,8 @@ public sealed class Plugin : BasePlugin
         {
             ResetAllFeatures();
         }
-        y += 26;
-        // Config presets
+        y += 30;
+
         GUI.Label(new Rect(x, y, w, 24), "--- Presets ---"); y += 26;
         for (var i = 1; i <= 3; i++)
         {
@@ -4736,17 +4861,17 @@ public sealed class Plugin : BasePlugin
             {
                 LoadPreset(pname);
             }
-            y += 26;
+            y += 28;
         }
 
-        // Resize the menu to fit the content.
-        menuRect.height = y - menuRect.y + 10;
-
-        // Auto-save config whenever any menu control was interacted with.
-        if (GUI.changed)
+        GUI.Label(new Rect(x, y, w, 24), "--- Menu Position ---"); y += 26;
+        GUI.Label(new Rect(x, y, w, 24), $"Position: ({menuRect.x:0}, {menuRect.y:0})"); y += 24;
+        if (GUI.Button(new Rect(x, y, 100, 24), "Reset Pos"))
         {
-            SaveConfig();
+            menuRect.x = 20;
+            menuRect.y = 20;
         }
+        y += 28;
     }
 
     /// <summary>

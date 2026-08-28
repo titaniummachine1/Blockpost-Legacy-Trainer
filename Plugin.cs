@@ -192,6 +192,8 @@ public sealed class Plugin : BasePlugin
     private static bool noRain;
     private static bool thirdPersonShoulder;
     private static float thirdPersonShoulderX = 1.5f;
+    private static bool aimbotPrediction;
+    private static readonly Dictionary<int, Vector3> lastEnemyVelocities = new();
     private static int aimBone = 0; // 0=head, 1=chest, 2=pelvis
     private static readonly string[] AimBoneLabels = { "Head", "Chest", "Pelvis" };
     private static float fpsUpdateTimer;
@@ -1383,6 +1385,7 @@ public sealed class Plugin : BasePlugin
                     case "noRain": noRain = val == "1"; break;
                     case "thirdPersonShoulder": thirdPersonShoulder = val == "1"; break;
                     case "thirdPersonShoulderX": thirdPersonShoulderX = float.TryParse(val, out var tpsx) ? tpsx : 1.5f; break;
+                    case "aimbotPrediction": aimbotPrediction = val == "1"; break;
                     case "debugLogging": debugLogging = val == "1"; break;
                     case "heavyDiagnostics": heavyDiagnostics = val == "1"; break;
                     case "showRuntimeStatus": showRuntimeStatus = val == "1"; break;
@@ -1509,6 +1512,7 @@ public sealed class Plugin : BasePlugin
                 $"noRain={(noRain ? 1 : 0)}",
                 $"thirdPersonShoulder={(thirdPersonShoulder ? 1 : 0)}",
                 $"thirdPersonShoulderX={thirdPersonShoulderX}",
+                $"aimbotPrediction={(aimbotPrediction ? 1 : 0)}",
                 $"debugLogging={(debugLogging ? 1 : 0)}",
                 $"heavyDiagnostics={(heavyDiagnostics ? 1 : 0)}",
                 $"showRuntimeStatus={(showRuntimeStatus ? 1 : 0)}",
@@ -2544,6 +2548,7 @@ public sealed class Plugin : BasePlugin
         autoSprint = false;
         noRain = false;
         thirdPersonShoulder = false;
+        aimbotPrediction = false;
         ghostBullets = false;
         showHealth = false;
         SaveConfig();
@@ -3428,6 +3433,20 @@ public sealed class Plugin : BasePlugin
             var angle = Vector3.Angle(camera.transform.forward, direction);
             if (angle <= bestAngle && (!requireLos || HasLineOfSight(camera, player, headPosition)))
             {
+                // Aimbot prediction: lead moving targets
+                if (aimbotPrediction)
+                {
+                    var currentPos = player.OOMJGHCFODI;
+                    if (lastEnemyVelocities.TryGetValue(index, out var lastPos))
+                    {
+                        // Estimate velocity from position delta (approximate frame time)
+                        var velocity = (currentPos - lastPos) / Time.deltaTime;
+                        // Predict where target will be in ~0.1s (bullet travel time approx)
+                        headPosition += velocity * 0.1f;
+                    }
+                    lastEnemyVelocities[index] = currentPos;
+                }
+
                 bestAngle = angle;
                 bestPosition = headPosition;
                 lastAimTargetIndex = index;
@@ -4168,6 +4187,7 @@ public sealed class Plugin : BasePlugin
             thirdPersonShoulderX = GUI.HorizontalSlider(new Rect(x + 40, y, 120, 24), thirdPersonShoulderX, 0.5f, 4f);
             y += 26;
         }
+        aimbotPrediction = GUI.Toggle(new Rect(x, y, w, 24), aimbotPrediction, "Aimbot prediction (lead targets)"); y += 26;
         GUI.Label(new Rect(x, y, 80, 24), "Aim bone:"); y += 26;
         for (var i = 0; i < AimBoneLabels.Length; i++)
         {
@@ -4893,6 +4913,7 @@ public sealed class Plugin : BasePlugin
         if (autoSprint) features.Add("AutoSprint");
         if (noRain) features.Add("NoRain");
         if (thirdPersonShoulder) features.Add("OTSCam");
+        if (aimbotPrediction) features.Add("AimPredict");
         if (ghostBullets) features.Add("GhostBullets");
 
         if (features.Count == 0) return;

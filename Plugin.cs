@@ -208,6 +208,8 @@ public sealed class Plugin : BasePlugin
     private static bool playerList;
     private static bool noGrass;
     private static bool crosshairHitIndicator;
+    private static bool timeScaleHack;
+    private static float customTimeScale = 1f;
     private static int aimBone = 0; // 0=head, 1=chest, 2=pelvis
     private static readonly string[] AimBoneLabels = { "Head", "Chest", "Pelvis" };
     private static float fpsUpdateTimer;
@@ -397,6 +399,8 @@ public sealed class Plugin : BasePlugin
         if (screenCleaner) ApplyScreenCleaner();
         if (noShadows) ApplyNoShadows();
         if (noGrass) ApplyNoGrass();
+        if (timeScaleHack) Time.timeScale = customTimeScale;
+        else if (!timeScaleHack && Time.timeScale != 1f) Time.timeScale = 1f;
         PrepareRapidFirePrefix();
 
         // If we're not shooting this frame but the button is still held from
@@ -1434,6 +1438,8 @@ public sealed class Plugin : BasePlugin
                     case "playerList": playerList = val == "1"; break;
                     case "noGrass": noGrass = val == "1"; break;
                     case "crosshairHitIndicator": crosshairHitIndicator = val == "1"; break;
+                    case "timeScaleHack": timeScaleHack = val == "1"; break;
+                    case "customTimeScale": customTimeScale = float.TryParse(val, out var cts) ? cts : 1f; break;
                     case "debugLogging": debugLogging = val == "1"; break;
                     case "heavyDiagnostics": heavyDiagnostics = val == "1"; break;
                     case "showRuntimeStatus": showRuntimeStatus = val == "1"; break;
@@ -1571,6 +1577,8 @@ public sealed class Plugin : BasePlugin
                 $"playerList={(playerList ? 1 : 0)}",
                 $"noGrass={(noGrass ? 1 : 0)}",
                 $"crosshairHitIndicator={(crosshairHitIndicator ? 1 : 0)}",
+                $"timeScaleHack={(timeScaleHack ? 1 : 0)}",
+                $"customTimeScale={customTimeScale}",
                 $"debugLogging={(debugLogging ? 1 : 0)}",
                 $"heavyDiagnostics={(heavyDiagnostics ? 1 : 0)}",
                 $"showRuntimeStatus={(showRuntimeStatus ? 1 : 0)}",
@@ -2877,6 +2885,7 @@ public sealed class Plugin : BasePlugin
         playerList = false;
         noGrass = false;
         crosshairHitIndicator = false;
+        timeScaleHack = false;
         ghostBullets = false;
         showHealth = false;
         SaveConfig();
@@ -4547,6 +4556,13 @@ public sealed class Plugin : BasePlugin
         playerList = GUI.Toggle(new Rect(x, y, w, 24), playerList, "Player list (show all players)"); y += 26;
         noGrass = GUI.Toggle(new Rect(x, y, w, 24), noGrass, "No grass (disable foliage)"); y += 26;
         crosshairHitIndicator = GUI.Toggle(new Rect(x, y, w, 24), crosshairHitIndicator, "Crosshair hit indicator (red on enemy)"); y += 26;
+        timeScaleHack = GUI.Toggle(new Rect(x, y, w, 24), timeScaleHack, "Time scale hack (slow-mo/speed)"); y += 26;
+        if (timeScaleHack)
+        {
+            GUI.Label(new Rect(x, y, 40, 24), "Scale:");
+            customTimeScale = GUI.HorizontalSlider(new Rect(x + 40, y, 120, 24), customTimeScale, 0.1f, 3f);
+            y += 26;
+        }
         GUI.Label(new Rect(x, y, 80, 24), "Aim bone:"); y += 26;
         for (var i = 0; i < AimBoneLabels.Length; i++)
         {
@@ -5283,6 +5299,7 @@ public sealed class Plugin : BasePlugin
         if (playerList) features.Add("PlayerList");
         if (noGrass) features.Add("NoGrass");
         if (crosshairHitIndicator) features.Add("HitIndicator");
+        if (timeScaleHack) features.Add($"TimeScale:{customTimeScale:F1}x");
         if (ghostBullets) features.Add("GhostBullets");
 
         if (features.Count == 0) return;

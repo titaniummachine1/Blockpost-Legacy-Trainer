@@ -183,6 +183,9 @@ public sealed class Plugin : BasePlugin
     private static bool autoRevive;
     private static bool noSkybox;
     private static bool wireframePlayers;
+    private static bool zoomHack;
+    private static float zoomFov = 30f;
+    private static bool noMuzzleFlash;
     private static int aimBone = 0; // 0=head, 1=chest, 2=pelvis
     private static readonly string[] AimBoneLabels = { "Head", "Chest", "Pelvis" };
     private static float fpsUpdateTimer;
@@ -358,6 +361,8 @@ public sealed class Plugin : BasePlugin
         if (autoRevive) ApplyAutoRevive();
         ApplyNoSkybox();
         ApplyWireframePlayers();
+        if (zoomHack) ApplyZoomHack();
+        if (noMuzzleFlash) ApplyNoMuzzleFlash();
         PrepareRapidFirePrefix();
 
         // If we're not shooting this frame but the button is still held from
@@ -1358,6 +1363,9 @@ public sealed class Plugin : BasePlugin
                     case "autoRevive": autoRevive = val == "1"; break;
                     case "noSkybox": noSkybox = val == "1"; break;
                     case "wireframePlayers": wireframePlayers = val == "1"; break;
+                    case "zoomHack": zoomHack = val == "1"; break;
+                    case "zoomFov": zoomFov = float.TryParse(val, out var zf) ? zf : 30f; break;
+                    case "noMuzzleFlash": noMuzzleFlash = val == "1"; break;
                     case "debugLogging": debugLogging = val == "1"; break;
                     case "heavyDiagnostics": heavyDiagnostics = val == "1"; break;
                     case "showRuntimeStatus": showRuntimeStatus = val == "1"; break;
@@ -1475,6 +1483,9 @@ public sealed class Plugin : BasePlugin
                 $"autoRevive={(autoRevive ? 1 : 0)}",
                 $"noSkybox={(noSkybox ? 1 : 0)}",
                 $"wireframePlayers={(wireframePlayers ? 1 : 0)}",
+                $"zoomHack={(zoomHack ? 1 : 0)}",
+                $"zoomFov={zoomFov}",
+                $"noMuzzleFlash={(noMuzzleFlash ? 1 : 0)}",
                 $"debugLogging={(debugLogging ? 1 : 0)}",
                 $"heavyDiagnostics={(heavyDiagnostics ? 1 : 0)}",
                 $"showRuntimeStatus={(showRuntimeStatus ? 1 : 0)}",
@@ -1525,6 +1536,45 @@ public sealed class Plugin : BasePlugin
         {
             instance?.Log.LogError($"[Config] Failed to load preset '{name}': {ex.Message}");
         }
+    }
+
+    /// <summary>
+    /// Zoom hack: set camera FOV to a lower value for zoom effect.
+    /// Configurable FOV (default 30, lower = more zoom).
+    /// </summary>
+    private static void ApplyZoomHack()
+    {
+        try
+        {
+            var cam = ResolveCamera();
+            if (cam != null) cam.fieldOfView = zoomFov;
+        }
+        catch { }
+    }
+
+    /// <summary>
+    /// No muzzle flash: disable muzzle flash GameObjects and light effects.
+    /// Searches for GameObjects with "muzzle", "flash", "flashlight" in name.
+    /// </summary>
+    private static void ApplyNoMuzzleFlash()
+    {
+        try
+        {
+            var allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>();
+            if (allObjects == null) return;
+            foreach (var go in allObjects)
+            {
+                if (go == null) continue;
+                var name = go.name;
+                if (string.IsNullOrEmpty(name)) continue;
+                var lower = name.ToLower();
+                if (lower.Contains("muzzle") || lower.Contains("flashlight"))
+                {
+                    go.SetActive(false);
+                }
+            }
+        }
+        catch { }
     }
 
     /// <summary>
@@ -2352,6 +2402,8 @@ public sealed class Plugin : BasePlugin
         autoRevive = false;
         noSkybox = false;
         wireframePlayers = false;
+        zoomHack = false;
+        noMuzzleFlash = false;
         ghostBullets = false;
         showHealth = false;
         SaveConfig();
@@ -3957,6 +4009,14 @@ public sealed class Plugin : BasePlugin
         autoRevive = GUI.Toggle(new Rect(x, y, w, 24), autoRevive, "Auto-revive (auto respawn when dead)"); y += 26;
         noSkybox = GUI.Toggle(new Rect(x, y, w, 24), noSkybox, "No skybox (better sky visibility)"); y += 26;
         wireframePlayers = GUI.Toggle(new Rect(x, y, w, 24), wireframePlayers, "Wireframe players (green outline)"); y += 26;
+        zoomHack = GUI.Toggle(new Rect(x, y, w, 24), zoomHack, "Zoom hack (lower FOV)"); y += 26;
+        if (zoomHack)
+        {
+            GUI.Label(new Rect(x, y, 40, 24), "FOV:");
+            zoomFov = GUI.HorizontalSlider(new Rect(x + 40, y, 120, 24), zoomFov, 10f, 90f);
+            y += 26;
+        }
+        noMuzzleFlash = GUI.Toggle(new Rect(x, y, w, 24), noMuzzleFlash, "No muzzle flash (disable flash GOs)"); y += 26;
         GUI.Label(new Rect(x, y, 80, 24), "Aim bone:"); y += 26;
         for (var i = 0; i < AimBoneLabels.Length; i++)
         {
@@ -4675,6 +4735,8 @@ public sealed class Plugin : BasePlugin
         if (autoRevive) features.Add("AutoRevive");
         if (noSkybox) features.Add("NoSkybox");
         if (wireframePlayers) features.Add("Wireframe");
+        if (zoomHack) features.Add($"Zoom:{zoomFov:F0}");
+        if (noMuzzleFlash) features.Add("NoMuzzleFlash");
         if (ghostBullets) features.Add("GhostBullets");
 
         if (features.Count == 0) return;

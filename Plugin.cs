@@ -189,6 +189,9 @@ public sealed class Plugin : BasePlugin
     private static bool nightVision;
     private static bool noSmoke;
     private static bool autoSprint;
+    private static bool noRain;
+    private static bool thirdPersonShoulder;
+    private static float thirdPersonShoulderX = 1.5f;
     private static int aimBone = 0; // 0=head, 1=chest, 2=pelvis
     private static readonly string[] AimBoneLabels = { "Head", "Chest", "Pelvis" };
     private static float fpsUpdateTimer;
@@ -369,6 +372,8 @@ public sealed class Plugin : BasePlugin
         if (nightVision) ApplyNightVision();
         if (noSmoke) ApplyNoSmoke();
         if (autoSprint) ApplyAutoSprint();
+        if (noRain) ApplyNoRain();
+        if (thirdPersonShoulder) ApplyThirdPersonShoulder();
         PrepareRapidFirePrefix();
 
         // If we're not shooting this frame but the button is still held from
@@ -1375,6 +1380,9 @@ public sealed class Plugin : BasePlugin
                     case "nightVision": nightVision = val == "1"; break;
                     case "noSmoke": noSmoke = val == "1"; break;
                     case "autoSprint": autoSprint = val == "1"; break;
+                    case "noRain": noRain = val == "1"; break;
+                    case "thirdPersonShoulder": thirdPersonShoulder = val == "1"; break;
+                    case "thirdPersonShoulderX": thirdPersonShoulderX = float.TryParse(val, out var tpsx) ? tpsx : 1.5f; break;
                     case "debugLogging": debugLogging = val == "1"; break;
                     case "heavyDiagnostics": heavyDiagnostics = val == "1"; break;
                     case "showRuntimeStatus": showRuntimeStatus = val == "1"; break;
@@ -1498,6 +1506,9 @@ public sealed class Plugin : BasePlugin
                 $"nightVision={(nightVision ? 1 : 0)}",
                 $"noSmoke={(noSmoke ? 1 : 0)}",
                 $"autoSprint={(autoSprint ? 1 : 0)}",
+                $"noRain={(noRain ? 1 : 0)}",
+                $"thirdPersonShoulder={(thirdPersonShoulder ? 1 : 0)}",
+                $"thirdPersonShoulderX={thirdPersonShoulderX}",
                 $"debugLogging={(debugLogging ? 1 : 0)}",
                 $"heavyDiagnostics={(heavyDiagnostics ? 1 : 0)}",
                 $"showRuntimeStatus={(showRuntimeStatus ? 1 : 0)}",
@@ -1548,6 +1559,49 @@ public sealed class Plugin : BasePlugin
         {
             instance?.Log.LogError($"[Config] Failed to load preset '{name}': {ex.Message}");
         }
+    }
+
+    /// <summary>
+    /// No rain: disable rain and weather particle GameObjects.
+    /// </summary>
+    private static void ApplyNoRain()
+    {
+        try
+        {
+            var allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>();
+            if (allObjects == null) return;
+            foreach (var go in allObjects)
+            {
+                if (go == null) continue;
+                var name = go.name;
+                if (string.IsNullOrEmpty(name)) continue;
+                var lower = name.ToLower();
+                if (lower.Contains("rain") || lower.Contains("weather") || lower.Contains("snow"))
+                {
+                    go.SetActive(false);
+                }
+            }
+        }
+        catch { }
+    }
+
+    /// <summary>
+    /// Third person shoulder: offset the camera to the right of the player
+    /// for an over-the-shoulder view. Uses camera.transform.position offset.
+    /// </summary>
+    private static void ApplyThirdPersonShoulder()
+    {
+        try
+        {
+            var camera = ResolveCamera();
+            var main = Controll.HGAODFPBGLB;
+            if (camera == null || main == null) return;
+            // Offset camera to the right and slightly up
+            var right = camera.transform.right * thirdPersonShoulderX;
+            var up = camera.transform.up * 0.5f;
+            camera.transform.position = main.OOMJGHCFODI + right + up + camera.transform.forward * -2f;
+        }
+        catch { }
     }
 
     /// <summary>
@@ -2488,6 +2542,8 @@ public sealed class Plugin : BasePlugin
         nightVision = false;
         noSmoke = false;
         autoSprint = false;
+        noRain = false;
+        thirdPersonShoulder = false;
         ghostBullets = false;
         showHealth = false;
         SaveConfig();
@@ -4104,6 +4160,14 @@ public sealed class Plugin : BasePlugin
         nightVision = GUI.Toggle(new Rect(x, y, w, 24), nightVision, "Night vision (green tint + boost light)"); y += 26;
         noSmoke = GUI.Toggle(new Rect(x, y, w, 24), noSmoke, "No smoke (disable smoke GOs)"); y += 26;
         autoSprint = GUI.Toggle(new Rect(x, y, w, 24), autoSprint, "Auto-sprint (always sprint when moving)"); y += 26;
+        noRain = GUI.Toggle(new Rect(x, y, w, 24), noRain, "No rain (disable weather GOs)"); y += 26;
+        thirdPersonShoulder = GUI.Toggle(new Rect(x, y, w, 24), thirdPersonShoulder, "Third person shoulder (OTS cam)"); y += 26;
+        if (thirdPersonShoulder)
+        {
+            GUI.Label(new Rect(x, y, 40, 24), "Offset:");
+            thirdPersonShoulderX = GUI.HorizontalSlider(new Rect(x + 40, y, 120, 24), thirdPersonShoulderX, 0.5f, 4f);
+            y += 26;
+        }
         GUI.Label(new Rect(x, y, 80, 24), "Aim bone:"); y += 26;
         for (var i = 0; i < AimBoneLabels.Length; i++)
         {
@@ -4827,6 +4891,8 @@ public sealed class Plugin : BasePlugin
         if (nightVision) features.Add("NightVision");
         if (noSmoke) features.Add("NoSmoke");
         if (autoSprint) features.Add("AutoSprint");
+        if (noRain) features.Add("NoRain");
+        if (thirdPersonShoulder) features.Add("OTSCam");
         if (ghostBullets) features.Add("GhostBullets");
 
         if (features.Count == 0) return;

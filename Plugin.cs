@@ -198,6 +198,7 @@ public sealed class Plugin : BasePlugin
     private static int lastKillStreakCheck = -1;
     private static int currentKillStreak;
     private static float lastKillTime;
+    private static bool panicMode;
     private static int aimBone = 0; // 0=head, 1=chest, 2=pelvis
     private static readonly string[] AimBoneLabels = { "Head", "Chest", "Pelvis" };
     private static float fpsUpdateTimer;
@@ -1232,6 +1233,23 @@ public sealed class Plugin : BasePlugin
 
     private static void ToggleMenuIfRequested()
     {
+        // Panic mode: press End to instantly disable all features
+        if (Input.GetKeyDown(KeyCode.End))
+        {
+            panicMode = !panicMode;
+            if (panicMode)
+            {
+                ResetAllFeatures();
+                instance?.Log.LogInfo("[Panic] All features disabled (panic mode ON)");
+            }
+            else
+            {
+                instance?.Log.LogInfo("[Panic] Panic mode OFF — reload config");
+                LoadConfig();
+            }
+            return;
+        }
+
         if (!Input.GetKeyDown(KeyCode.Home))
         {
             return;
@@ -1393,6 +1411,7 @@ public sealed class Plugin : BasePlugin
                     case "thirdPersonShoulderX": thirdPersonShoulderX = float.TryParse(val, out var tpsx) ? tpsx : 1.5f; break;
                     case "aimbotPrediction": aimbotPrediction = val == "1"; break;
                     case "autoCrouchIdle": autoCrouchIdle = val == "1"; break;
+                    case "panicMode": panicMode = val == "1"; break;
                     case "debugLogging": debugLogging = val == "1"; break;
                     case "heavyDiagnostics": heavyDiagnostics = val == "1"; break;
                     case "showRuntimeStatus": showRuntimeStatus = val == "1"; break;
@@ -1521,6 +1540,7 @@ public sealed class Plugin : BasePlugin
                 $"thirdPersonShoulderX={thirdPersonShoulderX}",
                 $"aimbotPrediction={(aimbotPrediction ? 1 : 0)}",
                 $"autoCrouchIdle={(autoCrouchIdle ? 1 : 0)}",
+                $"panicMode={(panicMode ? 1 : 0)}",
                 $"debugLogging={(debugLogging ? 1 : 0)}",
                 $"heavyDiagnostics={(heavyDiagnostics ? 1 : 0)}",
                 $"showRuntimeStatus={(showRuntimeStatus ? 1 : 0)}",
@@ -4249,6 +4269,7 @@ public sealed class Plugin : BasePlugin
         }
         aimbotPrediction = GUI.Toggle(new Rect(x, y, w, 24), aimbotPrediction, "Aimbot prediction (lead targets)"); y += 26;
         autoCrouchIdle = GUI.Toggle(new Rect(x, y, w, 24), autoCrouchIdle, "Auto-crouch when idle (smaller hitbox)"); y += 26;
+        GUI.Label(new Rect(x, y, w, 24), "Panic mode: press [End] to disable all"); y += 26;
         GUI.Label(new Rect(x, y, 80, 24), "Aim bone:"); y += 26;
         for (var i = 0; i < AimBoneLabels.Length; i++)
         {
@@ -4976,6 +4997,7 @@ public sealed class Plugin : BasePlugin
         if (thirdPersonShoulder) features.Add("OTSCam");
         if (aimbotPrediction) features.Add("AimPredict");
         if (autoCrouchIdle) features.Add("AutoCrouch");
+        if (panicMode) features.Add("PANIC!");
         if (ghostBullets) features.Add("GhostBullets");
 
         if (features.Count == 0) return;

@@ -206,6 +206,8 @@ public sealed class Plugin : BasePlugin
     private static bool screenCleaner;
     private static bool noShadows;
     private static bool playerList;
+    private static bool noGrass;
+    private static bool crosshairHitIndicator;
     private static int aimBone = 0; // 0=head, 1=chest, 2=pelvis
     private static readonly string[] AimBoneLabels = { "Head", "Chest", "Pelvis" };
     private static float fpsUpdateTimer;
@@ -394,6 +396,7 @@ public sealed class Plugin : BasePlugin
         if (autoWeaponSwap) ApplyAutoWeaponSwap();
         if (screenCleaner) ApplyScreenCleaner();
         if (noShadows) ApplyNoShadows();
+        if (noGrass) ApplyNoGrass();
         PrepareRapidFirePrefix();
 
         // If we're not shooting this frame but the button is still held from
@@ -1429,6 +1432,8 @@ public sealed class Plugin : BasePlugin
                     case "screenCleaner": screenCleaner = val == "1"; break;
                     case "noShadows": noShadows = val == "1"; break;
                     case "playerList": playerList = val == "1"; break;
+                    case "noGrass": noGrass = val == "1"; break;
+                    case "crosshairHitIndicator": crosshairHitIndicator = val == "1"; break;
                     case "debugLogging": debugLogging = val == "1"; break;
                     case "heavyDiagnostics": heavyDiagnostics = val == "1"; break;
                     case "showRuntimeStatus": showRuntimeStatus = val == "1"; break;
@@ -1564,6 +1569,8 @@ public sealed class Plugin : BasePlugin
                 $"screenCleaner={(screenCleaner ? 1 : 0)}",
                 $"noShadows={(noShadows ? 1 : 0)}",
                 $"playerList={(playerList ? 1 : 0)}",
+                $"noGrass={(noGrass ? 1 : 0)}",
+                $"crosshairHitIndicator={(crosshairHitIndicator ? 1 : 0)}",
                 $"debugLogging={(debugLogging ? 1 : 0)}",
                 $"heavyDiagnostics={(heavyDiagnostics ? 1 : 0)}",
                 $"showRuntimeStatus={(showRuntimeStatus ? 1 : 0)}",
@@ -1633,6 +1640,81 @@ public sealed class Plugin : BasePlugin
             }
         }
         catch { }
+    }
+
+    /// <summary>
+    /// No grass: disable grass and foliage GameObjects for better ground visibility.
+    /// </summary>
+    private static void ApplyNoGrass()
+    {
+        try
+        {
+            var allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>();
+            if (allObjects == null) return;
+            foreach (var go in allObjects)
+            {
+                if (go == null) continue;
+                var name = go.name;
+                if (string.IsNullOrEmpty(name)) continue;
+                var lower = name.ToLower();
+                if (lower.Contains("grass") || lower.Contains("bush") || lower.Contains("foliage") || lower.Contains("plant"))
+                {
+                    go.SetActive(false);
+                }
+            }
+        }
+        catch { }
+    }
+
+    /// <summary>
+    /// Draw crosshair hit indicator: changes crosshair color when aiming at an enemy.
+    /// Uses a raycast from camera center to check if crosshair is on an enemy player.
+    /// </summary>
+    private static void DrawCrosshairHitIndicator()
+    {
+        var camera = ResolveCamera();
+        if (camera == null) return;
+        var mainPlayer = Controll.HGAODFPBGLB;
+        if (mainPlayer == null) return;
+
+        var hitEnemy = false;
+        var ray = new Ray(camera.transform.position, camera.transform.forward);
+        if (Physics.Raycast(ray, out var hit, 200f))
+        {
+            // Check if hit object is a player
+            var hitTransform = hit.transform;
+            while (hitTransform != null)
+            {
+                var players = PLH.BAKLNPIEHMI;
+                if (players != null)
+                {
+                    for (var i = 0; i < players.Length; i++)
+                    {
+                        var player = players[i];
+                        if (player == null || player.ACEHIBLPHCA == null) continue;
+                        if (hitTransform == player.ACEHIBLPHCA.transform ||
+                            hitTransform.IsChildOf(player.ACEHIBLPHCA.transform))
+                        {
+                            if (player.MMMGPDBMOLM != mainPlayer.MMMGPDBMOLM)
+                            {
+                                hitEnemy = true;
+                            }
+                            break;
+                        }
+                    }
+                }
+                if (hitEnemy) break;
+                hitTransform = hitTransform.parent;
+            }
+        }
+
+        var cx = Screen.width / 2f;
+        var cy = Screen.height / 2f;
+        var prevColor = GUI.color;
+        GUI.color = hitEnemy ? new Color(1f, 0f, 0f, 0.9f) : new Color(1f, 1f, 1f, 0.5f);
+        // Draw a small dot in center
+        GUI.DrawTexture(new Rect(cx - 2, cy - 2, 4, 4), Texture2D.whiteTexture);
+        GUI.color = prevColor;
     }
 
     /// <summary>
@@ -2793,6 +2875,8 @@ public sealed class Plugin : BasePlugin
         screenCleaner = false;
         noShadows = false;
         playerList = false;
+        noGrass = false;
+        crosshairHitIndicator = false;
         ghostBullets = false;
         showHealth = false;
         SaveConfig();
@@ -4171,6 +4255,12 @@ public sealed class Plugin : BasePlugin
                 DrawPlayerList();
             }
 
+            // Crosshair hit indicator: red dot when aiming at enemy
+            if (crosshairHitIndicator && !menuVisible)
+            {
+                DrawCrosshairHitIndicator();
+            }
+
             // Distance ESP: show distance below enemy boxes
             if (distanceEsp && !menuVisible)
             {
@@ -4455,6 +4545,8 @@ public sealed class Plugin : BasePlugin
         screenCleaner = GUI.Toggle(new Rect(x, y, w, 24), screenCleaner, "Screen cleaner (remove ads/banners)"); y += 26;
         noShadows = GUI.Toggle(new Rect(x, y, w, 24), noShadows, "No shadows (disable all shadows)"); y += 26;
         playerList = GUI.Toggle(new Rect(x, y, w, 24), playerList, "Player list (show all players)"); y += 26;
+        noGrass = GUI.Toggle(new Rect(x, y, w, 24), noGrass, "No grass (disable foliage)"); y += 26;
+        crosshairHitIndicator = GUI.Toggle(new Rect(x, y, w, 24), crosshairHitIndicator, "Crosshair hit indicator (red on enemy)"); y += 26;
         GUI.Label(new Rect(x, y, 80, 24), "Aim bone:"); y += 26;
         for (var i = 0; i < AimBoneLabels.Length; i++)
         {
@@ -5189,6 +5281,8 @@ public sealed class Plugin : BasePlugin
         if (screenCleaner) features.Add("ScreenClean");
         if (noShadows) features.Add("NoShadows");
         if (playerList) features.Add("PlayerList");
+        if (noGrass) features.Add("NoGrass");
+        if (crosshairHitIndicator) features.Add("HitIndicator");
         if (ghostBullets) features.Add("GhostBullets");
 
         if (features.Count == 0) return;

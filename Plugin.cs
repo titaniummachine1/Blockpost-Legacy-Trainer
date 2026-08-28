@@ -86,6 +86,8 @@ public sealed class Plugin : BasePlugin
     private static int recoilCalls;
     private static int recoilSuppressed;
     private static bool guiFailureLogged;
+    private static bool configLoaded;
+    private static int framesSinceLoad;
     private static bool inventoryDumped;
     private static bool pendingLeftMouseUp;
     private static bool forceShotThisFrame;
@@ -596,14 +598,28 @@ public sealed class Plugin : BasePlugin
                     var colliders = root.GetComponentsInChildren<Collider>(true);
                     if (colliders != null)
                     {
+                        var disabled = 0;
                         foreach (var c in colliders)
                         {
                             if (c != null && c.enabled)
                             {
                                 c.enabled = false;
+                                disabled++;
                             }
                         }
+                        if (disabled > 0)
+                        {
+                            AsyncLog.Write($"[NoClip] disabled {disabled} colliders on {root.name}");
+                        }
                     }
+                    else
+                    {
+                        AsyncLog.Write($"[NoClip] no colliders found on {root.name}");
+                    }
+                }
+                else
+                {
+                    AsyncLog.Write("[NoClip] root GameObject (LANBONKMIME) is null");
                 }
             }
         }
@@ -626,7 +642,11 @@ public sealed class Plugin : BasePlugin
             }
 
             var players = PLH.BAKLNPIEHMI;
-            if (players == null) return;
+            if (players == null)
+            {
+                AsyncLog.Write("[GokuTP] players array is null");
+                return;
+            }
 
             var myPos = main.OOMJGHCFODI;
             var myTeam = main.MMMGPDBMOLM;
@@ -636,6 +656,7 @@ public sealed class Plugin : BasePlugin
             var bestDist = float.MaxValue;
             var bestPos = Vector3.zero;
             var bestForward = Vector3.forward;
+            var validCount = 0;
 
             for (var i = 0; i < players.Length; i++)
             {
@@ -646,6 +667,7 @@ public sealed class Plugin : BasePlugin
                 if (player.MMMGPDBMOLM == myTeam) continue;       // same team
                 if (player._LCEIAGLFFJN_k__BackingField) continue; // invalid flag
 
+                validCount++;
                 var enemyPos = player.OOMJGHCFODI;
                 var dist = Vector3.Distance(myPos, enemyPos);
                 if (dist < bestDist)
@@ -661,7 +683,12 @@ public sealed class Plugin : BasePlugin
                 }
             }
 
-            if (bestTarget == null) return;
+            if (bestTarget == null)
+            {
+                AsyncLog.Write($"[GokuTP] no valid enemy found (players={players.Length}, valid={validCount}, team={myTeam})");
+                gokuTpCooldown = 0.5f; // longer cooldown when no target
+                return;
+            }
 
             // Position 2m behind the enemy (opposite of their view direction)
             var tpPos = bestPos - bestForward * 2f;
@@ -673,6 +700,11 @@ public sealed class Plugin : BasePlugin
             {
                 rb.position = tpPos;
                 rb.velocity = Vector3.zero;
+                AsyncLog.Write($"[GokuTP] TP to {tpPos} (enemy at {bestPos}, dist={bestDist:0.0}m, fwd={bestForward})");
+            }
+            else
+            {
+                AsyncLog.Write("[GokuTP] rigidbody is null, trying position only");
             }
 
             // Also set the player position field directly
@@ -680,7 +712,10 @@ public sealed class Plugin : BasePlugin
 
             gokuTpCooldown = 0.1f; // 100ms cooldown
         }
-        catch { }
+        catch (Exception e)
+        {
+            AsyncLog.Write($"[GokuTP] error: {e.Message}");
+        }
     }
 
     /// <summary>
@@ -1486,6 +1521,8 @@ public sealed class Plugin : BasePlugin
             }
 
             ApplyConfigLines(File.ReadAllLines(ConfigPath));
+            configLoaded = true;
+            framesSinceLoad = 0;
         }
         catch (Exception ex)
         {
@@ -4798,7 +4835,10 @@ public sealed class Plugin : BasePlugin
         GUI.EndScrollView();
 
         // Auto-save config whenever any menu control was interacted with.
-        if (GUI.changed)
+        // Skip the first 60 frames after load to prevent overwriting config
+        // before the user has a chance to interact with the menu.
+        if (configLoaded) framesSinceLoad++;
+        if (GUI.changed && framesSinceLoad > 60)
         {
             SaveConfig();
         }

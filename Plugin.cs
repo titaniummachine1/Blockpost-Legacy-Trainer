@@ -3252,6 +3252,98 @@ public sealed class Plugin : BasePlugin
         {
             FieldProbe.ProbeAll();
         }
+
+        // F6: Dump task-related GameObjects and UIMTasks state
+        if (Input.GetKeyDown(KeyCode.F6))
+        {
+            DumpTaskState();
+        }
+    }
+
+    /// <summary>
+    /// Dump all task-related GameObjects and UIMTasks state to the log.
+    /// Searches for GameObjects with "task", "mission", "daily", "quest",
+    /// "challenge", "objective" in their name, and probes UIMTasks.cs.
+    /// </summary>
+    private static void DumpTaskState()
+    {
+        try
+        {
+            instance?.Log.LogInfo("[TaskProbe] === Searching for task-related GameObjects ===");
+
+            var allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>();
+            if (allObjects != null)
+            {
+                var found = 0;
+                foreach (var go in allObjects)
+                {
+                    if (go == null) continue;
+                    var name = go.name;
+                    if (string.IsNullOrEmpty(name)) continue;
+                    var lower = name.ToLower();
+                    if (lower.Contains("task") || lower.Contains("mission") || lower.Contains("daily") ||
+                        lower.Contains("quest") || lower.Contains("challenge") || lower.Contains("objective") ||
+                        lower.Contains("contract") || lower.Contains("goal"))
+                    {
+                        var path = go.name;
+                        var parent = go.transform.parent;
+                        while (parent != null)
+                        {
+                            path = parent.name + "/" + path;
+                            parent = parent.parent;
+                        }
+                        var active = go.activeSelf ? "ACTIVE" : "INACTIVE";
+                        instance?.Log.LogInfo($"[TaskProbe] GO: {path} [{active}]");
+
+                        // Dump child GameObjects
+                        for (var ci = 0; ci < go.transform.childCount; ci++)
+                        {
+                            var child = go.transform.GetChild(ci);
+                            if (child != null)
+                            {
+                                instance?.Log.LogInfo($"[TaskProbe]   Child: {child.name} [{(child.gameObject.activeSelf ? "ACTIVE" : "INACTIVE")}]");
+                            }
+                        }
+                        found++;
+                    }
+                }
+                instance?.Log.LogInfo($"[TaskProbe] Found {found} task-related GameObjects (total {allObjects.Length} scanned)");
+            }
+
+            // Also search for any GameObjects with reward/complete/progress in name
+            if (allObjects != null)
+            {
+                var extraFound = 0;
+                foreach (var go in allObjects)
+                {
+                    if (go == null) continue;
+                    var name = go.name;
+                    if (string.IsNullOrEmpty(name)) continue;
+                    var lower = name.ToLower();
+                    if (lower.Contains("reward") || lower.Contains("complete") || lower.Contains("progress") ||
+                        lower.Contains("contract") || lower.Contains("goal") || lower.Contains("achievement"))
+                    {
+                        var path = go.name;
+                        var parent = go.transform.parent;
+                        while (parent != null)
+                        {
+                            path = parent.name + "/" + path;
+                            parent = parent.parent;
+                        }
+                        instance?.Log.LogInfo($"[TaskProbe] Extra GO: {path} [{(go.activeSelf ? "ACTIVE" : "INACTIVE")}]");
+                        extraFound++;
+                    }
+                }
+                if (extraFound > 0)
+                {
+                    instance?.Log.LogInfo($"[TaskProbe] Found {extraFound} extra task-related GameObjects");
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            instance?.Log.LogError($"[TaskProbe] Error: {e.Message}");
+        }
     }
 
     private static void ScanAllWeaponIds()
@@ -4453,6 +4545,10 @@ public sealed class Plugin : BasePlugin
 
     private static void DrawTrainerMenu()
     {
+        // Clamp menu position to screen bounds so it's always visible.
+        menuRect.x = Mathf.Clamp(menuRect.x, 0, Mathf.Max(0, Screen.width - menuRect.width));
+        menuRect.y = Mathf.Clamp(menuRect.y, 0, Mathf.Max(0, Screen.height - 100));
+
         // Fixed-size window with header + tab bar + scrollable content.
         GUI.Box(menuRect, "Blockpost Legacy Trainer");
         var headerRect = new Rect(menuRect.x, menuRect.y, menuRect.width, 24);

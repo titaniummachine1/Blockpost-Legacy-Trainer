@@ -186,6 +186,8 @@ public sealed class Plugin : BasePlugin
     private static bool zoomHack;
     private static float zoomFov = 30f;
     private static bool noMuzzleFlash;
+    private static bool nightVision;
+    private static bool noSmoke;
     private static int aimBone = 0; // 0=head, 1=chest, 2=pelvis
     private static readonly string[] AimBoneLabels = { "Head", "Chest", "Pelvis" };
     private static float fpsUpdateTimer;
@@ -363,6 +365,8 @@ public sealed class Plugin : BasePlugin
         ApplyWireframePlayers();
         if (zoomHack) ApplyZoomHack();
         if (noMuzzleFlash) ApplyNoMuzzleFlash();
+        if (nightVision) ApplyNightVision();
+        if (noSmoke) ApplyNoSmoke();
         PrepareRapidFirePrefix();
 
         // If we're not shooting this frame but the button is still held from
@@ -1366,6 +1370,8 @@ public sealed class Plugin : BasePlugin
                     case "zoomHack": zoomHack = val == "1"; break;
                     case "zoomFov": zoomFov = float.TryParse(val, out var zf) ? zf : 30f; break;
                     case "noMuzzleFlash": noMuzzleFlash = val == "1"; break;
+                    case "nightVision": nightVision = val == "1"; break;
+                    case "noSmoke": noSmoke = val == "1"; break;
                     case "debugLogging": debugLogging = val == "1"; break;
                     case "heavyDiagnostics": heavyDiagnostics = val == "1"; break;
                     case "showRuntimeStatus": showRuntimeStatus = val == "1"; break;
@@ -1486,6 +1492,8 @@ public sealed class Plugin : BasePlugin
                 $"zoomHack={(zoomHack ? 1 : 0)}",
                 $"zoomFov={zoomFov}",
                 $"noMuzzleFlash={(noMuzzleFlash ? 1 : 0)}",
+                $"nightVision={(nightVision ? 1 : 0)}",
+                $"noSmoke={(noSmoke ? 1 : 0)}",
                 $"debugLogging={(debugLogging ? 1 : 0)}",
                 $"heavyDiagnostics={(heavyDiagnostics ? 1 : 0)}",
                 $"showRuntimeStatus={(showRuntimeStatus ? 1 : 0)}",
@@ -1536,6 +1544,57 @@ public sealed class Plugin : BasePlugin
         {
             instance?.Log.LogError($"[Config] Failed to load preset '{name}': {ex.Message}");
         }
+    }
+
+    /// <summary>
+    /// Night vision: boost ambient light intensity and set a green tint
+    /// on the camera for night vision effect. Also disables fog.
+    /// </summary>
+    private static void ApplyNightVision()
+    {
+        try
+        {
+            RenderSettings.fog = false;
+            RenderSettings.ambientLight = new Color(0.1f, 0.3f, 0.1f, 1f);
+            var lights = UnityEngine.Object.FindObjectsOfType<Light>();
+            if (lights != null)
+            {
+                foreach (var light in lights)
+                {
+                    if (light != null && light.type != LightType.Directional)
+                    {
+                        light.intensity = 3f;
+                        light.color = new Color(0.5f, 1f, 0.5f);
+                    }
+                }
+            }
+        }
+        catch { }
+    }
+
+    /// <summary>
+    /// No smoke: disable smoke grenade GameObjects by searching for
+    /// objects with "smoke" or "particle" in name and deactivating them.
+    /// </summary>
+    private static void ApplyNoSmoke()
+    {
+        try
+        {
+            var allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>();
+            if (allObjects == null) return;
+            foreach (var go in allObjects)
+            {
+                if (go == null) continue;
+                var name = go.name;
+                if (string.IsNullOrEmpty(name)) continue;
+                var lower = name.ToLower();
+                if (lower.Contains("smoke") || lower.Contains("gas") || lower.Contains("fog_"))
+                {
+                    go.SetActive(false);
+                }
+            }
+        }
+        catch { }
     }
 
     /// <summary>
@@ -2404,6 +2463,8 @@ public sealed class Plugin : BasePlugin
         wireframePlayers = false;
         zoomHack = false;
         noMuzzleFlash = false;
+        nightVision = false;
+        noSmoke = false;
         ghostBullets = false;
         showHealth = false;
         SaveConfig();
@@ -4017,6 +4078,8 @@ public sealed class Plugin : BasePlugin
             y += 26;
         }
         noMuzzleFlash = GUI.Toggle(new Rect(x, y, w, 24), noMuzzleFlash, "No muzzle flash (disable flash GOs)"); y += 26;
+        nightVision = GUI.Toggle(new Rect(x, y, w, 24), nightVision, "Night vision (green tint + boost light)"); y += 26;
+        noSmoke = GUI.Toggle(new Rect(x, y, w, 24), noSmoke, "No smoke (disable smoke GOs)"); y += 26;
         GUI.Label(new Rect(x, y, 80, 24), "Aim bone:"); y += 26;
         for (var i = 0; i < AimBoneLabels.Length; i++)
         {
@@ -4737,6 +4800,8 @@ public sealed class Plugin : BasePlugin
         if (wireframePlayers) features.Add("Wireframe");
         if (zoomHack) features.Add($"Zoom:{zoomFov:F0}");
         if (noMuzzleFlash) features.Add("NoMuzzleFlash");
+        if (nightVision) features.Add("NightVision");
+        if (noSmoke) features.Add("NoSmoke");
         if (ghostBullets) features.Add("GhostBullets");
 
         if (features.Count == 0) return;

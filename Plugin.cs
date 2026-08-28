@@ -210,6 +210,7 @@ public sealed class Plugin : BasePlugin
     private static bool crosshairHitIndicator;
     private static bool timeScaleHack;
     private static float customTimeScale = 1f;
+    private static bool noFog;
     private static int aimBone = 0; // 0=head, 1=chest, 2=pelvis
     private static readonly string[] AimBoneLabels = { "Head", "Chest", "Pelvis" };
     private static float fpsUpdateTimer;
@@ -401,6 +402,7 @@ public sealed class Plugin : BasePlugin
         if (noGrass) ApplyNoGrass();
         if (timeScaleHack) Time.timeScale = customTimeScale;
         else if (!timeScaleHack && Time.timeScale != 1f) Time.timeScale = 1f;
+        if (noFog) RenderSettings.fog = false;
         PrepareRapidFirePrefix();
 
         // If we're not shooting this frame but the button is still held from
@@ -1440,6 +1442,7 @@ public sealed class Plugin : BasePlugin
                     case "crosshairHitIndicator": crosshairHitIndicator = val == "1"; break;
                     case "timeScaleHack": timeScaleHack = val == "1"; break;
                     case "customTimeScale": customTimeScale = float.TryParse(val, out var cts) ? cts : 1f; break;
+                    case "noFog": noFog = val == "1"; break;
                     case "debugLogging": debugLogging = val == "1"; break;
                     case "heavyDiagnostics": heavyDiagnostics = val == "1"; break;
                     case "showRuntimeStatus": showRuntimeStatus = val == "1"; break;
@@ -1579,6 +1582,7 @@ public sealed class Plugin : BasePlugin
                 $"crosshairHitIndicator={(crosshairHitIndicator ? 1 : 0)}",
                 $"timeScaleHack={(timeScaleHack ? 1 : 0)}",
                 $"customTimeScale={customTimeScale}",
+                $"noFog={(noFog ? 1 : 0)}",
                 $"debugLogging={(debugLogging ? 1 : 0)}",
                 $"heavyDiagnostics={(heavyDiagnostics ? 1 : 0)}",
                 $"showRuntimeStatus={(showRuntimeStatus ? 1 : 0)}",
@@ -2886,6 +2890,7 @@ public sealed class Plugin : BasePlugin
         noGrass = false;
         crosshairHitIndicator = false;
         timeScaleHack = false;
+        noFog = false;
         ghostBullets = false;
         showHealth = false;
         SaveConfig();
@@ -4563,6 +4568,7 @@ public sealed class Plugin : BasePlugin
             customTimeScale = GUI.HorizontalSlider(new Rect(x + 40, y, 120, 24), customTimeScale, 0.1f, 3f);
             y += 26;
         }
+        noFog = GUI.Toggle(new Rect(x, y, w, 24), noFog, "No fog (disable fog rendering)"); y += 26;
         GUI.Label(new Rect(x, y, 80, 24), "Aim bone:"); y += 26;
         for (var i = 0; i < AimBoneLabels.Length; i++)
         {
@@ -5300,6 +5306,7 @@ public sealed class Plugin : BasePlugin
         if (noGrass) features.Add("NoGrass");
         if (crosshairHitIndicator) features.Add("HitIndicator");
         if (timeScaleHack) features.Add($"TimeScale:{customTimeScale:F1}x");
+        if (noFog) features.Add("NoFog");
         if (ghostBullets) features.Add("GhostBullets");
 
         if (features.Count == 0) return;

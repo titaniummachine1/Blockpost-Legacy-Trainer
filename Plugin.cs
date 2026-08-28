@@ -188,6 +188,7 @@ public sealed class Plugin : BasePlugin
     private static bool noMuzzleFlash;
     private static bool nightVision;
     private static bool noSmoke;
+    private static bool autoSprint;
     private static int aimBone = 0; // 0=head, 1=chest, 2=pelvis
     private static readonly string[] AimBoneLabels = { "Head", "Chest", "Pelvis" };
     private static float fpsUpdateTimer;
@@ -367,6 +368,7 @@ public sealed class Plugin : BasePlugin
         if (noMuzzleFlash) ApplyNoMuzzleFlash();
         if (nightVision) ApplyNightVision();
         if (noSmoke) ApplyNoSmoke();
+        if (autoSprint) ApplyAutoSprint();
         PrepareRapidFirePrefix();
 
         // If we're not shooting this frame but the button is still held from
@@ -1372,6 +1374,7 @@ public sealed class Plugin : BasePlugin
                     case "noMuzzleFlash": noMuzzleFlash = val == "1"; break;
                     case "nightVision": nightVision = val == "1"; break;
                     case "noSmoke": noSmoke = val == "1"; break;
+                    case "autoSprint": autoSprint = val == "1"; break;
                     case "debugLogging": debugLogging = val == "1"; break;
                     case "heavyDiagnostics": heavyDiagnostics = val == "1"; break;
                     case "showRuntimeStatus": showRuntimeStatus = val == "1"; break;
@@ -1494,6 +1497,7 @@ public sealed class Plugin : BasePlugin
                 $"noMuzzleFlash={(noMuzzleFlash ? 1 : 0)}",
                 $"nightVision={(nightVision ? 1 : 0)}",
                 $"noSmoke={(noSmoke ? 1 : 0)}",
+                $"autoSprint={(autoSprint ? 1 : 0)}",
                 $"debugLogging={(debugLogging ? 1 : 0)}",
                 $"heavyDiagnostics={(heavyDiagnostics ? 1 : 0)}",
                 $"showRuntimeStatus={(showRuntimeStatus ? 1 : 0)}",
@@ -1544,6 +1548,24 @@ public sealed class Plugin : BasePlugin
         {
             instance?.Log.LogError($"[Config] Failed to load preset '{name}': {ex.Message}");
         }
+    }
+
+    /// <summary>
+    /// Auto-sprint: always set the sprint flag (0x40) in movement input
+    /// when the player is moving forward.
+    /// </summary>
+    private static void ApplyAutoSprint()
+    {
+        try
+        {
+            var input = Controll.MNHBPCOOMLE;
+            // If moving forward, set sprint flag
+            if ((input & 0x4u) != 0)
+            {
+                Controll.MNHBPCOOMLE |= 0x40u; // sprint=64
+            }
+        }
+        catch { }
     }
 
     /// <summary>
@@ -2465,6 +2487,7 @@ public sealed class Plugin : BasePlugin
         noMuzzleFlash = false;
         nightVision = false;
         noSmoke = false;
+        autoSprint = false;
         ghostBullets = false;
         showHealth = false;
         SaveConfig();
@@ -4080,6 +4103,7 @@ public sealed class Plugin : BasePlugin
         noMuzzleFlash = GUI.Toggle(new Rect(x, y, w, 24), noMuzzleFlash, "No muzzle flash (disable flash GOs)"); y += 26;
         nightVision = GUI.Toggle(new Rect(x, y, w, 24), nightVision, "Night vision (green tint + boost light)"); y += 26;
         noSmoke = GUI.Toggle(new Rect(x, y, w, 24), noSmoke, "No smoke (disable smoke GOs)"); y += 26;
+        autoSprint = GUI.Toggle(new Rect(x, y, w, 24), autoSprint, "Auto-sprint (always sprint when moving)"); y += 26;
         GUI.Label(new Rect(x, y, 80, 24), "Aim bone:"); y += 26;
         for (var i = 0; i < AimBoneLabels.Length; i++)
         {
@@ -4802,6 +4826,7 @@ public sealed class Plugin : BasePlugin
         if (noMuzzleFlash) features.Add("NoMuzzleFlash");
         if (nightVision) features.Add("NightVision");
         if (noSmoke) features.Add("NoSmoke");
+        if (autoSprint) features.Add("AutoSprint");
         if (ghostBullets) features.Add("GhostBullets");
 
         if (features.Count == 0) return;

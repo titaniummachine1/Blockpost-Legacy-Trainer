@@ -354,11 +354,28 @@ Key method: PFBJDHPMIJP(int ammo, int reserve) — Update both ammo displays
 | Session timer | Working | Elapsed session time in watermark (HH:MM:SS) |
 | FPS counter | Working | Current FPS in watermark |
 | Clock display | Working | Current time (HH:MM:SS) in watermark |
+| Chat spammer | Working | Send configurable message every 3s via Client method |
+| Auto vote yes | Working | Auto-click voteyes/f1 GameObjects |
+| Auto-revive | Working | Auto-click respawn/revive GameObjects when dead |
+| No skybox | Working | Disable skybox, set gray camera background |
+| Wireframe players | Working | Set enemy renderers to Internal-Colored shader |
+| Zoom hack | Working | Set camera FOV to configurable value (10-90) |
+| No muzzle flash | Working | Disable muzzle/flashlight GameObjects |
+| Night vision | Working | Green ambient + boosted lights + no fog |
+| No smoke | Working | Disable smoke/gas/fog_ GameObjects |
+| Auto-sprint | Working | Set sprint flag (0x40) when moving forward |
+| No rain | Working | Disable rain/weather/snow GameObjects |
+| Third person shoulder | Working | OTS camera with configurable offset |
+| Aimbot prediction | Working | Lead moving targets by velocity*0.1s |
+| Auto-crouch idle | Working | Crouch when stationary for smaller hitbox |
+| Killstreak display | Working | Track consecutive kills within 10s window |
 
 ## TODO Features (Prioritized)
 1. **Ghost bullets** — Complete NetProbe.TryFakeHit for through-wall kills
 2. **Local bot spawn** — Spawn dummy players for offline testing
 3. **Weapon skin changer** — Modify VWGen.GEPLCIFPDAC (Material[]) for custom skins
+
+Total implemented features: 80+ (101 feature toggle fields)
 
 ## Weapon Unlock Architecture (Server-Dead Workaround)
 

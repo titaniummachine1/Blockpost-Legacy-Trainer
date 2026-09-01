@@ -51,7 +51,8 @@ public sealed class Plugin : BasePlugin
         "Hold key",
         "Toggle",
         "On release",
-        "Always on"
+        "Always on",
+        "Click TP (crosshair)"
     };
     private static Plugin? instance;
     private static bool menuVisible;
@@ -120,6 +121,8 @@ public sealed class Plugin : BasePlugin
     private static float speedOriginalMove = -1f;
     private static float speedOriginalSprint = -1f;
     private static float fireIntervalFloor = 0.06f;
+    private static float flySpeed = 20f;
+    private const float TpArriveDistance = 1.5f;
     private static bool flyHack;
     private static bool noClip;
     private static bool gokuTp;
@@ -362,6 +365,24 @@ public sealed class Plugin : BasePlugin
             Log.LogWarning("Could not patch Input.GetMouseButton; auto-shoot will not work.");
         }
 
+        // No clip: force the game's own voxel validity queries to report "free" while the
+        // toggle is on (TRUE = position usable; if the semantics turn out inverted the
+        // player just gets stuck — toggle back off, nothing is corrupted). The prefix
+        // no-ops when noClip is off, so normal play never touches these methods.
+        var vutilQueryNames = new[] { "isValidBBox", "JKHDGCLHOOL", "CHGEMKFHCPE", "BKOJJOHKOGM", "LBMCCDHCEKB" };
+        var vutilPatched = 0;
+        foreach (var queryName in vutilQueryNames)
+        {
+            var query = AccessTools.Method(typeof(VUtil), queryName);
+            if (query != null)
+            {
+                harmony.Patch(query, prefix: new HarmonyMethod(typeof(Plugin), nameof(VutilQueryPrefix)));
+                vutilPatched++;
+            }
+        }
+
+        Log.LogInfo($"Patched {vutilPatched}/{vutilQueryNames.Length} VUtil collision queries for no clip.");
+
         Log.LogInfo($"Patched Controll.Update, Controll.OnGUI, and recoil hook: {recoilMethod != null}. Auto-shoot uses direct PLH.CDEGJOBLOFO when rapid fire is active.");
 
         NetProbe.Install(harmony, Log);
@@ -544,6 +565,21 @@ public sealed class Plugin : BasePlugin
     /// The game's own jump logic checks if the player is grounded — it won't
     /// jump in mid-air. We don't need to detect grounding ourselves.
     /// </summary>
+    /// <summary>
+    /// Prefix for VUtil voxel collision queries. While no clip is enabled, every query
+    /// reports "position is free" and the original (which scans the voxel grid) is skipped.
+    /// </summary>
+    private static bool VutilQueryPrefix(ref bool __result)
+    {
+        if (!noClip)
+        {
+            return true; // run the original query
+        }
+
+        __result = true;
+        return false;   // skip the original
+    }
+
     private static bool wasGroundedForHop;
 
     private static void ApplyBunnyHop(KBBBHJDINCB main)
@@ -565,10 +601,15 @@ public sealed class Plugin : BasePlugin
     }
 
     /// <summary>
-    /// Fly hack: disable gravity, move up/down with Space/Shift.
-    /// No clip: disable all colliders on the player.
+    /// Fly (velocity-based), experimental.
+    ///
+    /// Position writes explode the ragdoll; gravity toggles do nothing (the game's own
+    /// Movement sim owns the velocity). But the sim accelerates FROM the current velocity,
+    /// so setting the velocity directly every frame gives full 3D control that the ragdoll,
+    /// camera and netcode all follow naturally. Hover zeroes velocity, which also cancels
+    /// gravity for that frame.
     /// </summary>
-    private static void ApplyFlyNoClip(KBBBHJDINCB main)
+    private static void ApplyFlyVelocity(KBBBHJDINCB main)
     {
         try
         {
@@ -578,59 +619,25 @@ public sealed class Plugin : BasePlugin
                 return;
             }
 
-            if (flyHack)
+            var camera = Controll.CDFACGAFFFH;
+            if (camera == null)
             {
-                rb.useGravity = false;
-                var vel = rb.velocity;
-                vel.y = 0f;
-                if (Input.GetKey(KeyCode.Space))
-                {
-                    vel.y = 5f;
-                }
-                else if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.C))
-                {
-                    vel.y = -5f;
-                }
-                rb.velocity = vel;
-            }
-            else
-            {
-                rb.useGravity = true;
+                return;
             }
 
-            if (noClip)
-            {
-                // Disable all colliders on the player's root GameObject.
-                var root = main.LANBONKMIME;
-                if (root != null)
-                {
-                    var colliders = root.GetComponentsInChildren<Collider>(true);
-                    if (colliders != null)
-                    {
-                        var disabled = 0;
-                        foreach (var c in colliders)
-                        {
-                            if (c != null && c.enabled)
-                            {
-                                c.enabled = false;
-                                disabled++;
-                            }
-                        }
-                        if (disabled > 0)
-                        {
-                            AsyncLog.Write($"[NoClip] disabled {disabled} colliders on {root.name}");
-                        }
-                    }
-                    else
-                    {
-                        AsyncLog.Write($"[NoClip] no colliders found on {root.name}");
-                    }
-                }
-                else
-                {
-                    AsyncLog.Write("[NoClip] root GameObject (LANBONKMIME) is null");
-                }
-            }
+            var fwd = camera.transform.forward;
+            var right = camera.transform.right;
+            var move = Vector3.zero;
+            if (Input.GetKey(KeyCode.W)) move += fwd;
+            if (Input.GetKey(KeyCode.S)) move -= fwd;
+            if (Input.GetKey(KeyCode.D)) move += right;
+            if (Input.GetKey(KeyCode.A)) move -= right;
+            if (Input.GetKey(KeyCode.Space)) move += Vector3.up;
+            if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.C)) move -= Vector3.up;
+
+            rb.velocity = move.sqrMagnitude < 0.0001f
+                ? Vector3.zero
+                : move.normalized * flySpeed;
         }
         catch { }
     }
@@ -703,28 +710,79 @@ public sealed class Plugin : BasePlugin
             var tpPos = bestPos - bestForward * 2f;
             tpPos.y = bestPos.y; // same height
 
-            // Teleport via rigidbody position
-            var rb = main.MJPOJOOIPPN;
-            if (rb != null)
-            {
-                rb.position = tpPos;
-                rb.velocity = Vector3.zero;
-                AsyncLog.Write($"[GokuTP] TP to {tpPos} (enemy at {bestPos}, dist={bestDist:0.0}m, fwd={bestForward})");
-            }
-            else
-            {
-                AsyncLog.Write("[GokuTP] rigidbody is null, trying position only");
-            }
-
-            // Also set the player position field directly
-            main.OOMJGHCFODI = tpPos;
-
-            gokuTpCooldown = 0.1f; // 100ms cooldown
+            VelocityDashTo(tpPos, "[GokuTP]");
+            gokuTpCooldown = 0.05f;
         }
         catch (Exception e)
         {
             AsyncLog.Write($"[GokuTP] error: {e.Message}");
         }
+    }
+
+    /// <summary>
+    /// Velocity-based teleport dash. The player is a jointed physics ragdoll — writing
+    /// rb.position directly (the old approach) yanks the main body out of the joint chain
+    /// and the ragdoll spins off into space. Velocity is the honest lever: the game's own
+    /// Movement sim accelerates FROM the current velocity, so a large velocity produces a
+    /// fast dash that the ragdoll, camera and netcode all follow naturally.
+    ///
+    /// Recomputed every frame while active, so gravity/air-accel between frames cannot
+    /// derail it. Returns true once arrived (velocity is then zeroed).
+    /// </summary>
+    private static bool VelocityDashTo(Vector3 target, string logTag, float maxSpeed = 400f)
+    {
+        var main = Controll.HGAODFPBGLB;
+        var rb = main?.MJPOJOOIPPN;
+        if (main == null || rb == null)
+        {
+            return false;
+        }
+
+        var to = target - rb.position;
+        var dist = to.magnitude;
+
+        if (dist < TpArriveDistance)
+        {
+            if (rb.velocity.sqrMagnitude > 0.01f)
+            {
+                AsyncLog.Write($"{logTag} arrived (dist={dist:0.0}m), zeroing velocity");
+            }
+
+            rb.velocity = Vector3.zero;
+            return true;
+        }
+
+        // Speed scales with distance so long jumps still land in a few frames, but stays
+        // clamped — an unbounded value detonates the ragdoll the same way position writes did.
+        var speed = Mathf.Clamp(dist * 60f, 25f, maxSpeed);
+        rb.velocity = (to / dist) * speed;
+        return false;
+    }
+
+    /// <summary>
+    /// Click TP: dash toward whatever the crosshair points at (raycast against everything,
+    /// so walls can be aimed at — with no clip patched the dash continues through them).
+    /// </summary>
+    private static void ApplyClickTp(Camera? camera)
+    {
+        if (camera == null)
+        {
+            return;
+        }
+
+        try
+        {
+            var ray = camera.ScreenPointToRay(new Vector3(Screen.width / 2f, Screen.height / 2f, 0f));
+            var hitDistance = 100f;
+            if (Physics.Raycast(ray, out var hit, 200f))
+            {
+                hitDistance = hit.distance;
+            }
+
+            var target = ray.GetPoint(Mathf.Min(hitDistance, 100f)) + Vector3.up * 1f;
+            VelocityDashTo(target, "[ClickTP]");
+        }
+        catch { }
     }
 
     /// <summary>
@@ -739,6 +797,7 @@ public sealed class Plugin : BasePlugin
             1 => gokuTpToggled,              // Toggle
             2 => !IsKeyDown(gokuTpKey),      // On release (active when key NOT down)
             3 => true,                       // Always on
+            4 => IsKeyDown(gokuTpKey),       // Click TP: dash to crosshair while held
             _ => false
         };
     }
@@ -1227,9 +1286,9 @@ public sealed class Plugin : BasePlugin
                 speedOriginalSprint = -1f;
             }
 
-            if (flyHack || noClip)
+            if (flyHack)
             {
-                ApplyFlyNoClip(main);
+                ApplyFlyVelocity(main);
             }
 
             if (gokuTp)
@@ -1237,7 +1296,23 @@ public sealed class Plugin : BasePlugin
                 UpdateGokuTpKeyState();
                 if (IsGokuTpActive())
                 {
-                    ApplyGokuTp(main);
+                    if (gokuTpMode == 4)
+                    {
+                        ApplyClickTp(Controll.CDFACGAFFFH);
+                    }
+                    else
+                    {
+                        ApplyGokuTp(main);
+                    }
+                }
+                else
+                {
+                    // Damp any leftover dash velocity when the mode/key is released.
+                    var rb = main.MJPOJOOIPPN;
+                    if (rb != null && rb.velocity.sqrMagnitude > 900f)
+                    {
+                        rb.velocity = Vector3.zero;
+                    }
                 }
             }
 
@@ -1591,6 +1666,7 @@ public sealed class Plugin : BasePlugin
                     case "targetFov": float.TryParse(val, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out targetFov); break;
                     case "speedHack": speedHack = val == "1"; break;
                     case "speedMultiplier": float.TryParse(val, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out speedMultiplier); break;
+                    case "flySpeed": float.TryParse(val, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out flySpeed); break;
                     case "flyHack": flyHack = val == "1"; break;
                     case "gokuTp": gokuTp = val == "1"; break;
                     case "gokuTpMode": gokuTpMode = ParseInt(val, gokuTpMode); break;
@@ -1738,6 +1814,7 @@ public sealed class Plugin : BasePlugin
                 $"targetFov={targetFov.ToString("0.###", System.Globalization.CultureInfo.InvariantCulture)}",
                 $"speedHack={(speedHack ? 1 : 0)}",
                 $"speedMultiplier={speedMultiplier.ToString("0.###", System.Globalization.CultureInfo.InvariantCulture)}",
+                $"flySpeed={flySpeed.ToString("0.###", System.Globalization.CultureInfo.InvariantCulture)}",
                 $"flyHack={(flyHack ? 1 : 0)}",
                 $"gokuTp={(gokuTp ? 1 : 0)}",
                 $"gokuTpMode={gokuTpMode}",
@@ -5206,10 +5283,15 @@ public sealed class Plugin : BasePlugin
             speedMultiplier = GUI.HorizontalSlider(new Rect(x + 60, y + 4, w - 60, 20), speedMultiplier, 0.5f, 5f);
             y += 26;
         }
+        flyHack = GUI.Toggle(new Rect(x, y, w, 24), flyHack, "Fly (velocity, experimental)"); y += 26;
+        if (flyHack)
+        {
+            GUI.Label(new Rect(x, y, w, 20), $"Fly speed: {flySpeed:0} m/s (WASD + Space/Shift)");
+            flySpeed = GUI.HorizontalSlider(new Rect(x + 60, y + 4, w - 60, 20), flySpeed, 5f, 60f);
+            y += 26;
+        }
+        noClip = GUI.Toggle(new Rect(x, y, w, 24), noClip, "No clip (patches VUtil queries, experimental)"); y += 26;
         autoSprint = GUI.Toggle(new Rect(x, y, w, 24), autoSprint, "Auto-sprint (always sprint when moving)"); y += 26;
-        // Shelved (proven broken by the game's own code, see MOVEMENT.md):
-        // flyHack — the game drives velocity itself every frame, useGravity is ignored;
-        // noClip — collision is VUtil's custom voxel AABB, disabling Unity colliders does nothing.
 
         GUI.Label(new Rect(x, y, w, 24), "--- Goku TP ---"); y += 26;
         gokuTp = GUI.Toggle(new Rect(x, y, w, 24), gokuTp, "Goku TP (teleport behind enemy)"); y += 26;

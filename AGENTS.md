@@ -296,8 +296,8 @@ Key method: PFBJDHPMIJP(int ammo, int reserve) — Update both ammo displays
 | Rapid fire | Fixed | Clamps fire cooldown to a slider floor (was a no-op toggle; the direct-fire variant spammed visual shots) |
 | Infinite ammo | Working | Set Controll.FGGKANNFBDH=maxAmmo, KJOMABGHAIJ=999, Player.GDEMINMDJAC[]=999 |
 | Speed hack | Fixed | Movement.GBHJLHFPCHK/BOKNCBLLHED with cached restore (Time.timeScale dropped — it scaled the whole game) |
-| Fly hack | Shelved (not in UI) | Game drives velocity via its own Movement sim; useGravity ignored. Needs a Movement patch (MOVEMENT.md) |
-| No clip | Shelved (not in UI) | Collision is VUtil custom voxel AABB; Unity colliders are irrelevant. Needs a VUtil patch (MOVEMENT.md) |
+| Fly hack | Re-implemented (experimental) | Velocity control: rb.velocity = wishdir * flySpeed every frame; hover zeroes velocity and cancels gravity (MOVEMENT.md) |
+| No clip | Re-implemented (experimental) | Harmony prefix forces VUtil voxel validity queries (isValidBBox + 4 siblings) to report free while toggled (MOVEMENT.md) |
 | Weapon unlock | Working (client-side inventory only) | Populate GUIInv.LoadoutEntries with FPNENMKEFBB for every NAHLLMJMOED in AllWeapons; server keeps its own inventory copy (INVENTORY.md) |
 | Ghost bullets | In progress | NetProbe.TryFakeHit (bypasses fire logic) |
 | Third person | Working | Camera positioned behind player using yaw angle, looks at head |

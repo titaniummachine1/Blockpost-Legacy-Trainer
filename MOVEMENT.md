@@ -52,14 +52,37 @@ That scales the whole game (audio, animations, interpolation). Speed hack now sc
 exactly on disable (the old code restored hardcoded 6/9 guesses). `Time scale hack` stays in
 Misc as its own honest tool.
 
+## Update — the velocity exploit (teleport done right)
+
+**Live feedback killed the position-write theory**: writing `rb.position` (the old Goku TP)
+yanks the main rigidbody out of its joint chain — the player is a **jointed physics ragdoll**,
+so it spun off the map uncontrollably. Position is *not* a safe lever. Velocity is:
+
+- The Movement sim **accelerates from the current velocity** (`Accelerate(vel, wishdir, ...)`),
+  so a large velocity produces a fast dash that the ragdoll, camera and netcode all follow
+  naturally. Recomputed every frame while active (`velocity = dir * clamp(dist*60, 25..400)`),
+  zeroed on arrival — gravity between frames cannot derail it.
+- **Goku TP** now dashes to 2m behind the enemy via this dash (all previous modes kept).
+- **Click TP** (new mode 5): dash toward the crosshair's raycast point while the bound key is
+  held. Aim at a wall and, with no clip on, the dash continues through it.
+- **Fly** is back as velocity control: `rb.velocity = wishdir * flySpeed` every frame; hover
+  (no input) zeroes velocity, which also cancels gravity for that frame.
+- **No clip** no longer touches Unity colliders. It Harmony-prefixes the VUtil voxel validity
+  queries (`isValidBBox`, `JKHDGCLHOOL`, `CHGEMKFHCPE`, `BKOJJOHKOGM`, `LBMCCDHCEKB`) to return
+  "free" while enabled. Caveat: if the bool semantics turn out inverted, the player sticks in
+  place — the toggle is instantly reversible and nothing is corrupted.
+
+Nothing here is confirmed working until one live run: dash to an enemy, click-TP across the
+map, fly around, and fly through a wall with no clip on.
+
 ## Shelved — proven broken by the game's own code
 
-| Feature | Why it cannot work as written |
+| Feature | Why the old version could not work |
 |---|---|
-| **Fly hack** | The player is driven by the game's custom Quake-style velocity sim (`Movement.MoveGround/MoveAir`); `rb.useGravity=false` is ignored and per-frame velocity writes fight the sim. Needs a Movement patch instead. |
-| **No clip** | World collision is `VUtil.isValidBBox`-style custom voxel AABB — disabling Unity `Collider` components does nothing against voxel terrain. Needs a `VUtil` collision query patch. |
+| ~~Fly hack (gravity version)~~ | `rb.useGravity=false` is ignored — the sim owns the velocity. Re-implemented above as velocity control. |
+| ~~No clip (collider version)~~ | World collision is custom voxel AABB — Unity colliders are irrelevant. Re-implemented above as a VUtil query patch. |
 
-Both remain in the code (config still loads them) but have no UI toggle.
+Fake lag remains shelved (input bitfield rebuild).
 
 ## Next run checklist (validates the fixes)
 

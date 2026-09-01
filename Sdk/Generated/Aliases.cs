@@ -22138,8 +22138,11 @@ namespace BlockpostTrainer.Sdk
 
         public static class VoxelUtil
         {
+            /// <summary>bool static -- voxel contact above the player.</summary>
             public const int HeadContact = Raw.VUtil.Offsets.headcontact;
+            /// <summary>bool static -- the game's REAL ground contact from its custom voxel AABB collision. Use this for jump timing; Controll.HLBAGIACGBI is unreliable (caused mid-air jumps).</summary>
             public const int GroundContact = Raw.VUtil.Offsets.groundcontact;
+            /// <summary>bool static -- voxel contact around the body (wall touch).</summary>
             public const int BodyContact = Raw.VUtil.Offsets.bodycontact;
             public const int Points = Raw.VUtil.Offsets.p;
             public const int PointCount = Raw.VUtil.Offsets.ODAMFLEMGDD;

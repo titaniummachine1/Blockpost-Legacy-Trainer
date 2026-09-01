@@ -32,6 +32,7 @@
 - `AMMO_ANALYSIS.md` — Deep ammo field analysis with implementation strategies
 - `CLASS_MAP.md` — Comprehensive class map (all important classes, fields, methods)
 - `INVENTORY.md` — Inventory/loadout/economy architecture: server-side inventory, auth chain, force-equip limits, crates/missions/achievements status
+- `MOVEMENT.md` — Movement/fire feature audit: input bitfield rebuild, real ground detection (VUtil.groundcontact), fire cooldown clamping, fly/noclip shelving rationale
 - `BACKLOG.md` — Feature backlog and TODO
 - `HANDOFF.md` — Session handoff notes
 
@@ -289,14 +290,14 @@ Key method: PFBJDHPMIJP(int ammo, int reserve) — Update both ammo displays
 | No recoil | Working | Harmony patch ILIDJBFOFJA, zero recoil force |
 | Infinite health | Working | Set FDOJDJLIGLF=1000, clear death flags |
 | Instant reload | Working | Set ILGHFLMKMCO=FBINCNDDPAO in prefix |
-| Bunnyhop | Working | keybd_event space while held |
+| Bunnyhop | Fixed | keybd_event Space tap on landing frame gated on VUtil.groundcontact (was per-frame spam) |
 | FOV changer | Working | Camera.fieldOfView = targetFov |
 | Custom crosshair | Working | OnGUI line drawing |
-| Rapid fire | Working | FGFKPMPLNKO manipulation |
+| Rapid fire | Fixed | Clamps fire cooldown to a slider floor (was a no-op toggle; the direct-fire variant spammed visual shots) |
 | Infinite ammo | Working | Set Controll.FGGKANNFBDH=maxAmmo, KJOMABGHAIJ=999, Player.GDEMINMDJAC[]=999 |
-| Speed hack | Working | Time.timeScale + Movement.GBHJLHFPCHK/BOKNCBLLHED static fields |
-| Fly hack | Working | Player.MJPOJOOIPPN.useGravity=false + Space/Shift vertical velocity |
-| No clip | Working | Disable all Collider components on player root GameObject |
+| Speed hack | Fixed | Movement.GBHJLHFPCHK/BOKNCBLLHED with cached restore (Time.timeScale dropped — it scaled the whole game) |
+| Fly hack | Shelved (not in UI) | Game drives velocity via its own Movement sim; useGravity ignored. Needs a Movement patch (MOVEMENT.md) |
+| No clip | Shelved (not in UI) | Collision is VUtil custom voxel AABB; Unity colliders are irrelevant. Needs a VUtil patch (MOVEMENT.md) |
 | Weapon unlock | Working (client-side inventory only) | Populate GUIInv.LoadoutEntries with FPNENMKEFBB for every NAHLLMJMOED in AllWeapons; server keeps its own inventory copy (INVENTORY.md) |
 | Ghost bullets | In progress | NetProbe.TryFakeHit (bypasses fire logic) |
 | Third person | Working | Camera positioned behind player using yaw angle, looks at head |
@@ -305,8 +306,8 @@ Key method: PFBJDHPMIJP(int ammo, int reserve) — Update both ammo displays
 | Fullbright | Working | Disable RenderSettings.fog, boost ambient light + all Light components |
 | Anti-flashbang | Working | Disable GameObjects named "flash"/"blind" |
 | Wallhack | Working | Tracer lines from screen center to enemies + distance display |
-| No spread | Working | Zero Player.FGFKPMPLNKO and Controll.LCMOBPPHLLM every frame |
-| Fast fire rate | Working | Zero Controll.LCMOBPPHLLM and Player.LCMOBPPHLLM every frame |
+| No spread | Fixed | Zeroes Player.FGFKPMPLNKO only — the old version zeroed the fire cooldown, turning no-spread into a machine gun |
+| Fast fire rate | Fixed | Clamps fire cooldown to a slider floor; zeroing fired every frame and broke the game |
 | Auto-reload | Working | Trigger reload when FGGKANNFBDH=0 and KJOMABGHAIJ>0 |
 | Aimbot FOV circle | Working | Draw orange circle showing aimbot targeting range |
 | Field probe | Working | F10 toggle continuous, F11 snapshot — logs all Controll/Player/Movement/PLH fields |
@@ -317,10 +318,10 @@ Key method: PFBJDHPMIJP(int ammo, int reserve) — Update both ammo displays
 | Skeleton ESP | Working | Recursive transform hierarchy tracing, bone connections |
 | Radar hack | Working | 150px mini-radar, 100m range, rotated by player yaw |
 | Anti-aim pitch | Working | Alternate Controll.IGLCENGMMMJ between -89° and +89° |
-| Auto-strafe | Working | Alternate left/right movement flags every 0.3s |
+| Auto-strafe | Fixed | Alternates real A/D presses; flag writes were no-ops |
 | Kill feed | Working | Monitor DEBGAILDKPC (kill count), log + display kills |
-| Edge jump | Working | Auto-jump when grounded + moving forward |
-| Fake lag | Working | Freeze movement input every 3rd 100ms window |
+| Edge jump | Fixed | Real-key jump tap gated on VUtil.groundcontact |
+| Fake lag | Shelved (not in UI) | Bitfield clears are rebuilt from real Input every frame; no-op. See MOVEMENT.md |
 | Spectator warning | Working | Alert when Spectator GameObject is active |
 | Damage indicator | Working | Red vignette + damage amount when health drops |
 | Hit marker | Working | White X at crosshair when hit counter increments |
@@ -332,20 +333,20 @@ Key method: PFBJDHPMIJP(int ammo, int reserve) — Update both ammo displays
 | Threat indicator | Working | Red arrow pointing to closest off-screen enemy + distance |
 | Name changer | Shelved (not in UI) | Display-only: in-match names come from networked player rows, server sync reverts it |
 | Scoreboard hack | Shelved (not in UI) | Game re-renders scores from real state every frame; write is invisible/flicker |
-| Auto-bhop | Working | Perfect jump timing when grounded + moving |
+| Auto-bhop | Fixed | Space tap on VUtil.groundcontact landing edge; old version wrote a no-op bitfield flag and caused mid-air jumps |
 | Ping spoof | Working | Display fake ping value in bottom-right corner |
 | Footstep ESP | Working | Record enemy positions every 0.5s, draw as fading dots |
 | Pre-fire | Working | Auto-fire when enemy within 5m + has LOS |
 | Backtrack | Working | Store 2s of enemy position history, draw as blue dots |
 | Admin unlock | Shelved (not in UI) | Opens the admin panel client-side; every admin action is a server transaction and would be rejected |
 | Box-head ESP | Working | Separate boxes for head + body with connecting line |
-| Slide hack | Working | Force crouch flag while moving on ground |
+| Slide hack | Fixed | Holds real Ctrl key while moving on ground (bitfield writes are no-ops) |
 | Grenade trajectory | Working | Simulate parabolic arc, draw as cyan dots |
 | No fall damage | Working | Restore HP when no recent bullet damage |
 | Custom crosshair v2 | Working | Configurable RGB color, size, thickness |
 | Kill sound | Working | 800Hz beep on kill via Console.Beep |
 | Aimbot smoothing | Working | Lerp toward target with configurable smooth factor |
-| Fast weapon switch | Working | Zero fire timers for instant weapon switching |
+| Fast weapon switch | Fixed | Zeroes timers only on the frame the weapon id changes |
 | Config presets | Working | Save/load 3 named preset configurations |
 | Anti-aim jitter | Working | Random yaw jitter ±15° when not ADS |
 | Debug overlay | Working | Top-right diagnostic: HP, pos, ammo, kills, input flags |
@@ -364,11 +365,11 @@ Key method: PFBJDHPMIJP(int ammo, int reserve) — Update both ammo displays
 | No muzzle flash | Working | Disable muzzle/flashlight GameObjects |
 | Night vision | Working | Green ambient + boosted lights + no fog |
 | No smoke | Working | Disable smoke/gas/fog_ GameObjects |
-| Auto-sprint | Working | Set sprint flag (0x40) when moving forward |
+| Auto-sprint | Fixed | Holds real Shift key while moving forward |
 | No rain | Working | Disable rain/weather/snow GameObjects |
 | Third person shoulder | Working | OTS camera with configurable offset |
 | Aimbot prediction | Working | Lead moving targets by velocity*0.1s |
-| Auto-crouch idle | Working | Crouch when stationary for smaller hitbox |
+| Auto-crouch idle | Fixed | Holds real Ctrl key while idle on ground |
 | Killstreak display | Working | Track consecutive kills within 10s window |
 
 ## TODO Features (Prioritized)

@@ -20406,7 +20406,11 @@
       "VUtil_Action8": "HIEIJHGGHHD"
     },
     "Properties": {},
-    "Notes": {}
+    "Notes": {
+      "GroundContact": "bool static -- the game's REAL ground contact from its custom voxel AABB collision. Use this for jump timing; Controll.HLBAGIACGBI is unreliable (caused mid-air jumps).",
+      "HeadContact": "bool static -- voxel contact above the player.",
+      "BodyContact": "bool static -- voxel contact around the body (wall touch)."
+    }
   },
   "GHCFEALGKNG": {
     "HumanClass": "VoxelMeshGen",

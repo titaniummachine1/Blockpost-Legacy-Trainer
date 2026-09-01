@@ -117,6 +117,9 @@ public sealed class Plugin : BasePlugin
     private static float targetFov = 90f;
     private static bool speedHack;
     private static float speedMultiplier = 2f;
+    private static float speedOriginalMove = -1f;
+    private static float speedOriginalSprint = -1f;
+    private static float fireIntervalFloor = 0.06f;
     private static bool flyHack;
     private static bool noClip;
     private static bool gokuTp;
@@ -541,17 +544,22 @@ public sealed class Plugin : BasePlugin
     /// The game's own jump logic checks if the player is grounded — it won't
     /// jump in mid-air. We don't need to detect grounding ourselves.
     /// </summary>
+    private static bool wasGroundedForHop;
+
     private static void ApplyBunnyHop(KBBBHJDINCB main)
     {
         try
         {
-            if (!Input.GetKey(KeyCode.Space))
+            var grounded = GroundedNow();
+
+            // Tap jump exactly on the landing frame while space is held. Sending keys
+            // every frame (the old behaviour) does nothing but spam the OS queue.
+            if (grounded && !wasGroundedForHop && Input.GetKey(KeyCode.Space))
             {
-                return;
+                TapJump();
             }
 
-            keybd_event(VkSpace, 0, KeyEventFKeyDown, 0);
-            keybd_event(VkSpace, 0, KeyEventFKeyUp, 0);
+            wasGroundedForHop = grounded;
         }
         catch { }
     }
@@ -1190,25 +1198,33 @@ public sealed class Plugin : BasePlugin
 
             if (speedHack)
             {
-                Time.timeScale = speedMultiplier;
-                // Also boost Movement static speed constants for more natural movement.
-                // GBHJLHFPCHK = move speed, BOKNCBLLHED = sprint speed.
+                // Movement statics only. The old version also set Time.timeScale, which
+                // slowed/sped the WHOLE game (audio, animations, netcode interpolation).
+                // Cache the game's own values once so restore is exact.
                 try
                 {
-                    Movement.GBHJLHFPCHK = 8f * speedMultiplier;
-                    Movement.BOKNCBLLHED = 12f * speedMultiplier;
+                    if (speedOriginalMove < 0f)
+                    {
+                        speedOriginalMove = Movement.GBHJLHFPCHK;
+                        speedOriginalSprint = Movement.BOKNCBLLHED;
+                    }
+
+                    Movement.GBHJLHFPCHK = speedOriginalMove * speedMultiplier;
+                    Movement.BOKNCBLLHED = speedOriginalSprint * speedMultiplier;
                 }
                 catch { /* static field access may vary by interop version */ }
             }
-            else if (Time.timeScale != 1f)
+            else if (speedOriginalMove >= 0f)
             {
-                Time.timeScale = 1f;
                 try
                 {
-                    Movement.GBHJLHFPCHK = 6f;
-                    Movement.BOKNCBLLHED = 9f;
+                    Movement.GBHJLHFPCHK = speedOriginalMove;
+                    Movement.BOKNCBLLHED = speedOriginalSprint;
                 }
                 catch { }
+
+                speedOriginalMove = -1f;
+                speedOriginalSprint = -1f;
             }
 
             if (flyHack || noClip)
@@ -1246,18 +1262,30 @@ public sealed class Plugin : BasePlugin
 
             if (noSpread)
             {
-                // FGFKPMPLNKO = spread/recoil accumulator on Player
+                // FGFKPMPLNKO = spread/recoil accumulator on Player. Do NOT touch
+                // Controll.LCMOBPPHLLM here — that is the fire cooldown; zeroing it
+                // turned no-spread into an unintended machine gun and broke the game.
                 main.FGFKPMPLNKO = 0f;
-                // Also zero the Controll-side fire timer/spread
-                Controll.LCMOBPPHLLM = 0f;
             }
 
-            if (fastFire)
+            if (rapidFire || fastFire)
             {
-                // Zero the fire timer so the "has enough time passed" check
-                // always passes, allowing firing every frame.
-                Controll.LCMOBPPHLLM = 0f;
-                main.LCMOBPPHLLM = 0f;
+                // Clamp the fire cooldown to a floor instead of zeroing it every frame.
+                // Zeroing fired every frame (240+ shots/sec): audio spam, spread chaos,
+                // and an absurd 0x06 fire rate for the server. The floor keeps the game's
+                // own fire logic in charge at a configurable interval.
+                if (!Controll.EKEAAHAKHIN && !Controll.DJACNOGOCKD) // not reloading
+                {
+                    if (Controll.LCMOBPPHLLM > fireIntervalFloor)
+                    {
+                        Controll.LCMOBPPHLLM = fireIntervalFloor;
+                    }
+
+                    if (main.LCMOBPPHLLM > fireIntervalFloor)
+                    {
+                        main.LCMOBPPHLLM = fireIntervalFloor;
+                    }
+                }
             }
 
             if (autoReload)
@@ -1292,36 +1320,29 @@ public sealed class Plugin : BasePlugin
 
             if (autoStrafe)
             {
-                // Auto-strafe: alternate left/right movement to dodge incoming fire
-                // Toggle the movement input flags every 0.3 seconds
-                var strafePhase = (int)(Time.time / 0.3f) % 2;
-                if (strafePhase == 0)
-                {
-                    // Move right (plus_x=1, clear minus_x=2)
-                    Controll.MNHBPCOOMLE = (Controll.MNHBPCOOMLE & ~0x2u) | 0x1u;
-                }
-                else
-                {
-                    // Move left (minus_x=2, clear plus_x=1)
-                    Controll.MNHBPCOOMLE = (Controll.MNHBPCOOMLE & ~0x1u) | 0x2u;
-                }
+                ApplyAutoStrafe();
+            }
+            else
+            {
+                StopAutoStrafe();
             }
 
             if (edgeJump)
             {
-                // Edge jump: auto-jump when grounded and moving forward
-                // Detects "edge" by checking if grounded + moving + not already jumping
-                if (Controll.HLBAGIACGBI && !Controll.GCHFDAPNBNB)
+                // Edge jump: tap jump on the ground frame while moving forward/backward.
+                // Uses the real VUtil voxel ground contact, not the unreliable static.
+                var grounded = GroundedNow();
+                if (grounded && !wasGroundedForHop)
                 {
                     var input = Controll.MNHBPCOOMLE;
                     var isMoving = (input & 0x4u) != 0 || (input & 0x8u) != 0; // forward or backward
                     if (isMoving)
                     {
-                        // Set jump flag
-                        Controll.MNHBPCOOMLE |= 0x10u; // jump=16
-                        Controll.GCHFDAPNBNB = true;
+                        TapJump();
                     }
                 }
+
+                wasGroundedForHop = grounded;
             }
 
             if (fakeLag)
@@ -1876,20 +1897,74 @@ public sealed class Plugin : BasePlugin
         {
             var input = Controll.MNHBPCOOMLE;
             var isMoving = (input & 0x4u) != 0 || (input & 0x1u) != 0 || (input & 0x2u) != 0 || (input & 0x8u) != 0;
-            if (!isMoving && Controll.HLBAGIACGBI)
+            var wantCrouch = !isMoving && GroundedNow();
+
+            // Real crouch key (see ApplySlideHack — bitfield writes never stuck).
+            if (wantCrouch && !crouchKeyLatched)
             {
-                Controll.MNHBPCOOMLE |= 0x20u; // duck
-                Controll.NJPDKJKJMCG = true;
+                keybd_event(VkControl, 0, KeyEventFKeyDown, 0);
+                crouchKeyLatched = true;
+            }
+            else if (!wantCrouch && crouchKeyLatched)
+            {
+                keybd_event(VkControl, 0, KeyEventFKeyUp, 0);
+                crouchKeyLatched = false;
             }
         }
         catch { }
     }
 
+    private static int strafePhase = -1;
+    private static byte strafeHeldKey;
+
+    // Auto-strafe: alternate real A/D key presses. The old version wrote movement bits
+    // into Controll.MNHBPCOOMLE, which Controll.Update rebuilds from real Input every
+    // frame — those writes never survived.
+    private static void ApplyAutoStrafe()
+    {
+        try
+        {
+            var phase = (int)(Time.time / 0.3f) % 2;
+            if (phase == strafePhase)
+            {
+                return;
+            }
+
+            strafePhase = phase;
+            var newKey = phase == 0 ? VkKeyD : VkKeyA;
+            if (strafeHeldKey != 0 && strafeHeldKey != newKey)
+            {
+                keybd_event(strafeHeldKey, 0, KeyEventFKeyUp, 0);
+            }
+
+            if (strafeHeldKey != newKey)
+            {
+                keybd_event(newKey, 0, KeyEventFKeyDown, 0);
+                strafeHeldKey = newKey;
+            }
+        }
+        catch { }
+    }
+
+    private static void StopAutoStrafe()
+    {
+        if (strafeHeldKey != 0)
+        {
+            try
+            {
+                keybd_event(strafeHeldKey, 0, KeyEventFKeyUp, 0);
+            }
+            catch { }
+
+            strafeHeldKey = 0;
+            strafePhase = -1;
+        }
+    }
+
     /// <summary>
     /// No grass: disable grass and foliage GameObjects for better ground visibility.
     /// </summary>
-    private static void ApplyNoGrass()
-    {
+    private static void ApplyNoGrass()    {
         try
         {
             var allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>();
@@ -2242,15 +2317,26 @@ public sealed class Plugin : BasePlugin
     /// Auto-sprint: always set the sprint flag (0x40) in movement input
     /// when the player is moving forward.
     /// </summary>
+    private static bool sprintKeyLatched;
+
     private static void ApplyAutoSprint()
     {
         try
         {
             var input = Controll.MNHBPCOOMLE;
-            // If moving forward, set sprint flag
-            if ((input & 0x4u) != 0)
+            var wantSprint = (input & 0x4u) != 0; // moving forward
+
+            // Real shift key — the sprint bit write was a no-op (bitfield is rebuilt
+            // from real Input every frame).
+            if (wantSprint && !sprintKeyLatched)
             {
-                Controll.MNHBPCOOMLE |= 0x40u; // sprint=64
+                keybd_event(VkShift, 0, KeyEventFKeyDown, 0);
+                sprintKeyLatched = true;
+            }
+            else if (!wantSprint && sprintKeyLatched)
+            {
+                keybd_event(VkShift, 0, KeyEventFKeyUp, 0);
+                sprintKeyLatched = false;
             }
         }
         catch { }
@@ -2543,7 +2629,7 @@ public sealed class Plugin : BasePlugin
                 y += 20;
                 GUI.Label(new Rect(x, y, 240, 20), $"Team: {Controll.POFKNJGAKPK} ID: {Controll.OGDPMIBJLDH}");
                 y += 20;
-                GUI.Label(new Rect(x, y, 240, 20), $"Grounded: {Controll.HLBAGIACGBI} Sprint: {Controll.PBICPLCFAGG}");
+                GUI.Label(new Rect(x, y, 240, 20), $"Ground: VUtil={VUtil.groundcontact} Controll={Controll.HLBAGIACGBI} Sprint: {Controll.PBICPLCFAGG}");
                 y += 20;
                 GUI.Label(new Rect(x, y, 240, 20), $"Crouch: {Controll.NJPDKJKJMCG} Jump: {Controll.GCHFDAPNBNB}");
                 y += 20;
@@ -2577,16 +2663,24 @@ public sealed class Plugin : BasePlugin
     /// Fast weapon switch: zero the weapon switch timer to allow instant switching.
     /// The game likely has a switch delay field that we can zero.
     /// </summary>
+    private static int fastSwitchLastWeaponId = -1;
+
     private static void ApplyFastWeaponSwitch()
     {
         try
         {
-            // Zero the reload/equip timer fields to allow instant weapon switching
             var main = Controll.HGAODFPBGLB;
             if (main == null) return;
-            // Zero the fire timer to allow immediate fire after switch
-            main.LCMOBPPHLLM = 0f;
-            Controll.LCMOBPPHLLM = 0f;
+
+            // Only zero the timers on the frame the weapon actually changed. Zeroing them
+            // every frame (old behaviour) constantly reset the fire cooldown mid-fight.
+            var weaponId = main.ECBCOHFLJCC;
+            if (weaponId != fastSwitchLastWeaponId)
+            {
+                fastSwitchLastWeaponId = weaponId;
+                main.LCMOBPPHLLM = 0f;
+                Controll.LCMOBPPHLLM = 0f;
+            }
         }
         catch { }
     }
@@ -2679,17 +2773,27 @@ public sealed class Plugin : BasePlugin
     /// Slide hack: force crouch while moving to enable sliding without cooldown.
     /// Sets the crouch flag (0x20) continuously while moving forward.
     /// </summary>
+    private static bool crouchKeyLatched;
+
     private static void ApplySlideHack()
     {
         try
         {
             var input = Controll.MNHBPCOOMLE;
             var isMoving = (input & 0x4u) != 0 || (input & 0x1u) != 0 || (input & 0x2u) != 0;
-            if (isMoving && Controll.HLBAGIACGBI)
+            var wantCrouch = isMoving && GroundedNow();
+
+            // Send a real crouch key instead of writing the duck bit: Controll.Update
+            // rebuilds MNHBPCOOMLE from actual Input each frame, so bit writes never stuck.
+            if (wantCrouch && !crouchKeyLatched)
             {
-                // Set crouch flag while moving on ground
-                Controll.MNHBPCOOMLE |= 0x20u; // duck=32
-                Controll.NJPDKJKJMCG = true;
+                keybd_event(VkControl, 0, KeyEventFKeyDown, 0);
+                crouchKeyLatched = true;
+            }
+            else if (!wantCrouch && crouchKeyLatched)
+            {
+                keybd_event(VkControl, 0, KeyEventFKeyUp, 0);
+                crouchKeyLatched = false;
             }
         }
         catch { }
@@ -3007,24 +3111,27 @@ public sealed class Plugin : BasePlugin
     }
 
     /// <summary>
-    /// Auto-bhop: perfectly timed jump when landing for maximum speed.
-    /// Detects the exact frame the player touches ground and immediately jumps.
+    /// Auto-bhop: tap jump on the exact landing frame using VUtil.groundcontact.
+    /// The old version wrote the jump bit into Controll.MNHBPCOOMLE, but Controll.Update
+    /// rebuilds that bitfield from real Input at the start of every frame, so the write
+    /// was always a no-op — and gating on Controll.HLBAGIACGBI caused mid-air jumps.
     /// </summary>
     private static void ApplyAutoBhop()
     {
         try
         {
-            // If grounded and moving forward, auto-jump
-            if (Controll.HLBAGIACGBI && !Controll.GCHFDAPNBNB)
+            var grounded = GroundedNow();
+            if (grounded && !wasGroundedForHop)
             {
                 var input = Controll.MNHBPCOOMLE;
                 var isMoving = (input & 0x4u) != 0 || (input & 0x1u) != 0 || (input & 0x2u) != 0;
                 if (isMoving)
                 {
-                    Controll.MNHBPCOOMLE |= 0x10u; // Set jump flag
-                    Controll.GCHFDAPNBNB = true;
+                    TapJump();
                 }
             }
+
+            wasGroundedForHop = grounded;
         }
         catch { }
     }
@@ -4398,6 +4505,34 @@ public sealed class Plugin : BasePlugin
     private const uint KeyEventFKeyDown = 0x00;
     private const uint KeyEventFKeyUp = 0x02;
     private const byte VkSpace = 0x20;
+    private const byte VkControl = 0x11;
+    private const byte VkShift = 0x10;
+    private const byte VkKeyA = 0x41;
+    private const byte VkKeyD = 0x44;
+
+    /// <summary>
+    /// The game's own voxel AABB ground contact (VUtil.groundcontact static).
+    /// Controll.HLBAGIACGBI is NOT reliable for jump timing — features gated on it
+    /// caused mid-air jumps. Both values are shown in the debug overlay so a probe
+    /// run can confirm the mapping.
+    /// </summary>
+    private static bool GroundedNow()
+    {
+        try
+        {
+            return VUtil.groundcontact;
+        }
+        catch
+        {
+            return false;
+        }
+    }
+
+    private static void TapJump()
+    {
+        keybd_event(VkSpace, 0, KeyEventFKeyDown, 0);
+        keybd_event(VkSpace, 0, KeyEventFKeyUp, 0);
+    }
 
     private const uint MouseEventFLeftDown = 0x02;
     private const uint MouseEventFLeftUp = 0x04;
@@ -4885,7 +5020,13 @@ public sealed class Plugin : BasePlugin
             autoShoot = GUI.Toggle(new Rect(x, y, w, 24), autoShoot, "Auto shoot (Win32 input)"); y += 26;
             if (autoShoot)
             {
-                rapidFire = GUI.Toggle(new Rect(x + 20, y, w - 20, 24), rapidFire, "Rapid fire (1 shot/tick)"); y += 26;
+                rapidFire = GUI.Toggle(new Rect(x + 20, y, w - 20, 24), rapidFire, "Rapid fire (clamped fire interval)"); y += 26;
+        if (rapidFire)
+        {
+            GUI.Label(new Rect(x + 20, y, 120, 24), $"Min interval: {fireIntervalFloor:0.00}s");
+            fireIntervalFloor = GUI.HorizontalSlider(new Rect(x + 140, y + 4, w - 160, 20), fireIntervalFloor, 0.02f, 0.3f);
+            y += 26;
+        }
             }
             ghostBullets = GUI.Toggle(new Rect(x + 20, y, w - 20, 24), ghostBullets, "Ghost bullets (through walls)"); y += 26;
             if (aimStyle == 0 && !ghostBullets)
@@ -4924,14 +5065,22 @@ public sealed class Plugin : BasePlugin
         preFire = GUI.Toggle(new Rect(x, y, w, 24), preFire, "Pre-fire (auto-fire at close range)"); y += 26;
         noRecoil = GUI.Toggle(new Rect(x, y, w, 24), noRecoil, "No recoil"); y += 26;
         noSpread = GUI.Toggle(new Rect(x, y, w, 24), noSpread, "No spread (zero recoil accumulator)"); y += 26;
-        fastFire = GUI.Toggle(new Rect(x, y, w, 24), fastFire, "Fast fire rate (zero fire timer)"); y += 26;
+        fastFire = GUI.Toggle(new Rect(x, y, w, 24), fastFire, "Fast fire rate (clamped fire interval)"); y += 26;
+        if (fastFire)
+        {
+            GUI.Label(new Rect(x, y, 120, 24), $"Min interval: {fireIntervalFloor:0.00}s");
+            fireIntervalFloor = GUI.HorizontalSlider(new Rect(x + 120, y + 4, w - 120, 20), fireIntervalFloor, 0.02f, 0.3f);
+            y += 26;
+        }
 
         GUI.Label(new Rect(x, y, w, 24), "--- Anti-Aim ---"); y += 26;
         spinbot = GUI.Toggle(new Rect(x, y, w, 24), spinbot, "Spinbot (anti-aim yaw spin)"); y += 26;
         antiAimPitch = GUI.Toggle(new Rect(x, y, w, 24), antiAimPitch, "Anti-aim pitch (fake look up/down)"); y += 26;
         antiAimJitter = GUI.Toggle(new Rect(x, y, w, 24), antiAimJitter, "Anti-aim jitter (random yaw)"); y += 26;
         autoStrafe = GUI.Toggle(new Rect(x, y, w, 24), autoStrafe, "Auto-strafe (dodge pattern)"); y += 26;
-        fakeLag = GUI.Toggle(new Rect(x, y, w, 24), fakeLag, "Fake lag (delay position updates)"); y += 26;
+        // Shelved (no-op: Controll.Update rebuilds the input bitfield from real Input
+        // every frame, so clearing movement bits there has no effect). See MOVEMENT.md.
+        // fakeLag
 
         GUI.Label(new Rect(x, y, w, 24), "--- Hit/Kill Feedback ---"); y += 26;
         hitMarker = GUI.Toggle(new Rect(x, y, w, 24), hitMarker, "Hit marker (X at crosshair on hit)"); y += 26;
@@ -5049,17 +5198,18 @@ public sealed class Plugin : BasePlugin
         autoBhop = GUI.Toggle(new Rect(x, y, w, 24), autoBhop, "Auto-bhop (perfect jump timing)"); y += 26;
         edgeJump = GUI.Toggle(new Rect(x, y, w, 24), edgeJump, "Edge jump (auto-jump at ledges)"); y += 26;
 
-        GUI.Label(new Rect(x, y, w, 24), "--- Speed/Fly ---"); y += 26;
-        speedHack = GUI.Toggle(new Rect(x, y, w, 24), speedHack, "Speed hack"); y += 26;
+        GUI.Label(new Rect(x, y, w, 24), "--- Speed ---"); y += 26;
+        speedHack = GUI.Toggle(new Rect(x, y, w, 24), speedHack, "Speed hack (Movement speeds)"); y += 26;
         if (speedHack)
         {
             GUI.Label(new Rect(x, y, w, 20), $"Speed: {speedMultiplier:0.0}x");
             speedMultiplier = GUI.HorizontalSlider(new Rect(x + 60, y + 4, w - 60, 20), speedMultiplier, 0.5f, 5f);
             y += 26;
         }
-        flyHack = GUI.Toggle(new Rect(x, y, w, 24), flyHack, "Fly hack (Space=up, Shift=down)"); y += 26;
-        noClip = GUI.Toggle(new Rect(x, y, w, 24), noClip, "No clip"); y += 26;
         autoSprint = GUI.Toggle(new Rect(x, y, w, 24), autoSprint, "Auto-sprint (always sprint when moving)"); y += 26;
+        // Shelved (proven broken by the game's own code, see MOVEMENT.md):
+        // flyHack — the game drives velocity itself every frame, useGravity is ignored;
+        // noClip — collision is VUtil's custom voxel AABB, disabling Unity colliders does nothing.
 
         GUI.Label(new Rect(x, y, w, 24), "--- Goku TP ---"); y += 26;
         gokuTp = GUI.Toggle(new Rect(x, y, w, 24), gokuTp, "Goku TP (teleport behind enemy)"); y += 26;
@@ -5860,7 +6010,6 @@ public sealed class Plugin : BasePlugin
         if (autoStrafe) features.Add("AutoStrafe");
         if (killFeed) features.Add("KillFeed");
         if (edgeJump) features.Add("EdgeJump");
-        if (fakeLag) features.Add("FakeLag");
         if (spectatorWarning) features.Add("SpectatorWarn");
         if (damageIndicator) features.Add("DmgIndicator");
         if (hitMarker) features.Add("HitMarker");

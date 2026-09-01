@@ -66,6 +66,7 @@ internal static class Validator
         new("FPNENMKEFBB", nameof(FPNENMKEFBB.ADMGNABJBNM), "Raw.FPNENMKEFBB.Offsets.ADMGNABJBNM (weapon data ref)"),
         new("GP", nameof(GP.auth), "Raw.GP.Offsets.auth (login state)"),
         new("GP", nameof(GP.token), "Raw.GP.Offsets.token (backend auth token)"),
+        new("VUtil", nameof(VUtil.groundcontact), "Raw.VUtil.Offsets.groundcontact (real ground detection)"),
     };
 
     /// <summary>

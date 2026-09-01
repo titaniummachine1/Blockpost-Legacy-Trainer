@@ -62,6 +62,14 @@ expose them.
    connected socket, so `Client.FPIDGCHIEMJ` is not the live read path. Until this is fixed we
    cannot see whether the server ever corrects or rejects anything.
 3. Rebuild rapid fire on top of the game's own fire path once the fire cooldown field is known.
+4. Settle the **player position question**: `0x44` (`OOMJGHCFODI`) vs `0x60` (`FLILDBNOFMK`) —
+   the native ImGui menu uses `0x60` for ESP/aimbot. `Validator.CheckFieldOffsets` logs both
+   values on every field probe; see `Sdk/README.md` §Cross-validation.
+5. Correlate `WeaponData` `Stat1..Stat10` (offsets `0x14`–`0x3C`) against known weapons
+   (ak47 vs glock fire rate, mag sizes) to pin the fire-rate/damage/mag stats — that is the
+   clean lever for remove-attack-cooldown and infinite ammo at the definition level. The
+   voxel build/mine API (`VoxelWorld.SetBlock` etc., see `Sdk/README.md`) is mapped and
+   ready for features.
 
 ## SDK state (latest)
 

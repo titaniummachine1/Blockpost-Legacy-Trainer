@@ -31,6 +31,7 @@
 - `PROTOCOL.md` — Network protocol, opcodes, transport layer (40KB, detailed)
 - `AMMO_ANALYSIS.md` — Deep ammo field analysis with implementation strategies
 - `CLASS_MAP.md` — Comprehensive class map (all important classes, fields, methods)
+- `INVENTORY.md` — Inventory/loadout/economy architecture: server-side inventory, auth chain, force-equip limits, crates/missions/achievements status
 - `BACKLOG.md` — Feature backlog and TODO
 - `HANDOFF.md` — Session handoff notes
 
@@ -296,7 +297,7 @@ Key method: PFBJDHPMIJP(int ammo, int reserve) — Update both ammo displays
 | Speed hack | Working | Time.timeScale + Movement.GBHJLHFPCHK/BOKNCBLLHED static fields |
 | Fly hack | Working | Player.MJPOJOOIPPN.useGravity=false + Space/Shift vertical velocity |
 | No clip | Working | Disable all Collider components on player root GameObject |
-| Weapon unlock | Working | Populate GUIInv.LoadoutEntries with FPNENMKEFBB for every NAHLLMJMOED in AllWeapons |
+| Weapon unlock | Working (client-side inventory only) | Populate GUIInv.LoadoutEntries with FPNENMKEFBB for every NAHLLMJMOED in AllWeapons; server keeps its own inventory copy (INVENTORY.md) |
 | Ghost bullets | In progress | NetProbe.TryFakeHit (bypasses fire logic) |
 | Third person | Working | Camera positioned behind player using yaw angle, looks at head |
 | Chams | Working | Override Renderer.material with transparent colored material on enemy players |
@@ -325,18 +326,18 @@ Key method: PFBJDHPMIJP(int ammo, int reserve) — Update both ammo displays
 | Hit marker | Working | White X at crosshair when hit counter increments |
 | Auto-pickup | Working | Move toward nearby pickup/drop/loot GameObjects |
 | Aim bone selector | Working | Head/Chest/Pelvis target selection for aimbot |
-| XP/Gold hack | Working | Set GUIOptions.exp=999k, Gold=999k, level=100 via reflection |
+| XP/Gold hack | Shelved (not in UI) | Display-only: writes GUIOptions statics, server overwrites at every profile sync. See INVENTORY.md |
 | Health bar ESP | Working | Colored health bars above player ESP boxes |
 | Snaplines | Working | Lines from bottom-center of screen to enemies |
 | Threat indicator | Working | Red arrow pointing to closest off-screen enemy + distance |
-| Name changer | Working | Set GUIOptions.playername to custom name |
-| Scoreboard hack | Working | Set UIScores team scores to 999/0 |
+| Name changer | Shelved (not in UI) | Display-only: in-match names come from networked player rows, server sync reverts it |
+| Scoreboard hack | Shelved (not in UI) | Game re-renders scores from real state every frame; write is invisible/flicker |
 | Auto-bhop | Working | Perfect jump timing when grounded + moving |
 | Ping spoof | Working | Display fake ping value in bottom-right corner |
 | Footstep ESP | Working | Record enemy positions every 0.5s, draw as fading dots |
 | Pre-fire | Working | Auto-fire when enemy within 5m + has LOS |
 | Backtrack | Working | Store 2s of enemy position history, draw as blue dots |
-| Admin unlock | Working | Set GUIAdmin.show=true via reflection |
+| Admin unlock | Shelved (not in UI) | Opens the admin panel client-side; every admin action is a server transaction and would be rejected |
 | Box-head ESP | Working | Separate boxes for head + body with connecting line |
 | Slide hack | Working | Force crouch flag while moving on ground |
 | Grenade trajectory | Working | Simulate parabolic arc, draw as cyan dots |

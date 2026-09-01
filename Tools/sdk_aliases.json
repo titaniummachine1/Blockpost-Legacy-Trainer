@@ -125,7 +125,9 @@
       "ArrayField_DGPN": "DGPNADLPABD",
       "ArrayField_AOEN": "AOENBHLHIPC",
       "ArrayField_NELC": "NELCHEONPLB",
-      "ArrayField_OLNE": "OLNEICLAOIH"
+      "ArrayField_OLNE": "OLNEICLAOIH",
+      "Nickname": "HOOJGPCGFNB",
+      "Nickname_1": "JKAJNLOOEOO"
     },
     "Methods": {
       "GetTexture_LFLK": "LFLKBNEJFHK",
@@ -278,7 +280,10 @@
       "Body": "GameObject 'body' — body hitbox.",
       "Rigidbody": "Player rigidbody, used for bunnyhop grounded check (velocity.y).",
       "ActiveWeapon": "Property returning CGJPBNDDPIN (current weapon instance). Null if no weapon.",
-      "Team": "Player team id. Used for teammate detection in aimbot/ESP."
+      "Team": "Player team id. Used for teammate detection in aimbot/ESP.",
+      "MuzzleForward": "Vector3 at 0x60. The native ImGui menu (imgui new menu/Utils/Offsets.hpp) reads offset 0x60 as the live player POSITION for ESP/aimbot, while our alias assumes an aim/muzzle vector. Player.JIPNKAGPCGK (0x54) and FLILDBNOFMK (0x60) are adjacent; the same two names exist as statics on Controll at 0xFC/0x108 where the native menu also reads 0x108 as position (pos_controll). Open question: next field-watch should log this field while moving to settle position vs forward.",
+      "Position": "Vector3 at 0x44, assumed player position. Cross-check: the native ImGui menu used 0x60 (FLILDBNOFMK) instead. Compare both in the next field-watch; SDK offset Validator compares them at runtime.",
+      "Nickname": "String at 0x2C. The native ImGui menu reads offset 0x2C as the display name for name-ESP. NHHBNNBDDIA (0x14) is the other name string -- possibly login vs display name."
     }
   },
   "Controll": {
@@ -663,9 +668,7 @@
       "IsReloading": "True for the duration of a reload.",
       "ReloadMinigameResult": "0 no attempt / 1 perfect / 2 failed.",
       "HitList": "List<DMHBMAAFCFJ> (0x1F0). Populated by PLH.CDEGJOBLOFO's raycast. Sent to server via Client.AHLDAPJEJNC.",
-      "HitSequence": "int (0x1EC). Hit sequence counter, passed to Client.AHLDAPJEJNC.",
-      "MaxFireRate": "float (0x1A8). Same offset as ReloadStartTime — fire rate cap.",
-      "CurrentFireRate": "float (0x1AC). Same offset as ReloadEndTime — current fire rate timer."
+      "HitSequence": "int (0x1EC). Hit sequence counter, passed to Client.AHLDAPJEJNC."
     }
   },
   "Client": {
@@ -1064,11 +1067,13 @@
       "PLH_PlayerAction12": "HAPCNCPDHBD",
       "PLH_Init3": "EHJHAJDOGMB",
       "PLH_EquipWeaponByName2": "CKGLCABDLJF",
-      "PLH_EquipWeaponByName3": "NNAOHNAPCKP"
+      "PLH_EquipWeaponByName3": "NNAOHNAPCKP",
+      "Action_CGJJ": "CGJJEPDJIEJ",
+      "Action_GBDI": "GBDIHAJDAIA"
     },
     "Properties": {},
     "Notes": {
-      "Players": "KBBBHJDINCB[] (0xC). All players in the match. Used by aimbot to find targets.",
+      "Players": "KBBBHJDINCB[] (0xC). All players in the match. Used by aimbot to find targets. The native ImGui menu reaches this through the GameAssembly static chain 0x00C7BA08 -> +0x5C -> +0xC (Utils/Offsets.hpp entityListOffsets); under BepInEx we read the static directly via interop (PLH.BAKLNPIEHMI / GameAccess.Players).",
       "Fire": "CDEGJOBLOFO(KBBBHJDINCB player, float fireRate, bool a, bool b). Fires visual shot (sound/muzzle flash). Does NOT send network hit packet — that's done by Client.AHLDAPJEJNC after Controll.Update processes the hit list.",
       "FireAlt": "MFHJFPPOHLC(KBBBHJDINCB, float, bool, bool). Same signature as Fire — alternate fire mode.",
       "LoadWeaponSkin": "PLH.JLAALPNBABH. Loads the weapon model/skin -- PlayerPrefs lookup, TEX.CALGHDNPMLO, Material.SetTexture, VWGen. Previously mis-aliased as Reload; it is NOT the reload entry point and does not touch ammo. See PROTOCOL.md 19.",
@@ -1206,15 +1211,18 @@
       "SelectedSkin": "IKKIINGIICF",
       "Int1": "MPBHJGCJBDE",
       "Float1": "JMACIGCBFBD",
-      "CurrentLoadoutEntry": "PJMELMGMNDO"
+      "CurrentLoadoutEntry": "PJMELMGMNDO",
+      "Progress0": "MHCPNENABCD",
+      "Progress1": "CLKDEHIHPAJ",
+      "Progress2": "EKNEPPFAEME",
+      "Progress3": "ODBDHJLHOGP",
+      "Progress4": "JGFMOAHNPDN"
     },
     "Methods": {
       "OnResize": "OnResize",
       "GetBool_OPMG": "OPMGLEMEHDL",
-      "GetLoadout_PNNE": "PNNEFOPFCHF",
       "GetBool_GMAP": "GMAPPDLMCLG",
       "OnChangeSubMenu": "OnChangeSubMenu",
-      "GetLoadout_KHAB": "KHABBLDBFKK",
       "GetBool_NAHL": "NAHLGPJFKPC",
       "GetBool_FAAJ": "FAAJKFCFBKN",
       "LoadLang": "LoadLang",
@@ -1274,14 +1282,21 @@
       "GUIInv_ComplexAction19": "ECMMFAGBOEK",
       "GetWeaponData_CAMM": "CAMMBHLEFOG",
       "GetWeaponData_NJDN": "NJDNGJNPHNE",
-      "GetWeaponData_FPIJ": "FPIJPCOKIEC"
+      "GetWeaponData_FPIJ": "FPIJPCOKIEC",
+      "GetLoadoutById": "PNNEFOPFCHF",
+      "GetLoadoutByUniqueId": "KHABBLDBFKK"
     },
     "Properties": {},
     "Notes": {
       "AllWeapons": "NAHLLMJMOED[] OIHNJCKDOIG - all weapon definitions",
       "LoadoutEntries": "List<FPNENMKEFBB> KNCJNHILDLJ - owned weapon instances (loadout)",
       "LoadoutCategories": "BIMFEOACIDM[] JDIHHMABLAJ - weapon categories",
-      "Cases": "ACEDGBLFHDK[] MMNCKDECLNA - case definitions"
+      "Cases": "ACEDGBLFHDK[] MMNCKDECLNA - case definitions",
+      "SelectedLoadout": "Currently selected loadout entry in the inventory UI. Setting it + SelectedWeapon forces an equip.",
+      "SelectedWeapon": "Currently previewed/selected weapon instance (CGJPBNDDPIN).",
+      "SelectedCategory": "Currently open loadout category (BIMFEOACIDM).",
+      "Progress0": "int[] statics (Progress0..4) -- candidate mission/achievement progress arrays. Unverified.",
+      "GetLoadoutById": "LoadoutEntry PNNEFOPFCHF(int id) -- get/create owned entry by weapon id."
     }
   },
   "NAHLLMJMOED": {
@@ -1291,16 +1306,6 @@
       "Codename": "OJEKKFDIKMG",
       "DisplayName": "NGFDENOFBLK",
       "Hash": "COFIPANEHAD",
-      "Slot": "NIKINLIKGCP",
-      "Slot_1": "MOGDFDEMPLE",
-      "Slot_2": "OGFHJFLIPJF",
-      "Slot_3": "FJNCHGFBGPE",
-      "Slot_4": "IPCLIGEFODM",
-      "Slot_5": "PFOLBILDIKE",
-      "Slot_6": "OAMCLACLLFG",
-      "Slot_7": "FNDCBCNPMCN",
-      "Slot_8": "LOIPDGEOINE",
-      "Slot_9": "OGOJOLDMKDK",
       "Slot_10": "NFACEFKLCIO",
       "Hash_1": "BECPMLJIOKK",
       "Icon": "PPOKPPFDNDH",
@@ -1308,7 +1313,17 @@
       "Icon_1": "BENIFJKLAKO",
       "IconOffset_1": "NIEHAKKBDIM",
       "Slot_11": "CIBFIOICEJE",
-      "Slot_12": "CLPPGCONHBL"
+      "Slot_12": "CLPPGCONHBL",
+      "Stat1": "NIKINLIKGCP",
+      "Stat2": "MOGDFDEMPLE",
+      "Stat3": "OGFHJFLIPJF",
+      "Stat4": "FJNCHGFBGPE",
+      "Stat5": "IPCLIGEFODM",
+      "Stat6": "PFOLBILDIKE",
+      "Stat7": "OAMCLACLLFG",
+      "Stat8": "FNDCBCNPMCN",
+      "Stat9": "LOIPDGEOINE",
+      "Stat10": "OGOJOLDMKDK"
     },
     "Methods": {
       "NAHLLMJMOED_Action1": "IDDELHLKNAF",
@@ -1346,7 +1361,9 @@
       "NAHLLMJMOED_Action33": "OLKIFKBCNGA"
     },
     "Properties": {},
-    "Notes": {}
+    "Notes": {
+      "Stat1": "Stat1..Stat10 are the weapon integer stats (dump order, offsets 0x14-0x3C): among them damage, fire-rate, magazine size. Remove-attack-cooldown = raise the fire-rate stat, or clamp Controll.LCMOBPPHLLM per frame (already working). TODO: correlate stats against known weapons (ak47 vs pistol) using Tools/sdk_search.py + known_weapons.txt to pin exact meanings."
+    }
   },
   "FPNENMKEFBB": {
     "HumanClass": "LoadoutEntry",
@@ -1357,23 +1374,23 @@
       "Level": "PICIILNDDJO",
       "SkinData": "COAAKMDBKJM",
       "Slot": "LJAIJIMKOGP",
-      "Health": "GLGJDNLBAOB",
-      "Health_1": "NIKINLIKGCP",
-      "Health_2": "MOGDFDEMPLE",
       "DisplayName": "DECOKDIJIPD",
-      "DisplayName_1": "MHDNHOJIKAC"
+      "DisplayName_1": "MHDNHOJIKAC",
+      "InstanceStat1": "GLGJDNLBAOB",
+      "InstanceStat2": "NIKINLIKGCP",
+      "InstanceStat3": "MOGDFDEMPLE"
     },
     "Methods": {
-      "GetInt_CBEO": "CBEOOGDGMCE",
-      "GetInt_MLMI": "MLMILHAFECN",
-      "GetInt_KINH": "KINHGPFBAKM",
-      "GetInt_BDAL": "BDALGPFOKMO",
-      "GetInt_KLGF": "KLGFENNGGBP",
-      "GetInt_JBLO": "JBLOFFPNJKD",
-      "GetInt_BEOB": "BEOBPMEFCOM",
-      "GetInt_BIJA": "BIJACGOOHGJ",
-      "GetInt_IFBB": "IFBBBNGLPMM",
-      "GetInt_OECH": "OECHLECBCPF",
+      "StatGetter": "CBEOOGDGMCE",
+      "StatGetter_2": "MLMILHAFECN",
+      "StatGetter_3": "KINHGPFBAKM",
+      "StatGetter_4": "BDALGPFOKMO",
+      "StatGetter_5": "KLGFENNGGBP",
+      "StatGetter_6": "JBLOFFPNJKD",
+      "StatGetter_7": "BEOBPMEFCOM",
+      "StatGetter_8": "BIJACGOOHGJ",
+      "StatGetter_9": "IFBBBNGLPMM",
+      "StatGetter_10": "OECHLECBCPF",
       "GetInt_NFGD": "NFGDBPFDMNO",
       "GetInt_JNPB": "JNPBEEJPING",
       "GetInt_JKJB": "JKJBCBBGCKI",
@@ -1386,7 +1403,13 @@
       "GetInt_PAHI": "PAHILIJIEEP"
     },
     "Properties": {},
-    "Notes": {}
+    "Notes": {
+      "UniqueId": "ulong unique id -- the server-side item instance id. Deleting entries or reusing ids may desync with the server inventory.",
+      "SkinData": "byte[] -- serialized skin bytes. The path for weapon skin changer; pushed to server via Client.SendWeaponData.",
+      "Slot": "byte loadout slot this entry occupies.",
+      "InstanceStat1": "Per-instance stat overrides (wears/attachments?) on top of WeaponData stats.",
+      "StatGetter": "int getters (StatGetter, _2.._10) -- likely computed stats (damage/fire-rate derived from WeaponData + instance stats)."
+    }
   },
   "CGJPBNDDPIN": {
     "HumanClass": "WeaponItem",
@@ -10410,24 +10433,12 @@
     "Notes": {}
   },
   "VoxelMap": {
-    "HumanClass": "VoxelMap",
+    "HumanClass": "VoxelWorld",
     "Fields": {
       "MeshOptimization": "MeshOptimization",
       "GlassSupport": "GlassSupport",
-      "Slot": "CHUNK_SIZE",
-      "Slot_1": "CHUNK_SIZE_X",
-      "Slot_2": "CHUNK_SIZE_Y",
-      "Slot_3": "CHUNK_SIZE_Z",
-      "Slot_4": "CHUNK_SIZE_ALL",
-      "Slot_5": "MAP_SIZE_X",
-      "Slot_6": "MAP_SIZE_Y",
-      "Slot_7": "MAP_SIZE_Z",
-      "Slot_8": "BLOCK_SIZE_X",
-      "Slot_9": "BLOCK_SIZE_Y",
-      "Slot_10": "BLOCK_SIZE_Z",
       "bool[,]_IDIC": "IDICHNFDFHD",
       "Vector4[,]_KFGK": "KFGKPDBBAEC",
-      "Sensitivity": "WATER_LEVEL",
       "chunks": "chunks",
       "StaticGlassChunk": "StaticGlassChunk",
       "DynamicGlassChunk": "DynamicGlassChunk",
@@ -10477,7 +10488,19 @@
       "Slot_20": "IMFCLBGKFNA",
       "Head": "BLJADPICBEK",
       "Head_1": "DKDMCHIOFHI",
-      "trMapPlatform": "trMapPlatform"
+      "trMapPlatform": "trMapPlatform",
+      "ChunkSize": "CHUNK_SIZE",
+      "ChunkSizeX": "CHUNK_SIZE_X",
+      "ChunkSizeY": "CHUNK_SIZE_Y",
+      "ChunkSizeZ": "CHUNK_SIZE_Z",
+      "ChunkSizeAll": "CHUNK_SIZE_ALL",
+      "MapSizeX": "MAP_SIZE_X",
+      "MapSizeY": "MAP_SIZE_Y",
+      "MapSizeZ": "MAP_SIZE_Z",
+      "BlockSizeX": "BLOCK_SIZE_X",
+      "BlockSizeY": "BLOCK_SIZE_Y",
+      "BlockSizeZ": "BLOCK_SIZE_Z",
+      "WaterLevel": "WATER_LEVEL"
     },
     "Methods": {
       "GetInt_GINH": "GINHIEBHAHA",
@@ -10494,7 +10517,6 @@
       "GetInt_IPAG": "IPAGLFFFDJI",
       "LoadBinAdditional": "LoadBinAdditional",
       "GetBlock": "GetBlock",
-      "GetInt_NLMJ": "NLMJPADEKOB",
       "ClearChunksMeshes": "ClearChunksMeshes",
       "GetLastColor": "GetLastColor",
       "GetInt_NKJD": "NKJDACLCLIE",
@@ -10615,10 +10637,19 @@
       "GetColor_LOAG": "LOAGPFLLEAN",
       "GetColor_JINF": "JINFJFHGCHA",
       "GetColor_KIHA": "KIHAPLJGKII",
-      "GetMesh_FMCP": "FMCPJOEJBNH"
+      "GetMesh_FMCP": "FMCPJOEJBNH",
+      "BlockAtWorldPos": "NLMJPADEKOB"
     },
     "Properties": {},
-    "Notes": {}
+    "Notes": {
+      "chunks": "LOMEPCOKKCB[,,] static at 0x3C -- the whole voxel world, indexed [cx,cy,cz]. Each chunk holds int[,,] BlockIds and Color[,,] BlockColors (see VoxelChunk).",
+      "mapdata": "byte[] static at 0x4C -- raw compressed map bytes.",
+      "SetBlock": "bool SetBlock(float x, float y, float z, Color color, int flag). The Minecraft place-block primitive: writes the block, colors it, marks dirty.",
+      "GetBlock": "int GetBlock(int x, int y, int z). 0 = air.",
+      "BlockAtWorldPos": "int NLMJPADEKOB(Vector3 worldPos) -- block id under a world-space position.",
+      "SetBlockNearDirtyUpdate": "void SetBlockNearDirtyUpdate(int x, int y, int z) -- re-render the chunk containing this block.",
+      "RenderDirty": "Rebuild meshes for all dirty chunks. Call after direct BlockIds edits."
+    }
   },
   "VoxelBattleMap": {
     "HumanClass": "BattleMap",
@@ -12690,20 +12721,23 @@
   "ACEDGBLFHDK": {
     "HumanClass": "WeaponCollection",
     "Fields": {
-      "Health": "LDKMPMIANCE",
-      "Codename": "OJEKKFDIKMG",
-      "Codename_1": "NGFDENOFBLK",
-      "Health_1": "MGKODKMCHLE",
-      "Health_2": "MGJBBAEJPOK",
-      "Health_3": "DANELGOANLC",
-      "Codename_2": "JDLMEDKBCGI",
-      "Health_4": "LLOKOHPFCCO",
-      "NAHLLMJMOED[]_JFOE": "JFOEOEJLDML",
-      "Texture": "AKLDHALMPKG"
+      "CaseId": "LDKMPMIANCE",
+      "DisplayName": "OJEKKFDIKMG",
+      "Codename": "NGFDENOFBLK",
+      "CaseStat1": "MGKODKMCHLE",
+      "CaseStat2": "MGJBBAEJPOK",
+      "CaseStat3": "DANELGOANLC",
+      "CaseHash": "JDLMEDKBCGI",
+      "CaseStat4": "LLOKOHPFCCO",
+      "Weapons": "JFOEOEJLDML",
+      "Image": "AKLDHALMPKG"
     },
     "Methods": {},
     "Properties": {},
-    "Notes": {}
+    "Notes": {
+      "Weapons": "NAHLLMJMOED[] -- the possible contents of this crate/case. Opening itself is a server transaction; contents are client-known for the UI.",
+      "CaseStat1": "Case pricing/rarity stats (order unknown)."
+    }
   },
   "EEEBDHNOPDI": {
     "HumanClass": "InventoryEntry",
@@ -13523,7 +13557,7 @@
     "Notes": {}
   },
   "VoxelMultList": {
-    "HumanClass": "VoxelMultList",
+    "HumanClass": "BlockEditList",
     "Fields": {
       "List<VoxelMultList.MBDHOLCMABP>_LAOA": "LAOAOJMEHKI"
     },
@@ -13656,7 +13690,9 @@
       "VoxelMultList_RecvMultiInt65": "AMILJMKCFDJ"
     },
     "Properties": {},
-    "Notes": {}
+    "Notes": {
+      "Add": "static block-edit ops taking (x, y, z). Batch path the game uses for multi-block changes (explosions, builder fill)."
+    }
   },
   "VoxelGreedy": {
     "HumanClass": "VoxelGreedy",
@@ -17452,21 +17488,21 @@
     "Notes": {}
   },
   "LOMEPCOKKCB": {
-    "HumanClass": "LOMEPCOKKCB",
+    "HumanClass": "VoxelChunk",
     "Fields": {
-      "Flag": "JBDKEAPAIPL",
-      "Health": "BCJADOIPFHE",
-      "Health_1": "IAIHGIDAJEK",
-      "Health_2": "LICHKMCHMMF",
-      "int[,,]_IODD": "IODDKDHBMFF",
-      "Color[,,]_JFFL": "JFFLHBFAGOM",
-      "Health_3": "FGEEHNDNHAM",
-      "Health_4": "EBLPGCDDAIF",
-      "GameObject": "LANBONKMIME",
-      "MeshFilter_GHLK": "GHLKMAIOBAL",
-      "MeshRenderer_CMCA": "CMCACFDLCCM",
-      "MeshCollider_MIMO": "MIMOMNBOOOH",
-      "Position": "MMMIPJBFPHE"
+      "IsDirty": "JBDKEAPAIPL",
+      "ChunkX": "BCJADOIPFHE",
+      "ChunkY": "IAIHGIDAJEK",
+      "ChunkZ": "LICHKMCHMMF",
+      "BlockIds": "IODDKDHBMFF",
+      "BlockColors": "JFFLHBFAGOM",
+      "BlockCount1": "FGEEHNDNHAM",
+      "BlockCount2": "EBLPGCDDAIF",
+      "RootObject": "LANBONKMIME",
+      "MeshFilter": "GHLKMAIOBAL",
+      "MeshRenderer": "CMCACFDLCCM",
+      "MeshCollider": "MIMOMNBOOOH",
+      "Center": "MMMIPJBFPHE"
     },
     "Methods": {
       "GetInt_IOKF": "IOKFACFPCLB",
@@ -17558,7 +17594,12 @@
       "GetColor_BJEF": "BJEFNPAOFOM"
     },
     "Properties": {},
-    "Notes": {}
+    "Notes": {
+      "BlockIds": "int[,,] block ids indexed by block within the chunk (16^3 per SERVER_CHUNK_SIZE). Write + VoxelMap.RenderDirty = Minecraft setblock.",
+      "BlockColors": "Color[,,] parallel to BlockIds -- per-block paint color.",
+      "IsDirty": "Candidate: chunk re-render flag read by RenderDirty.",
+      "BlockCount1": "Candidate: non-air block count or mesh vertex budget."
+    }
   },
   "AudioSource": {
     "HumanClass": "AudioSource",
@@ -23387,73 +23428,75 @@
     },
     "Methods": {
       "Update": "Update",
-      "DM_Action1": "LBILKLFLAMA",
-      "DM_Action2": "FJFOPJAGGEB",
-      "DM_Action3": "DEAHMNPJFIG",
-      "DM_Action4": "CJBJPLLDHFH",
-      "DM_Action5": "FPBAODINJML",
-      "DM_Action6": "FOPOKGKFLIG",
-      "DM_Action7": "IBGIHCIFNPD",
-      "DM_Action8": "JNCBEGOHKFB",
-      "DM_Action9": "DDIPFLEPNFL",
-      "DM_Action10": "HPHONCKLEDA",
-      "DM_Action11": "JBAGBIAEKPO",
-      "DM_Action12": "IOBBKKBNALP",
-      "DM_Action13": "OFABCHHCDGL",
-      "DM_Action14": "HLPFOMAALDD",
-      "DM_Action15": "CPEKLHBENBJ",
-      "DM_Action16": "EAIMKIEACIF",
-      "DM_Action17": "BKOCKHDPCNC",
-      "DM_Action18": "BILHLBHNOIB",
-      "DM_Action19": "ADHLEFPEFDB",
-      "DM_Action20": "GDDJFLJFMCB",
-      "DM_Action21": "PELMGLDGHLF",
-      "DM_Action22": "CCBDMNFDKCH",
-      "DM_Action23": "AHFCKILODOP",
-      "DM_Action24": "ACHMEJILAHF",
-      "DM_Action25": "HCACHALGEMP",
-      "DM_Action26": "LMINFJJBKFL",
-      "DM_Action27": "EHPFDIGJABP",
-      "DM_Action28": "INMIJPJJPMJ",
-      "DM_Action29": "FANMMMGPFFH",
-      "DM_Action30": "PIMELPONMEN",
-      "DM_Action31": "IMHNCGEDKND",
-      "DM_Action32": "EPBPLMIGIFK",
-      "DM_GameObjectAction1": "CHPAJCFNCDC",
-      "DM_GameObjectAction2": "HEKBJIECPON",
-      "DM_GameObjectAction3": "AFEJPPMFJHK",
-      "DM_GameObjectAction4": "OMDECHLDOMM",
-      "DM_GameObjectAction5": "LIBCNICDMIK",
-      "DM_GameObjectAction6": "EMDLHLNECEP",
-      "DM_GameObjectAction7": "GELKLMFJHJB",
-      "DM_GameObjectAction8": "EHNCGHHLLME",
-      "DM_GameObjectAction9": "MDFNKGKABKH",
-      "DM_GameObjectAction10": "HECJFIDMEIP",
-      "DM_GameObjectAction11": "EGBLPJCNBDJ",
-      "DM_GameObjectAction12": "GINKPNJPJJI",
-      "DM_GameObjectAction13": "MNEDBIGHJDI",
-      "DM_GameObjectAction14": "JFMJHOFNIGI",
-      "DM_GameObjectAction15": "MINOHJGMINF",
-      "DM_GameObjectAction16": "KOBMMLONGGB",
-      "DM_GameObjectAction17": "GOPNBPKCODC",
-      "DM_GameObjectAction18": "IJKEEAFOCFN",
-      "DM_GameObjectAction19": "CMFOHFNMOHB",
-      "DM_GameObjectAction20": "JIDMDHEMLME",
-      "DM_GameObjectAction21": "LCJJPMGFIAJ",
-      "DM_GameObjectAction22": "POMBKGOJJAD",
-      "DM_GameObjectAction23": "EOMHHOPBDHE",
-      "DM_GameObjectAction24": "LIHANALEEHC",
-      "DM_GameObjectAction25": "HGLFICLAFFO",
-      "DM_GameObjectAction26": "MAPJOGBKMNP",
-      "DM_GameObjectAction27": "MCOPINODGBN",
-      "DM_GameObjectAction28": "FJIBIMIBLLE",
-      "DM_GameObjectAction29": "GIDKPBNLDPM",
-      "DM_GameObjectAction30": "EDFAIECFLKE",
-      "DM_GameObjectAction31": "EODHLEEBEJD",
-      "DM_GameObjectAction32": "LDGDENAAPAK"
+      "ScheduleDestroy": "CHPAJCFNCDC",
+      "ScheduleDestroy_2": "HEKBJIECPON",
+      "ScheduleDestroy_3": "AFEJPPMFJHK",
+      "ScheduleDestroy_4": "OMDECHLDOMM",
+      "ScheduleDestroy_5": "LIBCNICDMIK",
+      "ScheduleDestroy_6": "EMDLHLNECEP",
+      "ScheduleDestroy_7": "GELKLMFJHJB",
+      "ScheduleDestroy_8": "EHNCGHHLLME",
+      "ScheduleDestroy_9": "MDFNKGKABKH",
+      "ScheduleDestroy_10": "HECJFIDMEIP",
+      "ScheduleDestroy_11": "EGBLPJCNBDJ",
+      "ScheduleDestroy_12": "GINKPNJPJJI",
+      "ScheduleDestroy_13": "MNEDBIGHJDI",
+      "ScheduleDestroy_14": "JFMJHOFNIGI",
+      "ScheduleDestroy_15": "MINOHJGMINF",
+      "ScheduleDestroy_16": "KOBMMLONGGB",
+      "ScheduleDestroy_17": "GOPNBPKCODC",
+      "ScheduleDestroy_18": "IJKEEAFOCFN",
+      "ScheduleDestroy_19": "CMFOHFNMOHB",
+      "ScheduleDestroy_20": "JIDMDHEMLME",
+      "ScheduleDestroy_21": "LCJJPMGFIAJ",
+      "ScheduleDestroy_22": "POMBKGOJJAD",
+      "ScheduleDestroy_23": "EOMHHOPBDHE",
+      "ScheduleDestroy_24": "LIHANALEEHC",
+      "ScheduleDestroy_25": "HGLFICLAFFO",
+      "ScheduleDestroy_26": "MAPJOGBKMNP",
+      "ScheduleDestroy_27": "MCOPINODGBN",
+      "ScheduleDestroy_28": "FJIBIMIBLLE",
+      "ScheduleDestroy_29": "GIDKPBNLDPM",
+      "ScheduleDestroy_30": "EDFAIECFLKE",
+      "ScheduleDestroy_31": "EODHLEEBEJD",
+      "ScheduleDestroy_32": "LDGDENAAPAK",
+      "Action_LBIL": "LBILKLFLAMA",
+      "Action_FJFO": "FJFOPJAGGEB",
+      "Action_DEAH": "DEAHMNPJFIG",
+      "Action_CJBJ": "CJBJPLLDHFH",
+      "Action_FPBA": "FPBAODINJML",
+      "Action_FOPO": "FOPOKGKFLIG",
+      "Action_IBGI": "IBGIHCIFNPD",
+      "Action_JNCB": "JNCBEGOHKFB",
+      "Action_DDIP": "DDIPFLEPNFL",
+      "Action_HPHO": "HPHONCKLEDA",
+      "Action_JBAG": "JBAGBIAEKPO",
+      "Action_IOBB": "IOBBKKBNALP",
+      "Action_OFAB": "OFABCHHCDGL",
+      "Action_HLPF": "HLPFOMAALDD",
+      "Action_CPEK": "CPEKLHBENBJ",
+      "Action_EAIM": "EAIMKIEACIF",
+      "Action_BKOC": "BKOCKHDPCNC",
+      "Action_BILH": "BILHLBHNOIB",
+      "Action_ADHL": "ADHLEFPEFDB",
+      "Action_GDDJ": "GDDJFLJFMCB",
+      "Action_PELM": "PELMGLDGHLF",
+      "Action_CCBD": "CCBDMNFDKCH",
+      "Action_AHFC": "AHFCKILODOP",
+      "Action_ACHM": "ACHMEJILAHF",
+      "Action_HCAC": "HCACHALGEMP",
+      "Action_LMIN": "LMINFJJBKFL",
+      "Action_EHPF": "EHPFDIGJABP",
+      "Action_INMI": "INMIJPJJPMJ",
+      "Action_FANM": "FANMMMGPFFH",
+      "Action_PIME": "PIMELPONMEN",
+      "Action_IMHN": "IMHNCGEDKND",
+      "Action_EPBP": "EPBPLMIGIFK"
     },
     "Properties": {},
-    "Notes": {}
+    "Notes": {
+      "ScheduleDestroy": "static void(GameObject obj, float delay) variants -- queue a GameObject for delayed destruction (block break FX)."
+    }
   },
   "GOpt": {
     "HumanClass": "GraphicsOptions",
@@ -24612,17 +24655,24 @@
       "Field2": "IAIHGIDAJEK",
       "Field3": "LICHKMCHMMF",
       "Data": "COEGDOAPEDD"
-    }
+    },
+    "Methods": {},
+    "Properties": {},
+    "Notes": {}
   },
   "GOMBDODCNCD": {
     "HumanClass": "BoundsPair",
     "Fields": {
       "Min": "BBMGOKPOEFH",
       "Max": "AJNDINEJHGH"
-    }
+    },
+    "Methods": {},
+    "Properties": {},
+    "Notes": {}
   },
   "MPNIMJEBACL": {
     "HumanClass": "StringProvider",
+    "Fields": {},
     "Methods": {
       "GetString0": "JHDKLEKKCPL",
       "GetString1": "GBIMIDOGIPC",
@@ -24634,7 +24684,9 @@
       "GetString7": "GPEDOOINGHO",
       "GetString8": "NJACBDKLJGL",
       "GetString9": "ADJDMJOOOIF"
-    }
+    },
+    "Properties": {},
+    "Notes": {}
   },
   "INLDDHNCPOE": {
     "HumanClass": "IntTriple",
@@ -24642,7 +24694,10 @@
       "A": "BCJADOIPFHE",
       "B": "IAIHGIDAJEK",
       "C": "LICHKMCHMMF"
-    }
+    },
+    "Methods": {},
+    "Properties": {},
+    "Notes": {}
   },
   "AOPJEHKMPFE": {
     "HumanClass": "ClothRenderer",
@@ -24657,7 +24712,10 @@
       "Vec3Array2": "LBCOCHEJFGG",
       "Mesh": "EKDHGFHEIMO",
       "MotionStates": "PJKGHFFCBHJ"
-    }
+    },
+    "Methods": {},
+    "Properties": {},
+    "Notes": {}
   },
   "OKMMGFGOLCN": {
     "HumanClass": "MeshTransformRenderer",
@@ -24672,7 +24730,10 @@
       "MotionStates": "PJKGHFFCBHJ",
       "Bool1": "AAGAIHBIBKG",
       "Bool2": "PPFLMDEMOHA"
-    }
+    },
+    "Methods": {},
+    "Properties": {},
+    "Notes": {}
   },
   "ICIDCKCOICB": {
     "HumanClass": "ParticleMeshBuilder",
@@ -24687,12 +24748,18 @@
       "ParticleList": "LFDJCAHNNAK",
       "ParticleStack": "FPDDOLKOHJE",
       "Int1": "DAFPIBIBEOE"
-    }
+    },
+    "Methods": {},
+    "Properties": {},
+    "Notes": {}
   },
   "NCJNPBHLFEH": {
     "HumanClass": "FloatLUT",
     "Fields": {
       "Data": "PMGGKMJLEPN"
-    }
+    },
+    "Methods": {},
+    "Properties": {},
+    "Notes": {}
   }
 }

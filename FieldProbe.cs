@@ -222,6 +222,8 @@ internal static class FieldProbe
                 return;
             }
 
+            Validator.CheckFieldOffsets(log, player);
+
             var type = typeof(Raw.KBBBHJDINCB);
             foreach (var f in type.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
             {

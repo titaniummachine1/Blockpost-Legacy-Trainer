@@ -364,6 +364,7 @@ public sealed class Plugin : BasePlugin
         NetProbe.Install(harmony, Log);
         AsyncLog.Start(Log);
         FieldProbe.Initialize(Log);
+        Validator.CheckInteropShape(Log);
         LoadConfig();
     }
 
@@ -5142,21 +5143,12 @@ public sealed class Plugin : BasePlugin
         }
 
         GUI.Label(new Rect(x, y, w, 24), "--- Weapons ---"); y += 26;
-        weaponUnlock = GUI.Toggle(new Rect(x, y, w, 24), weaponUnlock, $"Unlock all weapons ({(weaponUnlockApplied ? weaponUnlockCount.ToString() : "off")})"); y += 26;
+        weaponUnlock = GUI.Toggle(new Rect(x, y, w, 24), weaponUnlock, $"Unlock all weapons, client-side inv ({(weaponUnlockApplied ? weaponUnlockCount.ToString() : "off")})"); y += 26;
         fastWeaponSwitch = GUI.Toggle(new Rect(x, y, w, 24), fastWeaponSwitch, "Fast weapon switch (zero timers)"); y += 26;
         autoWeaponSwap = GUI.Toggle(new Rect(x, y, w, 24), autoWeaponSwap, "Auto weapon swap (swap when empty)"); y += 26;
         autoPickup = GUI.Toggle(new Rect(x, y, w, 24), autoPickup, "Auto-pickup (grab nearby items)"); y += 26;
 
-        GUI.Label(new Rect(x, y, w, 24), "--- Player/Stats ---"); y += 26;
-        xpGoldHack = GUI.Toggle(new Rect(x, y, w, 24), xpGoldHack, "XP/Gold hack (set exp=999k, gold=999k)"); y += 26;
-        nameChanger = GUI.Toggle(new Rect(x, y, w, 24), nameChanger, "Name changer"); y += 26;
-        if (nameChanger)
-        {
-            GUI.Label(new Rect(x, y, 60, 24), "Name:");
-            customName = GUI.TextField(new Rect(x + 60, y, w - 60, 24), customName, 20);
-            y += 26;
-        }
-        scoreboardHack = GUI.Toggle(new Rect(x, y, w, 24), scoreboardHack, "Scoreboard hack (team scores=999)"); y += 26;
+        GUI.Label(new Rect(x, y, w, 24), "--- Cosmetic (local only) ---"); y += 26;
         pingSpoof = GUI.Toggle(new Rect(x, y, w, 24), pingSpoof, "Ping spoof (display fake ping)"); y += 26;
         if (pingSpoof)
         {
@@ -5165,7 +5157,8 @@ public sealed class Plugin : BasePlugin
             if (int.TryParse(pingStr, out var parsed)) fakePing = parsed;
             y += 26;
         }
-        adminUnlock = GUI.Toggle(new Rect(x, y, w, 24), adminUnlock, "Admin panel unlock"); y += 26;
+        // Shelved (display-only, server keeps real state; see INVENTORY.md):
+        // xpGoldHack, nameChanger, scoreboardHack, adminUnlock -- no UI toggles.
     }
 
     // ---- Tab: Misc ----
@@ -5872,18 +5865,14 @@ public sealed class Plugin : BasePlugin
         if (damageIndicator) features.Add("DmgIndicator");
         if (hitMarker) features.Add("HitMarker");
         if (autoPickup) features.Add("AutoPickup");
-        if (xpGoldHack) features.Add("XP/GoldHack");
         if (healthBarEsp) features.Add("HealthBar");
         if (snaplines) features.Add("Snaplines");
         if (threatIndicator) features.Add("ThreatInd");
-        if (nameChanger) features.Add($"Name:{customName}");
-        if (scoreboardHack) features.Add("ScoreHack");
         if (autoBhop) features.Add("AutoBhop");
         if (pingSpoof) features.Add($"Ping:{fakePing}ms");
         if (footstepEsp) features.Add("FootstepESP");
         if (preFire) features.Add("PreFire");
         if (backtrack) features.Add("Backtrack");
-        if (adminUnlock) features.Add("AdminUnlock");
         if (boxHeadEsp) features.Add("BoxHeadESP");
         if (slideHack) features.Add("SlideHack");
         if (grenadeTrajectory) features.Add("GrenadeTraj");

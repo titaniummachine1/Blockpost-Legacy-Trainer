@@ -10,3 +10,7 @@ Tools/analysis/
 
 # keep captured evidence even though *.log is ignored above
 !captures/*.log
+
+# local test screenshots / playwright artifacts
+*.png
+.playwright-mcp/

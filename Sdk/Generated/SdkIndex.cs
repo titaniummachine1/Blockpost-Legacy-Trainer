@@ -487,11 +487,11 @@ namespace BlockpostTrainer.Sdk
             public const string MapEvent = "MapEvent";
             public const string MapPrefab = "MapPrefab";
             public const string MapCulling = "MapCulling";
-            public const string VoxelMap = "VoxelMap";
+            public const string VoxelWorld = "VoxelMap";
             public const string BattleMap = "VoxelBattleMap";
             public const string VoxelLighting = "VoxelMapLight";
             public const string VoxelMapSceneItem = "VoxelMapSceneItem";
-            public const string VoxelMultList = "VoxelMultList";
+            public const string BlockEditList = "VoxelMultList";
             public const string VoxelGreedy = "VoxelGreedy";
             public const string VoxelPalette = "VoxelPalette";
             public const string VoxelAtlas = "VoxelAtlas";
@@ -669,7 +669,7 @@ namespace BlockpostTrainer.Sdk
             public const string Action = "Action";
             public const string RawImage = "RawImage";
             public const string RenderTexture = "RenderTexture";
-            public const string LOMEPCOKKCB = "LOMEPCOKKCB";
+            public const string VoxelChunk = "LOMEPCOKKCB";
             public const string AudioSource = "AudioSource";
             public const string CharacterJoint = "CharacterJoint";
             public const string GUIStyle = "GUIStyle";

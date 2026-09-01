@@ -60,7 +60,42 @@ public sealed class Plugin : BasePlugin
     private static bool menuDragging;
     private static Vector2 menuDragOffset;
     private static int menuTab;
-    private static readonly string[] MenuTabLabels = { "Combat", "ESP/Visual", "Movement", "Weapons", "Misc", "Config" };
+    private static readonly string[] MenuTabLabels = { "Combat", "ESP/Visual", "Movement", "Weapons", "Misc", "Binds", "Config" };
+
+    private static readonly Color AccentColor = new(0.40f, 0.78f, 1f, 1f);
+    private static readonly Color MenuBgColor = new(0.07f, 0.08f, 0.10f, 0.96f);
+    private static readonly Color RowColor = new(1f, 1f, 1f, 0.045f);
+    private static readonly Color RowHoverColor = new(1f, 1f, 1f, 0.09f);
+
+    internal enum BindMode
+    {
+        Hold = 0,
+        OnRelease = 1,
+        Toggle = 2,
+        AlwaysOn = 3,
+        /// <summary>Fires exactly on each key press (edge): feature on for one tick, then off. For one-shot actions like TP dashes.</summary>
+        Impulse = 4,
+    }
+
+    private static readonly string[] BindModeLabels = { "Hold", "On release", "Toggle", "Always", "Impulse" };
+
+    private sealed class FeatureBind
+    {
+        public string Field = "";
+        public string Label = "";
+        public KeyCode Key;
+        public int Mode;
+        public bool ToggleState;
+        public bool WasDown;
+        public bool ImpulseArmed;
+        public bool ListenKey;
+        public FieldInfo? CachedField;
+    }
+
+    private static readonly List<FeatureBind> featureBinds = new();
+    private static bool bindsInitialized;
+    private static FeatureBind? openBindPopup;
+    private static Rect bindPopupRect;
     private static Vector2 menuScroll = Vector2.zero;
     private static bool bootstrapLogged;
     private static bool bindingsLogged;
@@ -123,6 +158,7 @@ public sealed class Plugin : BasePlugin
     private static float fireIntervalFloor = 0.06f;
     private static float flySpeed = 20f;
     private const float TpArriveDistance = 1.5f;
+    private static Vector3? activeDashTarget;
     private static bool flyHack;
     private static bool noClip;
     private static bool gokuTp;
@@ -643,25 +679,17 @@ public sealed class Plugin : BasePlugin
     }
 
     /// <summary>
-    /// Goku TP: teleport behind the closest valid enemy.
-    /// Uses the enemy's CameraForward to determine which way they're facing,
-    /// then positions the player 2m behind them. No camera rotation.
+    /// Goku TP target: 2m behind the closest valid enemy (opposite of their view direction).
+    /// Pure target selection — the dash itself is latched and driven by activeDashTarget.
     /// </summary>
-    private static void ApplyGokuTp(KBBBHJDINCB main)
+    private static Vector3? GetGokuTpTarget(KBBBHJDINCB main)
     {
         try
         {
-            if (gokuTpCooldown > 0f)
-            {
-                gokuTpCooldown -= Time.unscaledDeltaTime;
-                return;
-            }
-
             var players = PLH.BAKLNPIEHMI;
             if (players == null)
             {
-                AsyncLog.Write("[GokuTP] players array is null");
-                return;
+                return null;
             }
 
             var myPos = main.OOMJGHCFODI;
@@ -672,7 +700,6 @@ public sealed class Plugin : BasePlugin
             var bestDist = float.MaxValue;
             var bestPos = Vector3.zero;
             var bestForward = Vector3.forward;
-            var validCount = 0;
 
             for (var i = 0; i < players.Length; i++)
             {
@@ -683,7 +710,6 @@ public sealed class Plugin : BasePlugin
                 if (player.MMMGPDBMOLM == myTeam) continue;       // same team
                 if (player._LCEIAGLFFJN_k__BackingField) continue; // invalid flag
 
-                validCount++;
                 var enemyPos = player.OOMJGHCFODI;
                 var dist = Vector3.Distance(myPos, enemyPos);
                 if (dist < bestDist)
@@ -701,21 +727,16 @@ public sealed class Plugin : BasePlugin
 
             if (bestTarget == null)
             {
-                AsyncLog.Write($"[GokuTP] no valid enemy found (players={players.Length}, valid={validCount}, team={myTeam})");
-                gokuTpCooldown = 0.5f; // longer cooldown when no target
-                return;
+                return null;
             }
 
-            // Position 2m behind the enemy (opposite of their view direction)
             var tpPos = bestPos - bestForward * 2f;
             tpPos.y = bestPos.y; // same height
-
-            VelocityDashTo(tpPos, "[GokuTP]");
-            gokuTpCooldown = 0.05f;
+            return tpPos;
         }
-        catch (Exception e)
+        catch
         {
-            AsyncLog.Write($"[GokuTP] error: {e.Message}");
+            return null;
         }
     }
 
@@ -760,14 +781,14 @@ public sealed class Plugin : BasePlugin
     }
 
     /// <summary>
-    /// Click TP: dash toward whatever the crosshair points at (raycast against everything,
-    /// so walls can be aimed at — with no clip patched the dash continues through them).
+    /// Click TP target: whatever the crosshair points at (raycast against everything, so
+    /// walls can be aimed at — with no clip patched the dash continues through them).
     /// </summary>
-    private static void ApplyClickTp(Camera? camera)
+    private static Vector3? GetClickTpTarget(Camera? camera)
     {
         if (camera == null)
         {
-            return;
+            return null;
         }
 
         try
@@ -779,10 +800,12 @@ public sealed class Plugin : BasePlugin
                 hitDistance = hit.distance;
             }
 
-            var target = ray.GetPoint(Mathf.Min(hitDistance, 100f)) + Vector3.up * 1f;
-            VelocityDashTo(target, "[ClickTP]");
+            return ray.GetPoint(Mathf.Min(hitDistance, 100f)) + Vector3.up * 1f;
         }
-        catch { }
+        catch
+        {
+            return null;
+        }
     }
 
     /// <summary>
@@ -1192,6 +1215,10 @@ public sealed class Plugin : BasePlugin
 
     private static void ApplyCheatFeatures()
     {
+        // Binds run first so an impulse/hold press this frame can activate a feature
+        // before the early-out below considers everything disabled.
+        UpdateFeatureBinds();
+
         if (!infiniteHealth && !infiniteAmmo && !bunnyHop && !fovChanger && !speedHack && !flyHack && !noClip && !thirdPerson && !fullbright && !antiFlash && !noSpread && !fastFire && !autoReload && !spinbot && !antiAimPitch && !autoStrafe && !edgeJump && !fakeLag && !gokuTp)
         {
             return;
@@ -1296,18 +1323,28 @@ public sealed class Plugin : BasePlugin
                 UpdateGokuTpKeyState();
                 if (IsGokuTpActive())
                 {
-                    if (gokuTpMode == 4)
+                    var dashTarget = gokuTpMode == 4
+                        ? GetClickTpTarget(Controll.CDFACGAFFFH)
+                        : GetGokuTpTarget(main);
+                    if (dashTarget.HasValue)
                     {
-                        ApplyClickTp(Controll.CDFACGAFFFH);
+                        activeDashTarget = dashTarget.Value;
                     }
-                    else
+                }
+
+                if (activeDashTarget.HasValue)
+                {
+                    // Latched dash: continues to the target even after the key is released,
+                    // which is what makes Impulse binds work (one press = one dash; the key
+                    // must be released and pressed again for the next one).
+                    if (VelocityDashTo(activeDashTarget.Value, "[Dash]"))
                     {
-                        ApplyGokuTp(main);
+                        activeDashTarget = null;
                     }
                 }
                 else
                 {
-                    // Damp any leftover dash velocity when the mode/key is released.
+                    // Damp any leftover velocity when idle.
                     var rb = main.MJPOJOOIPPN;
                     if (rb != null && rb.velocity.sqrMagnitude > 900f)
                     {
@@ -4769,6 +4806,16 @@ public sealed class Plugin : BasePlugin
 
     private static void ControllerOnGUIPostfix()
     {
+        // Bind popup key capture: while listening, the next key press becomes the bind
+        // (ESC unbinds). Handled before anything else so the popup sees it first.
+        if (openBindPopup != null && openBindPopup.ListenKey
+            && Event.current.type == EventType.KeyDown && Event.current.keyCode != KeyCode.None)
+        {
+            openBindPopup.Key = Event.current.keyCode == KeyCode.Escape ? KeyCode.None : Event.current.keyCode;
+            openBindPopup.ListenKey = false;
+            Event.current.Use();
+        }
+
         if (!menuVisible && !espEnabled && !customCrosshair)
         {
             return;
@@ -4975,20 +5022,269 @@ public sealed class Plugin : BasePlugin
         GUI.color = prevColor;
     }
 
+    private static void EnsureBinds()
+    {
+        if (bindsInitialized)
+        {
+            return;
+        }
+
+        bindsInitialized = true;
+        var defs = new[]
+        {
+            new[] { "aimbotEnabled", "Aimbot" },
+            new[] { "autoShoot", "Auto shoot" },
+            new[] { "triggerbot", "Triggerbot" },
+            new[] { "noRecoil", "No recoil" },
+            new[] { "noSpread", "No spread" },
+            new[] { "rapidFire", "Rapid fire" },
+            new[] { "infiniteAmmo", "Infinite ammo" },
+            new[] { "infiniteHealth", "Infinite health" },
+            new[] { "instantReload", "Instant reload" },
+            new[] { "espEnabled", "ESP boxes" },
+            new[] { "nameEsp", "Name ESP" },
+            new[] { "skeletonEsp", "Skeleton ESP" },
+            new[] { "healthBarEsp", "Health bar ESP" },
+            new[] { "chams", "Chams" },
+            new[] { "wallhack", "Wallhack" },
+            new[] { "radarHack", "Radar" },
+            new[] { "bunnyHop", "Bunny hop" },
+            new[] { "autoBhop", "Auto bhop" },
+            new[] { "speedHack", "Speed hack" },
+            new[] { "flyHack", "Fly" },
+            new[] { "noClip", "No clip" },
+            new[] { "gokuTp", "Goku TP" },
+            new[] { "thirdPerson", "Third person" },
+            new[] { "fullbright", "Fullbright" },
+            new[] { "antiFlash", "Anti flash" },
+            new[] { "zoomHack", "Zoom" },
+        };
+        foreach (var d in defs)
+        {
+            featureBinds.Add(new FeatureBind { Field = d[0], Label = d[1], Key = KeyCode.None, Mode = (int)BindMode.Hold });
+        }
+    }
+
+    private static FieldInfo? ResolveBindField(FeatureBind bind)
+    {
+        if (bind.CachedField == null)
+        {
+            bind.CachedField = AccessTools.Field(typeof(Plugin), bind.Field);
+        }
+
+        return bind.CachedField;
+    }
+
+    /// <summary>
+    /// Evaluate every feature bind against its key + mode and drive the feature field.
+    /// A bind with a key owns its field: Hold/OnRelease/Always force the value, Toggle
+    /// flips it on the key edge, Impulse pulses it true for a single tick per press.
+    /// Unbound binds do nothing (the menu toggle stays in charge).
+    /// </summary>
+    private static void UpdateFeatureBinds()
+    {
+        EnsureBinds();
+        foreach (var bind in featureBinds)
+        {
+            if (bind.Key == KeyCode.None)
+            {
+                continue;
+            }
+
+            var down = Input.GetKey(bind.Key);
+            var field = ResolveBindField(bind);
+            if (field == null)
+            {
+                bind.WasDown = down;
+                continue;
+            }
+
+            if (bind.Mode == (int)BindMode.Impulse)
+            {
+                // One tick of "on" per press edge; the dash/action must latch its own
+                // target (the TP dash does, via activeDashTarget).
+                if (down && !bind.WasDown)
+                {
+                    field.SetValue(null, true);
+                    bind.ImpulseArmed = true;
+                }
+                else if (bind.ImpulseArmed)
+                {
+                    field.SetValue(null, false);
+                    bind.ImpulseArmed = false;
+                }
+
+                bind.WasDown = down;
+                continue;
+            }
+
+            if (bind.Mode == (int)BindMode.Toggle && down && !bind.WasDown)
+            {
+                bind.ToggleState = !bind.ToggleState;
+            }
+
+            bind.WasDown = down;
+
+            var active = bind.Mode switch
+            {
+                (int)BindMode.Hold => down,
+                (int)BindMode.OnRelease => !down,
+                (int)BindMode.Toggle => bind.ToggleState,
+                (int)BindMode.AlwaysOn => true,
+                _ => false,
+            };
+
+            if (field.GetValue(null) is bool current && current != active)
+            {
+                field.SetValue(null, active);
+            }
+        }
+    }
+
+    private static string DescribeBind(FeatureBind bind)
+    {
+        if (bind.Key == KeyCode.None)
+        {
+            return "unbound";
+        }
+
+        var keyName = bind.Key.ToString();
+        if (bind.Key >= KeyCode.Mouse0 && bind.Key <= KeyCode.Mouse2)
+        {
+            keyName = "Mouse" + ((int)bind.Key - (int)KeyCode.Mouse0 + 1);
+        }
+        else if (keyName.StartsWith("Alpha"))
+        {
+            keyName = keyName[^1..];
+        }
+
+        return keyName + " · " + BindModeLabels[bind.Mode];
+    }
+
+    // ---- Tab: Binds ----
+    private static void DrawBindsTab(float x, ref float y, float w)
+    {
+        EnsureBinds();
+        GUI.Label(new Rect(x, y, w, 24), "Left click: toggle feature · Right click: bind key"); y += 28;
+
+        var e = Event.current;
+        foreach (var bind in featureBinds)
+        {
+            var row = new Rect(x, y, w, 26);
+            var hovered = row.Contains(e.mousePosition);
+
+            var prev = GUI.color;
+            GUI.color = hovered ? RowHoverColor : RowColor;
+            GUI.DrawTexture(row, Texture2D.whiteTexture);
+            GUI.color = prev;
+
+            var field = ResolveBindField(bind);
+            var active = field?.GetValue(null) is true;
+            GUI.color = active ? AccentColor : new Color(0.75f, 0.78f, 0.83f);
+            GUI.Label(new Rect(row.x + 8, row.y + 2, w * 0.55f, 22), bind.Label);
+            GUI.color = new Color(0.6f, 0.66f, 0.72f);
+            GUI.Label(new Rect(row.x + w * 0.55f, row.y + 2, w * 0.45f - 8, 22), DescribeBind(bind));
+            GUI.color = prev;
+
+            if (e.type == EventType.MouseDown && row.Contains(e.mousePosition))
+            {
+                if (e.button == 0 && field != null)
+                {
+                    field.SetValue(null, !(bool)field.GetValue(null)!);
+                }
+                else if (e.button == 1)
+                {
+                    openBindPopup = bind;
+                    var mouse = GUIUtility.GUIToScreenPoint(e.mousePosition);
+                    bindPopupRect = new Rect(mouse.x, mouse.y, 250, 202);
+                }
+
+                e.Use();
+            }
+
+            y += 28;
+        }
+
+        y += 4;
+    }
+
+    private static void DrawBindPopupWindow(int id)
+    {
+        var bind = openBindPopup;
+        if (bind == null)
+        {
+            return;
+        }
+
+        var area = new Rect(10, 22, bindPopupRect.width - 20, bindPopupRect.height - 30);
+
+        GUI.Label(new Rect(area.x, area.y, area.width, 20), bind.Label);
+        if (GUI.Button(new Rect(area.x, area.y + 22, area.width, 24), bind.ListenKey ? "press any key... (esc = unbind)" : "Key: " + (bind.Key == KeyCode.None ? "none" : bind.Key.ToString())))
+        {
+            bind.ListenKey = true;
+        }
+
+        for (var m = 0; m < BindModeLabels.Length; m++)
+        {
+            var modeRect = new Rect(area.x + (m % 2) * (area.width / 2), area.y + 50 + (m / 2) * 26, area.width / 2 - 4, 24);
+            var prev = GUI.backgroundColor;
+            if (m == bind.Mode)
+            {
+                GUI.backgroundColor = new Color(0.2f, 0.5f, 0.75f);
+            }
+
+            if (GUI.Button(modeRect, BindModeLabels[m]))
+            {
+                bind.Mode = m;
+                bind.ToggleState = false;
+                bind.ImpulseArmed = false;
+            }
+
+            GUI.backgroundColor = prev;
+        }
+
+        if (GUI.Button(new Rect(area.x, area.y + 134, area.width / 2 - 4, 24), "Unbind"))
+        {
+            bind.Key = KeyCode.None;
+            bind.ToggleState = false;
+            bind.ListenKey = false;
+        }
+
+        if (GUI.Button(new Rect(area.x + area.width / 2 + 4, area.y + 134, area.width / 2 - 4, 24), "Close"))
+        {
+            openBindPopup = null;
+        }
+
+        GUI.DragWindow(new Rect(0, 0, bindPopupRect.width, 20));
+    }
+
     private static void DrawTrainerMenu()
     {
+        EnsureBinds();
+
         // Clamp menu position to screen bounds so it's always visible.
         menuRect.x = Mathf.Clamp(menuRect.x, 0, Mathf.Max(0, Screen.width - menuRect.width));
         menuRect.y = Mathf.Clamp(menuRect.y, 0, Mathf.Max(0, Screen.height - 100));
 
-        // Fixed-size window with header + tab bar + scrollable content.
-        GUI.Box(menuRect, "Blockpost Legacy Trainer");
-        var headerRect = new Rect(menuRect.x, menuRect.y, menuRect.width, 24);
-        GUI.Label(new Rect(menuRect.x + 8, menuRect.y + 2, menuRect.width - 16, 20), "Blockpost Legacy Trainer (drag)");
+        // Dark theme: tint every control once per frame.
+        GUI.backgroundColor = new Color(0.16f, 0.17f, 0.21f);
+        GUI.contentColor = new Color(0.86f, 0.89f, 0.93f);
 
-        // Dragging
+        // Panel: dark backdrop + accent top edge.
+        var prevColor = GUI.color;
+        GUI.color = MenuBgColor;
+        GUI.DrawTexture(menuRect, Texture2D.whiteTexture);
+        GUI.color = AccentColor;
+        GUI.DrawTexture(new Rect(menuRect.x, menuRect.y, menuRect.width, 2f), Texture2D.whiteTexture);
+        GUI.color = prevColor;
+        GUI.contentColor = Color.white;
+        GUI.Label(new Rect(menuRect.x + 10, menuRect.y + 4, menuRect.width - 20, 20), "BLOCKPOST LEGACY");
+        GUI.contentColor = new Color(0.86f, 0.89f, 0.93f);
+
+        // Dragging (header strip).
+        var headerRect = new Rect(menuRect.x, menuRect.y, menuRect.width, 26);
         var mousePos = Event.current.mousePosition;
-        if (Event.current.type == EventType.MouseDown && headerRect.Contains(mousePos))
+        if (Event.current.type == EventType.MouseDown && headerRect.Contains(mousePos) && Event.current.button == 0)
         {
             menuDragging = true;
             menuDragOffset = mousePos - new Vector2(menuRect.x, menuRect.y);
@@ -5003,30 +5299,43 @@ public sealed class Plugin : BasePlugin
             menuRect.y = mousePos.y - menuDragOffset.y;
         }
 
-        // Tab bar
-        var tabY = menuRect.y + 28;
+        // Tab bar.
+        var tabY = menuRect.y + 26;
         var tabW = menuRect.width / MenuTabLabels.Length;
         for (var i = 0; i < MenuTabLabels.Length; i++)
         {
             var tabRect = new Rect(menuRect.x + i * tabW, tabY, tabW, 24);
-            var prev = GUI.color;
-            if (i == menuTab) GUI.color = new Color(0.6f, 0.8f, 1f, 1f);
-            if (GUI.Button(tabRect, MenuTabLabels[i]))
+            var active = i == menuTab;
+            prevColor = GUI.color;
+            GUI.color = active ? new Color(0.16f, 0.42f, 0.62f) : new Color(0.10f, 0.11f, 0.14f);
+            GUI.DrawTexture(tabRect, Texture2D.whiteTexture);
+            if (active)
+            {
+                GUI.color = AccentColor;
+                GUI.DrawTexture(new Rect(tabRect.x, tabRect.yMax - 2, tabRect.width, 2f), Texture2D.whiteTexture);
+            }
+
+            GUI.color = prevColor;
+            var prevContent = GUI.contentColor;
+            GUI.contentColor = active ? Color.white : new Color(0.62f, 0.66f, 0.72f);
+            GUI.Label(tabRect, MenuTabLabels[i]);
+            GUI.contentColor = prevContent;
+
+            if (Event.current.type == EventType.MouseDown && tabRect.Contains(mousePos) && Event.current.button == 0)
             {
                 menuTab = i;
                 menuScroll = Vector2.zero;
+                Event.current.Use();
             }
-            GUI.color = prev;
         }
 
-        // Scrollable content area below the tab bar
+        // Scrollable content area below the tab bar.
         var contentX = menuRect.x + 10;
         var contentY = tabY + 28;
         var contentW = menuRect.width - 20;
         var contentH = menuRect.height - (contentY - menuRect.y) - 10;
         var viewRect = new Rect(contentX, contentY, contentW, contentH);
 
-        // Estimate inner height per tab (will be set by each tab method)
         var innerH = EstimateTabHeight(menuTab);
         var innerRect = new Rect(0, 0, contentW - 20, innerH);
 
@@ -5042,14 +5351,29 @@ public sealed class Plugin : BasePlugin
             case 2: DrawMovementTab(x, ref y, w); break;
             case 3: DrawWeaponsTab(x, ref y, w); break;
             case 4: DrawMiscTab(x, ref y, w); break;
-            case 5: DrawConfigTab(x, ref y, w); break;
+            case 5: DrawBindsTab(x, ref y, w); break;
+            case 6: DrawConfigTab(x, ref y, w); break;
         }
 
         GUI.EndScrollView();
 
+        // Bind popup (drawn last, on top).
+        if (openBindPopup != null)
+        {
+            bindPopupRect = GUILayout.Window(0x70A5, bindPopupRect, (GUI.WindowFunction)DrawBindPopupWindow, "");
+            // Click outside closes it.
+            if (Event.current.type == EventType.MouseDown && Event.current.button == 0
+                && !bindPopupRect.Contains(Event.current.mousePosition))
+            {
+                openBindPopup = null;
+                Event.current.Use();
+            }
+        }
+
+        GUI.backgroundColor = Color.white;
+        GUI.contentColor = Color.white;
+
         // Auto-save config whenever any menu control was interacted with.
-        // Skip the first 60 frames after load to prevent overwriting config
-        // before the user has a chance to interact with the menu.
         if (configLoaded) framesSinceLoad++;
         if (GUI.changed && framesSinceLoad > 60)
         {
@@ -5070,7 +5394,8 @@ public sealed class Plugin : BasePlugin
             2 => 800f,   // Movement
             3 => 700f,   // Weapons
             4 => 600f,   // Misc
-            5 => 400f,   // Config
+            5 => 900f,   // Binds
+            6 => 400f,   // Config
             _ => 400f,
         };
     }

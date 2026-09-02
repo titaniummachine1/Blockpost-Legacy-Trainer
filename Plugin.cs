@@ -309,9 +309,10 @@ public sealed class Plugin : BasePlugin
 
     private readonly struct EspBox
     {
-        public EspBox(Rect bounds, Color color, int health, Vector2 screenPos, float dist, bool isEnemy, string name)
+        public EspBox(Rect bounds, Rect headBounds, Color color, int health, Vector2 screenPos, float dist, bool isEnemy, string name)
         {
             Bounds = bounds;
+            HeadBounds = headBounds;
             Color = color;
             Health = health;
             ScreenPos = screenPos;
@@ -321,6 +322,7 @@ public sealed class Plugin : BasePlugin
         }
 
         public Rect Bounds { get; }
+        public Rect HeadBounds { get; }
         public Color Color { get; }
         public int Health { get; }
         public Vector2 ScreenPos { get; }
@@ -1013,6 +1015,7 @@ public sealed class Plugin : BasePlugin
         catch { }
     }
 
+    private static bool chamsIgnoreZ;
     private static Material? _chamsMaterial;
     private static readonly Color ChamsEnemyColor = new(1f, 0f, 0f, 0.5f);
     private static readonly Color ChamsTeamColor = new(0f, 0.5f, 1f, 0.5f);
@@ -1036,6 +1039,12 @@ public sealed class Plugin : BasePlugin
                 _chamsMaterial.SetInt("_ZWrite", 0);
                 _chamsMaterial.SetInt("_Cull", (int)UnityEngine.Rendering.CullMode.Off); // Render both sides
             }
+
+            // ZTest decides whether walls occlude the chams: LEqual = normal depth test,
+            // Always = draw through walls (ignore Z).
+            _chamsMaterial.SetInt("_ZTest", (int)(chamsIgnoreZ
+                ? UnityEngine.Rendering.CompareFunction.Always
+                : UnityEngine.Rendering.CompareFunction.LessEqual));
 
             var players = PLH.BAKLNPIEHMI;
             if (players == null)
@@ -1750,6 +1759,7 @@ public sealed class Plugin : BasePlugin
                     case "backtrack": backtrack = val == "1"; break;
                     case "adminUnlock": adminUnlock = val == "1"; break;
                     case "boxHeadEsp": boxHeadEsp = val == "1"; break;
+                    case "chamsIgnoreZ": chamsIgnoreZ = val == "1"; break;
                     case "slideHack": slideHack = val == "1"; break;
                     case "grenadeTrajectory": grenadeTrajectory = val == "1"; break;
                     case "noFallDamage": noFallDamage = val == "1"; break;
@@ -1898,6 +1908,7 @@ public sealed class Plugin : BasePlugin
                 $"backtrack={(backtrack ? 1 : 0)}",
                 $"adminUnlock={(adminUnlock ? 1 : 0)}",
                 $"boxHeadEsp={(boxHeadEsp ? 1 : 0)}",
+                $"chamsIgnoreZ={(chamsIgnoreZ ? 1 : 0)}",
                 $"slideHack={(slideHack ? 1 : 0)}",
                 $"grenadeTrajectory={(grenadeTrajectory ? 1 : 0)}",
                 $"noFallDamage={(noFallDamage ? 1 : 0)}",
@@ -2977,60 +2988,6 @@ public sealed class Plugin : BasePlugin
     /// player body and a separate smaller box around the head, with a line
     /// connecting them. Shows health, name, and distance.
     /// </summary>
-    private static void DrawBoxHeadEsp()
-    {
-        if (!espEnabled) return;
-        var camera = ResolveCamera();
-        if (camera == null) return;
-        var players = PLH.BAKLNPIEHMI;
-        var mainPlayer = Controll.HGAODFPBGLB;
-        if (players == null || mainPlayer == null) return;
-
-        var prevColor = GUI.color;
-
-        for (var i = 0; i < players.Length; i++)
-        {
-            var player = players[i];
-            if (!IsVisibleTarget(player, mainPlayer, true, true)) continue;
-            var head = player.ACEHIBLPHCA;
-            if (head == null || head.transform == null) continue;
-
-            var headPos = head.transform.position;
-            var headScreen = camera.WorldToScreenPoint(headPos);
-            if (headScreen.z <= 0) continue;
-
-            var bodyScreen = camera.WorldToScreenPoint(headPos - Vector3.up * 1.5f);
-            if (bodyScreen.z <= 0) continue;
-
-            var isEnemy = player.MMMGPDBMOLM != mainPlayer.MMMGPDBMOLM;
-            var color = isEnemy ? Color.red : Color.green;
-            GUI.color = new Color(color.r, color.g, color.b, 0.7f);
-
-            // Head box (small)
-            var headY = Screen.height - headScreen.y;
-            var headSize = 8f;
-            DrawBoxOutline(new Rect(headScreen.x - headSize, headY - headSize, headSize * 2, headSize * 2));
-
-            // Body box (larger)
-            var bodyY = Screen.height - bodyScreen.y;
-            var bodyHeight = Mathf.Abs(headY - bodyY);
-            var bodyWidth = bodyHeight * 0.6f;
-            DrawBoxOutline(new Rect(headScreen.x - bodyWidth / 2, bodyY, bodyWidth, bodyHeight));
-
-            // Line connecting head to body
-            DrawLine2D(new Vector2(headScreen.x, headY), new Vector2(headScreen.x, bodyY));
-
-            // Info text
-            if (isEnemy)
-            {
-                var dist = Vector3.Distance(mainPlayer.OOMJGHCFODI, headPos);
-                GUI.Label(new Rect(headScreen.x + headSize + 2, headY - headSize, 100, 20),
-                    $"{player.NHHBNNBDDIA} {dist:F0}m");
-            }
-        }
-
-        GUI.color = prevColor;
-    }
 
     /// <summary>
     /// Track enemy position history for backtrack feature.
@@ -4350,15 +4307,21 @@ public sealed class Plugin : BasePlugin
             return false;
         }
 
+        // Same projection anchor the box-head ESP uses (which demonstrably lands on
+        // players): the head transform, with the body approximated below it. The old
+        // version projected pos+1/pos-1 — same idea, but any failure here silently
+        // emptied the box list while the box-head path kept working.
         var position = head.transform.position;
-        var top = camera.WorldToScreenPoint(position + Vector3.up);
-        var bottom = camera.WorldToScreenPoint(position - Vector3.up);
-        if (top.z <= 0 || bottom.z <= 0)
+        var headScreen = camera.WorldToScreenPoint(position);
+        var top = camera.WorldToScreenPoint(position + Vector3.up * 0.45f);
+        var bottom = camera.WorldToScreenPoint(position - Vector3.up * 1.55f);
+        if (headScreen.z <= 0 || top.z <= 0 || bottom.z <= 0)
         {
             return false;
         }
 
         var screenHeight = Screen.height;
+        var headY = screenHeight - headScreen.y;
         var topY = screenHeight - top.y;
         var bottomY = screenHeight - bottom.y;
         var height = Mathf.Abs(bottomY - topY);
@@ -4368,12 +4331,16 @@ public sealed class Plugin : BasePlugin
         }
 
         var width = height * 0.45f;
+        var headSize = Mathf.Max(4f, height * 0.14f);
         var isEnemy = player.MMMGPDBMOLM != mainPlayer.MMMGPDBMOLM;
         var color = isEnemy ? Color.red : Color.green;
         var dist = Vector3.Distance(mainPlayer.OOMJGHCFODI, position);
-        var screenPos = new Vector2(top.x, screenHeight - top.y);
+        var screenPos = new Vector2(headScreen.x, headY);
         var playerName = player.NHHBNNBDDIA ?? "?";
-        box = new EspBox(new Rect(top.x - width / 2, Mathf.Min(topY, bottomY), width, height), color, player.FDOJDJLIGLF, screenPos, dist, isEnemy, playerName);
+
+        var fullBounds = new Rect(headScreen.x - width / 2, Mathf.Min(topY, bottomY), width, height);
+        var headBounds = new Rect(headScreen.x - headSize, headY - headSize, headSize * 2, headSize * 2);
+        box = new EspBox(fullBounds, headBounds, color, player.FDOJDJLIGLF, screenPos, dist, isEnemy, playerName);
         return true;
     }
 
@@ -4476,6 +4443,13 @@ public sealed class Plugin : BasePlugin
         var targetDirection = bestPosition - camera.transform.position;
         var targetRotation = Quaternion.LookRotation(targetDirection);
         ApplyAimRotation(camera, targetRotation);
+
+        // Plain aim: also point the camera at the target NOW. The yaw/pitch statics only
+        // take effect after the game's own mouse-look code consumes them, and if that code
+        // rebuilds rotation from raw mouse input our angle write never reached the camera —
+        // which is why plain aim appeared to do nothing. The postfix below re-applies the
+        // rotation every frame while a target is held, so the game's mouse-look cannot win.
+        camera.transform.rotation = targetRotation;
         TryAutoShoot(target, bestPosition, camera);
         aimStatus = $"target={lastAimTargetIndex}, angle={bestAngle:0.0} degrees";
     }
@@ -4845,6 +4819,16 @@ public sealed class Plugin : BasePlugin
                 DrawFeatureWatermark();
             }
 
+            // Aimbot status: always visible while the aimbot is on, so a dead run is
+            // diagnosable from the screen alone (waiting for key / no target / target N).
+            if (aimbotEnabled && !menuVisible)
+            {
+                var prevC = GUI.color;
+                GUI.color = new Color(1f, 0.8f, 0.3f);
+                GUI.Label(new Rect(Screen.width / 2f - 150, 8, 300, 22), $"AIMBOT: {aimStatus}");
+                GUI.color = prevC;
+            }
+
             // Skeleton ESP: draw bone connections on player models
             if (skeletonEsp && !menuVisible)
             {
@@ -4918,12 +4902,6 @@ public sealed class Plugin : BasePlugin
             if (backtrack && !menuVisible)
             {
                 DrawBacktrack();
-            }
-
-            // Box-head ESP: detailed box around head + body
-            if (boxHeadEsp && !menuVisible)
-            {
-                DrawBoxHeadEsp();
             }
 
             // Grenade trajectory: show predicted throw arc
@@ -5507,7 +5485,7 @@ public sealed class Plugin : BasePlugin
         GUI.Label(new Rect(x, y, w, 24), "--- ESP Types ---"); y += 26;
         nameEsp = GUI.Toggle(new Rect(x, y, w, 24), nameEsp, "Name ESP (show player names)"); y += 26;
         healthBarEsp = GUI.Toggle(new Rect(x, y, w, 24), healthBarEsp, "Health bar ESP (bars above players)"); y += 26;
-        boxHeadEsp = GUI.Toggle(new Rect(x, y, w, 24), boxHeadEsp, "Box-head ESP (detailed boxes)"); y += 26;
+        boxHeadEsp = GUI.Toggle(new Rect(x, y, w, 24), boxHeadEsp, "Head box only (no body box)"); y += 26;
         distanceEsp = GUI.Toggle(new Rect(x, y, w, 24), distanceEsp, "Distance ESP (show meters)"); y += 26;
         weaponIdEsp = GUI.Toggle(new Rect(x, y, w, 24), weaponIdEsp, "Weapon ID ESP (show enemy weapon)"); y += 26;
         skeletonEsp = GUI.Toggle(new Rect(x, y, w, 24), skeletonEsp, "Skeleton ESP (bone tracing)"); y += 26;
@@ -5522,7 +5500,8 @@ public sealed class Plugin : BasePlugin
         playerList = GUI.Toggle(new Rect(x, y, w, 24), playerList, "Player list (show all players)"); y += 26;
 
         GUI.Label(new Rect(x, y, w, 24), "--- Player Rendering ---"); y += 26;
-        chams = GUI.Toggle(new Rect(x, y, w, 24), chams, "Chams (see players through walls)"); y += 26;
+        chams = GUI.Toggle(new Rect(x, y, w, 24), chams, "Chams (colored player materials)"); y += 26;
+        chamsIgnoreZ = GUI.Toggle(new Rect(x + 20, y, w - 20, 24), chamsIgnoreZ, "Chams: ignore Z (draw through walls)"); y += 26;
         wallhack = GUI.Toggle(new Rect(x, y, w, 24), wallhack, "Wallhack (tracer lines + distance)"); y += 26;
         wireframePlayers = GUI.Toggle(new Rect(x, y, w, 24), wireframePlayers, "Wireframe players (green outline)"); y += 26;
 
@@ -6213,22 +6192,17 @@ public sealed class Plugin : BasePlugin
                 var player = players[i];
                 if (!IsVisibleTarget(player, mainPlayer, false, true)) continue;
 
-                var head = player.ACEHIBLPHCA;
-                if (head == null) continue;
-
-                var rootTransform = head.transform;
-                if (rootTransform == null) continue;
+                // Walk the whole model root, not the head: the head's children are face
+                // details, the bones live under the root (LANBONKMIME). Walking from the
+                // head drew nothing — that is why skeleton ESP appeared broken.
+                var root = player.LANBONKMIME;
+                if (root == null || root.transform == null) continue;
 
                 var isEnemy = player.MMMGPDBMOLM != mainPlayer.MMMGPDBMOLM;
                 var color = isEnemy ? Color.red : Color.green;
                 GUI.color = new Color(color.r, color.g, color.b, 0.8f);
 
-                // Get head position in screen space
-                var headPos = camera.WorldToScreenPoint(rootTransform.position);
-                if (headPos.z <= 0) continue;
-
-                // Draw connections from head to all child transforms (bones)
-                DrawTransformHierarchy(camera, rootTransform, headPos);
+                DrawTransformHierarchy(camera, root.transform);
             }
 
             GUI.color = prevColor;
@@ -6238,7 +6212,19 @@ public sealed class Plugin : BasePlugin
 
     /// <summary>
     /// Recursively draw lines between a transform and all its children.
+    /// Root variant: projects the parent on first use.
     /// </summary>
+    private static void DrawTransformHierarchy(Camera camera, Transform parent)
+    {
+        var parentScreen = camera.WorldToScreenPoint(parent.position);
+        if (parentScreen.z <= 0)
+        {
+            return;
+        }
+
+        DrawTransformHierarchy(camera, parent, parentScreen);
+    }
+
     private static void DrawTransformHierarchy(Camera camera, Transform parent, Vector3 parentScreen)
     {
         var childCount = parent.childCount;
@@ -6541,7 +6527,10 @@ public sealed class Plugin : BasePlugin
         foreach (var box in espBoxes)
         {
             GUI.color = box.Color;
-            GUI.Box(box.Bounds, string.Empty);
+
+            // Head box only mode: small box on the head, no body box, no connecting line.
+            GUI.Box(boxHeadEsp ? box.HeadBounds : box.Bounds, string.Empty);
+
             if (showHealth)
             {
                 GUI.Label(new Rect(box.Bounds.xMax + 4, box.Bounds.y, 80, 24), $"HP {box.Health}");
@@ -6557,7 +6546,8 @@ public sealed class Plugin : BasePlugin
             // Name ESP: show player name above the box
             if (nameEsp)
             {
-                var nameRect = new Rect(box.Bounds.x - 20, box.Bounds.y - 20, box.Bounds.width + 40, 20);
+                var anchor = boxHeadEsp ? box.HeadBounds : box.Bounds;
+                var nameRect = new Rect(anchor.x - 20, anchor.y - 20, anchor.width + 40, 20);
                 GUI.Label(nameRect, box.Name);
             }
         }

@@ -504,10 +504,13 @@ public sealed class Plugin : BasePlugin
 
     private static void ControllerUpdatePostfix(Controll __instance)
     {
-        // Auto-shoot: send a fresh click (LEFTUP then LEFTDOWN) every frame while
-        // aiming at a target. The game uses GetMouseButtonDown (edge-triggered),
-        // not GetMouseButton (held), so holding the button doesn't fire repeatedly.
-        // We need a new press event each frame.
+        // Input forcing was consumed by Controll.Update this frame — clear it so it can
+        // never leak into other input reads (UI, menus) before the next prefix.
+        autoShootThisFrame = false;
+
+        // Silent aim still uses the synthetic click: the postfix sends LEFTUP+LEFTDOWN
+        // which the OS delivers before the next frame's input poll, so the game's
+        // edge-triggered fire fires at the redirected angles captured this frame.
         if (autoShootPending)
         {
             var main = Controll.HGAODFPBGLB;
@@ -4637,32 +4640,19 @@ public sealed class Plugin : BasePlugin
             return;
         }
 
-        // Experimental server-trust test: skip the actual shot and tell the server we hit the
-        // aimbot target. If the server accepts client-authored hits, the target dies anyway.
-        if (serverTrustTest && target != null)
-        {
-            if (Time.unscaledTime < nextAutoShootTime)
-            {
-                return;
-            }
-            var origin = camera.transform.position;
-            if (NetProbe.TryFakeHit(target, origin, targetPosition, 1000))
-            {
-                nextAutoShootTime = Time.unscaledTime + 0.12f;
-                aimStatus = $"{aimStatus} | fake-hit sent";
-            }
-            return;
-        }
-
-        // Auto-shoot: set autoShootPending. Postfix sends mouse_event(LEFTDOWN) which
-        // arrives next frame → GetMouseButton(0)=true → game fires at aimed target.
+        // Fire through the game's OWN input read: the GetMouseButton/Down prefixes force
+        // button 0 true for this frame, so Controll.Update fires through its full native
+        // path (raycast, hit list, 0x04 hit packet, sound, recoil) exactly as if the user
+        // clicked — no synthetic OS clicks, no stuck-button state. The postfix clears the
+        // flag after Update has consumed it.
         var main = Controll.HGAODFPBGLB;
         if (main == null || main.JPGGPPLOOML == null)
         {
             return;
         }
 
-        autoShootPending = true;
+        autoShootThisFrame = true;
+        Controll.EPEEFBDJAHO = 1f; // fire input flag, consumed by Controll.Update this frame
         aimStatus = $"{aimStatus} | auto-shoot";
     }
 
@@ -5411,7 +5401,9 @@ public sealed class Plugin : BasePlugin
             ghostBullets = GUI.Toggle(new Rect(x + 20, y, w - 20, 24), ghostBullets, "Ghost bullets (through walls)"); y += 26;
             if (aimStyle == 0 && !ghostBullets)
             {
-                serverTrustTest = GUI.Toggle(new Rect(x + 20, y, w - 20, 24), serverTrustTest, "Server trust test"); y += 26;
+        // Shelved (needs the real inbound packet path, see HANDOFF Next #2):
+        // serverTrustTest -- NetProbe.TryFakeHit requires a captured Client singleton
+        // from the flush hook, which never resolves, so the toggle did nothing.
             }
             aimbotSmoothing = GUI.Toggle(new Rect(x, y, w, 24), aimbotSmoothing, "Aimbot smoothing"); y += 26;
             if (aimbotSmoothing)

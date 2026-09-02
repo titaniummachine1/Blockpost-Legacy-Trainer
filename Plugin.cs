@@ -134,6 +134,7 @@ public sealed class Plugin : BasePlugin
     // When true, Input.GetMouseButton(0) returns true regardless of actual mouse state.
     // Set by silent aim / auto-shoot prefix so Controll.Update fires through its own logic.
     private static bool autoShootThisFrame;
+    private static bool dryFireActive;
     private static bool espEnabled = true;
     private static bool showHealth = true;
     private static bool showTeammates;
@@ -4184,6 +4185,20 @@ public sealed class Plugin : BasePlugin
                 return;
             }
 
+            // Dry-fire guard: an empty magazine can still silently aim (target tracking
+            // is useful), but shooting does nothing. Track it in the status instead of
+            // letting the fire input flap every frame.
+            var magAmmo = Controll.FGGKANNFBDH;
+            var magMax = Controll.ILFOFIOFBAM;
+            if (magMax > 0 && magAmmo <= 0)
+            {
+                dryFireActive = true;
+            }
+            else
+            {
+                dryFireActive = false;
+            }
+
             LogResolvedBindings(players, mainPlayer, camera);
             UpdateAimbot(players, mainPlayer, camera);
         }
@@ -4648,6 +4663,17 @@ public sealed class Plugin : BasePlugin
         var main = Controll.HGAODFPBGLB;
         if (main == null || main.JPGGPPLOOML == null)
         {
+            return;
+        }
+
+        // Dry-fire guard: with an empty magazine the game plays the dry-fire click and
+        // never fires, but our forced input made the aimbot look alive. Only auto-shoot
+        // when the mag actually has rounds (maxAmmo -1 = no weapon, always allowed).
+        var magAmmo = Controll.FGGKANNFBDH;
+        var maxAmmo = Controll.ILFOFIOFBAM;
+        if (dryFireActive)
+        {
+            aimStatus = $"{aimStatus} | dry (mag empty)";
             return;
         }
 
